@@ -6,7 +6,9 @@ class PurchaseOrderLine(models.Model):
 
     use_product_components = fields.Boolean(related="order_id.use_product_components")
     component_ids = fields.One2many(
-        comodel_name="purchase.order.line.component", inverse_name="line_id"
+        comodel_name="purchase.order.line.component",
+        inverse_name="line_id",
+        ondelete="cascade",
     )
     last_qty_invoiced = fields.Float(
         compute="_compute_last_qty_invoiced",
@@ -62,6 +64,11 @@ class PurchaseOrderLine(models.Model):
         """Updates purchase order line components based on supplierinfo"""
         if self.supplier_id:
             self.component_ids.unlink()
+            components = self.supplier_id.component_ids
+            if self.env.user.has_group("product.group_product_variant"):
+                components = self.env[
+                    "product.supplierinfo.component"
+                ]._get_component_by_product_variant(self.product_id, components)
             self.write(
                 {
                     "component_ids": [
@@ -76,8 +83,8 @@ class PurchaseOrderLine(models.Model):
                                 "product_uom_id": component.product_uom_id.id,
                             },
                         )
-                        for component in self.supplier_id.component_ids
-                    ]
+                        for component in components
+                    ],
                 }
             )
 
@@ -110,6 +117,12 @@ class PurchaseOrderLine(models.Model):
             if product_id:
                 rec._update_purchase_order_line_components()
         return result
+
+    def unlink(self):
+        if self:
+            for rec in self:
+                rec.component_ids.unlink()
+        return super(PurchaseOrderLine, self).unlink()
 
     def action_open_component_view(self):
         """Open view with product components"""
@@ -215,3 +228,51 @@ class PurchaseOrderLine(models.Model):
             if "in_refund" in move_ids.mapped("move_type"):
                 invoice_qty *= -1
             line.last_qty_invoiced = invoice_qty
+
+    @api.onchange("product_qty", "product_uom")
+    def _onchange_quantity(self):
+        super(PurchaseOrderLine, self)._onchange_quantity()
+        if (
+            not self.product_id
+            or self.invoice_lines
+            or not self.env.user.has_group("product.group_product_variant")
+        ):
+            return
+        # Compute unit price by product variant components
+        params = {"order_id": self.order_id}
+        seller = self.product_id._select_seller(
+            partner_id=self.partner_id,
+            quantity=self.product_qty,
+            date=self.order_id.date_order and self.order_id.date_order.date(),
+            uom_id=self.product_uom,
+            params=params,
+        )
+        price = sum(
+            self.env["product.supplierinfo.component"]
+            ._get_component_by_product_variant(self.product_id, seller.component_ids)
+            .mapped("price_total")
+        )
+        price_unit = (
+            self.env["account.tax"]._fix_tax_included_price_company(
+                price, self.product_id.supplier_taxes_id, self.taxes_id, self.company_id
+            )
+            if seller
+            else 0.0
+        )
+        if (
+            price_unit
+            and seller
+            and self.order_id.currency_id
+            and seller.currency_id != self.order_id.currency_id
+        ):
+            price_unit = seller.currency_id._convert(
+                price_unit,
+                self.order_id.currency_id,
+                self.order_id.company_id,
+                self.date_order or fields.Date.today(),
+            )
+
+        if seller and self.product_uom and seller.product_uom != self.product_uom:
+            price_unit = seller.product_uom._compute_price(price_unit, self.product_uom)
+
+        self.price_unit = price_unit
