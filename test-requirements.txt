@@ -1,1 +1,2 @@
 odoo_test_helper
+odoo14-addon-base_dynamic_report_field_selection @ git+https://github.com/OCA/server-ux.git@refs/pull/627/head#subdirectory=setup/base_dynamic_report_field_selection

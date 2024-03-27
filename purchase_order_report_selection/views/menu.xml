@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo>
+     <menuitem
+        id="menu_po_line_report_tmpl"
+        name="PO lines report template"
+        parent="purchase.menu_purchase_config"
+        action="action_po_line_report_tmpl"
+        sequence="199"
+    />
+</odoo>

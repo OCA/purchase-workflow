@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="assets_end" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script
+                src="/purchase_order_report_selection/static/src/js/report_fields.js"
+                type="text/javascript"
+            />
+
+        </xpath>
+    </template>
+    <template
+        id="purchase_order_report_selection_assets_pdf"
+        inherit_id="web.report_assets_common"
+    >
+        <xpath expr="link[last()]" position="after">
+            <link
+                rel="stylesheet"
+                type="text/scss"
+                href="/purchase_order_report_selection/static/src/scss/style.scss"
+            />
+
+        </xpath>
+    </template>
+</odoo>
