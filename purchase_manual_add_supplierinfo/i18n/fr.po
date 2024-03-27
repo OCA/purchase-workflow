@@ -1,0 +1,84 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_manual_add_supplierinfo
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-09 09:44+0000\n"
+"PO-Revision-Date: 2023-10-09 09:44+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_manual_add_supplierinfo
+#: model_terms:ir.ui.view,arch_db:purchase_manual_add_supplierinfo.product_supplierinfo_form_view
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: purchase_manual_add_supplierinfo
+#: model_terms:ir.ui.view,arch_db:purchase_manual_add_supplierinfo.product_supplierinfo_form_view
+msgid "Confirm"
+msgstr "Confirmer"
+
+#. module: purchase_manual_add_supplierinfo
+#: model:ir.model.fields,field_description:purchase_manual_add_supplierinfo.field_product_supplierinfo__display_name
+#: model:ir.model.fields,field_description:purchase_manual_add_supplierinfo.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:purchase_manual_add_supplierinfo.field_purchase_order_line__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: purchase_manual_add_supplierinfo
+#: model:ir.model.fields,field_description:purchase_manual_add_supplierinfo.field_product_supplierinfo__id
+#: model:ir.model.fields,field_description:purchase_manual_add_supplierinfo.field_purchase_order__id
+#: model:ir.model.fields,field_description:purchase_manual_add_supplierinfo.field_purchase_order_line__id
+msgid "ID"
+msgstr ""
+
+#. module: purchase_manual_add_supplierinfo
+#: model:ir.model.fields,field_description:purchase_manual_add_supplierinfo.field_product_supplierinfo____last_update
+#: model:ir.model.fields,field_description:purchase_manual_add_supplierinfo.field_purchase_order____last_update
+#: model:ir.model.fields,field_description:purchase_manual_add_supplierinfo.field_purchase_order_line____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: purchase_manual_add_supplierinfo
+#: model:ir.model,name:purchase_manual_add_supplierinfo.model_purchase_order
+msgid "Purchase Order"
+msgstr "Commande fournisseur"
+
+#. module: purchase_manual_add_supplierinfo
+#: model:ir.model,name:purchase_manual_add_supplierinfo.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Ligne de commande fournisseur"
+
+#. module: purchase_manual_add_supplierinfo
+#: model:ir.model.fields,field_description:purchase_manual_add_supplierinfo.field_product_supplierinfo__ignore_create_from_po
+msgid "Skip and move on"
+msgstr "Ignorer et passer au suivant"
+
+#. module: purchase_manual_add_supplierinfo
+#: model:ir.model,name:purchase_manual_add_supplierinfo.model_product_supplierinfo
+msgid "Supplier Pricelist"
+msgstr "Liste de prix du fournisseur"
+
+#. module: purchase_manual_add_supplierinfo
+#: code:addons/purchase_manual_add_supplierinfo/models/purchase.py:0
+#, python-format
+msgid "Supplierinfo"
+msgstr "Prix Fournisseur"
+
+#. module: purchase_manual_add_supplierinfo
+#: model_terms:ir.ui.view,arch_db:purchase_manual_add_supplierinfo.purchase_order_form
+msgid "Update supplierinfo"
+msgstr "Mise à jour prix fournisseurs"
+
+#. module: purchase_manual_add_supplierinfo
+#: model:ir.model.fields,field_description:purchase_manual_add_supplierinfo.field_purchase_order__all_supplierinfo_ok
+#: model:ir.model.fields,field_description:purchase_manual_add_supplierinfo.field_purchase_order_line__supplierinfo_ok
+msgid "supplierinfo is ok ?"
+msgstr "prix fournisseur est ok ?"
