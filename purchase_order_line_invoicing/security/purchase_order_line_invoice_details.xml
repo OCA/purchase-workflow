@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record model="ir.model.access" id="purchase_order_line_invoice_details_access">
+        <field name="name">purchase.order.line.invoice.details access</field>
+        <field name="model_id" ref="model_purchase_order_line_invoice_details" />
+        <field name="group_id" ref="purchase.group_purchase_user" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_create" eval="1" />
+        <field name="perm_write" eval="1" />
+        <field name="perm_unlink" eval="1" />
+    </record>
+
+</odoo>
