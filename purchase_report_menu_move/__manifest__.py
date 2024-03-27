@@ -3,7 +3,7 @@
 
 {
     "name": "Purchase Report Menu Move",
-    "version": "14.0.1.0.0",
+    "version": "15.0.1.0.0",
     "author": "Ecosoft,Odoo Community Association (OCA)",
     "category": "Purchase",
     "license": "AGPL-3",
