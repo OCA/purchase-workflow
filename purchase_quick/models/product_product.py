@@ -23,6 +23,9 @@ class ProductProduct(models.Model):
     def _compute_seller_price(self):
         po = self.pma_parent
         for record in self:
+            if po is None:
+                record.seller_price = 0.0
+                continue
             seller = record._select_seller(
                 partner_id=po.partner_id,
                 quantity=record.qty_to_process or 1,
