@@ -32,8 +32,7 @@ class StockPicking(models.Model):
         message += "</ul>"
         return message
 
-    def _action_done(self):
-        super(StockPicking, self)._action_done()
+    def _purchase_request_picking_confirm_message(self):
         request_obj = self.env["purchase.request"]
         for picking in self:
             requests_dict = {}
@@ -64,3 +63,7 @@ class StockPicking(models.Model):
                         body=message,
                         author_id=self.env.user.partner_id.id,
                     )
+
+    def _action_done(self):
+        super(StockPicking, self)._action_done()
+        self._purchase_request_picking_confirm_message()
