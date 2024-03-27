@@ -1,0 +1,9 @@
+<odoo noupdate="1">
+    <record
+        id="purchase_work_acceptance_cancel_confirm_disable"
+        model="ir.config_parameter"
+    >
+        <field name="key">work.acceptance.cancel_confirm_disable</field>
+        <field name="value">True</field>
+    </record>
+</odoo>
