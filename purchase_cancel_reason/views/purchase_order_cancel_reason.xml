@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 ACSONE SA/NV
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_purchase_order_cancel_reason_form" model="ir.ui.view">
+        <field name="name">Purchase Order Cancel Reason</field>
+        <field name="model">purchase.order.cancel.reason</field>
+        <field name="arch" type="xml">
+            <form string="Purchase Order Cancel Reasons">
+                <group>
+                    <field name="name" />
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_purchase_order_cancel_reason_tree" model="ir.ui.view">
+        <field name="name">Purchase Order Cancel Reason</field>
+        <field name="model">purchase.order.cancel.reason</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_purchase_order_cancel_reason" model="ir.actions.act_window">
+        <field name="name">Purchase Order Cancel Reason</field>
+        <field name="res_model">purchase.order.cancel.reason</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="menu_purchase_order_cancel_reason"
+        parent="purchase.menu_purchase_config"
+        name="Purchase Order Cancel Reasons"
+        action="action_purchase_order_cancel_reason"
+        sequence="150"
+        groups="purchase.group_purchase_manager"
+    />
+</odoo>
