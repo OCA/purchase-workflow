@@ -14,7 +14,7 @@ class SupplierInfo(models.Model):
         if self:
             if create:
                 vals = self._get_tmp_supplierinfo_vals()
-                self.with_context(update_from_po_id=False).create(vals)
+                self.with_context(create_temporary_supplier_info=False).create(vals)
             self.env["purchase.order.line"].browse(
                 self._context.get("update_from_po_line_id")
             ).supplierinfo_ok = True
@@ -26,11 +26,11 @@ class SupplierInfo(models.Model):
             lines = purchase.order_line.filtered(lambda s: not s.supplierinfo_ok)
             if lines:
                 return lines[0].action_create_missing_supplierinfo()
-        return True
+        return {}  # return empty action to close the pop-up
 
     @api.model_create_multi
     def create(self, vals_list):
-        if self._context.get("update_from_po_id"):
+        if self._context.get("create_temporary_supplier_info"):
             assert len(vals_list) == 1
             # /!\ hack zone
             # With odoo you can not call a method before doing a save
@@ -38,8 +38,9 @@ class SupplierInfo(models.Model):
             # update_from_purchase or update_from_purchase_skip
             # so we create a temporary object where the vals will be store
             # and we return a "fake" negative ID
-            # A negative is used as normally there is no negative ID
-            # TODO in a long term we should implement a specific kind of action
+            # A negative is a "valid" id for the websclient but it's never used
+            # in odoo so we know that it's not a real id.
+            # In a long term we should implement a specific kind of action
             # in odoo frontend to be able to call a method without saving
             record = self.env["temporary.supplierinfo"]._store_vals(vals_list[0])
             return self.browse(-record.id)

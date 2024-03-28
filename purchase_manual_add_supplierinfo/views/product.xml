@@ -7,15 +7,15 @@
                 <footer
                     invisible="not context.get('update_from_po_id') and not context.get('update_from_po_line_id')"
                 >
-                    <button
-                        name="update_from_purchase"
-                        string="Confirm"
-                        type="object"
-                        class="btn-primary"
-                    />
-                    <button
+                   <button
                         name="update_from_purchase_skip"
                         string="Ignore"
+                        type="object"
+                        class="btn-danger"
+                    />
+                   <button
+                        name="update_from_purchase"
+                        string="Confirm"
                         type="object"
                         class="btn-primary"
                     />

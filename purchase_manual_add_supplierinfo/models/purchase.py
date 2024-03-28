@@ -17,12 +17,9 @@ class PurchaseOrder(models.Model):
     @api.depends("state", "order_line.supplierinfo_ok")
     def _compute_all_supplierinfo_ok(self):
         for purchase in self:
-            all_supplierinfo_ok = True
-            if purchase.state in ("purchase", "done") and purchase.order_line.filtered(
-                lambda l: not l.supplierinfo_ok
-            ):
-                all_supplierinfo_ok = False
-            purchase.all_supplierinfo_ok = all_supplierinfo_ok
+            purchase.all_supplierinfo_ok = all(
+                purchase.order_line.mapped("supplierinfo_ok")
+            )
 
     def update_supplierinfo(self):
         return (
@@ -45,21 +42,22 @@ class PurchaseOrderLine(models.Model):
     @api.depends("state", "product_id.seller_ids")
     def _compute_supplierinfo_ok(self):
         for line in self:
-            supplierinfo_ok = True
-            if line.state in (
-                "purchase",
-                "done",
-            ) and not line.product_id.seller_ids.filtered(
-                lambda s: s.name == line.order_id.partner_id.commercial_partner_id
-            ):
-                supplierinfo_ok = False
-            line.supplierinfo_ok = supplierinfo_ok
+            if line.state not in ("purchase", "done"):
+                line.supplierinfo_ok = True
+            else:
+                line.supplierinfo_ok = bool(
+                    line.product_id._select_seller(
+                        line.order_id.partner_id.commercial_partner_id,
+                        quantity=None,
+                    )
+                )
 
     def action_create_missing_supplierinfo(self):
         return {
             "name": _("Supplierinfo"),
             "type": "ir.actions.act_window",
             "context": {
+                "create_temporary_supplier_info": True,
                 "update_from_po_id": self._context.get("update_from_po_id"),
                 "update_from_po_line_id": self.id,
                 "visible_product_tmpl_id": False,

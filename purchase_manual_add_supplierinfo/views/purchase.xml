@@ -22,7 +22,7 @@
                 <button
                     name="action_create_missing_supplierinfo"
                     type="object"
-                    icon="fa-edit"
+                    icon="fa-database"
                     attrs="{'invisible': ['|', ('state', 'not in', ('purchase', 'done')), ('supplierinfo_ok', '!=', False)]}"
                     title="Update supplierinfo"
                 />
