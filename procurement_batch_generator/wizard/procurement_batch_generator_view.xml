@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2014-2021 Akretion France (http://www.akretion.com/)
+  @author: Alexis de Lattre <alexis.delattre@akretion.com>
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+
+<record id="procurement_batch_generator_form" model="ir.ui.view">
+    <field name="name">procurement.batch.generator.form</field>
+    <field name="model">procurement.batch.generator</field>
+    <field name="arch" type="xml">
+        <form string="Replanish">
+            <group name="main" col="4">
+                    <field name="warehouse_id" widget="selection" />
+                    <field name="company_id" groups="base.group_multi_company" />
+            </group>
+            <group name="lines">
+                <field
+                        name="line_ids"
+                        nolabel="1"
+                        colspan="2"
+                        options="{'no_create': True}"
+                    >
+                    <tree editable="bottom">
+                        <field name="product_tmpl_id" invisible="1" />
+                        <field name="product_has_variants" invisible="1" />
+                        <!--    <field name="product_id" attrs="{'readonly': [('product_has_variants', '=', False)]}" options="{'no_create_edit': 1}"/> doesn't work because this field cannot be readonly -->
+                        <field name="product_id" options="{'no_create_edit': 1}" />
+                        <field name="partner_id" readonly="1" />
+                        <field name="qty_available" readonly="1" />
+                        <field name="outgoing_qty" readonly="1" />
+                        <field name="incoming_qty" readonly="1" />
+                        <field name="procurement_qty" />
+                        <field name="uom_id" groups="uom.group_uom" string="UoM" />
+                        <field name="date_planned" />
+                        <field
+                                name="route_ids"
+                                widget="many2many_tags"
+                                groups="stock.group_adv_location"
+                            />
+                        <field name="company_id" invisible="1" />
+                    </tree>
+                </field>
+            </group>
+            <footer>
+                <button
+                        type="object"
+                        name="validate"
+                        string="Validate"
+                        class="btn-primary"
+                    />
+                <button special="cancel" string="Cancel" class="btn-default" />
+            </footer>
+        </form>
+    </field>
+</record>
+
+<record
+        id="procurement_batch_generator_product_product_tree_action"
+        model="ir.actions.act_window"
+    >
+    <field name="name">Replenish</field>
+    <field name="res_model">procurement.batch.generator</field>
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+    <field name="binding_model_id" ref="product.model_product_product" />
+    <field name="binding_view_types">list</field>
+</record>
+
+<record
+        id="procurement_batch_generator_product_template_tree_action"
+        model="ir.actions.act_window"
+    >
+    <field name="name">Replenish</field>
+    <field name="res_model">procurement.batch.generator</field>
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+    <field name="binding_model_id" ref="product.model_product_template" />
+    <field name="binding_view_types">list</field>
+</record>
+
+
+</odoo>
