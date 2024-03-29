@@ -14,7 +14,12 @@ class SupplierInfo(models.Model):
         if self:
             if create:
                 vals = self._get_tmp_supplierinfo_vals()
-                self.with_context(create_temporary_supplier_info=False).create(vals)
+                self.with_context(
+                    create_temporary_supplier_info=False,
+                    # remove default product as product_id can be empty and default
+                    # should not fill it
+                    default_product_id=False,
+                ).create(vals)
             self.env["purchase.order.line"].browse(
                 self._context.get("update_from_po_line_id")
             ).supplierinfo_ok = True
