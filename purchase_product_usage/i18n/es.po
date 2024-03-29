@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-03-29 16:35+0000\n"
+"PO-Revision-Date: 2024-03-29 19:33+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -59,86 +59,86 @@ msgstr "Producto Predeterminado"
 #. module: purchase_product_usage
 #: model:res.groups,name:purchase_product_usage.group_purchase_product_usage
 msgid "Define Purchase Product Usages"
-msgstr ""
+msgstr "Definir los Usos del Producto de Compra"
 
 #. module: purchase_product_usage
 #: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage__name
 msgid "Description"
-msgstr ""
+msgstr "Descripción"
 
 #. module: purchase_product_usage
 #: model:ir.model.fields,field_description:purchase_product_usage.field_account_move_line__display_name
 #: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_order_line__display_name
 #: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Mostrar Nombre"
 
 #. module: purchase_product_usage
 #: model:ir.model.fields,help:purchase_product_usage.field_purchase_product_usage__account_id
 msgid "Expense account for vendor bills"
-msgstr ""
+msgstr "Cuenta de gastos para facturas de proveedores"
 
 #. module: purchase_product_usage
 #: model:ir.model.fields,field_description:purchase_product_usage.field_account_move_line__id
 #: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_order_line__id
 #: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: purchase_product_usage
 #: model:ir.model,name:purchase_product_usage.model_account_move_line
 msgid "Journal Item"
-msgstr ""
+msgstr "Artículo Diario"
 
 #. module: purchase_product_usage
 #: model:ir.model.fields,field_description:purchase_product_usage.field_account_move_line____last_update
 #: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_order_line____last_update
 #: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última Modificación el"
 
 #. module: purchase_product_usage
 #: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Última Actualización por"
 
 #. module: purchase_product_usage
 #: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última Actualización el"
 
 #. module: purchase_product_usage
 #: model:ir.model,name:purchase_product_usage.model_purchase_product_usage
 msgid "Product Usage"
-msgstr ""
+msgstr "Uso del Producto"
 
 #. module: purchase_product_usage
 #: model_terms:ir.ui.view,arch_db:purchase_product_usage.purchase_product_usage_form
 msgid "Product usage"
-msgstr ""
+msgstr "Uso del producto"
 
 #. module: purchase_product_usage
 #: model:ir.model,name:purchase_product_usage.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Línea de Orden de Compra"
 
 #. module: purchase_product_usage
 #: model:ir.actions.act_window,name:purchase_product_usage.action_purchase_product_usage
 #: model:ir.ui.menu,name:purchase_product_usage.menu_purchase_product_usage
 msgid "Purchase Product Usages"
-msgstr ""
+msgstr "Usos del Producto de Compra"
 
 #. module: purchase_product_usage
 #: model:ir.model.fields,help:purchase_product_usage.field_purchase_product_usage__product_id
 msgid "Purchase this product by default"
-msgstr ""
+msgstr "Comprar este producto por defecto"
 
 #. module: purchase_product_usage
 #: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_order_line__usage_id
 msgid "Usage"
-msgstr ""
+msgstr "Utilización"
 
 #. module: purchase_product_usage
 #: model_terms:ir.ui.view,arch_db:purchase_product_usage.view_purchase_product_usage_search
 msgid "Usages"
-msgstr ""
+msgstr "Usos"
