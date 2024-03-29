@@ -37,7 +37,7 @@ class TestPurchaseLastPriceInfo(common.TransactionCase):
                 ("product_id", "=", self.product.id),
                 ("state", "in", ["purchase", "done"]),
             ]
-        ).sorted(key=lambda l: l.order_id.date_order, reverse=True)
+        ).sorted(key=lambda line: line.order_id.date_order, reverse=True)
         first_purchase_line = fields.first(purchase_lines)
         self.assertEqual(
             fields.Datetime.from_string(first_purchase_line.order_id.date_order).date(),
