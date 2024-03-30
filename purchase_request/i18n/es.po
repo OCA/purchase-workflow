@@ -13,10 +13,10 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-17 03:38+0000\n"
-"PO-Revision-Date: 2024-03-04 13:34+0000\n"
-"Last-Translator: Anna Martínez <anna080678@gmail.com>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-purchase-"
-"workflow-10-0/language/es/)\n"
+"PO-Revision-Date: 2024-03-30 22:33+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/"
+"OCA-purchase-workflow-10-0/language/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -335,7 +335,7 @@ msgstr "Copiar las descripciones en un nuevo pedido de compra"
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__keep_estimated_cost
 msgid "Copy estimative cost to new PO"
-msgstr ""
+msgstr "Copie el coste estimado en la nueva OC"
 
 #. module: purchase_request
 #: model:ir.actions.act_window,name:purchase_request.action_purchase_request_line_make_purchase_order
@@ -1229,6 +1229,8 @@ msgid ""
 "Set true if you want to keep the estimated cost provided in the wizard in "
 "the new PO."
 msgstr ""
+"Establezca verdadero si desea mantener el coste estimado proporcionado en el "
+"asistente en la nueva OC."
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
@@ -1268,33 +1270,37 @@ msgid ""
 "Today: Activity date is today\n"
 "Planned: Future activities."
 msgstr ""
+"Estado basado en actividades\n"
+"Atrasado: La fecha de vencimiento ya ha pasado\n"
+"Hoy: La fecha de la actividad es hoy\n"
+"Planeado: Actividades futuras."
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_stock_move
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__stock_move_id
 msgid "Stock Move"
-msgstr ""
+msgstr "Movimiento de Existencias"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__move_count
 msgid "Stock Move count"
-msgstr ""
+msgstr "Recuento de movimientos de existencias"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_form2_sub
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Stock Moves"
-msgstr ""
+msgstr "Movimientos de Existencias"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_stock_rule
 msgid "Stock Rule"
-msgstr ""
+msgstr "Regla de Existencias"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order__supplier_id
 msgid "Supplier"
-msgstr ""
+msgstr "Proveedor"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/stock_move.py:0
@@ -1302,6 +1308,8 @@ msgstr ""
 msgid ""
 "The company of the purchase request must match with that of the location."
 msgstr ""
+"La compañía de la solicitud de compra debe coincidir con la compañía de la "
+"ubicación."
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_order.py:0
@@ -1310,6 +1318,8 @@ msgid ""
 "The following requested items from Purchase Request %s have now been "
 "confirmed in Purchase Order %s:"
 msgstr ""
+"Los siguientes elementos solicitados de la petición de compra %s han sido "
+"confirmados en el pedido de compra %s:"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/stock_move_line.py:0
@@ -1318,6 +1328,8 @@ msgid ""
 "The following requested items from Purchase Request %s have now been "
 "received in %s using Picking %s:"
 msgstr ""
+"Los siguitenes artículos de la solicitud de compra %s han sido recibidos en "
+"%s con el albarán %s:"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/stock_picking.py:0
@@ -1326,6 +1338,8 @@ msgid ""
 "The following requested items from Purchase Request %s have now been "
 "received in Incoming Shipment %s:"
 msgstr ""
+"Los siguientes artículos de la solicitud de compra %s han sido recibidos en "
+"el albarán de entrada %s:"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/stock_move_line.py:0
@@ -1334,6 +1348,8 @@ msgid ""
 "The following requested items from Purchase Request %s requested by %s have "
 "now been received in %s:"
 msgstr ""
+"Los siguientes artículos de la solicitud de compra %s solicitada por %s han "
+"sido recibidos en %s:"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_order.py:0
@@ -1342,71 +1358,72 @@ msgid ""
 "The following requested services from Purchase Request %s requested by %s "
 "have now been received:"
 msgstr ""
+"La siguiente solicitud de servicios desde la solicitud de compra %s "
+"solicitada por %s ha sido recibida:"
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
 #, python-format
 msgid "The purchase has already been completed."
-msgstr ""
+msgstr "La compra ha sido completada ya."
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__qty_to_buy
 msgid "There is some pending qty to buy"
-msgstr ""
+msgstr "Hay alguna cantidad pendiente por comprar"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "To Approve"
-msgstr ""
+msgstr "A Aprobar"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__to_approve_allowed
-#, fuzzy
 msgid "To Approve Allowed"
-msgstr "Aprobado"
+msgstr "Permitido para Aprobar"
 
 #. module: purchase_request
 #: model:ir.model.fields.selection,name:purchase_request.selection__purchase_request__state__to_approve
 msgid "To be approved"
-msgstr ""
+msgstr "Para ser aprobado"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__estimated_cost
 msgid "Total Estimated Cost"
-msgstr ""
+msgstr "Coste Total Estimado"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Tracking"
-msgstr ""
+msgstr "Seguimiento"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_stock_picking
 msgid "Transfer"
-msgstr ""
+msgstr "Transferencia"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__activity_exception_decoration
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
+msgstr "Tipo de excepción de actividad registrada."
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Unassigned"
-msgstr ""
+msgstr "Sin asignar"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Unassigned Request"
-msgstr ""
+msgstr "Solicitud no Asignada"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Uncancelled"
-msgstr ""
+msgstr "No cancelado"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_unread
@@ -1418,40 +1435,38 @@ msgstr "Mensajes no leídos"
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_unread_counter
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_unread_counter
-#, fuzzy
 msgid "Unread Messages Counter"
-msgstr "Mensajes no leídos"
+msgstr "Contador de Mensajes no Leídos"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__product_uom_id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__product_uom_id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__product_uom_id
 msgid "UoM"
-msgstr ""
+msgstr "UdM (Unidad De Medida)"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_search_sub
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_tree_sub
 msgid "Vendor"
-msgstr ""
+msgstr "Vendedor"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__website_message_ids
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__website_message_ids
-#, fuzzy
 msgid "Website Messages"
-msgstr "Mensajes no leídos"
+msgstr "Mensajes de Sitio Web"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__website_message_ids
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "Historial de la comunicación en el sitio web"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__wiz_id
 msgid "Wizard"
-msgstr ""
+msgstr "Asistente"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_request_line.py:0
@@ -1460,6 +1475,8 @@ msgid ""
 "You can only delete a purchase request line if the purchase request is in "
 "draft state."
 msgstr ""
+"Solo puede eliminar una línea de solicitud de compra si la solicitud está en "
+"estado de borrador."
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_request.py:0
@@ -1467,6 +1484,8 @@ msgstr ""
 msgid ""
 "You can't request an approval for a purchase request which is empty. (%s)"
 msgstr ""
+"No se puede solicitar la aprobación de una solicitud de compra que está "
+"vacía. (%s)"
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
@@ -1475,36 +1494,39 @@ msgid ""
 "You cannot create a single purchase order from purchase requests that have "
 "different procurement group."
 msgstr ""
+"No se puede crear un único pedido a partir de solicitudes de compra que "
+"tengan distinto grupo de aprovisionamiento."
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_request.py:0
 #, python-format
 msgid "You cannot delete a purchase request which is not draft."
-msgstr ""
+msgstr "No puede eliminar una solicitud de compra que no sea borrador."
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_request_line.py:0
 #, python-format
 msgid "You cannot delete a record that refers to purchase lines!"
 msgstr ""
+"¡No puede eliminar un registro que tenga referencias a líneas de compra!"
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
 #, python-format
 msgid "You have to enter a Picking Type."
-msgstr ""
+msgstr "Debe introducir un Tipo de recogida."
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
 #, python-format
 msgid "You have to select lines from the same Picking Type."
-msgstr ""
+msgstr "Debe seleccionar líneas del mismo tipo de recogida."
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
 #, python-format
 msgid "You have to select lines from the same company."
-msgstr ""
+msgstr "Debe seleccionar líneas de la misma compañía."
 
 #~ msgid "Product Unit of Measure"
 #~ msgstr "Unidad de medida"
