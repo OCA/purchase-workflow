@@ -7,7 +7,7 @@ class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
     force_invoiced = fields.Boolean(
-        readonly=True,
+        readonly=False,
         states={"done": [("readonly", False)]},
         copy=False,
         tracking=True,
