@@ -24,7 +24,9 @@ class PickingImportWizard(models.TransientModel):
         return res
 
     supplier = fields.Many2one(
-        comodel_name="res.partner", string="Supplier", required=True,
+        comodel_name="res.partner",
+        string="Supplier",
+        required=True,
     )
     pickings = fields.Many2many(
         comodel_name="stock.picking",

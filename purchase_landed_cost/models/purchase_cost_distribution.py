@@ -111,7 +111,9 @@ class PurchaseCostDistribution(models.Model):
         compute=_compute_total_volume, string="Total volume", readonly=True
     )
     total_purchase = fields.Float(
-        compute=_compute_total_purchase, digits="Account", string="Total purchase",
+        compute=_compute_total_purchase,
+        digits="Account",
+        string="Total purchase",
     )
     total_price_unit = fields.Float(
         compute=_compute_total_price_unit,
@@ -119,10 +121,14 @@ class PurchaseCostDistribution(models.Model):
         digits="Product Price",
     )
     amount_total = fields.Float(
-        compute=_compute_amount_total, digits="Account", string="Total",
+        compute=_compute_amount_total,
+        digits="Account",
+        string="Total",
     )
     total_expense = fields.Float(
-        compute=_compute_total_expense, digits="Account", string="Total expenses",
+        compute=_compute_total_expense,
+        digits="Account",
+        string="Total expenses",
     )
     note = fields.Text(string="Documentation for this order")
     cost_lines = fields.One2many(
@@ -425,7 +431,9 @@ class PurchaseCostDistributionLine(models.Model):
         digits="Product Price",
     )
     expense_amount = fields.Float(
-        string="Cost amount", digits="Account", compute="_compute_expense_amount",
+        string="Cost amount",
+        digits="Account",
+        compute="_compute_expense_amount",
     )
     cost_ratio = fields.Float(string="Unit cost", compute="_compute_cost_ratio")
     standard_price_new = fields.Float(
@@ -434,7 +442,9 @@ class PurchaseCostDistributionLine(models.Model):
         compute="_compute_standard_price_new",
     )
     total_amount = fields.Float(
-        compute=_compute_total_amount, string="Amount line", digits="Account",
+        compute=_compute_total_amount,
+        string="Amount line",
+        digits="Account",
     )
     total_weight = fields.Float(
         compute=_compute_total_weight,
@@ -450,7 +460,9 @@ class PurchaseCostDistributionLine(models.Model):
         help="The line volume in m3.",
     )
     company_id = fields.Many2one(
-        comodel_name="res.company", related="distribution.company_id", store=True,
+        comodel_name="res.company",
+        related="distribution.company_id",
+        store=True,
     )
 
     @api.model
@@ -483,7 +495,9 @@ class PurchaseCostDistributionLineExpense(models.Model):
         related="distribution_line.picking_id",
     )
     picking_date_done = fields.Datetime(
-        related="picking_id.date_done", store=True, readonly=True,
+        related="picking_id.date_done",
+        store=True,
+        readonly=True,
     )
     distribution_expense = fields.Many2one(
         comodel_name="purchase.cost.distribution.expense",
@@ -497,7 +511,10 @@ class PurchaseCostDistributionLineExpense(models.Model):
         related="distribution_expense.type",
         store=True,
     )
-    expense_amount = fields.Float(string="Expense amount", digits="Account",)
+    expense_amount = fields.Float(
+        string="Expense amount",
+        digits="Account",
+    )
     cost_ratio = fields.Float("Unit cost")
     company_id = fields.Many2one(
         comodel_name="res.company",
@@ -561,7 +578,9 @@ class PurchaseCostDistributionExpense(models.Model):
     invoice_id = fields.Many2one(comodel_name="account.move", string="Invoice")
     display_name = fields.Char(compute="_compute_display_name", store=True)
     company_id = fields.Many2one(
-        comodel_name="res.company", related="distribution.company_id", store=True,
+        comodel_name="res.company",
+        related="distribution.company_id",
+        store=True,
     )
 
     @api.depends("distribution", "type", "expense_amount", "ref")
