@@ -14,7 +14,9 @@ def migrate(env, version):
             SET invoice_line = aml.id
             FROM account_move_line aml
             WHERE aml.old_invoice_line_id = pcde.{}"""
-        ).format(sql.Identifier(openupgrade.get_legacy_name("invoice_line")),),
+        ).format(
+            sql.Identifier(openupgrade.get_legacy_name("invoice_line")),
+        ),
     )
     openupgrade.logged_query(
         env.cr,
@@ -24,5 +26,7 @@ def migrate(env, version):
             SET invoice_id = am.id
             FROM account_move am
             WHERE am.old_invoice_id = pcde.{}"""
-        ).format(sql.Identifier(openupgrade.get_legacy_name("invoice_id")),),
+        ).format(
+            sql.Identifier(openupgrade.get_legacy_name("invoice_id")),
+        ),
     )
