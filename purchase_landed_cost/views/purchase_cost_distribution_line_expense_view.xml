@@ -18,7 +18,7 @@
     <record id="view_purchase_cost_distribution_line_expense_tree" model="ir.ui.view">
         <field name="model">purchase.cost.distribution.line.expense</field>
         <field name="arch" type="xml">
-            <tree string="Purchase cost distribution lines">
+            <tree>
                 <field name="picking_id" invisible="1" />
                 <field name="distribution_line" />
                 <field name="distribution_expense" />

@@ -101,11 +101,6 @@ msgid "Company"
 msgstr ""
 
 #. module: purchase_landed_cost
-#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_form
-msgid "Cost Line Expenses"
-msgstr ""
-
-#. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__expense_amount
 msgid "Cost amount"
 msgstr ""
@@ -115,12 +110,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__distribution
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
 msgid "Cost distribution"
-msgstr ""
-
-#. module: purchase_landed_cost
-#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
-#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_expense_invoice_form
-msgid "Cost distribution expenses"
 msgstr ""
 
 #. module: purchase_landed_cost
@@ -141,11 +130,6 @@ msgstr ""
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_expense_type__note
 msgid "Cost documentation"
-msgstr ""
-
-#. module: purchase_landed_cost
-#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
-msgid "Costs distribution picking lines"
 msgstr ""
 
 #. module: purchase_landed_cost
@@ -571,25 +555,14 @@ msgid "Purchase cost distribution line expense"
 msgstr ""
 
 #. module: purchase_landed_cost
-#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_expense_tree
-msgid "Purchase cost distribution lines"
-msgstr ""
-
-#. module: purchase_landed_cost
 #: model:ir.actions.act_window,name:purchase_landed_cost.action_purchase_cost_distribution
 #: model:ir.ui.menu,name:purchase_landed_cost.menu_purchase_cost_distribution
-#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_tree
 msgid "Purchase cost distributions"
 msgstr ""
 
 #. module: purchase_landed_cost
 #: model:ir.model,name:purchase_landed_cost.model_purchase_expense_type
 msgid "Purchase cost type"
-msgstr ""
-
-#. module: purchase_landed_cost
-#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_expense_type_tree
-msgid "Purchase expense types"
 msgstr ""
 
 #. module: purchase_landed_cost
