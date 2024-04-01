@@ -35,6 +35,7 @@ class TestPurchase(AccountTestInvoicingCommon):
         purchase_order = (
             self.env["purchase.order"]
             .with_context(tracking_disable=True)
+            .sudo()
             .create(
                 {
                     "partner_id": self.partner_a.id,
@@ -45,7 +46,7 @@ class TestPurchase(AccountTestInvoicingCommon):
         PurchaseOrderLine = self.env["purchase.order.line"].with_context(
             tracking_disable=True
         )
-        PurchaseOrderLine.create(
+        PurchaseOrderLine.sudo().create(
             {
                 "name": self.product_order.name,
                 "product_id": self.product_order.id,
