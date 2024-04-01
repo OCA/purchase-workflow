@@ -1,6 +1,7 @@
 # Copyright 2013 Joaquín Gutierrez
 # Copyright 2018 Tecnativa - Vicent Cubells
 # Copyright 2014-2018 Tecnativa - Pedro M. Baeza
+# Copyright 2024 Tecnativa - Carolina Fernandez
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3
 
 
@@ -88,7 +89,6 @@ class PurchaseCostDistribution(models.Model):
         default="draft",
     )
     date = fields.Date(
-        string="Date",
         required=True,
         readonly=True,
         index=True,
@@ -133,13 +133,11 @@ class PurchaseCostDistribution(models.Model):
     note = fields.Text(string="Documentation for this order")
     cost_lines = fields.One2many(
         comodel_name="purchase.cost.distribution.line",
-        ondelete="cascade",
         inverse_name="distribution",
         string="Distribution lines",
     )
     expense_lines = fields.One2many(
         comodel_name="purchase.cost.distribution.expense",
-        ondelete="cascade",
         inverse_name="distribution",
         string="Expenses",
         default=_expense_lines_default,
@@ -151,13 +149,14 @@ class PurchaseCostDistribution(models.Model):
                 raise UserError(_("You can't delete a confirmed cost distribution"))
         return super(PurchaseCostDistribution, self).unlink()
 
-    @api.model
-    def create(self, vals):
-        if vals.get("name", "/") == "/":
-            vals["name"] = self.env["ir.sequence"].next_by_code(
-                "purchase.cost.distribution"
-            )
-        return super(PurchaseCostDistribution, self).create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get("name", "/") == "/":
+                vals["name"] = self.env["ir.sequence"].next_by_code(
+                    "purchase.cost.distribution"
+                )
+        return super(PurchaseCostDistribution, self).create(vals_list)
 
     def write(self, vals):
         for command in vals.get("cost_lines", []):
@@ -362,7 +361,7 @@ class PurchaseCostDistributionLine(models.Model):
                 dist_line.move_id and dist_line.move_id._get_price_unit() or 0.0
             )
 
-    name = fields.Char(string="Name", compute="_compute_name", store=True)
+    name = fields.Char(compute="_compute_name", store=True)
     distribution = fields.Many2one(
         comodel_name="purchase.cost.distribution",
         string="Cost distribution",
@@ -572,7 +571,7 @@ class PurchaseCostDistributionExpense(models.Model):
     invoice_line = fields.Many2one(
         comodel_name="account.move.line",
         string="Supplier invoice line",
-        domain="[('move_id.type', '=', 'in_invoice'),"
+        domain="[('move_id.move_type', '=', 'in_invoice'),"
         "('move_id.state', '=', 'posted')]",
     )
     invoice_id = fields.Many2one(comodel_name="account.move", string="Invoice")

@@ -35,7 +35,7 @@
         <field name="name">purchase.cost.distribution.tree</field>
         <field name="model">purchase.cost.distribution</field>
         <field name="arch" type="xml">
-            <tree string="Purchase cost distributions">
+            <tree>
                 <field name="name" />
                 <field name="date" />
                 <field name="total_purchase" />
@@ -67,7 +67,7 @@
         <field name="model">purchase.cost.distribution</field>
         <field name="arch" type="xml">
             <graph string="Purchase cost distribution" type="bar">
-                <field name="name" group="True" />
+                <field name="name" />
                 <field name="total_purchase" />
             </graph>
         </field>
@@ -142,10 +142,7 @@
                     <notebook>
                         <page string="Picking lines">
                             <field name="cost_lines">
-                                <tree
-                                    string="Costs distribution picking lines"
-                                    create="false"
-                                >
+                                <tree create="false">
                                     <field name="picking_id" />
                                     <field name="move_id" />
                                     <field name="product_id" readonly="1" />
@@ -170,10 +167,7 @@
                                 name="expense_lines"
                                 options="{'reload_on_button': true}"
                             >
-                                <tree
-                                    string="Cost distribution expenses"
-                                    editable="bottom"
-                                >
+                                <tree editable="bottom">
                                     <field name="type" />
                                     <field name="calculation_method" />
                                     <field name="ref" />
@@ -296,7 +290,7 @@
                     </group>
                 </group>
                 <field name="expense_lines" readonly="1">
-                    <tree string="Cost Line Expenses">
+                    <tree>
                         <field name="type" />
                         <field name="expense_amount" sum="Total Expenses" />
                         <field name="cost_ratio" sum="Calculated Cost" />
@@ -311,11 +305,11 @@
     >
         <field name="model">purchase.cost.distribution.expense</field>
         <field name="arch" type="xml">
-            <tree string="Cost distribution expenses" editable="bottom" create="false">
+            <tree editable="bottom" create="false">
                 <field
                     name="invoice_line"
                     options="{'no_create': true, 'create_edit': false}"
-                    domain="[('invoice_id', '=', parent.id)]"
+                    domain="[('move_id', '=', parent.id)]"
                 />
                 <field name="type" />
                 <field name="calculation_method" />

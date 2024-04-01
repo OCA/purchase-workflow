@@ -1,10 +1,11 @@
 # Copyright 2013 Joaquín Gutierrez
 # Copyright 2014-2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# Copyright 2024 Carolina Fernandez
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3
 
 {
     "name": "Purchase landed costs - Alternative option",
-    "version": "13.0.1.2.0",
+    "version": "16.0.1.0.0",
     "author": "AvanzOSC,"
     "Tecnativa,"
     "Joaquín Gutierrez,"

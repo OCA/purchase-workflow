@@ -29,7 +29,7 @@
     <record id="purchase_expense_type_tree" model="ir.ui.view">
         <field name="model">purchase.expense.type</field>
         <field name="arch" type="xml">
-            <tree string="Purchase expense types" editable="bottom">
+            <tree editable="bottom">
                 <field name="name" />
                 <field name="calculation_method" />
                 <field name="default_expense" />

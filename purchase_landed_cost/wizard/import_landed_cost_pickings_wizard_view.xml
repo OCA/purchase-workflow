@@ -4,21 +4,28 @@
         <field name="model">import.landed.cost.pickings.wizard</field>
         <field name="type">form</field>
         <field name="arch" type="xml">
-            <p
-            >Select here the pickings for those you want to add their expenses lines.</p>
-            <p>Only the pickings with expenses are allowed to be selected here.</p>
-            <field name="possible_picking_ids" invisible="1" />
-            <field name="picking_ids" nolabel="1" />
-            <footer>
-                <button
-                    name="button_import"
-                    string="Import"
-                    type="object"
-                    class="oe_highlight"
-                />
-                or
-                <button string="Cancel" class="oe_link" special="cancel" />
-            </footer>
+            <form>
+                <sheet>
+                    <p
+                    >Select here the pickings for those you want to add their expenses lines.</p>
+                    <p
+                    >Only the pickings with expenses are allowed to be selected here.</p>
+                    <group>
+                        <field name="possible_picking_ids" invisible="1" />
+                        <field name="picking_ids" nolabel="1" colspan="2" />
+                    </group>
+                    <footer>
+                        <button
+                            name="button_import"
+                            string="Import"
+                            type="object"
+                            class="oe_highlight"
+                        />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </sheet>
+            </form>
         </field>
     </record>
     <record

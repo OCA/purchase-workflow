@@ -106,11 +106,6 @@ msgid "Company"
 msgstr "Compañía"
 
 #. module: purchase_landed_cost
-#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_form
-msgid "Cost Line Expenses"
-msgstr "Gastos de la línea de coste"
-
-#. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__expense_amount
 msgid "Cost amount"
 msgstr "Importe coste"
@@ -121,12 +116,6 @@ msgstr "Importe coste"
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
 msgid "Cost distribution"
 msgstr "Distribución de costes"
-
-#. module: purchase_landed_cost
-#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
-#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_expense_invoice_form
-msgid "Cost distribution expenses"
-msgstr "Gastos de la distribución de costes"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_expense__distribution_line
@@ -147,11 +136,6 @@ msgstr "Notas de la distribución de costes..."
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_expense_type__note
 msgid "Cost documentation"
 msgstr "Documentación del coste"
-
-#. module: purchase_landed_cost
-#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
-msgid "Costs distribution picking lines"
-msgstr "Líneas de albaranes de la distribución de costes"
 
 #. module: purchase_landed_cost
 #: model:ir.ui.menu,name:purchase_landed_cost.menu_purchase_cost_control
@@ -580,14 +564,8 @@ msgid "Purchase cost distribution line expense"
 msgstr "Gastos de la línea de distribución de costes de compras"
 
 #. module: purchase_landed_cost
-#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_expense_tree
-msgid "Purchase cost distribution lines"
-msgstr "Purchase cost distribution lines"
-
-#. module: purchase_landed_cost
 #: model:ir.actions.act_window,name:purchase_landed_cost.action_purchase_cost_distribution
 #: model:ir.ui.menu,name:purchase_landed_cost.menu_purchase_cost_distribution
-#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_tree
 msgid "Purchase cost distributions"
 msgstr "Distribuciones de costes de compras"
 
@@ -595,11 +573,6 @@ msgstr "Distribuciones de costes de compras"
 #: model:ir.model,name:purchase_landed_cost.model_purchase_expense_type
 msgid "Purchase cost type"
 msgstr "Tipo de coste de compras"
-
-#. module: purchase_landed_cost
-#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_expense_type_tree
-msgid "Purchase expense types"
-msgstr "Tipos de gastos de compra"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_form

@@ -1,13 +1,16 @@
 # Copyright 2018 Tecnativa - Vicent Cubells
 # Copyright 2018 Tecnativa - Pedro M. Baeza
+# Copyright 2024 Tecnativa - Carolina Fernandez
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
+
+from datetime import datetime
 
 from odoo import fields
 from odoo.exceptions import UserError
 from odoo.tests import common
 
 
-class TestPurchaseLandedCost(common.SavepointCase):
+class TestPurchaseLandedCost(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(TestPurchaseLandedCost, cls).setUpClass()
@@ -70,15 +73,17 @@ class TestPurchaseLandedCost(common.SavepointCase):
         cls.env["stock.immediate.transfer"].create(
             {"pick_ids": [(4, cls.picking.id)]}
         ).process()
-        cls.picking.action_done()
-        user_type = cls.env.ref("account.data_account_type_expenses")
+        cls.picking.action_confirm()
+        cls.picking.move_ids.write({"quantity_done": 5.0})
+        cls.picking.button_validate()
         account = cls.env["account.account"].create(
-            {"name": "Account", "code": "CODE", "user_type_id": user_type.id}
+            {"name": "Account", "code": "CODE", "account_type": "expense"}
         )
         cls.invoice = cls.env["account.move"].create(
             {
                 "partner_id": cls.supplier.id,
-                "type": "in_invoice",
+                "move_type": "in_invoice",
+                "invoice_date": datetime.now(),
                 "invoice_line_ids": [
                     (
                         0,
@@ -92,7 +97,7 @@ class TestPurchaseLandedCost(common.SavepointCase):
                 ],
             }
         )
-        cls.invoice.post()
+        cls.invoice._post()
         wiz = (
             cls.env["import.invoice.line.wizard"]
             .with_context(active_id=cls.distribution.id)
@@ -145,7 +150,7 @@ class TestPurchaseLandedCost(common.SavepointCase):
         self.env["stock.immediate.transfer"].create(
             {"pick_ids": [(4, picking2.id)]}
         ).process()
-        picking2.action_done()
+        picking2.button_validate()
         wiz = (
             self.env["picking.import.wizard"]
             .with_context(active_id=self.distribution.id)
@@ -178,7 +183,7 @@ class TestPurchaseLandedCost(common.SavepointCase):
         self.env["stock.immediate.transfer"].create(
             {"pick_ids": [(6, 0, (picking2 + picking3).ids)]}
         ).process()
-        (picking2 + picking3).action_done()
+        (picking2 + picking3).button_validate()
         wiz = (
             self.env["picking.import.wizard"]
             .with_context(active_id=self.distribution.id)

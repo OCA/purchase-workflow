@@ -1,4 +1,5 @@
 # Copyright 2014-2016 Tecnativa - Pedro M. Baeza
+# Copyright 2024 Tecnativa - Carolina Fernandez
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3
 from odoo import fields, models
 
@@ -9,14 +10,12 @@ class ImportInvoiceLine(models.TransientModel):
 
     supplier = fields.Many2one(
         comodel_name="res.partner",
-        string="Supplier",
         required=True,
     )
     invoice = fields.Many2one(
         comodel_name="account.move",
-        string="Invoice",
         required=True,
-        domain="[('partner_id', '=', supplier), ('type', '=', 'in_invoice'),"
+        domain="[('partner_id', '=', supplier), ('move_type', '=', 'in_invoice'),"
         "('state', '=', 'posted')]",
     )
     invoice_line = fields.Many2one(
