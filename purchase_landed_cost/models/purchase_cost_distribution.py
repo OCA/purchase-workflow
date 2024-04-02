@@ -127,13 +127,11 @@ class PurchaseCostDistribution(models.Model):
     note = fields.Text(string="Documentation for this order")
     cost_lines = fields.One2many(
         comodel_name="purchase.cost.distribution.line",
-        ondelete="cascade",
         inverse_name="distribution",
         string="Distribution lines",
     )
     expense_lines = fields.One2many(
         comodel_name="purchase.cost.distribution.expense",
-        ondelete="cascade",
         inverse_name="distribution",
         string="Expenses",
         default=_expense_lines_default,
