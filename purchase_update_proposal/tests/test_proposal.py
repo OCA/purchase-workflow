@@ -9,15 +9,13 @@ class Test(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        order = cls.env.ref("purchase.purchase_order_7")
-        order.button_confirm()
-        cls.order_basic = order
         order = cls.env.ref("purchase_update_proposal.purchase_order")
         order.button_confirm()
-        cls.order_main = order
+        cls.order = order
 
     def test_basics(self):
-        order = self.order_basic
+        order = self.env.ref("purchase.purchase_order_7")
+        order.button_confirm()
         assert len(order.order_line) == 2
         order.order_line[0].button_update_proposal()
         order.order_line[1].button_update_proposal()
@@ -64,7 +62,7 @@ class Test(common.TransactionCase):
         prop = order_s.proposal_ids[0]
         prop.write({"qty": 10, "price_u": 2})
         order_s.submit_proposal()
-        assert order_s.proposal_updatable == "yes"
+        assert order_s.proposal_updatable
         assert order.proposal_state == "submitted"
         order.approve_proposal()
         # We check all is correctly written
@@ -113,21 +111,21 @@ class Test(common.TransactionCase):
             order.approve_proposal()
 
     def test_one_null_qty_in_proposal_not_in_orderline(self):
-        order = self.get_order_with_user()
-        order.order_line[0].button_update_proposal()
-        order.proposal_ids[0].qty = 0
-        order.order_line[1].button_update_proposal()
-        order.proposal_ids[1].qty = 99
-        order.submit_proposal()
-        order.approve_proposal()
-        assert order.order_line[0].product_qty == 0
-        assert order.order_line[1].product_qty != 0
-        assert order.state != "cancel"
+        order_w_adm = self.get_order_with_user()
+        order_w_adm.order_line[0].button_update_proposal()
+        order_w_adm.proposal_ids[0].qty = 0
+        order_w_adm.order_line[1].button_update_proposal()
+        order_w_adm.proposal_ids[1].qty = 99
+        order_w_adm.submit_proposal()
+        order_w_adm.approve_proposal()
+        assert order_w_adm.order_line[0].product_qty == 0
+        assert order_w_adm.order_line[1].product_qty != 0
+        assert order_w_adm.state != "cancel"
 
     def get_order_with_user(self, alternate_user=None):
-        order = self.order_main
+        order = self.order
         if alternate_user:
             order = order.with_user(
-                self.env.ref("purchase_update_proposal.supplier_demo_user").id
+                self.env.ref("purchase_update_proposal.supplier_demo_user")
             )
         return order

@@ -8,20 +8,9 @@
                 <field name="name" string="Reference" />
                 <field name="product_id" />
                 <filter
-                    name="approved"
-                    string="Approved"
-                    domain="[('state','=','approved')]"
-                />
-                <filter
-                    name="confirmed"
-                    string="Confirmed"
-                    domain="[('state','=','confirmed')]"
-                />
-                <separator />
-                <filter
-                    name="not_invoiced"
-                    string="Not Invoiced"
-                    domain="[('invoice_ids','=', False)]"
+                    name="purchased"
+                    string="Purchased"
+                    domain="[('state','=','purchase')]"
                 />
                 <separator />
                 <filter
@@ -35,11 +24,6 @@
                     domain="[('proposal_state','=', 'rejected')]"
                 />
                 <separator />
-<!--                 <filter
-                    string="New Mail"
-                    name="message_unread"
-                    domain="[('message_unread','=',True)]"
-                /> -->
                 <group expand="0" string="Group By">
                     <filter
                         string="Order Date"
@@ -62,15 +46,7 @@
         <field name="model">purchase.order</field>
         <field eval="100" name="priority" />
         <field name="arch" type="xml">
-<!--             <tree
-                fonts="bold:message_unread==True"
-                colors="blue:state in ('wait','confirmed');red:state in ('except_invoice','except_picking')"
-                string="Purchase Order"
-                create="0"
-                edit="0"
-            > -->
-            <tree>
-                <!-- <field name="message_unread" invisible="1" /> -->
+            <tree create="0" edit="0">
                 <field name="name" string="Reference" />
                 <field name="date_order" />
                 <field name="partner_id" />
@@ -175,7 +151,6 @@
                                     />
                             </group>
                             <field name="proposal_count" invisible="1" />
-                            <field name="partially_received" invisible="1" />
                             <div attrs="{'invisible': [('proposal_count', '=', 0)]}">
                                 <div
                                         attrs="{'invisible': [('proposal_state', '!=', 'submitted')]}"
@@ -187,15 +162,11 @@
                                         attrs="{'invisible': [('check_price_on_proposal', '=', True)]}"
                                     >Prices are not updated for this supplier.</div>
                             </div>
-                            <field
-                                    name="proposal_ids"
-                                    attrs="{'readonly': [('proposal_updatable', '=', 'no')]}"
-                                    nolabel="1"
-                                />
+                            <field name="proposal_ids" nolabel="1" />
                             <field name="check_price_on_proposal" invisible="1" />
                             <field name="proposal_updatable" invisible="1" />
                             <div
-                                    attrs="{'invisible': [('proposal_updatable', '!=', 'no')]}"
+                                    attrs="{'invisible': [('proposal_updatable', '!=', False)]}"
                                     style="background-color:red; color:white; text-align:center; font-weight: bold;"
                                 >
                                 We can't complete your request because our incoming workflow is partially finished or cancelled
@@ -216,7 +187,6 @@
                                         type="object"
                                         string="Update"
                                         groups="purchase_update_proposal.group_purchase_proposal_user,purchase_update_proposal.group_supplier_own_purchase"
-                                        attrs="{'invisible': [('received', '=', 'all')]}"
                                     />
                                 <field name="proposal_count" invisible="1" />
                                 <field
@@ -227,12 +197,13 @@
                                 <field name="name" />
                                 <field name="date_planned" />
                                 <field name="product_qty" />
+                                <field name="qty_received" />
+                                <field name="qty_invoiced" />
                                 <field name="product_uom" />
                                 <field name="price_unit" />
                                 <field name="taxes_id" widget="many2many_tags" />
                                 <field name="price_subtotal" />
                                 <field name="supplier_cancel_status" />
-                                <field name="received" />
                                 <field name="state" invisible="1" />
                             </tree>
                         </field>

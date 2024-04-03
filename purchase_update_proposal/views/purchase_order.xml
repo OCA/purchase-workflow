@@ -16,15 +16,16 @@
                 <group>
                     <button
                         name="button_switch2other_view"
-                        string="Supplier view"
+                        string="Supplier"
                         type="object"
+                        title="Supplier view"
+                        class="fa fa-user"
                         context="{'from_supplier_view': 0}"
                     />
                     <field
                         name="proposal_display"
                         attrs="{'invisible': ['|', ('proposal_count', '=', 0), ('proposal_state', '!=', 'rejected')]}"
                     />
-                        <!-- groups="purchase.group_purchase_user" -->
                 </group>
                 <div
                     attrs="{'invisible': ['|', ('proposal_count', '=', 0), ('proposal_display', '=', True)]}"
@@ -80,7 +81,7 @@
                         name="proposal_ids"
                         mode="tree"
                         nolabel="1"
-                        attrs="{'readonly': [('proposal_updatable', '=', 'no')]}"
+                        attrs="{'readonly': [('proposal_updatable', '=', False)]}"
                     >
                         <tree>
                             <field name="line_id_" />
@@ -97,7 +98,7 @@
                     <field name="check_price_on_proposal" invisible="1" />
                     <field name="proposal_updatable" invisible="1" />
                     <div
-                        attrs="{'invisible': [('proposal_updatable', '!=', 'no')]}"
+                        attrs="{'invisible': [('proposal_updatable', '!=', False)]}"
                         style="background-color:red; color:white; text-align:center; font-weight: bold;"
                     >
                         We can't complete your request because our incoming workflow is partially finished or cancelled

@@ -1,6 +1,7 @@
 # © 2020 David BEAL @ Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+from odoo.exceptions import UserError
 from odoo.tests import common
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT as DF
 
@@ -37,7 +38,6 @@ class Test(common.TransactionCase):
             lambda s: s.product_id == pick.move_ids[0].product_id
         )
         assert line.received == "partially"
-        assert order.partially_received is True
 
     def test_date_field(self):
         order = self.get_order_with_user(alternate_user=True)
@@ -69,22 +69,35 @@ class Test(common.TransactionCase):
         assert self.other_line.price_unit == 98
 
     def test_qty_field(self):
-        order = self.get_order_with_user(alternate_user=True)
+        order_w_supplier = self.get_order_with_user(alternate_user=True)
+        order_w_admin = self.order
         # Lamp product line
         self.lamp_line.button_update_proposal()
-        order.proposal_ids[0].qty = 99
-        self.order.approve_proposal()
-        assert self.lamp_line.product_qty != 99
-        self.order.reset_proposal()
-        order.proposal_ids[0].unlink()
-        # other product
-        self.other_line.button_update_proposal()
-        order.proposal_ids[0].qty = 97
-        order.submit_proposal()
-        self.order.approve_proposal()
-        assert self.other_line.product_qty != 97
-        assert self.order.proposal_state == "draft"
-        assert self.order.proposal_updatable == "no"
+        order_w_supplier.proposal_ids[0].qty = 0.2
+        order_w_admin.approve_proposal()
+        assert self.lamp_line.product_qty == 15
+        order_w_supplier.proposal_ids[0].qty = 1.1
+        order_w_admin.approve_proposal()
+        assert self.lamp_line.product_qty == 1.1
+
+    def test_check_updatable_proposal(self):
+        order_w_admin = self.order
+        self.lamp_line.button_update_proposal()
+        assert self.lamp_line.product_qty == 15
+        assert self.lamp_line.qty_received == 1
+        order_w_admin.proposal_ids[0].qty = 0.9
+        order_w_admin._check_updatable_proposal()
+        assert not order_w_admin.proposal_updatable
+        order_w_admin.proposal_ids[0].qty = 1
+        order_w_admin._check_updatable_proposal()
+        assert order_w_admin.proposal_updatable
+        order_w_admin.proposal_ids[0].qty = 1.1
+        order_w_admin._check_updatable_proposal()
+        assert order_w_admin.proposal_updatable
+        order_w_admin.proposal_ids[0].qty = 15
+        # In this case qty doesn't change
+        with self.assertRaises(UserError):
+            order_w_admin._check_updatable_proposal()
 
     def test_populate_all_lines(self):
         order = self.get_order_with_user(alternate_user=True)
@@ -96,6 +109,6 @@ class Test(common.TransactionCase):
         order = self.order
         if alternate_user:
             order = order.with_user(
-                self.env.ref("purchase_update_proposal.supplier_demo_user").id
+                self.env.ref("purchase_update_proposal.supplier_demo_user")
             )
         return order

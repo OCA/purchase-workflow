@@ -39,11 +39,8 @@ class PurchaseLineProposal(models.Model):
     date = fields.Date(
         string="New Date", compute="_compute_date", store=True, readonly=False
     )
-    price_u = fields.Float(
-        string="New Price U.",
-        digits="Product Price",
-    )
-    partially_received = fields.Boolean(related="order_id.partially_received")
+    price_u = fields.Float(string="New Price U.", digits="Product Price")
+    receipt_status = fields.Selection(related="order_id.receipt_status")
     check_price = fields.Boolean(related="order_id.partner_id.check_price_on_proposal")
 
     @api.depends("order_id.proposal_date")

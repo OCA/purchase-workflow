@@ -12,7 +12,7 @@
                 <field name="product_id" />
                 <field
                     name="qty"
-                    attrs="{'readonly': [('partially_received', '=', True)]}"
+                    attrs="{'readonly': [('receipt_status', '=', 'full')]}"
                 />
                 <field name="date" />
                 <field
@@ -24,7 +24,7 @@
                 <field name="price_unit" />
                 <field name="line_id" invisible="1" />
                 <field name="order_id" invisible="1" />
-                <field name="partially_received" invisible="1" />
+                <field name="receipt_status" invisible="1" />
                 <field name="check_price" invisible="1" />
             </tree>
         </field>

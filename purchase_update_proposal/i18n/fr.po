@@ -61,12 +61,6 @@ msgid "Check price on proposal"
 msgstr "Vérifier le prix lors de la proposition d'achat"
 
 #. module: purchase_update_proposal
-#: help:purchase.line.proposal,partially_received:0
-#: help:purchase.order,partially_received:0
-msgid "Checked if at least partially delivered"
-msgstr "Coché si la ligne est partiellement livré"
-
-#. module: purchase_update_proposal
 #: help:purchase.order,proposal_updatable:0
 msgid ""
 "Computed to be sure that stock move are in a state compatible with update"
@@ -247,12 +241,6 @@ msgstr "Mois de commande"
 #: selection:purchase.order.line,received:0
 msgid "Partially"
 msgstr "Partially"
-
-#. module: purchase_update_proposal
-#: field:purchase.line.proposal,partially_received:0
-#: field:purchase.order,partially_received:0
-msgid "Partially received"
-msgstr "Partially received"
 
 #. module: purchase_update_proposal
 #: model:ir.model,name:purchase_update_proposal.model_res_partner

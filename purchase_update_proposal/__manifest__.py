@@ -25,5 +25,5 @@
     ],
     "installable": True,
     "development_status": "Alpha",
-    "maintainers": ["bealdav"],
+    "maintainers": ["bealdav", "FranzPoize"],
 }

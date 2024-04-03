@@ -28,9 +28,8 @@ class PurchaseOrder(models.Model):
         copy=False,
         default="draft",
     )
-    proposal_updatable = fields.Selection(
-        selection=[("", "undefined"), ("yes", "Yes"), ("no", "No")],
-        default="",
+    proposal_updatable = fields.Boolean(
+        default=True,
         copy=False,
         help="Computed to be sure that stock move are in a state "
         "compatible with update",
@@ -47,38 +46,29 @@ class PurchaseOrder(models.Model):
         string="Display/Hide Proposal",
         help="If checked, rejected proposals are hidden.",
     )
-    partially_received = fields.Boolean(
-        compute="_compute_partially_received",
-        store=False,
-        compute_sudo=True,
-        help="Checked if at least partially delivered",
-    )
-
-    def _compute_partially_received(self):
-        for rec in self:
-            received = [x.received for x in rec.order_line if x.received]
-            if received:
-                rec.partially_received = True
-            else:
-                rec.partially_received = False
 
     def _check_updatable_proposal(self):
         """Override original method"""
         for rec in self:
             prevent_update = False
-            if rec.partially_received:
-                for __, vals in rec._prepare_proposal_data().items():
-                    for elm in vals:
-                        if "product_qty" in elm:
+            if rec.receipt_status == "full":
+                rec.proposal_updatable = False
+            elif rec.receipt_status in (False, "pending"):
+                rec.proposal_updatable = True
+            elif rec.receipt_status == "partial":
+                for pol, vals_list in rec._prepare_proposal_data().items():
+                    for vals in vals_list:
+                        if (
+                            "product_qty" in vals
+                            and pol
+                            and pol.qty_received > vals["product_qty"]
+                        ):
                             prevent_update = prevent_update or True
                         else:
                             prevent_update = prevent_update or False
-                if prevent_update:
-                    rec.proposal_updatable = "no"
-                else:
-                    rec.proposal_updatable = "yes"
+                rec.proposal_updatable = not prevent_update
             else:
-                rec.proposal_updatable = "yes"
+                rec.proposal_updatable = True
 
     def _compute_proposal(self):
         for rec in self:
@@ -97,7 +87,7 @@ class PurchaseOrder(models.Model):
         self.ensure_one()
         self._prepare_proposal_data()
         self._check_updatable_proposal()
-        if self.proposal_updatable == "yes":
+        if self.proposal_updatable:
             self.write({"proposal_state": "submitted"})
 
     def reset_proposal(self):
@@ -120,62 +110,23 @@ class PurchaseOrder(models.Model):
         if not self._get_purchase_groups():
             raise UserError(_("You are not authorized to approve this proposal"))
         self._check_updatable_proposal()
-        if self.proposal_updatable == "no":
-            # example: qty is in proposal and purchase is partially received
+        if not self.proposal_updatable:
+            # example: qty is in proposal and purchase unshipped is lower
             return
         body = []
-        initial_state = False
         # these proposals'll reset these lines
         lines_to_0 = self.proposal_ids.filtered(lambda s: s.qty == 0.0).mapped(
             "line_id"
         )
         data = self._prepare_proposal_data()
         if data:
-            self._hook_pending_proposal_approval()
-            if self._product_qty_key_in_data(data) and self.state in [
-                "confirmed",
-                "approved",
-            ]:
-                # We have to reset order because of changed qty in confirmed order
-                initial_state = self.state
-                self.action_cancel()
-                self.action_cancel_draft()
             self._update_proposal_to_purchase_line(data, body)
             self.message_post(body="\n".join(body))
-        if initial_state in ("approved", "confirmed"):
-            # altered quantity implied to reset order, then we approve them again
-            self.signal_workflow("purchase_confirm")
-            self.signal_workflow("purchase_approve")
-        # Cancellation cases
         if lines_to_0:
             lines_to_0.cancel_from_proposal()
         # clean accepted proposals
         self.env["purchase.line.proposal"].search([("order_id", "=", self.id)]).unlink()
         self.write({"proposal_state": "approved"})
-
-    def _product_qty_key_in_data(self, data):
-        """Check if 'product_qty' key is anywhere in data"""
-        self.ensure_one()
-        qty2update = False
-        for __, vals in data.items():
-            for key in vals:
-                if "product_qty" in key:
-                    qty2update = qty2update or True
-                else:
-                    qty2update = qty2update or False
-        return qty2update
-
-    def _hook_for_cancel_process(self):
-        "TODO remove: Kept for compatibility"
-        self._hook_pending_proposal_approval()
-
-    def _hook_pending_proposal_approval(self):
-        """Cancellation here is a fake one, in fact it's a workaround
-        to cleanly update purchase when picking has been created.
-        Context can't be used because it disappears in the global odoo process
-        So you may make changes in your custom process to capture falsy cancellation
-        """
-        return
 
     def _prepare_proposal_data(self):
         self.ensure_one()
@@ -247,7 +198,7 @@ class PurchaseOrder(models.Model):
             and self.proposal_state != "rejected"
         ):
             vals["proposal_display"] = False
-        return super(PurchaseOrder, self).write(vals)
+        return super().write(vals)
 
     def _get_purchase_groups(self):
         """Guess if the user is a standard purchaser"""
@@ -259,11 +210,13 @@ class PurchaseOrder(models.Model):
         ]
 
     def _fields_prevent_to_update(self, vals):
+        "Unauthorised users should only update a strict subset of purchase fields"
         if [x for x in vals.keys() if x[:9] != "proposal_"]:
             return True
         return False
 
     def _subscribe_portal_vendor(self):
+        "You may call it to submit this document to partners"
         self.ensure_one()
         cial_partner = self.partner_id.commercial_partner_id
         partner_ids = cial_partner.child_ids.ids
@@ -277,7 +230,7 @@ class PurchaseOrder(models.Model):
                 in s.groups_id
             )
             if users:
-                self.message_subscribe_users(users.ids)
+                self.message_subscribe(users.mapped("partner_id").ids)
 
     def button_switch2other_view(self):
         self.ensure_one()

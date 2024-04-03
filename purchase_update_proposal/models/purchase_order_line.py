@@ -18,33 +18,11 @@ class PurchaseOrderLine(models.Model):
         compute="_compute_supplier_cancel_status",
         help="Indicate if the line is cancelled",
     )
-    received = fields.Selection(
-        selection=[("", "No"), ("partially", "Partially"), ("all", "All")],
-        compute="_compute_received",
-        compute_sudo=True,
-        store=False,
-        help="Defined if quantity is partially or "
-        "completely received (at least the quantity of the line)",
-    )
-
-    def _compute_received(self):
-        for rec in self:
-            received = sum(
-                rec.move_ids.filtered(lambda s: s.state == "done").mapped(
-                    "product_uom_qty"
-                )
-            )
-            if received >= rec.product_qty:
-                rec.received = "all"
-            elif not received:
-                rec.received = ""
-            else:
-                rec.received = "partially"
 
     def _compute_supplier_cancel_status(self):
         for rec in self:
             cancel_status = False
-            if rec.state == "cancel":
+            if rec.state == "cancel" or not rec.product_qty:
                 cancel_status = _("Cancel")
             rec.supplier_cancel_status = cancel_status
 
