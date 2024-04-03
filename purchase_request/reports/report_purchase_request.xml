@@ -13,40 +13,42 @@
                             <span t-field="o.name" />
                         </h2>
                         <div class="row mt32 mb32">
-                            <div class="col-auto">
+                            <div class="col-2">
                                 <strong>Request Reference:</strong>
                                 <br />
                                 <span t-field="o.name" />
                             </div>
-                            <div class="col-auto">
+                            <div class="col-2">
                                 <strong>Creation Date:</strong>
                                 <br />
                                 <span t-field="o.date_start" />
                             </div>
-                            <div class="col-auto">
+                            <div class="col-2">
                                 <strong>Source:</strong>
                                 <br />
                                 <span t-field="o.origin" />
                             </div>
-                            <div class="col-auto">
-                                <strong>Description:</strong>
-                                <br />
-                                <span t-field="o.description" />
-                            </div>
-                            <div class="col-auto">
+                            <div class="col-2">
                                 <strong>Requested by:</strong>
                                 <br />
                                 <span t-field="o.requested_by" />
                             </div>
-                            <div class="col-auto">
+                            <div class="col-2">
                                 <strong>Assigned to:</strong>
                                 <br />
                                 <span t-field="o.assigned_to" />
                             </div>
-                            <div class="col-auto">
+                            <div class="col-2">
                                 <strong>Picking Type:</strong>
                                 <br />
                                 <span t-field="o.picking_type_id" />
+                            </div>
+                        </div>
+                        <div class="row mt32 mb32">
+                            <div class="col-12">
+                                <strong>Description:</strong>
+                                <br />
+                                <span t-field="o.description" />
                             </div>
                         </div>
                         <t t-if="o.line_ids">
