@@ -6,7 +6,6 @@ from odoo.tools import float_compare
 
 
 class PurchaseOrder(models.Model):
-
     _inherit = "purchase.order"
 
     account_payment_ids = fields.One2many(
