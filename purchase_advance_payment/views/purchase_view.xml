@@ -11,7 +11,7 @@
                     string="Pay purchase advanced"
                     type="action"
                     groups="account.group_account_invoice"
-                    attrs="{'invisible': ['|',('state', 'in', ['done','cancel']),('amount_residual', '=', 0)]}"
+                    invisible="state in ['done', 'cancel'] or not amount_residual"
                 />
             </button>
             <notebook position="inside">
