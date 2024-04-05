@@ -11,5 +11,4 @@ class AccountPayment(models.Model):
         "purchase.order",
         "Purchase",
         readonly=True,
-        states={"draft": [("readonly", False)]},
     )
