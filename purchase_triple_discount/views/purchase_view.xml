@@ -4,21 +4,21 @@
     <record id="purchase_order_triple_discount_form_view" model="ir.ui.view">
         <field name="name">purchase.order.triple.discount.form</field>
         <field name="model">purchase.order</field>
-        <field name="inherit_id" ref="purchase_discount.purchase_order_form" />
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
         <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='order_line']//tree//field[@name='discount']"
+                position="attributes"
+            >
+                <attribute name="column_invisible">1</attribute>
+            </xpath>
             <xpath
                 expr="//field[@name='order_line']//tree//field[@name='discount']"
                 position="after"
             >
+                <field name="discount1" optional="show" />
                 <field name="discount2" optional="show" />
                 <field name="discount3" optional="show" />
-            </xpath>
-            <xpath
-                expr="//field[@name='order_line']//form//field[@name='discount']"
-                position="after"
-            >
-                <field name="discount2" />
-                <field name="discount3" />
             </xpath>
         </field>
     </record>

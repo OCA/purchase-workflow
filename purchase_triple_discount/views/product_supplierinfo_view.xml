@@ -2,12 +2,13 @@
 
     <record model="ir.ui.view" id="product_supplierinfo_form_view">
          <field name="model">product.supplierinfo</field>
-         <field
-            name="inherit_id"
-            ref="purchase_discount.product_supplierinfo_form_view"
-        />
+         <field name="inherit_id" ref="product.product_supplierinfo_form_view" />
          <field name="arch" type="xml">
+             <field name="discount" position="attributes">
+                 <attribute name="invisible">1</attribute>
+             </field>
               <field name="discount" position="after">
+                  <field name="discount1" />
                   <field name="discount2" />
                   <field name="discount3" />
               </field>
@@ -16,14 +17,15 @@
 
     <record model="ir.ui.view" id="product_supplierinfo_tree_view">
          <field name="model">product.supplierinfo</field>
-         <field
-            name="inherit_id"
-            ref="purchase_discount.product_supplierinfo_tree_view"
-        />
+         <field name="inherit_id" ref="product.product_supplierinfo_tree_view" />
          <field name="arch" type="xml">
+             <field name="discount" position="attributes">
+                 <attribute name="column_invisible">1</attribute>
+             </field>
               <field name="discount" position="after">
-                  <field name="discount2" />
-                  <field name="discount3" />
+                  <field name="discount1" optional="hide" />
+                  <field name="discount2" optional="hide" />
+                  <field name="discount3" optional="hide" />
               </field>
          </field>
      </record>

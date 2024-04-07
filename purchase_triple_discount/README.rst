@@ -61,8 +61,6 @@ Unit price: 600.00 ->
    the corresponding vendor pricelist.
 -  Vendor pricelists can be edited as well with their corresponding new
    second and third discounts.
--  A default second or third discount can be set in every vendor *Sale &
-   Purchases* tab.
 
 Bug Tracker
 ===========

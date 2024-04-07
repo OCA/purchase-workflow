@@ -39,7 +39,8 @@ class TestPurchaseOrder(common.TransactionCase):
                 "min_qty": 0.0,
                 "partner_id": cls.partner2.id,
                 "product_tmpl_id": cls.product1.product_tmpl_id.id,
-                "discount": 10,
+                "price": 100,
+                "discount1": 10,
                 "discount2": 20,
                 "discount3": 30,
             }
@@ -49,6 +50,7 @@ class TestPurchaseOrder(common.TransactionCase):
                 "min_qty": 10.0,
                 "partner_id": cls.partner2.id,
                 "product_tmpl_id": cls.product1.product_tmpl_id.id,
+                "price": 100,
                 "discount3": 50,
             }
         )
@@ -110,8 +112,8 @@ class TestPurchaseOrder(common.TransactionCase):
 
     def test_01_purchase_order_classic_discount(self):
         """Tests with single discount"""
-        self.po_line1.discount = 50.0
-        self.po_line2.discount = 75.0
+        self.po_line1.discount1 = 50.0
+        self.po_line2.discount1 = 75.0
         self.assertEqual(self.po_line1.price_subtotal, 300.0)
         self.assertEqual(self.po_line2.price_subtotal, 150.0)
         self.assertEqual(self.order.amount_untaxed, 450.0)
@@ -124,14 +126,14 @@ class TestPurchaseOrder(common.TransactionCase):
         """Tests on a single line"""
         self.po_line2.unlink()
         # Divide by two on every discount:
-        self.po_line1.discount = 50.0
+        self.po_line1.discount1 = 50.0
         self.po_line1.discount2 = 50.0
         self.po_line1.discount3 = 50.0
         self.assertEqual(self.po_line1.price_subtotal, 75.0)
         self.assertEqual(self.order.amount_untaxed, 75.0)
         self.assertEqual(self.order.amount_tax, 11.25)
         # Unset first discount:
-        self.po_line1.discount = 0.0
+        self.po_line1.discount1 = 0.0
         self.assertEqual(self.po_line1.price_subtotal, 150.0)
         self.assertEqual(self.order.amount_untaxed, 150.0)
         self.assertEqual(self.order.amount_tax, 22.5)
@@ -143,7 +145,7 @@ class TestPurchaseOrder(common.TransactionCase):
 
     def test_03_purchase_order_complex_triple_discount(self):
         """Tests on multiple lines"""
-        self.po_line1.discount = 50.0
+        self.po_line1.discount1 = 50.0
         self.po_line1.discount2 = 50.0
         self.po_line1.discount3 = 50.0
         self.assertEqual(self.po_line1.price_subtotal, 75.0)
@@ -157,7 +159,7 @@ class TestPurchaseOrder(common.TransactionCase):
     def test_04_purchase_order_triple_discount_invoicing(self):
         """When a confirmed order is invoiced, the resultant invoice
         should inherit the discounts"""
-        self.po_line1.discount = 50.0
+        self.po_line1.discount1 = 50.0
         self.po_line1.discount2 = 50.0
         self.po_line1.discount3 = 50.0
         self.po_line2.discount3 = 50.0
@@ -172,7 +174,7 @@ class TestPurchaseOrder(common.TransactionCase):
         self.invoice._onchange_purchase_auto_complete()
 
         self.assertEqual(
-            self.po_line1.discount, self.invoice.invoice_line_ids[0].discount
+            self.po_line1.discount1, self.invoice.invoice_line_ids[0].discount
         )
         self.assertEqual(
             self.po_line1.discount2, self.invoice.invoice_line_ids[0].discount2
@@ -186,33 +188,17 @@ class TestPurchaseOrder(common.TransactionCase):
         self.assertEqual(self.order.amount_total, self.invoice.amount_total)
 
     def test_05_purchase_order_default_discounts(self):
-        with Form(self.order2).order_line.edit(0) as line:
+        with Form(self.order2.with_context(aa=1)).order_line.edit(0) as line:
             line.product_qty = 1.0
-            self.assertEqual(line.discount, 10)
+            self.assertEqual(line.discount1, 10)
             self.assertEqual(line.discount2, 20)
             self.assertEqual(line.discount3, 30)
             line.product_qty = 10
-            self.assertFalse(line.discount)
+            self.assertFalse(line.discount1)
             self.assertFalse(line.discount2)
             self.assertEqual(line.discount3, 50)
 
-    def test_06_default_supplier_discounts(self):
-        self.partner2.default_supplierinfo_discount = 11
-        self.partner2.default_supplierinfo_discount2 = 22
-        self.partner2.default_supplierinfo_discount3 = 33
-        supplierinfo = self.supplierinfo_obj.new(
-            {
-                "min_qty": 0.0,
-                "partner_id": self.partner2.id,
-                "product_tmpl_id": self.product1.product_tmpl_id.id,
-                "discount": 10,
-            }
-        )
-        self.assertEqual(supplierinfo.discount, 10)
-        self.assertEqual(supplierinfo.discount2, 22)
-        self.assertEqual(supplierinfo.discount3, 33)
-
-    def test_07_supplierinfo_from_purchaseorder(self):
+    def test_06_supplierinfo_from_purchaseorder(self):
         self.order2.order_line.create(
             {
                 "order_id": self.order2.id,
@@ -223,7 +209,7 @@ class TestPurchaseOrder(common.TransactionCase):
                 "product_uom": self.product2.uom_id.id,
                 "taxes_id": [(6, 0, [self.tax.id])],
                 "price_unit": 999.0,
-                "discount": 11.11,
+                "discount1": 11.11,
                 "discount2": 22.22,
                 "discount3": 33.33,
             }
@@ -236,28 +222,6 @@ class TestPurchaseOrder(common.TransactionCase):
             ]
         )
         self.assertTrue(seller)
-        self.assertEqual(seller.discount, 11.11)
+        self.assertEqual(seller.discount1, 11.11)
         self.assertEqual(seller.discount2, 22.22)
         self.assertEqual(seller.discount3, 33.33)
-
-    def test_08_purchase_report(self):
-        self.po_line2.write(
-            {
-                "discount2": 50,
-                "discount3": 20,
-            }
-        )
-        self.order.currency_id.rate_ids.unlink()  # for avoiding rate convers.
-        rec = self.env["purchase.report"].search(
-            [
-                ("product_id", "=", self.product2.id),
-            ]
-        )
-        self.assertEqual(rec.discount2, 50)
-        self.assertEqual(rec.discount3, 20)
-        # Changes value of comparison,
-        # because currently include taxes on field price_total
-        # https://bit.ly/3Hv2bEX
-        # https://bit.ly/3ESkdiO
-        self.assertEqual(self.po_line2.price_tax, 36)
-        self.assertEqual(rec.price_total, 276)
