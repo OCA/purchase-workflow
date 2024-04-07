@@ -17,19 +17,19 @@ Purchase Order Triple Discount
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/purchase-workflow/tree/16.0/purchase_triple_discount
+    :target: https://github.com/OCA/purchase-workflow/tree/17.0/purchase_triple_discount
     :alt: OCA/purchase-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/purchase-workflow-16-0/purchase-workflow-16-0-purchase_triple_discount
+    :target: https://translation.odoo-community.org/projects/purchase-workflow-17-0/purchase-workflow-17-0-purchase_triple_discount
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module allows to have three successive discounts on every purchase order
-line.
+This module allows to have three successive discounts on every purchase
+order line.
 
 **Table of contents**
 
@@ -39,30 +39,30 @@ line.
 Usage
 =====
 
-Create a new purchase order and add discounts in any of the three discount
-fields given. They go in order of precedence so discount 2 will be calculated
-over discount 1 and discount 3 over the result of discount 2. For example,
-let's divide by two on every discount:
+Create a new purchase order and add discounts in any of the three
+discount fields given. They go in order of precedence so discount 2 will
+be calculated over discount 1 and discount 3 over the result of discount
+2. For example, let's divide by two on every discount:
 
 Unit price: 600.00 ->
 
-  - Disc. 1 = 50% -> Amount = 300.00
-  - Disc. 2 = 50% -> Amount = 150.00
-  - Disc. 3 = 50% -> Amount = 75.00
+   -  Disc. 1 = 50% -> Amount = 300.00
+   -  Disc. 2 = 50% -> Amount = 150.00
+   -  Disc. 3 = 50% -> Amount = 75.00
 
 You can also use negative values to charge instead of discount:
 
 Unit price: 600.00 ->
 
-  - Disc. 1 = 50% -> Amount = 300.00
-  - Disc. 2 = -5% -> Amount = 315.00
+   -  Disc. 1 = 50% -> Amount = 300.00
+   -  Disc. 2 = -5% -> Amount = 315.00
 
-* When the purchase order is validated, the discounts will be added to the
-  corresponding vendor pricelist.
-* Vendor pricelists can be edited as well with their corresponding new second
-  and third discounts.
-* A default second or third discount can be set in every vendor
-  *Sale & Purchases* tab.
+-  When the purchase order is validated, the discounts will be added to
+   the corresponding vendor pricelist.
+-  Vendor pricelists can be edited as well with their corresponding new
+   second and third discounts.
+-  A default second or third discount can be set in every vendor *Sale &
+   Purchases* tab.
 
 Bug Tracker
 ===========
@@ -70,7 +70,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/purchase-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_triple_discount%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_triple_discount%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -78,25 +78,27 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Tecnativa
 * GRAP
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Tecnativa <https://www.tecnativa.com>`_:
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-    * David Vidal
-    * Pedro M. Baeza
+      -  David Vidal
+      -  Pedro M. Baeza
 
-* Sylvain LE GAL (https://twitter.com/legalsylvain)
-* `ForgeFlow S.L. <https://www.forgeflow.com>`_:
-    * Christopher Ormaza <chris.ormaza@forgeflow.com>
+-  Sylvain LE GAL (https://twitter.com/legalsylvain)
+
+-  `ForgeFlow S.L. <https://www.forgeflow.com>`__:
+
+   -  Christopher Ormaza <chris.ormaza@forgeflow.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -108,6 +110,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/16.0/purchase_triple_discount>`_ project on GitHub.
+This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/17.0/purchase_triple_discount>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
