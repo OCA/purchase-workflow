@@ -357,6 +357,11 @@ msgid "If checked, some messages have a delivery error."
 msgstr ""
 
 #. module: purchase_blanket_order
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_form
+msgid "Invoice Information"
+msgstr ""
+
+#. module: purchase_blanket_order
 #: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_search
 msgid "Invoiced Qty"
 msgstr ""
@@ -535,6 +540,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__original_uom_qty
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__original_uom_qty
 msgid "Original quantity"
+msgstr ""
+
+#. module: purchase_blanket_order
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_form
+msgid "Other Information"
 msgstr ""
 
 #. module: purchase_blanket_order
