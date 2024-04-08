@@ -18,6 +18,17 @@ class PurchaseOrder(models.Model):
         "incoming stock picking.",
     )
 
+    def button_confirm(self):
+        """For subcontracting orders
+        Without this, the downstream component demands may misjudge the available
+        quantities with owner consideration.
+        """
+        # TODO: Double-check if the logic is optimal
+        for order in self:
+            order = order.with_context(owner_id=order.owner_id.id)
+            super(PurchaseOrder, order).button_confirm()
+        return True
+
     def _prepare_picking(self):
         res = super()._prepare_picking()
         res["owner_id"] = self.owner_id.id
