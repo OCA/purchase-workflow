@@ -15,15 +15,24 @@
         <field name="arch" type="xml">
             <xpath expr="//block[@name='purchase_setting_container']" position="inside">
 
-                <setting id="use_purchase_terms" company_dependent="1"
-                         help="Add your terms &amp; conditions at the bottom of bills/orders/quotations">
-                    <field name="use_purchase_note" string="Default Terms &amp; Conditions"/>
+                <setting
+                    id="use_purchase_terms"
+                    company_dependent="1"
+                    help="Add your terms &amp; conditions at the bottom of bills/orders/quotations"
+                >
+                    <field
+                        name="use_purchase_note"
+                        string="Default Terms &amp; Conditions"
+                    />
                     <div class="content-group" invisible="not use_purchase_note">
                         <div class="mt16">
                             <div>
-                                <field name="purchase_note" widget="html"
-                                       class="oe_account_terms mt-5 w-100"
-                                       placeholder="Insert your terms &amp; conditions here..."/>
+                                <field
+                                    name="purchase_note"
+                                    widget="html"
+                                    class="oe_account_terms mt-5 w-100"
+                                    placeholder="Insert your terms &amp; conditions here..."
+                                />
                             </div>
                         </div>
                     </div>
