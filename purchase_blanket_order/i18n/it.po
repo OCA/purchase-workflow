@@ -369,6 +369,11 @@ msgid "If checked, some messages have a delivery error."
 msgstr "Se selezionata, alcuni messaggi hanno un errore di consegna."
 
 #. module: purchase_blanket_order
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_form
+msgid "Invoice Information"
+msgstr ""
+
+#. module: purchase_blanket_order
 #: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_search
 msgid "Invoiced Qty"
 msgstr "Q.tà fatturata"
@@ -548,6 +553,11 @@ msgstr "Q.tà originale"
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__original_uom_qty
 msgid "Original quantity"
 msgstr "Quantità originale"
+
+#. module: purchase_blanket_order
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_form
+msgid "Other Information"
+msgstr ""
 
 #. module: purchase_blanket_order
 #. odoo-python
