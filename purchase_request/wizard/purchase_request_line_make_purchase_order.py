@@ -2,6 +2,8 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0).
 from datetime import datetime
 
+import pytz
+
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import get_lang
@@ -220,6 +222,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         purchase_obj = self.env["purchase.order"]
         po_line_obj = self.env["purchase.order.line"]
         pr_line_obj = self.env["purchase.request.line"]
+        user_tz = pytz.timezone(self.env.user.tz or "UTC")
         purchase = False
 
         for item in self.item_ids:
@@ -284,8 +287,13 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             # unit price (which is what we want, to honor graduate pricing)
             # but also the scheduled date which is what we don't want.
             date_required = item.line_id.date_required
-            po_line.date_planned = datetime(
-                date_required.year, date_required.month, date_required.day
+            # we enforce to save the datetime value in the current tz of the user
+            po_line.date_planned = (
+                user_tz.localize(
+                    datetime(date_required.year, date_required.month, date_required.day)
+                )
+                .astimezone(pytz.utc)
+                .replace(tzinfo=None)
             )
             res.append(purchase.id)
 
