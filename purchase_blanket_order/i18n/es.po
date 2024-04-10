@@ -372,6 +372,11 @@ msgid "If checked, some messages have a delivery error."
 msgstr "Si se activa, algunos mensajes tienen un error de envio."
 
 #. module: purchase_blanket_order
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_form
+msgid "Invoice Information"
+msgstr ""
+
+#. module: purchase_blanket_order
 #: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_search
 msgid "Invoiced Qty"
 msgstr "Ctdad Facturada"
@@ -551,6 +556,11 @@ msgstr "Ctdad Original"
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__original_uom_qty
 msgid "Original quantity"
 msgstr "Cantidad original"
+
+#. module: purchase_blanket_order
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_form
+msgid "Other Information"
+msgstr ""
 
 #. module: purchase_blanket_order
 #. odoo-python
