@@ -104,11 +104,6 @@ msgid "Company"
 msgstr "公司"
 
 #. module: purchase_landed_cost
-#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_form
-msgid "Cost Line Expenses"
-msgstr "成本行费用"
-
-#. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__expense_amount
 msgid "Cost amount"
 msgstr "成本金额"
@@ -119,12 +114,6 @@ msgstr "成本金额"
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
 msgid "Cost distribution"
 msgstr "成本分摊"
-
-#. module: purchase_landed_cost
-#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
-#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_expense_invoice_form
-msgid "Cost distribution expenses"
-msgstr "成本分摊费用"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_expense__distribution_line
@@ -145,11 +134,6 @@ msgstr "成本分摊说明..."
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_expense_type__note
 msgid "Cost documentation"
 msgstr "成本文件"
-
-#. module: purchase_landed_cost
-#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
-msgid "Costs distribution picking lines"
-msgstr "成本分摊拣货行"
 
 #. module: purchase_landed_cost
 #: model:ir.ui.menu,name:purchase_landed_cost.menu_purchase_cost_control
@@ -400,7 +384,7 @@ msgstr "发票行"
 
 #. module: purchase_landed_cost
 #: model:ir.model,name:purchase_landed_cost.model_account_move
-msgid "Journal Entries"
+msgid "Journal Entry"
 msgstr ""
 
 #. module: purchase_landed_cost
@@ -409,8 +393,10 @@ msgid "Journal Item"
 msgstr ""
 
 #. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_account_bank_statement_line__expense_line_ids
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_account_move__expense_line_ids
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_account_move_line__expense_line_ids
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_account_payment__expense_line_ids
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_order_form
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_move_form
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_picking_form
@@ -475,6 +461,7 @@ msgid "New cost"
 msgstr "新的成本"
 
 #. module: purchase_landed_cost
+#. odoo-python
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:0
 #, python-format
 msgid "No valid distribution type."
@@ -513,6 +500,7 @@ msgid "Pickings"
 msgstr "拣货"
 
 #. module: purchase_landed_cost
+#. odoo-python
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:0
 #, python-format
 msgid "Please enter an amount for all the expenses"
@@ -576,14 +564,8 @@ msgid "Purchase cost distribution line expense"
 msgstr "采购成本分摊行费用"
 
 #. module: purchase_landed_cost
-#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_expense_tree
-msgid "Purchase cost distribution lines"
-msgstr "采购成本分摊行"
-
-#. module: purchase_landed_cost
 #: model:ir.actions.act_window,name:purchase_landed_cost.action_purchase_cost_distribution
 #: model:ir.ui.menu,name:purchase_landed_cost.menu_purchase_cost_distribution
-#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_tree
 msgid "Purchase cost distributions"
 msgstr "采购成本分配"
 
@@ -591,11 +573,6 @@ msgstr "采购成本分配"
 #: model:ir.model,name:purchase_landed_cost.model_purchase_expense_type
 msgid "Purchase cost type"
 msgstr "采购成本类型"
-
-#. module: purchase_landed_cost
-#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_expense_type_tree
-msgid "Purchase expense types"
-msgstr "采购费用类型"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_form
@@ -695,16 +672,7 @@ msgid "Supplier invoice line"
 msgstr "供应商发票行"
 
 #. module: purchase_landed_cost
-#: model:ir.model.fields,help:purchase_landed_cost.field_purchase_cost_distribution_line__product_price_unit
-msgid ""
-"Technical field used to record the product cost set by the user during a "
-"picking confirmation (when costing method used is 'average price' or "
-"'real'). Value given in company currency and in product uom."
-msgstr ""
-"该技术字段用来记录用户在拣货确认期间设置的产品成本（使用 '平均价格' 或'实际价"
-"格'的成本方法时）。以公司的货币及产品的默认计量单位来赋予值。"
-
-#. module: purchase_landed_cost
+#. odoo-python
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:0
 #, python-format
 msgid ""
@@ -733,6 +701,7 @@ msgid "The volume in m3."
 msgstr "体积以立方为单位。"
 
 #. module: purchase_landed_cost
+#. odoo-python
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:0
 #, python-format
 msgid "There is no picking lines in the distribution"
@@ -844,12 +813,14 @@ msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
 msgstr "您可以通过名称，TIN，电子邮件或内部参考找到供应商。"
 
 #. module: purchase_landed_cost
+#. odoo-python
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:0
 #, python-format
 msgid "You can't delete a confirmed cost distribution"
 msgstr "您无法删除已确认的费用分摊"
 
 #. module: purchase_landed_cost
+#. odoo-python
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:0
 #, python-format
 msgid ""
@@ -862,6 +833,29 @@ msgstr "如果成本行是任何费用行的受影响行，则无法删除该成
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.picking_import_wizard_view
 msgid "or"
 msgstr "或"
+
+#~ msgid "Cost Line Expenses"
+#~ msgstr "成本行费用"
+
+#~ msgid "Cost distribution expenses"
+#~ msgstr "成本分摊费用"
+
+#~ msgid "Costs distribution picking lines"
+#~ msgstr "成本分摊拣货行"
+
+#~ msgid "Purchase cost distribution lines"
+#~ msgstr "采购成本分摊行"
+
+#~ msgid "Purchase expense types"
+#~ msgstr "采购费用类型"
+
+#~ msgid ""
+#~ "Technical field used to record the product cost set by the user during a "
+#~ "picking confirmation (when costing method used is 'average price' or "
+#~ "'real'). Value given in company currency and in product uom."
+#~ msgstr ""
+#~ "该技术字段用来记录用户在拣货确认期间设置的产品成本（使用 '平均价格' 或'实"
+#~ "际价格'的成本方法时）。以公司的货币及产品的默认计量单位来赋予值。"
 
 #~ msgid "Are you sure that you want to update product prices?"
 #~ msgstr "您确定要更新产品价格吗？"

@@ -107,11 +107,6 @@ msgid "Company"
 msgstr "Empresa"
 
 #. module: purchase_landed_cost
-#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_form
-msgid "Cost Line Expenses"
-msgstr "Despesas da linha de custos"
-
-#. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__expense_amount
 msgid "Cost amount"
 msgstr "Valor do custo"
@@ -122,12 +117,6 @@ msgstr "Valor do custo"
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
 msgid "Cost distribution"
 msgstr "Distribuição de custos"
-
-#. module: purchase_landed_cost
-#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
-#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_expense_invoice_form
-msgid "Cost distribution expenses"
-msgstr "Despesas de distribuição de custos"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_expense__distribution_line
@@ -148,11 +137,6 @@ msgstr "Notas de distribuição de custos..."
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_expense_type__note
 msgid "Cost documentation"
 msgstr "Documentação de custos"
-
-#. module: purchase_landed_cost
-#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
-msgid "Costs distribution picking lines"
-msgstr "Linhas de separação de distribuição de custos"
 
 #. module: purchase_landed_cost
 #: model:ir.ui.menu,name:purchase_landed_cost.menu_purchase_cost_control
@@ -405,7 +389,7 @@ msgstr "Linha da Fatura"
 
 #. module: purchase_landed_cost
 #: model:ir.model,name:purchase_landed_cost.model_account_move
-msgid "Journal Entries"
+msgid "Journal Entry"
 msgstr ""
 
 #. module: purchase_landed_cost
@@ -414,8 +398,10 @@ msgid "Journal Item"
 msgstr ""
 
 #. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_account_bank_statement_line__expense_line_ids
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_account_move__expense_line_ids
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_account_move_line__expense_line_ids
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_account_payment__expense_line_ids
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_order_form
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_move_form
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_picking_form
@@ -480,6 +466,7 @@ msgid "New cost"
 msgstr "Novo custo"
 
 #. module: purchase_landed_cost
+#. odoo-python
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:0
 #, python-format
 msgid "No valid distribution type."
@@ -518,6 +505,7 @@ msgid "Pickings"
 msgstr "Separações"
 
 #. module: purchase_landed_cost
+#. odoo-python
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:0
 #, python-format
 msgid "Please enter an amount for all the expenses"
@@ -581,14 +569,8 @@ msgid "Purchase cost distribution line expense"
 msgstr "Despesas da linha de distribuição de custos de compra"
 
 #. module: purchase_landed_cost
-#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_expense_tree
-msgid "Purchase cost distribution lines"
-msgstr "Linhas de distribuição de custos de compra"
-
-#. module: purchase_landed_cost
 #: model:ir.actions.act_window,name:purchase_landed_cost.action_purchase_cost_distribution
 #: model:ir.ui.menu,name:purchase_landed_cost.menu_purchase_cost_distribution
-#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_tree
 msgid "Purchase cost distributions"
 msgstr "Distribuições de custos de compra"
 
@@ -596,11 +578,6 @@ msgstr "Distribuições de custos de compra"
 #: model:ir.model,name:purchase_landed_cost.model_purchase_expense_type
 msgid "Purchase cost type"
 msgstr "Tipo de custo de compra"
-
-#. module: purchase_landed_cost
-#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_expense_type_tree
-msgid "Purchase expense types"
-msgstr "Tipos de despesas de compra"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_form
@@ -706,18 +683,7 @@ msgid "Supplier invoice line"
 msgstr "Linha da fatura do fornecedor"
 
 #. module: purchase_landed_cost
-#: model:ir.model.fields,help:purchase_landed_cost.field_purchase_cost_distribution_line__product_price_unit
-msgid ""
-"Technical field used to record the product cost set by the user during a "
-"picking confirmation (when costing method used is 'average price' or "
-"'real'). Value given in company currency and in product uom."
-msgstr ""
-"Domínio técnico usado para registrar o custo do produto definido pelo "
-"usuário durante uma confirmação de separação (quando o método de custeio "
-"utilizado é 'preço médio' ou 'real'). Valor dado em moeda da empresa e em "
-"udm do produto."
-
-#. module: purchase_landed_cost
+#. odoo-python
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:0
 #, python-format
 msgid ""
@@ -748,6 +714,7 @@ msgid "The volume in m3."
 msgstr "O volume em m3."
 
 #. module: purchase_landed_cost
+#. odoo-python
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:0
 #, python-format
 msgid "There is no picking lines in the distribution"
@@ -861,12 +828,14 @@ msgstr ""
 "Você pode encontrar um fornecedor por seu nome, e-mail ou referência interna."
 
 #. module: purchase_landed_cost
+#. odoo-python
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:0
 #, python-format
 msgid "You can't delete a confirmed cost distribution"
 msgstr "Você não pode excluir uma distribuição de custos confirmada"
 
 #. module: purchase_landed_cost
+#. odoo-python
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:0
 #, python-format
 msgid ""
@@ -881,6 +850,31 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.picking_import_wizard_view
 msgid "or"
 msgstr "ou"
+
+#~ msgid "Cost Line Expenses"
+#~ msgstr "Despesas da linha de custos"
+
+#~ msgid "Cost distribution expenses"
+#~ msgstr "Despesas de distribuição de custos"
+
+#~ msgid "Costs distribution picking lines"
+#~ msgstr "Linhas de separação de distribuição de custos"
+
+#~ msgid "Purchase cost distribution lines"
+#~ msgstr "Linhas de distribuição de custos de compra"
+
+#~ msgid "Purchase expense types"
+#~ msgstr "Tipos de despesas de compra"
+
+#~ msgid ""
+#~ "Technical field used to record the product cost set by the user during a "
+#~ "picking confirmation (when costing method used is 'average price' or "
+#~ "'real'). Value given in company currency and in product uom."
+#~ msgstr ""
+#~ "Domínio técnico usado para registrar o custo do produto definido pelo "
+#~ "usuário durante uma confirmação de separação (quando o método de custeio "
+#~ "utilizado é 'preço médio' ou 'real'). Valor dado em moeda da empresa e em "
+#~ "udm do produto."
 
 #~ msgid "Are you sure that you want to update product prices?"
 #~ msgstr "Tem certeza que quer atualizar os preços dos produtos?"
