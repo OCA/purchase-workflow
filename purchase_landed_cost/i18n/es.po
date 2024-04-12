@@ -387,7 +387,7 @@ msgstr "Línea de factura"
 
 #. module: purchase_landed_cost
 #: model:ir.model,name:purchase_landed_cost.model_account_move
-msgid "Journal Entries"
+msgid "Journal Entry"
 msgstr ""
 
 #. module: purchase_landed_cost
@@ -396,8 +396,10 @@ msgid "Journal Item"
 msgstr ""
 
 #. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_account_bank_statement_line__expense_line_ids
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_account_move__expense_line_ids
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_account_move_line__expense_line_ids
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_account_payment__expense_line_ids
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_order_form
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_move_form
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_picking_form
@@ -462,6 +464,7 @@ msgid "New cost"
 msgstr "Nuevo coste"
 
 #. module: purchase_landed_cost
+#. odoo-python
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:0
 #, python-format
 msgid "No valid distribution type."
@@ -500,6 +503,7 @@ msgid "Pickings"
 msgstr "Albaranes"
 
 #. module: purchase_landed_cost
+#. odoo-python
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:0
 #, python-format
 msgid "Please enter an amount for all the expenses"
@@ -677,18 +681,7 @@ msgid "Supplier invoice line"
 msgstr "Línea de factura de proveedor"
 
 #. module: purchase_landed_cost
-#: model:ir.model.fields,help:purchase_landed_cost.field_purchase_cost_distribution_line__product_price_unit
-msgid ""
-"Technical field used to record the product cost set by the user during a "
-"picking confirmation (when costing method used is 'average price' or "
-"'real'). Value given in company currency and in product uom."
-msgstr ""
-"Campo técnico usado para guardar el coste de producto establecido por el "
-"usuario durante la confirmación del albarán (Cuando el método de coste usado "
-"es 'precio medio' o 'real'). Valor dado en la moneda de la compañía y en la "
-"UdM del producto."
-
-#. module: purchase_landed_cost
+#. odoo-python
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:0
 #, python-format
 msgid ""
@@ -719,6 +712,7 @@ msgid "The volume in m3."
 msgstr "El volumen en mᶟ."
 
 #. module: purchase_landed_cost
+#. odoo-python
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:0
 #, python-format
 msgid "There is no picking lines in the distribution"
@@ -824,12 +818,14 @@ msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
 msgstr ""
 
 #. module: purchase_landed_cost
+#. odoo-python
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:0
 #, python-format
 msgid "You can't delete a confirmed cost distribution"
 msgstr "No puede eliminar una distribución de costes confirmada"
 
 #. module: purchase_landed_cost
+#. odoo-python
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:0
 #, python-format
 msgid ""
@@ -842,6 +838,16 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.picking_import_wizard_view
 msgid "or"
 msgstr "o"
+
+#~ msgid ""
+#~ "Technical field used to record the product cost set by the user during a "
+#~ "picking confirmation (when costing method used is 'average price' or "
+#~ "'real'). Value given in company currency and in product uom."
+#~ msgstr ""
+#~ "Campo técnico usado para guardar el coste de producto establecido por el "
+#~ "usuario durante la confirmación del albarán (Cuando el método de coste "
+#~ "usado es 'precio medio' o 'real'). Valor dado en la moneda de la compañía "
+#~ "y en la UdM del producto."
 
 #~ msgid "Are you sure that you want to update product prices?"
 #~ msgstr ""
