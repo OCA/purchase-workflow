@@ -41,7 +41,7 @@ class PurchaseOrderLine(models.Model):
         :return:
         """
         self.ensure_one()
-        qty = self.product_id._convert_packaging_qty(
+        qty = self.product_id._convert_purchase_packaging_qty(
             self.product_qty, self.product_uom, packaging=self.product_packaging_id
         )
         self.product_qty = qty
