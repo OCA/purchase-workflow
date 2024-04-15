@@ -3,7 +3,7 @@
 {
     "name": "Purchase Only By Packaging",
     "summary": "Manage purchase of packaging",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.0.1",
     "development_status": "Alpha",
     "category": "Warehouse Management",
     "website": "https://github.com/OCA/purchase-workflow",
