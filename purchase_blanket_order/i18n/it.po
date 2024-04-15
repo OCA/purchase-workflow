@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-03-19 15:41+0000\n"
+"PO-Revision-Date: 2024-04-15 10:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -371,7 +371,7 @@ msgstr "Se selezionata, alcuni messaggi hanno un errore di consegna."
 #. module: purchase_blanket_order
 #: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_form
 msgid "Invoice Information"
-msgstr ""
+msgstr "Informazioni fattura"
 
 #. module: purchase_blanket_order
 #: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_search
@@ -557,7 +557,7 @@ msgstr "Quantità originale"
 #. module: purchase_blanket_order
 #: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_form
 msgid "Other Information"
-msgstr ""
+msgstr "Altre informazioni"
 
 #. module: purchase_blanket_order
 #. odoo-python
