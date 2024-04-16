@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2024-04-16 19:34+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: purchase_request_substate
 #: model:mail.template,body_html:purchase_request_substate.mail_template_data_purchase_request_substate_verified
@@ -26,81 +28,90 @@ msgid ""
 "</div>\n"
 "        "
 msgstr ""
+"<div>\n"
+"    Estimado ${object.requested_by.name or 'requester'},<br/>\n"
+"    Este correo electrónico es para informarle de que su solicitud de compra "
+"${object.name} ha sido verificada por el equipo de compras.\n"
+"       <br/><br/>\n"
+"    Gracias,\n"
+"    <br/>\n"
+"</div>\n"
+"        "
 
 #. module: purchase_request_substate
 #: model:ir.model.fields,field_description:purchase_request_substate.field_base_substate_type__model
 msgid "Apply on"
-msgstr ""
+msgstr "Aplicar sobre"
 
 #. module: purchase_request_substate
 #: model:target.state.value,name:purchase_request_substate.target_state_value_approved
 msgid "Approved"
-msgstr ""
+msgstr "Aprovado"
 
 #. module: purchase_request_substate
 #: model:ir.model,name:purchase_request_substate.model_base_substate_type
 msgid "Base Substate Type"
-msgstr ""
+msgstr "Tipo de Subestado Base"
 
 #. module: purchase_request_substate
 #: model:base.substate,name:purchase_request_substate.base_substate_checked
 msgid "Checked"
-msgstr ""
+msgstr "Comprobado"
 
 #. module: purchase_request_substate
 #: model:ir.model.fields,field_description:purchase_request_substate.field_base_substate_type__display_name
 #: model:ir.model.fields,field_description:purchase_request_substate.field_purchase_request__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Mostrar Nombre"
 
 #. module: purchase_request_substate
 #: model:ir.model.fields,field_description:purchase_request_substate.field_base_substate_type__id
 #: model:ir.model.fields,field_description:purchase_request_substate.field_purchase_request__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: purchase_request_substate
 #: model:ir.model.fields,field_description:purchase_request_substate.field_base_substate_type____last_update
 #: model:ir.model.fields,field_description:purchase_request_substate.field_purchase_request____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última Modificación el"
 
 #. module: purchase_request_substate
 #: model:ir.model,name:purchase_request_substate.model_purchase_request
 msgid "Purchase Request"
-msgstr ""
+msgstr "Solicitud de Compra"
 
 #. module: purchase_request_substate
 #: model:base.substate.type,name:purchase_request_substate.base_substate_type_purchase_request
 msgid "Purchase Request Substate"
-msgstr ""
+msgstr "Subestado de Solicitud de Compra"
 
 #. module: purchase_request_substate
 #: model:ir.model.fields.selection,name:purchase_request_substate.selection__base_substate_type__model__purchase_request
 msgid "Purchase request"
-msgstr ""
+msgstr "Solicitud de compra"
 
 #. module: purchase_request_substate
 #: model:ir.model.fields,field_description:purchase_request_substate.field_purchase_request__substate_id
 msgid "Sub State"
-msgstr ""
+msgstr "Sub Estado"
 
 #. module: purchase_request_substate
 #: model:base.substate,name:purchase_request_substate.base_substate_to_verify
 msgid "To Verify"
-msgstr ""
+msgstr "Para Verificar"
 
 #. module: purchase_request_substate
 #: model:target.state.value,name:purchase_request_substate.target_state_value_to_approve
 msgid "To be approved"
-msgstr ""
+msgstr "Para ser aprobado"
 
 #. module: purchase_request_substate
 #: model:base.substate,name:purchase_request_substate.base_substate_verified
 msgid "Verified"
-msgstr ""
+msgstr "Verificado"
 
 #. module: purchase_request_substate
 #: model:mail.template,subject:purchase_request_substate.mail_template_data_purchase_request_substate_verified
 msgid "Your purchase request ${object.name} is verified"
-msgstr ""
+msgstr "Su solicitud de compra ${object.name} ha sido verificada"
