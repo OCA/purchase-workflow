@@ -6,81 +6,84 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2024-04-16 19:34+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: purchase_partner_approval
 #: model:ir.model.fields,field_description:purchase_partner_approval.field_res_partner_stage__approved_purchase
 msgid "Approved for Purchase"
-msgstr ""
+msgstr "Aprobado para la Compra"
 
 #. module: purchase_partner_approval
 #: model:ir.model.fields,field_description:purchase_partner_approval.field_res_partner__purchase_ok
 #: model:ir.model.fields,field_description:purchase_partner_approval.field_res_users__purchase_ok
 msgid "Can Purchase To"
-msgstr ""
+msgstr "Puede Comprar Hasta"
 
 #. module: purchase_partner_approval
 #: model:ir.model.fields,field_description:purchase_partner_approval.field_res_partner__candidate_purchase
 #: model:ir.model.fields,field_description:purchase_partner_approval.field_res_users__candidate_purchase
 msgid "Candidate Purchase To"
-msgstr ""
+msgstr "Compra del Candidato Hasta"
 
 #. module: purchase_partner_approval
 #: model:ir.model,name:purchase_partner_approval.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contacto"
 
 #. module: purchase_partner_approval
 #: model:ir.model,name:purchase_partner_approval.model_res_partner_stage
 msgid "Contact Stage"
-msgstr ""
+msgstr "Etapa de Contacto"
 
 #. module: purchase_partner_approval
 #: model:ir.model.fields,field_description:purchase_partner_approval.field_purchase_order__display_name
 #: model:ir.model.fields,field_description:purchase_partner_approval.field_res_partner__display_name
 #: model:ir.model.fields,field_description:purchase_partner_approval.field_res_partner_stage__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Mostrar Nombre"
 
 #. module: purchase_partner_approval
 #: model:ir.model.fields,field_description:purchase_partner_approval.field_purchase_order__dest_address_id
 msgid "Drop Ship Address"
-msgstr ""
+msgstr "Dirección de Envío Directo"
 
 #. module: purchase_partner_approval
 #: model:exception.rule,name:purchase_partner_approval.excep_vendor_dropship_approved
 msgid "Drop Ship Address is Approved"
-msgstr ""
+msgstr "Dirección de \"Envío directo\" aprobada"
 
 #. module: purchase_partner_approval
 #: model:exception.rule,description:purchase_partner_approval.excep_vendor_dropship_approved
 msgid "Drop Ship Address must be a contact approved for Purchase"
 msgstr ""
+"La dirección de Envío Directo debe ser un contacto aprobado para la Compra"
 
 #. module: purchase_partner_approval
 #: model:ir.model.fields,field_description:purchase_partner_approval.field_purchase_order__id
 #: model:ir.model.fields,field_description:purchase_partner_approval.field_res_partner__id
 #: model:ir.model.fields,field_description:purchase_partner_approval.field_res_partner_stage__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: purchase_partner_approval
 #: model:ir.model.fields,field_description:purchase_partner_approval.field_purchase_order____last_update
 #: model:ir.model.fields,field_description:purchase_partner_approval.field_res_partner____last_update
 #: model:ir.model.fields,field_description:purchase_partner_approval.field_res_partner_stage____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última Modificación el"
 
 #. module: purchase_partner_approval
 #: model:ir.model,name:purchase_partner_approval.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Orden de Compra"
 
 #. module: purchase_partner_approval
 #: model:ir.model.fields,help:purchase_partner_approval.field_purchase_order__dest_address_id
@@ -88,23 +91,27 @@ msgid ""
 "Put an address if you want to deliver directly from the vendor to the "
 "customer. Otherwise, keep empty to deliver to your own company."
 msgstr ""
+"Ponga una dirección si quiere entregar directamente del vendedor al cliente. "
+"De lo contrario, manténgalo vacío para entregar a su propia empresa."
 
 #. module: purchase_partner_approval
 #: model:ir.model.fields,field_description:purchase_partner_approval.field_purchase_order__partner_id
 msgid "Vendor"
-msgstr ""
+msgstr "Vendedor"
 
 #. module: purchase_partner_approval
 #: model:exception.rule,name:purchase_partner_approval.excep_vendor_approved
 msgid "Vendor is Approved"
-msgstr ""
+msgstr "Vendedor Autorizado"
 
 #. module: purchase_partner_approval
 #: model:exception.rule,description:purchase_partner_approval.excep_vendor_approved
 msgid "Vendor must be a vendor approved for Purchase"
-msgstr ""
+msgstr "El proveedor debe ser un proveedor aprobado para Compras"
 
 #. module: purchase_partner_approval
 #: model:ir.model.fields,help:purchase_partner_approval.field_purchase_order__partner_id
 msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
 msgstr ""
+"Puede encontrar un vendedor por su Nombre, NIF, Correo Electrónico o "
+"Referencia Interna."
