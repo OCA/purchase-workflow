@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Moduon Team S.L.
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0) -->
+<data>
+    <record id="purchase_warn_option_product_form" model="ir.ui.view">
+        <field name="name">purchase.warn.option.product.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="purchase.view_product_supplier_inherit" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='purchase_line_warn_msg']" position="before">
+                <field
+                    name="purchase_line_warn_option"
+                    domain="[('allowed_warning_type', '=', purchase_line_warn), ('allowed_warning_usage', 'in', ('all', 'product_purchase_warn'))]"
+                    context="{'default_allowed_warning_usage': 'product_purchase_warn', 'default_allowed_warning_type': purchase_line_warn}"
+                    attrs="{'invisible':[('purchase_line_warn', 'in', (False, 'no-message'))]}"
+                    placeholder="Select a warning option"
+                    nolabel="1"
+                    colspan="2"
+                    class="oe_edit_only"
+                />
+            </xpath>
+        </field>
+    </record>
+</data>
