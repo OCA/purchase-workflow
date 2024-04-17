@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-02 12:31+0000\n"
-"PO-Revision-Date: 2021-02-02 13:38+0100\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2024-04-17 19:34+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.3\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: procurement_purchase_no_grouping
 #: model_terms:ir.ui.view,arch_db:procurement_purchase_no_grouping.res_config_settings_view_form_procurement_purchase_grouping
@@ -28,6 +28,11 @@ msgid ""
 "label=\"Value set here is default. Specific values are set per category.\" "
 "role=\"img\"/>"
 msgstr ""
+"<span class=\"o_form_label\">Agrupando</span>\n"
+"                            <span class=\"fa fa-lg fa-object-group\" title="
+"\"Value to be used if individual category is set to 'System default'\" aria-"
+"label=\"Value set here is default. Specific values are set per category.\" "
+"role=\"img\"/>"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model,name:procurement_purchase_no_grouping.model_res_company
@@ -41,7 +46,7 @@ msgstr "Compañías"
 #: model:ir.model.fields,field_description:procurement_purchase_no_grouping.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:procurement_purchase_no_grouping.field_stock_rule__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Mostrar Nombre"
 
 #. module: procurement_purchase_no_grouping
 #: model_terms:ir.ui.view,arch_db:procurement_purchase_no_grouping.res_config_settings_view_form_procurement_purchase_grouping
@@ -55,7 +60,7 @@ msgstr "Agrupación"
 #: model:ir.model.fields,field_description:procurement_purchase_no_grouping.field_res_config_settings__id
 #: model:ir.model.fields,field_description:procurement_purchase_no_grouping.field_stock_rule__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model.fields,field_description:procurement_purchase_no_grouping.field_product_category____last_update
@@ -64,7 +69,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:procurement_purchase_no_grouping.field_res_config_settings____last_update
 #: model:ir.model.fields,field_description:procurement_purchase_no_grouping.field_stock_rule____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última Modificación el"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model.fields.selection,name:procurement_purchase_no_grouping.selection__product_category__procured_purchase_grouping__line
@@ -88,12 +93,12 @@ msgstr "Agrupación de la compra abastecida"
 #. module: procurement_purchase_no_grouping
 #: model_terms:ir.ui.view,arch_db:procurement_purchase_no_grouping.res_config_settings_view_form_procurement_purchase_grouping
 msgid "Procurement Purchase Grouping"
-msgstr ""
+msgstr "Adquisiciones Agrupación de compras"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model,name:procurement_purchase_no_grouping.model_res_config_settings
 msgid "Procurement purchase grouping settings"
-msgstr ""
+msgstr "Configuración de la agrupación de los abastecimientos"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model,name:procurement_purchase_no_grouping.model_product_category
@@ -125,6 +130,18 @@ msgid ""
 "* Product category grouping: This option groups products in the same "
 "purchase order that belongs to the same product category."
 msgstr ""
+"Seleccione el comportamiento para agrupar las compras adquiridas para los "
+"productos de esta categoría:\n"
+"* Agrupación estándar (por defecto): Las adquisiciones generarán pedidos de "
+"compra como siempre, agrupando líneas y pedidos cuando sea posible.\n"
+"* Sin agrupación de líneas: Si hay algún pedido abierto para el mismo "
+"proveedor, se reutilizará, pero las líneas no se agruparán.\n"
+"* Sin agrupación de pedidos: Esta opción impedirá cualquier tipo de "
+"agrupación.\n"
+"<vacío>: Si no se selecciona ningún valor, se utilizará el valor por defecto "
+"del sistema.\n"
+"* Agrupación por categorías de productos: Esta opción agrupa los productos "
+"de un mismo pedido que pertenezcan a la misma categoría de producto."
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model.fields,help:procurement_purchase_no_grouping.field_res_company__procured_purchase_grouping
@@ -141,13 +158,25 @@ msgid ""
 "* Product category grouping: This option groups products in the same "
 "purchase order that belongs to the same product category."
 msgstr ""
+"Seleccione el comportamiento para agrupar las compras adquiridas para los "
+"productos de esta categoría:\n"
+"* Agrupación estándar: Las adquisiciones generarán pedidos de compra como "
+"siempre, agrupando líneas y pedidos cuando sea posible.\n"
+"* Sin agrupación de líneas: Si hay algún pedido abierto para el mismo "
+"proveedor, se reutilizará, pero las líneas no se agruparán.\n"
+"* Sin agrupación de pedidos: Esta opción impedirá cualquier tipo de "
+"agrupación.\n"
+"<vacío>: Si no se selecciona ningún valor, se utilizará el valor por defecto "
+"del sistema.\n"
+"* Agrupación por categorías de productos: Esta opción agrupa los productos "
+"de un mismo pedido que pertenezcan a la misma categoría de producto."
 
 #. module: procurement_purchase_no_grouping
 #: model_terms:ir.ui.view,arch_db:procurement_purchase_no_grouping.res_config_settings_view_form_procurement_purchase_grouping
 msgid "Set the default procurement purchase grouping type"
 msgstr ""
 "Establecer el tipo de agrupación de compras de aprovisionamiento "
-"predeterminado "
+"predeterminado"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model.fields.selection,name:procurement_purchase_no_grouping.selection__product_category__procured_purchase_grouping__standard
