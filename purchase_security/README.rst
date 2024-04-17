@@ -17,13 +17,13 @@ Purchase Order security
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/purchase-workflow/tree/16.0/purchase_security
+    :target: https://github.com/OCA/purchase-workflow/tree/17.0/purchase_security
     :alt: OCA/purchase-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/purchase-workflow-16-0/purchase-workflow-16-0-purchase_security
+    :target: https://translation.odoo-community.org/projects/purchase-workflow-17-0/purchase-workflow-17-0-purchase_security
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -33,10 +33,10 @@ This addon creates new groups in Purchase.
 Visibility of purchase orders is restricted for users in these groups.
 You can only see the purchase order:
 
-- User (own orders): If you are a follower of the partner or there is no user
-  or you are the partner's user.
-- User (team orders): If you are a follower of the partner or there is no user
-  or you are a user of your purchasing team.
+-  User (own orders): If you are a follower of the partner or there is
+   no user or you are the partner's user.
+-  User (team orders): If you are a follower of the partner or there is
+   no user or you are a user of your purchasing team.
 
 **Table of contents**
 
@@ -48,15 +48,15 @@ Usage
 
 To use this module, you need to:
 
-#. Go to **Purchase > Orders > Purchase Orders**
-#. Create a Purchase Order and assing a **Purchase Representative**
-   (in the **Other Information** tab), if you are a Purchase User or Manager.
-   If you are a Purchass User (own orders), i'll be automatically assigned,
-   and you won't be able to change it
-#. Confirm the Purchase Order
-#. Go back to the **Purchase Orders** view.
-#. If you are a Purchase User or a Purchase Manager, you should be
-   able to see all orders. If not, you'll only see your own orders.
+1. Go to **Purchase > Orders > Purchase Orders**
+2. Create a Purchase Order and assing a **Purchase Representative** (in
+   the **Other Information** tab), if you are a Purchase User or
+   Manager. If you are a Purchass User (own orders), i'll be
+   automatically assigned, and you won't be able to change it
+3. Confirm the Purchase Order
+4. Go back to the **Purchase Orders** view.
+5. If you are a Purchase User or a Purchase Manager, you should be able
+   to see all orders. If not, you'll only see your own orders.
 
 Bug Tracker
 ===========
@@ -64,7 +64,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/purchase-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_security%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_security%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -72,25 +72,26 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Tecnativa
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Tecnativa <https://www.tecnativa.com>`_:
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  * João Marques
-  * Pilar Vargas
-  * Stefan Ungureanu
-  * Pedro M. Baeza
-* `Solvos <https://www.solvos.es>`_:
+   -  João Marques
+   -  Pilar Vargas
+   -  Stefan Ungureanu
+   -  Pedro M. Baeza
 
-  * David Alonso <david.alonso@solvos.es>
+-  `Solvos <https://www.solvos.es>`__:
+
+   -  David Alonso <david.alonso@solvos.es>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -110,6 +111,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-pilarvargas-tecnativa| 
 
-This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/16.0/purchase_security>`_ project on GitHub.
+This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/17.0/purchase_security>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
