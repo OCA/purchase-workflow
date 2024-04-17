@@ -9,9 +9,7 @@
                 <field name="is_user_id_editable" invisible="1" />
             </field>
             <field name="user_id" position="attributes">
-                <attribute name="attrs">{
-                    'readonly': [('is_user_id_editable','=',False)],
-                }</attribute>
+                <attribute name="readonly">not is_user_id_editable</attribute>
                 <attribute name="force_save">1</attribute>
             </field>
             <xpath expr="//field[@name='user_id']" position="after">
