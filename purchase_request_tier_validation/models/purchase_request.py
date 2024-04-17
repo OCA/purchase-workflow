@@ -13,6 +13,6 @@ class PurchaseRequest(models.Model):
 
     @api.model
     def _get_under_validation_exceptions(self):
-        res = super(PurchaseRequest, self)._get_under_validation_exceptions()
+        res = super()._get_under_validation_exceptions()
         res.append("route_id")
         return res

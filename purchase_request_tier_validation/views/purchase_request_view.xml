@@ -8,7 +8,7 @@
         <field name="inherit_id" ref="purchase_request.view_purchase_request_form" />
         <field name="arch" type="xml">
             <button name="button_approved" position="attributes">
-                <attribute name="states">draft</attribute>
+                <attribute name="invisible">state != 'draft'</attribute>
                 <attribute name="string">Confirm</attribute>
             </button>
             <button name="button_to_approve" position="attributes">

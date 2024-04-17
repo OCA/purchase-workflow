@@ -5,12 +5,13 @@ from odoo.tests import common
 
 
 class TestPurchaseRequest(common.TransactionCase):
-    def setUp(self):
-        super(TestPurchaseRequest, self).setUp()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
 
         # common models
-        self.purchase_request = self.env["purchase.request"]
-        self.tier_definition = self.env["tier.definition"]
+        cls.purchase_request = cls.env["purchase.request"]
+        cls.tier_definition = cls.env["tier.definition"]
 
     def test_get_under_validation_exceptions(self):
         self.assertIn(
