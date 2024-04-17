@@ -42,7 +42,7 @@ class PurchaseOrderLine(models.Model):
     @api.depends("state", "product_id.seller_ids")
     def _compute_supplierinfo_ok(self):
         for line in self:
-            if line.state not in ("purchase", "done"):
+            if line.state not in ("purchase", "done") or not line.product_id:
                 line.supplierinfo_ok = True
             else:
                 line.supplierinfo_ok = bool(
