@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-16 06:57+0000\n"
-"PO-Revision-Date: 2022-06-16 08:58+0200\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2024-04-17 19:34+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
-"X-Generator: Poedit 2.3\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_purchase_force_vendor
 #: model:ir.model,name:sale_purchase_force_vendor.model_res_company
@@ -52,7 +52,7 @@ msgstr "Última modificación el"
 #. module: sale_purchase_force_vendor
 #: model:ir.model,name:sale_purchase_force_vendor.model_res_config_settings
 msgid "Procurement purchase grouping settings"
-msgstr ""
+msgstr "Configuración de la agrupación de los abastecimientos"
 
 #. module: sale_purchase_force_vendor
 #: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_res_company__sale_purchase_force_vendor_restrict
@@ -64,7 +64,7 @@ msgstr "Restringir proveedores permitidos en pedidos de venta"
 #. module: sale_purchase_force_vendor
 #: model:ir.model,name:sale_purchase_force_vendor.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Orden de Ventas"
 
 #. module: sale_purchase_force_vendor
 #: model:ir.model,name:sale_purchase_force_vendor.model_sale_order_line
@@ -84,7 +84,7 @@ msgstr "Proveedor"
 #. module: sale_purchase_force_vendor
 #: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_sale_order_line__vendor_id_domain
 msgid "Vendor Id Domain"
-msgstr ""
+msgstr "Id Dominio de Vendedor"
 
 #~ msgid "Proveedor"
 #~ msgstr "Proveedor"
