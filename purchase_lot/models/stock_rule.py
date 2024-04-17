@@ -11,6 +11,6 @@ class StockRule(models.Model):
     @api.model
     def _get_procurements_to_merge_groupby(self, procurement):
         return (
-            procurement.values.get("restrict_lot_id"),
+            procurement.values.get("move_dest_ids"),
             super()._get_procurements_to_merge_groupby(procurement),
         )
