@@ -7,32 +7,33 @@ msgstr ""
 "Project-Id-Version: Odoo Server 13.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-25 15:30+0000\n"
-"PO-Revision-Date: 2020-12-25 15:30+0000\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2024-04-17 16:38+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: purchase_stock_secondary_unit
 #: model:ir.model.fields,field_description:purchase_stock_secondary_unit.field_purchase_order_line__display_name
 #: model:ir.model.fields,field_description:purchase_stock_secondary_unit.field_stock_move__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Mostrar Nombre"
 
 #. module: purchase_stock_secondary_unit
 #: model:ir.model.fields,field_description:purchase_stock_secondary_unit.field_purchase_order_line__id
 #: model:ir.model.fields,field_description:purchase_stock_secondary_unit.field_stock_move__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: purchase_stock_secondary_unit
 #: model:ir.model.fields,field_description:purchase_stock_secondary_unit.field_purchase_order_line____last_update
 #: model:ir.model.fields,field_description:purchase_stock_secondary_unit.field_stock_move____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última Modificación el"
 
 #. module: purchase_stock_secondary_unit
 #: model:ir.model,name:purchase_stock_secondary_unit.model_purchase_order_line
@@ -42,4 +43,4 @@ msgstr "Línea de pedido de compra"
 #. module: purchase_stock_secondary_unit
 #: model:ir.model,name:purchase_stock_secondary_unit.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Movimiento de Almacén"
