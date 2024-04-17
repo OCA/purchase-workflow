@@ -1,4 +1,0 @@
-Images
-------
-
-* Enric Tobella (logo)
