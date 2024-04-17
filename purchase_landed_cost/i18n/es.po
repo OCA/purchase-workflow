@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-26 18:15+0000\n"
-"PO-Revision-Date: 2023-07-20 10:14+0000\n"
+"PO-Revision-Date: 2024-04-17 20:37+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -30,7 +30,7 @@ msgstr "Importe de línea"
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
 msgid "Are you sure that you want to set done state?"
-msgstr ""
+msgstr "¿Estás seguro de que quieres establecer el estado hecho?"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields.selection,name:purchase_landed_cost.selection__purchase_expense_type__calculation_method__amount
@@ -87,14 +87,13 @@ msgstr "Cancelar"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.actions.act_window,help:purchase_landed_cost.action_purchase_cost_distribution
-#, fuzzy
 msgid "Click to create a draft purchase expenses distribution."
-msgstr "Buscar distribuciones de costes de compra"
+msgstr "Haga clic para crear un borrador de distribución de gastos de compra."
 
 #. module: purchase_landed_cost
 #: model_terms:ir.actions.act_window,help:purchase_landed_cost.action_purchase_expense_type
 msgid "Click to create a new expense type."
-msgstr ""
+msgstr "Haga clic para crear un nuevo tipo de gasto."
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__company_id
@@ -179,7 +178,7 @@ msgstr "Fecha"
 #. module: purchase_landed_cost
 #: model:ir.model.fields,help:purchase_landed_cost.field_purchase_cost_distribution_line_expense__picking_date_done
 msgid "Date at which the transfer has been processed or cancelled."
-msgstr ""
+msgstr "Fecha en la que se ha procesado o cancelado la transferencia."
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_expense__picking_date_done
@@ -202,6 +201,8 @@ msgid ""
 "Define the type of the calculation of each purchase expense\n"
 "                used for calculating the distribution between lines."
 msgstr ""
+"Definir el tipo de cálculo de cada gasto de compra\n"
+" utilizado para calcular la distribución entre líneas."
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_import_invoice_line_wizard__display_name
@@ -354,9 +355,8 @@ msgstr "Importar costes en destino desde albaranes"
 
 #. module: purchase_landed_cost
 #: model:ir.model,name:purchase_landed_cost.model_import_landed_cost_pickings_wizard
-#, fuzzy
 msgid "Import landed cost pickings"
-msgstr "Importar costes en destino desde albaranes"
+msgstr "Coste de importación en destino"
 
 #. module: purchase_landed_cost
 #: model:ir.actions.act_window,name:purchase_landed_cost.action_import_invoice_line_wizard
@@ -388,12 +388,12 @@ msgstr "Línea de factura"
 #. module: purchase_landed_cost
 #: model:ir.model,name:purchase_landed_cost.model_account_move
 msgid "Journal Entry"
-msgstr ""
+msgstr "Entradas de Diario"
 
 #. module: purchase_landed_cost
 #: model:ir.model,name:purchase_landed_cost.model_account_move_line
 msgid "Journal Item"
-msgstr ""
+msgstr "Elemento de diario"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_account_bank_statement_line__expense_line_ids
@@ -516,9 +516,8 @@ msgstr "Posibles albaranes"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_picking_import_wizard__prev_pickings
-#, fuzzy
 msgid "Prev Pickings"
-msgstr "Albaranes previos"
+msgstr "Selecciones Previas"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__standard_price_old
@@ -647,12 +646,12 @@ msgstr "Asistente para seleccionar la línea de factura de proveedor"
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
 msgid "Set done"
-msgstr ""
+msgstr "Fijar hecho"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
 msgid "Set draft"
-msgstr ""
+msgstr "Establecer a borrador"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,help:purchase_landed_cost.field_purchase_expense_type__default_expense
@@ -760,9 +759,8 @@ msgstr "Volumen total"
 
 #. module: purchase_landed_cost
 #: model:ir.model,name:purchase_landed_cost.model_stock_picking
-#, fuzzy
 msgid "Transfer"
-msgstr "Date of Transfer"
+msgstr "Transferencia"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__cost_ratio
@@ -786,6 +784,8 @@ msgid ""
 "Use this menu to control the cost of purchases by expense type\n"
 "                such as transport, insurance, freight customs, etc."
 msgstr ""
+"Utilice este menú para controlar el coste de las compras por tipo de gasto\n"
+" como transporte, seguros, aduanas, etc."
 
 #. module: purchase_landed_cost
 #: model_terms:ir.actions.act_window,help:purchase_landed_cost.action_purchase_expense_type
@@ -794,6 +794,9 @@ msgid ""
 "                The types marked by default will be added to the cost\n"
 "                distribution automatically."
 msgstr ""
+"Utilice este menú para crear tipos de gastos de compra.\n"
+" Los tipos marcados por defecto se añadirán a la distribución de gastos\n"
+" automáticamente."
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__product_volume
@@ -811,11 +814,15 @@ msgid ""
 "You can add one or more receipts which share the same expenses\n"
 "                and update cost price of product."
 msgstr ""
+"Puede añadir uno o más recibos que compartan los mismos gastos\n"
+" y actualizar el precio de coste del producto."
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,help:purchase_landed_cost.field_purchase_cost_distribution_line__partner
 msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
 msgstr ""
+"Puede encontrar un vendedor por su Nombre, NIF, Correo Electrónico o "
+"Referencia Interna."
 
 #. module: purchase_landed_cost
 #. odoo-python
@@ -831,6 +838,8 @@ msgstr "No puede eliminar una distribución de costes confirmada"
 msgid ""
 "You can't delete a cost line if it's an affected line of any expense line."
 msgstr ""
+"No puede eliminar una línea de coste si es una línea afectada de cualquier "
+"línea de gasto."
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.import_invoice_line_wizard_view
