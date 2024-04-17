@@ -15,5 +15,6 @@
     "data": [
         "wizards/purchase_order_recommendation_view.xml",
         "views/purchase_order_view.xml",
+        "security/ir.model.access.csv",
     ],
 }
