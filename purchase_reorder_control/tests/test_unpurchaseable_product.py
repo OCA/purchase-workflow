@@ -19,6 +19,7 @@ class TestUnpurchaseableProduct(ProductAttributesCommon):
                 "name": "Product Template",
                 "list_price": 100,
                 "purchase_ok": True,
+                "type": "product",
                 "attribute_line_ids": [
                     Command.create(
                         {  # two variants for this one
@@ -88,6 +89,29 @@ class TestUnpurchaseableProduct(ProductAttributesCommon):
             0,
             "2 rules associated with variants of this template should be removed",
         )
+
+    def test_get_orderpoint_products(self):
+        # Cleanup existing rules
+        self.env["stock.warehouse.orderpoint"].search([]).unlink()
+
+        # Order point is created when there is moves linked with the product
+        self.env["stock.move"].create(
+            {
+                "company_id": self.env.company.id,
+                "location_id": self.env.ref("stock.stock_location_suppliers").id,
+                "location_dest_id": self.env.ref("stock.stock_location_stock").id,
+                "product_id": self.product_variant_01.id,
+                "product_uom": self.product_variant_01.uom_id.id,
+                "name": "stock_move",
+            }
+        )
+        products = self.env["stock.warehouse.orderpoint"]._get_orderpoint_products()
+        self.assertIn(self.product_variant_01, products)
+
+        # Excluding unpurchaseable
+        self.product_template.write({"purchase_ok": False})
+        products = self.env["stock.warehouse.orderpoint"]._get_orderpoint_products()
+        self.assertNotIn(self.product_variant_01, products)
 
     def test_raiseWarning_unpurchaseable_product(self):
         self.assertTrue(self.product_template.purchase_ok)
