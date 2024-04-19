@@ -30,6 +30,7 @@ addon | version | maintainers | summary
 [purchase_order_type](purchase_order_type/) | 17.0.1.0.0 |  | Purchase Order Type
 [purchase_request](purchase_request/) | 17.0.1.1.1 |  | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
 [purchase_requisition_tier_validation](purchase_requisition_tier_validation/) | 17.0.1.0.0 |  | Extends the functionality of Purchase Agreements to support a tier validation process.
+[purchase_security](purchase_security/) | 17.0.1.0.0 | [![pilarvargas-tecnativa](https://github.com/pilarvargas-tecnativa.png?size=30px)](https://github.com/pilarvargas-tecnativa) | See only your purchase orders
 [purchase_tag](purchase_tag/) | 17.0.1.1.0 |  | Allows to add multiple tags to purchase orders
 [purchase_tier_validation](purchase_tier_validation/) | 17.0.1.0.0 |  | Extends the functionality of Purchase Orders to support a tier validation process.
 
