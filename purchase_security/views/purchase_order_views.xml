@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="name">purchase.order.form (in purchase_security)</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <field name="user_id" position="before">
+                <field name="is_user_id_editable" invisible="1" />
+            </field>
+            <field name="user_id" position="attributes">
+                <attribute name="readonly">not is_user_id_editable</attribute>
+                <attribute name="force_save">1</attribute>
+            </field>
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field
+                    name="team_id"
+                    readonly="1"
+                    groups="!purchase_security.group_purchase_group_orders"
+                />
+                <field
+                    name="team_id"
+                    readonly="0"
+                    groups="purchase_security.group_purchase_group_orders"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
