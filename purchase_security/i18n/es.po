@@ -59,11 +59,6 @@ msgid "Is User Id Editable"
 msgstr "Se puede editar el ID de usuario"
 
 #. module: purchase_security
-#: model:ir.model.fields,field_description:purchase_security.field_purchase_team____last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: purchase_security
 #: model:ir.model.fields,field_description:purchase_security.field_purchase_team__write_uid
 msgid "Last Updated by"
 msgstr ""

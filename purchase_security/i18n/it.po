@@ -61,11 +61,6 @@ msgid "Is User Id Editable"
 msgstr "L'ID utente è modificabile"
 
 #. module: purchase_security
-#: model:ir.model.fields,field_description:purchase_security.field_purchase_team____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
-
-#. module: purchase_security
 #: model:ir.model.fields,field_description:purchase_security.field_purchase_team__write_uid
 msgid "Last Updated by"
 msgstr "Ultimo aggiornamento di"
@@ -159,3 +154,6 @@ msgstr "Utente (ordini team)"
 #: model_terms:ir.ui.view,arch_db:purchase_security.purchase_team_form
 msgid "e.g. Europe"
 msgstr "es. Europa"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
