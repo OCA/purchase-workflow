@@ -14,9 +14,9 @@ class TestUnpurchaseableProduct(ProductAttributesCommon):
         cls.productTemplateObj = cls.env["product.template"]
         cls.productVariantObj = cls.env["product.product"]
         cls.reorderingRuleObj = cls.env["stock.warehouse.orderpoint"]
-        cls.product_template = cls.productTemplateObj.create(
+        cls.product_template_01 = cls.productTemplateObj.create(
             {
-                "name": "Product Template",
+                "name": "Product Template 01",
                 "list_price": 100,
                 "purchase_ok": True,
                 "type": "product",
@@ -33,12 +33,20 @@ class TestUnpurchaseableProduct(ProductAttributesCommon):
                 ],
             }
         )
-        color_attribute_line = cls.product_template.attribute_line_ids.filtered(
+        cls.product_template_02 = cls.productTemplateObj.create(
+            {
+                "name": "Product Template 02",
+                "list_price": 100,
+                "purchase_ok": False,
+                "type": "product",
+            }
+        )
+        color_attribute_line = cls.product_template_01.attribute_line_ids.filtered(
             lambda line: line.attribute_id == cls.color_attribute
         )
         products = cls.productVariantObj.search(
             [
-                ("product_tmpl_id", "=", cls.product_template.id),
+                ("product_tmpl_id", "=", cls.product_template_01.id),
                 (
                     "product_template_attribute_value_ids",
                     "in",
@@ -62,7 +70,7 @@ class TestUnpurchaseableProduct(ProductAttributesCommon):
         )
 
     def test_unpurchaseable_product_template(self):
-        self.assertTrue(self.product_template.purchase_ok)
+        self.assertTrue(self.product_template_01.purchase_ok)
         rules = self.reorderingRuleObj.search(
             [
                 (
@@ -74,7 +82,7 @@ class TestUnpurchaseableProduct(ProductAttributesCommon):
         )
         self.assertEqual(len(rules), 2)
 
-        self.product_template.write({"purchase_ok": False})
+        self.product_template_01.write({"purchase_ok": False})
         rules = self.reorderingRuleObj.search(
             [
                 (
@@ -87,7 +95,7 @@ class TestUnpurchaseableProduct(ProductAttributesCommon):
         self.assertEqual(
             len(rules),
             0,
-            "2 rules associated with variants of this template should be removed",
+            "2 rules associated with variants of this template should be archived",
         )
 
     def test_get_orderpoint_products(self):
@@ -109,18 +117,16 @@ class TestUnpurchaseableProduct(ProductAttributesCommon):
         self.assertIn(self.product_variant_01, products)
 
         # Excluding unpurchaseable
-        self.product_template.write({"purchase_ok": False})
+        self.product_template_01.write({"purchase_ok": False})
         products = self.env["stock.warehouse.orderpoint"]._get_orderpoint_products()
         self.assertNotIn(self.product_variant_01, products)
 
     def test_raiseWarning_unpurchaseable_product(self):
-        self.assertTrue(self.product_template.purchase_ok)
-        self.product_template.write({"purchase_ok": False})
-
+        self.assertFalse(self.product_template_02.purchase_ok)
         with self.assertRaises(UserError):
             self.reorderingRuleObj.create(
                 {
-                    "product_id": self.product_variant_01.id,
+                    "product_id": self.product_template_02.product_variant_id.id,
                     "product_min_qty": 10,
                 }
             )

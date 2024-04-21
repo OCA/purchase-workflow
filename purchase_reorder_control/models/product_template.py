@@ -11,13 +11,15 @@ class ProductTemplate(models.Model):
 
     def write(self, vals):
         """
-        Remove reordering rules associated with products when purchase_ok = False
+        Archive reordering rules associated with products when purchase_ok = False
         """
         res = super().write(vals)
-        if "purchase_ok" in vals and not vals.get("purchase_ok"):
+        if "purchase_ok" in vals:
             orderPointObject = self.env["stock.warehouse.orderpoint"]
-            rules = orderPointObject.search(
+            rules = orderPointObject.with_context(active_test=False).search(
                 [("product_id", "in", self.mapped("product_variant_ids").ids)]
             )
-            orderPointObject.browse(rules.ids).unlink()
+            orderPointObject.browse(rules.ids).write(
+                {"active": vals.get("purchase_ok", False)}
+            )
         return res
