@@ -1,2 +1,4 @@
 - Leonardo Pistone \<<leonardo.pistone@camptocamp.com>\>
 - Nicolas Mac Rouillon \<<nmr@adhoc.com.ar>\>
+- [Binhex Systems Solutions](https://binhex.cloud/):
+  - Deriman Alonso \<<d.alonso@binhex.cloud>\>

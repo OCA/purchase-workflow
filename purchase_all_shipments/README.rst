@@ -73,6 +73,9 @@ Contributors
 
 -  Leonardo Pistone <leonardo.pistone@camptocamp.com>
 -  Nicolas Mac Rouillon <nmr@adhoc.com.ar>
+-  `Binhex Systems Solutions <https://binhex.cloud/>`__:
+
+   -  Deriman Alonso <d.alonso@binhex.cloud>
 
 Maintainers
 -----------
