@@ -1,10 +1,10 @@
-# Copyright 2019 ForgeFlow S.L.
+# Copyright 2019-2024 ForgeFlow S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
 
 from odoo import _, api, models
 
 
-class StockPicking(models.Model):
+class Picking(models.Model):
     _inherit = "stock.picking"
 
     @api.model
@@ -22,7 +22,8 @@ class StockPicking(models.Model):
             product_qty = purchase_line_id["stock_move"].product_qty
             uom = purchase_line_id["stock_move"].product_uom.name
             message += _(
-                "<li><b>%(display_name)s</b>: Received quantity %(product_qty)s %(uom)s</li>",
+                "<li><b>%(display_name)s</b>: Received quantity "
+                "%(product_qty)s %(uom)s</li>",
                 display_name=display_name,
                 product_qty=product_qty,
                 uom=uom,
@@ -34,7 +35,7 @@ class StockPicking(models.Model):
         res = super()._action_done()
         for picking in self.filtered(lambda p: p.picking_type_id.code == "incoming"):
             purchase_dict = {}
-            for move in picking.move_lines.filtered("purchase_line_id"):
+            for move in picking.move_ids.filtered("purchase_line_id"):
                 pol_id = move.purchase_line_id
                 if pol_id.order_id not in purchase_dict.keys():
                     purchase_dict[pol_id.order_id] = {}
@@ -47,6 +48,7 @@ class StockPicking(models.Model):
                     picking, purchase_dict[po]
                 )
                 po.sudo().message_post(
+                    body_is_html=True,
                     body=message,
                     subtype_id=self.env.ref(
                         "purchase_reception_notify.mt_purchase_reception"
