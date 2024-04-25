@@ -31,6 +31,8 @@ class ResPartner(models.Model):
         :return: datetime: resulting date.
         """
         self.ensure_one()
+        if isinstance(delta, float):
+            delta = round(delta)
         if not isinstance(date_from, datetime):
             date_from = fields.Datetime.to_datetime(date_from)
         if delta == 0:
