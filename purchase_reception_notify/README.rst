@@ -28,11 +28,11 @@ Purchase Reception Notify
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module notifies to the employees following a the purchase order
-when the associated products have been received into stock.
+This module automatically notifies the employees following a purchase
+order as soon as the associated products have been received into stock.
 
-This module creates a new message subtype specifically created for those
-notifications. This subtype is internal activated by default when
+It also introduces a new message subtype specifically created for those
+notifications. This subtype is set to internal by default when
 subscribing. The old purchase orders will be updated to assign this new
 subtype to the existing followers, as long as they are still active
 employees.
@@ -46,6 +46,12 @@ Usage
 =====
 
 Integrated in the normal flow.
+
+Create a Purchase Order with at least one product with a specified
+quantity and confirm th purchase order to generate the corresponding
+incoming shipment. Once the purchase order is confirmed, go to Inventory
+-> Operations -> Receipts. Open the generated receipt and click on
+"Validate". The message will be automatically generated.
 
 Bug Tracker
 ===========

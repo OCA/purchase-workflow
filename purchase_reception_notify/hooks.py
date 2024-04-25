@@ -1,22 +1,19 @@
-# Copyright 2019 ForgeFlow S.L.
+# Copyright 2019-2024 ForgeFlow S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import logging
-
-from odoo import SUPERUSER_ID, api
 
 _logger = logging.getLogger(__name__)
 
 
-def post_init_hook(cr, registry):
+def post_init_hook(env):
     """Existing employees should be subscribed to the new subtype for all
-    existing purchase orders..
+    existing purchase orders.
     """
     _logger.info(
         "Starting task to update internal followers for "
         "existing purchase orders to assign the new subtype "
         "Purchase Receptions."
     )
-    env = api.Environment(cr, SUPERUSER_ID, {})
     users = env["res.users"].search([])
     followers = env["mail.followers"].search(
         [
