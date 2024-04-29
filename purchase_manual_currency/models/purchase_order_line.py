@@ -44,5 +44,5 @@ class PurchaseOrderLine(models.Model):
                         rec.price_subtotal,
                         rec.company_currency_id,
                         rec.company_id,
-                        fields.Date.today(),
+                        rec.order_id.date_order or fields.Date.context_today(rec),
                     )
