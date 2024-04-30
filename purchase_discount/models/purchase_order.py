@@ -53,11 +53,10 @@ class PurchaseOrderLine(models.Model):
         :return: Unit price after discount(s).
         """
         self.ensure_one()
-        price_unit=self._get_stock_move_price_unit()
+        price_unit = self._get_stock_move_price_unit()
         if self.discount:
             return price_unit * (1 - self.discount / 100)
         return price_unit
-
 
     def _compute_price_unit_and_date_planned_and_name(self):
         """Get also the discount from the seller. Unfortunately, this requires to
