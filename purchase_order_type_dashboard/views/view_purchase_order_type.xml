@@ -72,6 +72,34 @@
                 <field name="invoice_status_no_po_count" />
                 <field name="invoice_status_ti_po_count" />
                 <templates>
+                    <t t-name="kanban-menu">
+                        <div class="container">
+                            <div class="row">
+                                <div class="o_kanban_card_manage_pane">
+                                        <div class="row">
+                                            <div
+                                            class="col-6 o_kanban_card_manage_section o_kanban_manage_view"
+                                        >
+                                                <h5
+                                                role="menuitem"
+                                                class="o_kanban_card_manage_title"
+                                            >
+                                                    <span>View</span>
+                                                </h5>
+                                                <div role="menuitem">
+                                                    <a
+                                                    name="%(action_purchase_rfq_from_dashboard)d"
+                                                    type="action"
+                                                >
+                                                        All
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </t>
                     <t t-name="kanban-box">
                         <div t-attf-class="o_kanban_card_header">
                             <div class="o_kanban_card_header_title">
@@ -83,15 +111,6 @@
                                         <field name="name" />
                                     </a>
                                 </div>
-                            </div>
-                            <div class="o_kanban_manage_button_section">
-                                <a
-                                    class="o_kanban_manage_toggle_button"
-                                    href="#"
-                                    title="Show other options"
-                                >
-                                    <i class="fa fa-ellipsis-v" />
-                                </a>
                             </div>
                             <div class="container o_kanban_card_content">
                                 <div class="row">
@@ -148,28 +167,6 @@
                                                     t-esc="record.invoice_status_ti_po_count.value"
                                                 />
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div
-                                class="container o_kanban_card_manage_pane dropdown-menu"
-                                role="menu"
-                            >
-                                <div class="row">
-                                    <div
-                                        class="col-6 o_kanban_card_manage_section o_kanban_manage_view"
-                                    >
-                                        <div class="o_kanban_card_manage_title">
-                                            <span>View</span>
-                                        </div>
-                                        <div>
-                                            <a
-                                                name="%(action_purchase_rfq_from_dashboard)d"
-                                                type="action"
-                                            >
-                                                All
-                                            </a>
                                         </div>
                                     </div>
                                 </div>
