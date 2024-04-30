@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: odoomrp-wip (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-23 16:33+0000\n"
-"PO-Revision-Date: 2024-04-23 17:34+0000\n"
+"PO-Revision-Date: 2024-04-30 15:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/odoomrp-wip-8-0/"
 "language/it/)\n"
@@ -484,7 +484,7 @@ msgstr "Volume riga"
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_total_weight
 msgid "Line weight"
-msgstr "Riga peso"
+msgstr "Peso riga"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_name
