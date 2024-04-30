@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: odoomrp-wip (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-23 16:33+0000\n"
-"PO-Revision-Date: 2024-04-30 15:37+0000\n"
+"PO-Revision-Date: 2024-04-30 18:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/odoomrp-wip-8-0/"
 "language/it/)\n"
@@ -518,17 +518,17 @@ msgstr "Prelievo"
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_move_id
 msgid "Picking line"
-msgstr "Riga di picking"
+msgstr "Riga prelievo"
 
 #. module: purchase_landed_cost
 #: model:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
 msgid "Picking lines"
-msgstr "Righe di picking"
+msgstr "Righe prelievo"
 
 #. module: purchase_landed_cost
 #: model:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_expense_search
 msgid "Picking transfer date"
-msgstr "Picking data movimento"
+msgstr "Data trasferimento prelievo"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_import_landed_cost_pickings_wizard_picking_ids
@@ -539,17 +539,17 @@ msgstr "Prelievi"
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:222
 #, python-format
 msgid "Please enter an amount for all the expenses"
-msgstr "Per favore inserisci un importo per tutte le spese"
+msgstr "Inserire un importo per tutte le spese"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_import_landed_cost_pickings_wizard_possible_picking_ids
 msgid "Possible pickings"
-msgstr "Picking possibile"
+msgstr "Prelievi possibili"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_picking_import_wizard_prev_pickings
 msgid "Prev pickings"
-msgstr "Picking precedente"
+msgstr "Prelievi precedenti"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_standard_price_old
@@ -564,7 +564,7 @@ msgstr "Prodotto"
 #. module: purchase_landed_cost
 #: model:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_form
 msgid "Product information"
-msgstr "Informazione sul prodotto"
+msgstr "Informazioni prodotto"
 
 #. module: purchase_landed_cost
 #: model:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_form
@@ -581,22 +581,22 @@ msgstr "Ordine di acquisto"
 #: model:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_calendar
 #: model:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_graph
 msgid "Purchase cost distribution"
-msgstr "Suddivisione dei costi di acquisto"
+msgstr "Distribuzione costi di acquisto"
 
 #. module: purchase_landed_cost
 #: model:ir.model,name:purchase_landed_cost.model_purchase_cost_distribution_line
 msgid "Purchase cost distribution Line"
-msgstr "Distribuzione delle righe costi d'acquisto"
+msgstr "Riga suddivisione costi di acquisto"
 
 #. module: purchase_landed_cost
 #: model:ir.model,name:purchase_landed_cost.model_purchase_cost_distribution_expense
 msgid "Purchase cost distribution expense"
-msgstr "Distribuzione spese costi d'acquisto"
+msgstr "Spese distribuzione costi di acquisto"
 
 #. module: purchase_landed_cost
 #: model:ir.model,name:purchase_landed_cost.model_purchase_cost_distribution_line_expense
 msgid "Purchase cost distribution line expense"
-msgstr "Distribuzione delle righe di spesa costi d'acquisto"
+msgstr "Spese riga distribuzione costi di acquisto"
 
 #. module: purchase_landed_cost
 #: model:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_expense_tree
@@ -608,12 +608,12 @@ msgstr "Distribuzione dei costi d'acquisto"
 #: model:ir.ui.menu,name:purchase_landed_cost.menu_purchase_cost_distribution
 #: model:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_tree
 msgid "Purchase cost distributions"
-msgstr "Distribuzione costi d'acquisto"
+msgstr "Distribuzioni costi di acquisto"
 
 #. module: purchase_landed_cost
 #: model:ir.model,name:purchase_landed_cost.model_purchase_expense_type
 msgid "Purchase cost type"
-msgstr "Tipo costo d'acquisto"
+msgstr "Tipo costo di acquisto"
 
 #. module: purchase_landed_cost
 #: model:ir.ui.view,arch_db:purchase_landed_cost.purchase_expense_type_tree
@@ -623,12 +623,12 @@ msgstr "Tipo spesa d'acquisto"
 #. module: purchase_landed_cost
 #: model:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_form
 msgid "Purchase information"
-msgstr "Informazioni d'acquisto"
+msgstr "Informazioni di acquisto"
 
 #. module: purchase_landed_cost
 #: model:ir.model,name:purchase_landed_cost.model_purchase_cost_distribution
 msgid "Purchase landed costs distribution"
-msgstr "Distribuzione costi d'acquisto"
+msgstr "Distribuzione costi accessori di acquisto"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_purchase_id
@@ -646,8 +646,8 @@ msgid ""
 "Put here specific lines that this expense is going to be distributed across. "
 "Leave it blank to use all imported lines."
 msgstr ""
-"Inserisci righe delle spese che verranno distribuite. Lasciare vuoto per "
-"importare tutte le righe."
+"Inserire qui le righe specifiche sulle quali verranno distribuite queste "
+"spese. Lasciare vuoto per utilizzare tutte le righe importate."
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_product_qty
@@ -667,24 +667,25 @@ msgstr "Riferimento"
 #. module: purchase_landed_cost
 #: model:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_search
 msgid "Search purchase costs distributions"
-msgstr "Ricerca distribuzione costi d'acquisto"
+msgstr "Ricerca distribuzione costi di acquisto"
 
 #. module: purchase_landed_cost
 #: model:ir.ui.view,arch_db:purchase_landed_cost.import_landed_cost_pickings_wizard_view
 msgid ""
 "Select here the pickings for those you want to add their expenses lines."
 msgstr ""
-"Seleziona il picking per i quali vuoi aggiungere le relative righe di spese."
+"Selezionare i prelievi per i quali si vuole aggiungere le relative righe di "
+"spese."
 
 #. module: purchase_landed_cost
 #: model:ir.ui.view,arch_db:purchase_landed_cost.picking_import_wizard_view
 msgid "Select incoming shipment wizard"
-msgstr "Wizard di selezione spedizioni in arrivo"
+msgstr "Procedura guidata selezione spedizioni in arrivo"
 
 #. module: purchase_landed_cost
 #: model:ir.ui.view,arch_db:purchase_landed_cost.import_invoice_line_wizard_view
 msgid "Select supplier invoice line wizard"
-msgstr "Wizard di selezione righe di fattura"
+msgstr "Procedura guidata selezione riga fattura fornitore"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,help:purchase_landed_cost.field_purchase_expense_type_default_expense
@@ -693,7 +694,7 @@ msgid ""
 "distribution."
 msgstr ""
 "Specifica se le spese verranno automaticamente aggiunte nella distribuzione "
-"costi d'acquisto."
+"costi di acquisto."
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_state
@@ -742,12 +743,12 @@ msgstr "Peso lordo in Kg."
 #. module: purchase_landed_cost
 #: model:ir.model.fields,help:purchase_landed_cost.field_purchase_cost_distribution_line_total_weight
 msgid "The line gross weight in Kg."
-msgstr "Riga peso lordo in Kg."
+msgstr "Peso lordo riga in Kg."
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,help:purchase_landed_cost.field_purchase_cost_distribution_line_total_volume
 msgid "The line volume in m3."
-msgstr "Riga volume in m3."
+msgstr "Volume riga in m3."
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,help:purchase_landed_cost.field_purchase_cost_distribution_line_product_volume
@@ -758,7 +759,7 @@ msgstr "Volume in m3."
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:226
 #, python-format
 msgid "There is no picking lines in the distribution"
-msgstr "Nella distribuzione non ci sono righe di picking"
+msgstr "Nella distribuzione non ci sono righe di prelievo"
 
 #. module: purchase_landed_cost
 #: model:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
@@ -777,7 +778,7 @@ msgstr "Totale"
 #. module: purchase_landed_cost
 #: model:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_form
 msgid "Total Expenses"
-msgstr "Spese Totali"
+msgstr "Spese totali"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_total_expense
@@ -841,7 +842,8 @@ msgid ""
 "Use this menu to control the cost of purchases by expense type\n"
 "                such as transport, insurance, freight customs, etc."
 msgstr ""
-"Usa questo menu per controllare il costo d'acquisto tramite tipo di spesa\n"
+"Utilizzare questo menu per controllare il costo di acquisto tramite tipo di "
+"spesa\n"
 "                come un trasporto, assicurazione, dazi doganali, ecc."
 
 #. module: purchase_landed_cost
@@ -851,8 +853,8 @@ msgid ""
 "                The types marked by default will be added to the cost\n"
 "                distribution automatically."
 msgstr ""
-"Usa questo menu per creare tipi di spese d'acquisto.\n"
-"                Il tipo indicato di default verrà aggiunto al costo di\n"
+"Usare questo menu per creare tipi di spese di acquisto.\n"
+"                Il tipo predefinito indicato verrà aggiunto al costo di\n"
 "                distribuzione automaticamente."
 
 #. module: purchase_landed_cost
@@ -871,14 +873,14 @@ msgid ""
 "You can add one or more receipts which share the same expenses\n"
 "                and update cost price of product."
 msgstr ""
-"Tu puoi aggiungere una o più regole che dividono le stesse spese\n"
-"                e aggiornare il costo del prodotto."
+"Si possono aggiungere una o più regole che dividono le stesse spese\n"
+"                e aggiornano il costo del prodotto."
 
 #. module: purchase_landed_cost
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:132
 #, python-format
 msgid "You can't delete a confirmed cost distribution"
-msgstr "Non puoi cancellare il costo distribuito confermato"
+msgstr "Non si può cancellare un costo distribuito confermato"
 
 #. module: purchase_landed_cost
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:153
@@ -886,7 +888,7 @@ msgstr "Non puoi cancellare il costo distribuito confermato"
 msgid ""
 "You can't delete a cost line if it's an affected line of any expense line."
 msgstr ""
-"Non puoi cancellare una riga di costo se è collegata a una riga di spese."
+"Non si può cancellare una riga di costo se è collegata a una riga di spese."
 
 #. module: purchase_landed_cost
 #: model:ir.model,name:purchase_landed_cost.model_import_landed_cost_pickings_wizard
