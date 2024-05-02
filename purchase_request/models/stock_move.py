@@ -140,7 +140,9 @@ class StockMove(models.Model):
                         0,
                         0,
                         {
-                            "purchase_request_line_id": alloc.purchase_request_line_id.id,
+                            "purchase_request_line_id": (
+                                alloc.purchase_request_line_id.id
+                            ),
                             "requested_product_uom_qty": open_qty,
                         },
                     )
