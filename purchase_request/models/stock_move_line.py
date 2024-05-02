@@ -18,7 +18,8 @@ class StockMoveLine(models.Model):
         message = "<h3>%s</h3>" % title
         message += _(
             "The following requested items from Purchase Request %(request_name)s "
-            "have now been received in %(location_name)s using Picking %(picking_name)s:"
+            "have now been received in %(location_name)s using Picking "
+            "%(picking_name)s:"
         ) % {
             "request_name": message_data["request_name"],
             "location_name": message_data["location_name"],
