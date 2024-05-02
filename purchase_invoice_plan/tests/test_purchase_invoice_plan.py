@@ -149,7 +149,7 @@ class TestPurchaseInvoicePlan(TransactionCase):
         backorder_wizard_dict = receive.button_validate()
         backorder_wizard = Form(
             self.env[backorder_wizard_dict["res_model"]].with_context(
-                backorder_wizard_dict["context"]
+                **backorder_wizard_dict["context"]
             )
         ).save()
         backorder_wizard.process()
@@ -215,7 +215,8 @@ class TestPurchaseInvoicePlan(TransactionCase):
                 ],
             }
         )
-        # Overall amount changed to 11000, install amount not changed, only percent changed.
+        # Overall amount changed to 11000, install amount not changed, only percent
+        # changed.
         self.assertEqual(self.test_po_product.amount_total, 11000)
         self.test_po_product.invoice_plan_ids._compute_amount()
         self.assertEqual(first_install.amount, 1000)
