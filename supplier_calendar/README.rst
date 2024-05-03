@@ -17,23 +17,25 @@ Supplier Calendar
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/purchase-workflow/tree/16.0/supplier_calendar
+    :target: https://github.com/OCA/purchase-workflow/tree/17.0/supplier_calendar
     :alt: OCA/purchase-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/purchase-workflow-16-0/purchase-workflow-16-0-supplier_calendar
+    :target: https://translation.odoo-community.org/projects/purchase-workflow-17-0/purchase-workflow-17-0-supplier_calendar
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module adds a Calendar to the ResPartner model. This calendar can then
-used as the basis of the proper computation of start/end dates based on the
-delivery lead time of the supplier in this and other modules.
+This module adds a Calendar to the ResPartner model. This calendar can
+then used as the basis of the proper computation of start/end dates
+based on the delivery lead time of the supplier in this and other
+modules.
 
-In this module, the calendar is considered in the computation of the schedules
-date of a stock picking and in the order date of a purchase order.
+In this module, the calendar is considered in the computation of the
+schedules date of a stock picking and in the order date of a purchase
+order.
 
 **Table of contents**
 
@@ -43,26 +45,24 @@ date of a stock picking and in the order date of a purchase order.
 Configuration
 =============
 
-* Go to *Settings* and activate the developer mode.
-
-* Go to *Settings > Technical > Resource > Working Time* and define your
-  resource calendar.
-
-* Go to *Contacts > Sales&Purchases > Purchase > Delay Calendar Type*
-  and assign Supplier Calendar and in *Factory Closing Days* assign the
-  Resource Calendar desired.
+-  Go to *Settings* and activate the developer mode.
+-  Go to *Settings > Technical > Resource > Working Time* and define
+   your resource calendar.
+-  Go to *Contacts > Sales&Purchases > Purchase > Delay Calendar Type*
+   and assign Supplier Calendar and in *Factory Closing Days* assign the
+   Resource Calendar desired.
 
 Usage
 =====
 
 When a picking is created from a purchase order of a supplier, the lead
-time used to calculate the scheduled date is computed in natural days. At the
-same time, when a purchase order is created due to a a procurement
-evaluation, its order date is also computed considering the lead time in
-natural days. THis module adds the possibility of expressing the lead time
-of a vendor in his own calendar. This way, the order dates of purchase
-orders and the scheduled dates of receipts will only take into account the
-supplier working days.
+time used to calculate the scheduled date is computed in natural days.
+At the same time, when a purchase order is created due to a a
+procurement evaluation, its order date is also computed considering the
+lead time in natural days. THis module adds the possibility of
+expressing the lead time of a vendor in his own calendar. This way, the
+order dates of purchase orders and the scheduled dates of receipts will
+only take into account the supplier working days.
 
 Bug Tracker
 ===========
@@ -70,7 +70,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/purchase-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20supplier_calendar%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20supplier_calendar%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -78,20 +78,19 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * ForgeFlow
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-
-* Núria Martín <nuria.martin@forgeflow.com>
-* Jordi Ballester <jordi.ballester@forgeflow.com>
-* Lois Rilo <lois.rilo@eforgeflow>
+-  Núria Martín <nuria.martin@forgeflow.com>
+-  Jordi Ballester <jordi.ballester@forgeflow.com>
+-  Lois Rilo <lois.rilo@eforgeflow>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -111,6 +110,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-LoisRForgeFlow| 
 
-This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/16.0/supplier_calendar>`_ project on GitHub.
+This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/17.0/supplier_calendar>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
