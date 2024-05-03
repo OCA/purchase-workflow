@@ -11,7 +11,7 @@ class PurchaseOrderLine(models.Model):
 
     @api.model
     def _get_date_planned(self, seller, po=False):
-        date_planned = super(PurchaseOrderLine, self)._get_date_planned(seller, po)
+        date_planned = super()._get_date_planned(seller, po)
         if seller.partner_id.factory_calendar_id:
             date_order = po.date_order if po else self.order_id.date_order
             if date_order:

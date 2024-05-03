@@ -10,7 +10,7 @@ from odoo.tests.common import TransactionCase
 @tagged("post_install", "-at_install")
 class TestStockWarehouseCalendar(TransactionCase):
     def setUp(self):
-        super(TestStockWarehouseCalendar, self).setUp()
+        super().setUp()
         self.move_obj = self.env["stock.move"]
         self.company = self.env.ref("base.main_company")
         self.company_partner = self.env.ref("base.main_partner")
@@ -123,7 +123,8 @@ class TestStockWarehouseCalendar(TransactionCase):
         self.assertEqual(result, monday)
 
     def test_03_get_seller_date_planned_from_purchase_line(self):
-        # We want to test the case when only the seller is provided and there is no other date.
+        # We want to test the case when only the seller is provided and there is no
+        # other date.
         test_date = self.company_partner.supplier_plan_days(
             datetime.today(), self.seller_01.delay
         )

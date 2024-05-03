@@ -3,7 +3,7 @@
 {
     "name": "Supplier Calendar",
     "summary": "Supplier Calendar",
-    "version": "16.0.1.0.1",
+    "version": "17.0.1.0.0",
     "website": "https://github.com/OCA/purchase-workflow",
     "category": "Purchase Management",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
