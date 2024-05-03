@@ -14,7 +14,7 @@
                 <field name="delay_calendar_type" />
                 <field
                     name='factory_calendar_id'
-                    attrs="{'invisible': [('delay_calendar_type', '=', 'natural')]}"
+                    invisible="delay_calendar_type == 'natural'"
                 />
             </xpath>
         </field>
