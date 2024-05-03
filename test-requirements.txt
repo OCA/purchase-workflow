@@ -1,1 +1,2 @@
 odoo_test_helper
+odoo-addon-base_product_mass_addition @ git+https://github.com/OCA/product-attribute.git@refs/pull/1604/head#subdirectory=setup/base_product_mass_addition
