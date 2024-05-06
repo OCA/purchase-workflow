@@ -8,18 +8,18 @@
 
 from datetime import datetime
 
-from odoo.exceptions import UserError  # ValidationError,
+from odoo.exceptions import UserError
 from odoo.tests.common import TransactionCase
 
 
 class TestPurchaseOrderArchive(TransactionCase):
-    def setUp(self):
-        super().setUp()
-
-        self.purchase_order_obj = self.env["purchase.order"]
-        product_id = self.env.ref("product.product_product_9")
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.purchase_order_obj = cls.env["purchase.order"]
+        product_id = cls.env.ref("product.product_product_9")
         vals = {
-            "partner_id": self.env.ref("base.res_partner_1").id,
+            "partner_id": cls.env.ref("base.res_partner_1").id,
             "order_line": [
                 (
                     0,
@@ -28,25 +28,25 @@ class TestPurchaseOrderArchive(TransactionCase):
                         "name": product_id.name,
                         "product_id": product_id.id,
                         "product_qty": 1.0,
-                        "product_uom": self.env.ref("uom.product_uom_unit").id,
+                        "product_uom": cls.env.ref("uom.product_uom_unit").id,
                         "price_unit": 121.0,
                         "date_planned": datetime.today(),
                     },
                 )
             ],
         }
-        self.po_draft = self.env["purchase.order"].create(vals)
-        self.po_sent = self.env["purchase.order"].create(vals)
-        self.po_sent.write({"state": "sent"})
-        self.po_to_approve = self.env["purchase.order"].create(vals)
-        self.po_to_approve.write({"state": "to approve"})
-        self.po_purchase = self.env["purchase.order"].create(vals)
-        self.po_purchase.button_confirm()
-        self.po_done = self.env["purchase.order"].create(vals)
-        self.po_done.button_confirm()
-        self.po_done.button_done()
-        self.po_cancel = self.env["purchase.order"].create(vals)
-        self.po_cancel.button_cancel()
+        cls.po_draft = cls.env["purchase.order"].create(vals)
+        cls.po_sent = cls.env["purchase.order"].create(vals)
+        cls.po_sent.write({"state": "sent"})
+        cls.po_to_approve = cls.env["purchase.order"].create(vals)
+        cls.po_to_approve.write({"state": "to approve"})
+        cls.po_purchase = cls.env["purchase.order"].create(vals)
+        cls.po_purchase.button_confirm()
+        cls.po_done = cls.env["purchase.order"].create(vals)
+        cls.po_done.button_confirm()
+        cls.po_done.button_done()
+        cls.po_cancel = cls.env["purchase.order"].create(vals)
+        cls.po_cancel.button_cancel()
 
     def test_archive(self):
         with self.assertRaises(UserError):

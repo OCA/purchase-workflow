@@ -88,6 +88,9 @@ Contributors
 
 -  Andrea Stirpe <a.stirpe@onestein.nl>
 -  Christihan Laurel <laurel@vauxoo.com>
+-  `Binhex <https://binhex.cloud/>`__:
+
+   -  Mario Luis <m.luis@binhex.cloud>
 
 Maintainers
 -----------
