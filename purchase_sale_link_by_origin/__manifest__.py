@@ -4,7 +4,7 @@
     "name": "Purchase/Sale: link by origin",
     "summary": "Link PO/SO by the PO's Origin in addition to the default "
     "behavior that only links them by their lines",
-    "version": "16.0.1.0.0",
+    "version": "17.0.1.0.0",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": "Purchase",
