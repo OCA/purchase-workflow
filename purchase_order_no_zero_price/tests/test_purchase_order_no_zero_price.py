@@ -9,27 +9,28 @@ from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
 class TestPurchaseOrderNoZeroPrice(common.TransactionCase):
-    def setUp(self):
-        super(TestPurchaseOrderNoZeroPrice, self).setUp()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
 
-        self.PurchaseOrder = self.env["purchase.order"]
+        cls.PurchaseOrder = cls.env["purchase.order"]
         # Partner
-        self.partner1 = self.env.ref("base.res_partner_1")
+        cls.partner1 = cls.env.ref("base.res_partner_1")
         # Products
-        self.product1 = self.env.ref("product.product_product_7")
+        cls.product1 = cls.env.ref("product.product_product_7")
 
-        self.purchase_order1 = self.PurchaseOrder.create(
+        cls.purchase_order1 = cls.PurchaseOrder.create(
             {
-                "partner_id": self.partner1.id,
+                "partner_id": cls.partner1.id,
                 "order_line": [
                     (
                         0,
                         0,
                         {
-                            "name": self.product1.name,
-                            "product_id": self.product1.id,
+                            "name": cls.product1.name,
+                            "product_id": cls.product1.id,
                             "product_qty": 50,
-                            "product_uom": self.product1.uom_id.id,
+                            "product_uom": cls.product1.uom_id.id,
                             "price_unit": 10.0,
                             "date_planned": time.strftime(
                                 DEFAULT_SERVER_DATETIME_FORMAT
@@ -39,7 +40,7 @@ class TestPurchaseOrderNoZeroPrice(common.TransactionCase):
                 ],
             }
         )
-        self.purchase_order2 = self.purchase_order1.copy()
+        cls.purchase_order2 = cls.purchase_order1.copy()
 
     def test_check_price_unit_zero(self):
         self.assertEqual(self.purchase_order1.state, "draft")
