@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="purchase_order_view_form_inherit" model="ir.ui.view">
+        <field name="name">purchase.order.form.inherit</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='origin']" position="after">
+                <field name="require_signature" />
+            </xpath>
+            <notebook position="inside">
+                <page
+                    groups="base.group_no_one"
+                    string="Vendor Signature"
+                    name="vendor_signature"
+                    attrs="{'invisible': [('require_signature', '=', False), ('signed_by', '=', False), ('signature', '=', False), ('signed_on', '=', False)]}"
+                >
+                    <group>
+                        <field name="signed_by" />
+                        <field name="signed_on" />
+                        <field name="signature" widget="image" />
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+</odoo>
