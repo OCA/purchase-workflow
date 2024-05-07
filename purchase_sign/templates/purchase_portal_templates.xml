@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template
+        id="portal_my_purchase_order"
+        name="Purchase Order Portal Template"
+        inherit_id="purchase.portal_my_purchase_order"
+    >
+        <xpath expr="//div[hasclass('o_download_pdf')]" position="before">
+            <a
+                t-if="order._has_to_be_signed()"
+                role="button"
+                class="btn btn-primary mb8"
+                data-bs-toggle="modal"
+                data-bs-target="#modalaccept"
+                href="#"
+                style="width:100%"
+            >
+                <i class="fa fa-check" />
+                Accept &amp; Sign
+            </a>
+        </xpath>
+
+        <xpath expr="//div[@id='portal_purchase_content']" position="before">
+            <!-- modal relative to the action sign-->
+                    <div role="dialog" class="modal fade" id="modalaccept">
+                        <div class="modal-dialog" t-if="order._has_to_be_signed()">
+                            <form
+                        id="accept"
+                        method="POST"
+                        t-att-data-order-id="order.id"
+                        t-att-data-token="order.access_token"
+                        class="js_accept_json modal-content js_website_submit_form"
+                    >
+                                <input
+                            type="hidden"
+                            name="csrf_token"
+                            t-att-value="request.csrf_token()"
+                        />
+                                <header class="modal-header">
+                                    <h4 class="modal-title">Validate Order</h4>
+                                    <button
+                                type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                            />
+                                </header>
+                                <main class="modal-body" id="sign-dialog">
+                                    <p>
+                                        <span
+                                >By signing this proposal, I agree to the following terms:</span>
+                                        <ul>
+                                            <li>
+                                                <span
+                                        >Accepted on the behalf of:</span> <b
+                                            t-field="order.partner_id.commercial_partner_id"
+                                        />
+                                            </li>
+                                            <li>
+                                                <span>For an amount of:</span> <b
+                                            data-id="amount_total"
+                                            t-field="order.amount_total"
+                                        />
+                                            </li>
+                                            <li t-if="order.payment_term_id">
+                                                <span>With payment terms:</span> <b
+                                            t-field="order.payment_term_id.note"
+                                        />
+                                            </li>
+                                        </ul>
+                                    </p>
+                                    <t t-call="portal.signature_form">
+                                        <t
+                                    t-set="call_url"
+                                    t-value="order.get_portal_url(suffix='/accept')"
+                                />
+                                        <t
+                                    t-set="default_name"
+                                    t-value="order.partner_id.name"
+                                />
+                                    </t>
+                                </main>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- status messages -->
+                    <div
+                t-if="message == 'sign_ok'"
+                class="alert alert-success alert-dismissible d-print-none"
+                role="status"
+            >
+                        <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert"
+                    aria-label="Close"
+                />
+                        <strong>Thank You!</strong><br />
+                        Order has been confirmed.
+                    </div>
+        </xpath>
+
+        <xpath expr="//div[@id='portal_purchase_content']" position="after">
+            <div
+                t-if="order._has_to_be_signed()"
+                class="row justify-content-center text-center d-print-none pt-1 pb-4"
+            >
+                <div class="col-sm-auto mt8">
+                    <a
+                        role="button"
+                        class="btn btn-primary"
+                        data-bs-toggle="modal"
+                        data-bs-target="#modalaccept"
+                        href="#"
+                    >
+                        <i class="fa fa-check" />
+                        Accept &amp; Sign
+                    </a>
+                </div>
+                <div class="col-sm-auto mt8">
+                    <a role="button" class="btn btn-secondary" href="#discussion">
+                        <i class="fa fa-comment" />
+                        Feedback
+                    </a>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <template
+        id="purchase_order_portal_content"
+        inherit_id="purchase.purchase_order_portal_content"
+    >
+        <xpath expr="//section[@id='terms']" position="before">
+            <section t-if="order.signature" id="signature" name="Signature">
+                <div class="row mt-4" name="signature">
+                    <div
+                        t-attf-class="#{'col-3' if report_type != 'html' else 'col-sm-7 col-md-4'} ms-auto text-center"
+                    >
+                        <h5>Signature</h5>
+                        <img
+                            t-att-src="image_data_uri(order.signature)"
+                            style="max-height: 6rem; max-width: 100%;"
+                        />
+                        <p t-field="order.signed_by" />
+                    </div>
+                </div>
+            </section>
+        </xpath>
+    </template>
+
+</odoo>
