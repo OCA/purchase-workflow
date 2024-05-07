@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="report_purchaseorder_document"
+        inherit_id="purchase.report_purchaseorder_document"
+    >
+        <xpath expr="//p[@t-field='o.notes']" position="before">
+            <div t-if="o.signature" class="mt-4 ml64 mr4" name="signature">
+                <div class="offset-8">
+                    <strong>Signature</strong>
+                </div>
+                <div class="offset-8">
+                    <img
+                        t-att-src="image_data_uri(o.signature)"
+                        style="max-height: 4cm; max-width: 8cm;"
+                    />
+                </div>
+                <div class="offset-8 text-center">
+                    <p t-field="o.signed_by" />
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>
