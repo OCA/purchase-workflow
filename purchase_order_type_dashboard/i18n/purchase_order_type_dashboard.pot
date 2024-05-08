@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -70,11 +70,6 @@ msgstr ""
 #. module: purchase_order_type_dashboard
 #: model:ir.actions.act_window,name:purchase_order_type_dashboard.action_purchase_rfq_from_dashboard
 msgid "Request for Quotation"
-msgstr ""
-
-#. module: purchase_order_type_dashboard
-#: model_terms:ir.ui.view,arch_db:purchase_order_type_dashboard.view_purchase_order_type_kanban
-msgid "Show other options"
 msgstr ""
 
 #. module: purchase_order_type_dashboard

@@ -76,11 +76,6 @@ msgid "Request for Quotation"
 msgstr "Richiesta di preventivo"
 
 #. module: purchase_order_type_dashboard
-#: model_terms:ir.ui.view,arch_db:purchase_order_type_dashboard.view_purchase_order_type_kanban
-msgid "Show other options"
-msgstr "Visualizza altre opzioni"
-
-#. module: purchase_order_type_dashboard
 #: model_terms:ir.ui.view,arch_db:purchase_order_type_dashboard.view_purchase_order_type_tree
 #, fuzzy
 msgid "Total Nothing to Bill"
@@ -106,3 +101,6 @@ msgstr "Tipo ordine di acquisto"
 #: model_terms:ir.ui.view,arch_db:purchase_order_type_dashboard.view_purchase_order_type_kanban
 msgid "Waiting Bills"
 msgstr "Conti in attesa"
+
+#~ msgid "Show other options"
+#~ msgstr "Visualizza altre opzioni"
