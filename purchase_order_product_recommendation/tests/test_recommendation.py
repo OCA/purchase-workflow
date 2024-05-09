@@ -91,7 +91,7 @@ class RecommendationCase(TransactionCase):
             {
                 "product_id": cls.prod_1.id,
                 "product_uom_id": cls.prod_1.uom_id.id,
-                "qty_done": 1,
+                "quantity": 1,
                 "date": fields.Datetime.from_string("2018-01-11 15:05:00"),
                 "location_id": cls.wh1.lot_stock_id.id,
                 "location_dest_id": cls.customer_loc.id,
@@ -102,7 +102,7 @@ class RecommendationCase(TransactionCase):
             {
                 "product_id": cls.prod_2.id,
                 "product_uom_id": cls.prod_2.uom_id.id,
-                "qty_done": 38,
+                "quantity": 38,
                 "date": fields.Datetime.from_string("2019-02-01 00:05:00"),
                 "location_id": cls.wh1.lot_stock_id.id,
                 "location_dest_id": cls.customer_loc.id,
@@ -113,7 +113,7 @@ class RecommendationCase(TransactionCase):
             {
                 "product_id": cls.prod_2.id,
                 "product_uom_id": cls.prod_2.uom_id.id,
-                "qty_done": 4,
+                "quantity": 4,
                 "date": fields.Datetime.from_string("2019-02-01 00:05:00"),
                 "location_id": cls.wh2.lot_stock_id.id,
                 "location_dest_id": cls.customer_loc.id,
@@ -124,7 +124,7 @@ class RecommendationCase(TransactionCase):
             {
                 "product_id": cls.prod_3.id,
                 "product_uom_id": cls.prod_3.uom_id.id,
-                "qty_done": 13,
+                "quantity": 13,
                 "date": fields.Datetime.from_string("2019-02-01 00:06:00"),
                 "location_id": cls.wh2.lot_stock_id.id,
                 "location_dest_id": cls.customer_loc.id,
@@ -135,7 +135,7 @@ class RecommendationCase(TransactionCase):
             {
                 "product_id": cls.prod_3.id,
                 "product_uom_id": cls.prod_3.uom_id.id,
-                "qty_done": 7,
+                "quantity": 7,
                 "date": fields.Datetime.from_string("2019-02-01 00:00:00"),
                 "location_id": cls.supplier_loc.id,
                 "location_dest_id": cls.wh1.lot_stock_id.id,

@@ -21,14 +21,14 @@
                                 name="warehouse_ids"
                                 widget="many2many_tags"
                                 options="{'no_open': True, 'no_create': True}"
-                                attrs="{'invisible': [('warehouse_count', '&lt;', 2)]}"
+                                invisible="warehouse_count &lt; 2"
                             />
                             <field name="line_amount" widget="numeric_step" />
                         </group>
                         <group name="col_right">
                             <field
                                 name="show_all_partner_products"
-                                attrs="{'invisible': [('show_all_products', '!=', False)]}"
+                                invisible="show_all_products != False"
                             />
                             <field name="show_all_products" />
                         </group>
