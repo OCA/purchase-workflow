@@ -24,4 +24,3 @@
     "installable": True,
     "images": ["images/purchase_discount.png"],
 }
-
