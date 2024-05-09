@@ -145,14 +145,14 @@ class PurchaseOrderRecommendation(models.TransientModel):
         products = self._get_products()
         domain = self._get_move_line_domain(products, src, dst)
         found_lines = self.env["stock.move.line"].read_group(
-            domain, ["product_id", "qty_done"], ["product_id"]
+            domain, ["product_id", "quantity"], ["product_id"]
         )
         # Manual ordering that circumvents ORM limitations
         found_lines = sorted(
             found_lines,
             key=lambda res: (
                 res["product_id_count"],
-                res["qty_done"],
+                res["quantity"],
             ),
             reverse=True,
         )
@@ -162,7 +162,7 @@ class PurchaseOrderRecommendation(models.TransientModel):
                 "id": x["product_id"][0],
                 "product_id": product_dict[x["product_id"][0]],
                 "product_id_count": x["product_id_count"],
-                "qty_done": x["qty_done"],
+                "quantity": x["quantity"],
             }
             for x in found_lines
         ]
@@ -253,7 +253,7 @@ class PurchaseOrderRecommendation(models.TransientModel):
         # Get quantities received from suppliers
         found_dict = self._find_move_line(src="supplier", dst="internal")
         for product, line in found_dict.items():
-            found_dict[product]["qty_received"] = line.get("qty_done", 0)
+            found_dict[product]["qty_received"] = line.get("quantity", 0)
             found_dict[product]["times_received"] = line.get("product_id_count", 0)
         # Get quantities delivered to customers
         found_delivered_dict = self._find_move_line(src="internal", dst="customer")
@@ -261,7 +261,7 @@ class PurchaseOrderRecommendation(models.TransientModel):
         for product, line in found_delivered_dict.items():
             if not found_dict.get(product):
                 found_dict[product] = line
-            found_dict[product]["qty_delivered"] = line.get("qty_done", 0)
+            found_dict[product]["qty_delivered"] = line.get("quantity", 0)
             found_dict[product]["times_delivered"] = line.get("product_id_count", 0)
             found_dict[product].update(
                 {k: v for k, v in line.items() if k not in found_dict[product].keys()}
