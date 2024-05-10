@@ -8,7 +8,7 @@ from odoo.tests.common import TransactionCase
 class TestPurchaseOrder(TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(TestPurchaseOrder, cls).setUpClass()
+        super().setUpClass()
         cls.supplier = cls.env.ref("base.res_partner_1")
         vals = {
             "name": "PO TEST",
