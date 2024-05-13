@@ -60,14 +60,12 @@ msgid "Created on"
 msgstr "Créé le"
 
 #. module: purchase_cancel_reason
-#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order__display_name
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel__display_name
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason__display_name
 msgid "Display Name"
 msgstr "Display Name"
 
 #. module: purchase_cancel_reason
-#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order__id
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel__id
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason__id
 msgid "ID"
@@ -77,13 +75,6 @@ msgstr "ID"
 #: model:purchase.order.cancel.reason,name:purchase_cancel_reason.cancel_reason_only_quotation
 msgid "Just for Quotation"
 msgstr "Juste un devis"
-
-#. module: purchase_cancel_reason
-#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order____last_update
-#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel____last_update
-#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
 
 #. module: purchase_cancel_reason
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel__write_uid
@@ -116,7 +107,6 @@ msgstr "Motif de l'annulation du bon de commande"
 #. module: purchase_cancel_reason
 #: model:ir.ui.menu,name:purchase_cancel_reason.menu_purchase_order_cancel_reason
 #: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel_reason_form
-#: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel_reason_tree
 msgid "Purchase Order Cancel Reasons"
 msgstr "Motifs de l'annulation du bon de commande"
 
@@ -146,6 +136,9 @@ msgstr "Le service n'est plus requis"
 #: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel
 msgid "or"
 msgstr "ou"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
 
 #~ msgid " Ask a reason for the purchase order cancellation."
 #~ msgstr "Demander une motif lors de l'annulation du bon de commande."

@@ -7,7 +7,7 @@ from odoo.tests.common import TransactionCase
 
 class TestPurchaseCancelReason(TransactionCase):
     def setUp(self):
-        super(TestPurchaseCancelReason, self).setUp()
+        super().setUp()
         PurchaseOrder = self.env["purchase.order"]
         CancelReason = self.env["purchase.order.cancel.reason"]
         self.reason = CancelReason.create({"name": "Canceled for tests"})
