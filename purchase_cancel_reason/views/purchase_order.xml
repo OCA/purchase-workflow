@@ -11,7 +11,7 @@
             <xpath expr="//button[@name='button_cancel']" position="before">
                 <button
                     name="%(action_purchase_order_cancel)d"
-                    states="draft,to approve,sent,purchase"
+                    invisible="state not in ('draft', 'to approve', 'sent', 'purchase')"
                     string="Cancel"
                     type="action"
                     groups="base.group_user"
@@ -25,7 +25,7 @@
             </xpath>
             <xpath expr="/form/sheet/div/h1" position="after">
                 <div>
-                    <div attrs="{'invisible': [('state', '!=', 'cancel')]}">
+                    <div invisible="state != 'cancel'">
                         <label for="cancel_reason_id" string="Cancellation reason:" />
                         <field
                             name="cancel_reason_id"
