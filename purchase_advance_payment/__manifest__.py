@@ -7,6 +7,7 @@
     "author": "Forgeflow, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
     "category": "Purchase",
+    "maintainers": ["LoisRForgeFlow"],
     "license": "AGPL-3",
     "summary": "Allow to add advance payments on purchase orders",
     "depends": ["purchase"],
@@ -14,6 +15,7 @@
         "wizard/purchase_advance_payment_wizard_view.xml",
         "views/purchase_view.xml",
         "security/ir.model.access.csv",
+        "views/account_payment_views.xml",
     ],
     "installable": True,
 }
