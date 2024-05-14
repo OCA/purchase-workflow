@@ -8,15 +8,10 @@ class MailMail(models.Model):
     _inherit = "mail.mail"
 
     def write(self, vals):
-        res = super(MailMail, self).write(vals)
-        if vals.get("state") == "exception":
-            for mail in self:
-                if mail.model == "purchase.order":
-                    order = self.env["purchase.order"].browse(mail.res_id)
-                    order.sending_warning = "email_not_sent"
-        else:
-            for mail in self:
-                if mail.model == "purchase.order":
-                    order = self.env["purchase.order"].browse(mail.res_id)
-                    order.sending_warning = False
+        res = super().write(vals)
+        po_mails = self.filtered_domain([("model", "=", "purchase.order")])
+        if po_mails:
+            error = vals.get("state") == "exception"
+            records = self.env["purchase.order"].browse(po_mails.mapped("res_id"))
+            records.write({"sending_error_type": "email_not_sent" if error else False})
         return res

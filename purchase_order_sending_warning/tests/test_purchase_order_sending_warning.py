@@ -70,5 +70,5 @@ class TestPurchaseOrderSendingWarning(TestMailCommon):
 
         with self.mock_mail_gateway(sim_error="connect_smtp_notfound"):
             wizard_f.save().send_mail()
-            self.assertEqual(self.purchase_order.sending_warning, "email_not_sent")
-            self.assertTrue(self.purchase_order.error_in_sending)
+            self.assertEqual(self.purchase_order.sending_error_type, "email_not_sent")
+            self.assertTrue(self.purchase_order.transmission_error)
