@@ -2,3 +2,4 @@ brand
 server-ux
 product-attribute
 account-invoicing
+account-financial-tools
