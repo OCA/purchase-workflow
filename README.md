@@ -29,6 +29,8 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
+[account_fiscal_position_allowed_journal_purchase](account_fiscal_position_allowed_journal_purchase/) | 13.0.1.0.0 | [![ThomasBinsfeld](https://github.com/ThomasBinsfeld.png?size=30px)](https://github.com/ThomasBinsfeld) | Use an allowed journal when creating an invoice from a purchase order.
+[account_fiscal_position_allowed_journal_sale_purchase](account_fiscal_position_allowed_journal_sale_purchase/) | 13.0.1.0.0 |  | Glue module between Sale + purchase + account fiscal position allowed journal purchase
 [procurement_purchase_no_grouping](procurement_purchase_no_grouping/) | 13.0.3.0.1 |  | Procurement Purchase No Grouping
 [procurement_purchase_sale_no_grouping](procurement_purchase_sale_no_grouping/) | 13.0.1.0.0 |  | Procurement Purchase Service No Grouping
 [product_form_purchase_link](product_form_purchase_link/) | 13.0.1.1.0 | [![rousseldenis](https://github.com/rousseldenis.png?size=30px)](https://github.com/rousseldenis) | Add an option to display the purchases lines from product
