@@ -7,7 +7,7 @@ class PurchaseOrder(models.Model):
     _name = "purchase.order"
     _inherit = ["purchase.order", "base.cancel.confirm"]
 
-    _has_cancel_reason = "optional"  # ["no", "optional", "required"]
+    _has_cancel_reason = "optional"
 
     def button_cancel(self):
         if not self.filtered("cancel_confirm"):
