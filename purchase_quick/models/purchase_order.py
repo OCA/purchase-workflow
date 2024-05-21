@@ -64,6 +64,7 @@ class PurchaseOrder(models.Model):
         vals_to_add = {
             "order_id": self.id,
             "partner_id": self.partner_id.id,
+            "company_id": self.company_id.id,
         }
         vals_to_add.update(vals)
         vals = vals_to_add

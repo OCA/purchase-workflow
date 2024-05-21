@@ -22,7 +22,11 @@ class TestQuickPurchase(TransactionCase):
 
     @classmethod
     def _setUpBasicSaleOrder(cls):
-        vals = {"partner_id": cls.partner.id}
+        vals = {
+            "partner_id": cls.partner.id,
+            "company_id": cls.user.company_id.id,
+            "user_id": cls.user.id,
+        }
         if hasattr(cls.env["purchase.order"], "order_type"):
             vals["order_type"] = cls.env.ref("purchase_order_type.po_type_blanket").id
         cls.po = cls.env["purchase.order"].create(vals)
@@ -199,7 +203,13 @@ class TestQuickPurchase(TransactionCase):
         While in the quick purchase interface, a purchaser with no edit rights
         on product.product can still edit product.product quick quantities
         """
-        po = self.env["purchase.order"].create({"partner_id": self.partner.id})
+        po = self.env["purchase.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "company_id": self.user.company_id.id,
+                "user_id": self.user.id,
+            }
+        )
         ctx = {
             "parent_id": po.id,
             "parent_model": "purchase.order",
