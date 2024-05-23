@@ -184,11 +184,6 @@ msgid "Company"
 msgstr ""
 
 #. module: purchase_blanket_order
-#: model:ir.model,name:purchase_blanket_order.model_res_config_settings
-msgid "Config Settings"
-msgstr ""
-
-#. module: purchase_blanket_order
 #: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_form
 msgid "Confirm"
 msgstr ""
@@ -359,6 +354,11 @@ msgstr ""
 #: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order__message_has_error
 #: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order_line__message_has_error
 msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: purchase_blanket_order
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_form
+msgid "Invoice Information"
 msgstr ""
 
 #. module: purchase_blanket_order
@@ -543,6 +543,11 @@ msgid "Original quantity"
 msgstr ""
 
 #. module: purchase_blanket_order
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_form
+msgid "Other Information"
+msgstr ""
+
+#. module: purchase_blanket_order
 #. odoo-python
 #: code:addons/purchase_blanket_order/models/blanket_orders.py:0
 #, python-format
@@ -566,6 +571,11 @@ msgstr ""
 #: code:addons/purchase_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "Price must be greater than zero"
+msgstr ""
+
+#. module: purchase_blanket_order
+#: model:ir.model,name:purchase_blanket_order.model_res_config_settings
+msgid "Procurement purchase grouping settings"
 msgstr ""
 
 #. module: purchase_blanket_order
@@ -857,6 +867,12 @@ msgstr ""
 #. module: purchase_blanket_order
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__partner_ref
 msgid "Vendor Reference"
+msgstr ""
+
+#. module: purchase_blanket_order
+#: model:ir.actions.server,name:purchase_blanket_order.warnings_purchase_blanket_orders_cron_ir_actions_server
+#: model:ir.cron,cron_name:purchase_blanket_order.warnings_purchase_blanket_orders_cron
+msgid "Warnings Blanket Orders"
 msgstr ""
 
 #. module: purchase_blanket_order

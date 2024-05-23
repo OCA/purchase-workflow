@@ -92,7 +92,7 @@ class AccountVoucherWizardPurchase(models.TransientModel):
         self.currency_amount = amount_advance
 
     def _prepare_payment_vals(self, purchase):
-        partner_id = purchase.partner_id.id
+        partner_id = purchase.partner_id.commercial_partner_id.id
         return {
             "date": self.date,
             "amount": self.amount_advance,

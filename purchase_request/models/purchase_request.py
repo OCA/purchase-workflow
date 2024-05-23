@@ -101,9 +101,10 @@ class PurchaseRequest(models.Model):
         comodel_name="purchase.request.line",
         inverse_name="request_id",
         string="Products to Purchase",
-        readonly=False,
+        readonly=True,
         copy=True,
         tracking=True,
+        states={"draft": [("readonly", False)]},
     )
     product_id = fields.Many2one(
         comodel_name="product.product",

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-24 12:38+0000\n"
+"PO-Revision-Date: 2024-03-05 14:35+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -22,11 +22,6 @@ msgid "Companies"
 msgstr "Aziende"
 
 #. module: purchase_packaging_level_qty
-#: model:ir.model,name:purchase_packaging_level_qty.model_res_config_settings
-msgid "Config Settings"
-msgstr "Impostazioni configurazione"
-
-#. module: purchase_packaging_level_qty
 #: model:ir.model.fields,help:purchase_packaging_level_qty.field_res_config_settings__purchase_packaging_level_id
 msgid "Count purchase order packaging needed for this packing level."
 msgstr "Conta imballi ordine acquisto necessari per questo livello imballo."
@@ -35,11 +30,17 @@ msgstr "Conta imballi ordine acquisto necessari per questo livello imballo."
 #: model_terms:ir.ui.view,arch_db:purchase_packaging_level_qty.res_config_settings_view_form_purchase_inherit
 msgid ""
 "Count purchase order packaging needed for this packing level.\n"
-"                            This information will be shown on each purchase order."
+"                            This information will be shown on each purchase "
+"order."
 msgstr ""
 "Conta imballi ordine acquisto necessari per questo livello imballo.\n"
 "                            Questa informazione verrà visualizzata in ogni "
 "ordine di acquisto."
+
+#. module: purchase_packaging_level_qty
+#: model:ir.model,name:purchase_packaging_level_qty.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr "Impostazioni raggruppamento approvvigionamento acquisti"
 
 #. module: purchase_packaging_level_qty
 #: model:ir.model,name:purchase_packaging_level_qty.model_purchase_order
@@ -72,3 +73,6 @@ msgstr "Livello imballaggio trasporto"
 #: model:ir.model.fields,field_description:purchase_packaging_level_qty.field_purchase_order_line__transport_qty
 msgid "Transport Qty"
 msgstr "Q.tà trasporto"
+
+#~ msgid "Config Settings"
+#~ msgstr "Impostazioni configurazione"

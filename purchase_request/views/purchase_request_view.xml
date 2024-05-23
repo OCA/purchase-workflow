@@ -156,7 +156,10 @@
                     </group>
                     <notebook>
                         <page string="Products">
-                            <field name="line_ids">
+                            <field
+                                name="line_ids"
+                                attrs="{'readonly': [('state', '!=', 'draft')]}"
+                            >
                                 <tree
                                     decoration-muted="cancelled == True"
                                     editable="bottom"

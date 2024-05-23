@@ -19,11 +19,6 @@ msgid "Companies"
 msgstr ""
 
 #. module: purchase_packaging_level_qty
-#: model:ir.model,name:purchase_packaging_level_qty.model_res_config_settings
-msgid "Config Settings"
-msgstr ""
-
-#. module: purchase_packaging_level_qty
 #: model:ir.model.fields,help:purchase_packaging_level_qty.field_res_config_settings__purchase_packaging_level_id
 msgid "Count purchase order packaging needed for this packing level."
 msgstr ""
@@ -33,6 +28,11 @@ msgstr ""
 msgid ""
 "Count purchase order packaging needed for this packing level.\n"
 "                            This information will be shown on each purchase order."
+msgstr ""
+
+#. module: purchase_packaging_level_qty
+#: model:ir.model,name:purchase_packaging_level_qty.model_res_config_settings
+msgid "Procurement purchase grouping settings"
 msgstr ""
 
 #. module: purchase_packaging_level_qty

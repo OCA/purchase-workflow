@@ -171,7 +171,6 @@ msgid "Partially Paid"
 msgstr ""
 
 #. module: purchase_advance_payment
-#: model:ir.model.fields,field_description:purchase_advance_payment.field_purchase_order__account_payment_ids
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.purchase_order_form
 msgid "Pay purchase advanced"
 msgstr ""
@@ -204,6 +203,11 @@ msgstr ""
 #. module: purchase_advance_payment
 #: model:ir.model,name:purchase_advance_payment.model_purchase_order
 msgid "Purchase Order"
+msgstr ""
+
+#. module: purchase_advance_payment
+#: model:ir.model.fields,field_description:purchase_advance_payment.field_purchase_order__account_payment_ids
+msgid "Purchase Payment"
 msgstr ""
 
 #. module: purchase_advance_payment

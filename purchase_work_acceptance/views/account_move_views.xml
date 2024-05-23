@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_move_form" model="ir.ui.view">
+        <field name="name">account.move.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="purchase.view_move_form_inherit_purchase" />
+        <field name="arch" type="xml">
+            <group id="header_left_group" position="inside">
+                <field name="require_wa" invisible="1" />
+                <field
+                    name="wa_id"
+                    options="{'no_create': True}"
+                    groups="purchase_work_acceptance.group_enable_wa_on_invoice"
+                    attrs="{'required': [('require_wa','=', True)], 'invisible': [('wa_id', '=', False)]}"
+                />
+            </group>
+        </field>
+    </record>
+</odoo>

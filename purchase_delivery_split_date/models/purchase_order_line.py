@@ -69,7 +69,7 @@ class PurchaseOrderLine(models.Model):
             # If a picking is provided, clone it for each key for modularity
             if picking:
                 copy_vals = self._first_picking_copy_vals(key, lines)
-                picking = first_picking.copy(copy_vals)
+                picking = first_picking.sudo().copy(copy_vals)
             po_lines = self.env["purchase.order.line"]
             for line in list(lines):
                 po_lines += line

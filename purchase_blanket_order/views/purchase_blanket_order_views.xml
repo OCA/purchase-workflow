@@ -16,6 +16,7 @@
                 <field name="user_id" />
                 <field name="partner_id" />
                 <field name="validity_date" />
+                <field name="activity_ids" widget="list_activity" />
                 <field name="state" />
             </tree>
         </field>
@@ -60,6 +61,7 @@
                         statusbar_visible="draft,open,expired"
                     />
                 </header>
+
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                         <button
@@ -98,7 +100,6 @@
                                 options='{"always_reload": True}'
                             />
                             <field name="partner_ref" />
-                            <field name="payment_term_id" />
                         </group>
                         <group name="group_top_right">
                             <field
@@ -194,6 +195,23 @@
                                 placeholder="Setup default terms and conditions in your company settings."
                             />
                             <div class="oe_clear" />
+                        </page>
+                        <page name="other_info" string="Other Information">
+                            <group
+                                name="invoice_information"
+                                string="Invoice Information"
+                            >
+                                <field
+                                    name="payment_term_id"
+                                    attrs="{'readonly': [('state', '=', 'done')]}"
+                                    options="{'no_create': True}"
+                                />
+                                <field
+                                    name="fiscal_position_id"
+                                    options="{'no_create': True}"
+                                    attrs="{'readonly': [('state', '=', 'done')]}"
+                                />
+                            </group>
                         </page>
                     </notebook>
                 </sheet>
@@ -292,6 +310,7 @@
                 <field name="invoiced_uom_qty" />
                 <field name="received_uom_qty" />
                 <field name="remaining_uom_qty" />
+                <field name="activity_ids" widget="list_activity" />
             </tree>
         </field>
     </record>

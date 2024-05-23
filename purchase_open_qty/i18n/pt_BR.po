@@ -9,29 +9,31 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-24 07:53+0000\n"
-"PO-Revision-Date: 2017-11-24 07:53+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
-"teams/23907/pt_BR/)\n"
+"PO-Revision-Date: 2024-05-22 23:57+0000\n"
+"Last-Translator: Rodrigo Macedo <sottomaiormacedotec@users.noreply."
+"translation.odoo-community.org>\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
+"23907/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: purchase_open_qty
 #: model:ir.model.fields,field_description:purchase_open_qty.field_purchase_order__pending_qty_to_invoice
 #: model_terms:ir.ui.view,arch_db:purchase_open_qty.purchase_order_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_open_qty.view_purchase_order_filter
 msgid "Pending Qty to Bill"
-msgstr ""
+msgstr "Quantidade pendente para cobrança"
 
 #. module: purchase_open_qty
 #: model:ir.model.fields,field_description:purchase_open_qty.field_purchase_order__pending_qty_to_receive
 #: model_terms:ir.ui.view,arch_db:purchase_open_qty.purchase_order_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_open_qty.view_purchase_order_filter
 msgid "Pending Qty to Receive"
-msgstr ""
+msgstr "Quantidade pendente para receber"
 
 #. module: purchase_open_qty
 #: model:ir.model,name:purchase_open_qty.model_purchase_order
@@ -46,17 +48,17 @@ msgstr "Linha da Ordem de Compra"
 #. module: purchase_open_qty
 #: model:ir.model.fields,field_description:purchase_open_qty.field_purchase_order__qty_to_invoice
 msgid "Qty to Bill"
-msgstr ""
+msgstr "Quantidade para Cobrar"
 
 #. module: purchase_open_qty
 #: model:ir.model.fields,field_description:purchase_open_qty.field_purchase_order__qty_to_receive
 #: model:ir.model.fields,field_description:purchase_open_qty.field_purchase_order_line__qty_to_receive
 msgid "Qty to Receive"
-msgstr ""
+msgstr "Quantidade para receber"
 
 #. module: purchase_open_qty
 #. odoo-python
 #: code:addons/purchase_open_qty/models/purchase_order.py:0
 #, python-format
 msgid "Unsupported search operator"
-msgstr ""
+msgstr "Operador de pesquisa não compatível"

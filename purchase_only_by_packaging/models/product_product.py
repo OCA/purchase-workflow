@@ -32,7 +32,7 @@ class ProductProduct(models.Model):
                     purchasable_pkgs.sorted(lambda p: p.qty)
                 ).qty
 
-    def _convert_packaging_qty(self, qty, uom, packaging):
+    def _convert_purchase_packaging_qty(self, qty, uom, packaging):
         """
         Convert the given qty with given UoM to the packaging uom.
         To do that, first transform the qty to the reference UoM and then

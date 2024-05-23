@@ -76,11 +76,6 @@ msgid "Company"
 msgstr "Poduzeća"
 
 #. module: purchase_order_approved
-#: model:ir.model,name:purchase_order_approved.model_res_config_settings
-msgid "Config Settings"
-msgstr ""
-
-#. module: purchase_order_approved
 #: model:ir.model,name:purchase_order_approved.model_res_partner
 msgid "Contact"
 msgstr ""
@@ -125,6 +120,11 @@ msgstr ""
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__order_line
 msgid "Order Lines"
+msgstr ""
+
+#. module: purchase_order_approved
+#: model:ir.model,name:purchase_order_approved.model_res_config_settings
+msgid "Procurement purchase grouping settings"
 msgstr ""
 
 #. module: purchase_order_approved

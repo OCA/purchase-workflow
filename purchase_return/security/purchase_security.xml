@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+
+    <record model="ir.rule" id="purchase_return_order_comp_rule">
+        <field name="name">Purchase Return Order multi-company</field>
+        <field name="model_id" ref="model_purchase_return_order" />
+        <field
+            name="domain_force"
+        >['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <record model="ir.rule" id="purchase_return_order_line_comp_rule">
+        <field name="name">Purchase Return Order Line multi-company</field>
+        <field name="model_id" ref="model_purchase_return_order_line" />
+        <field
+            name="domain_force"
+        >['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
+    </record>
+</odoo>

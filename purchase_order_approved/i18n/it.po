@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-10 05:30+0000\n"
-"PO-Revision-Date: 2023-12-22 14:36+0000\n"
+"PO-Revision-Date: 2024-03-05 14:34+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -84,11 +84,6 @@ msgid "Company"
 msgstr "Azienda"
 
 #. module: purchase_order_approved
-#: model:ir.model,name:purchase_order_approved.model_res_config_settings
-msgid "Config Settings"
-msgstr "Impostazioni configurazione"
-
-#. module: purchase_order_approved
 #: model:ir.model,name:purchase_order_approved.model_res_partner
 msgid "Contact"
 msgstr "Contatto"
@@ -136,6 +131,11 @@ msgstr "Scadenza ordine"
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__order_line
 msgid "Order Lines"
 msgstr "Righe ordine"
+
+#. module: purchase_order_approved
+#: model:ir.model,name:purchase_order_approved.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr "Impostazioni raggruppamento approvvigionamento acquisti"
 
 #. module: purchase_order_approved
 #: model:ir.model,name:purchase_order_approved.model_purchase_order
@@ -202,3 +202,6 @@ msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
 msgstr ""
 "Un fornitore può essere trovato per nome, codice fiscale, e-mail o "
 "riferimento interno."
+
+#~ msgid "Config Settings"
+#~ msgstr "Impostazioni configurazione"

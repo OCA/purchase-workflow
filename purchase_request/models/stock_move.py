@@ -46,6 +46,14 @@ class StockMove(models.Model):
                 except ValueError:
                     activity_type_id = False
                 pr_line = move.created_purchase_request_line_id
+                if pr_line.product_id.responsible_id:
+                    activity_user = pr_line.product_id.responsible_id
+                elif pr_line.request_id.assigned_to:
+                    activity_user = pr_line.request_id.assigned_to
+                elif move.picking_id.user_id:
+                    activity_user = move.picking_id.user_id
+                else:
+                    activity_user = self.env.user
                 self.env["mail.activity"].sudo().create(
                     {
                         "activity_type_id": activity_type_id,
@@ -54,9 +62,7 @@ class StockMove(models.Model):
                             "purchase request has been cancelled/deleted. "
                             "Check if an action is needed."
                         ),
-                        "user_id": (
-                            pr_line.product_id.responsible_id.id or self.env.user.id
-                        ),
+                        "user_id": activity_user.id,
                         "res_id": pr_line.request_id.id,
                         "res_model_id": self.env.ref(
                             "purchase_request.model_purchase_request"

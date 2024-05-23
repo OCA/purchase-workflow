@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="import_invoice_line_wizard_view">
+        <field name="name">import.invoice.line.wizard.form</field>
+        <field name="model">import.invoice.line.wizard</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Select supplier invoice line wizard">
+                <group>
+                    <field name="supplier" />
+                    <field name="invoice" />
+                    <field name="invoice_line" />
+                </group>
+                <group>
+                    <field name="expense_type" />
+                </group>
+                <footer>
+                    <button
+                        string="Import"
+                        name="action_import_invoice_line"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_import_invoice_line_wizard" model="ir.actions.act_window">
+        <field name="name">Import supplier invoice line</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">import.invoice.line.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

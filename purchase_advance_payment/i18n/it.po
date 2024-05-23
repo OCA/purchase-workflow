@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-02-05 09:41+0000\n"
+"PO-Revision-Date: 2024-03-15 15:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -174,7 +174,6 @@ msgid "Partially Paid"
 msgstr "Pagato parzialmente"
 
 #. module: purchase_advance_payment
-#: model:ir.model.fields,field_description:purchase_advance_payment.field_purchase_order__account_payment_ids
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.purchase_order_form
 msgid "Pay purchase advanced"
 msgstr "Paga anticipo acquisto"
@@ -208,6 +207,11 @@ msgstr "Acquisto"
 #: model:ir.model,name:purchase_advance_payment.model_purchase_order
 msgid "Purchase Order"
 msgstr "Ordine di acquisto"
+
+#. module: purchase_advance_payment
+#: model:ir.model.fields,field_description:purchase_advance_payment.field_purchase_order__account_payment_ids
+msgid "Purchase Payment"
+msgstr "Pagamento acquisto"
 
 #. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__payment_ref

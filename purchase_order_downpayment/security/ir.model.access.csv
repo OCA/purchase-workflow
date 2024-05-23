@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+purchase_order_downpayment.access_purchase_order_down_payment_wizard,access_purchase_order_down_payment_wizard,purchase_order_downpayment.model_purchase_order_down_payment_wizard,base.group_user,1,1,1,1

@@ -4,6 +4,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 from datetime import datetime
 
+from odoo.exceptions import ValidationError
 from odoo.tests.common import TransactionCase
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
@@ -146,3 +147,17 @@ class TestPurchaseException(TransactionCase):
         ).create({"ignore": True})
         po_except_confirm.exception_ids = self.exception_qtycheck
         po_except_confirm.action_confirm()
+
+    def test_exception_no_validation_for_unlock(self):
+        self.partner_id.email = False
+        po = self.PurchaseOrder.create(self.po_vals.copy())
+        po.button_confirm()
+        self.assertEqual(po.state, "purchase")
+        po.button_done()
+        self.assertEqual(po.state, "done")
+        exception = self.env.ref("purchase_exception.po_excep_no_email")
+        exception.active = True
+        with self.assertRaises(ValidationError):
+            po.write({"state": "purchase"})
+        po.button_unlock()
+        self.assertEqual(po.state, "purchase")

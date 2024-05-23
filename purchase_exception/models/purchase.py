@@ -47,6 +47,11 @@ class PurchaseOrder(models.Model):
         if orders:
             orders._check_exception()
 
+    def button_unlock(self):
+        return super(
+            PurchaseOrder, self.with_context(check_exception=False)
+        ).button_unlock()
+
     def button_confirm(self):
         if self.detect_exceptions() and not self.ignore_exception:
             return self._popup_exceptions()

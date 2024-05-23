@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="purchase_team_form" model="ir.ui.view">
+        <field name="name">purchase.team.form</field>
+        <field name="model">purchase.team</field>
+        <field name="arch" type="xml">
+            <form string="Purchase Team">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Purchase Team" />
+                        <h1>
+                            <field
+                                class="text-break"
+                                name="name"
+                                placeholder="e.g. Europe"
+                            />
+                        </h1>
+                    </div>
+                    <notebook>
+                        <page string="Members">
+                            <field name="user_ids" mode="kanban" class="w-100">
+                                <kanban>
+                                    <field name="id" />
+                                    <field name="name" />
+                                    <field name="email" />
+                                    <field name="avatar_128" />
+                                    <templates>
+                                        <t t-name="kanban-box">
+                                            <div
+                                                class="oe_kanban_card oe_kanban_global_click"
+                                            >
+                                                <div
+                                                    class="o_kanban_card_content d-flex"
+                                                >
+                                                    <div>
+                                                        <img
+                                                            t-att-src="kanban_image('res.users', 'avatar_128', record.id.raw_value)"
+                                                            class="o_kanban_image o_image_64_cover"
+                                                            alt="Avatar"
+                                                        />
+                                                    </div>
+                                                    <div
+                                                        class="oe_kanban_details d-flex flex-column ml-3"
+                                                    >
+                                                        <strong
+                                                            class="o_kanban_record_title oe_partner_heading"
+                                                        ><field name="name" /></strong>
+                                                        <div
+                                                            class="d-flex align-items-baseline text-break"
+                                                        >
+                                                            <i
+                                                                class="fa fa-envelope mr-1"
+                                                                role="img"
+                                                                aria-label="Email"
+                                                                title="Email"
+                                                            /><field name="email" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </templates>
+                                </kanban>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="purchase_team_tree" model="ir.ui.view">
+        <field name="name">purchase.team.form</field>
+        <field name="model">purchase.team</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="sequence" widget="handle" />
+                <field name="name" />
+                <field
+                    name="user_ids"
+                    widget="many2many_avatar_user"
+                    domain="[('share', '=', False)]"
+                />
+            </tree>
+        </field>
+    </record>
+    <record id="action_purchase_team_display" model="ir.actions.act_window">
+        <field name="name">Purchase Teams</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">purchase.team</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem
+        id="menu_purchase_team_tree"
+        name="Purchase Teams"
+        parent="purchase.menu_purchase_config"
+        action="action_purchase_team_display"
+        sequence="5"
+    />
+</odoo>

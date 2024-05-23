@@ -1,0 +1,171 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_order_downpayment
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-03-15 15:37+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: purchase_order_downpayment
+#: model_terms:ir.ui.view,arch_db:purchase_order_downpayment.view_po_downpayment_wizard
+msgid ""
+"<span attrs=\"{'invisible': [('advance_payment_method', '!=', "
+"'percentage')]}\" class=\"oe_inline\">%</span>"
+msgstr ""
+"<span attrs=\"{'invisible': [('advance_payment_method', '!=', 'percentage')]}"
+"\" class=\"oe_inline\">%</span>"
+
+#. module: purchase_order_downpayment
+#: model_terms:ir.ui.view,arch_db:purchase_order_downpayment.view_po_downpayment_wizard
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: purchase_order_downpayment
+#: model:ir.model.fields,field_description:purchase_order_downpayment.field_purchase_order_down_payment_wizard__advance_payment_method
+#: model_terms:ir.ui.view,arch_db:purchase_order_downpayment.purchase_order_form_inherit_downpayment
+msgid "Create Payment"
+msgstr "Crea pagamento"
+
+#. module: purchase_order_downpayment
+#: model_terms:ir.ui.view,arch_db:purchase_order_downpayment.view_po_downpayment_wizard
+msgid "Create and view payment"
+msgstr "Crea e visualizza pagamento"
+
+#. module: purchase_order_downpayment
+#: model_terms:ir.ui.view,arch_db:purchase_order_downpayment.view_po_downpayment_wizard
+msgid "Create payment"
+msgstr "Crea pagamento"
+
+#. module: purchase_order_downpayment
+#: model:ir.model.fields,field_description:purchase_order_downpayment.field_purchase_order_down_payment_wizard__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: purchase_order_downpayment
+#: model:ir.model.fields,field_description:purchase_order_downpayment.field_purchase_order_down_payment_wizard__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: purchase_order_downpayment
+#: model:ir.model.fields,field_description:purchase_order_downpayment.field_purchase_order_down_payment_wizard__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: purchase_order_downpayment
+#: model:ir.model.fields,field_description:purchase_order_downpayment.field_purchase_order_down_payment_wizard__amount
+msgid "Down Payment Amount"
+msgstr "Importo acconto"
+
+#. module: purchase_order_downpayment
+#: model:ir.model.fields,field_description:purchase_order_downpayment.field_purchase_order_down_payment_wizard__fixed_amount
+msgid "Down Payment Amount (Fixed)"
+msgstr "Importo acconto (fisso)"
+
+#. module: purchase_order_downpayment
+#: model:ir.model.fields.selection,name:purchase_order_downpayment.selection__purchase_order_down_payment_wizard__advance_payment_method__fixed
+msgid "Down payment (fixed amount)"
+msgstr "Acconto (valore fisso)"
+
+#. module: purchase_order_downpayment
+#: model:ir.model.fields.selection,name:purchase_order_downpayment.selection__purchase_order_down_payment_wizard__advance_payment_method__percentage
+msgid "Down payment (percentage)"
+msgstr "Acconto (percentuale)"
+
+#. module: purchase_order_downpayment
+#: model:ir.model.fields,field_description:purchase_order_downpayment.field_purchase_order_down_payment_wizard__id
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_order_downpayment
+#: model:ir.model.fields,field_description:purchase_order_downpayment.field_purchase_order_down_payment_wizard____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: purchase_order_downpayment
+#: model:ir.model.fields,field_description:purchase_order_downpayment.field_purchase_order_down_payment_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: purchase_order_downpayment
+#: model:ir.model.fields,field_description:purchase_order_downpayment.field_purchase_order_down_payment_wizard__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: purchase_order_downpayment
+#: model:ir.model.fields,field_description:purchase_order_downpayment.field_purchase_order_down_payment_wizard__order_id
+msgid "Order"
+msgstr "Ordine"
+
+#. module: purchase_order_downpayment
+#: model:ir.actions.act_window,name:purchase_order_downpayment.action_view_po_downpayment_wizard
+#: model_terms:ir.ui.view,arch_db:purchase_order_downpayment.purchase_order_form_inherit_downpayment
+msgid "Payment"
+msgstr "Pagamento"
+
+#. module: purchase_order_downpayment
+#: model:ir.model.fields,field_description:purchase_order_downpayment.field_purchase_order__payment_count
+msgid "Payment Count"
+msgstr "Conteggio pagamenti"
+
+#. module: purchase_order_downpayment
+#: model_terms:ir.ui.view,arch_db:purchase_order_downpayment.view_po_downpayment_wizard
+msgid ""
+"Payment will be created in draft so that you can review\n"
+"                    them before validation."
+msgstr ""
+"Il pagamento verrà creato in bozza in modo che possa essere rivisto\n"
+"                    prima della validazione."
+
+#. module: purchase_order_downpayment
+#: model:ir.model,name:purchase_order_downpayment.model_account_payment
+msgid "Payments"
+msgstr "Pagamenti"
+
+#. module: purchase_order_downpayment
+#: model:ir.model.fields,field_description:purchase_order_downpayment.field_account_payment__purchase_id
+msgid "Purchase"
+msgstr "Acquisto"
+
+#. module: purchase_order_downpayment
+#: model:ir.model,name:purchase_order_downpayment.model_purchase_order
+msgid "Purchase Order"
+msgstr "Ordine di acquisto"
+
+#. module: purchase_order_downpayment
+#: model:ir.model,name:purchase_order_downpayment.model_purchase_order_down_payment_wizard
+msgid "Purchase Order DownPayment Wizard"
+msgstr "Procedura guidata acconto ordine di acquisto"
+
+#. module: purchase_order_downpayment
+#: model:ir.model.fields,field_description:purchase_order_downpayment.field_purchase_order__account_payment_ids
+msgid "Purchase Payment"
+msgstr "Pagamento acquisto"
+
+#. module: purchase_order_downpayment
+#: model:ir.model.fields.selection,name:purchase_order_downpayment.selection__purchase_order_down_payment_wizard__advance_payment_method__delivered
+msgid "Regular Payment"
+msgstr "Pagamento regolare"
+
+#. module: purchase_order_downpayment
+#. odoo-python
+#: code:addons/purchase_order_downpayment/wizard/purchase_order_downpayment_wizard.py:0
+#, python-format
+msgid "The value of the down payment amount must be positive."
+msgstr "Il valore dell'acconto deve essere positivo."
+
+#. module: purchase_order_downpayment
+#. odoo-python
+#: code:addons/purchase_order_downpayment/wizard/purchase_order_downpayment_wizard.py:0
+#, python-format
+msgid "The value of the down payment percentage cannot be greater than 100%."
+msgstr "La percentuale dell'acconto on può essere superiore a 100%."
