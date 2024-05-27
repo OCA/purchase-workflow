@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="name">purchase.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='button_cancel']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <xpath expr="//button[@name='button_cancel']" position="before">
+                <button
+                    name="%(action_purchase_order_cancel)d"
+                    invisible="state not in ('draft', 'to approve', 'sent', 'purchase')"
+                    string="Cancel"
+                    type="action"
+                    groups="base.group_user"
+                />
+            </xpath>
+            <xpath expr="//div[hasclass('oe_title')]" position="attributes">
+                <attribute name="class" add="pb-4" separator=" " />
+            </xpath>
+            <xpath expr="/form/sheet/div/h1" position="attributes">
+                <attribute name="style">min-height:35px;</attribute>
+            </xpath>
+            <xpath expr="/form/sheet/div/h1" position="after">
+                <div>
+                    <div invisible="state != 'cancel'">
+                        <label for="cancel_reason_id" string="Cancellation reason:" />
+                        <field
+                            name="cancel_reason_id"
+                            class="oe_inline"
+                            options='{"no_open": True}'
+                        />
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
