@@ -10,7 +10,7 @@
             <xpath expr="//field[@name='order_line']/tree" position="inside">
                 <field name="predicted_arrival_late" invisible="1" />
                 <button
-                    string="Arriving late"
+                    title="Arriving late"
                     attrs="{'invisible': [('predicted_arrival_late', '=', False)]}"
                     name="action_delayed_line"
                     type="object"
@@ -20,7 +20,7 @@
             <xpath expr="//field[@name='order_line']/tree" position="attributes">
                 <attribute
                     name="decoration-danger"
-                >predicted_arrival_late is True</attribute>
+                >predicted_arrival_late == True</attribute>
             </xpath>
         </field>
     </record>

@@ -80,6 +80,13 @@ Contributors
 ~~~~~~~~~~~~
 
 * Lois Rilo <lois.rilo@eficent.com>
+* Chau Le <chaulb@trobz.com>
+
+
+Other credits
+~~~~~~~~~~~~~
+
+The migration of this module from 12.0 to 16.0 was financially supported by Camptocamp
 
 Maintainers
 ~~~~~~~~~~~
