@@ -1,0 +1,1 @@
+This module inherits from purchase_order_line to modify the date field when we modify the field date_planned from PO
