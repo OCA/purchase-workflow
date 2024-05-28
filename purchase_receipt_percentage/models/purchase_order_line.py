@@ -15,7 +15,7 @@ class PurchaseOrderLine(models.Model):
         for line in self:
             perc = 100  # 100% by default, in case ordered qty is 0
             if not float_is_zero(
-                line.product_qty, precision_rounding=line.product_uom.rounding
+                line.product_qty, precision_rounding=line.product_uom.rounding or 2
             ):
                 perc *= line.qty_received / line.product_qty
             line.receipt_percentage = min(max(perc, 0), 100)  # 0 <= % <= 100
