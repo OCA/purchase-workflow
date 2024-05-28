@@ -26,12 +26,13 @@ class PurchaseOrder(models.Model):
             {"receipt_percentage": 100, "receipt_percentage_display": 1}
         )
         for order in with_lines:
-            num, den = 0, 0
+            num, den, ratio = 0, 0, 0
             for line in order.order_line:
                 qty = line.product_uom_qty or 1
                 num += qty * line.receipt_percentage
                 den += qty
-            ratio = num / den
+            if den:
+                ratio = num / den
             order.update(
                 {
                     "receipt_percentage": ratio,
