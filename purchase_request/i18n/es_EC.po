@@ -1459,7 +1459,7 @@ msgstr ""
 #: code:addons/purchase_request/models/purchase_request.py:0
 #, fuzzy, python-format
 msgid "You cannot delete a purchase request which is not draft."
-msgstr "No puedes solicitar aprobación de una requisición vacía. (%s)"
+msgstr "No puede eliminar una requisición de compra que no sea un borrador."
 
 #. module: purchase_request
 #. odoo-python
