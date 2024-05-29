@@ -9,32 +9,33 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-23 17:50+0000\n"
-"PO-Revision-Date: 2022-10-03 15:53+0000\n"
-"Last-Translator: Douglas Custódio <douglascstd@yahoo.com>\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
-"teams/23907/pt_BR/)\n"
+"PO-Revision-Date: 2024-05-29 18:36+0000\n"
+"Last-Translator: Rodrigo Macedo <sottomaiormacedotec@users.noreply."
+"translation.odoo-community.org>\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
+"23907/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: purchase_discount
 #: model_terms:ir.ui.view,arch_db:purchase_discount.report_purchaseorder_document
 msgid "<strong>Disc. (%)</strong>"
-msgstr ""
+msgstr "<strong>Desc. (%)</strong>"
 
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contato"
 
 #. module: purchase_discount
 #: model:ir.model.fields,field_description:purchase_discount.field_res_partner__default_supplierinfo_discount
 #: model:ir.model.fields,field_description:purchase_discount.field_res_users__default_supplierinfo_discount
 msgid "Default Supplier Discount (%)"
-msgstr ""
+msgstr "Desconto padrão do fornecedor (%)"
 
 #. module: purchase_discount
 #: model:ir.model.fields,field_description:purchase_discount.field_product_supplierinfo__discount
@@ -46,18 +47,17 @@ msgstr "Desconto (%)"
 #. module: purchase_discount
 #: model:ir.model.constraint,message:purchase_discount.constraint_purchase_order_line_discount_limit
 msgid "Discount must be lower than 100%."
-msgstr ""
+msgstr "O desconto deve ser inferior a 100%."
 
 #. module: purchase_discount
 #: model_terms:ir.ui.view,arch_db:purchase_discount.res_partner_form_view
 msgid "Discount-related settings are managed on"
-msgstr ""
+msgstr "As configurações relacionadas a descontos são gerenciadas em"
 
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_purchase_order
-#, fuzzy
 msgid "Purchase Order"
-msgstr "Linha do Pedido de Compra"
+msgstr "Pedido de Compra"
 
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_purchase_order_line
@@ -66,19 +66,18 @@ msgstr "Linha do Pedido de Compra"
 
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_purchase_report
-#, fuzzy
 msgid "Purchase Report"
-msgstr "Linha do Pedido de Compra"
+msgstr "Relatório de Compra"
 
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Movimentação de estoque"
 
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_product_supplierinfo
 msgid "Supplier Pricelist"
-msgstr ""
+msgstr "Lista de preços do fornecedor"
 
 #. module: purchase_discount
 #: model:ir.model.fields,help:purchase_discount.field_res_partner__default_supplierinfo_discount
@@ -87,8 +86,10 @@ msgid ""
 "This value will be used as the default one, for each new supplierinfo line "
 "depending on that supplier."
 msgstr ""
+"Este valor será usado como padrão, para cada nova linha de informações do "
+"fornecedor dependendo desse fornecedor."
 
 #. module: purchase_discount
 #: model_terms:ir.ui.view,arch_db:purchase_discount.res_partner_form_view
 msgid "the parent company"
-msgstr ""
+msgstr "A empresa matriz"
