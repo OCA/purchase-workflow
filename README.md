@@ -30,7 +30,7 @@ addon | version | maintainers | summary
 [purchase_analytic_global](purchase_analytic_global/) | 15.0.1.0.1 |  | Purchase - Analytic Account Global
 [purchase_blanket_order](purchase_blanket_order/) | 15.0.2.0.1 |  | Purchase Blanket Orders
 [purchase_cancel_confirm](purchase_cancel_confirm/) | 15.0.1.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Purchase Cancel Confirm
-[purchase_default_terms_conditions](purchase_default_terms_conditions/) | 15.0.1.0.2 |  | This module allows purchase default terms & conditions
+[purchase_default_terms_conditions](purchase_default_terms_conditions/) | 15.0.1.0.3 |  | This module allows purchase default terms & conditions
 [purchase_delivery_split_date](purchase_delivery_split_date/) | 15.0.1.0.1 |  | Allows Purchase Order you confirm to generate one Incoming Shipment for each expected date indicated in the Purchase Order Lines
 [purchase_deposit](purchase_deposit/) | 15.0.1.1.0 |  | Option to create deposit from purchase order
 [purchase_deposit_analytic](purchase_deposit_analytic/) | 15.0.1.0.0 | [![Saran440](https://github.com/Saran440.png?size=30px)](https://github.com/Saran440) | Add analytic on wizard register deposit
@@ -76,7 +76,7 @@ addon | version | maintainers | summary
 [purchase_order_weight_volume](purchase_order_weight_volume/) | 15.0.1.0.1 | [![ilyasProgrammer](https://github.com/ilyasProgrammer.png?size=30px)](https://github.com/ilyasProgrammer) | Display purchase order weight and volume
 [purchase_partner_incoterm](purchase_partner_incoterm/) | 15.0.3.0.0 | [![TDu](https://github.com/TDu.png?size=30px)](https://github.com/TDu) [![bealdav](https://github.com/bealdav.png?size=30px)](https://github.com/bealdav) | Add a an incoterm field for supplier and use it on purchase order
 [purchase_partner_selectable_option](purchase_partner_selectable_option/) | 15.0.1.0.2 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Purchase Partner Selectable Option
-[purchase_quick](purchase_quick/) | 15.0.1.0.2 |  | Quick Purchase order
+[purchase_quick](purchase_quick/) | 15.0.1.0.3 |  | Quick Purchase order
 [purchase_receipt_expectation](purchase_receipt_expectation/) | 15.0.1.0.0 |  | Purchase Receipt Expectation
 [purchase_receipt_expectation_from_partner](purchase_receipt_expectation_from_partner/) | 15.0.1.0.0 |  | Purchase Receipt Expectation From Partner
 [purchase_receipt_expectation_manual](purchase_receipt_expectation_manual/) | 15.0.1.0.1 |  | Purchase Receipt Expectation - Manual
