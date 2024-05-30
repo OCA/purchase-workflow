@@ -38,6 +38,7 @@ class TestPurchase(AccountTestInvoicingCommon):
             .create(
                 {
                     "partner_id": self.partner_a.id,
+                    "company_id": self.company_data["company"].id,
                 }
             )
         )
@@ -54,6 +55,7 @@ class TestPurchase(AccountTestInvoicingCommon):
                 "price_unit": self.product_order.list_price,
                 "order_id": purchase_order.id,
                 "taxes_id": False,
+                "company_id": self.company_data["company"].id,
             }
         )
 

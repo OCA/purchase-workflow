@@ -66,10 +66,12 @@ class PurchaseOrder(models.Model):
             "partner_id": self.partner_id.id,
         }
         vals_to_add.update(vals)
-        vals = vals_to_add
-        return super(PurchaseOrder, self)._complete_quick_line_vals(
-            vals, lines_key="order_line"
+        vals = super(PurchaseOrder, self)._complete_quick_line_vals(
+            vals_to_add, lines_key="order_line"
         )
+        skip_play_onchanges_vals = {"company_id": self.company_id.id}
+        vals.update(skip_play_onchanges_vals)
+        return vals
 
     def _add_quick_line(self, product, lines_key=""):
         return super(PurchaseOrder, self)._add_quick_line(
