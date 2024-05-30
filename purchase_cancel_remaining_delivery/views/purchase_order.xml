@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="name">purchase.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <button name="button_done" position="after">
+                <button
+                    name="button_cancel_remaining_delivery"
+                    string="Cancel Remaining Delivery"
+                    type="object"
+                    attrs="{'invisible': [('picking_state', '!=', ('partially_received'))]}"
+                />
+            </button>
+        </field>
+    </record>
+  </odoo>
