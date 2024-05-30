@@ -334,26 +334,27 @@ class PurchaseOrderReturn(models.Model):
                 lambda line: not line.display_type
             ).date_planned = self.date_planned
 
-    @api.model
-    def create(self, vals):
-        company_id = vals.get(
-            "company_id", self.default_get(["company_id"])["company_id"]
-        )
-        # Ensures default picking type and currency are taken from the right company.
-        self_comp = self.with_company(company_id)
-        if vals.get("name", "New") == "New":
-            seq_date = None
-            if "date_order" in vals:
-                seq_date = fields.Datetime.context_timestamp(
-                    self, fields.Datetime.to_datetime(vals["date_order"])
-                )
-            vals["name"] = (
-                self_comp.env["ir.sequence"].next_by_code(
-                    "purchase.return.order", sequence_date=seq_date
-                )
-                or "/"
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            company_id = vals.get(
+                "company_id", self.default_get(["company_id"])["company_id"]
             )
-        return super(PurchaseOrderReturn, self_comp).create(vals)
+            # Ensures default picking type and currency are taken from the right company.
+            self_comp = self.with_company(company_id)
+            if vals.get("name", "New") == "New":
+                seq_date = None
+                if "date_order" in vals:
+                    seq_date = fields.Datetime.context_timestamp(
+                        self, fields.Datetime.to_datetime(vals["date_order"])
+                    )
+                vals["name"] = (
+                    self_comp.env["ir.sequence"].next_by_code(
+                        "purchase.return.order", sequence_date=seq_date
+                    )
+                    or "/"
+                )
+        return super(PurchaseOrderReturn, self_comp).create(vals_list)
 
     def unlink(self):
         for order in self:
