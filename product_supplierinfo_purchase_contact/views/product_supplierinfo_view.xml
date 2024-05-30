@@ -1,0 +1,27 @@
+<odoo>
+    <record model="ir.ui.view" id="product_supplierinfo_form_view">
+         <field name="model">product.supplierinfo</field>
+         <field name="inherit_id" ref="product.product_supplierinfo_form_view" />
+         <field name="arch" type="xml">
+              <field name="partner_id" position="after">
+                  <field
+                    name="purchase_partner_id"
+                    context="{'res_partner_search_mode': 'supplier'}"
+                />
+              </field>
+         </field>
+     </record>
+    <record model="ir.ui.view" id="product_supplierinfo_tree_view">
+         <field name="model">product.supplierinfo</field>
+         <field name="inherit_id" ref="product.product_supplierinfo_tree_view" />
+         <field name="arch" type="xml">
+              <field name="partner_id" position="after">
+                <field
+                    name="purchase_partner_id"
+                    context="{'res_partner_search_mode': 'supplier'}"
+                />
+              </field>
+         </field>
+     </record>
+
+</odoo>
