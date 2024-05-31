@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-      <!-- Product menu-->"/>
-
         <record model="ir.ui.view" id="purchase_return_order_pivot">
             <field name="name">purchase.return.order.pivot</field>
             <field name="model">purchase.return.order</field>
