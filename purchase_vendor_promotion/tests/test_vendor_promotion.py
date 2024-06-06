@@ -1,10 +1,13 @@
 # Copyright 2024 Camptocamp (<https://www.camptocamp.com>).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+from freezegun import freeze_time
+
 from odoo import Command
 from odoo.exceptions import ValidationError
 from odoo.tests import TransactionCase, tagged
 
 
+@freeze_time("2024-01-02 03:21:34")
 @tagged("post_install", "-at_install")
 class TestVendorPromotion(TransactionCase):
     @classmethod
@@ -55,6 +58,20 @@ class TestVendorPromotion(TransactionCase):
                 },
             ]
         )
+        cls.buy_route = cls.env.ref(
+            "purchase_stock.route_warehouse0_buy", raise_if_not_found=False
+        )
+        cls.test_orderpoint = (
+            cls.env["stock.warehouse.orderpoint"]
+            .with_company(cls.company_a)
+            .create(
+                {
+                    "product_id": cls.product.id,
+                    "product_min_qty": 1,
+                    "route_id": cls.buy_route.id,
+                }
+            )
+        )
 
     def test_promotion_dates_validation(self):
         with self.assertRaises(ValidationError):
@@ -89,17 +106,26 @@ class TestVendorPromotion(TransactionCase):
         self.assertTrue(purchase_order.order_line.is_promotion)
 
     def test_orderpoint_promotion(self):
-        orderpoint = (
-            self.env["stock.warehouse.orderpoint"]
-            .with_company(self.company_a)
-            .create(
-                {
-                    "product_id": self.product.id,
-                    "product_min_qty": 1,
-                    "warehouse_id": self.warehouse_a.id,
-                    "location_id": self.stock_location_a.id,
-                    "supplier_id": self.product.seller_ids[1].id,
-                }
-            )
+        self.assertEqual(
+            self.test_orderpoint.promotion_period, "2024-01-01 - 2024-12-31"
         )
-        self.assertEqual(orderpoint.promotion_period, "2024-01-01 - 2024-12-31")
+
+    def test_default_supplier_01(self):
+        """Assign promotion supplier, even if his price is not the best"""
+        default_vendor = self.product.seller_ids.filtered(
+            lambda x: x.partner_id == self.vendor2
+        )
+        self.assertEqual(self.test_orderpoint.supplier_id, default_vendor)
+
+        # If promotion is in the future, consider it as active too
+        default_vendor.date_end = "2025-12-31"
+        default_vendor.date_start = "2025-01-01"
+        self.assertEqual(self.test_orderpoint.supplier_id, default_vendor)
+
+    def test_default_supplier_02(self):
+        """If no promotion supplier in the product, assign first vendor as default supplier"""
+        promotion_vendor = self.product.seller_ids.filtered(
+            lambda x: x.partner_id == self.vendor2
+        )
+        promotion_vendor.write({"is_promotion": False})
+        self.assertTrue(self.test_orderpoint.supplier_id)
