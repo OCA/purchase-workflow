@@ -3,7 +3,7 @@
 {
     "name": "Purchase Reception Status",
     "summary": "Manage customizations on purchase order line",
-    "version": "16.0.1.0.0",
+    "version": "14.0.1.0.0",
     "author": "Camptocamp, Italo Lopes, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": "Purchase",
