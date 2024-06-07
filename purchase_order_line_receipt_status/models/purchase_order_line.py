@@ -9,6 +9,7 @@ class PurchaseOrderLine(models.Model):
 
     receipt_status = fields.Selection(
         [
+            ("nothing", "Nothing to Receive"),
             ("pending", "Not Received"),
             ("partial", "Partially Received"),
             ("full", "Fully Received"),
@@ -24,7 +25,7 @@ class PurchaseOrderLine(models.Model):
 
             # If there is no stock move linked to the purchase order line or all are cancelled
             if not move_ids or all(move.state == "cancel" for move in move_ids):
-                status = False
+                status = "nothing"
             # If there is at least one stock move linked to the purchase order line
             else:
                 # If there is at least one stock move state = "done"
