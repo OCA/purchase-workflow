@@ -10,7 +10,7 @@ class PurchaseRequisitionLine(models.Model):
 
     name = fields.Text(string="Description")
 
-    @api.onchange('product_id')
+    @api.onchange("product_id")
     def _onchange_product_id(self):
         res = super()._onchange_product_id()
         if self.product_id:
@@ -20,9 +20,10 @@ class PurchaseRequisitionLine(models.Model):
                 or first(self.requisition_id.mapped("purchase_ids")).partner_id
             )
             product_lang = self.product_id.with_context(
-                lang=partner.lang, partner_id=partner.id,
+                lang=partner.lang,
+                partner_id=partner.id,
             )
             self.name = product_lang.display_name
             if product_lang.description_purchase:
-                self.name += '\n' + product_lang.description_purchase
+                self.name += "\n" + product_lang.description_purchase
         return res
