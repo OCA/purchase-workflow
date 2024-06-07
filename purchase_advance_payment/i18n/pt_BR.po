@@ -119,11 +119,6 @@ msgid "Journal Currency"
 msgstr "Moeda Díario"
 
 #. module: purchase_advance_payment
-#: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase____last_update
-msgid "Last Modified on"
-msgstr "Última Modificação em"
-
-#. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__write_uid
 msgid "Last Updated by"
 msgstr "Última Atualização por"
@@ -218,3 +213,6 @@ msgstr "Ref."
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_purchase_order__amount_residual
 msgid "Residual amount"
 msgstr "Valor Residual"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última Modificação em"
