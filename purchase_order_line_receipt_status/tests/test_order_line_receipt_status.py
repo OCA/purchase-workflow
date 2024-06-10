@@ -34,7 +34,7 @@ class TestPurchaseOrderLineReceiptStatus(SavepointCase):
         backorder_action_dict = receipt.button_validate()
         backorder_wizard = (
             self.env[(backorder_action_dict.get("res_model"))]
-            .with_context(backorder_action_dict["context"])
+            .with_context(**backorder_action_dict["context"])
             .create({})
         )
         backorder_wizard.process()
@@ -46,7 +46,7 @@ class TestPurchaseOrderLineReceiptStatus(SavepointCase):
         backorder_action_dict = backorder.button_validate()
         backorder_wizard = (
             self.env[(backorder_action_dict.get("res_model"))]
-            .with_context(backorder_action_dict["context"])
+            .with_context(**backorder_action_dict["context"])
             .create({})
         )
         backorder_wizard.process_cancel_backorder()
