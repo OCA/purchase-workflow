@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-06-11 10:52+0000\n"
-"Last-Translator: ahmedtrigui <trigui43@gmail.com>\n"
+"PO-Revision-Date: 2024-06-11 17:35+0000\n"
+"Last-Translator: Julie LeBrun <julie.lebrun@numigi.com>\n"
 "Language-Team: none\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -39,14 +39,14 @@ msgid ""
 "Depicts the date within which the Quotation should be confirmed and "
 "converted into a purchase order."
 msgstr ""
-"Indiquer la date à laquelle le devis doit être confirmé et converti en un "
-"bon de commande."
+"Indiquer la date à laquelle la demande de prix doit être confirmée et "
+"convertie en un bon de commande."
 
 #. module: purchase_order_line_price_history
 #: model:ir.model.fields,field_description:purchase_order_line_price_history.field_purchase_order_line_price_history__display_name
 #: model:ir.model.fields,field_description:purchase_order_line_price_history.field_purchase_order_line_price_history_line__display_name
 msgid "Display Name"
-msgstr "Nom affiché"
+msgstr "Nom d'affichage"
 
 #. module: purchase_order_line_price_history
 #: model:ir.model.fields,field_description:purchase_order_line_price_history.field_purchase_order_line_price_history_line__history_id
@@ -62,27 +62,27 @@ msgstr "Lignes d'historique"
 #: model:ir.model.fields,field_description:purchase_order_line_price_history.field_purchase_order_line_price_history__id
 #: model:ir.model.fields,field_description:purchase_order_line_price_history.field_purchase_order_line_price_history_line__id
 msgid "ID"
-msgstr "Id"
+msgstr "ID"
 
 #. module: purchase_order_line_price_history
 #: model:ir.model.fields,help:purchase_order_line_price_history.field_purchase_order_line_price_history__include_rfq
 msgid "Include 'Requests for Quotation' lines in the purchase history"
-msgstr "Inclure les lignes 'Demandes d'achat' dans l'historique des achats"
+msgstr "Inclure les lignes 'Demandes de prix' dans l'historique des achats"
 
 #. module: purchase_order_line_price_history
 #: model:ir.model.fields,field_description:purchase_order_line_price_history.field_purchase_order_line_price_history__include_rfq
 msgid "Include RFQ"
-msgstr "Inclure Demande d'achat"
+msgstr "Inclure Demande de prix"
 
 #. module: purchase_order_line_price_history
 #: model:ir.model.fields,field_description:purchase_order_line_price_history.field_purchase_order_line_price_history__include_commercial_partner
 msgid "Include commercial entity"
-msgstr "Inclure la société"
+msgstr "Inclure l'entité commerciale"
 
 #. module: purchase_order_line_price_history
 #: model:ir.model.fields,help:purchase_order_line_price_history.field_purchase_order_line_price_history__include_commercial_partner
 msgid "Include commercial entity and its contacts in the purchase history"
-msgstr "Inclure la société et ses contacts dans l'historique d'achat"
+msgstr "Inclure l'entité commerciale et ses contacts dans l'historique d'achat"
 
 #. module: purchase_order_line_price_history
 #: model:ir.model.fields,field_description:purchase_order_line_price_history.field_purchase_order_line_price_history____last_update
@@ -94,18 +94,18 @@ msgstr "Dernière modification le"
 #: model:ir.model.fields,field_description:purchase_order_line_price_history.field_purchase_order_line_price_history__write_uid
 #: model:ir.model.fields,field_description:purchase_order_line_price_history.field_purchase_order_line_price_history_line__write_uid
 msgid "Last Updated by"
-msgstr "Dernière MàJ par"
+msgstr "Dernière mise à jour par"
 
 #. module: purchase_order_line_price_history
 #: model:ir.model.fields,field_description:purchase_order_line_price_history.field_purchase_order_line_price_history__write_date
 #: model:ir.model.fields,field_description:purchase_order_line_price_history.field_purchase_order_line_price_history_line__write_date
 msgid "Last Updated on"
-msgstr "Dernière MàJ le"
+msgstr "Dernière mise à jour le"
 
 #. module: purchase_order_line_price_history
 #: model:ir.model.fields,field_description:purchase_order_line_price_history.field_purchase_order_line_price_history_line__purchase_order_date_order
 msgid "Order Deadline"
-msgstr "Date limite de la commande"
+msgstr "Échéance de commande"
 
 #. module: purchase_order_line_price_history
 #: model:ir.model.fields,field_description:purchase_order_line_price_history.field_purchase_order_line_price_history_line__order_id
@@ -146,12 +146,12 @@ msgstr "Lignes de commande"
 #. module: purchase_order_line_price_history
 #: model:ir.model,name:purchase_order_line_price_history.model_purchase_order_line_price_history
 msgid "Purchase order line price history"
-msgstr "Historique de prix des lignes de commande"
+msgstr "Historique des prix des lignes de bon de commande"
 
 #. module: purchase_order_line_price_history
 #: model:ir.model,name:purchase_order_line_price_history.model_purchase_order_line_price_history_line
 msgid "Purchase order line price history line"
-msgstr "Historique de prix de la ligne de commande d'achat"
+msgstr "Ligne d'historique des prix des lignes de bon de commande"
 
 #. module: purchase_order_line_price_history
 #: model:ir.model.fields,field_description:purchase_order_line_price_history.field_purchase_order_line_price_history_line__product_qty
@@ -161,7 +161,7 @@ msgstr "Quantité"
 #. module: purchase_order_line_price_history
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_price_history.purchase_order_line_price_history_view_form
 msgid "Set price"
-msgstr "Fixer le prix"
+msgstr "Définir le prix"
 
 #. module: purchase_order_line_price_history
 #: model:ir.model.fields,field_description:purchase_order_line_price_history.field_purchase_order_line_price_history__partner_id
