@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-19 07:43+0000\n"
-"PO-Revision-Date: 2016-03-08 10:17+0000\n"
-"Last-Translator: <>\n"
-"Language-Team: Swedish (http://www.transifex.com/oca/OCA-purchase-"
-"workflow-8-0/language/sv/)\n"
+"PO-Revision-Date: 2024-06-11 14:35+0000\n"
+"Last-Translator: jakobkrabbe <jakob@syscare.se>\n"
+"Language-Team: Swedish (http://www.transifex.com/oca/"
+"OCA-purchase-workflow-8-0/language/sv/)\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__active
@@ -26,23 +27,23 @@ msgstr "Aktiv"
 #. module: purchase_order_type
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_form
 msgid "Archived"
-msgstr ""
+msgstr "Arkiverad"
 
 #. module: purchase_order_type
 #: model_terms:ir.actions.act_window,help:purchase_order_type.action_purchase_order_type_view
 msgid "Click to set a new type for purchase order."
-msgstr ""
+msgstr "Klicka här för att ange en ny typ av inköpsorder."
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__company_id
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
 msgid "Company"
-msgstr ""
+msgstr "Företag"
 
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Kontakt"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__create_uid
@@ -57,7 +58,7 @@ msgstr "Skapad den"
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__description
 msgid "Description"
-msgstr ""
+msgstr "Beskrivning"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__display_name
@@ -69,18 +70,18 @@ msgstr "Visa namn"
 #: code:addons/purchase_order_type/models/purchase_order.py:0
 #, python-format
 msgid "Document's company and type's company mismatch"
-msgstr ""
+msgstr "Dokumentets företag och typens företag stämmer inte överens"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__sequence_id
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
 msgid "Entry Sequence"
-msgstr ""
+msgstr "Inmatningssekvens"
 
 #. module: purchase_order_type
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
 msgid "Group By"
-msgstr ""
+msgstr "Grupp av"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__id
@@ -91,7 +92,7 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__incoterm_id
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
 msgid "Incoterm"
-msgstr ""
+msgstr "Incoterm"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__write_uid
@@ -111,36 +112,36 @@ msgstr "Namn"
 #. module: purchase_order_type
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
 msgid "Payment Term"
-msgstr ""
+msgstr "Betalningstid"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__payment_term_id
 msgid "Payment Terms"
-msgstr ""
+msgstr "Betalningsvillkor"
 
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Inköpsorder"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_res_partner__purchase_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_res_users__purchase_type
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.res_partner_purchase_type_form_view
 msgid "Purchase Order Type"
-msgstr ""
+msgstr "Typ av inköpsorder"
 
 #. module: purchase_order_type
 #: model:ir.actions.act_window,name:purchase_order_type.action_purchase_order_type_view
 #: model:ir.ui.menu,name:purchase_order_type.menu_purchase_order_type
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
 msgid "Purchase Order Types"
-msgstr ""
+msgstr "Typer av inköpsorder"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Sekvens"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order__order_type
@@ -153,7 +154,7 @@ msgstr "Typ"
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_purchase_order_type
 msgid "Type of purchase order"
-msgstr ""
+msgstr "Typ av inköpsorder"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Senast redigerad"
