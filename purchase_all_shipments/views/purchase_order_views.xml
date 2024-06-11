@@ -14,7 +14,7 @@
                     name="action_view_all_pickings"
                     class="oe_stat_button"
                     icon="fa-truck"
-                    attrs="{'invisible': [('all_picking_count', '=', 0)]}"
+                    invisible="all_picking_count == 0"
                 >
                     <field
                         name="all_picking_count"
