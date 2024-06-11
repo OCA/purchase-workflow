@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-23 12:07+0000\n"
-"Last-Translator: Khalid Hazam <k.hazam@badep.ma>\n"
+"PO-Revision-Date: 2024-06-11 10:52+0000\n"
+"Last-Translator: ahmedtrigui <trigui43@gmail.com>\n"
 "Language-Team: none\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: purchase_order_line_price_history
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_price_history.purchase_order_line_price_history_view_form
@@ -76,13 +76,11 @@ msgstr "Inclure Demande d'achat"
 
 #. module: purchase_order_line_price_history
 #: model:ir.model.fields,field_description:purchase_order_line_price_history.field_purchase_order_line_price_history__include_commercial_partner
-#, fuzzy
 msgid "Include commercial entity"
 msgstr "Inclure la société"
 
 #. module: purchase_order_line_price_history
 #: model:ir.model.fields,help:purchase_order_line_price_history.field_purchase_order_line_price_history__include_commercial_partner
-#, fuzzy
 msgid "Include commercial entity and its contacts in the purchase history"
 msgstr "Inclure la société et ses contacts dans l'historique d'achat"
 
@@ -106,7 +104,6 @@ msgstr "Dernière MàJ le"
 
 #. module: purchase_order_line_price_history
 #: model:ir.model.fields,field_description:purchase_order_line_price_history.field_purchase_order_line_price_history_line__purchase_order_date_order
-#, fuzzy
 msgid "Order Deadline"
 msgstr "Date limite de la commande"
 
@@ -153,9 +150,8 @@ msgstr "Historique de prix des lignes de commande"
 
 #. module: purchase_order_line_price_history
 #: model:ir.model,name:purchase_order_line_price_history.model_purchase_order_line_price_history_line
-#, fuzzy
 msgid "Purchase order line price history line"
-msgstr "Ligne d'historique de prix de lignes de commande"
+msgstr "Historique de prix de la ligne de commande d'achat"
 
 #. module: purchase_order_line_price_history
 #: model:ir.model.fields,field_description:purchase_order_line_price_history.field_purchase_order_line_price_history_line__product_qty
@@ -175,7 +171,7 @@ msgstr "Fournisseur"
 #. module: purchase_order_line_price_history
 #: model:ir.model.fields,field_description:purchase_order_line_price_history.field_purchase_order_line_price_history_line__price_unit
 msgid "Unit Price"
-msgstr "Unité de prix"
+msgstr "Prix unitaire"
 
 #. module: purchase_order_line_price_history
 #: model:ir.model.fields,field_description:purchase_order_line_price_history.field_purchase_order_line_price_history_line__product_uom
@@ -184,7 +180,6 @@ msgstr "Unité de mesure"
 
 #. module: purchase_order_line_price_history
 #: model:ir.model.fields,help:purchase_order_line_price_history.field_purchase_order_line_price_history_line__partner_id
-#, fuzzy
 msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
 msgstr ""
 "Vous pouvez trouver un fournisseur par son Nom, TIN, Courriel ou sa "
