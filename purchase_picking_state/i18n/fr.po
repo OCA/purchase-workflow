@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-04-02 00:52+0000\n"
-"PO-Revision-Date: 2024-06-11 10:52+0000\n"
-"Last-Translator: ahmedtrigui <trigui43@gmail.com>\n"
+"PO-Revision-Date: 2024-06-11 17:35+0000\n"
+"Last-Translator: Julie LeBrun <julie.lebrun@numigi.com>\n"
 "Language-Team: French (http://www.transifex.com/oca/"
 "OCA-purchase-workflow-9-0/language/fr/)\n"
 "Language: fr\n"
@@ -58,12 +58,12 @@ msgstr "Statut général basé sur l'ensemble des bons de réception"
 #: code:addons/purchase_picking_state/models/purchase.py:0
 #, python-format
 msgid "Partially Received"
-msgstr "Réception partielle"
+msgstr "Partiellement reçu"
 
 #. module: purchase_picking_state
 #: model:ir.model.fields,field_description:purchase_picking_state.field_purchase_order__picking_state
 msgid "Picking status"
-msgstr "Etat de la réception"
+msgstr "État de la réception"
 
 #. module: purchase_picking_state
 #: model:ir.model,name:purchase_picking_state.model_purchase_order
@@ -74,4 +74,4 @@ msgstr "Bon de commande"
 #: code:addons/purchase_picking_state/models/purchase.py:0
 #, python-format
 msgid "Transferred"
-msgstr "Réception totale"
+msgstr "Entièrement reçu"
