@@ -71,6 +71,7 @@ setuptools.setup(
         'odoo-addon-purchase_return>=16.0dev,<16.1dev',
         'odoo-addon-purchase_sale_link_by_origin>=16.0dev,<16.1dev',
         'odoo-addon-purchase_security>=16.0dev,<16.1dev',
+        'odoo-addon-purchase_sign>=16.0dev,<16.1dev',
         'odoo-addon-purchase_stock_packaging>=16.0dev,<16.1dev',
         'odoo-addon-purchase_stock_price_unit_sync>=16.0dev,<16.1dev',
         'odoo-addon-purchase_tag>=16.0dev,<16.1dev',
