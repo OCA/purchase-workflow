@@ -5,17 +5,15 @@
         <field name="arch" type="xml">
             <form>
                 <group name="main" col="4">
-                    <div colspan="4">
+                    <group colspan="4">
+                        <div colspan="4">
                         <h2>
                             <field name="display_name" />
                         </h2>
-                    </div>
+                        </div>
+                    </group>
                     <group name="left" string="Misc">
-                        <field
-                            name="freight_type"
-                            widget="radio"
-                            options="{'horizontal': true}"
-                        />
+                        <field name="freight_type" widget="radio" />
                         <field name="duration" />
                         <field name="sequence" />
                     </group>
