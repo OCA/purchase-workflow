@@ -18,7 +18,6 @@ class PurchaseOrder(models.Model):
         # recomputed with more incoterm_address_id
         # in onchange()
     )
-
     freight_duration = fields.Integer(
         compute="_compute_freight_duration",
         inverse="_inverse_freight_duration",

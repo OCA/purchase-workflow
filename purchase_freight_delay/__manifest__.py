@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 {
-    "name": "Purchase Data Freight",
+    "name": "Purchase Freight Delay",
     "version": "16.0.1.0.0",
     "category": "Stock",
     "website": "https://github.com/OCA/purchase-workflow",

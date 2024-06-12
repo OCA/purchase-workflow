@@ -5,12 +5,12 @@ from datetime import timedelta
 
 from freezegun import freeze_time
 
-from odoo.tests import SavepointCase
+from odoo.tests import TransactionCase
 
 TIME = "2022-10-03 12:00:00"
 
 
-class Test(SavepointCase):
+class Test(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

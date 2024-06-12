@@ -31,6 +31,7 @@ class FreightRule(models.Model):
         selection=[
             ("ship", "Ship"),
             ("truck", "Truck"),
+            ("train", "Train"),
             ("plane", "Plane"),
         ],
     )

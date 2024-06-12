@@ -4,14 +4,12 @@
         <field name="model">freight.rule</field>
         <field name="arch" type="xml">
             <form>
-                <group name="main">
-                    <group colspan="4">
-                        <div>
-                            <h1>
-                                <field name="display_name" />
-                            </h1>
-                        </div>
-                    </group>
+                <group name="main" col="4">
+                    <div colspan="4">
+                        <h2>
+                            <field name="display_name" />
+                        </h2>
+                    </div>
                     <group name="left" string="Misc">
                         <field
                             name="freight_type"
