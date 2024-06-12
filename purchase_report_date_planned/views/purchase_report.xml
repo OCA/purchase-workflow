@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="purchase_report_tree_view" model="ir.ui.view">
+        <field name="model">purchase.report</field>
+        <field name="inherit_id" ref="purchase_usability.view_purchase_order_tree" />
+        <field name="arch" type="xml">
+            <field name="date_order" position="before">
+                <field name="date_planned" optional="hide" />
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="purchase_report_search_view">
+        <field name="name">purchase.report.search</field>
+        <field name="model">purchase.report</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_search" />
+        <field name="arch" type="xml">
+            <filter name="later_than_a_year_ago" position="after">
+                <filter
+                    name="late"
+                    string="En Retard"
+                    domain="[('state','=','purchase'), ('date_planned','&lt;', datetime.date.today().strftime('%Y-%m-%d'))]"
+                />
+            </filter>
+        </field>
+    </record>
+
+
+</odoo>
