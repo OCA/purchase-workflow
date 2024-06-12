@@ -4,7 +4,10 @@
         name="Purchase Requisition"
         inherit_id="purchase_requisition.report_purchaserequisitions"
     >
-        <xpath expr="//t[@t-if='o.line_ids']/table//th[1]" position="replace">
+        <xpath expr="//t[@t-if='o.line_ids']/table//th[1]" position="attributes">
+            <attribute name="t-if">False</attribute>
+        </xpath>
+        <xpath expr="//t[@t-if='o.line_ids']/table//th[1]" position="after">
             <th><strong>Product</strong></th>
             <th><strong>Description</strong></th>
         </xpath>
