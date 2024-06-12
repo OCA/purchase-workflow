@@ -64,11 +64,11 @@ class FreightRule(models.Model):
         for rec in self:
             name = FREIGHT.get(rec.freight_type)
             if rec.duration:
-                name = _("%s %s days") % (name, rec.duration)
+                name = _(f"{name} {rec.duration} days")
             if rec.partner_src_id:
                 partner = rec.partner_src_id.ref or rec.partner_src_id.name
-                name = "%s, %s" % (name, partner)
+                name = f"{name}, {partner}"
             if rec.partner_dest_id:
                 partner = rec.partner_dest_id.ref or rec.partner_dest_id.name
-                name = "%s ➡️ %s" % (name, partner)
+                name = f"{name} ➡️ {partner}"
             rec.display_name = name

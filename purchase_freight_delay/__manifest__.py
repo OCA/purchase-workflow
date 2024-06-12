@@ -3,7 +3,7 @@
 
 {
     "name": "Purchase Data Freight",
-    "version": "14.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "Stock",
     "website": "https://github.com/OCA/purchase-workflow",
     "author": "Akretion, Odoo Community Association (OCA)",
