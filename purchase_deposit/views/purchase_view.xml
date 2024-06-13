@@ -8,7 +8,7 @@
             <xpath expr="//button[@name='button_cancel']" position="before">
                 <button
                     name="%(purchase_deposit.action_view_purchase_advance_payment_inv)d"
-                    states="purchase"
+                    invisible="state != 'purchase'"
                     type="action"
                     string="Register Deposit"
                 />
