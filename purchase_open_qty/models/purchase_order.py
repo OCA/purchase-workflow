@@ -26,17 +26,19 @@ class PurchaseOrderLine(models.Model):
                 line.qty_to_invoice = line.product_qty - line.qty_invoiced
 
     @api.depends('move_ids.state', 'move_ids.product_uom',
-                 'move_ids.product_uom_qty', 'order_id.state')
+                 'move_ids.product_uom_qty', 'order_id.state',
+                 'move_ids.location_dest_id')
     def _compute_qty_to_receive(self):
         for line in self:
             total = line.product_uom_qty
             for move in line.move_ids.filtered(
                     lambda m: m.state == 'done'):
+                move_sign = 1 if move.location_dest_id.usage == "internal" else -1
                 if move.product_uom != line.product_uom:
-                    total -= move.product_uom._compute_quantity(
+                    total -= move_sign * move.product_uom._compute_quantity(
                         move.product_uom_qty, line.product_uom)
                 else:
-                    total -= move.product_uom_qty
+                    total -= move_sign * move.product_uom_qty
             line.qty_to_receive = total
 
     qty_to_invoice = fields.Float(compute='_compute_qty_to_invoice',
