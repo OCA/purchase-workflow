@@ -9,7 +9,9 @@ class StockRule(models.Model):
 
     def _run_buy(self, procurements):
         for procurement, _rule in procurements:
-            procurement.values["propagate_create_uid"] = self.env.uid
+            procurement.values["propagate_create_uid"] = self._context.get(
+                "uid", self.env.uid
+            )
         return super()._run_buy(procurements)
 
     def _prepare_purchase_order(self, company_id, origins, values):
