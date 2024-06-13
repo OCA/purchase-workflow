@@ -24,21 +24,21 @@
                     <div>
                         <field name="amount" class="oe_inline" widget="monetary" />
                         <span
-                            attrs="{'invisible': [('advance_payment_method', '!=', 'percentage')]}"
+                            invisible="advance_payment_method != 'percentage'"
                             class="oe_inline"
                         >%</span>
                     </div>
                     <field
                         name="deposit_account_id"
                         class="oe_inline"
-                        attrs="{'invisible': [('purchase_deposit_product_id', '!=', False)]}"
+                        invisible="purchase_deposit_product_id != False"
                     />
                     <field
                         name="deposit_taxes_id"
                         class="oe_inline"
                         widget="many2many_tags"
                         domain="[('type_tax_use','=','purchase')]"
-                        attrs="{'invisible': [('purchase_deposit_product_id', '!=', False)]}"
+                        invisible="purchase_deposit_product_id != False"
                     />
                 </group>
                 <footer>

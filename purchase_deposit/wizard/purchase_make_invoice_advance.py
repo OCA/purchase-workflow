@@ -136,10 +136,10 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
         Invoice = self.env["account.move"]
         deposit_val = self._prepare_deposit_val(order, po_line, amount)
         invoice = Invoice.create(deposit_val)
-        invoice.message_post_with_view(
+        invoice.message_post_with_source(
             "mail.message_origin_link",
-            values={"self": invoice, "origin": order},
-            subtype_id=self.env.ref("mail.mt_note").id,
+            render_values={"self": invoice, "origin": order},
+            subtype_xmlid="mail.mt_note",
         )
         return invoice
 
@@ -190,7 +190,8 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
                     )
                 )
             taxes = product.supplier_taxes_id.filtered(
-                lambda r: not order.company_id or r.company_id == order.company_id
+                lambda r, order=order: not order.company_id
+                or r.company_id == order.company_id
             )
             if order.fiscal_position_id and taxes:
                 tax_ids = order.fiscal_position_id.map_tax(taxes).ids
