@@ -64,4 +64,8 @@ class PurchaseOrder(models.Model):
 
     @api.onchange("company_id")
     def _onchange_company(self):
-        self.order_type = self._default_order_type()
+        if not self.order_type or (
+            self.order_type
+            and self.order_type.company_id not in [self.company_id, False]
+        ):
+            self.order_type = self._default_order_type()
