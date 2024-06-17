@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2019-2020 ForgeFlow S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="1">
+    <record id="purchase_request_default_tier_definition" model="tier.definition">
+        <field name="model_id" ref="model_purchase_request" />
+        <field name="definition_type">domain</field>
+        <field name="definition_domain" />
+        <field name="review_type">group</field>
+        <field
+            name="reviewer_group_id"
+            ref='purchase_request.group_purchase_request_manager'
+        />
+    </record>
+</odoo>
