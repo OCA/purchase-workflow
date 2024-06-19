@@ -36,6 +36,7 @@
                     name="secondary_uom_qty"
                     attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
                     groups="uom.group_uom"
+                    optional="show"
                 />
                 <field
                     name="secondary_uom_id"
@@ -45,6 +46,7 @@
                     options="{'no_create': True}"
                     attrs="{'readonly': [('state', 'in', ('purchase','done', 'cancel'))], 'required': [('secondary_uom_qty', '!=', 0.0)]}"
                     groups="uom.group_uom"
+                    optional="show"
                 />
             </xpath>
         </field>
