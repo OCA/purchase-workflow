@@ -4,7 +4,7 @@ from datetime import date, timedelta
 
 from odoo import fields
 from odoo.exceptions import UserError
-from odoo.tests import common
+from odoo.tests import Form, common
 
 
 class TestPurchaseBlanketOrders(common.TransactionCase):
@@ -85,18 +85,30 @@ class TestPurchaseBlanketOrders(common.TransactionCase):
         self.assertEqual(blanket_order.remaining_uom_qty, 20.0)
 
         # date in the past
+        self.assertEqual(blanket_order.state, "draft")
         with self.assertRaises(UserError):
             blanket_order.sudo().action_confirm()
 
         blanket_order.validity_date = fields.Date.to_string(self.tomorrow)
-        initial_name = blanket_order.name
+        blanket_order.name = "Draft"
         blanket_order.sudo().action_confirm()
-        self.assertNotEqual(initial_name, blanket_order.name)
+        self.assertNotEqual(blanket_order.name, "Draft")
+
+        blanket_order.validity_date = fields.Date.to_string(self.yesterday)
+        self.assertEqual(blanket_order.state, "expired")
+        blanket_order.validity_date = fields.Date.to_string(self.tomorrow)
 
         blanket_order.sudo().action_cancel()
         self.assertEqual(blanket_order.state, "expired")
         blanket_order.sudo().set_to_draft()
         self.assertEqual(blanket_order.state, "draft")
+        action = blanket_order.action_pbo_send()
+        mail_form = Form(
+            self.env["mail.compose.message"].with_context(action["context"])
+        )
+        mail = mail_form.save()
+        mail.send_mail()
+        self.assertEqual(blanket_order.state, "sent")
         previous_name = blanket_order.name
         blanket_order.sudo().action_confirm()
         self.assertEqual(previous_name, blanket_order.name)
@@ -110,6 +122,8 @@ class TestPurchaseBlanketOrders(common.TransactionCase):
         blanket_order._search_invoiced_uom_qty(">=", 0.0)
         blanket_order._search_received_uom_qty(">=", 0.0)
         blanket_order._search_remaining_uom_qty(">=", 0.0)
+        with self.assertRaises(UserError):
+            blanket_order.unlink()
 
     def test__02_create_purchase_orders_from_blanket_order(self):
         """ We create a blanket order and create two purchase orders """
@@ -226,3 +240,59 @@ class TestPurchaseBlanketOrders(common.TransactionCase):
 
         self.assertEqual(bo_lines[0].remaining_uom_qty, 10.0)
         self.assertEqual(bo_lines[1].remaining_uom_qty, 30.0)
+
+    def test_04_purchase_blanket_order_sequence(self):
+        """ We create a blanket order and the name created by sequence """
+        company = self.env.user.company_id
+        self.env["ir.sequence"].search([("code", "=", "purchase.blanket.order")]).write(
+            {"prefix": "PBO/TEST/"}
+        )
+        vals = {
+            "partner_id": self.partner.id,
+            "partner_ref": "REF",
+            "validity_date": fields.Date.to_string(self.tomorrow),
+            "payment_term_id": self.payment_term.id,
+            "company_id": company.id,
+        }
+        blanket_order = self.blanket_order_obj.create(vals.copy())
+        self.assertTrue(blanket_order.name.startswith("PBO/TEST/"))
+
+    def test_05_create_blanket_order_without_template_and_compose(self):
+        """ We create a blanket order and check constrains to send by mail """
+        blanket_order = self.blanket_order_obj.create(
+            {
+                "partner_id": self.partner.id,
+                "validity_date": fields.Date.to_string(self.tomorrow),
+                "payment_term_id": self.payment_term.id,
+                "line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product.id,
+                            "product_uom": self.product.uom_id.id,
+                            "original_uom_qty": 20.0,
+                            "price_unit": 0.0,  # will be updated later
+                        },
+                    )
+                ],
+            }
+        )
+        blanket_order.sudo().onchange_partner_id()
+        blanket_order.line_ids[0].sudo().onchange_product()
+        blanket_order._compute_line_count()
+        blanket_order._compute_uom_qty()
+
+        # Unlink the mail template to test the case that the action
+        # doesn't have a default template id
+        self.env.ref(
+            "purchase_blanket_order.email_template_edi_purchase_blanket_order"
+        ).unlink()
+        view = self.env.ref("mail.email_compose_message_wizard_form")
+
+        # Unlink the mail form to test the case that the action doesn't have a view id
+        self.env["ir.ui.view"].search([("inherit_id", "=", view.id)]).unlink()
+        view.unlink()
+        action = blanket_order.action_pbo_send()
+        self.assertFalse(action["view_id"])
+        self.assertFalse(action["context"]["default_template_id"])
