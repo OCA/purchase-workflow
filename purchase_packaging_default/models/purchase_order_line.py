@@ -12,7 +12,10 @@ class PurchaseOrderLine(models.Model):
     def _get_default_packaging(self):
         """From product get 1st packaging found ordered by sequence"""
         product_template = self.product_id.product_tmpl_id
-        return fields.first(product_template.packaging_ids)
+        breakpoint()
+        return fields.first(
+            product_template.packaging_ids.filtered(lambda p: p.purchase)
+        )
 
     @api.onchange("product_id")
     def _onchange_product_id(self):
