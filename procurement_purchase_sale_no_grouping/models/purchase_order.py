@@ -8,9 +8,7 @@ class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
     @api.model
-    def search(self, args, offset=0, limit=None, order=None, count=False):
+    def search(self, domain, offset=0, limit=None, order=None):
         if self.env.context.get("search_purchase_no_grouping", False):
             return self.browse()
-        return super().search(
-            args, offset=offset, limit=limit, order=order, count=count
-        )
+        return super().search(domain, offset=offset, limit=limit, order=order)
