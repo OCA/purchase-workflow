@@ -34,6 +34,7 @@
                 <field
                     name="secondary_uom_qty"
                     attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
+                    optional="show"
                 />
                 <field
                     name="secondary_uom_id"
@@ -42,6 +43,7 @@
                                          ('product_id', '=', False)]"
                     options="{'no_create': True}"
                     attrs="{'readonly': [('state', 'in', ('purchase','done', 'cancel'))], 'required': [('secondary_uom_qty', '!=', 0.0)]}"
+                    optional="show"
                 />
             </xpath>
         </field>
