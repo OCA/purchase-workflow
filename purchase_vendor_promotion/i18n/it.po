@@ -1,0 +1,66 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_vendor_promotion
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#. module: purchase_vendor_promotion
+#: model:ir.model,name:purchase_vendor_promotion.model_stock_warehouse_orderpoint
+msgid "Minimum Inventory Rule"
+msgstr ""
+
+#. module: purchase_vendor_promotion
+#: model:ir.model.fields,help:purchase_vendor_promotion.field_purchase_order_line__is_promotion
+msgid "Price was calculated based on a vendor promotion."
+msgstr ""
+
+#. module: purchase_vendor_promotion
+#: model:ir.model.fields,field_description:purchase_vendor_promotion.field_product_supplierinfo__is_promotion
+#: model:ir.model.fields,field_description:purchase_vendor_promotion.field_purchase_order_line__is_promotion
+#: model:ir.model.fields,field_description:purchase_vendor_promotion.field_stock_warehouse_orderpoint__promotion_period
+msgid "Promotion"
+msgstr ""
+
+#. module: purchase_vendor_promotion
+#: model:ir.model.fields,field_description:purchase_vendor_promotion.field_stock_warehouse_orderpoint__promotion_date_end
+msgid "Promotion Date End"
+msgstr ""
+
+#. module: purchase_vendor_promotion
+#: model:ir.model.fields,field_description:purchase_vendor_promotion.field_stock_warehouse_orderpoint__promotion_date_start
+msgid "Promotion Date Start"
+msgstr ""
+
+#. module: purchase_vendor_promotion
+#. odoo-python
+#: code:addons/purchase_vendor_promotion/models/product_supplierinfo.py:0
+#, python-format
+msgid "Promotion start date must be before end date."
+msgstr ""
+
+#. module: purchase_vendor_promotion
+#: model:ir.model,name:purchase_vendor_promotion.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr ""
+
+#. module: purchase_vendor_promotion
+#: model:ir.model,name:purchase_vendor_promotion.model_product_supplierinfo
+msgid "Supplier Pricelist"
+msgstr ""
+
+#. module: purchase_vendor_promotion
+#. odoo-python
+#: code:addons/purchase_vendor_promotion/models/product_supplierinfo.py:0
+#, python-format
+msgid "Vendor promotion requires start and end dates."
+msgstr ""

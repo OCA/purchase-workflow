@@ -47,4 +47,14 @@
             </xpath>
         </field>
     </record>
+    <record model="ir.ui.view" id="purchase_history_tree">
+        <field name="name">purchase_discount.history.tree</field>
+        <field name="model">purchase.order.line</field>
+        <field name="inherit_id" ref="purchase.purchase_history_tree" />
+        <field name="arch" type="xml">
+            <field name="price_unit" position="after">
+                <field name="discount" />
+            </field>
+        </field>
+    </record>
 </odoo>

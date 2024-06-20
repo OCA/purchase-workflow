@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record
+        id="view_warehouse_orderpoint_tree_editable_inherited_mrp"
+        model="ir.ui.view"
+    >
+        <field
+            name="name"
+        >stock.warehouse.orderpoint.tree.editable.inherit.mrp.inherit</field>
+        <field name="model">stock.warehouse.orderpoint</field>
+        <field
+            name="inherit_id"
+            ref="purchase_stock.view_warehouse_orderpoint_tree_editable_inherited_mrp"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='supplier_id']" position="after">
+                <field name="promotion_period" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
