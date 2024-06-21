@@ -3,7 +3,7 @@
 
 {
     "name": "Purchase Order Type",
-    "version": "14.0.1.0.4",
+    "version": "14.0.1.0.5",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": "Purchase Management",
