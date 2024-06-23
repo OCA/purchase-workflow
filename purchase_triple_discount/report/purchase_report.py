@@ -9,6 +9,16 @@ from odoo import fields, models
 class PurchaseReport(models.Model):
     _inherit = "purchase.report"
 
+    discount = fields.Float(
+        string="Total discount",
+    )
+
+    discount1 = fields.Float(
+        string="Discount 1 (%)",
+        digits="Discount",
+        group_operator="avg",
+    )
+
     discount2 = fields.Float(
         string="Discount 2 (%)",
         digits="Discount",
@@ -22,12 +32,12 @@ class PurchaseReport(models.Model):
 
     def _select(self):
         res = super()._select()
-        res += ", l.discount2 AS discount2, l.discount3 AS discount3"
+        res += ", l.discount1 AS discount1, l.discount2 AS discount2, l.discount3 AS discount3"
         return res
 
     def _group_by(self):
         res = super()._group_by()
-        res += ", l.discount2, l.discount3"
+        res += ", l.discount1, l.discount2, l.discount3"
         return res
 
     def _get_discounted_price_unit_exp(self):
@@ -38,6 +48,6 @@ class PurchaseReport(models.Model):
         :return: SQL expression for discounted unit price.
         """
         return """
-            ((100 - COALESCE(l.discount, 0.0)) *
+            ((100 - COALESCE(l.discount1, 0.0)) *
              (100 - COALESCE(l.discount2, 0.0)) *
              (100 - COALESCE(l.discount3, 0.0))) / 1000000 * l.price_unit"""

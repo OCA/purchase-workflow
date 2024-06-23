@@ -21,6 +21,11 @@ msgstr ""
 
 #. module: purchase_triple_discount
 #: model_terms:ir.ui.view,arch_db:purchase_triple_discount.report_purchaseorder_document_triple_discount
+msgid "<strong>Disc. 1 (%)</strong>"
+msgstr ""
+
+#. module: purchase_triple_discount
+#: model_terms:ir.ui.view,arch_db:purchase_triple_discount.report_purchaseorder_document_triple_discount
 msgid "<strong>Disc. 2 (%)</strong>"
 msgstr "<strong>Sc. 2 (%)</strong>"
 
@@ -35,6 +40,12 @@ msgid "Contact"
 msgstr "Contatto"
 
 #. module: purchase_triple_discount
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_res_partner__default_supplierinfo_discount1
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_res_users__default_supplierinfo_discount1
+msgid "Default Supplier Discount 1 (%)"
+msgstr ""
+
+#. module: purchase_triple_discount
 #: model:ir.model.fields,field_description:purchase_triple_discount.field_res_partner__default_supplierinfo_discount2
 #: model:ir.model.fields,field_description:purchase_triple_discount.field_res_users__default_supplierinfo_discount2
 msgid "Default Supplier Discount 2 (%)"
@@ -47,34 +58,53 @@ msgid "Default Supplier Discount 3 (%)"
 msgstr "Sconto Fornitore Predefinito 3 (%)"
 
 #. module: purchase_triple_discount
-#: model:ir.model.fields,field_description:purchase_triple_discount.field_purchase_order_line__discount2
-msgid "Disc. 2 (%)"
-msgstr "Sconto 2 (%)"
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_product_supplierinfo__discount
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_purchase_order_line__discount
+msgid "Discount (%)"
+msgstr ""
 
 #. module: purchase_triple_discount
-#: model:ir.model.fields,field_description:purchase_triple_discount.field_purchase_order_line__discount3
-msgid "Disc. 3 (%)"
-msgstr "Sconto 3 (%)"
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_product_supplierinfo__discount1
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_purchase_order_line__discount1
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_purchase_report__discount1
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_triple_discount_mixin__discount1
+msgid "Discount 1 (%)"
+msgstr ""
+
+#. module: purchase_triple_discount
+#: model:ir.model.constraint,message:purchase_triple_discount.constraint_product_supplierinfo_discount1_limit
+#: model:ir.model.constraint,message:purchase_triple_discount.constraint_purchase_order_line_discount1_limit
+#: model:ir.model.constraint,message:purchase_triple_discount.constraint_triple_discount_mixin_discount1_limit
+msgid "Discount 1 must be lower than 100%."
+msgstr ""
 
 #. module: purchase_triple_discount
 #: model:ir.model.fields,field_description:purchase_triple_discount.field_product_supplierinfo__discount2
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_purchase_order_line__discount2
 #: model:ir.model.fields,field_description:purchase_triple_discount.field_purchase_report__discount2
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_triple_discount_mixin__discount2
 msgid "Discount 2 (%)"
 msgstr "Sconto 2 (%)"
 
 #. module: purchase_triple_discount
+#: model:ir.model.constraint,message:purchase_triple_discount.constraint_product_supplierinfo_discount2_limit
 #: model:ir.model.constraint,message:purchase_triple_discount.constraint_purchase_order_line_discount2_limit
+#: model:ir.model.constraint,message:purchase_triple_discount.constraint_triple_discount_mixin_discount2_limit
 msgid "Discount 2 must be lower than 100%."
 msgstr "Sconto 2 deve essere inferiore di 100%."
 
 #. module: purchase_triple_discount
 #: model:ir.model.fields,field_description:purchase_triple_discount.field_product_supplierinfo__discount3
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_purchase_order_line__discount3
 #: model:ir.model.fields,field_description:purchase_triple_discount.field_purchase_report__discount3
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_triple_discount_mixin__discount3
 msgid "Discount 3 (%)"
 msgstr "Sconto 3 (%)"
 
 #. module: purchase_triple_discount
+#: model:ir.model.constraint,message:purchase_triple_discount.constraint_product_supplierinfo_discount3_limit
 #: model:ir.model.constraint,message:purchase_triple_discount.constraint_purchase_order_line_discount3_limit
+#: model:ir.model.constraint,message:purchase_triple_discount.constraint_triple_discount_mixin_discount3_limit
 msgid "Discount 3 must be lower than 100%."
 msgstr "Sconto 3 deve essere inferiore di 100%."
 
@@ -94,8 +124,10 @@ msgid "Supplier Pricelist"
 msgstr "Listino Fornitore"
 
 #. module: purchase_triple_discount
+#: model:ir.model.fields,help:purchase_triple_discount.field_res_partner__default_supplierinfo_discount1
 #: model:ir.model.fields,help:purchase_triple_discount.field_res_partner__default_supplierinfo_discount2
 #: model:ir.model.fields,help:purchase_triple_discount.field_res_partner__default_supplierinfo_discount3
+#: model:ir.model.fields,help:purchase_triple_discount.field_res_users__default_supplierinfo_discount1
 #: model:ir.model.fields,help:purchase_triple_discount.field_res_users__default_supplierinfo_discount2
 #: model:ir.model.fields,help:purchase_triple_discount.field_res_users__default_supplierinfo_discount3
 msgid ""
@@ -104,6 +136,27 @@ msgid ""
 msgstr ""
 "Questo valore verrà usato come predefinito per ogni nuova riga d'ordine di "
 "acquisto che dipende da questo fornitore."
+
+#. module: purchase_triple_discount
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_purchase_report__discount
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_triple_discount_mixin__discount
+#: model_terms:ir.ui.view,arch_db:purchase_triple_discount.product_supplierinfo_form_view
+#: model_terms:ir.ui.view,arch_db:purchase_triple_discount.product_supplierinfo_tree_view
+#: model_terms:ir.ui.view,arch_db:purchase_triple_discount.purchase_order_triple_discount_form_view
+#: model_terms:ir.ui.view,arch_db:purchase_triple_discount.res_partner_form_view
+msgid "Total discount"
+msgstr ""
+
+#. module: purchase_triple_discount
+#: model:ir.model,name:purchase_triple_discount.model_triple_discount_mixin
+msgid "Triple discount mixin"
+msgstr ""
+
+#~ msgid "Disc. 2 (%)"
+#~ msgstr "Sconto 2 (%)"
+
+#~ msgid "Disc. 3 (%)"
+#~ msgstr "Sconto 3 (%)"
 
 #~ msgid "Invoice"
 #~ msgstr "Fattura"
