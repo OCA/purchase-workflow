@@ -9,10 +9,11 @@
         />
         <field name="arch" type="xml">
             <field name="units_included" position="before">
-                <field name="secondary_uom_id" />
+                <field name="secondary_uom_id" optional="show" />
                 <field
                     name="secondary_uom_qty"
                     attrs="{'invisible': [('secondary_uom_id', '=', False)]}"
+                    optional="show"
                 />
             </field>
         </field>
