@@ -31,7 +31,7 @@ addon | version | maintainers | summary
 [purchase_last_price_info](purchase_last_price_info/) | 17.0.1.0.2 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Purchase Product Last Price Info
 [purchase_open_qty](purchase_open_qty/) | 17.0.1.0.0 |  | Allows to identify the purchase orders that have quantities pending to invoice or to receive.
 [purchase_order_archive](purchase_order_archive/) | 17.0.1.0.0 |  | Archive Purchase Orders
-[purchase_order_type](purchase_order_type/) | 17.0.1.0.0 |  | Purchase Order Type
+[purchase_order_type](purchase_order_type/) | 17.0.1.0.1 |  | Purchase Order Type
 [purchase_order_type_dashboard](purchase_order_type_dashboard/) | 17.0.1.0.0 | [![dalonsod](https://github.com/dalonsod.png?size=30px)](https://github.com/dalonsod) | Purchase Order Type Dashboard
 [purchase_reception_notify](purchase_reception_notify/) | 17.0.1.0.0 |  | Purchase Reception Notify
 [purchase_request](purchase_request/) | 17.0.1.2.0 |  | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
