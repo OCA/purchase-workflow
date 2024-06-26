@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_purchase_invoicing_picking_filter" model="ir.ui.view">
+        <field name="name">Invoice Orders</field>
+        <field name="model">purchase.invoicing.picking.filter</field>
+        <field name="arch" type="xml">
+            <form string="Invoice Purchase Order">
+                <group>
+                    <field name="purchase_order_ids" invisible="1" />
+                    <field
+                        name="stock_picking_ids"
+                        widget="many2many_tags"
+                        options="{'no_create_edit': True, 'no_create': True}"
+                        context="{'carrier_tracking_name': True}"
+                    />
+                </group>
+                <group>
+                    <field
+                        name="inv_service_products"
+                        attrs="{'invisible': [('stock_picking_ids', '=', [])]}"
+                    />
+                    <field name="there_are_service_product" invisible="1" />
+                </group>
+                    <span
+                    attrs="{'invisible': [('there_are_service_product', '=', False)]}"
+                >
+                        There are any non-invoiced service products among the selected pickings
+                    </span>
+                <footer>
+                    <button
+                        name="create_invoices"
+                        type="object"
+                        id="create_invoice_open"
+                        string="Create and View Invoice"
+                        context="{'open_invoices': True}"
+                        class="btn-primary"
+                        data-hotkey="q"
+                    />
+                    <button
+                        name="create_invoices"
+                        type="object"
+                        id="create_invoices"
+                        string="Create Bill"
+                        class="btn-primary"
+                        data-hotkey="q"
+                    />
+                    <button
+                        string="Cancel"
+                        class="btn-secondary"
+                        special="cancel"
+                        data-hotkey="z"
+                    />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record
+        id="action_view_purchase_invoicing_picking_filter"
+        model="ir.actions.act_window"
+    >
+        <field name="name">Create bills</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">purchase.invoicing.picking.filter</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="purchase.model_purchase_order" />
+        <field name="binding_view_types">list</field>
+    </record>
+
+</odoo>
