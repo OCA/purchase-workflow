@@ -89,6 +89,7 @@ addon | version | maintainers | summary
 [purchase_stock_price_unit_sync](purchase_stock_price_unit_sync/) | 16.0.1.0.0 |  | Update cost price in stock moves already done
 [purchase_tag](purchase_tag/) | 16.0.1.1.0 |  | Allows to add multiple tags to purchase orders
 [purchase_tier_validation](purchase_tier_validation/) | 16.0.1.1.0 |  | Extends the functionality of Purchase Orders to support a tier validation process.
+[purchase_transport_mode](purchase_transport_mode/) | 16.0.1.0.0 |  | Purchase expection based on constraints
 [purchase_triple_discount](purchase_triple_discount/) | 16.0.1.0.0 |  | Manage triple discount on purchase order lines
 [purchase_vendor_promotion](purchase_vendor_promotion/) | 16.0.1.0.0 |  | Purchase Vendor Promotion
 [purchase_warn_message](purchase_warn_message/) | 16.0.1.0.0 |  | Add a popup warning on purchase to ensure warning is populated
