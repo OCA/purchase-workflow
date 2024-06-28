@@ -8,5 +8,7 @@
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">purchase_request.report_purchase_request</field>
         <field name="report_file">purchase_request.report_purchase_request</field>
+        <field name="binding_model_id" ref="model_purchase_request" />
+        <field name="binding_type">report</field>
     </record>
 </odoo>
