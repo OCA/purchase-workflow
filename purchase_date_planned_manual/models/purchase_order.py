@@ -9,6 +9,21 @@ from odoo.exceptions import UserError
 from odoo.fields import Datetime as Dt
 
 
+class PurchaseOrder(models.Model):
+    _inherit = "purchase.order"
+
+    def _compute_date_planned(self):
+        """ date_planned = the earliest date_planned across all order lines. """
+        for order in self:
+            if order.date_planned:
+                continue
+
+            dates_list = order.order_line.filtered(lambda x: not x.display_type and x.date_planned).mapped('date_planned')
+            if dates_list:
+                order.date_planned = min(dates_list)
+            else:
+                order.date_planned = False
+
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
