@@ -1,9 +1,9 @@
 # Copyright 2022 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo.tests import common
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestPartnerSupplierinfoSmartbutton(common.SavepointCase):
+class TestPartnerSupplierinfoSmartbutton(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -16,7 +16,11 @@ class TestPartnerSupplierinfoSmartbutton(common.SavepointCase):
             {
                 "name": "Test product A",
                 "seller_ids": [
-                    (0, False, {"name": cls.partner_a.id, "min_qty": 1, "price": 10}),
+                    (
+                        0,
+                        False,
+                        {"partner_id": cls.partner_a.id, "min_qty": 1, "price": 10},
+                    ),
                 ],
             }
         )
@@ -24,7 +28,11 @@ class TestPartnerSupplierinfoSmartbutton(common.SavepointCase):
             {
                 "name": "Test product B",
                 "seller_ids": [
-                    (0, False, {"name": cls.partner_b.id, "min_qty": 1, "price": 10}),
+                    (
+                        0,
+                        False,
+                        {"partner_id": cls.partner_b.id, "min_qty": 1, "price": 10},
+                    ),
                 ],
             }
         )
@@ -32,8 +40,16 @@ class TestPartnerSupplierinfoSmartbutton(common.SavepointCase):
             {
                 "name": "Test product A+B",
                 "seller_ids": [
-                    (0, False, {"name": cls.partner_a.id, "min_qty": 1, "price": 10}),
-                    (0, False, {"name": cls.partner_b.id, "min_qty": 1, "price": 20}),
+                    (
+                        0,
+                        False,
+                        {"partner_id": cls.partner_a.id, "min_qty": 1, "price": 10},
+                    ),
+                    (
+                        0,
+                        False,
+                        {"partner_id": cls.partner_b.id, "min_qty": 1, "price": 20},
+                    ),
                 ],
             }
         )
