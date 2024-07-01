@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "Access supplied products from the vendor",
-    "version": "14.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "Purchase Management",
     "website": "https://github.com/OCA/purchase-workflow",
     "author": "Tecnativa, Odoo Community Association (OCA)",
