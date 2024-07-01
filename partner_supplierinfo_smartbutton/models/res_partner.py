@@ -7,28 +7,28 @@ from odoo import fields, models
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
-    product_supplied_count = fields.Integer(
-        compute="_compute_product_supplied_count", string="Product Supplied Count"
-    )
+    product_supplied_count = fields.Integer(compute="_compute_product_supplied_count")
 
     def _compute_product_supplied_count(self):
-        supplierinfo_data = self.env["product.supplierinfo"].read_group(
-            [("name", "in", self.ids)], ["name"], ["name"]
+        data = self.env["product.supplierinfo"].read_group(
+            [("partner_id", "in", self.ids)], ["partner_id"], ["partner_id"]
         )
-        mapping = {data["name"][0]: data["name_count"] for data in supplierinfo_data}
+        mapping = {d["partner_id"][0]: d["partner_id_count"] for d in data}
         for item in self:
             item.product_supplied_count = mapping.get(item.id, 0)
 
     def action_see_products_by_seller(self):
-        domain = [("name", "=", self.id)]
-        res = self.env.ref("product.product_supplierinfo_type_action").sudo().read()[0]
+        domain = [("partner_id", "=", self.id)]
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "product.product_supplierinfo_type_action"
+        )
         ctx = dict(self.env.context)
         ctx.update(
             {
-                "default_name": self.id,
-                "search_default_name": self.id,
+                "default_partner_id": self.id,
+                "search_default_partner_id": self.id,
                 "visible_product_tmpl_id": False,
             }
         )
-        res.update({"domain": domain, "context": ctx})
-        return res
+        action.update({"domain": domain, "context": ctx})
+        return action
