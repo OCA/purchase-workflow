@@ -75,6 +75,9 @@ class TestPurchaseOrderType(common.TransactionCase):
         order.onchange_partner_id()
         self.assertEqual(order.order_type, self.type2)
         order._onchange_company()
+        self.assertEqual(order.order_type, self.type2)
+        order.write({"order_type": False})
+        order._onchange_company()
         self.assertEqual(order.order_type, order._default_order_type())
 
     def test_purchase_order_type_company_error(self):
