@@ -84,7 +84,9 @@ class TestPurchaseLot(TransactionCase):
         )
         # not merged because of different lot
         self.assertEqual(len(pols), 2)
-        pol1 = pols.filtered(lambda l: l.move_dest_ids.restrict_lot_id.id == lot1.id)
+        pol1 = pols.filtered(
+            lambda line: line.move_dest_ids.restrict_lot_id.id == lot1.id
+        )
         self.assertEqual(pol1.lot_id.id, lot1.id)
         pol1.order_id.button_confirm()
         self.assertEqual(pol1.move_ids.restrict_lot_id.id, lot1.id)
