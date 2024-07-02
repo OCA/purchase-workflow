@@ -46,6 +46,3 @@ msgstr "Cantidad Prevista"
 #: model:ir.model,name:purchase_order_line_stock_available.model_purchase_order_line
 msgid "Purchase Order Line"
 msgstr "Línea pedido de compra"
-
-#~ msgid "Forecast Quantity"
-#~ msgstr "Cantidad Prevista"

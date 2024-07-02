@@ -37,6 +37,3 @@ msgstr ""
 #: model:ir.model,name:purchase_order_line_stock_available.model_purchase_order_line
 msgid "Purchase Order Line"
 msgstr "采购订单明细"
-
-#~ msgid "Forecast Quantity"
-#~ msgstr "预测库存"
