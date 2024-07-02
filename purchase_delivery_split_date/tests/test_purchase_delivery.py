@@ -38,6 +38,14 @@ class TestDeliverySingle(TransactionCase):
                 "standard_price": 10,
             }
         )
+        cls.service_1 = cls.product_model.create(
+            {
+                "name": "Test Service 1",
+                "type": "service",
+                "default_code": "SERV1",
+                "standard_price": 20,
+            }
+        )
 
         # Two dates which we can use to test the features:
         cls.date_sooner = "2015-01-01"
@@ -280,3 +288,22 @@ class TestDeliverySingle(TransactionCase):
         with Form(self.env["purchase.order"]) as purchase_form:
             purchase_form.partner_id = partner_purchase
         self.assertEqual(purchase_form.partner_id, partner_purchase)
+
+    def test_po_with_services(self):
+        """Test that no empty pickings are created because of service lines."""
+        prev_count = self.env["stock.picking"].search_count([])
+        self.env["purchase.order.line"].create(
+            {
+                "order_id": self.po.id,
+                "product_id": self.service_1.id,
+                "product_uom": self.service_1.uom_id.id,
+                "name": self.service_1.name,
+                "price_unit": self.service_1.standard_price,
+                "date_planned": self.date_later,
+                "product_qty": 15.0,
+            }
+        )
+        self.po.button_confirm()
+        post_count = self.env["stock.picking"].search_count([])
+        new_pickings = post_count - prev_count
+        self.assertEqual(new_pickings, 1)
