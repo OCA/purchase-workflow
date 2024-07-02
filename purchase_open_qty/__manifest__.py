@@ -10,7 +10,10 @@
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
     "category": "Purchases",
-    "depends": ["purchase_stock"],
+    "depends": [
+        "purchase_stock",
+        "purchase_order_line_menu",
+    ],
     "data": ["views/purchase_view.xml"],
     "pre_init_hook": "pre_init_hook",
     "license": "AGPL-3",
