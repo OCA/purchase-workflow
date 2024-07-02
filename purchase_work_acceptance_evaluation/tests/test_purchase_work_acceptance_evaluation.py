@@ -7,18 +7,19 @@ from odoo.tests.common import Form, TransactionCase
 
 
 class TestPurchaseWorkAcceptanceEvaluation(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.Config = self.env["res.config.settings"]
-        self.WorkAcceptance = self.env["work.acceptance"]
-        self.res_partner = self.env.ref("base.res_partner_3")
-        self.employee = self.env.ref("base.user_demo")
-        self.main_company = self.env.ref("base.main_company")
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.Config = cls.env["res.config.settings"]
+        cls.WorkAcceptance = cls.env["work.acceptance"]
+        cls.res_partner = cls.env.ref("base.res_partner_3")
+        cls.employee = cls.env.ref("base.user_demo")
+        cls.main_company = cls.env.ref("base.main_company")
         # Enable WA Evaluation
-        with Form(self.Config) as c:
+        with Form(cls.Config) as c:
             c.group_enable_eval_on_wa = True
             c.save()
-        self.Config.create({"group_enable_eval_on_wa": True}).execute()
+        cls.Config.create({"group_enable_eval_on_wa": True}).execute()
 
     def test_01_wa_check_state_required(self):
         """Creat new WA with 3 evaluation criterias, I expect that user must
