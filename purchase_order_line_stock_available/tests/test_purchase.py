@@ -3,31 +3,32 @@
 
 from datetime import date
 
-from odoo.tests import common
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestPurchase(common.TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.company = self.env.ref("base.main_company")
-        self.partner = self.env["res.partner"].create({"name": "Test partner"})
-        self.product = self.env["product.product"].create(
-            {"name": "Test product", "detailed_type": "product"}
+class TestPurchase(BaseCommon):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.company = cls.env.ref("base.main_company")
+        cls.partner = cls.env["res.partner"].create({"name": "Test partner"})
+        cls.product = cls.env["product.product"].create(
+            {"name": "Test product", "type": "product", "detailed_type": "product"}
         )
-        self.location_stock = self.env.ref("stock.stock_location_stock")
-        self.location_suppliers = self.env.ref("stock.stock_location_suppliers")
-        self.purchase = self.env["purchase.order"].create(
+        cls.location_stock = cls.env.ref("stock.stock_location_stock")
+        cls.location_suppliers = cls.env.ref("stock.stock_location_suppliers")
+        cls.purchase = cls.env["purchase.order"].create(
             {
-                "partner_id": self.partner.id,
+                "partner_id": cls.partner.id,
                 "order_line": [
                     (
                         0,
                         0,
                         {
-                            "product_id": self.product.id,
-                            "product_uom": self.product.uom_id.id,
-                            "name": self.product.name,
-                            "price_unit": self.product.standard_price,
+                            "product_id": cls.product.id,
+                            "product_uom": cls.product.uom_id.id,
+                            "name": cls.product.name,
+                            "price_unit": cls.product.standard_price,
                             "date_planned": date.today(),
                             "product_qty": 1,
                         },
@@ -35,17 +36,18 @@ class TestPurchase(common.TransactionCase):
                 ],
             }
         )
-        self.purchase_line = self.purchase.order_line[0]
-        self._create_stock_move(10.0)
+        cls.purchase_line = cls.purchase.order_line[0]
+        cls._create_stock_move(10.0)
 
-    def _create_stock_move(self, qty):
-        stock_move = self.env["stock.move"].create(
+    @classmethod
+    def _create_stock_move(cls, qty):
+        stock_move = cls.env["stock.move"].create(
             {
-                "name": self.product.display_name,
-                "location_id": self.location_suppliers.id,
-                "location_dest_id": self.location_stock.id,
-                "product_id": self.product.id,
-                "product_uom": self.product.uom_id.id,
+                "name": cls.product.display_name,
+                "location_id": cls.location_suppliers.id,
+                "location_dest_id": cls.location_stock.id,
+                "product_id": cls.product.id,
+                "product_uom": cls.product.uom_id.id,
                 "product_uom_qty": qty,
             }
         )
