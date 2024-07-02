@@ -8,9 +8,7 @@ from odoo import api, fields, models
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
-    lot_id = fields.Many2one(
-        "stock.lot", string="Serial Number", readonly=True, copy=False
-    )
+    lot_id = fields.Many2one("stock.lot", string="Serial Number", copy=False)
 
     @api.model
     def _prepare_purchase_order_line_from_procurement(
@@ -46,7 +44,7 @@ class PurchaseOrderLine(models.Model):
         values,
     ):
         lot_id = values.get("restrict_lot_id", False)
-        self = self.filtered(lambda l: l.lot_id.id == lot_id)
+        self = self.filtered(lambda line: line.lot_id.id == lot_id)
         return super()._find_candidate(
             product_id,
             product_qty,
