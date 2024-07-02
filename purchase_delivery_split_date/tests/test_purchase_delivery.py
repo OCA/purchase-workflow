@@ -35,6 +35,14 @@ class TestDeliverySingle(TransactionCase):
                 "standard_price": 10,
             }
         )
+        self.service_1 = self.product_model.create(
+            {
+                "name": "Test Service 1",
+                "type": "service",
+                "default_code": "SERV1",
+                "standard_price": 20,
+            }
+        )
 
         # Two dates which we can use to test the features:
         self.date_sooner = "2015-01-01"
@@ -256,3 +264,22 @@ class TestDeliverySingle(TransactionCase):
         # No time difference so will be another day (2 pickings)
         line2.write({"date_planned": "2021-05-04 23:00:00"})
         self.assertEqual(len(self.po.picking_ids), 2)
+
+    def test_po_with_services(self):
+        """Test that no empty pickings are created because of service lines."""
+        prev_count = self.env["stock.picking"].search_count([])
+        self.env["purchase.order.line"].create(
+            {
+                "order_id": self.po.id,
+                "product_id": self.service_1.id,
+                "product_uom": self.service_1.uom_id.id,
+                "name": self.service_1.name,
+                "price_unit": self.service_1.standard_price,
+                "date_planned": self.date_later,
+                "product_qty": 15.0,
+            }
+        )
+        self.po.button_confirm()
+        post_count = self.env["stock.picking"].search_count([])
+        new_pickings = post_count - prev_count
+        self.assertEqual(new_pickings, 1)
