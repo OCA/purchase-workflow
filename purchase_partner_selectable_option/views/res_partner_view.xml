@@ -20,9 +20,7 @@
                 expr="//button[@name='%(purchase.act_res_partner_2_purchase_order)d']"
                 position="attributes"
             >
-                <attribute
-                    name="attrs"
-                >{'invisible': [('purchase_selectable', '=', False)]}</attribute>
+                <attribute name="invisible">purchase_selectable == False</attribute>
             </xpath>
         </field>
     </record>
