@@ -8,7 +8,6 @@ from odoo.tools import float_compare
 
 
 class PurchaseOrder(models.Model):
-
     _inherit = "purchase.order"
 
     fop_reached = fields.Boolean(
