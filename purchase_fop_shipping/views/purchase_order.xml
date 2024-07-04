@@ -56,7 +56,7 @@
                  <field
                     name="fop_shipping"
                     readonly="1"
-                    attrs="{'invisible':[('fop_shipping', '=', 0)]}"
+                    invisible="fop_shipping == 0"
                     widget="monetary"
                     options="{'currency_field': 'currency_id'}"
                 />
