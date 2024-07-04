@@ -4,13 +4,15 @@
 
 from odoo import fields
 from odoo.exceptions import UserError
+from odoo.tests import tagged
 from odoo.tests.common import TransactionCase
 
 
+@tagged("post_install", "-at_install")
 class TestPurchaseOrder(TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(TestPurchaseOrder, cls).setUpClass()
+        super().setUpClass()
         cls.Product = cls.env["product.product"]
         cls.Purchase = cls.env["purchase.order"]
         cls.PurchaseLine = cls.env["purchase.order.line"]
