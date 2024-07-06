@@ -315,7 +315,7 @@ class PurchaseRequestLineMakePurchaseOrderItem(models.TransientModel):
     wiz_id = fields.Many2one(
         comodel_name="purchase.request.line.make.purchase.order",
         string="Wizard",
-        required=True,
+        required=False,
         ondelete="cascade",
         readonly=True,
     )
@@ -351,6 +351,7 @@ class PurchaseRequestLineMakePurchaseOrderItem(models.TransientModel):
     @api.onchange("product_id")
     def onchange_product_id(self):
         if self.product_id:
+            name = ''
             if not self.keep_description:
                 name = self.product_id.name
             code = self.product_id.code
