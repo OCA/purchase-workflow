@@ -1,4 +1,5 @@
-Get main seller partner for a product product.
-Main seller is the first in the vendors list.
+This module extends the Odoo Product module to compute and
+display the main Vendor of each products.
+The main vendor is the first vendor in the vendors list.
 
-.. figure:: ../static/description/main_seller.gif
+.. figure:: ../static/description/product_tree_view.png
