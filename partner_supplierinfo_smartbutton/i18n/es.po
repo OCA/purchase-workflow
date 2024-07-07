@@ -23,21 +23,6 @@ msgid "Contact"
 msgstr "Contacto"
 
 #. module: partner_supplierinfo_smartbutton
-#: model:ir.model.fields,field_description:partner_supplierinfo_smartbutton.field_res_partner__display_name
-msgid "Display Name"
-msgstr "Nombre mostrado"
-
-#. module: partner_supplierinfo_smartbutton
-#: model:ir.model.fields,field_description:partner_supplierinfo_smartbutton.field_res_partner__id
-msgid "ID"
-msgstr "ID"
-
-#. module: partner_supplierinfo_smartbutton
-#: model:ir.model.fields,field_description:partner_supplierinfo_smartbutton.field_res_partner____last_update
-msgid "Last Modified on"
-msgstr "Última modificación el"
-
-#. module: partner_supplierinfo_smartbutton
 #: model:ir.model.fields,field_description:partner_supplierinfo_smartbutton.field_res_partner__product_supplied_count
 #: model:ir.model.fields,field_description:partner_supplierinfo_smartbutton.field_res_users__product_supplied_count
 msgid "Product Supplied Count"
@@ -47,3 +32,12 @@ msgstr "Total productos suministrados"
 #: model_terms:ir.ui.view,arch_db:partner_supplierinfo_smartbutton.view_partner_form
 msgid "Products Supplied"
 msgstr "Productos suministrados"
+
+#~ msgid "Display Name"
+#~ msgstr "Nombre mostrado"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación el"
