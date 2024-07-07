@@ -3,19 +3,19 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
-    "name": "Product Main Seller",
-    "summary": "Product Attribute - Main seller for a product",
-    "version": "12.0.1.2.0",
-    "category": "GRAP - Custom",
-    "author": "GRAP",
-    "website": "https://github.com/grap/grap-odoo-custom",
+    "name": "Product Main Vendor",
+    "summary": "Main Vendor for a product",
+    "version": "16.0.1.0.0",
+    "category": "Purchase",
+    "author": "GRAP,Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/purchase-workflow",
     "license": "AGPL-3",
-    "depends": [
-        "product",
-        "purchase",
-    ],
+    "depends": ["purchase"],
+    "maintainers": ["legalsylvain", "quentinDupont"],
     "data": [
         "views/view_product_product.xml",
+        "views/view_product_template.xml",
     ],
     "installable": True,
+    "pre_init_hook": "pre_init_hook",
 }

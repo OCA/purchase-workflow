@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* product_main_seller
+#   * product_main_seller
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-17 10:29+0000\n"
-"PO-Revision-Date: 2023-02-17 10:29+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2024-07-08 20:26+0000\n"
+"PO-Revision-Date: 2024-07-08 20:26+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,56 +16,19 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: product_main_seller
-#: model_terms:ir.ui.view,arch_db:product_main_seller.view_product_main_seller_search
-msgid "By Main Vendor"
-msgstr "Par Fournisseur·e principal·e"
-
-#. module: product_main_seller
-#: model:ir.model.fields,help:product_main_seller.field_product_product__main_seller_partner_id
-#: model:ir.model.fields,help:product_main_seller.field_product_product__main_seller_variant_partner_id
-#: model:ir.model.fields,help:product_main_seller.field_product_template__main_seller_partner_id
-#: model:ir.model.fields,help:product_main_seller.field_product_template__main_seller_variant_partner_id
-msgid "Deprecated"
-msgstr ""
-
-#. module: product_main_seller
-#: model:ir.model.fields,field_description:product_main_seller.field_product_product__product_main_seller_partner_id
-msgid "Main Product Seller Partner"
-msgstr "Fournisseur·e principal·e"
-
-#. module: product_main_seller
-#: model:ir.model.fields,field_description:product_main_seller.field_product_product__main_seller_partner_id
-#: model:ir.model.fields,field_description:product_main_seller.field_product_template__main_seller_partner_id
-msgid "Main Seller Partner"
-msgstr "Fournisseur·e principal·e"
-
-#. module: product_main_seller
-#: model:ir.model.fields,field_description:product_main_seller.field_product_product__main_seller_variant_partner_id
-#: model:ir.model.fields,field_description:product_main_seller.field_product_template__main_seller_variant_partner_id
-msgid "Main Seller Variant Partner"
-msgstr ""
-
-#. module: product_main_seller
-#: model_terms:ir.ui.view,arch_db:product_main_seller.view_product_main_seller_form_2
+#: model:ir.model.fields,field_description:product_main_seller.field_product_product__main_seller_id
+#: model:ir.model.fields,field_description:product_main_seller.field_product_template__main_seller_id
+#: model_terms:ir.ui.view,arch_db:product_main_seller.view_product_template_search
 msgid "Main Vendor"
-msgstr "Fournisseur·e principal·e"
-
-#. module: product_main_seller
-#: model:ir.model,name:product_main_seller.model_product_product
-msgid "Product"
-msgstr "Article"
+msgstr "Fournisseur principal"
 
 #. module: product_main_seller
 #: model:ir.model,name:product_main_seller.model_product_template
-msgid "Product Template"
-msgstr "Modèle d'article"
+msgid "Product"
+msgstr "Produit"
 
 #. module: product_main_seller
-#: model:ir.model.fields,help:product_main_seller.field_product_product__product_main_seller_partner_id
-msgid "Put your supplier info in first position to set as main supplier"
-msgstr "Mettez la ligne d'information fournisseur·e en première position pour le définir comme fournisseur·e principal·e."
-
-#. module: product_main_seller
-#: model:ir.model,name:product_main_seller.model_product_supplierinfo
-msgid "Supplier Pricelist"
-msgstr "Liste de prix du fournisseur·e"
+#: model:ir.model.fields,help:product_main_seller.field_product_product__main_seller_id
+#: model:ir.model.fields,help:product_main_seller.field_product_template__main_seller_id
+msgid "Put your supplier info in first position to set as main vendor"
+msgstr "Définir une information fournisseur en première position pour le définir comme fournisseur principal"
