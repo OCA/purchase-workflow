@@ -4,7 +4,7 @@
 
 {
     "name": "Purchase Commercial Partner",
-    "version": "16.0.1.0.0",
+    "version": "17.0.1.0.0",
     "category": "Purchases",
     "license": "AGPL-3",
     "summary": "Add stored related field 'Commercial Supplier' on POs",
