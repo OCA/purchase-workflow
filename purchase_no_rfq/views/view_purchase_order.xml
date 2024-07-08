@@ -24,8 +24,8 @@
             <field name="date_order" position="attributes">
                 <attribute name="widget">remaining_days</attribute>
                 <attribute
-                    name="attrs"
-                >{'invisible': [('state', 'in', ['purchase', 'done', 'cancel'])]}</attribute>
+                    name="invisible"
+                >state in ('purchase', 'done', 'cancel')</attribute>
             </field>
         </field>
     </record>
@@ -37,51 +37,37 @@
         <field name="priority">100</field>
         <field name="arch" type="xml">
             <!-- Rename title from 'Request for Quotation' into 'Purchase Order' -->
-            <xpath expr="//div[hasclass('oe_title')]/span[1]" position="replace">
+            <xpath
+                expr="/form/sheet/div[hasclass('oe_title')]/span[1]"
+                position="replace"
+            >
                 <span
                     class="o_form_label"
-                    attrs="{'invisible': [('state','not in',('draft','sent'))]}"
+                    invisible="state not in ('draft','sent')"
                 >Purchase Order </span>
             </xpath>
 
             <!-- Change context for "Send by mail" buttons" -->
             <xpath
-                expr="//button[@name='action_rfq_send' and @states='draft']"
+                expr="/form/header/button[@name='action_rfq_send']"
                 position="attributes"
             >
                 <attribute name="context">{'send_rfq':False}</attribute>
             </xpath>
-            <xpath
-                expr="//button[@name='action_rfq_send' and @states='sent']"
-                position="attributes"
-            >
-                <attribute name="context">{'send_rfq':False}</attribute>
-            </xpath>
-
             <!-- Rename print button from  'Print RFQ' into 'Print' -->
             <xpath
-                expr="//button[@name='print_quotation' and @states='draft']"
-                position="attributes"
-            >
-                <attribute name="string">Print</attribute>
-            </xpath>
-            <xpath
-                expr="//button[@name='print_quotation' and @states='sent']"
+                expr="/form/header/button[@name='print_quotation']"
                 position="attributes"
             >
                 <attribute name="string">Print</attribute>
             </xpath>
 
             <!-- Add a print button, displayed in non draft and sent states -->
-            <xpath
-                expr="//button[@name='print_quotation' and @states='sent']"
-                position="after"
-            >
+            <xpath expr="/form/header/button[@name='print_quotation']" position="after">
                     <button
                     name="print_quotation"
                     string="Print"
                     type="object"
-                    states="to approve,purchase,done,cancel"
                     groups="base.group_user"
                 />
             </xpath>

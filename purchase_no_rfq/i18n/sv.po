@@ -17,8 +17,8 @@ msgstr ""
 #. module: purchase_no_rfq
 #: model_terms:ir.ui.view,arch_db:purchase_no_rfq.purchase_order_form
 msgid ""
-"<span class=\"o_form_label\" attrs=\"{'invisible': [('state','not "
-"in',('draft','sent'))]}\">Purchase Order </span>"
+"<span class=\"o_form_label\" invisible=\"state not in "
+"('draft','sent')\">Purchase Order </span>"
 msgstr ""
 
 #. module: purchase_no_rfq
