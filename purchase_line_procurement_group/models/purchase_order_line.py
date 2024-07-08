@@ -25,7 +25,7 @@ class PurchaseOrderLine(models.Model):
             pg_id = values.get("group_id", False)
             if pg_id:
                 pg_id = pg_id.id
-            _self = self.filtered(lambda l: l.procurement_group_id.id == pg_id)
+            _self = self.filtered(lambda var: var.procurement_group_id.id == pg_id)
         return super(PurchaseOrderLine, _self)._find_candidate(
             product_id=product_id,
             product_qty=product_qty,

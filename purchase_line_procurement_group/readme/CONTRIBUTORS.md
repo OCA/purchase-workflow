@@ -5,3 +5,6 @@
 - [Trobz](https://trobz.com):  
   - Phuc Tran \<<phuc@trobz.com>\>
   - Jack Le \<<anlh@trobz.com>\>
+
+- [Binhex](https://binhex.cloud/):  
+  - Deriman Alonso
