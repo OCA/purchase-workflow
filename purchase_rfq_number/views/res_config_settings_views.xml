@@ -10,33 +10,23 @@
             ref="purchase.res_config_settings_view_form_purchase"
         />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='group_send_reminder']/../.." position="after">
-                <div class="col-12 col-lg-6 o_setting_box">
-                    <div class="o_setting_left_pane">
-                        <field name="keep_name_po" />
-                    </div>
-                    <div class="o_setting_right_pane">
-                        <label for="keep_name_po" />
-                        <div class="text-muted">
-                            If this is unchecked, purchase rfq use a different sequence from purchase orders
-                        </div>
-                    </div>
-                </div>
-                <div
-                    class="col-12 col-lg-6 o_setting_box"
-                    attrs="{'invisible': [('keep_name_po', '=', True)]}"
+            <setting id="auto_receipt_reminder" position="after">
+                <setting
+                    id="purchase_rfq_number_keep_name_po"
+                    string="Use Same Enumeration"
+                    help="If this is unchecked, purchase RFQs use a different sequence from confirmed orders"
                 >
-                    <div class="o_setting_left_pane">
-                        <field name="auto_attachment_rfq" />
-                    </div>
-                    <div class="o_setting_right_pane">
-                        <label for="auto_attachment_rfq" />
-                        <div class="text-muted">
-                            Auto attachment requests for quotation after confirm
-                        </div>
-                    </div>
-                </div>
-            </xpath>
+                    <field name="keep_name_po" />
+                </setting>
+                <setting
+                    id="purchase_rfq_number_auto_attachment_rfq"
+                    invisible="keep_name_po"
+                    string="Auto Attachment RFQ"
+                    help="Store the purchase RFQ PDF right before confirmation of the PO"
+                >
+                    <field name="auto_attachment_rfq" />
+                </setting>
+            </setting>
         </field>
     </record>
 </odoo>

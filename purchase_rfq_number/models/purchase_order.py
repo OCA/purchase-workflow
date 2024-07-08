@@ -76,6 +76,6 @@ class PurchaseOrder(models.Model):
         )
 
     def button_draft(self):
-        for rec in self.filtered(lambda l: l.rfq_number != "New"):
+        for rec in self.filtered(lambda po: po.rfq_number != "New"):
             rec.name = rec.rfq_number
         return super().button_draft()

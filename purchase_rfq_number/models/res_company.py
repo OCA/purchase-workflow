@@ -9,21 +9,12 @@ class ResCompany(models.Model):
 
     keep_name_po = fields.Boolean(
         string="Use Same Enumeration",
-        help="If this is unchecked, purchase rfq use a different sequence from "
-        "Purchase orders",
+        help="If this is unchecked, purchase RFQs use a different sequence from "
+        "confirmed orders",
         default=True,
     )
     auto_attachment_rfq = fields.Boolean(
         string="Auto Attachment RFQ",
-        help="Auto attachment requests for quotation after confirm",
+        help="Store the purchase RFQ PDF right before confirmation of the PO",
         default=False,
-    )
-
-
-class ResConfigSettings(models.TransientModel):
-    _inherit = "res.config.settings"
-
-    keep_name_po = fields.Boolean(related="company_id.keep_name_po", readonly=False)
-    auto_attachment_rfq = fields.Boolean(
-        related="company_id.auto_attachment_rfq", readonly=False
     )

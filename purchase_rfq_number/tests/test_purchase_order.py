@@ -54,13 +54,17 @@ class TestPurchaseOrder(TransactionCase):
         self.assertRegex(order1.name, "P")
         self.assertEqual(order1.rfq_number, purchase_for_quotation1_name)
 
-    def test_error_confirmation_sequence(self):
+    def test_redudant_confirmation(self):
         order = self.purchase_order_model.create(
             {
                 "partner_id": self.env.ref("base.res_partner_1").id,
                 "state": "done",
             }
         )
+        # The order is never actually confirmed, so it's current name
+        # is taken from the RFQ sequence.
+        name_orig = order.name
+        self.assertTrue(name_orig.startswith("RFQ"))
         sequence_id = self.env["ir.sequence"].search(
             [
                 ("code", "=", "purchase.order"),
@@ -68,11 +72,14 @@ class TestPurchaseOrder(TransactionCase):
             ]
         )
         next_name = sequence_id.get_next_char(sequence_id.number_next_actual)
+        # A void call to button confirm does not waste a number
         order.button_confirm()
+        self.assertEqual(order.name, name_orig)
         order.update({"state": "draft"})
-        # Now the RFQ can be confirmed
+        # Now the RFQ can be confirmed and a new PO number will be assigned
         order.button_confirm()
         self.assertEqual(next_name, order.name)
+        self.assertEqual(order.rfq_number, name_orig)
 
     def test_auto_attachment_rfq(self):
         order = self.purchase_order_model.create(
