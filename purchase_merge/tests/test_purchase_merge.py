@@ -5,7 +5,7 @@ from odoo.tests import common
 class TestPurchaseMerge(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(TestPurchaseMerge, cls).setUpClass()
+        super().setUpClass()
         cls.PurchaseMerge = cls.env["purchase.merge.automatic.wizard"]
         cls.product_1 = cls.env["product.product"].create({"name": "Product 1"})
         cls.product_2 = cls.env["product.product"].create({"name": "Product 2"})
@@ -306,3 +306,32 @@ class TestPurchaseMerge(common.TransactionCase):
             r"You can't merge purchase orders with different suppliers: .+",
         ):
             purchase_merge._check_all_values(purchase_merge.purchase_ids)
+
+    def test_merge_no_dst_and_moves_activity(self):
+        """
+        Test merge when no destination is set and
+        that an activity is correctly moved (testing openupgrade).
+        """
+        src_po = self.purchase_order_1
+        dst_po = self.purchase_order_2
+
+        activity = self.env["mail.activity"].create(
+            {
+                "res_model_id": self.env.ref("purchase.model_purchase_order").id,
+                "res_id": src_po.id,
+                "activity_type_id": self.env.ref("mail.mail_activity_data_todo").id,
+                "summary": "Test Activity",
+            }
+        )
+        self.assertEqual(activity.res_id, src_po.id)
+        wizard = self.PurchaseMerge.create(
+            {"purchase_ids": [(6, 0, [src_po.id, dst_po.id])]}
+        )
+        wizard.action_merge()
+        self.assertEqual(
+            activity.res_id, dst_po.id, "Activity should have been moved to dst_po."
+        )
+        self.assertEqual(src_po.state, "cancel", "Source PO should be cancelled.")
+        self.assertEqual(
+            len(dst_po.order_line), 2, "Destination PO should have 2 lines."
+        )

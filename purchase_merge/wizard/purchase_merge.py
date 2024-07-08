@@ -27,7 +27,7 @@ class MergePurchaseAutomatic(models.TransientModel):
 
     @api.model
     def default_get(self, fields_list):
-        res = super(MergePurchaseAutomatic, self).default_get(fields_list)
+        res = super().default_get(fields_list)
         active_ids = self.env.context.get("active_ids")
         purchase_orders = self.purchase_ids.browse(active_ids)
         self._check_all_values(purchase_orders)
@@ -54,7 +54,8 @@ class MergePurchaseAutomatic(models.TransientModel):
             po_names = non_draft_po.mapped("name")
             raise ValidationError(
                 _(
-                    "You can't merge purchase orders that aren't in draft state like: {}"
+                    "You can't merge purchase orders that "
+                    "aren't in draft state like: {}"
                 ).format(po_names)
             )
 
@@ -100,7 +101,8 @@ class MergePurchaseAutomatic(models.TransientModel):
         if len(fiscal_positions) > 1:
             error_messages.append(
                 _(
-                    "You can't merge purchase orders with different fiscal positions: %s",
+                    "You can't merge purchase orders "
+                    "with different fiscal positions: %s",
                     ", ".join(fiscal_positions.mapped("name")),
                 )
             )
@@ -151,8 +153,11 @@ class MergePurchaseAutomatic(models.TransientModel):
         # Generate destination origin and partner_ref
         src_order_line = src_purchase.mapped("order_line")
 
+        # Copy order lines without triggering compute methods
+        order_lines = [(4, line.id, 0) for line in src_order_line]
+
         return {
-            "order_line": [(4, line, 0) for line in src_order_line.ids],
+            "order_line": order_lines,
             "origin": ", ".join(origin),
             "partner_ref": ", ".join(partner_ref),
         }
@@ -170,7 +175,7 @@ class MergePurchaseAutomatic(models.TransientModel):
             po_names=" ,".join(po_name),
         )
 
-        po.message_post(body=body, subject=subject, content_subtype="plaintext")
+        po.message_post(body=body, subject=subject)
 
     def _merge(self, purchases, dst_purchase=None):
         """private implementation of merge purchase
@@ -179,21 +184,23 @@ class MergePurchaseAutomatic(models.TransientModel):
         """
         if len(purchases) < 2:
             return
-        record_ids = purchases - dst_purchase
-        openupgrade_merge_records.merge_records(
-            env=self.env,
-            model_name=self._name,
-            record_ids=record_ids.ids,
-            target_record_id=dst_purchase.id,
-        )
         self._check_all_values(purchases)
 
-        # remove dst_purchase from purchases to merge
+        # Determine source and destination purchases
         if dst_purchase and dst_purchase in purchases:
             src_purchase = purchases - dst_purchase
         else:
             dst_purchase = self.purchase_ids[-1]
             src_purchase = self.purchase_ids[:-1]
+
+        openupgrade_merge_records.merge_records(
+            env=self.env,
+            model_name="purchase.order",
+            record_ids=src_purchase.ids,
+            target_record_id=dst_purchase.id,
+            delete=False,
+        )
+
         # call sub methods to do the merge
         self._update_values(src_purchase, dst_purchase)
 
