@@ -7,14 +7,15 @@ from odoo.tests.common import TransactionCase
 
 
 class TestPurchaseOrderOwner(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.partner_id = self.env.ref("base.res_partner_12")
-        self.product_id = self.env.ref("product.product_product_9")
-        self.uom_id = self.env.ref("uom.product_uom_unit")
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.partner_id = cls.env.ref("base.res_partner_12")
+        cls.product_id = cls.env.ref("product.product_product_9")
+        cls.uom_id = cls.env.ref("uom.product_uom_unit")
 
         # Owner
-        self.owner_id = self.env["res.partner"].create({"name": "Owner test"})
+        cls.owner_id = cls.env["res.partner"].create({"name": "Owner test"})
 
     def test_purchase_order_owner(self):
         """Create a purchase order
