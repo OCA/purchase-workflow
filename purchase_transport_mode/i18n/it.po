@@ -1,0 +1,195 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_transport_mode
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-08-17 18:58+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_order__transport_mode_status_ok
+msgid "All transport mode requirements are satisfied"
+msgstr "Tutti i requisiti dellla modalità di trasporto sono soddisfatti"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_order__transport_mode_status
+msgid ""
+"Collect and validate order details to satisfy transport mode requirements"
+msgstr ""
+"Raccogliere e validare i dettagli dell'ordine per soddisfare i requisiti "
+"dellla modalità di trasporto"
+
+#. module: purchase_transport_mode
+#: model:ir.model,name:purchase_transport_mode.model_res_company
+msgid "Companies"
+msgstr "Aziende"
+
+#. module: purchase_transport_mode
+#: model:ir.model,name:purchase_transport_mode.model_res_partner
+msgid "Contact"
+msgstr "Contatto"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__create_uid
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__create_date
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__description
+msgid "Description"
+msgstr "Descrizione"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__display_name
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_transport_mode_constraint__purchase_domain
+msgid "Domain based on purchase"
+msgstr "Dominio in base all'acquisto"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__id
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__id
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode____last_update
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__write_uid
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__write_date
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__name
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__name
+msgid "Name"
+msgstr "Nome"
+
+#. module: purchase_transport_mode
+#: model:ir.model,name:purchase_transport_mode.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr "Impostazioni raggruppamento approvvigionamento acquisti"
+
+#. module: purchase_transport_mode
+#: model:ir.model,name:purchase_transport_mode.model_purchase_order
+msgid "Purchase Order"
+msgstr "Ordine di acquisto"
+
+#. module: purchase_transport_mode
+#: model:ir.actions.act_window,name:purchase_transport_mode.purchase_transport_mode_action
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__purchase_transport_mode_id
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_partner__purchase_transport_mode_id
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_users__purchase_transport_mode_id
+#: model:ir.ui.menu,name:purchase_transport_mode.menu_purchase_transport_mode_action
+msgid "Purchase Transport Mode"
+msgstr "Modalità di trasporto acquisto"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_company__purchase_transport_mode_contraint_enabled
+msgid "Purchase Transport Mode Contraint Enabled"
+msgstr "Limite modalità di trasporto acquisto abilitato"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__constraint_ids
+msgid "Purchase Transport mode Constraints"
+msgstr "Limiti modalità di trasporto acquisto"
+
+#. module: purchase_transport_mode
+#: model_terms:ir.ui.view,arch_db:purchase_transport_mode.purchase_transport_mode_form
+msgid "Purchase transport constraints"
+msgstr "Limiti trasporto acquisto"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_order__transport_mode_status_display
+msgid "Render transport_mode_status in the UI"
+msgstr "Visualizza transport_mode_status nella UI"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__purchase_domain
+msgid "Source Purchase Domain"
+msgstr "Dominio acquisto origine"
+
+#. module: purchase_transport_mode
+#: model:ir.model,name:purchase_transport_mode.model_purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_order__transport_mode_id
+msgid "Transport Mode"
+msgstr "Modalità di trasporto"
+
+#. module: purchase_transport_mode
+#: model:ir.model,name:purchase_transport_mode.model_purchase_transport_mode_constraint
+msgid "Transport Mode Constraint"
+msgstr "Limite modalità di trasporto"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_order__transport_mode_status
+msgid "Transport Mode Status"
+msgstr "Stato modalità di trasporto"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_order__transport_mode_status_display
+msgid "Transport Mode Status Display"
+msgstr "Visualizzazione stato modalità di trasporto"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_order__transport_mode_status_ok
+msgid "Transport Mode Status Ok"
+msgstr "Stato OK modalità di trasporto"
+
+#. module: purchase_transport_mode
+#: model:exception.rule,name:purchase_transport_mode.po_excep_transport_mode
+msgid "Transport mode"
+msgstr "Modalità di trasporto"
+
+#. module: purchase_transport_mode
+#: model_terms:ir.ui.view,arch_db:purchase_transport_mode.purchase_order_transport_mode_status_display
+msgid "Transport mode errors"
+msgstr "Errori modalità di trasporto"
+
+#. module: purchase_transport_mode
+#: model:exception.rule,description:purchase_transport_mode.po_excep_transport_mode
+msgid "Transport mode requirements not satisfied"
+msgstr "Specifiche modalità di trasporto non soddisfatte"
+
+#. module: purchase_transport_mode
+#: model_terms:ir.ui.view,arch_db:purchase_transport_mode.res_config_settings_view_form_purchase_inherit
+msgid "Validate purchase order details to satisfy transport mode requirements"
+msgstr ""
+"Validare i dettagli dell'ordinei di acquisto per soddisfare i requisiti "
+"della modalità di trasporto"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_config_settings__purchase_transport_mode_contraint_enabled
+msgid "Validate purchase transport mode"
+msgstr "Validazione modalità di trasporto acquisti"
