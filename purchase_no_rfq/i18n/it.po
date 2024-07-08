@@ -19,11 +19,9 @@ msgstr ""
 #. module: purchase_no_rfq
 #: model_terms:ir.ui.view,arch_db:purchase_no_rfq.purchase_order_form
 msgid ""
-"<span class=\"o_form_label\" attrs=\"{'invisible': [('state','not "
-"in',('draft','sent'))]}\">Purchase Order </span>"
+"<span class=\"o_form_label\" invisible=\"state not in "
+"('draft','sent')\">Purchase Order </span>"
 msgstr ""
-"<span class=\"o_form_label\" attrs=\"{'invisible': [('state','not "
-"in',('draft','sent'))]}\">Ordine di acquisto </span>"
 
 #. module: purchase_no_rfq
 #: model:ir.model.fields.selection,name:purchase_no_rfq.selection__purchase_order__state__draft
@@ -54,3 +52,10 @@ msgstr "Inviato"
 #: model:ir.model.fields,field_description:purchase_no_rfq.field_purchase_order__state
 msgid "Status"
 msgstr "Stato"
+
+#~ msgid ""
+#~ "<span class=\"o_form_label\" attrs=\"{'invisible': [('state','not in',"
+#~ "('draft','sent'))]}\">Purchase Order </span>"
+#~ msgstr ""
+#~ "<span class=\"o_form_label\" attrs=\"{'invisible': [('state','not in',"
+#~ "('draft','sent'))]}\">Ordine di acquisto </span>"

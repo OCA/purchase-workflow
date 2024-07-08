@@ -4,7 +4,7 @@
 
 {
     "name": "Purchase Order - No Request For Quotation",
-    "version": "16.0.1.0.0",
+    "version": "17.0.1.0.0",
     "author": "GRAP,Odoo Community Association (OCA)",
     "maintainers": ["legalsylvain"],
     "license": "AGPL-3",
