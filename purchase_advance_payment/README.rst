@@ -94,6 +94,14 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
+.. |maintainer-LoisRForgeFlow| image:: https://github.com/LoisRForgeFlow.png?size=40px
+    :target: https://github.com/LoisRForgeFlow
+    :alt: LoisRForgeFlow
+
+Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+
+|maintainer-LoisRForgeFlow| 
+
 This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/16.0/purchase_advance_payment>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
