@@ -15,6 +15,6 @@
         "data/purchase_substate_mail_template_data.xml",
         "data/purchase_substate_data.xml",
     ],
-    "demo": ["data/purchase_substate_demo.xml"],
+    "demo": ["demo/purchase_substate_demo.xml"],
     "installable": True,
 }
