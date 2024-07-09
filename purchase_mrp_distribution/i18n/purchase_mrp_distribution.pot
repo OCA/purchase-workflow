@@ -1,0 +1,176 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_mrp_distribution
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-07-09 09:38+0000\n"
+"PO-Revision-Date: 2024-07-09 09:38+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_mrp_distribution
+#: model_terms:ir.ui.view,arch_db:purchase_mrp_distribution.purchase_order_form
+msgid ""
+"A BoM of type distribution is used to select the quantities of components."
+msgstr ""
+
+#. module: purchase_mrp_distribution
+#: model_terms:ir.ui.view,arch_db:purchase_mrp_distribution.purchase_order_form
+msgid "At a Stock Transfer."
+msgstr ""
+
+#. module: purchase_mrp_distribution
+#: model:ir.model,name:purchase_mrp_distribution.model_mrp_bom
+msgid "Bill of Material"
+msgstr ""
+
+#. module: purchase_mrp_distribution
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_mrp_bom__type
+msgid "BoM Type"
+msgstr ""
+
+#. module: purchase_mrp_distribution
+#: model_terms:ir.ui.view,arch_db:purchase_mrp_distribution.stock_move_distribution_wiz_form
+msgid "Cancel"
+msgstr ""
+
+#. module: purchase_mrp_distribution
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz__create_uid
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz_line__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: purchase_mrp_distribution
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz__create_date
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz_line__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: purchase_mrp_distribution
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz__demand_quantity
+msgid "Demand"
+msgstr ""
+
+#. module: purchase_mrp_distribution
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz__display_name
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_mrp_distribution
+#: model_terms:ir.ui.view,arch_db:purchase_mrp_distribution.stock_move_distribution_wiz_form
+msgid "Distribute"
+msgstr ""
+
+#. module: purchase_mrp_distribution
+#: model:ir.model.fields.selection,name:purchase_mrp_distribution.selection__mrp_bom__type__distribution
+msgid "Distribution"
+msgstr ""
+
+#. module: purchase_mrp_distribution
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move__distribution_bom_id
+msgid "Distribution Bom"
+msgstr ""
+
+#. module: purchase_mrp_distribution
+#: code:addons/purchase_mrp_distribution/models/stock_move.py:0
+#, python-format
+msgid "Distribution for %s"
+msgstr ""
+
+#. module: purchase_mrp_distribution
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz__id
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz_line__id
+msgid "ID"
+msgstr ""
+
+#. module: purchase_mrp_distribution
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz____last_update
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz_line____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: purchase_mrp_distribution
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz__write_uid
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz_line__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: purchase_mrp_distribution
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz__write_date
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz_line__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: purchase_mrp_distribution
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz__line_ids
+msgid "Line"
+msgstr ""
+
+#. module: purchase_mrp_distribution
+#: model:ir.model,name:purchase_mrp_distribution.model_stock_move_distribution_wiz_line
+msgid "Lines of wizard to distribute product qty to diferent products"
+msgstr ""
+
+#. module: purchase_mrp_distribution
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz__move_id
+msgid "Move"
+msgstr ""
+
+#. module: purchase_mrp_distribution
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz_line__product_id
+msgid "Product"
+msgstr ""
+
+#. module: purchase_mrp_distribution
+#: model:ir.model,name:purchase_mrp_distribution.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr ""
+
+#. module: purchase_mrp_distribution
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz_line__quantity
+msgid "Quantity"
+msgstr ""
+
+#. module: purchase_mrp_distribution
+#: model:ir.model,name:purchase_mrp_distribution.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: purchase_mrp_distribution
+#: model:ir.model.fields,help:purchase_mrp_distribution.field_stock_move_distribution_wiz__demand_quantity
+msgid ""
+"This is the quantity of products from an inventory point of view. For moves "
+"in the state 'done', this is the quantity of products that were actually "
+"moved. For other moves, this is the quantity of product that is planned to "
+"be moved. Lowering this quantity does not generate a backorder. Changing "
+"this quantity on assigned moves affects the product reservation, and should "
+"be done with care."
+msgstr ""
+
+#. module: purchase_mrp_distribution
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz__move_uom_id
+msgid "UoM"
+msgstr ""
+
+#. module: purchase_mrp_distribution
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz_line__uom_id
+msgid "Uom"
+msgstr ""
+
+#. module: purchase_mrp_distribution
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz_line__wizard_id
+msgid "Wizard"
+msgstr ""
+
+#. module: purchase_mrp_distribution
+#: model:ir.model,name:purchase_mrp_distribution.model_stock_move_distribution_wiz
+msgid "Wizard to distribute product qty to diferent products"
+msgstr ""

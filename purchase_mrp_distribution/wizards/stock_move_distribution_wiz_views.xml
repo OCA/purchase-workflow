@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="stock_move_distribution_wiz_form" model="ir.ui.view">
+        <field name="name">Stock Move Distribution Wiz Form</field>
+        <field name="model">stock.move.distribution.wiz</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="move_id" invisible="1" />
+                        <label for="demand_quantity" />
+                        <div>
+                            <field name="demand_quantity" />
+                            <field name="move_uom_id" groups="uom.group_uom" />
+                        </div>
+                    </group>
+                    <group>
+                        <field name="line_ids" nolabel="1">
+                            <tree editable="bottom" create="0" delete="0">
+                                <field name="product_id" readonly="1" force_save="1" />
+                                <field name="quantity" />
+                                <field name="uom_id" groups="uom.group_uom" />
+                            </tree>
+                        </field>
+                    </group>
+
+                </sheet>
+                <footer>
+                    <button
+                        name="button_distribute_qty"
+                        string="Distribute"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

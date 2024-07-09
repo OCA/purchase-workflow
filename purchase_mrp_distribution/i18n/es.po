@@ -1,0 +1,189 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_mrp_distribution
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-07-09 09:38+0000\n"
+"PO-Revision-Date: 2024-07-09 11:50+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: purchase_mrp_distribution
+#: model_terms:ir.ui.view,arch_db:purchase_mrp_distribution.purchase_order_form
+msgid ""
+"A BoM of type distribution is used to select the quantities of components."
+msgstr ""
+"Una lista de materiales (BoM) de tipo distribución se utiliza para "
+"seleccionar las cantidades de componentes."
+
+#. module: purchase_mrp_distribution
+#: model_terms:ir.ui.view,arch_db:purchase_mrp_distribution.purchase_order_form
+msgid "At a Stock Transfer."
+msgstr "En una transferencia de stock."
+
+#. module: purchase_mrp_distribution
+#: model:ir.model,name:purchase_mrp_distribution.model_mrp_bom
+msgid "Bill of Material"
+msgstr "Lista de material"
+
+#. module: purchase_mrp_distribution
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_mrp_bom__type
+msgid "BoM Type"
+msgstr "Tipo de LdM"
+
+#. module: purchase_mrp_distribution
+#: model_terms:ir.ui.view,arch_db:purchase_mrp_distribution.stock_move_distribution_wiz_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: purchase_mrp_distribution
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz__create_uid
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz_line__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: purchase_mrp_distribution
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz__create_date
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz_line__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: purchase_mrp_distribution
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz__demand_quantity
+msgid "Demand"
+msgstr "Demanda"
+
+#. module: purchase_mrp_distribution
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz__display_name
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz_line__display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: purchase_mrp_distribution
+#: model_terms:ir.ui.view,arch_db:purchase_mrp_distribution.stock_move_distribution_wiz_form
+msgid "Distribute"
+msgstr "Distribuir"
+
+#. module: purchase_mrp_distribution
+#: model:ir.model.fields.selection,name:purchase_mrp_distribution.selection__mrp_bom__type__distribution
+msgid "Distribution"
+msgstr "Distribución"
+
+#. module: purchase_mrp_distribution
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move__distribution_bom_id
+msgid "Distribution Bom"
+msgstr "LdM de distribución"
+
+#. module: purchase_mrp_distribution
+#: code:addons/purchase_mrp_distribution/models/stock_move.py:0
+#, python-format
+msgid "Distribution for %s"
+msgstr "Distribución para %s"
+
+#. module: purchase_mrp_distribution
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz__id
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_mrp_distribution
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz____last_update
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz_line____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: purchase_mrp_distribution
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz__write_uid
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz_line__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: purchase_mrp_distribution
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz__write_date
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz_line__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: purchase_mrp_distribution
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz__line_ids
+msgid "Line"
+msgstr "Linea"
+
+#. module: purchase_mrp_distribution
+#: model:ir.model,name:purchase_mrp_distribution.model_stock_move_distribution_wiz_line
+msgid "Lines of wizard to distribute product qty to diferent products"
+msgstr ""
+"Líneas del asistente para distribuir la cantidad del producto a diferentes "
+"productos"
+
+#. module: purchase_mrp_distribution
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz__move_id
+msgid "Move"
+msgstr "Movimiento"
+
+#. module: purchase_mrp_distribution
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz_line__product_id
+msgid "Product"
+msgstr "Producto"
+
+#. module: purchase_mrp_distribution
+#: model:ir.model,name:purchase_mrp_distribution.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Línea de pedido de venta"
+
+#. module: purchase_mrp_distribution
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz_line__quantity
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: purchase_mrp_distribution
+#: model:ir.model,name:purchase_mrp_distribution.model_stock_move
+msgid "Stock Move"
+msgstr "Movimiento de Stock"
+
+#. module: purchase_mrp_distribution
+#: model:ir.model.fields,help:purchase_mrp_distribution.field_stock_move_distribution_wiz__demand_quantity
+msgid ""
+"This is the quantity of products from an inventory point of view. For moves "
+"in the state 'done', this is the quantity of products that were actually "
+"moved. For other moves, this is the quantity of product that is planned to "
+"be moved. Lowering this quantity does not generate a backorder. Changing "
+"this quantity on assigned moves affects the product reservation, and should "
+"be done with care."
+msgstr ""
+"Ésta es la cantidad de productos desde un punto de vista de inventario. "
+"Para movimientos en el estado 'Realizado', ésta es la cantidad de productos "
+"que se movieron realmente. Para otros movimientos, ésta es la cantidad de "
+"producto que está planeado mover. Disminuyendo esta cantidad no se genera "
+"un pedido en espera. Cambiando esta cantidad en movimientos asignados, "
+"afecta la reserva de producto, y debe ser realizado con cuidado."
+
+#. module: purchase_mrp_distribution
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz__move_uom_id
+msgid "UoM"
+msgstr "UdM"
+
+#. module: purchase_mrp_distribution
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz_line__uom_id
+msgid "Uom"
+msgstr "UdM"
+
+#. module: purchase_mrp_distribution
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz_line__wizard_id
+msgid "Wizard"
+msgstr "Asistente"
+
+#. module: purchase_mrp_distribution
+#: model:ir.model,name:purchase_mrp_distribution.model_stock_move_distribution_wiz
+msgid "Wizard to distribute product qty to diferent products"
+msgstr ""
+"Asistente para distribuir la cantidad de producto a diferentes productos"

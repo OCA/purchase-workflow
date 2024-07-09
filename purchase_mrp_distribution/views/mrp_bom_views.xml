@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='type']/../p" position="after">
+                <p
+                    colspan="2"
+                    class="oe_grey oe_edit_only"
+                    attrs="{'invisible': [('type','!=','distribution')]}"
+                >
+                A BoM of type distribution is used to select the quantities of components.
+                <ul>
+                    <li>
+                        At a Stock Transfer.
+                    </li>
+                </ul>
+                </p>
+            </xpath>
+        </field>
+    </record>
+</odoo>
