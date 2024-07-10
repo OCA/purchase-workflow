@@ -17,10 +17,12 @@
                     <field name="freight_change_policy" invisible="1" />
                     <field
                         name="dispatch_date"
+                        widget="date"
                         attrs="{'readonly':[['freight_change_policy', '=', 'dispatch']]}"
                     />
                     <field
                         name="receive_date"
+                        widget="date"
                         attrs="{'readonly':[['freight_change_policy', '=', 'receive']]}"
                     />
                     <field
@@ -34,7 +36,7 @@
                 </group>
             </xpath>
             <field name="incoterm_address_id" position="after">
-                <field name="incoterm_date" />
+                <field name="incoterm_date" widget="date" />
             </field>
         </field>
     </record>

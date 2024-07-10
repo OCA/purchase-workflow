@@ -15,12 +15,14 @@ class PurchaseOrder(models.Model):
     freight_rule_id = fields.Many2one(
         comodel_name="freight.rule",
         domain="[['partner_src_id','in', (False)]]",
+        string="Rule",
         # recomputed with more incoterm_address_id
         # in onchange()
     )
     freight_duration = fields.Integer(
         compute="_compute_freight_duration",
         inverse="_inverse_freight_duration",
+        string="Duration",
         store=True,
         help=HELP_DURATION,
     )
@@ -48,6 +50,7 @@ class PurchaseOrder(models.Model):
             ("date", "Date"),
             ("duration", "Duration"),
         ],
+        string="Change Selector",
         default="duration",
     )
     freight_change_policy = fields.Selection(
