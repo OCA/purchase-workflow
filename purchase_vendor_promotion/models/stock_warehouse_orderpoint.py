@@ -20,7 +20,7 @@ class StockWarehouseOrderpoint(models.Model):
     def _compute_supplier_id(self):
         for rec in self:
             if rec.route_id and rec.route_id.force_vendor_with_best_promotion:
-                allowed_company_ids = rec.allowed_location_ids.mapped("company_id")
+                allowed_company_ids = rec.allowed_location_ids.company_id
                 suppliers = rec.product_id._prepare_sellers(False).filtered(
                     lambda x: x.company_id in allowed_company_ids
                 )
