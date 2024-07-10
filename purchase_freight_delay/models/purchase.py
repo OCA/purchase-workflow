@@ -184,9 +184,14 @@ class PurchaseOrder(models.Model):
     def write(self, vals):
         # change date_planned with ours
         res = super().write(vals)
-        if "receive_date" or "dispatch_date" or "freight_duration" in vals:
+        if [
+            x
+            for x in ("receive_date", "dispatch_date", "freight_duration")
+            if x in vals
+        ]:
             # not really efficient
-            res = super().write({"date_planned": self.receive_date})
+            for rec in self:
+                res = super().write({"date_planned": rec.receive_date})
         return res
 
 
