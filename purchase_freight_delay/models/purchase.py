@@ -35,7 +35,7 @@ class PurchaseOrder(models.Model):
         # use case:
         # PO is created from a procurement with a receive_date (date_planned)
         # then, a duration is choosen (based on avg supplier transit delay)
-        # so dispatch_date = recieve_date - duration
+        # so dispatch_date = receive_date - duration
         # dispatch date is the date asked to the supplier
         readonly=False,
         store=True,
@@ -66,23 +66,12 @@ class PurchaseOrder(models.Model):
         ondelete={"dispatch": "set default", "received": "set default"},
         help="Choose which field will be recomputed",
     )
-
     incoterm_date = fields.Datetime(
         related="dispatch_date",
         string="Incoterm date",
         help="Date of transfert of responsibility (is freight dispatch date)",
         readonly=True,
     )
-
-    @api.onchange("incoterm_address_id")
-    def onchange_freight_rule_id(self):
-        return {
-            "domain": {
-                "freight_rule_id": [
-                    ("partner_src_id", "in", (False, self.incoterm_address_id.id))
-                ]
-            }
-        }
 
     def _set_freight_fields(
         self, receive_date, dispatch_date, freight_duration, policy

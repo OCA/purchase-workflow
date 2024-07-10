@@ -31,6 +31,7 @@
                     />
                     <field
                         name="freight_rule_id"
+                        domain="[('partner_src_id', 'in', (False, incoterm_address_id))]"
                         attrs="{'readonly':[['freight_change_policy', '=', 'duration']]}"
                     />
                 </group>
