@@ -94,6 +94,7 @@ class AccountVoucherWizardPurchase(models.TransientModel):
     def _prepare_payment_vals(self, purchase):
         partner_id = purchase.partner_id.id
         return {
+            "purchase_id": purchase.id,
             "date": self.date,
             "amount": self.amount_advance,
             "payment_type": "outbound",
@@ -119,8 +120,12 @@ class AccountVoucherWizardPurchase(models.TransientModel):
             purchase = purchase_obj.browse(purchase_id)
             payment_vals = self._prepare_payment_vals(purchase)
             payment = payment_obj.create(payment_vals)
-            purchase.account_payment_ids |= payment
-            payment.action_post()
+            if bool(
+                self.env["ir.config_parameter"]
+                .sudo()
+                .get_param("purchase_advance_payment.auto_post_advance_payments")
+            ):
+                payment.action_post()
 
         return {
             "type": "ir.actions.act_window_close",
