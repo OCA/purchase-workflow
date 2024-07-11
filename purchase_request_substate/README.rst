@@ -42,7 +42,7 @@ the order can not be approved without document checked and verified
 Usage
 =====
 
-#. Go to ** Settings > Technical > Database Structure ** and Add  "Base substate".
+#. Go to ** Settings > Technical > Sub State Configuration ** and Add  "Base substate".
     If necessery you can add "target State values" (ex define a substate for "cancel"
     state).
     Substate sequence is very important.
