@@ -76,8 +76,7 @@ class PurchaseRequestLineMakePurchaseRequisition(models.TransientModel):
             "product_id": item.product_id.id,
             "product_uom_id": item.product_uom_id.id,
             "purchase_request_lines": [(4, item.line_id.id)],
-            "account_analytic_id": item.line_id.analytic_account_id.id or False,
-            "analytic_tag_ids": item.line_id.analytic_tag_ids.ids or False,
+            "analytic_distribution": item.line_id.analytic_distribution or False,
             "product_description_variants": item.name,
         }
 
@@ -87,8 +86,7 @@ class PurchaseRequestLineMakePurchaseRequisition(models.TransientModel):
             ("requisition_id", "=", requisition.id),
             ("product_id", "=", item.product_id.id or False),
             ("product_uom_id", "=", item.product_uom_id.id or False),
-            ("account_analytic_id", "=", item.line_id.analytic_account_id.id or False),
-            ("analytic_tag_ids", "in", item.line_id.analytic_tag_ids.ids or False),
+            ("analytic_distribution", "=", item.line_id.analytic_distribution or False),
         ]
         return vals
 
