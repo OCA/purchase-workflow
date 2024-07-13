@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="purchase_order_view_form_inherit" model="ir.ui.view">
+        <field name="name">purchase.order.view.form.inherit</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']" position="after">
+                <group name="total_ordered_qty">
+                    <field name="total_ordered_qty_json" invisible="1" />
+                    <label
+                        for="total_ordered_qty_text"
+                        string="Total Quantity"
+                        attrs="{'invisible': [('total_ordered_qty_json', '=', '{}')]}"
+                    />
+                    <div attrs="{'invisible': [('total_ordered_qty_json', '=', '{}')]}">
+                        <field name="total_ordered_qty_text" />
+                    </div>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

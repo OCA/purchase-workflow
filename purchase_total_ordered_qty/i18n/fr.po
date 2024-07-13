@@ -1,0 +1,37 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_total_ordered_qty
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-01-30 09:39+0000\n"
+"PO-Revision-Date: 2023-01-30 09:39+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_total_ordered_qty
+#: model:ir.model,name:purchase_total_ordered_qty.model_purchase_order
+msgid "Purchase Order"
+msgstr "Commande fournisseur"
+
+#. module: purchase_total_ordered_qty
+#: model_terms:ir.ui.view,arch_db:purchase_total_ordered_qty.purchase_order_view_form_inherit
+msgid "Total Quantity"
+msgstr ""
+
+#. module: purchase_total_ordered_qty
+#: model:ir.model.fields,field_description:purchase_total_ordered_qty.field_purchase_order__total_ordered_qty_json
+msgid "Total Quantity Json"
+msgstr ""
+
+#. module: purchase_total_ordered_qty
+#: model:ir.model.fields,field_description:purchase_total_ordered_qty.field_purchase_order__total_ordered_qty_text
+msgid "Total Quantity Text"
+msgstr ""
