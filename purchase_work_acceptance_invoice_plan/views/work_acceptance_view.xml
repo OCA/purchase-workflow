@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_work_acceptance_form" model="ir.ui.view">
+        <field name="name">work.acceptance.form</field>
+        <field name="model">work.acceptance</field>
+        <field
+            name="inherit_id"
+            ref="purchase_work_acceptance.view_work_acceptance_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_ref']" position="after">
+                <field name="installment_id" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
