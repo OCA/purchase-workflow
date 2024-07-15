@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-03-15 15:37+0000\n"
+"PO-Revision-Date: 2024-07-15 09:58+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: purchase_advance_payment
 #: model:ir.model,name:purchase_advance_payment.model_account_voucher_wizard_purchase
@@ -36,7 +36,7 @@ msgstr "Stato pagamento anticipato"
 #: model:ir.actions.act_window,name:purchase_advance_payment.action_account_advance_payments_payable
 #: model:ir.ui.menu,name:purchase_advance_payment.menu_account_advance_payments_payable
 msgid "Advance Payments"
-msgstr ""
+msgstr "Anticipo pagamenti"
 
 #. module: purchase_advance_payment
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.purchase_order_kpis_tree
@@ -152,12 +152,12 @@ msgstr "Non pagato"
 #. module: purchase_advance_payment
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_payment_search
 msgid "Not Reconciled"
-msgstr ""
+msgstr "Non riconciliata"
 
 #. module: purchase_advance_payment
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_payment_search
 msgid "Not Sent"
-msgstr ""
+msgstr "Non inviato"
 
 #. module: purchase_advance_payment
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_voucher_wizard
@@ -202,7 +202,7 @@ msgstr "Metodo di pagamento"
 #. module: purchase_advance_payment
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_supplier_payment_tree
 msgid "Payment Sent?"
-msgstr ""
+msgstr "Pagamento inviato?"
 
 #. module: purchase_advance_payment
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.purchase_order_form
@@ -247,4 +247,4 @@ msgstr "Importo residuo"
 #. module: purchase_advance_payment
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_payment_search
 msgid "Vendor Advance Payments"
-msgstr ""
+msgstr "Anticipo pagamenti fornitore"
