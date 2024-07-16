@@ -2,3 +2,4 @@
   - Víctor Martínez
   - Pedro M. Baeza
   - César A. Sánchez
+- Maciej Wichowski \<<maciej@versada.eu>\>

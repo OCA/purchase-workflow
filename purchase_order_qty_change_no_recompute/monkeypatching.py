@@ -15,6 +15,7 @@ def get_depends(self, model):
         "name",
         "date_planned",
         "price_unit",
+        "discount",
     }:
         if "product_qty" in depends:
             depends.remove("product_qty")
