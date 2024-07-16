@@ -9,7 +9,7 @@ class TestPurchaseOrder(TransactionCase):
     def setUp(self, *args, **kwargs):
         super(TestPurchaseOrder, self).setUp()
         self.purchase_order_model = self.env["purchase.order"]
-        company = self.env.company
+        company = self.env.ref("base.main_company")
         company.keep_name_po = False
         company.auto_attachment_rfq = True
 

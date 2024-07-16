@@ -30,12 +30,12 @@ class PurchaseOrder(models.Model):
                 self.env["res.company"].browse(vals.get("company_id")).keep_name_po
             )
         else:
-            keep_name_po = self.env.company.keep_name_po
+            keep_name_po = self.env.user.company_id.keep_name_po
 
         if not keep_name_po and vals.get("name", "New") == "New":
-            company_id = vals.get("company_id", self.env.company.id)
+            company_id = vals.get("company_id", self.env.user.company_id.id)
             vals["name"] = (
-                self.with_company(company_id)
+                self.with_context(force_company=company_id)
                 .env["ir.sequence"]
                 .next_by_code("purchase.rfq")
                 or "New"
@@ -53,7 +53,7 @@ class PurchaseOrder(models.Model):
                 po_number = (
                     order.po_number
                     if order.po_number != "New"
-                    else self.with_company(company.id)
+                    else self.with_context(force_company=company.id)
                     .env["ir.sequence"]
                     .next_by_code("purchase.order")
                 )
@@ -68,7 +68,7 @@ class PurchaseOrder(models.Model):
         return super().button_confirm()
 
     def action_get_rfq_attachment(self):
-        rfq_pdf = self.env.ref("purchase.report_purchase_quotation")._render_qweb_pdf(
+        rfq_pdf = self.env.ref("purchase.report_purchase_quotation").render_qweb_pdf(
             self.id
         )[0]
         return self.env["ir.attachment"].create(
