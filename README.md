@@ -54,6 +54,7 @@ addon | version | maintainers | summary
 [purchase_order_general_discount](purchase_order_general_discount/) | 15.0.1.0.2 |  | General discount per purchase order
 [purchase_order_line_deep_sort](purchase_order_line_deep_sort/) | 15.0.1.0.0 |  | Purchase Order Line Sort
 [purchase_order_line_menu](purchase_order_line_menu/) | 15.0.1.2.0 |  | Adds Purchase Order Lines Menu
+[purchase_order_line_original_date](purchase_order_line_original_date/) | 15.0.1.0.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | adds the Original Delivery Date to PO lines.
 [purchase_order_line_price_history](purchase_order_line_price_history/) | 15.0.1.0.1 |  | Purchase order line price history
 [purchase_order_line_price_history_discount](purchase_order_line_price_history_discount/) | 15.0.1.0.1 |  | Purchase order line price history discount
 [purchase_order_line_qty_to_receive](purchase_order_line_qty_to_receive/) | 15.0.1.0.0 |  | Purchase Line - Qty To Receive
