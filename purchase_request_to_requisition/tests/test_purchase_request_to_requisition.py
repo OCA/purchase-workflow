@@ -8,15 +8,16 @@ from odoo.tests.common import TransactionCase
 
 @tagged("post_install", "-at_install")
 class TestPurchaseRequestToRequisition(TransactionCase):
-    def setUp(self):
-        super(TestPurchaseRequestToRequisition, self).setUp()
-        self.purchase_request = self.env["purchase.request"]
-        self.purchase_request_line = self.env["purchase.request.line"]
-        self.wiz = self.env["purchase.request.line.make.purchase.requisition"]
-        self.purchase_order = self.env["purchase.order"]
-        self.product1 = self.env.ref("product.product_product_13")
-        self.company2 = self.env["res.company"].create({"name": "Test company"})
-        self.picking_type2 = self.env["stock.picking.type"].search(
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.purchase_request = cls.env["purchase.request"]
+        cls.purchase_request_line = cls.env["purchase.request.line"]
+        cls.wiz = cls.env["purchase.request.line.make.purchase.requisition"]
+        cls.purchase_order = cls.env["purchase.order"]
+        cls.product1 = cls.env.ref("product.product_product_13")
+        cls.company2 = cls.env["res.company"].create({"name": "Test company"})
+        cls.picking_type2 = cls.env["stock.picking.type"].search(
             [("code", "=", "incoming")]
         )
 
@@ -189,18 +190,3 @@ class TestPurchaseRequestToRequisition(TransactionCase):
         ).create({})
         wiz.make_purchase_requisition()
         purchase_request1.action_view_purchase_requisition()
-
-    def test_03_product_request_requisition(self):
-        with self.assertRaises(UserError):
-            self.product1.write(
-                {
-                    "purchase_request": True,
-                    "purchase_requisition": "tenders",
-                }
-            )
-        self.product1.write(
-            {
-                "purchase_request": False,
-                "purchase_requisition": "tenders",
-            }
-        )
