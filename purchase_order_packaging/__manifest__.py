@@ -16,5 +16,7 @@
         "purchase_stock",
         "stock_mts_mto_rule",
         "sale_management",
+        "product_manufacturer",
+        "sale_partner_incoterm",
     ],
 }

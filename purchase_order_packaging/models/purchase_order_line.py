@@ -6,7 +6,6 @@ from odoo import api, models
 
 
 class PurchaseOrderLine(models.Model):
-
     _inherit = "purchase.order.line"
 
     @api.model
@@ -20,6 +19,12 @@ class PurchaseOrderLine(models.Model):
         )
         if values.get("product_packaging_id"):
             vals["product_packaging_id"] = values.get("product_packaging_id").id
+            packaging_id = self.env["product.packaging"].browse(
+                vals["product_packaging_id"]
+            )
+            if vals["product_qty"] % packaging_id.qty != 0:
+                qty = ((vals["product_qty"] // packaging_id.qty) + 1) * packaging_id.qty
+                vals["product_qty"] = qty
         return vals
 
     def _find_candidate(
@@ -34,6 +39,7 @@ class PurchaseOrderLine(models.Model):
         values,
     ):
         """Recovery of this function to add the notion of packaging in the filtered"""
+
         description_picking = ""
         if values.get("product_description_variants"):
             description_picking = values["product_description_variants"]
@@ -48,7 +54,6 @@ class PurchaseOrderLine(models.Model):
             if values["product_packaging_id"]
             else True
         )
-
         # In case 'product_description_variants' is in the values, we also filter on the PO line
         # name. This way, we can merge lines with the same description. To do so, we need the
         # product name in the context of the PO partner.

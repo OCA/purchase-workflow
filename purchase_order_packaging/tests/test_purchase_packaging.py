@@ -49,6 +49,27 @@ class TestPurchasePackaging(TransactionCase):
                 ],
             }
         )
+        cls.product_id2 = cls.env["product.template"].create(
+            {
+                "name": "Test Manufacturer",
+                "sale_ok": True,
+                "purchase_ok": True,
+                "detailed_type": "product",
+                "route_ids": [(6, 0, [cls.route1.id, cls.route2.id])],
+                "seller_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "partner_id": cls.vendor_id.id,
+                            "price": 10,
+                            "currency_id": cls.currency_id.id,
+                            "delay": 1,
+                        },
+                    )
+                ],
+            }
+        )
 
     def test_purchase_packaging_from_procurement(self):
         # Check of packaging is well passed from procurement to purchase line
