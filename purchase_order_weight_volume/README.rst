@@ -17,19 +17,20 @@ Purchase Order Weight and Volume
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/purchase-workflow/tree/16.0/purchase_order_weight_volume
+    :target: https://github.com/OCA/purchase-workflow/tree/17.0/purchase_order_weight_volume
     :alt: OCA/purchase-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/purchase-workflow-16-0/purchase-workflow-16-0-purchase_order_weight_volume
+    :target: https://translation.odoo-community.org/projects/purchase-workflow-17-0/purchase-workflow-17-0-purchase_order_weight_volume
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-- Display weight and volume in Purchase Order Line.
-- Display total order weight and total order volume in Purchase Order, tab "Other information".
+-  Display weight and volume in Purchase Order Line.
+-  Display total order weight and total order volume in Purchase Order,
+   tab "Other information".
 
 **Table of contents**
 
@@ -41,17 +42,19 @@ Usage
 
 To use this module, you need to:
 
-* Go to Purchase settings.
-* Enable checkboxes "Display Order Weight in PO" and/or "Display Order Volume in PO".
-* Go to Products. Update some products with weight and volume values.
-* Go to Purchase.
-* Create new RFQ. Add products.
-* You will see new column with total line items weight and volume.
-* You will see order total weight and volume, tab "Other information".
-* From this tab, you can also choose whether to display weight and/or volume info in report.
+-  Go to Purchase settings.
+-  Enable checkboxes "Display Order Weight in PO" and/or "Display Order
+   Volume in PO".
+-  Go to Products. Update some products with weight and volume values.
+-  Go to Purchase.
+-  Create new RFQ. Add products.
+-  You will see new column with total line items weight and volume.
+-  You will see order total weight and volume, tab "Other information".
+-  From this tab, you can also choose whether to display weight and/or
+   volume info in report.
 
-"Display Order Weight in PO" and "Display Order Volume in PO" can be enabled/disabled
-per company.
+"Display Order Weight in PO" and "Display Order Volume in PO" can be
+enabled/disabled per company.
 
 Bug Tracker
 ===========
@@ -59,7 +62,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/purchase-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_order_weight_volume%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_order_weight_volume%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -67,25 +70,26 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Ilyas
 * Ooops404
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Ooops404 <https://www.ooops404.com>`__:
+-  `Ooops404 <https://www.ooops404.com>`__:
 
-  * Ilyas <irazor147@gmail.com>
+   -  Ilyas <irazor147@gmail.com>
 
 Other credits
-~~~~~~~~~~~~~
+-------------
 
-The migration of this module from 15.0 to 16.0 was financially supported by Camptocamp.
+The migration of this module from 15.0 to 16.0 was financially supported
+by Camptocamp.
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -105,6 +109,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-ilyasProgrammer| 
 
-This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/16.0/purchase_order_weight_volume>`_ project on GitHub.
+This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/17.0/purchase_order_weight_volume>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
