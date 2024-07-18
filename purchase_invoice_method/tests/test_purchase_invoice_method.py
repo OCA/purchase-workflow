@@ -28,7 +28,6 @@ class TestPurchaseInvoiceMethod(TransactionCase):
         )
 
     def test_force_create_invoice_receive(self):
-
         purchase_order_form = Form(self.env["purchase.order"])
         purchase_order_form.partner_id = self.vendor
 
