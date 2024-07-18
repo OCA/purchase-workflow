@@ -1,0 +1,3 @@
+- Display weight and volume in Purchase Order Line.
+- Display total order weight and total order volume in Purchase Order,
+  tab "Other information".
