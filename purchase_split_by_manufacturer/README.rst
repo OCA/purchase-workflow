@@ -1,5 +1,5 @@
 ===========================
-Purchase Order Manufacturer
+Purchase Split Manufacturer
 ===========================
 
 .. 

@@ -10,12 +10,13 @@ class StockRule(models.Model):
 
     def _make_po_get_domain(self, company_id, values, partner):
         """ """
-        domain = super(StockRule, self)._make_po_get_domain(company_id, values, partner)
-        domain += (
-            (
-                "manufacturer_id",
-                "=",
-                values["move_dest_ids"].product_id.manufacturer_id.id,
-            ),
-        )
+        domain = super()._make_po_get_domain(company_id, values, partner)
+        if "move_dest_ids" in values:
+            domain += (
+                (
+                    "manufacturer_id",
+                    "=",
+                    values["move_dest_ids"].product_id.manufacturer_id.id,
+                ),
+            )
         return domain
