@@ -13,8 +13,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
-"%100==4 ? 2 : 3;\n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3;\n"
 "X-Generator: Weblate 4.14.1\n"
 
 #. module: purchase_manual_delivery
@@ -232,6 +232,12 @@ msgid "Product"
 msgstr "Proizvod"
 
 #. module: purchase_manual_delivery
+#: model:ir.actions.act_window,name:purchase_manual_delivery.action_order_line_delivery_tree
+#: model:ir.ui.menu,name:purchase_manual_delivery.menu_delivery_purchase_order_lines
+msgid "Purchase Manual Receipt"
+msgstr ""
+
+#. module: purchase_manual_delivery
 #: model:ir.model,name:purchase_manual_delivery.model_purchase_order
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard__purchase_id
 #: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.view_purchase_order_unreceived_line_filter
@@ -243,12 +249,6 @@ msgstr "Nabavni nalog"
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__purchase_order_line_id
 msgid "Purchase Order Line"
 msgstr "Postavka nabavnega naloga"
-
-#. module: purchase_manual_delivery
-#: model:ir.actions.act_window,name:purchase_manual_delivery.action_order_line_delivery_tree
-#: model:ir.ui.menu,name:purchase_manual_delivery.menu_delivery_purchase_order_lines
-msgid "Purchase Order Lines"
-msgstr "Postavke nabavnih nalogov"
 
 #. module: purchase_manual_delivery
 #: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.view_purchase_order_unreceived_line_filter
@@ -387,3 +387,6 @@ msgid ""
 msgstr ""
 "Ne morete prejeti več, kot je preostala količina. Če je to potrebno uredite "
 "popravite nabavni nalog."
+
+#~ msgid "Purchase Order Lines"
+#~ msgstr "Postavke nabavnih nalogov"
