@@ -10,14 +10,14 @@ class StockRule(models.Model):
 
     def _make_po_get_domain(self, company_id, values, partner):
         """ """
-        domain = super(StockRule, self)._make_po_get_domain(company_id, values, partner)
-        partner_id = values["move_dest_ids"].partner_id
+        domain = super()._make_po_get_domain(company_id, values, partner)
         incoterm = (
             self.env["ir.config_parameter"].sudo().get_param("account_incoterm", False)
         )
         incoterm = tuple(item.strip() for item in incoterm.split(","))
-        if partner_id.purchase_incoterm_id.code in incoterm:
-            domain += (("incoterm_id", "=", partner_id.purchase_incoterm_id.id),)
+        supplier_incoterm_id = values["supplier"].partner_id.purchase_incoterm_id
+        if supplier_incoterm_id.code in incoterm:
+            domain += (("incoterm_id", "=", supplier_incoterm_id.id),)
         else:
             domain += (
                 "|",
