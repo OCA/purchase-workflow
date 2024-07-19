@@ -235,6 +235,12 @@ msgid "Product"
 msgstr "Producto"
 
 #. module: purchase_manual_delivery
+#: model:ir.actions.act_window,name:purchase_manual_delivery.action_order_line_delivery_tree
+#: model:ir.ui.menu,name:purchase_manual_delivery.menu_delivery_purchase_order_lines
+msgid "Purchase Manual Receipt"
+msgstr ""
+
+#. module: purchase_manual_delivery
 #: model:ir.model,name:purchase_manual_delivery.model_purchase_order
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard__purchase_id
 #: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.view_purchase_order_unreceived_line_filter
@@ -246,12 +252,6 @@ msgstr "Orden de Compra"
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__purchase_order_line_id
 msgid "Purchase Order Line"
 msgstr "Línea de Orden de Compra"
-
-#. module: purchase_manual_delivery
-#: model:ir.actions.act_window,name:purchase_manual_delivery.action_order_line_delivery_tree
-#: model:ir.ui.menu,name:purchase_manual_delivery.menu_delivery_purchase_order_lines
-msgid "Purchase Order Lines"
-msgstr "Líneas de Orden de Compra"
 
 #. module: purchase_manual_delivery
 #: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.view_purchase_order_unreceived_line_filter
@@ -391,6 +391,9 @@ msgid ""
 msgstr ""
 "No puede recibir más de la cantidad restante. Si necesita hacerlo, edite "
 "primero la orden de compra."
+
+#~ msgid "Purchase Order Lines"
+#~ msgstr "Líneas de Orden de Compra"
 
 #~ msgid "Config Settings"
 #~ msgstr "Ajustes de Config"
