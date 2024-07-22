@@ -17,8 +17,8 @@ msgstr ""
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
 msgid ""
-"<span attrs=\"{'invisible': [('advance_payment_method', '!=', "
-"'percentage')]}\" class=\"oe_inline\">%</span>"
+"<span invisible=\"advance_payment_method != 'percentage'\" "
+"class=\"oe_inline\">%</span>"
 msgstr ""
 
 #. module: purchase_deposit
@@ -148,11 +148,6 @@ msgstr ""
 #. module: purchase_deposit
 #: model:ir.model,name:purchase_deposit.model_account_move
 msgid "Journal Entry"
-msgstr ""
-
-#. module: purchase_deposit
-#: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: purchase_deposit

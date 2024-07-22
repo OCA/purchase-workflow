@@ -19,11 +19,9 @@ msgstr ""
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
 msgid ""
-"<span attrs=\"{'invisible': [('advance_payment_method', '!=', "
-"'percentage')]}\" class=\"oe_inline\">%</span>"
+"<span invisible=\"advance_payment_method != 'percentage'\" "
+"class=\"oe_inline\">%</span>"
 msgstr ""
-"<span attrs=\"{'invisible': [('advance_payment_method', '!=', "
-"'percentage')]}\" class=\"oe_inline\">%</span>"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,help:purchase_deposit.field_purchase_advance_payment_inv__deposit_account_id
@@ -159,11 +157,6 @@ msgid "Journal Entry"
 msgstr "Registrazione contabile"
 
 #. module: purchase_deposit
-#: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
-
-#. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__write_uid
 msgid "Last Updated by"
 msgstr "Ultimo aggiornamento di"
@@ -234,8 +227,8 @@ msgid ""
 "The product used to invoice a down payment should be of type \"Service\". "
 "Please use another product or update this product."
 msgstr ""
-"Il prodottoutilizzato per fatturare un acconto deve essere di tipo \"Servizio"
-"\". Utilizzare un altro prodotto o modificare questo."
+"Il prodottoutilizzato per fatturare un acconto deve essere di tipo "
+"\"Servizio\". Utilizzare un altro prodotto o modificare questo."
 
 #. module: purchase_deposit
 #. odoo-python
@@ -279,6 +272,16 @@ msgstr "Imposte venditore"
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__advance_payment_method
 msgid "What do you want to invoice?"
 msgstr "Cosa si vuole fatturare?"
+
+#~ msgid ""
+#~ "<span attrs=\"{'invisible': [('advance_payment_method', '!=', "
+#~ "'percentage')]}\" class=\"oe_inline\">%</span>"
+#~ msgstr ""
+#~ "<span attrs=\"{'invisible': [('advance_payment_method', '!=', "
+#~ "'percentage')]}\" class=\"oe_inline\">%</span>"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
 
 #~ msgid "Config Settings"
 #~ msgstr "Impostazioni configurazione"
