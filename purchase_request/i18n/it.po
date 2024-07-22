@@ -14,8 +14,8 @@ msgstr ""
 "POT-Creation-Date: 2016-11-17 03:38+0000\n"
 "PO-Revision-Date: 2024-05-02 13:42+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
-"Language-Team: Italian (http://www.transifex.com/oca/"
-"OCA-purchase-workflow-10-0/language/it/)\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-purchase-"
+"workflow-10-0/language/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -547,9 +547,7 @@ msgstr "Se selezionata, nuovi messaggi richiedono attenzione."
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__message_has_error
-#: model:ir.model.fields,help:purchase_request.field_purchase_request__message_has_sms_error
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__message_has_error
-#: model:ir.model.fields,help:purchase_request.field_purchase_request_line__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Se selezionata, alcuni messaggi hanno un errore di consegna."
 
@@ -1160,12 +1158,6 @@ msgid "Responsible User"
 msgstr "Utente responsabile"
 
 #. module: purchase_request
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_has_sms_error
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Errore consegna SMS"
-
-#. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_search_sub
 msgid "Search Purchase Order Line"
 msgstr "Cerca riga ordine di acquisto"
@@ -1497,6 +1489,9 @@ msgstr "Bisogna selezionare le righe dallo stesso tipo di prelievo."
 #, python-format
 msgid "You have to select lines from the same company."
 msgstr "Bisogna selezionare le righe della stessa azienda."
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Errore consegna SMS"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Ultima modifica il"
