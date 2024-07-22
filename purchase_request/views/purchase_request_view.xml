@@ -10,7 +10,7 @@
                 <header>
                     <button
                         name="button_draft"
-                        states="to_approve,approved,rejected,done"
+                        states="to_approve,approved,rejected,in_progress,done"
                         string="Reset"
                         type="object"
                         groups="purchase_request.group_purchase_request_manager"
@@ -31,14 +31,21 @@
                         groups="purchase_request.group_purchase_request_manager"
                     />
                     <button
-                        name="%(action_purchase_request_line_make_purchase_order)d"
+                        name="button_in_progress"
                         states="approved"
+                        string="In Progress"
+                        type="object"
+                        groups="purchase_request.group_purchase_request_manager"
+                    />
+                    <button
+                        name="%(action_purchase_request_line_make_purchase_order)d"
+                        states="approved,in_progress"
                         string="Create RFQ"
                         type="action"
                     />
                     <button
                         name="button_done"
-                        states="approved"
+                        states="approved,in_progress"
                         string="Done"
                         type="object"
                         class="oe_highlight"
@@ -46,7 +53,7 @@
                     />
                     <button
                         name="button_rejected"
-                        states="to_approve,approved"
+                        states="to_approve,approved,in_progress"
                         string="Reject"
                         type="object"
                         groups="purchase_request.group_purchase_request_manager"
@@ -54,7 +61,7 @@
                     <field
                         name="state"
                         widget="statusbar"
-                        statusbar_visible="draft,to_approve,approved,done,rejected"
+                        statusbar_visible="draft,to_approve,approved,done,in_progress"
                         statusbar_colors='{"approved":"blue"}'
                     />
                 </header>
@@ -267,7 +274,7 @@
                 <field
                     name="state"
                     widget="badge"
-                    decoration-success="state in ('done', 'approved')"
+                    decoration-success="state in ('done', 'approved', 'in_progress')"
                     decoration-muted="state == 'draft'"
                     decoration-warning="state == 'to_approve'"
                     decoration-danger="state == 'rejected'"
@@ -308,6 +315,12 @@
                     string="Approved"
                     domain="[('state','=','approved')]"
                     help="Request is approved"
+                />
+                <filter
+                    name="state_in_progress"
+                    string="In Progress"
+                    domain="[('state','=','in_progress')]"
+                    help="Request is in progress"
                 />
                 <filter
                     name="state_rejected"
