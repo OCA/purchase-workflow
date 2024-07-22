@@ -32,20 +32,20 @@
                     />
                     <button
                         name="button_in_progress"
-                        invisible="state not in ('approved')"
+                        invisible="state != 'approved'"
                         string="In Progress"
                         type="object"
                         groups="purchase_request.group_purchase_request_manager"
                     />
                     <button
                         name="%(action_purchase_request_line_make_purchase_order)d"
-                        invisible="state not in ('approved','in_progress')"
+                        invisible="state not in ('approved', 'in_progress')"
                         string="Create RFQ"
                         type="action"
                     />
                     <button
                         name="button_done"
-                        invisible="state not in ('approved','in_progress')"
+                        invisible="state not in ('approved', 'in_progress')"
                         string="Done"
                         type="object"
                         class="oe_highlight"
@@ -53,7 +53,7 @@
                     />
                     <button
                         name="button_rejected"
-                        invisible="state not in ('to_approve', 'approved','in_progress')"
+                        invisible="state not in ('to_approve', 'approved', 'in_progress')"
                         string="Reject"
                         type="object"
                         groups="purchase_request.group_purchase_request_manager"
