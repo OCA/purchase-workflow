@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2016-11-17 03:38+0000\n"
 "PO-Revision-Date: 2024-06-11 14:36+0000\n"
 "Last-Translator: jakobkrabbe <jakob@syscare.se>\n"
-"Language-Team: Swedish (http://www.transifex.com/oca/"
-"OCA-purchase-workflow-10-0/language/sv/)\n"
+"Language-Team: Swedish (http://www.transifex.com/oca/OCA-purchase-"
+"workflow-10-0/language/sv/)\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -51,8 +51,8 @@ msgid ""
 "<li><b>%(product_name)s</b>: Transferred quantity %(product_qty)s "
 "%(product_uom)s</li>"
 msgstr ""
-"<li><b>%(product_name)s</b>: Överförd mängd %(product_qty)s "
-"%(product_uom)s</li>"
+"<li><b>%(product_name)s</b>: Överförd mängd %(product_qty)s %(product_uom)s</"
+"li>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
@@ -539,9 +539,7 @@ msgstr "Om den är markerad kräver nya meddelanden din uppmärksamhet."
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__message_has_error
-#: model:ir.model.fields,help:purchase_request.field_purchase_request__message_has_sms_error
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__message_has_error
-#: model:ir.model.fields,help:purchase_request.field_purchase_request_line__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Om kryssrutan är markerad får vissa meddelanden ett leveransfel."
 
@@ -1152,12 +1150,6 @@ msgid "Responsible User"
 msgstr "Ansvarig användare"
 
 #. module: purchase_request
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_has_sms_error
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Fel vid leverans av SMS"
-
-#. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_search_sub
 msgid "Search Purchase Order Line"
 msgstr "Sök inköpsorderrad"
@@ -1269,7 +1261,8 @@ msgstr "Leverantör"
 #, python-format
 msgid ""
 "The company of the purchase request must match with that of the location."
-msgstr "Företaget i inköpsbegäran måste överensstämma med företaget på platsen."
+msgstr ""
+"Företaget i inköpsbegäran måste överensstämma med företaget på platsen."
 
 #. module: purchase_request
 #. odoo-python
@@ -1482,3 +1475,6 @@ msgstr "Du måste välja rader från samma Plocktyp."
 #, python-format
 msgid "You have to select lines from the same company."
 msgstr "Du måste välja linjer från samma bolag."
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Fel vid leverans av SMS"
