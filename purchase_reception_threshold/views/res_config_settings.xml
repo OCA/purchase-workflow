@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form_purchase" model="ir.ui.view">
+        <field name="model">res.config.settings</field>
+        <field
+            name="inherit_id"
+            ref="purchase.res_config_settings_view_form_purchase"
+        />
+        <field name="arch" type="xml">
+            <!-- The `purchase` `<app> has `group_purchase_manager` -->
+            <xpath
+                expr="//block[@name='invoicing_settings_container']/setting[@id='three_way_matching']"
+                position="after"
+            >
+                <setting
+                    id="receipt_threshold"
+                    title="Receipt Threshold"
+                    help="Allowed difference in quantity received"
+                >
+                    <field
+                        name="receipt_threshold"
+                        class="o_light_label"
+                        widget="percentage"
+                    />
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>
