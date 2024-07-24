@@ -1,0 +1,80 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_reception_threshold
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-07-24 10:41+0000\n"
+"PO-Revision-Date: 2024-07-24 10:41+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_reception_threshold
+#: model_terms:ir.ui.view,arch_db:purchase_reception_threshold.res_config_settings_view_form_purchase
+msgid "Allowed difference in quantity received"
+msgstr "Différence autorisée dans la quantité reçue"
+
+#. module: purchase_reception_threshold
+#: model:ir.model,name:purchase_reception_threshold.model_res_company
+msgid "Companies"
+msgstr "Sociétés"
+
+#. module: purchase_reception_threshold
+#: model:ir.model,name:purchase_reception_threshold.model_res_config_settings
+msgid "Config Settings"
+msgstr "Paramètres de configuration"
+
+#. module: purchase_reception_threshold
+#: model:ir.model,name:purchase_reception_threshold.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: purchase_reception_threshold
+#: model:ir.model.fields,help:purchase_reception_threshold.field_purchase_order__use_threshold
+#: model:ir.model.fields,help:purchase_reception_threshold.field_purchase_order_line__use_threshold
+#: model:ir.model.fields,help:purchase_reception_threshold.field_res_partner__use_threshold
+#: model:ir.model.fields,help:purchase_reception_threshold.field_res_users__use_threshold
+msgid ""
+"If checked, the system will use the receipt threshold to determine the "
+"invoice method."
+msgstr ""
+"Si cette case est cochée, le système utilisera le seuil de récéption pour déterminer la méthode "
+"de facturation."
+
+#. module: purchase_reception_threshold
+#: model:ir.model,name:purchase_reception_threshold.model_purchase_order
+msgid "Purchase Order"
+msgstr "Commande fournisseur"
+
+#. module: purchase_reception_threshold
+#: model:ir.model,name:purchase_reception_threshold.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Ligne de bon de commande"
+
+#. module: purchase_reception_threshold
+#: model:ir.model.fields,field_description:purchase_reception_threshold.field_purchase_order__receipt_threshold
+#: model:ir.model.fields,field_description:purchase_reception_threshold.field_purchase_order_line__receipt_threshold
+#: model:ir.model.fields,field_description:purchase_reception_threshold.field_res_company__receipt_threshold
+#: model:ir.model.fields,field_description:purchase_reception_threshold.field_res_config_settings__receipt_threshold
+#: model_terms:ir.ui.view,arch_db:purchase_reception_threshold.res_config_settings_view_form_purchase
+msgid "Receipt Threshold"
+msgstr "Seuil de réception"
+
+#. module: purchase_reception_threshold
+#: model:ir.model,name:purchase_reception_threshold.model_stock_picking
+msgid "Transfer"
+msgstr "Transfert"
+
+#. module: purchase_reception_threshold
+#: model:ir.model.fields,field_description:purchase_reception_threshold.field_purchase_order__use_threshold
+#: model:ir.model.fields,field_description:purchase_reception_threshold.field_purchase_order_line__use_threshold
+#: model:ir.model.fields,field_description:purchase_reception_threshold.field_res_partner__use_threshold
+#: model:ir.model.fields,field_description:purchase_reception_threshold.field_res_users__use_threshold
+msgid "Use Threshold"
+msgstr "Utilisation seuil"
