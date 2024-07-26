@@ -47,11 +47,11 @@ class PurchaseOrderLine(models.Model):
             lambda l: l.propagate_cancel == values["propagate_cancel"]
             and (
                 l.orderpoint_id == values["orderpoint_id"]
-                if values["orderpoint_id"] and not values["move_dest_ids"]
+                if values.get("orderpoint_id") and not values.get("move_dest_ids")
                 else True
             )
             and l.product_packaging_id == values["product_packaging_id"]
-            if values["product_packaging_id"]
+            if values.get("product_packaging_id")
             else True
         )
         # In case 'product_description_variants' is in the values, we also filter on the PO line
