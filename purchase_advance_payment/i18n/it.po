@@ -74,6 +74,16 @@ msgid "Amount of advance must be positive."
 msgstr "L'importo dell'anticipo deve essere positivo."
 
 #. module: purchase_advance_payment
+#: model:ir.model.fields,field_description:purchase_advance_payment.field_res_config_settings__auto_post_purchase_advance_payments
+msgid "Auto Post Purchase Advance Payments"
+msgstr ""
+
+#. module: purchase_advance_payment
+#: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__available_payment_method_line_ids
+msgid "Available Payment Method Line"
+msgstr ""
+
+#. module: purchase_advance_payment
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_voucher_wizard
 msgid "Cancel"
 msgstr "Annulla"
@@ -113,6 +123,11 @@ msgstr "Nome visualizzato"
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__id
 msgid "ID"
 msgstr "ID"
+
+#. module: purchase_advance_payment
+#: model_terms:ir.ui.view,arch_db:purchase_advance_payment.res_config_settings_view_form_purchase
+msgid "If enabled, advance payments created from POs are automatically posted."
+msgstr ""
 
 #. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__journal_id
@@ -160,19 +175,9 @@ msgid "Not Sent"
 msgstr "Non inviato"
 
 #. module: purchase_advance_payment
-#: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_voucher_wizard
-msgid "Operation"
-msgstr "Operazione"
-
-#. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__order_id
 msgid "Order"
 msgstr "Ordine"
-
-#. module: purchase_advance_payment
-#: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_voucher_wizard
-msgid "Order Currency"
-msgstr "Valuta ordine"
 
 #. module: purchase_advance_payment
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_voucher_wizard
@@ -195,7 +200,7 @@ msgid "Pay purchase advanced"
 msgstr "Paga anticipo acquisto"
 
 #. module: purchase_advance_payment
-#: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_voucher_wizard
+#: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__payment_method_line_id
 msgid "Payment Method"
 msgstr "Metodo di pagamento"
 
@@ -218,6 +223,11 @@ msgstr "Righe movimento pagamento"
 #: model:ir.model,name:purchase_advance_payment.model_account_payment
 msgid "Payments"
 msgstr "Pagamenti"
+
+#. module: purchase_advance_payment
+#: model:ir.model,name:purchase_advance_payment.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr ""
 
 #. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_account_payment__purchase_id
@@ -248,3 +258,9 @@ msgstr "Importo residuo"
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_payment_search
 msgid "Vendor Advance Payments"
 msgstr "Anticipo pagamenti fornitore"
+
+#~ msgid "Operation"
+#~ msgstr "Operazione"
+
+#~ msgid "Order Currency"
+#~ msgstr "Valuta ordine"
