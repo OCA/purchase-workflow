@@ -47,6 +47,40 @@ class TestPurchasePackaging(TransactionCase):
         self.assertTrue(lines_after.product_packaging_id)
         self.assertEqual(lines_after.product_packaging_id, self.packaging)
 
+    def test_2_packagings_from_procurement(self):
+        # Check of packagings is well passed from procurement to purchase lines
+        lines_before = self.line_obj.search([])
+        procur1 = self.env["procurement.group"].create({"name": "Test1"})
+        procur2 = self.env["procurement.group"].create({"name": "Test2"})
+        self.env["procurement.group"].run(
+            [
+                procur1.Procurement(
+                    self.product,
+                    5.0,
+                    self.product.uom_id,
+                    self.warehouse.lot_stock_id,
+                    "Product",
+                    "Product",
+                    company_id=self.env.company,
+                    values={"product_packaging_id": self.packaging},
+                ),
+                procur2.Procurement(
+                    self.product,
+                    24.0,
+                    self.product.uom_id,
+                    self.warehouse.lot_stock_id,
+                    "Product",
+                    "Product",
+                    company_id=self.env.company,
+                    values={"product_packaging_id": self.packaging_12},
+                ),
+            ]
+        )
+        lines_after = self.line_obj.search([]) - lines_before
+        self.assertEqual(len(lines_after), 2)
+        self.assertTrue(lines_after[0].product_packaging_id)
+        self.assertTrue(lines_after[1].product_packaging_id)
+
     def test_purchase_packaging_from_move(self):
         # Check of packaging is well passed from stock move to procurement,
         # then to purchase line and does not take default one
