@@ -36,6 +36,18 @@ class AccountVoucherWizardPurchase(models.TransientModel):
         store=True,
     )
     payment_ref = fields.Char("Ref.")
+    payment_method_line_id = fields.Many2one(
+        comodel_name="account.payment.method.line",
+        string="Payment Method",
+        readonly=False,
+        store=True,
+        compute="_compute_payment_method_line_id",
+        domain="[('id', 'in', available_payment_method_line_ids)]",
+    )
+    available_payment_method_line_ids = fields.Many2many(
+        comodel_name="account.payment.method.line",
+        compute="_compute_available_payment_method_line_ids",
+    )
 
     @api.depends("journal_id")
     def _compute_get_journal_currency(self):
@@ -43,6 +55,33 @@ class AccountVoucherWizardPurchase(models.TransientModel):
             wzd.journal_currency_id = (
                 wzd.journal_id.currency_id.id or self.env.user.company_id.currency_id.id
             )
+
+    @api.depends("journal_id")
+    def _compute_payment_method_line_id(self):
+        for wizard in self:
+            if wizard.journal_id:
+                available_payment_method_lines = (
+                    wizard.journal_id._get_available_payment_method_lines("outbound")
+                )
+            else:
+                available_payment_method_lines = False
+            # Select the first available one by default.
+            if available_payment_method_lines:
+                wizard.payment_method_line_id = available_payment_method_lines[
+                    0
+                ]._origin
+            else:
+                wizard.payment_method_line_id = False
+
+    @api.depends("journal_id")
+    def _compute_available_payment_method_line_ids(self):
+        for wizard in self:
+            if wizard.journal_id:
+                wizard.available_payment_method_line_ids = (
+                    wizard.journal_id._get_available_payment_method_lines("outbound")
+                )
+            else:
+                wizard.available_payment_method_line_ids = False
 
     @api.constrains("amount_advance")
     def check_amount(self):
@@ -75,10 +114,21 @@ class AccountVoucherWizardPurchase(models.TransientModel):
                     "currency_id": purchase.currency_id.id,
                 }
             )
-
+        res["journal_id"] = (
+            self.env["account.journal"]
+            .search(
+                [
+                    ("type", "in", ("bank", "cash")),
+                    ("company_id", "=", purchase.company_id.id),
+                    ("outbound_payment_method_line_ids", "!=", False),
+                ],
+                limit=1,
+            )
+            .id
+        )
         return res
 
-    @api.depends("journal_id", "date", "amount_advance")
+    @api.depends("journal_id", "date", "amount_advance", "journal_currency_id")
     def _compute_currency_amount(self):
         if self.journal_currency_id != self.currency_id:
             amount_advance = self.journal_currency_id._convert(
@@ -94,6 +144,7 @@ class AccountVoucherWizardPurchase(models.TransientModel):
     def _prepare_payment_vals(self, purchase):
         partner_id = purchase.partner_id.id
         return {
+            "purchase_id": purchase.id,
             "date": self.date,
             "amount": self.amount_advance,
             "payment_type": "outbound",
@@ -102,9 +153,7 @@ class AccountVoucherWizardPurchase(models.TransientModel):
             "journal_id": self.journal_id.id,
             "currency_id": self.journal_currency_id.id,
             "partner_id": partner_id,
-            "payment_method_id": self.env.ref(
-                "account.account_payment_method_manual_out"
-            ).id,
+            "payment_method_line_id": self.payment_method_line_id.id,
         }
 
     def make_advance_payment(self):
@@ -119,8 +168,12 @@ class AccountVoucherWizardPurchase(models.TransientModel):
             purchase = purchase_obj.browse(purchase_id)
             payment_vals = self._prepare_payment_vals(purchase)
             payment = payment_obj.create(payment_vals)
-            purchase.account_payment_ids |= payment
-            payment.action_post()
+            if bool(
+                self.env["ir.config_parameter"]
+                .sudo()
+                .get_param("purchase_advance_payment.auto_post_advance_payments")
+            ):
+                payment.action_post()
 
         return {
             "type": "ir.actions.act_window_close",
