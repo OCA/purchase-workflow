@@ -47,7 +47,11 @@ class PurchaseOrderLine(models.Model):
             self.env["stock.picking.type"].search(
                 [
                     ("code", "=", "incoming"),
-                    ("default_location_dest_id", "=", line.location_dest_id.id),
+                    (
+                        "default_location_dest_id",
+                        "=",
+                        location.id,
+                    ),
                 ]
             )
             or line.order_id.picking_type_id
