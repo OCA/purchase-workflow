@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-07-15 09:58+0000\n"
+"PO-Revision-Date: 2024-07-30 16:58+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -76,12 +76,12 @@ msgstr "L'importo dell'anticipo deve essere positivo."
 #. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_res_config_settings__auto_post_purchase_advance_payments
 msgid "Auto Post Purchase Advance Payments"
-msgstr ""
+msgstr "Inserimento automatico anticipo pagamento acquisto"
 
 #. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__available_payment_method_line_ids
 msgid "Available Payment Method Line"
-msgstr ""
+msgstr "Riga metodo pagamento disponibile"
 
 #. module: purchase_advance_payment
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_voucher_wizard
@@ -128,6 +128,8 @@ msgstr "ID"
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.res_config_settings_view_form_purchase
 msgid "If enabled, advance payments created from POs are automatically posted."
 msgstr ""
+"Se abilitata, gli anticipi pagamenti creati dai POS sono inseriti "
+"automaticamente."
 
 #. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__journal_id
@@ -227,7 +229,7 @@ msgstr "Pagamenti"
 #. module: purchase_advance_payment
 #: model:ir.model,name:purchase_advance_payment.model_res_config_settings
 msgid "Procurement purchase grouping settings"
-msgstr ""
+msgstr "Impostazioni raggruppamento approvvigionamento acquisti"
 
 #. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_account_payment__purchase_id
