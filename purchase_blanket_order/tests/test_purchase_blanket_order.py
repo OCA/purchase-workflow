@@ -83,7 +83,7 @@ class TestPurchaseBlanketOrders(common.TransactionCase):
         blanket_order._compute_line_count()
         blanket_order._compute_uom_qty()
         name = (
-            "[{}] {}".format(self.product.name, self.product.code)
+            f"[{self.product.name}] {self.product.code}"
             + "\n"
             + self.product.description_purchase
         )

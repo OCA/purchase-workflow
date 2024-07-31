@@ -512,7 +512,6 @@ class BlanketOrderLine(models.Model):
         return super().name_get()
 
     def _get_display_price(self, product):
-
         seller = product._select_seller(
             partner_id=self.order_id.partner_id,
             quantity=self.original_uom_qty,
@@ -563,7 +562,7 @@ class BlanketOrderLine(models.Model):
             ):
                 self.price_unit = self._get_display_price(self.product_id)
             if self.product_id.code:
-                name = "[{}] {}".format(name, self.product_id.code)
+                name = f"[{name}] {self.product_id.code}"
             if self.product_id.description_purchase:
                 name += "\n" + self.product_id.description_purchase
             self.name = name
