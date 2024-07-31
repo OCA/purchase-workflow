@@ -38,7 +38,6 @@ class BlanketOrder(models.Model):
         string="Vendor",
         readonly=True,
         tracking=True,
-        states={"draft": [("readonly", False)]},
     )
     partner_ref = fields.Char(string="Vendor Reference", copy=False)
     line_ids = fields.One2many(
@@ -67,7 +66,6 @@ class BlanketOrder(models.Model):
         "account.payment.term",
         string="Payment Terms",
         readonly=True,
-        states={"draft": [("readonly", False)]},
     )
     confirmed = fields.Boolean(copy=False)
     cancelled = fields.Boolean(copy=False)
@@ -85,7 +83,6 @@ class BlanketOrder(models.Model):
     )
     validity_date = fields.Date(
         readonly=True,
-        states={"draft": [("readonly", False)]},
         tracking=True,
         help="Date until which the blanket order will be valid, after this "
         "date the blanket order will be marked as expired",
@@ -95,23 +92,20 @@ class BlanketOrder(models.Model):
         required=True,
         string="Start Date",
         default=fields.Datetime.now,
-        states={"draft": [("readonly", False)]},
         help="Blanket Order starting date.",
     )
-    note = fields.Text(readonly=True, states={"draft": [("readonly", False)]})
+    note = fields.Text(readonly=True)
     user_id = fields.Many2one(
         "res.users",
         string="Responsible",
         readonly=True,
         default=lambda self: self.env.uid,
-        states={"draft": [("readonly", False)]},
     )
     company_id = fields.Many2one(
         "res.company",
         string="Company",
         default=_default_company,
         readonly=True,
-        states={"draft": [("readonly", False)]},
     )
     purchase_count = fields.Integer(compute="_compute_purchase_count")
 
@@ -414,7 +408,15 @@ class BlanketOrderLine(models.Model):
         required=True,
         domain=[("purchase_ok", "=", True)],
     )
-    product_uom = fields.Many2one("uom.uom", string="Unit of Measure", required=True)
+    product_uom = fields.Many2one(
+        "uom.uom",
+        string="Unit of Measure",
+        compute="_compute_product_uom",
+        store=True,
+        readonly=False,
+        precompute=True,
+        required=True,
+    )
     price_unit = fields.Float(string="Price", required=True, digits=("Product Price"))
     taxes_id = fields.Many2many(
         "account.tax",
@@ -610,6 +612,14 @@ class BlanketOrderLine(models.Model):
             line.remaining_qty = line.product_uom._compute_quantity(
                 line.remaining_uom_qty, line.product_id.uom_id
             )
+
+    @api.depends("product_id")
+    def _compute_product_uom(self):
+        for line in self:
+            if not line.product_uom or (
+                line.product_id.uom_id.id != line.product_uom.id
+            ):
+                line.product_uom = line.product_id.uom_id
 
     def _validate(self):
         try:
