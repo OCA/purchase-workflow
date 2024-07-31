@@ -43,7 +43,6 @@ class BlanketOrderWizard(models.TransientModel):
             raise UserError(_("All lines have already been completed."))
 
         for line in bo_lines:
-
             if line.order_id.state != "open":
                 raise UserError(
                     _("Purchase Blanket Order %s is not open") % line.order_id.name
@@ -104,7 +103,6 @@ class BlanketOrderWizard(models.TransientModel):
     )
 
     def create_purchase_order(self):
-
         order_lines_by_supplier = defaultdict(list)
         currency_id = 0
         payment_term_id = 0
