@@ -253,3 +253,51 @@ class TestPurchaseManualDelivery(TransactionCase):
         self.assertTrue(self.po1_line2.pending_to_receive)
         self.assertEqual(self.po1_line1.existing_qty, self.po1_line1.product_qty)
         self.assertEqual(self.po1_line2.existing_qty, 0)
+
+    def test_04_pending_to_receive(self):
+        """
+        Checks if a purchase order line with existing quantity higher than
+        total quantity is not pending to receive
+        """
+        # Create PO and PO Line
+        po_existing_bigger = self.purchase_order_obj.create(
+            {
+                "partner_id": self.ref("base.res_partner_3"),
+            }
+        )
+        pol_existing_bigger = self.purchase_order_line_obj.create(
+            {
+                "order_id": po_existing_bigger.id,
+                "product_id": self.product1.id,
+                "product_uom": self.product1.uom_id.id,
+                "name": self.product1.name,
+                "price_unit": self.product1.standard_price,
+                "date_planned": fields.datetime.now(),
+                "product_qty": 5.0,
+            }
+        )
+        po_existing_bigger.button_confirm_manual()
+        # create a manual delivery for line in po_existing_bigger
+        wizard = (
+            self.env["create.stock.picking.wizard"]
+            .with_context(
+                **{
+                    "active_model": "purchase.order.line",
+                    "active_ids": po_existing_bigger.order_line.ids,
+                }
+            )
+            .create({})
+        )
+        wizard.fill_lines(po_existing_bigger.order_line)
+        wizard.line_ids.filtered(
+            lambda l: l.purchase_order_line_id.id == pol_existing_bigger.id
+        ).qty = 1
+        wizard.create_stock_picking()
+
+        # Change the done quantity to be bigger than the total needed
+        picking_id = po_existing_bigger.picking_ids[0]
+        picking_id.move_ids[0].quantity_done = 6
+        picking_id.button_validate()
+
+        # The PO Line should not be pending to receive
+        self.assertFalse(po_existing_bigger.pending_to_receive)
