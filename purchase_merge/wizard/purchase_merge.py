@@ -15,6 +15,7 @@ class MergePurchaseAutomatic(models.TransientModel):
     """
 
     _name = "purchase.merge.automatic.wizard"
+    _description = "Purchase Merge Automatic Wizard"
 
     purchase_ids = fields.Many2many(
         comodel_name="purchase.order",
