@@ -1,6 +1,8 @@
 # Copyright 2019-2024 ForgeFlow S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
 
+from markupsafe import Markup, escape
+
 from odoo import _, api, models
 
 
@@ -23,13 +25,14 @@ class Picking(models.Model):
             uom = purchase_line_id["stock_move"].product_uom.name
             message += _(
                 "<li><b>%(display_name)s</b>: Received quantity "
-                "%(product_qty)s %(uom)s</li>",
-                display_name=display_name,
-                product_qty=product_qty,
-                uom=uom,
-            )
+                "%(product_qty)s %(uom)s</li>"
+            ) % {
+                "display_name": escape(display_name),
+                "product_qty": product_qty,
+                "uom": escape(uom),
+            }
         message += "</ul>"
-        return message
+        return Markup(message)
 
     def _action_done(self):
         res = super()._action_done()
@@ -48,7 +51,6 @@ class Picking(models.Model):
                     picking, purchase_dict[po]
                 )
                 po.sudo().message_post(
-                    body_is_html=True,
                     body=message,
                     subtype_id=self.env.ref(
                         "purchase_reception_notify.mt_purchase_reception"
