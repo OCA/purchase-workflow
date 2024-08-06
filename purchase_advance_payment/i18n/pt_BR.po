@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-07-10 18:58+0000\n"
+"PO-Revision-Date: 2024-08-07 01:58+0000\n"
 "Last-Translator: Rodrigo Sottomaior Macedo "
 "<sottomaiormacedotec@sottomaiormacedo.tech>\n"
 "Language-Team: none\n"
@@ -77,12 +77,12 @@ msgstr "O valor do adiantamento deve ser positivo."
 #. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_res_config_settings__auto_post_purchase_advance_payments
 msgid "Auto Post Purchase Advance Payments"
-msgstr ""
+msgstr "Pagamentos antecipados de pós-compra automáticos"
 
 #. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__available_payment_method_line_ids
 msgid "Available Payment Method Line"
-msgstr ""
+msgstr "Linha de método de pagamento disponível"
 
 #. module: purchase_advance_payment
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_voucher_wizard
@@ -129,6 +129,8 @@ msgstr "ID"
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.res_config_settings_view_form_purchase
 msgid "If enabled, advance payments created from POs are automatically posted."
 msgstr ""
+"Se ativado, os adiantamentos criados a partir de pedidos de compra serão "
+"lançados automaticamente."
 
 #. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__journal_id
@@ -228,7 +230,7 @@ msgstr "Pagamentos"
 #. module: purchase_advance_payment
 #: model:ir.model,name:purchase_advance_payment.model_res_config_settings
 msgid "Procurement purchase grouping settings"
-msgstr ""
+msgstr "Configurações de agrupamento de compras de compras"
 
 #. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_account_payment__purchase_id
