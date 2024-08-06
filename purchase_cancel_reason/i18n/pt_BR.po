@@ -9,21 +9,22 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-03 03:48+0000\n"
-"PO-Revision-Date: 2022-10-03 17:36+0000\n"
-"Last-Translator: Douglas Custódio <douglascstd@yahoo.com>\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
-"teams/23907/pt_BR/)\n"
+"PO-Revision-Date: 2024-08-07 01:58+0000\n"
+"Last-Translator: Rodrigo Sottomaior Macedo "
+"<sottomaiormacedotec@sottomaiormacedo.tech>\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
+"23907/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: purchase_cancel_reason
 #: model:ir.model,name:purchase_cancel_reason.model_purchase_order_cancel
 msgid "Ask a reason for the purchase order cancellation."
-msgstr ""
+msgstr "Pergunte o motivo do cancelamento do pedido de compra."
 
 #. module: purchase_cancel_reason
 #: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.purchase_order_form
@@ -34,7 +35,7 @@ msgstr "Cancelar"
 #. module: purchase_cancel_reason
 #: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.purchase_order_form
 msgid "Cancellation reason:"
-msgstr ""
+msgstr "Motivo do cancelamento:"
 
 #. module: purchase_cancel_reason
 #: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel
@@ -42,11 +43,13 @@ msgid ""
 "Choose the reason for the cancellation of the\n"
 "                    purchase order."
 msgstr ""
+"Escolha o motivo do cancelamento do\n"
+"                             Ordem de Compra."
 
 #. module: purchase_cancel_reason
 #: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel
 msgid "Confirm"
-msgstr ""
+msgstr "Confirmar"
 
 #. module: purchase_cancel_reason
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel__create_uid
@@ -75,7 +78,7 @@ msgstr "Identificação"
 #. module: purchase_cancel_reason
 #: model:purchase.order.cancel.reason,name:purchase_cancel_reason.cancel_reason_only_quotation
 msgid "Just for Quotation"
-msgstr ""
+msgstr "Apenas para cotação"
 
 #. module: purchase_cancel_reason
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel____last_update
@@ -98,7 +101,7 @@ msgstr "Última Atualização em"
 #. module: purchase_cancel_reason
 #: model:purchase.order.cancel.reason,name:purchase_cancel_reason.cancel_reason_other_provider
 msgid "Other Service Provider selected"
-msgstr ""
+msgstr "Outro provedor de serviços selecionado"
 
 #. module: purchase_cancel_reason
 #: model:ir.model,name:purchase_cancel_reason.model_purchase_order
@@ -109,37 +112,37 @@ msgstr "Pedido de Compra"
 #: model:ir.actions.act_window,name:purchase_cancel_reason.action_purchase_order_cancel_reason
 #: model:ir.model,name:purchase_cancel_reason.model_purchase_order_cancel_reason
 msgid "Purchase Order Cancel Reason"
-msgstr ""
+msgstr "Motivo de cancelamento do pedido de compra"
 
 #. module: purchase_cancel_reason
 #: model:ir.ui.menu,name:purchase_cancel_reason.menu_purchase_order_cancel_reason
 #: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel_reason_form
 msgid "Purchase Order Cancel Reasons"
-msgstr ""
+msgstr "Motivos de cancelamento de pedido de compra"
 
 #. module: purchase_cancel_reason
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel__reason_id
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason__name
 msgid "Reason"
-msgstr ""
+msgstr "Razão"
 
 #. module: purchase_cancel_reason
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order__cancel_reason_id
 msgid "Reason for cancellation"
-msgstr ""
+msgstr "Razão para cancelamento"
 
 #. module: purchase_cancel_reason
 #: model:ir.actions.act_window,name:purchase_cancel_reason.action_purchase_order_cancel
 #: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel
 msgid "Reason for the cancellation"
-msgstr ""
+msgstr "Motivo do cancelamento"
 
 #. module: purchase_cancel_reason
 #: model:purchase.order.cancel.reason,name:purchase_cancel_reason.cancel_reason_no_service_needed
 msgid "Service no longer needed"
-msgstr ""
+msgstr "O serviço não é mais necessário"
 
 #. module: purchase_cancel_reason
 #: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel
 msgid "or"
-msgstr ""
+msgstr "ou"
