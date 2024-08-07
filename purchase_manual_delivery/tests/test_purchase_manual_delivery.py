@@ -301,3 +301,59 @@ class TestPurchaseManualDelivery(TransactionCase):
 
         # The PO Line should not be pending to receive
         self.assertFalse(po_existing_bigger.pending_to_receive)
+
+    def test_05_purchase_order_in_progress(self):
+        """
+        Create a new Product and Purchase Order.
+        Confirm Purchase Order and create a Picking with only a partial amount of
+        the selected amount of the Purchase Order Line. Confirm the Picking.
+        The quantity in progress is the pending to receive quantity of the Purchase
+        Order Line.
+        """
+        product_in_progress = self.env["product.product"].create(
+            {
+                "name": "Test product pending",
+                "type": "product",
+                "list_price": 1,
+                "standard_price": 1,
+            }
+        )
+        po_in_progress = self.purchase_order_obj.create(
+            {
+                "partner_id": self.ref("base.res_partner_3"),
+            }
+        )
+        self.purchase_order_line_obj.create(
+            {
+                "order_id": po_in_progress.id,
+                "product_id": product_in_progress.id,
+                "product_uom": product_in_progress.uom_id.id,
+                "name": product_in_progress.name,
+                "price_unit": product_in_progress.standard_price,
+                "date_planned": fields.datetime.now(),
+                "product_qty": 5.0,
+            }
+        )
+        po_in_progress.button_confirm_manual()
+        location = self.env["stock.location"].browse(
+            po_in_progress.picking_type_id.default_location_dest_id.id
+        )
+        wizard = (
+            self.env["create.stock.picking.wizard"]
+            .with_context(
+                **{
+                    "active_model": "purchase.order",
+                    "active_id": po_in_progress.id,
+                    "active_ids": po_in_progress.ids,
+                }
+            )
+            .create({})
+        )
+        wizard.fill_lines(po_in_progress.order_line)
+        wizard.line_ids[0].qty = 2
+        wizard.create_stock_picking()
+        po_in_progress.picking_ids[0].button_validate()
+        qty, _ = product_in_progress._get_quantity_in_progress(
+            location_ids=location.ids
+        )
+        self.assertEqual(qty.get((product_in_progress.id, location.id)), 3)
