@@ -93,7 +93,7 @@ msgstr ""
 #. odoo-python
 #: code:addons/purchase_merge/wizard/purchase_merge.py:0
 #, python-format
-msgid "This purchase order lines have been merged {way} : {po_names}"
+msgid "This purchase order lines have been merged %(way)s : %(po_names)s"
 msgstr ""
 
 #. module: purchase_merge
