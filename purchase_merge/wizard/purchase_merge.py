@@ -165,7 +165,7 @@ class MergePurchaseAutomatic(models.TransientModel):
         """
         subject = "Merge purchase order"
         body = _(
-            "This purchase order lines have been merged {way} : {po_names}",
+            "This purchase order lines have been merged %(way)s : %(po_names)s",
             way=way,
             po_names=" ,".join(po_name),
         )
