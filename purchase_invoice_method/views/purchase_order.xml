@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 CreuBlanca
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record model="ir.ui.view" id="purchase_order_form_view">
+        <field name="name">purchase.order.form (in purchase_invoice_method)</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <field name="invoice_status" position="before">
+                <field name="invoice_method" />
+            </field>
+        </field>
+    </record>
+
+</odoo>
