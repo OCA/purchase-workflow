@@ -96,8 +96,8 @@ msgstr "Gli acquisti selezionati verranno uniti."
 #. odoo-python
 #: code:addons/purchase_merge/wizard/purchase_merge.py:0
 #, python-format
-msgid "This purchase order lines have been merged {way} : {po_names}"
-msgstr "Queste righe ordine di vendita sono state unite {way} : {po_names}"
+msgid "This purchase order lines have been merged %(way)s : %(po_names)s"
+msgstr ""
 
 #. module: purchase_merge
 #. odoo-python
@@ -150,6 +150,10 @@ msgstr "Non si possono unire ordini di acquisto con tipi prelievo diversi: %s"
 #, python-format
 msgid "You can't merge purchase orders with different suppliers: %s"
 msgstr "Non si possono unire ordini di acquisto con fornitori diversi: %s"
+
+#, python-format
+#~ msgid "This purchase order lines have been merged {way} : {po_names}"
+#~ msgstr "Queste righe ordine di vendita sono state unite {way} : {po_names}"
 
 #~ msgid "purchase.merge.automatic.wizard"
 #~ msgstr "purchase.merge.automatic.wizard"
