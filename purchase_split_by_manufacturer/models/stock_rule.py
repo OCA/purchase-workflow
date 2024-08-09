@@ -19,4 +19,12 @@ class StockRule(models.Model):
                     values["move_dest_ids"].product_id.manufacturer_id.id,
                 ),
             )
+        elif "orderpoint_id" in values:
+            domain += (
+                (
+                    "manufacturer_id",
+                    "=",
+                    values["orderpoint_id"].product_id.manufacturer_id.id,
+                ),
+            )
         return domain
