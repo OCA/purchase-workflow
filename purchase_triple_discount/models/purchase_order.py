@@ -36,10 +36,13 @@ class PurchaseOrderLine(models.Model):
         ),
     ]
 
-    def _convert_to_tax_base_line_dict(self):
-        vals = super()._convert_to_tax_base_line_dict()
-        vals.update({"discount": self._compute_aggregated_discount(self.discount)})
-        return vals
+    def _get_discounted_price_unit(self):
+        # Include possible discounts 2 and 3
+        price_unit = super()._get_discounted_price_unit()
+        aggregated_discount = self._compute_aggregated_discount(self.discount)
+        if aggregated_discount != self.discount:
+            price_unit = self.price_unit * (1 - aggregated_discount / 100)
+        return price_unit
 
     def _compute_aggregated_discount(self, base_discount):
         self.ensure_one()
