@@ -144,7 +144,7 @@
                     </group>
                     <notebook>
                         <page string="Products">
-                            <field name="line_ids">
+                            <field name="line_ids" readonly="is_editable == False">
                                 <tree
                                     decoration-muted="cancelled == True"
                                     editable="bottom"
