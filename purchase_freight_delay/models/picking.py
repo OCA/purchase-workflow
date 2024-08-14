@@ -48,3 +48,4 @@ class StockPicking(models.Model):
                 "receive_date",
             )
             rec.scheduled_date = res["receive_date"]
+        return super()._compute_scheduled_date()
