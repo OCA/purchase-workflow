@@ -12,8 +12,8 @@ msgstr ""
 "PO-Revision-Date: 2024-05-29 18:36+0000\n"
 "Last-Translator: Rodrigo Macedo <sottomaiormacedotec@users.noreply."
 "translation.odoo-community.org>\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
-"23907/pt_BR/)\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
+"teams/23907/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -70,11 +70,6 @@ msgid "Purchase Report"
 msgstr "Relatório de Compra"
 
 #. module: purchase_discount
-#: model:ir.model,name:purchase_discount.model_stock_move
-msgid "Stock Move"
-msgstr "Movimentação de estoque"
-
-#. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_product_supplierinfo
 msgid "Supplier Pricelist"
 msgstr "Lista de preços do fornecedor"
@@ -93,3 +88,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:purchase_discount.res_partner_form_view
 msgid "the parent company"
 msgstr "A empresa matriz"
+
+#~ msgid "Stock Move"
+#~ msgstr "Movimentação de estoque"

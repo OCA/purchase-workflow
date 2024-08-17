@@ -68,11 +68,6 @@ msgid "Purchase Report"
 msgstr "Informe de Compras"
 
 #. module: purchase_discount
-#: model:ir.model,name:purchase_discount.model_stock_move
-msgid "Stock Move"
-msgstr "movimiento de existencias"
-
-#. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_product_supplierinfo
 msgid "Supplier Pricelist"
 msgstr "Lista de precios de proveedores"
@@ -91,3 +86,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:purchase_discount.res_partner_form_view
 msgid "the parent company"
 msgstr "la compañía parental"
+
+#~ msgid "Stock Move"
+#~ msgstr "movimiento de existencias"

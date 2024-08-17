@@ -68,11 +68,6 @@ msgid "Purchase Report"
 msgstr "Resoconto di acquisto"
 
 #. module: purchase_discount
-#: model:ir.model,name:purchase_discount.model_stock_move
-msgid "Stock Move"
-msgstr "Movimento di magazzino"
-
-#. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_product_supplierinfo
 msgid "Supplier Pricelist"
 msgstr "Listino prezzi fornitore"
@@ -91,6 +86,9 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:purchase_discount.res_partner_form_view
 msgid "the parent company"
 msgstr "l'azienda madre"
+
+#~ msgid "Stock Move"
+#~ msgstr "Movimento di magazzino"
 
 #~ msgid "Stock Rule"
 #~ msgstr "Regola Stock"
