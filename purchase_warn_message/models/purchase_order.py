@@ -5,7 +5,6 @@ from odoo import api, fields, models
 
 
 class PurchaseOrder(models.Model):
-
     _inherit = "purchase.order"
 
     purchase_warn_msg = fields.Text(compute="_compute_purchase_warn_msg")
