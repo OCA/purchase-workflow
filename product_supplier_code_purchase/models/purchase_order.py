@@ -16,7 +16,7 @@ class PurchaseOrderLine(models.Model):
         for line in self:
             code = ""
             supplier_info = line.product_id.seller_ids.filtered(
-                lambda s: (
+                lambda s, line=line: (
                     s.product_id == line.product_id and s.partner_id == line.partner_id
                 )
             )
@@ -24,7 +24,7 @@ class PurchaseOrderLine(models.Model):
                 code = supplier_info[0].product_code or ""
             else:
                 supplier_info = line.product_id.seller_ids.filtered(
-                    lambda s: (
+                    lambda s, line=line: (
                         s.product_tmpl_id == line.product_id.product_tmpl_id
                         and s.partner_id == line.partner_id
                     )
