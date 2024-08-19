@@ -3,13 +3,14 @@
 
 {
     "name": "Purchase - Analytic Account Global",
-    "version": "15.0.1.0.1",
+    "summary": "This module allows to a Global analytic plan in purchases ",
+    "version": "16.0.1.0.0",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "maintainer": "Camptocamp",
     "license": "AGPL-3",
     "category": "Purchase Management",
     "complexity": "easy",
-    "depends": ["purchase"],
+    "depends": ["purchase", "analytic"],
     "website": "https://github.com/OCA/purchase-workflow",
     "data": ["views/purchase.xml"],
     "installable": True,

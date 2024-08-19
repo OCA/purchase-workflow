@@ -5,27 +5,42 @@ from odoo import api, fields, models
 
 
 class PurchaseOrder(models.Model):
-    _inherit = "purchase.order"
+    _name = "purchase.order"
+    _inherit = ["purchase.order", "analytic.mixin"]
 
-    account_analytic_id = fields.Many2one(
-        "account.analytic.account",
-        string="Analytic Account",
-        compute="_compute_analytic_account",
-        inverse="_inverse_analytic_account",
-        help="This account will be propagated to all lines, if you need "
-        "to use different accounts, define the account at line level.",
+    analytic_distribution = fields.Json(
+        inverse="_inverse_analytic_distribution",
+        store=True,
+        states={"done": [("readonly", True)], "cancel": [("readonly", True)]},
+        help="This analytic distribution will be propagated to all lines, if you need "
+        "to use different analytics, define the account at line level.",
     )
 
-    @api.depends("order_line.account_analytic_id")
-    def _compute_analytic_account(self):
+    @api.depends("order_line.analytic_distribution")
+    def _compute_analytic_distribution(self):
+        """If all order line have same analytic distribution set analytic_distribution.
+        If no lines, respect value given by the user.
+        """
         for rec in self:
-            account = rec.mapped("order_line.account_analytic_id")
-            if len(account) == 1:
-                rec.account_analytic_id = account
-            else:
-                rec.account_analytic_id = False
+            if rec.order_line:
+                al = rec.order_line[0].analytic_distribution or False
+                for ol in rec.order_line:
+                    if ol.analytic_distribution != al:
+                        al = False
+                        break
+                rec.analytic_distribution = al
 
-    def _inverse_analytic_account(self):
+    def _inverse_analytic_distribution(self):
         for rec in self:
-            if rec.account_analytic_id:
-                rec.order_line.account_analytic_id = rec.account_analytic_id
+            if rec.analytic_distribution:
+                rec.order_line.write(
+                    {"analytic_distribution": rec.analytic_distribution}
+                )
+
+    @api.onchange("analytic_distribution")
+    def _onchange_analytic_distribution(self):
+        """When change analytic_distribution set analytic distribution on all order lines"""
+        if self.analytic_distribution:
+            self.order_line.update(
+                {"analytic_distribution": self.analytic_distribution}
+            )

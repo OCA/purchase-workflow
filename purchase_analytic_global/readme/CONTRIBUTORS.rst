@@ -6,3 +6,5 @@
     * Sudhir Arya <sudhir@erpharbor.com>
 * `Trobz <https://trobz.com>`_:
     * Phuc Tran <phuc@trobz.com>
+* `Sistecem <https://sistecem.com>`_:
+    * Miguel EB Jimenez <miguel@sistecem.com>
