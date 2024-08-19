@@ -6,7 +6,7 @@ from odoo.tests.common import TransactionCase
 
 class TestProductSupplierCodePurchase(TransactionCase):
     def setUp(self):
-        super(TestProductSupplierCodePurchase, self).setUp()
+        super().setUp()
         self.supplierinfo_model = self.env["product.supplierinfo"]
         self.supplier = self.env["res.partner"].create(
             {"name": "name", "email": "example@yourcompany.com", "phone": 123456}
