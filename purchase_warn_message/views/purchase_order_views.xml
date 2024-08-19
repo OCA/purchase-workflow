@@ -11,7 +11,7 @@
                 <div
                     class="alert alert-warning"
                     role="alert"
-                    attrs="{'invisible': [('purchase_warn_msg', '=', False)]}"
+                    invisible="purchase_warn_msg==False"
                     style="margin-bottom:0px;"
                 >
                     <p>

@@ -25,13 +25,11 @@ class PurchaseOrder(models.Model):
                 separator = ""
                 if p.purchase_warn == "warning":
                     separator = "\n"
-                    purchase_warn_msg = "%(msg)s" % ({"msg": p.purchase_warn_msg})
+                    purchase_warn_msg = f"{p.purchase_warn_msg}"
                 if p != rec.partner_id and rec.partner_id.purchase_warn == "warning":
-                    purchase_warn_msg = "%(old_msg)s%(separator)s%(msg)s" % (
-                        {
-                            "old_msg": purchase_warn_msg,
-                            "separator": separator,
-                            "msg": rec.partner_id.purchase_warn_msg,
-                        }
+                    purchase_warn_msg = "{old_msg}{separator}{msg}".format(
+                        old_msg=purchase_warn_msg,
+                        separator=separator,
+                        msg=rec.partner_id.purchase_warn_msg,
                     )
             rec.purchase_warn_msg = purchase_warn_msg or False
