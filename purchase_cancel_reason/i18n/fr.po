@@ -22,7 +22,7 @@ msgstr ""
 #. module: purchase_cancel_reason
 #: model:ir.model,name:purchase_cancel_reason.model_purchase_order_cancel
 msgid "Ask a reason for the purchase order cancellation."
-msgstr ""
+msgstr "Demander un motif lors de l'annulation du bon de commande."
 
 #. module: purchase_cancel_reason
 #: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.purchase_order_form
@@ -40,7 +40,7 @@ msgstr "Motif de l'annulation :"
 msgid ""
 "Choose the reason for the cancellation of the\n"
 "                    purchase order."
-msgstr ""
+msgstr "Veuillez choisir la raison de l’annulation pour cette demande d’achat."
 
 #. module: purchase_cancel_reason
 #: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel
