@@ -1,4 +1,4 @@
-# Copyright 2022 Tecnativa - Víctor Martínez
+# Copyright 2022-2024 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
@@ -35,6 +35,17 @@ class SaleOrderLine(models.Model):
             )
             item.vendor_id_domain = domain
 
+    def _prepare_force_vendor_product_supplierinfo_vals(self):
+        """We use this method so that we can overwrite it if we need to modify or
+        add a value.
+        """
+        return {
+            "product_tmpl_id": self.product_id.product_tmpl_id.id,
+            "partner_id": self.vendor_id.id,
+            "min_qty": 0,
+            "company_id": self.company_id.id,
+        }
+
     def _prepare_procurement_values(self, group_id=False):
         """Inject in the procurement values the preferred vendor if any, and create
         supplierinfo record for it if it doesn't exist.
@@ -53,14 +64,7 @@ class SaleOrderLine(models.Model):
                 suppinfo = (
                     self.env["product.supplierinfo"]
                     .sudo()
-                    .create(
-                        {
-                            "product_tmpl_id": product.product_tmpl_id.id,
-                            "partner_id": self.vendor_id.id,
-                            "min_qty": 0,
-                            "company_id": self.company_id.id,
-                        }
-                    )
+                    .create(self._prepare_force_vendor_product_supplierinfo_vals())
                 )
             res["supplierinfo_id"] = suppinfo
         return res
