@@ -1,10 +1,12 @@
-# Copyright 2022 Tecnativa - Víctor Martínez
+# Copyright 2022-2024 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.tests import Form, common
+from odoo.tests import Form
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestSalePurchaseForceVendorBase(common.TransactionCase):
+class TestSalePurchaseForceVendorBase(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -32,6 +34,9 @@ class TestSalePurchaseForceVendorBase(common.TransactionCase):
             }
         )
         cls.sale_order = cls._create_sale_order(cls)
+        order_lines = cls.sale_order.order_line
+        cls.sol_a = order_lines.filtered(lambda x: x.product_id == cls.product_a)
+        cls.sol_b = order_lines.filtered(lambda x: x.product_id == cls.product_b)
 
     def _create_sale_order(self):
         order_form = Form(self.env["sale.order"])
