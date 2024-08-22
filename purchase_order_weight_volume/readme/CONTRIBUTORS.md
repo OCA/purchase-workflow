@@ -1,0 +1,4 @@
+- [Ooops404](https://www.ooops404.com):
+  - Ilyas \<<irazor147@gmail.com>\>
+- [Binhex](https://binhex.cloud/):
+  - Deriman Alonso

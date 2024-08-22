@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="res_config_settings_view_form_purchase_inherit" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="25" />
+        <field
+            name="inherit_id"
+            ref="purchase.res_config_settings_view_form_purchase"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//setting[@id='auto_receipt_reminder']" position="after">
+                <setting id="display_weight_in_po">
+                    <field name="display_order_weight_in_po" />
+                </setting>
+                <setting id="display_volume_in_po">
+                    <field name="display_order_volume_in_po" />
+                </setting>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
