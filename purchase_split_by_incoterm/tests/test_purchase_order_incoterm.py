@@ -11,6 +11,7 @@ class TestPurchasePackaging(TransactionCase):
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.line_obj = cls.env["purchase.order.line"]
         cls.partner = cls.env.ref("base.res_partner_12")
+        cls.partner.purchase_incoterm_id = cls.env.ref("account.incoterm_FAS")
         cls.product = cls.env.ref("product.product_product_9")
         cls.packaging = cls.env["product.packaging"].create(
             {"name": "Test packaging", "product_id": cls.product.id, "qty": 5.0}
