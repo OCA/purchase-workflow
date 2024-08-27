@@ -41,8 +41,13 @@ class PurchaseOrderLine(models.Model):
                     lambda m: m.state == 'done'):
                 sign = 1
                 # in case of outgoing (refund) sign is inverted
-                if move.location_id.usage == 'internal' and \
-                        move.location_dest_id.usage != 'internal':
+                # also support particular case of refund from a supplier dropship
+                if (
+                    move.location_id.usage == 'internal'
+                    and move.location_dest_id.usage != 'internal'
+                    or move.location_id.usage == 'customer'
+                    and move.location_dest_id.usage == 'supplier'
+                ):
                     sign = -1
                 product_uom_qty = move.product_uom_qty * sign
                 if move.product_uom != line.product_uom:
