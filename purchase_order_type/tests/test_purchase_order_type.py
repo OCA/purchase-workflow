@@ -88,3 +88,42 @@ class TestPurchaseOrderType(common.TransactionCase):
         self.assertEqual(order.company_id, self.type1.company_id)
         with self.assertRaises(ValidationError):
             order.write({"company_id": self.company2.id})
+
+    def test_order_type_from_partner(self):
+        lines = []
+        line_values = {
+            "name": self.product1.name,
+            "product_id": self.product1.id,
+            "product_qty": 3,
+            "product_uom": self.product1.uom_id.id,
+            "price_unit": 100,
+        }
+        lines.append((0, 0, line_values))
+        type_from_partner = self.po_obj.create(
+            {
+                "partner_id": self.partner1.id,
+                "order_line": lines,
+            }
+        )
+
+        # Check if set order_type on sale
+        self.assertEqual(type_from_partner.order_type, self.partner1.purchase_type)
+
+        partner2 = self.env.ref("base.res_partner_2")
+        partner2.purchase_type = self.type1
+        type_from_partner.write({"partner_id": partner2})
+        # Check if order_type of sale has not changed
+        self.assertNotEqual(type_from_partner.order_type, partner2.purchase_type)
+
+        # Check if order_type of sale has not deleted
+        partner2.purchase_type = False
+        type_from_partner.write({"partner_id": self.partner1})
+        type_from_partner.write({"partner_id": partner2})
+        self.assertEqual(type_from_partner.order_type, self.type2)
+
+        # Check if set order_type on sale again
+        type_from_partner.write({"partner_id": self.partner1})
+        type_from_partner.write({"order_type": False})
+        type_from_partner.write({"partner_id": partner2})
+        type_from_partner.write({"partner_id": partner2})
+        self.assertEqual(type_from_partner.order_type, partner2.purchase_type)
