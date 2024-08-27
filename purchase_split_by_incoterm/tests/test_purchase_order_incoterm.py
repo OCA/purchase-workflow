@@ -13,15 +13,6 @@ class TestPurchasePackaging(TransactionCase):
         cls.partner = cls.env.ref("base.res_partner_12")
         cls.partner.purchase_incoterm_id = cls.env.ref("account.incoterm_FAS")
         cls.product = cls.env.ref("product.product_product_9")
-        cls.packaging = cls.env["product.packaging"].create(
-            {"name": "Test packaging", "product_id": cls.product.id, "qty": 5.0}
-        )
-        cls.packaging_10 = cls.env["product.packaging"].create(
-            {"name": "Test packaging", "product_id": cls.product.id, "qty": 10.0}
-        )
-        cls.packaging_12 = cls.env["product.packaging"].create(
-            {"name": "Test packaging 12", "product_id": cls.product.id, "qty": 12.0}
-        )
         cls.env.user.groups_id += cls.env.ref("product.group_stock_packaging")
         cls.warehouse = cls.env.ref("stock.warehouse0")
         cls.warehouse.mto_mts_management = True
@@ -80,7 +71,6 @@ class TestPurchasePackaging(TransactionCase):
         ).execute()
 
     def test_sale_order_with_multiple_incoterm(self):
-
         product_variant_id = self.product_id.product_variant_id
         product_variant_id2 = self.product_id2.product_variant_id
         sale_order1 = self.env["sale.order"].create(
@@ -108,7 +98,26 @@ class TestPurchasePackaging(TransactionCase):
         )
         sale_order1.action_confirm()
         partner2 = self.env.ref("base.res_partner_3")
-        partner2.purchase_incoterm_id = self.env.ref("account.incoterm_FOB")
+        vendor_id = self.env.ref("base.res_partner_4")
+        vendor_id.purchase_incoterm_id = self.env.ref("account.incoterm_FOB").id
+        product_variant_id.seller_ids = [(5, 0, 0)]
+        product_variant_id.write(
+            {
+                "seller_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "partner_id": vendor_id.id,
+                            "price": 10,
+                            "currency_id": self.currency_id.id,
+                            "delay": 1,
+                        },
+                    )
+                ]
+            }
+        )
+
         sale_order2 = self.env["sale.order"].create(
             {
                 "partner_id": partner2.id,
@@ -119,14 +128,6 @@ class TestPurchasePackaging(TransactionCase):
                         {
                             "product_id": product_variant_id.id,
                             "product_uom_qty": 5,
-                        },
-                    ),
-                    (
-                        0,
-                        0,
-                        {
-                            "product_id": product_variant_id2.id,
-                            "product_uom_qty": 10,
                         },
                     ),
                 ],
