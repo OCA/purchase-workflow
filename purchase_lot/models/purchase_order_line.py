@@ -21,7 +21,9 @@ class PurchaseOrderLine(models.Model):
     def _compute_lot_id(self):
         for line in self:
             line.lot_id = (
-                line.move_dest_ids.restrict_lot_id | line.move_ids.restrict_lot_id
+                line.move_dest_ids.restrict_lot_id
+                | line.move_ids.restrict_lot_id
+                | line.sale_order_line.lot_id
             )
 
     @api.model
