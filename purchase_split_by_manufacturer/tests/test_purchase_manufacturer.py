@@ -1,6 +1,8 @@
 # Copyright 2024 Akretion France (http://www.akretion.com/)
 # @author: Mathieu Delva <mathieu.delva@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+from datetime import datetime
+
 from odoo.tests.common import TransactionCase
 
 
@@ -160,3 +162,55 @@ class TestPurchasePackaging(TransactionCase):
         sale_order1.action_confirm()
         purchase_ids = sale_order1._get_purchase_orders()
         self.assertEqual(len(purchase_ids), 1)
+
+    def test_replenishement(self):
+        orderpoint_id = self.env["stock.warehouse.orderpoint"].search(
+            [("qty_to_order", ">", 0)]
+        )
+        if orderpoint_id:
+            manufacturer_id = self.env.ref("base.res_partner_4")
+            partner_id = self.env.ref("base.res_partner_12")
+            currency_id = self.env.ref("base.USD")
+            product_id = orderpoint_id[0].product_id
+            product_id.manufacturer_id = manufacturer_id.id
+            product_id.seller_ids = [
+                (
+                    0,
+                    0,
+                    {
+                        "partner_id": partner_id.id,
+                        "price": 100,
+                        "currency_id": currency_id.id,
+                        "delay": 2,
+                    },
+                )
+            ]
+            values = {
+                "route_ids": self.env["stock.route"],
+                "date_planned": datetime(2024, 8, 26, 12, 0),
+                "date_deadline": datetime(2024, 8, 27, 12, 0),
+                "warehouse_id": self.env["stock.warehouse"].browse(2),
+                "orderpoint_id": self.env["stock.warehouse.orderpoint"].browse(4),
+                "group_id": self.env["procurement.group"],
+                "supplierinfo_id": self.env["product.supplierinfo"],
+                "company_id": self.env["res.company"].browse(2),
+                "priority": "0",
+                "supplier": self.env["product.supplierinfo"],
+                "propagate_cancel": False,
+            }
+            domain = self.env["stock.rule"]._make_po_get_domain(
+                company_id=self.env.company,
+                values=values,
+                partner=self.env["res.partner"],
+            )
+            self.assertEqual(
+                domain,
+                (
+                    ("partner_id", "=", False),
+                    ("state", "=", "draft"),
+                    ("picking_type_id", "=", False),
+                    ("company_id", "=", 1),
+                    ("user_id", "=", False),
+                    ("manufacturer_id", "=", 12),
+                ),
+            )
