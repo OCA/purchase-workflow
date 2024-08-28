@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="email_template_edi_purchase_return" model="mail.template">
+        <field name="name">Purchase Return Order: Send</field>
+        <field name="model_id" ref="purchase_return.model_purchase_return_order" />
+        <field
+            name="subject"
+        >{{ object.company_id.name }} Return Order (Ref {{ object.name or 'n/a' }})</field>
+        <field name="partner_to">{{ object.partner_id.id }}</field>
+        <field name="body_html" type="html">
+<div style="margin: 0px; padding: 0px;">
+    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+        Dear <t t-out="object.partner_id.name or ''">Brandon Freeman</t>
+        <t t-if="object.partner_id.parent_id">
+            (<t t-out="object.partner_id.parent_id.name or ''">Azure Interior</t>)
+        </t>
+        <br /><br />
+        Here is in attachment Return Order <span
+                        style="font-weight:bold;"
+                        t-out="object.name or ''"
+                    >P00015</span>
+        <t t-if="object.partner_ref">
+            with reference: <t t-out="object.partner_ref or ''">REF_XXX</t>
+        </t>
+        from <t t-out="object.company_id.name or ''">YourCompany</t>.
+        <br /><br />
+        If you have any questions, please do not hesitate to contact us.
+        <br /><br />
+        Best regards,
+    </p>
+</div></field>
+            <field name="report_template" ref="report_purchase_return_order" />
+            <field name="report_name">{{(object.name or '').replace('/','_')}}</field>
+            <field name="lang">{{object.partner_id.lang}}</field>
+            <field name="auto_delete" eval="True" />
+        </record>
+</odoo>

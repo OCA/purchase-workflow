@@ -179,9 +179,10 @@ class PurchaseOrderLine(models.Model):
                 message = self._purchase_request_confirm_done_message_content(
                     message_data
                 )
-                alloc.purchase_request_line_id.request_id.message_post(
-                    body=message, subtype_id=self.env.ref("mail.mt_comment").id
-                )
+                if message:
+                    alloc.purchase_request_line_id.request_id.message_post(
+                        body=message, subtype_id=self.env.ref("mail.mt_comment").id
+                    )
 
                 alloc.purchase_request_line_id._compute_qty()
         return True

@@ -6,8 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-10-30 12:38+0000\n"
-"Last-Translator: Adriano Prado <adrianojprado@gmail.com>\n"
+"PO-Revision-Date: 2024-05-22 00:04+0000\n"
+"Last-Translator: Rodrigo Macedo <sottomaiormacedotec@users.noreply."
+"translation.odoo-community.org>\n"
 "Language-Team: none\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -83,6 +84,11 @@ msgid "Purchase"
 msgstr "Compra"
 
 #. module: purchase_merge
+#: model:ir.model,name:purchase_merge.model_purchase_merge_automatic_wizard
+msgid "Purchase Merge Automatic Wizard"
+msgstr ""
+
+#. module: purchase_merge
 #: model_terms:ir.ui.view,arch_db:purchase_merge.purchase_merge_automatic_wizard_form
 msgid "Selected purchase will be merged together."
 msgstr "A compra selecionada será mesclada."
@@ -91,8 +97,8 @@ msgstr "A compra selecionada será mesclada."
 #. odoo-python
 #: code:addons/purchase_merge/wizard/purchase_merge.py:0
 #, python-format
-msgid "This purchase order lines have been merged {way} : {po_names}"
-msgstr "Estas linhas da ordem de compra foram mescladas {way}: {po_names}"
+msgid "This purchase order lines have been merged %(way)s : %(po_names)s"
+msgstr ""
 
 #. module: purchase_merge
 #. odoo-python
@@ -150,7 +156,9 @@ msgstr ""
 msgid "You can't merge purchase orders with different suppliers: %s"
 msgstr "Você não pode mesclar pedidos de compra de fornecedores diferentes: %s"
 
-#. module: purchase_merge
-#: model:ir.model,name:purchase_merge.model_purchase_merge_automatic_wizard
-msgid "purchase.merge.automatic.wizard"
-msgstr ""
+#, python-format
+#~ msgid "This purchase order lines have been merged {way} : {po_names}"
+#~ msgstr "Estas linhas da ordem de compra foram mescladas {way}: {po_names}"
+
+#~ msgid "purchase.merge.automatic.wizard"
+#~ msgstr "assistente.de.fusão.automática.de.compras"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-20 18:09+0000\n"
+"PO-Revision-Date: 2024-04-18 08:37+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -45,7 +45,7 @@ msgstr "Inserte aquí sus términos y condiciones..."
 #. module: purchase_default_terms_conditions
 #: model:ir.model,name:purchase_default_terms_conditions.model_res_config_settings
 msgid "Procurement purchase grouping settings"
-msgstr ""
+msgstr "Configuración de la agrupación de adquisición de compras"
 
 #. module: purchase_default_terms_conditions
 #: model:ir.model.fields,field_description:purchase_default_terms_conditions.field_res_company__purchase_note

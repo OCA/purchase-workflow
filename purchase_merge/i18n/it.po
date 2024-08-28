@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-24 12:38+0000\n"
+"PO-Revision-Date: 2024-08-12 09:58+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: purchase_merge
 #: model_terms:ir.ui.view,arch_db:purchase_merge.purchase_merge_automatic_wizard_form
@@ -83,6 +83,11 @@ msgid "Purchase"
 msgstr "Acquisto"
 
 #. module: purchase_merge
+#: model:ir.model,name:purchase_merge.model_purchase_merge_automatic_wizard
+msgid "Purchase Merge Automatic Wizard"
+msgstr "Procedura guidata unione automatica acquisti"
+
+#. module: purchase_merge
 #: model_terms:ir.ui.view,arch_db:purchase_merge.purchase_merge_automatic_wizard_form
 msgid "Selected purchase will be merged together."
 msgstr "Gli acquisti selezionati verranno uniti."
@@ -91,8 +96,8 @@ msgstr "Gli acquisti selezionati verranno uniti."
 #. odoo-python
 #: code:addons/purchase_merge/wizard/purchase_merge.py:0
 #, python-format
-msgid "This purchase order lines have been merged {way} : {po_names}"
-msgstr "Queste righe ordine di vendita sono state unite {way} : {po_names}"
+msgid "This purchase order lines have been merged %(way)s : %(po_names)s"
+msgstr "Queste righe ordine di acquisto sono state unite %(way)s : %(po_names)s"
 
 #. module: purchase_merge
 #. odoo-python
@@ -146,7 +151,9 @@ msgstr "Non si possono unire ordini di acquisto con tipi prelievo diversi: %s"
 msgid "You can't merge purchase orders with different suppliers: %s"
 msgstr "Non si possono unire ordini di acquisto con fornitori diversi: %s"
 
-#. module: purchase_merge
-#: model:ir.model,name:purchase_merge.model_purchase_merge_automatic_wizard
-msgid "purchase.merge.automatic.wizard"
-msgstr "purchase.merge.automatic.wizard"
+#, python-format
+#~ msgid "This purchase order lines have been merged {way} : {po_names}"
+#~ msgstr "Queste righe ordine di vendita sono state unite {way} : {po_names}"
+
+#~ msgid "purchase.merge.automatic.wizard"
+#~ msgstr "purchase.merge.automatic.wizard"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-04-17 20:37+0000\n"
+"PO-Revision-Date: 2024-04-17 22:40+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -88,59 +88,59 @@ msgstr "Última actualización por"
 #. module: purchase_request_type
 #: model:ir.model.fields,field_description:purchase_request_type.field_purchase_request_type__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última Actualización el"
 
 #. module: purchase_request_type
 #: model:ir.model.fields,field_description:purchase_request_type.field_purchase_request_type__name
 msgid "Name"
-msgstr ""
+msgstr "Nombre"
 
 #. module: purchase_request_type
 #: model:ir.model.fields,field_description:purchase_request_type.field_purchase_request__request_type
 #: model_terms:ir.ui.view,arch_db:purchase_request_type.view_purchase_request_search
 msgid "PR Type"
-msgstr ""
+msgstr "Tipo PR"
 
 #. module: purchase_request_type
 #: model:ir.model.fields,field_description:purchase_request_type.field_purchase_request_type__picking_type_id
 #: model_terms:ir.ui.view,arch_db:purchase_request_type.view_purchase_request_type_search
 msgid "Picking Type"
-msgstr ""
+msgstr "Tipo de Recogida"
 
 #. module: purchase_request_type
 #: model:ir.model,name:purchase_request_type.model_purchase_request
 msgid "Purchase Request"
-msgstr ""
+msgstr "Petición de compra"
 
 #. module: purchase_request_type
 #: model:ir.actions.act_window,name:purchase_request_type.action_purchase_request_type_view
 #: model:ir.ui.menu,name:purchase_request_type.menu_purchase_request_type
 #: model_terms:ir.ui.view,arch_db:purchase_request_type.view_purchase_request_type_search
 msgid "Purchase Request Types"
-msgstr ""
+msgstr "Tipos de Solicitud de Compra"
 
 #. module: purchase_request_type
 #: model:ir.model.fields,field_description:purchase_request_type.field_purchase_request__reduce_step
 #: model:ir.model.fields,field_description:purchase_request_type.field_purchase_request_type__reduce_step
 msgid "Reduce Step"
-msgstr ""
+msgstr "Reducir Paso"
 
 #. module: purchase_request_type
 #: model:ir.model.fields,field_description:purchase_request_type.field_purchase_request__name
 msgid "Request Reference"
-msgstr ""
+msgstr "Referencia de petición"
 
 #. module: purchase_request_type
 #: model:ir.model.fields,field_description:purchase_request_type.field_purchase_request_type__sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Secuencia"
 
 #. module: purchase_request_type
 #: model_terms:ir.ui.view,arch_db:purchase_request_type.view_purchase_request_type_form
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #. module: purchase_request_type
 #: model:ir.model,name:purchase_request_type.model_purchase_request_type
 msgid "Type of purchase request"
-msgstr ""
+msgstr "Tipo de solicitud de compra"

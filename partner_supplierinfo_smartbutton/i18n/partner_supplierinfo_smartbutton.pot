@@ -1,0 +1,30 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* partner_supplierinfo_smartbutton
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: partner_supplierinfo_smartbutton
+#: model:ir.model,name:partner_supplierinfo_smartbutton.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: partner_supplierinfo_smartbutton
+#: model:ir.model.fields,field_description:partner_supplierinfo_smartbutton.field_res_partner__product_supplied_count
+#: model:ir.model.fields,field_description:partner_supplierinfo_smartbutton.field_res_users__product_supplied_count
+msgid "Product Supplied Count"
+msgstr ""
+
+#. module: partner_supplierinfo_smartbutton
+#: model_terms:ir.ui.view,arch_db:partner_supplierinfo_smartbutton.view_partner_form
+msgid "Products Supplied"
+msgstr ""

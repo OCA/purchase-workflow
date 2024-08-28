@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<odoo>
+    <template id="purchase_order_transport_mode_status_display">
+        <div
+            class="alert alert-warning"
+            role="alert"
+            style="margin-bottom:0px;"
+            t-if="errors"
+        >
+            <h5 class="alert-heading">Transport mode errors</h5>
+            <ol class="pl-2">
+                <li t-foreach="errors" t-as="err">
+                    <t t-esc="err" />
+                </li>
+            </ol>
+        </div>
+    </template>
+</odoo>

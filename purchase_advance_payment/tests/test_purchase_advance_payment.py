@@ -464,3 +464,49 @@ class TestPurchaseAdvancePayment(common.TransactionCase):
                     "order_id": self.purchase_order_2.id,
                 }
             )
+
+    def test_06_skip_payment_post(self):
+        self.assertEqual(
+            self.purchase_order_1.amount_residual,
+            3600,
+        )
+        context_payment = {
+            "active_ids": [self.purchase_order_1.id],
+            "active_id": self.purchase_order_1.id,
+        }
+        # Create Advance Payment 1
+        advance_payment_1 = (
+            self.env["account.voucher.wizard.purchase"]
+            .with_context(**context_payment)
+            .create(
+                {
+                    "journal_id": self.journal_eur_bank.id,
+                    "amount_advance": 100,
+                    "order_id": self.purchase_order_1.id,
+                }
+            )
+        )
+        advance_payment_1.make_advance_payment()
+        payment_1 = self.purchase_order_1.account_payment_ids
+        self.assertTrue(payment_1)
+        self.assertEqual(payment_1.state, "posted")
+
+        # Change setting and create a second payment:
+        self.env["ir.config_parameter"].sudo().set_param(
+            "purchase_advance_payment.auto_post_advance_payments", False
+        )
+        advance_payment_2 = (
+            self.env["account.voucher.wizard.purchase"]
+            .with_context(**context_payment)
+            .create(
+                {
+                    "journal_id": self.journal_usd_cash.id,
+                    "amount_advance": 200,
+                    "order_id": self.purchase_order_1.id,
+                }
+            )
+        )
+        advance_payment_2.make_advance_payment()
+        payment_2 = self.purchase_order_1.account_payment_ids - payment_1
+        self.assertEqual(len(payment_2), 1)
+        self.assertEqual(payment_2.state, "draft")

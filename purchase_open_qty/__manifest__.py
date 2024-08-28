@@ -6,11 +6,14 @@
     "name": "Purchase Open Qty",
     "summary": "Allows to identify the purchase orders that have quantities "
     "pending to invoice or to receive.",
-    "version": "16.0.2.0.1",
+    "version": "16.0.3.0.0",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
     "category": "Purchases",
-    "depends": ["purchase_stock"],
+    "depends": [
+        "purchase_stock",
+        "purchase_order_line_menu",
+    ],
     "data": ["views/purchase_view.xml"],
     "pre_init_hook": "pre_init_hook",
     "license": "AGPL-3",

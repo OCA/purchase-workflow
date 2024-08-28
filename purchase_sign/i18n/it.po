@@ -1,0 +1,201 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_sign
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-08-17 18:58+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
+
+#. module: purchase_sign
+#: model_terms:ir.ui.view,arch_db:purchase_sign.portal_my_purchase_order
+msgid ""
+"<i class=\"fa fa-check\"/>\n"
+"                        Accept &amp; Sign"
+msgstr ""
+"<i class=\"fa fa-check\"/>\n"
+"                        Accetta e firma"
+
+#. module: purchase_sign
+#: model_terms:ir.ui.view,arch_db:purchase_sign.portal_my_purchase_order
+msgid ""
+"<i class=\"fa fa-check\"/>\n"
+"                Accept &amp; Sign"
+msgstr ""
+"<i class=\"fa fa-check\"/>\n"
+"                Accetta e firma"
+
+#. module: purchase_sign
+#: model_terms:ir.ui.view,arch_db:purchase_sign.portal_my_purchase_order
+msgid ""
+"<i class=\"fa fa-comment\"/>\n"
+"                        Feedback"
+msgstr ""
+"<i class=\"fa fa-comment\"/>\n"
+"                        Commento"
+
+#. module: purchase_sign
+#: model_terms:ir.ui.view,arch_db:purchase_sign.portal_my_purchase_order
+msgid "<span>Accepted on the behalf of:</span>"
+msgstr "<span>Accettato per conto di:</span>"
+
+#. module: purchase_sign
+#: model_terms:ir.ui.view,arch_db:purchase_sign.portal_my_purchase_order
+msgid "<span>By signing this proposal, I agree to the following terms:</span>"
+msgstr "<span>Firmando questa proposta accetto i seguenti termini:</span>"
+
+#. module: purchase_sign
+#: model_terms:ir.ui.view,arch_db:purchase_sign.portal_my_purchase_order
+msgid "<span>For an amount of:</span>"
+msgstr "<span>Per un valore di:</span>"
+
+#. module: purchase_sign
+#: model_terms:ir.ui.view,arch_db:purchase_sign.portal_my_purchase_order
+msgid "<span>With payment terms:</span>"
+msgstr "<span>Con termini di pagamento:</span>"
+
+#. module: purchase_sign
+#: model_terms:ir.ui.view,arch_db:purchase_sign.report_purchaseorder_document
+msgid "<strong>Signature</strong>"
+msgstr "<strong>Firma</strong>"
+
+#. module: purchase_sign
+#: model_terms:ir.ui.view,arch_db:purchase_sign.portal_my_purchase_order
+msgid ""
+"<strong>Thank You!</strong><br/>\n"
+"                        Order has been confirmed."
+msgstr ""
+"<strong>Grazie!</strong><br/>\n"
+"                        L'ordine è stato confermato."
+
+#. module: purchase_sign
+#: model_terms:ir.ui.view,arch_db:purchase_sign.portal_my_purchase_order
+msgid "Close"
+msgstr "Chiudi"
+
+#. module: purchase_sign
+#: model:ir.model,name:purchase_sign.model_res_company
+msgid "Companies"
+msgstr "Aziende"
+
+#. module: purchase_sign
+#. odoo-python
+#: code:addons/purchase_sign/controllers/main.py:0
+#: code:addons/purchase_sign/tests/test_purchase_sign.py:0
+#, python-format
+msgid "Invalid order."
+msgstr "Ordine non valido."
+
+#. module: purchase_sign
+#. odoo-python
+#: code:addons/purchase_sign/tests/test_purchase_sign.py:0
+#, python-format
+msgid "Invalid signature data"
+msgstr "Data firma non valida"
+
+#. module: purchase_sign
+#. odoo-python
+#: code:addons/purchase_sign/controllers/main.py:0
+#, python-format
+msgid "Invalid signature data."
+msgstr "Data firma non valida."
+
+#. module: purchase_sign
+#: model:ir.model.fields,field_description:purchase_sign.field_purchase_order__require_signature
+#: model_terms:ir.ui.view,arch_db:purchase_sign.res_config_settings_view_form_purchase
+msgid "Online Signature"
+msgstr "Firma online"
+
+#. module: purchase_sign
+#. odoo-python
+#: code:addons/purchase_sign/controllers/main.py:0
+#, python-format
+msgid "Order signed by %s"
+msgstr "Ordine firmato da %s"
+
+#. module: purchase_sign
+#: model:ir.model,name:purchase_sign.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr "Impostazioni raggruppamento approvvigionamento acquisti"
+
+#. module: purchase_sign
+#: model:ir.model.fields,field_description:purchase_sign.field_res_company__purchase_portal_confirmation_sign
+#: model:ir.model.fields,field_description:purchase_sign.field_res_config_settings__purchase_portal_confirmation_sign
+msgid "Purchase Online Signature"
+msgstr "Firma online acquisto"
+
+#. module: purchase_sign
+#: model:ir.model,name:purchase_sign.model_purchase_order
+msgid "Purchase Order"
+msgstr "Ordine di acquisto"
+
+#. module: purchase_sign
+#: model:ir.model.fields,help:purchase_sign.field_purchase_order__require_signature
+msgid ""
+"Request a online signature and/or payment to the customer in order to "
+"confirm orders automatically."
+msgstr ""
+"Richiede una firma online e/o pagamento al cliente per confermare gli ordini "
+"automaticamente."
+
+#. module: purchase_sign
+#: model_terms:ir.ui.view,arch_db:purchase_sign.res_config_settings_view_form_purchase
+msgid "Request an online signature to confirm orders"
+msgstr "Richiede una firma online per confermare gli ordini"
+
+#. module: purchase_sign
+#: model:ir.model.fields,field_description:purchase_sign.field_purchase_order__signature
+#: model_terms:ir.ui.view,arch_db:purchase_sign.purchase_order_portal_content
+msgid "Signature"
+msgstr "Firma"
+
+#. module: purchase_sign
+#. odoo-python
+#: code:addons/purchase_sign/tests/test_purchase_sign.py:0
+#, python-format
+msgid "Signature is missing"
+msgstr "Manca la firma"
+
+#. module: purchase_sign
+#. odoo-python
+#: code:addons/purchase_sign/controllers/main.py:0
+#, python-format
+msgid "Signature is missing."
+msgstr "Manca la firma."
+
+#. module: purchase_sign
+#: model:ir.model.fields,field_description:purchase_sign.field_purchase_order__signed_by
+msgid "Signed By"
+msgstr "Firmato da"
+
+#. module: purchase_sign
+#: model:ir.model.fields,field_description:purchase_sign.field_purchase_order__signed_on
+msgid "Signed On"
+msgstr "Firmato il"
+
+#. module: purchase_sign
+#. odoo-python
+#: code:addons/purchase_sign/controllers/main.py:0
+#: code:addons/purchase_sign/tests/test_purchase_sign.py:0
+#, python-format
+msgid "The order is not in a state requiring vendor signature."
+msgstr "L'ordine è in uno stato che non richiede la firma del fornitore."
+
+#. module: purchase_sign
+#: model_terms:ir.ui.view,arch_db:purchase_sign.portal_my_purchase_order
+msgid "Validate Order"
+msgstr "Validazione ordine"
+
+#. module: purchase_sign
+#: model_terms:ir.ui.view,arch_db:purchase_sign.purchase_order_view_form_inherit
+msgid "Vendor Signature"
+msgstr "Firma fornitore"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-03-05 14:35+0000\n"
+"PO-Revision-Date: 2024-07-22 08:58+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: purchase_manual_delivery
 #: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.view_create_stock_picking
@@ -235,6 +235,12 @@ msgid "Product"
 msgstr "Prodotto"
 
 #. module: purchase_manual_delivery
+#: model:ir.actions.act_window,name:purchase_manual_delivery.action_order_line_delivery_tree
+#: model:ir.ui.menu,name:purchase_manual_delivery.menu_delivery_purchase_order_lines
+msgid "Purchase Manual Receipt"
+msgstr "Ricevuta manuale acquisto"
+
+#. module: purchase_manual_delivery
 #: model:ir.model,name:purchase_manual_delivery.model_purchase_order
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard__purchase_id
 #: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.view_purchase_order_unreceived_line_filter
@@ -246,12 +252,6 @@ msgstr "Ordine di acquisto"
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__purchase_order_line_id
 msgid "Purchase Order Line"
 msgstr "Riga ordine di acquisto"
-
-#. module: purchase_manual_delivery
-#: model:ir.actions.act_window,name:purchase_manual_delivery.action_order_line_delivery_tree
-#: model:ir.ui.menu,name:purchase_manual_delivery.menu_delivery_purchase_order_lines
-msgid "Purchase Order Lines"
-msgstr "Righe ordine di acquisto"
 
 #. module: purchase_manual_delivery
 #: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.view_purchase_order_unreceived_line_filter
@@ -391,6 +391,9 @@ msgid ""
 msgstr ""
 "Non è possibile ricever più della quantità rimanente. Se è necessario, "
 "modificare prima l'ordine di acquisto."
+
+#~ msgid "Purchase Order Lines"
+#~ msgstr "Righe ordine di acquisto"
 
 #~ msgid "Config Settings"
 #~ msgstr "Impostazioni configurazione"

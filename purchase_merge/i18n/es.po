@@ -83,6 +83,11 @@ msgid "Purchase"
 msgstr "Compra"
 
 #. module: purchase_merge
+#: model:ir.model,name:purchase_merge.model_purchase_merge_automatic_wizard
+msgid "Purchase Merge Automatic Wizard"
+msgstr ""
+
+#. module: purchase_merge
 #: model_terms:ir.ui.view,arch_db:purchase_merge.purchase_merge_automatic_wizard_form
 msgid "Selected purchase will be merged together."
 msgstr "La compra seleccionada se fusionará."
@@ -91,8 +96,8 @@ msgstr "La compra seleccionada se fusionará."
 #. odoo-python
 #: code:addons/purchase_merge/wizard/purchase_merge.py:0
 #, python-format
-msgid "This purchase order lines have been merged {way} : {po_names}"
-msgstr "Estas líneas de pedido han sido fusionadas {way} : {po_names}"
+msgid "This purchase order lines have been merged %(way)s : %(po_names)s"
+msgstr ""
 
 #. module: purchase_merge
 #. odoo-python
@@ -144,10 +149,12 @@ msgstr "No se pueden fusionar pedidos con diferentes tipos de recogida: %s"
 msgid "You can't merge purchase orders with different suppliers: %s"
 msgstr "No se pueden fusionar pedidos con diferentes proveedores: %s"
 
-#. module: purchase_merge
-#: model:ir.model,name:purchase_merge.model_purchase_merge_automatic_wizard
-msgid "purchase.merge.automatic.wizard"
-msgstr "asistente.de.fusión.automática.de.compras"
+#, python-format
+#~ msgid "This purchase order lines have been merged {way} : {po_names}"
+#~ msgstr "Estas líneas de pedido han sido fusionadas {way} : {po_names}"
+
+#~ msgid "purchase.merge.automatic.wizard"
+#~ msgstr "asistente.de.fusión.automática.de.compras"
 
 #, python-format
 #~ msgid "This purchase order lines have been merged {} : {}"
