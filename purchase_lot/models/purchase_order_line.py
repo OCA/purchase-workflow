@@ -17,11 +17,17 @@ class PurchaseOrderLine(models.Model):
         store=True,
     )
 
-    @api.depends("move_dest_ids.restrict_lot_id", "move_ids.restrict_lot_id")
+    @api.depends(
+        "move_dest_ids.restrict_lot_id",
+        "move_ids.restrict_lot_id",
+        "sale_line_id.lot_id",
+    )
     def _compute_lot_id(self):
         for line in self:
             line.lot_id = (
-                line.move_dest_ids.restrict_lot_id | line.move_ids.restrict_lot_id
+                line.move_dest_ids.restrict_lot_id
+                | line.move_ids.restrict_lot_id
+                | line.sale_line_id.lot_id
             )
 
     @api.model
