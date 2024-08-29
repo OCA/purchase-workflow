@@ -54,9 +54,10 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         for line in self.env["purchase.request.line"].browse(request_line_ids):
             if line.request_id.state == "done":
                 raise UserError(_("The purchase has already been completed."))
-            if line.request_id.state != "approved":
+            if line.request_id.state not in ["approved", "in_progress"]:
                 raise UserError(
-                    _("Purchase Request %s is not approved") % line.request_id.name
+                    _("Purchase Request %s is not approved or in progress")
+                    % line.request_id.name
                 )
 
             if line.purchase_state == "done":
@@ -289,6 +290,8 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             )
             res.append(purchase.id)
 
+        purchase_requests = self.item_ids.mapped("request_id")
+        purchase_requests.button_in_progress()
         return {
             "domain": [("id", "in", res)],
             "name": _("RFQ"),

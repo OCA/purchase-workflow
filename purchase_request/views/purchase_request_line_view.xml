@@ -16,7 +16,7 @@
                 <field
                     name="request_state"
                     widget="badge"
-                    decoration-success="request_state in ('done', 'approved')"
+                    decoration-success="request_state in ('done', 'approved', 'in_progress')"
                     decoration-info="request_state in ('draft', 'to_approve')"
                     decoration-danger="request_state == 'rejected'"
                 />
@@ -67,7 +67,11 @@
         <field name="arch" type="xml">
             <form string="Purchase Request Line" create="false" duplicate="false">
                 <header>
-                    <field name="request_state" widget="statusbar" />
+                    <field
+                        name="request_state"
+                        widget="statusbar"
+                        statusbar_visible="draft,to_approve,approved,done,in_progress"
+                    />
                 </header>
                 <sheet>
                     <h1>
@@ -266,6 +270,12 @@
                     string="Rejected"
                     domain="[('request_state','=','rejected')]"
                     help="Request is rejected"
+                />
+                <filter
+                    name="request_state_in_progress"
+                    string="In Progress"
+                    domain="[('request_state','=','in_progress')]"
+                    help="Request is in progress"
                 />
                 <filter
                     name="assigned_to_me"
