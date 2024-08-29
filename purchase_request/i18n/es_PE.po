@@ -535,6 +535,18 @@ msgid "If checked, some messages have a delivery error."
 msgstr ""
 
 #. module: purchase_request
+#: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
+#: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
+#: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
+msgid "In Progress"
+msgstr ""
+
+#. module: purchase_request
+#: model:ir.model.fields.selection,name:purchase_request.selection__purchase_request__state__in_progress
+msgid "In progress"
+msgstr ""
+
+#. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__is_editable
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__is_editable
 msgid "Is Editable"
@@ -860,9 +872,9 @@ msgstr "Solicitud de compra %s rechazada"
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
-#, fuzzy, python-format
-msgid "Purchase Request %s is not approved"
-msgstr "Solicitud de compra %s aprobada"
+#, python-format
+msgid "Purchase Request %s is not approved or in progress"
+msgstr ""
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_request_allocation
@@ -1118,6 +1130,12 @@ msgstr "Solicitud está aprobada"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Request is done"
+msgstr ""
+
+#. module: purchase_request
+#: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
+#: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
+msgid "Request is in progress"
 msgstr ""
 
 #. module: purchase_request
@@ -1487,6 +1505,10 @@ msgstr ""
 #, python-format
 msgid "You have to select lines from the same company."
 msgstr ""
+
+#, fuzzy, python-format
+#~ msgid "Purchase Request %s is not approved"
+#~ msgstr "Solicitud de compra %s aprobada"
 
 #~ msgid "<strong>Analytic Account</strong>"
 #~ msgstr "Cuenta Analítica"
