@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="purchase_order_line_tree" model="ir.ui.view">
+        <field name="model">purchase.order.line</field>
+        <field name="inherit_id" ref="purchase.purchase_order_line_tree" />
+        <field type="xml" name="arch">
+            <xpath expr="//field[@name='date_planned']" position="after">
+                <field
+                    name="receipt_threshold"
+                    widget="percentage"
+                    groups="purchase.group_purchase_manager"
+                />
+                <field
+                    name="use_threshold"
+                    widget="boolean_toggle"
+                    groups="purchase.group_purchase_manager"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="purchase_order_line_form2" model="ir.ui.view">
+        <field name="model">purchase.order.line</field>
+        <field name="inherit_id" ref="purchase.purchase_order_line_form2" />
+        <field type="xml" name="arch">
+            <xpath expr="//group/group[last()]" position="after">
+                <group groups="purchase.group_purchase_manager">
+                    <field name="receipt_threshold" widget="percentage" />
+                    <field name="use_threshold" widget="boolean_toggle" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
