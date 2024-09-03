@@ -13,6 +13,9 @@ class PurchaseOrder(models.Model):
         string="Type",
         ondelete="restrict",
         domain="[('company_id', 'in', [False, company_id])]",
+        compute="_compute_partner_order_type",
+        store=True,
+        readonly=False,
     )
 
     @api.onchange("partner_id")
@@ -69,3 +72,13 @@ class PurchaseOrder(models.Model):
             and self.order_type.company_id not in [self.company_id, False]
         ):
             self.order_type = self._default_order_type()
+
+    @api.depends("partner_id")
+    def _compute_partner_order_type(self):
+        for record in self:
+            if record.partner_id and not record.order_type:
+                record.order_type = record.partner_id.purchase_type
+            elif record.partner_id and record.order_type:
+                record.order_type = record.order_type
+            else:
+                record.order_type = False
