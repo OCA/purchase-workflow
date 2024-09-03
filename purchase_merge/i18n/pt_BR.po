@@ -6,16 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-05-22 00:04+0000\n"
-"Last-Translator: Rodrigo Macedo <sottomaiormacedotec@users.noreply."
-"translation.odoo-community.org>\n"
+"PO-Revision-Date: 2024-09-03 16:06+0000\n"
+"Last-Translator: Rodrigo Sottomaior Macedo "
+"<sottomaiormacedotec@sottomaiormacedo.tech>\n"
 "Language-Team: none\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: purchase_merge
 #: model_terms:ir.ui.view,arch_db:purchase_merge.purchase_merge_automatic_wizard_form
@@ -86,7 +86,7 @@ msgstr "Compra"
 #. module: purchase_merge
 #: model:ir.model,name:purchase_merge.model_purchase_merge_automatic_wizard
 msgid "Purchase Merge Automatic Wizard"
-msgstr ""
+msgstr "Assistente automático de fusão de compras"
 
 #. module: purchase_merge
 #: model_terms:ir.ui.view,arch_db:purchase_merge.purchase_merge_automatic_wizard_form
@@ -98,7 +98,7 @@ msgstr "A compra selecionada será mesclada."
 #: code:addons/purchase_merge/wizard/purchase_merge.py:0
 #, python-format
 msgid "This purchase order lines have been merged %(way)s : %(po_names)s"
-msgstr ""
+msgstr "Essas linhas de ordem de compra foram mescladas %(way)s : %(po_names)s"
 
 #. module: purchase_merge
 #. odoo-python
