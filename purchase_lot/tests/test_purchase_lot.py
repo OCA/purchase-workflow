@@ -114,7 +114,7 @@ class TestPurchaseLot(TransactionCase):
         self.env.user.groups_id += self.env.ref("stock.group_adv_location")
 
         # Create a sales order with a line of 200 PCE incoming shipment,
-        # with route_id drop shipping
+        # with route_id buy
         so_form = Form(self.env["sale.order"])
         so_form.partner_id = self.customer
         so_form.payment_term_id = self.env.ref(
@@ -129,16 +129,16 @@ class TestPurchaseLot(TransactionCase):
                 line.price_unit = 1.00
                 line.route_id = self.env.ref("purchase_stock.route_warehouse0_buy")
 
-        sale_order_drp_shpng = so_form.save()
-        sale_order_drp_shpng.order_line.lot_id = self.env["stock.lot"].create(
+        sale_order = so_form.save()
+        sale_order.order_line.lot_id = self.env["stock.lot"].create(
             {
                 "name": "Seq test DS pdt",
                 "product_id": self.external_serial_product.id,
             }
         )
-        initial_lot = sale_order_drp_shpng.order_line.lot_id
+        initial_lot = sale_order.order_line.lot_id
         # Confirm sales order
-        sale_order_drp_shpng.action_confirm()
+        sale_order.action_confirm()
 
         # Check a quotation was created to a certain vendor
         # and confirm so it becomes a confirmed purchase order
