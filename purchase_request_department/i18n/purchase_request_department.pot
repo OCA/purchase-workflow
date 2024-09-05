@@ -1,0 +1,50 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_request_department
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_request_department
+#: model:ir.model.fields,field_description:purchase_request_department.field_purchase_request__department_id
+#: model:ir.model.fields,field_description:purchase_request_department.field_purchase_request_line__department_id
+#: model_terms:ir.ui.view,arch_db:purchase_request_department.purchase_request_line_search
+#: model_terms:ir.ui.view,arch_db:purchase_request_department.view_purchase_request_search
+msgid "Department"
+msgstr ""
+
+#. module: purchase_request_department
+#: model:ir.model.fields,field_description:purchase_request_department.field_purchase_request__display_name
+#: model:ir.model.fields,field_description:purchase_request_department.field_purchase_request_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_request_department
+#: model:ir.model.fields,field_description:purchase_request_department.field_purchase_request__id
+#: model:ir.model.fields,field_description:purchase_request_department.field_purchase_request_line__id
+msgid "ID"
+msgstr ""
+
+#. module: purchase_request_department
+#: model:ir.model.fields,field_description:purchase_request_department.field_purchase_request____last_update
+#: model:ir.model.fields,field_description:purchase_request_department.field_purchase_request_line____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: purchase_request_department
+#: model:ir.model,name:purchase_request_department.model_purchase_request
+msgid "Purchase Request"
+msgstr ""
+
+#. module: purchase_request_department
+#: model:ir.model,name:purchase_request_department.model_purchase_request_line
+msgid "Purchase Request Line"
+msgstr ""
