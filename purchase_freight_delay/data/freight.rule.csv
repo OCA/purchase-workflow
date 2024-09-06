@@ -1,0 +1,3 @@
+id,freight_type,duration,partner_src_id/id,partner_dest_id/id,logistics_partner_id/id
+ship1,ship,45,base.res_partner_10,base.main_partner,
+plane1,plane,2,base.res_partner_10,base.main_partner,
