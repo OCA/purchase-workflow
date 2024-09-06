@@ -13,7 +13,7 @@
                     string="Create Incoming Shipment"
                     type="action"
                     class="btn-primary"
-                    attrs="{'invisible': ['|', ('state', '!=', 'purchase'), ('pending_to_receive', '=', False)]}"
+                    attrs="{'invisible': ['|', '|', ('state', '!=', 'purchase'), ('pending_to_receive', '=', False), ('manual_delivery', '=', False)]}"
                 />
             </xpath>
             <button id="draft_confirm" position="attributes">
