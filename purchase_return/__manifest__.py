@@ -3,7 +3,7 @@
 {
     "name": "Purchase Return",
     "summary": "Manage return orders.",
-    "version": "16.0.1.0.1",
+    "version": "16.0.1.0.2",
     "category": "Purchases",
     "website": "https://github.com/OCA/purchase-workflow",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
