@@ -118,7 +118,7 @@ class PurchaseReturnOrderLine(models.Model):
     )
 
     display_type = fields.Selection(
-        [("product", "Product"), ("line_section", "Section"), ("line_note", "Note")],
+        [("line_section", "Section"), ("line_note", "Note")],
         default=False,
         help="Technical field for UX purpose.",
     )
@@ -126,13 +126,13 @@ class PurchaseReturnOrderLine(models.Model):
     _sql_constraints = [
         (
             "accountable_required_fields",
-            "CHECK(display_type IS NOT 'product' OR (product_id IS NOT NULL "
+            "CHECK(display_type IS NOT NULL OR (product_id IS NOT NULL "
             "AND product_uom IS NOT NULL AND date_planned IS NOT NULL))",
             "Missing required fields on accountable purchase return order line.",
         ),
         (
             "non_accountable_null_fields",
-            "CHECK(display_type IS 'product' OR (product_id IS NULL "
+            "CHECK(display_type IS NULL OR (product_id IS NULL "
             "AND price_unit = 0 AND product_uom_qty = 0 AND product_uom "
             "IS NULL AND date_planned is NULL))",
             "Forbidden values on non-accountable purchase return order line",
@@ -286,7 +286,7 @@ class PurchaseReturnOrderLine(models.Model):
     def _prepare_account_move_line(self, move=False):
         self.ensure_one()
         res = {
-            "display_type": "product",
+            "display_type": self.display_type or "product",
             "sequence": self.sequence,
             "name": "%s: %s" % (self.order_id.name, self.name),
             "product_id": self.product_id.id,
@@ -317,7 +317,9 @@ class PurchaseReturnOrderLine(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         for values in vals_list:
-            if values.get("display_type") != "product":
+            if values.get(
+                "display_type", self.default_get(["display_type"])["display_type"]
+            ):
                 values.update(
                     product_id=False,
                     price_unit=0,
