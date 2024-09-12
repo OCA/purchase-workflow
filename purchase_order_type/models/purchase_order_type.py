@@ -43,3 +43,6 @@ class PurchaseOrderType(models.Model):
         string="Company",
         default=lambda self: self.env.company,
     )
+    picking_type_id = fields.Many2one(
+        comodel_name="stock.picking.type", string="Send to"
+    )
