@@ -37,7 +37,6 @@
                     name="filter_for_current_supplier"
                     string="For current supplier"
                     domain="[]"
-                    context="{'for_current_supplier': True}"
                     help="Filter products supplied by the supplier of the current parent object"
                 />
             </xpath>
