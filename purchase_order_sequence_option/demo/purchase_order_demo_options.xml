@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="seq_purchase_order_option_1" model="ir.sequence">
+        <field name="name">Purchase Order: Option 1</field>
+        <field name="padding" eval="5" />
+        <field name="prefix">PO-1/</field>
+    </record>
+
+    <record id="purchase_order_sequence_option_line_1" model="ir.sequence.option.line">
+        <field
+            name="base_id"
+            ref="purchase_order_sequence_option.purchase_order_sequence_option"
+        />
+        <field name="name">PO Option 1</field>
+        <field name="filter_domain">[]</field>
+        <field
+            name="sequence_id"
+            ref="purchase_order_sequence_option.seq_purchase_order_option_1"
+        />
+    </record>
+
+</odoo>
