@@ -19,9 +19,9 @@ class StockPicking(models.Model):
         message += "<ul>"
         for purchase_line_id in purchase_dict.values():
             message += _("<li><b>%s</b>: Received quantity %s %s</li>") % (
-                purchase_line_id["purchase_line"].product_id.display_name,
-                purchase_line_id["stock_move"].product_qty,
-                purchase_line_id["stock_move"].product_uom.name,
+                purchase_line_id.product_id.display_name,
+                purchase_line_id.qty_received,
+                purchase_line_id.product_uom.name,
             )
         message += "</ul>"
         return message
@@ -36,8 +36,7 @@ class StockPicking(models.Model):
                     purchase_dict[pol_id.order_id] = {}
                 if pol_id.id not in purchase_dict[pol_id.order_id].keys():
                     purchase_dict[pol_id.order_id][pol_id.id] = {}
-                data = {"purchase_line": pol_id, "stock_move": move}
-                purchase_dict[pol_id.order_id][pol_id.id] = data
+                purchase_dict[pol_id.order_id][pol_id.id] = pol_id
             for po in purchase_dict.keys():
                 message = self._purchase_order_picking_confirm_message_content(
                     picking, purchase_dict[po]
