@@ -1,0 +1,1 @@
+Glue module between purchase_manual_add_supplierinfo and product_supplierinfo_group
