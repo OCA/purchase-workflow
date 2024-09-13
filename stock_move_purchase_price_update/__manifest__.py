@@ -14,7 +14,6 @@
     "installable": True,
     "depends": [
         "purchase_stock",
-        "stock_picking_batch",
     ],
     "data": [
         "views/stock_move_views.xml",

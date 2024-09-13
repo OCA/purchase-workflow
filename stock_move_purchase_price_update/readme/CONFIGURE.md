@@ -3,5 +3,3 @@
 - Enable 'Show Detailed Operations' option.
 - Go to Reception picking
 - Add optional column 'Purchase price' in operations and/or detailed operations
-- Go to picking batch with picking type Reception
-- Add optional column 'Purchase price' in operations and/or detailed operations
