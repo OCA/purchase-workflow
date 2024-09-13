@@ -1,6 +1,6 @@
-================================
-Stock Move Purchase Price Update
-================================
+=========================================
+Stock Picking Batch Purchase Price Update
+=========================================
 
 .. 
    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -17,10 +17,10 @@ Stock Move Purchase Price Update
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/purchase-workflow/tree/15.0/stock_move_purchase_price_update
+    :target: https://github.com/OCA/purchase-workflow/tree/15.0/stock_picking_batch_purchase_price_update
     :alt: OCA/purchase-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/purchase-workflow-15-0/purchase-workflow-15-0-stock_move_purchase_price_update
+    :target: https://translation.odoo-community.org/projects/purchase-workflow-15-0/purchase-workflow-15-0-stock_picking_batch_purchase_price_update
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
     :target: https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&target_branch=15.0
@@ -31,6 +31,12 @@ Stock Move Purchase Price Update
 Allow update purchase price from incoming picking operations, picking
 detailed operations and picking batch detailed operations if the
 purchase order is not invoiced.
+
+NOTICE:
+^^^^^^^
+
+The price on the picking reflects the purchase price for all pickings
+and is not individual for each picking.
 
 **Table of contents**
 
@@ -43,22 +49,17 @@ Configuration
 -  Go to 'Inventory > Configuration > Operations' Types
 -  Select Reception operation
 -  Enable 'Show Detailed Operations' option.
--  Go to Reception picking
+-  Go to picking batch with picking type Reception
 -  Add optional column 'Purchase price' in operations and/or detailed
    operations
 
 Usage
 =====
 
--  Go to Purchase > Products > Products and edit/create one
--  Set Product Type as Storable Product
--  Go to Purchase > Orders > Requests for Quotation
--  Create new RQ with the previous product in the order lines
--  Confirm the Purchase Order
--  Now you have a new button called 'Receive Products' > Press it
--  Add optional column 'Purchase Price' in operations and or detailed
+1. Go to Inventory > Operations > Batch Transfers
+2. Select or create a batch transfer with picking type Receptions
+3. Add optional column 'Purchase Price' in operations and or detailed
    operations
--  You can change the price of the purchase order line from here
 
 Bug Tracker
 ===========
@@ -66,7 +67,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/purchase-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20stock_move_purchase_price_update%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20stock_picking_batch_purchase_price_update%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -106,6 +107,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-carlosdauden| 
 
-This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/15.0/stock_move_purchase_price_update>`_ project on GitHub.
+This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/15.0/stock_picking_batch_purchase_price_update>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
