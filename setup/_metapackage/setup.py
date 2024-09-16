@@ -59,6 +59,7 @@ setuptools.setup(
         'odoo13-addon-purchase_order_uninvoiced_amount',
         'odoo13-addon-purchase_origin_link',
         'odoo13-addon-purchase_origin_link_sale',
+        'odoo13-addon-purchase_packaging',
         'odoo13-addon-purchase_partner_selectable_option',
         'odoo13-addon-purchase_product_usage',
         'odoo13-addon-purchase_propagate_qty',
