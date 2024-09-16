@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-20 12:32+0000\n"
-"PO-Revision-Date: 2020-07-20 12:32+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,7 +15,12 @@ msgstr ""
 
 #. module: purchase_packaging
 #: model_terms:ir.ui.view,arch_db:purchase_packaging.product_supplierinfo_view_form_inherit_purchase_packaging
-msgid "<span> of </span>"
+msgid "<span class=\"oe_inline\"> of </span>"
+msgstr ""
+
+#. module: purchase_packaging
+#: model_terms:ir.ui.view,arch_db:purchase_packaging.product_supplierinfo_view_form_inherit_purchase_packaging
+msgid "<span class=\"oe_inline\"> using package </span>"
 msgstr ""
 
 #. module: purchase_packaging
@@ -41,8 +44,8 @@ msgid "Packaging"
 msgstr ""
 
 #. module: purchase_packaging
-#: model:ir.model.fields,field_description:purchase_packaging.field_purchase_order_line__product_tmpl_id
-msgid "Product Template"
+#: model:ir.model,name:purchase_packaging.model_uom_category
+msgid "Product UoM Categories"
 msgstr ""
 
 #. module: purchase_packaging
@@ -66,6 +69,16 @@ msgid "Quantity"
 msgstr ""
 
 #. module: purchase_packaging
+#: model:ir.model.fields,field_description:purchase_packaging.field_purchase_order_line__product_qty_needed
+msgid "Quantity Needed"
+msgstr ""
+
+#. module: purchase_packaging
+#: model:ir.model.fields,field_description:purchase_packaging.field_uom_category__reference_uom_id
+msgid "Reference Uom"
+msgstr ""
+
+#. module: purchase_packaging
 #: model:ir.model,name:purchase_packaging.model_stock_rule
 msgid "Stock Rule"
 msgstr ""
@@ -86,6 +99,6 @@ msgid "This comes from the product form."
 msgstr ""
 
 #. module: purchase_packaging
-#: model_terms:ir.ui.view,arch_db:purchase_packaging.product_supplierinfo_view_form_inherit_purchase_packaging
-msgid "using package"
+#: model:ir.model.fields,field_description:purchase_packaging.field_uom_category__uom_ids
+msgid "Uom"
 msgstr ""
