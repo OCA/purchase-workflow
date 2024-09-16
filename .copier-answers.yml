@@ -14,11 +14,11 @@ include_wkhtmltopdf: false
 odoo_version: 13.0
 org_name: Odoo Community Association (OCA)
 org_slug: OCA
-rebel_module_groups: []
+rebel_module_groups:
+- purchase_packaging
 repo_description: Odoo modules for purchase and its workflow
 repo_name: Purchase Workflow
 repo_slug: purchase-workflow
 repo_website: https://github.com/OCA/purchase-workflow
 travis_apt_packages: []
 travis_apt_sources: []
-
