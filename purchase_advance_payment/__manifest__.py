@@ -11,9 +11,11 @@
     "summary": "Allow to add advance payments on purchase orders",
     "depends": ["purchase"],
     "data": [
+        "security/groups.xml",
         "wizard/purchase_advance_payment_wizard_view.xml",
         "views/purchase_view.xml",
         "security/ir.model.access.csv",
+        "security/ir_rules.xml",
     ],
     "installable": True,
 }
