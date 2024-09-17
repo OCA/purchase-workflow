@@ -1,0 +1,5 @@
+- Go to 'Inventory \> Configuration \> Operations' Types
+- Select Reception operation
+- Enable 'Show Detailed Operations' option.
+- Go to Reception picking
+- Add optional column 'Purchase price' in operations and/or detailed operations
