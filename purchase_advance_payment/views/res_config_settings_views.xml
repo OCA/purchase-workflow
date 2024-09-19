@@ -21,6 +21,13 @@
                 >
                     <field name="auto_post_purchase_advance_payments" />
                 </setting>
+                <setting
+                    id="purchase_advance_payment_auto_reconcile_advance_payments"
+                    title="Automatically reconcile payments upon bill confirmation."
+                    help="If enabled, advance payments created from POs are automatically reconciled upon bill confirmation."
+                >
+                    <field name="auto_reconcile_purchase_advance_payments" />
+                </setting>
             </xpath>
         </field>
     </record>
