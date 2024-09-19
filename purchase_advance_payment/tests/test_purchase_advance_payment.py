@@ -145,6 +145,9 @@ class TestPurchaseAdvancePayment(common.TransactionCase):
                 "currency_id": cls.currency_usd.id,
             }
         )
+        cls.env["ir.config_parameter"].sudo().set_param(
+            "purchase_advance_payment.auto_reconcile_advance_payments", False
+        )
 
     def test_00_with_context_payment(self):
         context_payment_2 = {
@@ -177,6 +180,13 @@ class TestPurchaseAdvancePayment(common.TransactionCase):
         )
 
     def test_01_purchase_advance_payment(self):
+        self.assertFalse(
+            bool(
+                self.env["ir.config_parameter"]
+                .sudo()
+                .get_param("purchase_advance_payment.auto_reconcile_advance_payments")
+            )
+        )
         self.assertEqual(
             self.purchase_order_1.amount_residual,
             3600,
@@ -253,6 +263,13 @@ class TestPurchaseAdvancePayment(common.TransactionCase):
         self.assertEqual(self.purchase_order_1.amount_residual, 2580)
 
     def test_02_residual_amount_with_bill(self):
+        self.assertFalse(
+            bool(
+                self.env["ir.config_parameter"]
+                .sudo()
+                .get_param("purchase_advance_payment.auto_reconcile_advance_payments")
+            )
+        )
         self.assertEqual(
             self.purchase_order_1.amount_residual,
             3600,
@@ -319,6 +336,13 @@ class TestPurchaseAdvancePayment(common.TransactionCase):
         self.assertEqual(self.purchase_order_1.amount_residual, 2200)
 
     def test_03_residual_amount_big_pre_payment(self):
+        self.assertFalse(
+            bool(
+                self.env["ir.config_parameter"]
+                .sudo()
+                .get_param("purchase_advance_payment.auto_reconcile_advance_payments")
+            )
+        )
         self.assertEqual(
             self.purchase_order_1.amount_residual,
             3600,
@@ -398,6 +422,13 @@ class TestPurchaseAdvancePayment(common.TransactionCase):
         self.assertEqual(self.purchase_order_1.amount_residual, 1300)
 
     def test_04_residual_amount_with_no_amount_left(self):
+        self.assertFalse(
+            bool(
+                self.env["ir.config_parameter"]
+                .sudo()
+                .get_param("purchase_advance_payment.auto_reconcile_advance_payments")
+            )
+        )
         self.assertEqual(
             self.purchase_order_1.amount_residual,
             3600,
@@ -423,6 +454,13 @@ class TestPurchaseAdvancePayment(common.TransactionCase):
         self.assertEqual(self.purchase_order_1.advance_payment_status, "paid")
 
     def test_05_check_residual_amount_warning(self):
+        self.assertFalse(
+            bool(
+                self.env["ir.config_parameter"]
+                .sudo()
+                .get_param("purchase_advance_payment.auto_reconcile_advance_payments")
+            )
+        )
         self.assertEqual(
             self.purchase_order_1.amount_residual,
             3600,
@@ -466,6 +504,13 @@ class TestPurchaseAdvancePayment(common.TransactionCase):
             )
 
     def test_06_skip_payment_post(self):
+        self.assertFalse(
+            bool(
+                self.env["ir.config_parameter"]
+                .sudo()
+                .get_param("purchase_advance_payment.auto_reconcile_advance_payments")
+            )
+        )
         self.assertEqual(
             self.purchase_order_1.amount_residual,
             3600,
@@ -510,3 +555,167 @@ class TestPurchaseAdvancePayment(common.TransactionCase):
         payment_2 = self.purchase_order_1.account_payment_ids - payment_1
         self.assertEqual(len(payment_2), 1)
         self.assertEqual(payment_2.state, "draft")
+
+    def test_07_auto_reconcile_advance_payment_enabled(self):
+        # Set the config parameter to True
+        self.assertFalse(
+            bool(
+                self.env["ir.config_parameter"]
+                .sudo()
+                .get_param("purchase_advance_payment.auto_reconcile_advance_payments")
+            )
+        )
+        # Set the config parameter to True
+        self.env["ir.config_parameter"].sudo().set_param(
+            "purchase_advance_payment.auto_reconcile_advance_payments", True
+        )
+        self.assertTrue(
+            bool(
+                self.env["ir.config_parameter"]
+                .sudo()
+                .get_param("purchase_advance_payment.auto_reconcile_advance_payments")
+            )
+        )
+        self.assertEqual(
+            self.purchase_order_1.amount_residual,
+            3600,
+        )
+        self.assertEqual(
+            self.purchase_order_1.amount_residual,
+            self.purchase_order_1.amount_total,
+        )
+        context_payment = {
+            "active_ids": [self.purchase_order_1.id],
+            "active_id": self.purchase_order_1.id,
+        }
+        # Create Advance Payment - USD - cash
+        advance_payment_usd = (
+            self.env["account.voucher.wizard.purchase"]
+            .with_context(**context_payment)
+            .create(
+                {
+                    "journal_id": self.journal_usd_cash.id,
+                    "amount_advance": 200,
+                    "order_id": self.purchase_order_1.id,
+                }
+            )
+        )
+        advance_payment_usd.make_advance_payment()
+        pre_payment = self.purchase_order_1.account_payment_ids
+        self.assertEqual(len(pre_payment), 1)
+        self.assertEqual(self.purchase_order_1.amount_residual, 3400)
+        # generate bill, pay bill, check amount residual.
+        self.purchase_order_1.button_confirm()
+        self.assertEqual(self.purchase_order_1.invoice_status, "to invoice")
+        self.purchase_order_1.action_create_invoice()
+        self.assertEqual(self.purchase_order_1.invoice_status, "invoiced")
+        self.assertEqual(self.purchase_order_1.amount_residual, 3400)
+        invoice = self.purchase_order_1.invoice_ids
+        invoice.invoice_date = fields.Date.today()
+        self.assertEqual(invoice.amount_residual, 3600)
+        invoice.action_post()
+        self.assertEqual(invoice.amount_residual, 3400)
+        self.assertNotEqual(
+            invoice.amount_residual,
+            invoice.amount_total,
+        )
+        self.assertTrue(
+            invoice.payment_state in ["partial"],
+            "Advance payment should be reconciled automatically.",
+        )
+
+    def test_08_auto_reconcile_advance_payment_disabled(self):
+        self.assertFalse(
+            bool(
+                self.env["ir.config_parameter"]
+                .sudo()
+                .get_param("purchase_advance_payment.auto_reconcile_advance_payments")
+            )
+        )
+
+        self.assertEqual(
+            self.purchase_order_1.amount_residual,
+            3600,
+        )
+        self.assertEqual(
+            self.purchase_order_1.amount_residual,
+            self.purchase_order_1.amount_total,
+        )
+        context_payment = {
+            "active_ids": [self.purchase_order_1.id],
+            "active_id": self.purchase_order_1.id,
+        }
+        # Create Advance Payment - USD - cash
+        advance_payment_usd = (
+            self.env["account.voucher.wizard.purchase"]
+            .with_context(**context_payment)
+            .create(
+                {
+                    "journal_id": self.journal_usd_cash.id,
+                    "amount_advance": 200,
+                    "order_id": self.purchase_order_1.id,
+                }
+            )
+        )
+        advance_payment_usd.make_advance_payment()
+        pre_payment = self.purchase_order_1.account_payment_ids
+        self.assertEqual(len(pre_payment), 1)
+        self.assertEqual(self.purchase_order_1.amount_residual, 3400)
+        # generate bill, pay bill, check amount residual.
+        self.purchase_order_1.button_confirm()
+        self.assertEqual(self.purchase_order_1.invoice_status, "to invoice")
+        self.purchase_order_1.action_create_invoice()
+        self.assertEqual(self.purchase_order_1.invoice_status, "invoiced")
+        self.assertEqual(self.purchase_order_1.amount_residual, 3400)
+        invoice = self.purchase_order_1.invoice_ids
+        invoice.invoice_date = fields.Date.today()
+        self.assertEqual(invoice.amount_residual, 3600)
+        invoice.action_post()
+        self.assertEqual(invoice.amount_residual, 3600)
+        self.assertEqual(
+            invoice.amount_residual,
+            invoice.amount_total,
+        )
+        self.assertEqual(
+            invoice.payment_state,
+            "not_paid",
+            "Advance payment should not be automatically reconciled "
+            "when setting is disabled.",
+        )
+
+    def test_09_no_reconcile_when_no_matching_payment(self):
+        # Set the config parameter to True
+        self.env["ir.config_parameter"].sudo().set_param(
+            "purchase_advance_payment.auto_reconcile_advance_payments", True
+        )
+        self.assertEqual(
+            self.purchase_order_1.amount_residual,
+            3600,
+        )
+        self.assertEqual(
+            self.purchase_order_1.amount_residual,
+            self.purchase_order_1.amount_total,
+        )
+
+        # Confirm Purchase Order
+        self.purchase_order_1.button_confirm()
+        self.assertEqual(self.purchase_order_1.invoice_status, "to invoice")
+
+        # Create and post the invoice without making an advance payment
+        self.purchase_order_1.action_create_invoice()
+        self.assertEqual(self.purchase_order_1.invoice_status, "invoiced")
+        self.assertEqual(self.purchase_order_1.amount_residual, 3600)
+        invoice = self.purchase_order_1.invoice_ids
+        invoice.write({"invoice_date": fields.Date.today()})
+        invoice.action_post()
+        self.assertEqual(invoice.amount_residual, 3600)
+        self.assertEqual(
+            invoice.amount_residual,
+            invoice.amount_total,
+        )
+        # Ensure no reconciliation happens
+        self.assertEqual(
+            invoice.payment_state,
+            "not_paid",
+            "No reconciliation should happen without advance payments.",
+        )
