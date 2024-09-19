@@ -301,7 +301,6 @@ msgstr "Borrador"
 
 #. module: purchase_blanket_order
 #: model:ir.actions.server,name:purchase_blanket_order.expired_purchase_blanket_orders_cron_ir_actions_server
-#: model:ir.cron,cron_name:purchase_blanket_order.expired_purchase_blanket_orders_cron
 msgid "Expire Blanket Orders"
 msgstr "Pedidos Generales Caducados"
 
@@ -394,14 +393,6 @@ msgid "Is Follower"
 msgstr "Es Seguidor"
 
 #. module: purchase_blanket_order
-#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order____last_update
-#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line____last_update
-#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_wizard____last_update
-#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_wizard_line____last_update
-msgid "Last Modified on"
-msgstr "Última Modificación el"
-
-#. module: purchase_blanket_order
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__write_uid
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__write_uid
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_wizard__write_uid
@@ -422,12 +413,6 @@ msgstr "Última Actualización el"
 #: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_form
 msgid "Lines"
 msgstr "Líneas"
-
-#. module: purchase_blanket_order
-#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__message_main_attachment_id
-#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__message_main_attachment_id
-msgid "Main Attachment"
-msgstr "Archivo Adjunto Principal"
 
 #. module: purchase_blanket_order
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__message_has_error
@@ -901,7 +886,6 @@ msgstr "Referencia del Vendedor"
 
 #. module: purchase_blanket_order
 #: model:ir.actions.server,name:purchase_blanket_order.warnings_purchase_blanket_orders_cron_ir_actions_server
-#: model:ir.cron,cron_name:purchase_blanket_order.warnings_purchase_blanket_orders_cron
 msgid "Warnings Blanket Orders"
 msgstr "Advertencias Órdenes Generales"
 
@@ -967,6 +951,12 @@ msgstr "Debe seleccionar líneas de la misma compañía."
 #, python-format
 msgid "remaining"
 msgstr "restante"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última Modificación el"
+
+#~ msgid "Main Attachment"
+#~ msgstr "Archivo Adjunto Principal"
 
 #~ msgid "Config Settings"
 #~ msgstr "Ajustes Config"
