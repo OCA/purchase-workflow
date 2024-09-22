@@ -1,0 +1,9 @@
+<odoo noupdate="1">
+    <!--
+    To not cause disruption upon install, set pre-existing Partners as Can Purchase
+    -->
+    <function model="res.partner" name="write">
+        <value model="res.partner" search="[]" />
+        <value eval="{'purchase_ok': True, 'candidate_purchase': True}" />
+    </function>
+</odoo>
