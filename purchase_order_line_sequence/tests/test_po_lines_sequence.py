@@ -5,25 +5,25 @@
 
 from datetime import datetime
 
-from odoo.tests import common, tagged
-from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
+from odoo.tests import Form, common, tagged
 
 
 @tagged("post_install", "-at_install")
 class TestPurchaseOrder(common.TransactionCase):
-    def setUp(self):
-        super(TestPurchaseOrder, self).setUp()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
         # Useful models
-        self.PurchaseOrder = self.env["purchase.order"]
-        self.PurchaseOrderLine = self.env["purchase.order.line"]
-        self.partner_id = self.env.ref("base.res_partner_1")
-        self.product_id_1 = self.env.ref("product.product_product_8")
-        self.product_id_2 = self.env.ref("product.product_product_11")
+        cls.PurchaseOrder = cls.env["purchase.order"]
+        cls.PurchaseOrderLine = cls.env["purchase.order.line"]
+        cls.partner_id = cls.env.ref("base.res_partner_1")
+        cls.product_id_1 = cls.env.ref("product.product_product_8")
+        cls.product_id_2 = cls.env.ref("product.product_product_11")
 
-        self.AccountInvoice = self.env["account.move"]
-        self.AccountInvoiceLine = self.env["account.move.line"]
+        cls.AccountInvoice = cls.env["account.move"]
+        cls.AccountInvoiceLine = cls.env["account.move.line"]
 
-        self.category = self.env.ref("product.product_category_1").copy(
+        cls.category = cls.env.ref("product.product_category_1").copy(
             {
                 "name": "Test category",
                 "property_valuation": "real_time",
@@ -31,7 +31,7 @@ class TestPurchaseOrder(common.TransactionCase):
             }
         )
 
-        self.account_expense = self.env["account.account"].create(
+        cls.account_expense = cls.env["account.account"].create(
             {
                 "name": "Expense",
                 "code": "EXP00",
@@ -39,7 +39,7 @@ class TestPurchaseOrder(common.TransactionCase):
                 "reconcile": True,
             }
         )
-        self.account_payable = self.env["account.account"].create(
+        cls.account_payable = cls.env["account.account"].create(
             {
                 "name": "Payable",
                 "code": "PAY00",
@@ -48,14 +48,14 @@ class TestPurchaseOrder(common.TransactionCase):
             }
         )
 
-        self.category.property_account_expense_categ_id = self.account_expense
+        cls.category.property_account_expense_categ_id = cls.account_expense
 
-        self.category.property_stock_journal = self.env["account.journal"].create(
+        cls.category.property_stock_journal = cls.env["account.journal"].create(
             {"name": "Stock journal", "type": "sale", "code": "STK00"}
         )
-        self.product_id_1.categ_id = self.category
-        self.product_id_2.categ_id = self.category
-        self.partner_id.property_account_payable_id = self.account_payable
+        cls.product_id_1.categ_id = cls.category
+        cls.product_id_2.categ_id = cls.category
+        cls.partner_id.property_account_payable_id = cls.account_payable
 
     def _create_purchase_order(self):
         po_vals = {
@@ -70,9 +70,7 @@ class TestPurchaseOrder(common.TransactionCase):
                         "product_qty": 5.0,
                         "product_uom": self.product_id_1.uom_po_id.id,
                         "price_unit": 500.0,
-                        "date_planned": datetime.today().strftime(
-                            DEFAULT_SERVER_DATETIME_FORMAT
-                        ),
+                        "date_planned": datetime.today(),
                     },
                 ),
                 (
@@ -84,9 +82,7 @@ class TestPurchaseOrder(common.TransactionCase):
                         "product_qty": 5.0,
                         "product_uom": self.product_id_2.uom_po_id.id,
                         "price_unit": 250.0,
-                        "date_planned": datetime.today().strftime(
-                            DEFAULT_SERVER_DATETIME_FORMAT
-                        ),
+                        "date_planned": datetime.today(),
                     },
                 ),
             ],
@@ -130,6 +126,11 @@ class TestPurchaseOrder(common.TransactionCase):
             "The Sequence is not copied properly",
         )
 
+        po_form = Form(self.po)
+        with po_form.order_line.new() as po_line_form:
+            po_line_form.product_id = self.product_id_1
+            self.assertEqual(po_line_form.sequence, self.po.max_line_sequence)
+
     def test_purchase_order_line_sequence_with_section_note(self):
         """
         Verify that the sequence is correctly assigned to the move associated
@@ -151,9 +152,7 @@ class TestPurchaseOrder(common.TransactionCase):
                 "product_qty": 15.0,
                 "product_uom": self.product_id_1.uom_po_id.id,
                 "price_unit": 150.0,
-                "date_planned": datetime.today().strftime(
-                    DEFAULT_SERVER_DATETIME_FORMAT
-                ),
+                "date_planned": datetime.today(),
                 "order_id": po.id,
             }
         )
@@ -172,9 +171,7 @@ class TestPurchaseOrder(common.TransactionCase):
                 "product_qty": 1.0,
                 "product_uom": self.product_id_2.uom_po_id.id,
                 "price_unit": 50.0,
-                "date_planned": datetime.today().strftime(
-                    DEFAULT_SERVER_DATETIME_FORMAT
-                ),
+                "date_planned": datetime.today(),
                 "order_id": po.id,
             }
         )
@@ -206,9 +203,7 @@ class TestPurchaseOrder(common.TransactionCase):
                             "product_qty": 2,
                             "product_uom": self.product_id_2.uom_id.id,
                             "price_unit": 30,
-                            "date_planned": datetime.today().strftime(
-                                DEFAULT_SERVER_DATETIME_FORMAT
-                            ),
+                            "date_planned": datetime.today(),
                         },
                     )
                 ]
