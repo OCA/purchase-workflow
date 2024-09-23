@@ -38,6 +38,7 @@ class PurchaseOrder(models.Model):
         for record in self:
             record.team_id = record.user_id.purchase_team_ids[:1] or first_team
 
+    @api.onchange("partner_id")
     def onchange_partner_id(self):
         res = super().onchange_partner_id()
         if self.partner_id:
