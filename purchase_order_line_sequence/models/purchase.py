@@ -2,6 +2,7 @@
 # Copyright 2017 ForgeFlow S.L.
 # Copyright 2017 Serpent Consulting Services Pvt. Ltd.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+from lxml import etree
 
 from odoo import api, fields, models
 
@@ -26,7 +27,7 @@ class PurchaseOrder(models.Model):
     )
 
     def _create_picking(self):
-        res = super(PurchaseOrder, self)._create_picking()
+        res = super()._create_picking()
         self._update_moves_sequence()
         return res
 
@@ -46,12 +47,31 @@ class PurchaseOrder(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        res = super(PurchaseOrder, self).create(vals_list)
+        res = super().create(vals_list)
         self._update_moves_sequence()
         return res
 
     def write(self, line_values):
-        res = super(PurchaseOrder, self).write(line_values)
+        res = super().write(line_values)
         if "order_line" in line_values:
             self._update_moves_sequence()
+        return res
+
+    @api.model
+    def get_view(self, view_id=None, view_type="form", **options):
+        """Append the default sequence.
+
+        Other modules might want to update the context of `order_line` as well.
+        This will not scale overwriting the attribute in the view.
+        """
+        res = super().get_view(view_id=view_id, view_type=view_type, **options)
+        if res.get("arch") and view_type == "form":
+            doc = etree.XML(res["arch"])
+            elements = doc.xpath("//field[@name='order_line']")
+            if elements:
+                element = elements[0]
+                context = element.get("context", "{}")
+                context = f"{{'default_sequence': max_line_sequence, {context[1:]}"
+                element.set("context", context)
+            res["arch"] = etree.tostring(doc, encoding="unicode")
         return res
