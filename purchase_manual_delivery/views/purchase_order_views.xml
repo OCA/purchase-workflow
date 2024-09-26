@@ -13,7 +13,7 @@
                     string="Create Incoming Shipment"
                     type="action"
                     class="btn-primary"
-                    attrs="{'invisible': ['|', '|', ('state', '!=', 'purchase'), ('pending_to_receive', '=', False), ('manual_delivery', '=', False)]}"
+                    invisible="state != 'purchase' or not pending_to_receive or not manual_delivery"
                 />
             </xpath>
             <button id="draft_confirm" position="attributes">
@@ -23,7 +23,7 @@
                 <button
                     name="button_confirm_manual"
                     type="object"
-                    states="draft"
+                    invisible="state != 'draft'"
                     string="Confirm Order"
                     id="draft_confirm_manual"
                 />
@@ -35,7 +35,7 @@
                 <button
                     name="button_confirm_manual"
                     type="object"
-                    states="sent"
+                    invisible="state != 'sent'"
                     string="Confirm Order"
                     class="oe_highlight"
                     id="bid_confirm_manual"
@@ -46,7 +46,7 @@
                 <field
                     name="existing_qty"
                     optional="hide"
-                    attrs="{'column_invisible': [('parent.state', 'not in', ('purchase', 'done'))]}"
+                    column_invisible="parent.state not in ('purchase', 'done')"
                 />
             </field>
             <xpath expr="//field[@name='order_line']/tree" position="attributes">
@@ -55,7 +55,10 @@
                 >state == 'purchase' and pending_to_receive</attribute>
             </xpath>
             <group name="other_info" position="inside">
-                <field name="manual_delivery" />
+                <field
+                    name="manual_delivery"
+                    readonly="state not in ('draft', 'sent')"
+                />
             </group>
         </field>
     </record>

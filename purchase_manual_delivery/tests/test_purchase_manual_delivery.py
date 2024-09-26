@@ -3,77 +3,78 @@
 
 from odoo import fields
 from odoo.exceptions import UserError
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import Form, TransactionCase
 
 from odoo.addons.mail.tests.common import mail_new_test_user
 
 
 class TestPurchaseManualDelivery(TransactionCase):
-    def setUp(self):
-        super(TestPurchaseManualDelivery, self).setUp()
-        self.purchase_order_obj = self.env["purchase.order"]
-        self.purchase_order_line_obj = self.env["purchase.order.line"]
-        self.stock_picking_obj = self.env["stock.picking"]
-        self.env.company.purchase_manual_delivery = True
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.purchase_order_obj = cls.env["purchase.order"]
+        cls.purchase_order_line_obj = cls.env["purchase.order.line"]
+        cls.stock_picking_obj = cls.env["stock.picking"]
+        cls.env.company.purchase_manual_delivery = True
         # Products
-        self.product1 = self.env.ref("product.product_product_13")
-        self.product2 = self.env.ref("product.product_product_25")
+        cls.product1 = cls.env.ref("product.product_product_13")
+        cls.product2 = cls.env.ref("product.product_product_25")
 
         # Sublocation
-        self.shelf2 = self.env.ref("stock.stock_location_14")
+        cls.shelf2 = cls.env.ref("stock.stock_location_14")
 
         # Purchase Orders
-        self.po1 = self.purchase_order_obj.create(
+        cls.po1 = cls.purchase_order_obj.create(
             {
-                "partner_id": self.ref("base.res_partner_3"),
+                "partner_id": cls.env.ref("base.res_partner_3").id,
             }
         )
-        self.po1_line1 = self.purchase_order_line_obj.create(
+        cls.po1_line1 = cls.purchase_order_line_obj.create(
             {
-                "order_id": self.po1.id,
-                "product_id": self.product1.id,
-                "product_uom": self.product1.uom_id.id,
-                "name": self.product1.name,
-                "price_unit": self.product1.standard_price,
+                "order_id": cls.po1.id,
+                "product_id": cls.product1.id,
+                "product_uom": cls.product1.uom_id.id,
+                "name": cls.product1.name,
+                "price_unit": cls.product1.standard_price,
                 "date_planned": fields.datetime.now(),
                 "product_qty": 42.0,
             }
         )
-        self.po1_line2 = self.purchase_order_line_obj.create(
+        cls.po1_line2 = cls.purchase_order_line_obj.create(
             {
-                "order_id": self.po1.id,
-                "product_id": self.product2.id,
-                "product_uom": self.product2.uom_id.id,
-                "name": self.product2.name,
-                "price_unit": self.product2.standard_price,
+                "order_id": cls.po1.id,
+                "product_id": cls.product2.id,
+                "product_uom": cls.product2.uom_id.id,
+                "name": cls.product2.name,
+                "price_unit": cls.product2.standard_price,
                 "date_planned": fields.datetime.now(),
                 "product_qty": 12.0,
             }
         )
 
-        self.po2 = self.purchase_order_obj.create(
+        cls.po2 = cls.purchase_order_obj.create(
             {
-                "partner_id": self.ref("base.res_partner_3"),
+                "partner_id": cls.env.ref("base.res_partner_3").id,
             }
         )
-        self.po2_line1 = self.purchase_order_line_obj.create(
+        cls.po2_line1 = cls.purchase_order_line_obj.create(
             {
-                "order_id": self.po2.id,
-                "product_id": self.product1.id,
-                "product_uom": self.product1.uom_id.id,
-                "name": self.product1.name,
-                "price_unit": self.product1.standard_price,
+                "order_id": cls.po2.id,
+                "product_id": cls.product1.id,
+                "product_uom": cls.product1.uom_id.id,
+                "name": cls.product1.name,
+                "price_unit": cls.product1.standard_price,
                 "date_planned": fields.datetime.now(),
                 "product_qty": 10.0,
             }
         )
-        self.po2_line2 = self.purchase_order_line_obj.create(
+        cls.po2_line2 = cls.purchase_order_line_obj.create(
             {
-                "order_id": self.po2.id,
-                "product_id": self.product2.id,
-                "product_uom": self.product2.uom_id.id,
-                "name": self.product2.name,
-                "price_unit": self.product2.standard_price,
+                "order_id": cls.po2.id,
+                "product_id": cls.product2.id,
+                "product_uom": cls.product2.uom_id.id,
+                "name": cls.product2.name,
+                "price_unit": cls.product2.standard_price,
                 "date_planned": fields.datetime.now(),
                 "product_qty": 22.0,
             }
@@ -109,7 +110,7 @@ class TestPurchaseManualDelivery(TransactionCase):
         )
         wizard.fill_lines(self.po1.order_line)
         wizard.line_ids = wizard.line_ids - wizard.line_ids.filtered(
-            lambda l: l.product_id == self.product2
+            lambda li: li.product_id == self.product2
         )
         wizard.create_stock_picking()
         # check picking is created
@@ -134,6 +135,16 @@ class TestPurchaseManualDelivery(TransactionCase):
         wizard.fill_lines(self.po1.order_line)
         self.assertEqual(len(wizard.line_ids), 1)
         self.assertEqual(wizard.line_ids[0].product_id, self.product2)
+
+        # The quantity is checked against the remaining quantity of the line
+        with self.assertRaisesRegex(
+            UserError,
+            "more than the remaining quantity",
+        ):
+            with self.env.cr.savepoint():
+                wizard.line_ids.qty += 1
+                wizard.create_stock_picking()
+
         wizard.picking_id = picking_id
         wizard.create_stock_picking()
         self.assertEqual(
@@ -163,6 +174,49 @@ class TestPurchaseManualDelivery(TransactionCase):
         self.assertFalse(self.po1_line2.pending_to_receive)
         self.assertEqual(self.po1_line1.existing_qty, self.po1_line1.product_qty)
         self.assertEqual(self.po1_line2.existing_qty, self.po1_line2.product_qty)
+        self.assertFalse(self.po1.pending_to_receive)
+
+        # Process the picking
+        picking = self.po1.picking_ids
+        for move in picking.move_ids:
+            move.quantity = move.product_qty
+        picking.button_validate()
+
+        # Process some returns
+        stock_return_picking_form = Form(
+            self.env["stock.return.picking"].with_context(
+                active_ids=picking.ids,
+                active_id=picking.id,
+                active_model=picking._name,
+            )
+        )
+        return_wiz = stock_return_picking_form.save()
+        return_wiz.product_return_moves.filtered(
+            lambda prm: prm.move_id.purchase_line_id == self.po1_line1
+        ).write(
+            {
+                "quantity": 2,
+                "to_refund": True,
+            }
+        )
+        return_wiz.product_return_moves.filtered(
+            lambda prm: prm.move_id.purchase_line_id == self.po1_line2
+        ).write(
+            {
+                "quantity": 2,
+                "to_refund": False,
+            }
+        )
+        return_wiz.create_returns()
+
+        # The refund line is open to receive the returned item
+        self.assertTrue(self.po1_line1.pending_to_receive)
+        self.assertEqual(self.po1_line1.existing_qty, self.po1_line1.product_qty - 2)
+        # But the non-refund line is not
+        self.assertEqual(self.po1_line2.existing_qty, self.po1_line2.product_qty)
+        self.assertFalse(self.po1_line2.pending_to_receive)
+
+        self.assertTrue(self.po1.pending_to_receive)
 
     def test_02_purchase_order_line_manual_delivery(self):
         """
@@ -244,7 +298,7 @@ class TestPurchaseManualDelivery(TransactionCase):
         )
         wizard.fill_lines(self.po1.order_line)
         wizard.line_ids = wizard.line_ids - wizard.line_ids.filtered(
-            lambda l: l.product_id == self.product2
+            lambda li: li.product_id == self.product2
         )
         wizard.location_dest_id = self.shelf2
         wizard.create_stock_picking()
@@ -292,13 +346,13 @@ class TestPurchaseManualDelivery(TransactionCase):
         )
         wizard.fill_lines(po_existing_bigger.order_line)
         wizard.line_ids.filtered(
-            lambda l: l.purchase_order_line_id.id == pol_existing_bigger.id
+            lambda li: li.purchase_order_line_id.id == pol_existing_bigger.id
         ).qty = 1
         wizard.create_stock_picking()
 
         # Change the done quantity to be bigger than the total needed
         picking_id = po_existing_bigger.picking_ids[0]
-        picking_id.move_ids[0].quantity_done = 6
+        picking_id.move_ids[0].quantity = 6
         picking_id.button_validate()
 
         # The PO Line should not be pending to receive

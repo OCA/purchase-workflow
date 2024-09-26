@@ -2,7 +2,6 @@
 <templates id="template" xml:space="preserve">
     <t
         t-name="purchase_manual_delivery.ForecastedDetails"
-        owl="1"
         t-inherit="stock.ForecastedDetails"
         t-inherit-mode="extension"
     >

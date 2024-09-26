@@ -8,7 +8,7 @@
         and adds the ability to manually generate them as the supplier confirms
         the different purchase order lines.
     """,
-    "version": "16.0.1.1.5",
+    "version": "17.0.1.0.0",
     "license": "AGPL-3",
     "author": "ForgeFlow S.L.," "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
@@ -18,7 +18,6 @@
         "wizard/create_manual_stock_picking.xml",
         "views/purchase_order_views.xml",
         "views/res_config_view.xml",
-        "report/report_stock_forecast.xml",
     ],
     "assets": {
         "web.assets_backend": [

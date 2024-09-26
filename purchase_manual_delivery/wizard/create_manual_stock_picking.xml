@@ -15,11 +15,11 @@
                     <field
                         name="scheduled_date"
                         string="Picking Scheduled Date"
-                        attrs="{'invisible': [('picking_id', '=', False)]}"
+                        invisible="not picking_id"
                     />
                     <field
                         name="location_dest_id"
-                        attrs="{'readonly': [('picking_id', '!=', False)]}"
+                        readonly="picking_id"
                         groups="stock.group_stock_multi_locations"
                     />
                 </group>
