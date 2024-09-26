@@ -220,7 +220,6 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         res = []
         purchase_obj = self.env["purchase.order"]
         po_line_obj = self.env["purchase.order.line"]
-        pr_line_obj = self.env["purchase.request.line"]
         purchase = False
 
         for item in self.item_ids:
@@ -276,18 +275,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                 )
                 all_qty = min(po_line_product_uom_qty, wizard_product_uom_qty)
                 self.create_allocation(po_line, line, all_qty, alloc_uom)
-            # TODO: Check propagate_uom compatibility:
-            new_qty = pr_line_obj._calc_new_qty(
-                line, po_line=po_line, new_pr_line=new_pr_line
-            )
-            po_line.product_qty = new_qty
-            # The quantity update triggers a compute method that alters the
-            # unit price (which is what we want, to honor graduate pricing)
-            # but also the scheduled date which is what we don't want.
-            date_required = item.line_id.date_required
-            po_line.date_planned = datetime(
-                date_required.year, date_required.month, date_required.day
-            )
+            self._post_process_po_line(item, po_line, new_pr_line)
             res.append(purchase.id)
 
         purchase_requests = self.item_ids.mapped("request_id")
@@ -301,6 +289,22 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             "context": False,
             "type": "ir.actions.act_window",
         }
+
+    def _post_process_po_line(self, item, po_line, new_pr_line):
+        self.ensure_one()
+        line = item.line_id
+        # TODO: Check propagate_uom compatibility:
+        new_qty = self.env["purchase.request.line"]._calc_new_qty(
+            line, po_line=po_line, new_pr_line=new_pr_line
+        )
+        po_line.product_qty = new_qty
+        # The quantity update triggers a compute method that alters the
+        # unit price (which is what we want, to honor graduate pricing)
+        # but also the scheduled date which is what we don't want.
+        date_required = line.date_required
+        po_line.date_planned = datetime(
+            date_required.year, date_required.month, date_required.day
+        )
 
 
 class PurchaseRequestLineMakePurchaseOrderItem(models.TransientModel):
