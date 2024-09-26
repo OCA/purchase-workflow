@@ -10,16 +10,25 @@ class PurchaseOrder(models.Model):
 
     pending_to_receive = fields.Boolean(compute="_compute_pending_to_receive")
     manual_delivery = fields.Boolean(
-        string="Purchase manual delivery?",
-        default=lambda self: self.env.company.purchase_manual_delivery,
+        string="Manual delivery",
+        compute="_compute_manual_delivery",
+        help=(
+            "Stock transfers need to be created manually to receive this PO's products"
+        ),
+        readonly=False,
+        store=True,
     )
+
+    @api.depends("company_id")
+    def _compute_manual_delivery(self):
+        """The manual delivery option is derived from the company of the order"""
+        for po in self:
+            po.manual_delivery = po.company_id.purchase_manual_delivery
 
     def _compute_pending_to_receive(self):
         for order in self:
             order.pending_to_receive = True
-            if all(
-                val is False for val in order.mapped("order_line.pending_to_receive")
-            ):
+            if not any(order.mapped("order_line.pending_to_receive")):
                 order.pending_to_receive = False
 
     def button_confirm_manual(self):
@@ -30,7 +39,7 @@ class PurchaseOrder(models.Model):
     def button_approve(self, force=False):
         if self.manual_delivery:
             self = self.with_context(manual_delivery=True)
-        return super(PurchaseOrder, self).button_approve(force=force)
+        return super().button_approve(force=force)
 
     def _create_picking(self):
         if self.env.context.get("manual_delivery", False) and self.manual_delivery:
@@ -79,7 +88,7 @@ class PurchaseOrderLine(models.Model):
                         # This is a return to vendor
                         if move.to_refund:
                             total -= move.product_uom._compute_quantity(
-                                move.product_uom_qty, line.product_uom
+                                move.quantity, line.product_uom
                             )
                     elif (
                         move.origin_returned_move_id
@@ -95,7 +104,7 @@ class PurchaseOrderLine(models.Model):
                         pass
                     else:
                         total += move.product_uom._compute_quantity(
-                            move.product_uom_qty, line.product_uom
+                            move.quantity, line.product_uom
                         )
             line.existing_qty = total
             if (
