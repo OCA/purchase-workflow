@@ -4,7 +4,6 @@ from odoo import fields, models
 
 
 class ResCompany(models.Model):
-
     _inherit = "res.company"
 
     purchase_manual_delivery = fields.Boolean(
