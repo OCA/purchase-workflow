@@ -12,15 +12,14 @@ class PurchaseOrderLine(models.Model):
     }
     _product_uom_field = "uom_po_id"
 
-    product_qty = fields.Float(
-        store=True, readonly=False, compute="_compute_product_qty", copy=True
-    )
+    product_qty = fields.Float(copy=True)
 
-    @api.depends("secondary_uom_qty", "secondary_uom_id")
+    @api.depends("secondary_uom_qty", "secondary_uom_id", "product_packaging_qty")
     def _compute_product_qty(self):
-        if hasattr(super(), "_compute_product_qty"):
-            return super()._compute_product_qty()
-        return self._compute_helper_target_field_qty()
+        res = super()._compute_product_qty()
+        for line in self:
+            line._compute_helper_target_field_qty()
+        return res
 
     @api.onchange("product_uom")
     def onchange_product_uom_for_secondary(self):

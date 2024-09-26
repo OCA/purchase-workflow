@@ -6,7 +6,6 @@
         <field name="name">Purchase Order Secondary Unit</field>
         <field name="model">purchase.order</field>
         <field name="inherit_id" ref="purchase.purchase_order_form" />
-        <field name="groups_id" eval="[(4, ref('uom.group_uom'))]" />
         <field name="arch" type="xml">
             <xpath
                 expr="//field[@name='order_line']/form//field[@name='product_qty']"
@@ -15,7 +14,8 @@
                 <field
                     name="secondary_uom_qty"
                     class="oe_inline oe_no_button"
-                    attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
+                    groups="uom.group_uom"
+                    readonly="state in ['done', 'cancel']"
                 />
                 <field
                     name="secondary_uom_id"
@@ -24,7 +24,9 @@
                                 '&amp;', ('product_tmpl_id.product_variant_ids', 'in', [product_id]),
                                          ('product_id', '=', False)]"
                     options="{'no_create': True}"
-                    attrs="{'readonly': [('state', 'in', ('purchase', 'done', 'cancel'))], 'required': [('secondary_uom_qty', '!=', 0.0)]}"
+                    groups="uom.group_uom"
+                    readonly="state in ['purchase','done', 'cancel']"
+                    required="secondary_uom_qty != 0.0"
                 />
             </xpath>
             <xpath
@@ -33,7 +35,8 @@
             >
                 <field
                     name="secondary_uom_qty"
-                    attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
+                    groups="uom.group_uom"
+                    readonly="state in ['done', 'cancel']"
                 />
                 <field
                     name="secondary_uom_id"
@@ -41,7 +44,9 @@
                                 '&amp;', ('product_tmpl_id.product_variant_ids', 'in', [product_id]),
                                          ('product_id', '=', False)]"
                     options="{'no_create': True}"
-                    attrs="{'readonly': [('state', 'in', ('purchase','done', 'cancel'))], 'required': [('secondary_uom_qty', '!=', 0.0)]}"
+                    groups="uom.group_uom"
+                    readonly="state in ['purchase','done', 'cancel']"
+                    required="secondary_uom_qty != 0.0"
                 />
             </xpath>
         </field>
