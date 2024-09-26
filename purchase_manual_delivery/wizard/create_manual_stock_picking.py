@@ -25,7 +25,7 @@ class CreateManualStockPickingWizard(models.TransientModel):
 
     @api.model
     def default_get(self, fields):
-        res = super(CreateManualStockPickingWizard, self).default_get(fields)
+        res = super().default_get(fields)
 
         active_model = self.env.context["active_model"]
         if active_model == "purchase.order.line":
@@ -147,10 +147,10 @@ class CreateManualStockPickingWizard(models.TransientModel):
             seq += 5
             move.sequence = seq
         moves._action_assign()
-        picking_id.message_post_with_view(
+        picking_id.message_post_with_source(
             "mail.message_origin_link",
-            values={"self": picking_id, "origin": self.purchase_id},
-            subtype_id=self.env.ref("mail.mt_note").id,
+            render_values={"self": picking_id, "origin": self.purchase_id},
+            subtype_xmlid="mail.mt_note",
         )
 
         return {
