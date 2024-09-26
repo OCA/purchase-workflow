@@ -17,7 +17,7 @@ class TestPurchaseRequestProcurement(common.TransactionCase):
         self.customer_location = self.env.ref("stock.stock_location_customers")
 
         # Get required Model data
-        self.product_1 = self.env.ref("product.product_product_16")
+        self.product_1 = self.env.ref("product.product_product_16").copy()
         self.product_1.purchase_request = True
         self.route_buy = self.env.ref("purchase_stock.route_warehouse0_buy")
         self.rule_buy = self.route_buy.rule_ids.filtered(
