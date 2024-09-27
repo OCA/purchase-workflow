@@ -1,1 +1,2 @@
-* Italo Lopes <italo.lopes@camptocamp.com
+* Italo Lopes <italo.lopes@camptocamp.com>
+* Akim Juillerat <akim.juillerat@camptocamp.com>
