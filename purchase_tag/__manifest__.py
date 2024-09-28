@@ -5,7 +5,7 @@
 {
     "name": "Purchase Tags",
     "summary": "Allows to add multiple tags to purchase orders",
-    "version": "17.0.1.1.0",
+    "version": "17.0.1.1.1",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
     "category": "Purchases",
