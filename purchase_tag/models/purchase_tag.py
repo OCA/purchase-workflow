@@ -39,16 +39,12 @@ class PurchaseTag(models.Model):
 
     @api.model
     def _name_search(
-        self, name="", args=None, operator="ilike", limit=100, name_get_uid=None
+        self, name="", domain=None, operator="ilike", limit=100, order=None
     ):
         if name:
-            args = [("name", operator, name.split(" / ")[-1])] + list(args or [])
+            domain = [("name", operator, name.split(" / ")[-1])] + list(domain or [])
         return super()._name_search(
-            name=name,
-            args=args,
-            operator=operator,
-            limit=limit,
-            name_get_uid=name_get_uid,
+            name=name, domain=domain, operator=operator, limit=limit, order=order
         )
 
     @api.constrains("parent_id")
