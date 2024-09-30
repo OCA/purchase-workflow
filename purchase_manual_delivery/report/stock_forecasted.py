@@ -18,7 +18,11 @@ class StockForecastedProductProduct(models.AbstractModel):
         if warehouse_id:
             domain += [("order_id.picking_type_id.warehouse_id", "=", warehouse_id)]
         po_lines = self.env["purchase.order.line"].search(domain)
-        in_sum = sum(po_lines.mapped(lambda po: po.product_qty - po.existing_qty))
+        in_sum = sum(
+            po_lines.mapped(
+                lambda pol: pol.product_qty - (pol.qty_in_receipt + pol.qty_received)
+            )
+        )
         res["no_delivery_purchase_qty"] = in_sum
         res["no_delivery_purchase_orders"] = (
             po_lines.mapped("order_id").sorted("name").read(fields=["id", "name"])
