@@ -19,4 +19,9 @@
         "views/purchase_order_views.xml",
         "views/res_config_view.xml",
     ],
+    "assets": {
+        "web.assets_backend": [
+            "purchase_manual_delivery/static/src/**/*",
+        ]
+    },
 }
