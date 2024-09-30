@@ -25,13 +25,14 @@
                 </group>
                 <field name="line_ids" nolabel="1">
                     <tree create="false" editable="bottom">
-                        <field name="purchase_order_line_id" invisible="1" />
+                        <field name="purchase_order_line_id" column_invisible="1" />
                         <field name="product_id" />
                         <field name="partner_id" />
                         <field name="date_planned" />
                         <field name="price_unit" />
                         <field name="product_qty" string="Ordered Qty" />
-                        <field name="existing_qty" string="Existing Qty" />
+                        <field name="qty_received" />
+                        <field name="qty_in_receipt" />
                         <field name="remaining_qty" string="Remaining Qty" />
                         <field name="qty" string="Quantity" />
                         <field name="product_uom" groups="uom.group_uom" />

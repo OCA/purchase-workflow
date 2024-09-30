@@ -42,7 +42,15 @@ class TestReportForecast(TestReportsCommon):
             .create({})
         )
         wizard.fill_lines(self.po1.order_line)
-        wizard.line_ids.qty = 35
+        # Transfer a quantity of 12
+        wizard.line_ids.qty = 12
+        wizard.create_stock_picking()
+        picking = self.po1.picking_ids
+        picking.move_line_ids.quantity = 12
+        picking.button_validate()
+
+        # Create an unvalidated picking with a quantity of 23
+        wizard.line_ids.qty = 23
         wizard.create_stock_picking()
 
         # Checks the report.
@@ -51,6 +59,7 @@ class TestReportForecast(TestReportsCommon):
         )
         self.assertEqual(docs["no_delivery_purchase_qty"], 7)
         self.assertEqual(docs["qty"]["in"], 7)
+        self.assertEqual(docs["quantity_on_hand"], 12)
         self.assertEqual(docs["virtual_available"], 35)
         self.assertEqual(
             docs["no_delivery_purchase_orders"],
