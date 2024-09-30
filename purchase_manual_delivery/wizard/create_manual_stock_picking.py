@@ -68,17 +68,9 @@ class CreateManualStockPickingWizard(models.TransientModel):
                 {
                     "purchase_order_line_id": line.id,
                     "name": line.name,
-                    "product_id": line.product_id.id,
-                    "date_planned": line.date_planned,
-                    "price_unit": line.price_unit,
-                    "product_qty": line.product_qty,
-                    "existing_qty": line.existing_qty,
-                    "remaining_qty": line.product_qty - line.existing_qty,
-                    "qty": line.product_qty - line.existing_qty,
-                    "product_uom": line.product_uom.id,
-                    "currency_id": line.currency_id.id,
-                    "partner_id": line.partner_id.id,
-                    # 'taxes_id': line.taxes_id.ids,
+                    "remaining_qty": line.product_qty
+                    - (line.qty_in_receipt + line.qty_received),
+                    "qty": line.product_qty - (line.qty_in_receipt + line.qty_received),
                 },
             )
             for line in po_lines
@@ -191,15 +183,17 @@ class CreateManualStockPickingWizardLine(models.TransientModel):
         related="purchase_order_line_id.product_qty",
         digits="Product Unit of Measure",
     )
-    existing_qty = fields.Float(
-        string="Existing Quantity",
-        related="purchase_order_line_id.existing_qty",
+    qty_in_receipt = fields.Float(
+        related="purchase_order_line_id.qty_in_receipt",
+        digits="Product Unit of Measure",
+    )
+    qty_received = fields.Float(
+        related="purchase_order_line_id.qty_received",
         digits="Product Unit of Measure",
     )
     remaining_qty = fields.Float(
         string="Remaining Quantity",
         compute="_compute_remaining_qty",
-        readonly=True,
         digits="Product Unit of Measure",
     )
     qty = fields.Float(
@@ -208,7 +202,7 @@ class CreateManualStockPickingWizardLine(models.TransientModel):
         help="This is the quantity taken into account to create the picking",
     )
     price_unit = fields.Float(
-        related="purchase_order_line_id.price_unit", readonly=True
+        related="purchase_order_line_id.price_unit",
     )
     currency_id = fields.Many2one(
         "res.currency", related="purchase_order_line_id.currency_id"
@@ -224,7 +218,9 @@ class CreateManualStockPickingWizardLine(models.TransientModel):
 
     def _compute_remaining_qty(self):
         for line in self:
-            line.remaining_qty = line.product_qty - line.existing_qty
+            line.remaining_qty = line.product_qty - (
+                line.qty_in_receipt + line.qty_received
+            )
 
     def _prepare_stock_moves(self, picking):
         po_line = self.purchase_order_line_id
