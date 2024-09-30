@@ -2,7 +2,7 @@
 
 ![Purchase  -> configuration -> Purchase Order Cancel Reason](../static/description/purchase_cancel_reason_config_1.png)
 
-2. By default you already have three Purchase Cancel Reason available:
+2. By default you have three Purchase Cancel Reason available:
  - Just for Quotation
  - Service no longer needed
  - Other Service Provider selected
