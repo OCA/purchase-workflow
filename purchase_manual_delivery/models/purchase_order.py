@@ -52,15 +52,14 @@ class PurchaseOrder(models.Model):
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
-    existing_qty = fields.Float(
-        compute="_compute_existing_qty",
+    qty_in_receipt = fields.Float(
+        compute="_compute_qty_in_receipt",
         store=True,
-        string="Existing Quantity",
         digits="Product Unit of Measure",
-        help="Quantity already planned or shipped (stock movements " "already created)",
+        help="Quantity for which there are pending stock moves",
     )
     pending_to_receive = fields.Boolean(
-        compute="_compute_existing_qty",
+        compute="_compute_qty_in_receipt",
         store=True,
         string="Pending Qty to Receive",
         help="There is pending quantity to receive not yet planned",
@@ -72,15 +71,17 @@ class PurchaseOrderLine(models.Model):
         "move_ids.location_id",
         "move_ids.location_dest_id",
         "product_uom_qty",
+        "qty_received",
+        "state",
     )
-    def _compute_existing_qty(self):
+    def _compute_qty_in_receipt(self):
         for line in self:
             precision_digits = self.env["decimal.precision"].precision_get(
                 "Product Unit of Measure"
             )
             total = 0.0
             for move in line.move_ids:
-                if move.state not in ["cancel"]:
+                if move.state not in ["cancel", "done"]:
                     if (
                         move.location_id
                         == self.order_id.picking_type_id.default_location_dest_id
@@ -106,11 +107,11 @@ class PurchaseOrderLine(models.Model):
                         total += move.product_uom._compute_quantity(
                             move.quantity, line.product_uom
                         )
-            line.existing_qty = total
+            line.qty_in_receipt = total
             if (
                 float_compare(
                     line.product_qty,
-                    line.existing_qty,
+                    line.qty_in_receipt + line.qty_received,
                     precision_digits=precision_digits,
                 )
                 == 1

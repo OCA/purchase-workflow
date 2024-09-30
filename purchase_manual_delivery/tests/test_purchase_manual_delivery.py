@@ -90,8 +90,8 @@ class TestPurchaseManualDelivery(TransactionCase):
         self.po1.button_confirm_manual()
         self.assertTrue(self.po1_line1.pending_to_receive)
         self.assertTrue(self.po1_line2.pending_to_receive)
-        self.assertEqual(self.po1_line1.existing_qty, 0)
-        self.assertEqual(self.po1_line2.existing_qty, 0)
+        self.assertEqual(self.po1_line1.qty_in_receipt, 0)
+        self.assertEqual(self.po1_line2.qty_in_receipt, 0)
         self.assertFalse(
             self.po1.picking_ids,
             "Purchase Manual Delivery: no picking should had been created",
@@ -172,8 +172,8 @@ class TestPurchaseManualDelivery(TransactionCase):
         )
         self.assertFalse(self.po1_line1.pending_to_receive)
         self.assertFalse(self.po1_line2.pending_to_receive)
-        self.assertEqual(self.po1_line1.existing_qty, self.po1_line1.product_qty)
-        self.assertEqual(self.po1_line2.existing_qty, self.po1_line2.product_qty)
+        self.assertEqual(self.po1_line1.qty_in_receipt, self.po1_line1.product_qty)
+        self.assertEqual(self.po1_line2.qty_in_receipt, self.po1_line2.product_qty)
         self.assertFalse(self.po1.pending_to_receive)
 
         # Process the picking
@@ -209,11 +209,11 @@ class TestPurchaseManualDelivery(TransactionCase):
         )
         return_wiz.create_returns()
 
-        # The refund line is open to receive the returned item
+        # The refund line is open to re-receive the returned item
         self.assertTrue(self.po1_line1.pending_to_receive)
-        self.assertEqual(self.po1_line1.existing_qty, self.po1_line1.product_qty - 2)
+        self.assertEqual(self.po1_line1.qty_in_receipt, -2)
         # But the non-refund line is not
-        self.assertEqual(self.po1_line2.existing_qty, self.po1_line2.product_qty)
+        self.assertFalse(self.po1_line2.qty_in_receipt)
         self.assertFalse(self.po1_line2.pending_to_receive)
 
         self.assertTrue(self.po1.pending_to_receive)
@@ -231,10 +231,10 @@ class TestPurchaseManualDelivery(TransactionCase):
         self.assertTrue(self.po1_line2.pending_to_receive)
         self.assertTrue(self.po2_line1.pending_to_receive)
         self.assertTrue(self.po2_line2.pending_to_receive)
-        self.assertEqual(self.po1_line1.existing_qty, 0)
-        self.assertEqual(self.po1_line2.existing_qty, 0)
-        self.assertEqual(self.po2_line1.existing_qty, 0)
-        self.assertEqual(self.po2_line2.existing_qty, 0)
+        self.assertEqual(self.po1_line1.qty_in_receipt, 0)
+        self.assertEqual(self.po1_line2.qty_in_receipt, 0)
+        self.assertEqual(self.po2_line1.qty_in_receipt, 0)
+        self.assertEqual(self.po2_line2.qty_in_receipt, 0)
         with self.assertRaises(UserError):
             # create a manual delivery for two lines different PO
             self.env["create.stock.picking.wizard"].with_context(
@@ -266,10 +266,10 @@ class TestPurchaseManualDelivery(TransactionCase):
         self.assertTrue(self.po1_line2.pending_to_receive)
         self.assertFalse(self.po2_line1.pending_to_receive)
         self.assertFalse(self.po2_line2.pending_to_receive)
-        self.assertEqual(self.po1_line1.existing_qty, 0)
-        self.assertEqual(self.po1_line2.existing_qty, 0)
-        self.assertEqual(self.po2_line1.existing_qty, self.po2_line1.product_qty)
-        self.assertEqual(self.po2_line2.existing_qty, self.po2_line2.product_qty)
+        self.assertEqual(self.po1_line1.qty_in_receipt, 0)
+        self.assertEqual(self.po1_line2.qty_in_receipt, 0)
+        self.assertEqual(self.po2_line1.qty_in_receipt, self.po2_line1.product_qty)
+        self.assertEqual(self.po2_line2.qty_in_receipt, self.po2_line2.product_qty)
 
     def test_03_purchase_order_line_location(self):
         """
@@ -282,8 +282,8 @@ class TestPurchaseManualDelivery(TransactionCase):
         self.po1.button_confirm_manual()
         self.assertTrue(self.po1_line1.pending_to_receive)
         self.assertTrue(self.po1_line2.pending_to_receive)
-        self.assertEqual(self.po1_line1.existing_qty, 0)
-        self.assertEqual(self.po1_line2.existing_qty, 0)
+        self.assertEqual(self.po1_line1.qty_in_receipt, 0)
+        self.assertEqual(self.po1_line2.qty_in_receipt, 0)
         # create a manual delivery for one line (product1)
         wizard = (
             self.env["create.stock.picking.wizard"]
@@ -307,8 +307,8 @@ class TestPurchaseManualDelivery(TransactionCase):
         self.assertEqual(picking_id.location_dest_id, self.shelf2)
         self.assertFalse(self.po1_line1.pending_to_receive)
         self.assertTrue(self.po1_line2.pending_to_receive)
-        self.assertEqual(self.po1_line1.existing_qty, self.po1_line1.product_qty)
-        self.assertEqual(self.po1_line2.existing_qty, 0)
+        self.assertEqual(self.po1_line1.qty_in_receipt, self.po1_line1.product_qty)
+        self.assertEqual(self.po1_line2.qty_in_receipt, 0)
 
     def test_04_pending_to_receive(self):
         """
@@ -409,10 +409,21 @@ class TestPurchaseManualDelivery(TransactionCase):
         wizard.line_ids[0].qty = 2
         wizard.create_stock_picking()
         po_in_progress.picking_ids[0].button_validate()
+
+        self.assertEqual(po_in_progress.order_line.qty_received, 2)
+        self.assertEqual(po_in_progress.order_line.qty_in_receipt, 0)
+        self.assertTrue(po_in_progress.order_line.pending_to_receive)
+
         qty, _ = product_in_progress._get_quantity_in_progress(
             location_ids=location.ids
         )
         self.assertEqual(qty.get((product_in_progress.id, location.id)), 3)
+
+        wizard.line_ids[0].qty = 3
+        wizard.create_stock_picking()
+        self.assertEqual(po_in_progress.order_line.qty_received, 2)
+        self.assertEqual(po_in_progress.order_line.qty_in_receipt, 3)
+        self.assertFalse(po_in_progress.order_line.pending_to_receive)
 
     def test_06_purchase_order_manual_delivery_double_validation(self):
         """
@@ -460,7 +471,7 @@ class TestPurchaseManualDelivery(TransactionCase):
         # confirm RFQ
         self.po.button_confirm_manual()
         self.assertTrue(self.po.order_line.pending_to_receive)
-        self.assertEqual(self.po.order_line.existing_qty, 0)
+        self.assertEqual(self.po.order_line.qty_in_receipt, 0)
         self.assertFalse(
             self.po.picking_ids,
             "Purchase Manual Delivery: no picking should had been created",
@@ -471,7 +482,7 @@ class TestPurchaseManualDelivery(TransactionCase):
         self.po.env.user.groups_id += self.env.ref("purchase.group_purchase_manager")
         self.po.button_approve()
         self.assertTrue(self.po.order_line.pending_to_receive)
-        self.assertEqual(self.po.order_line.existing_qty, 0)
+        self.assertEqual(self.po.order_line.qty_in_receipt, 0)
         self.assertFalse(
             self.po.picking_ids,
             "Purchase Manual Delivery: no picking should had been created",

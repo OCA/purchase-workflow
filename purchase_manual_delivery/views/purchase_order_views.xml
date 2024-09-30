@@ -42,9 +42,9 @@
                 />
             </button>
             <field name="qty_received" position="before">
-                <field name="pending_to_receive" invisible="1" />
+                <field name="pending_to_receive" column_invisible="1" />
                 <field
-                    name="existing_qty"
+                    name="qty_in_receipt"
                     optional="hide"
                     column_invisible="parent.state not in ('purchase', 'done')"
                 />
@@ -73,10 +73,10 @@
                 >state == 'purchase' and pending_to_receive</attribute>
             </xpath>
             <field name="product_qty" position="after">
-                <field name="existing_qty" />
+                <field name="qty_in_receipt" />
             </field>
             <field name="date_planned" position="after">
-                <field name="pending_to_receive" />
+                <field name="pending_to_receive" optional="hide" />
                 <field name="state" invisible="1" />
             </field>
         </field>

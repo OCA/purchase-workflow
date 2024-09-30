@@ -32,9 +32,17 @@ class ProductProduct(models.Model):
                 "product_uom",
                 "orderpoint_id",
             ],
-            ["product_qty:sum", "existing_qty:sum"],
+            ["product_qty:sum", "qty_in_receipt:sum", "qty_received:sum"],
         )
-        for product, order, uom, orderpoint, product_qty, existing_qty in groups:
+        for (
+            product,
+            order,
+            uom,
+            orderpoint,
+            product_qty,
+            qty_in_receipt,
+            qty_received,
+        ) in groups:
             if orderpoint:
                 location = orderpoint.location_id
             else:
@@ -42,7 +50,7 @@ class ProductProduct(models.Model):
             product_qty = uom._compute_quantity(
                 product_qty, product.uom_id, round=False
             )
-            remaining_qty = product_qty - existing_qty
+            remaining_qty = product_qty - (qty_in_receipt + qty_received)
             qty_by_product_location[(product.id, location.id)] += remaining_qty
             qty_by_product_wh[(product.id, location.warehouse_id.id)] += remaining_qty
         return qty_by_product_location, qty_by_product_wh
