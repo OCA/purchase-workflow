@@ -327,6 +327,7 @@ class TestPurchaseManualDelivery(TransactionCase):
         # Create draft RFQ
         po_vals = {
             "partner_id": self.ref("base.res_partner_3"),
+            "company_id": self.user_purchase_user.company_id.id,
             "order_line": [
                 (
                     0,
