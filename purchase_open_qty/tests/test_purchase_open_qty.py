@@ -189,6 +189,16 @@ class TestPurchaseOpenQty(TransactionCase):
             "Expected PO %s not to be in POs %s"
             % (self.purchase_order_2.id, found.ids),
         )
+        purchases = self.purchase_order_model.search([("qty_to_invoice", ">", 0)])
+        purchases_qty_cond = self.purchase_order_model._search_qty_to_invoice(">", 0.0)
+        purchases_qty = self.purchase_order_model.search(purchases_qty_cond)
+        for purchase in purchases:
+            self.assertIn(purchase, purchases_qty)
+        purchases = self.purchase_order_model.search([("qty_to_receive", ">", 0)])
+        purchases_qty_cond = self.purchase_order_model._search_qty_to_receive(">", 0.0)
+        purchases_qty = self.purchase_order_model.search(purchases_qty_cond)
+        for purchase in purchases:
+            self.assertIn(purchase, purchases_qty)
 
     def test_03_po_line_with_services(self):
         self.assertEqual(
