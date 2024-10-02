@@ -114,6 +114,26 @@ class PurchaseOrder(models.Model):
         else:
             return [("id", "not in", orders.ids)]
 
+    @api.model
+    def _search_qty_to_invoice(self, operator, value):
+        if not value:
+            value = 0.0
+        po_line_obj = self.env["purchase.order.line"]
+        cond = [("qty_to_invoice", operator, value)]
+        po_lines = po_line_obj.search(cond)
+        orders = po_lines.mapped("order_id")
+        return [("id", "in", orders.ids)]
+
+    @api.model
+    def _search_qty_to_receive(self, operator, value):
+        if not value:
+            value = 0.0
+        po_line_obj = self.env["purchase.order.line"]
+        cond = [("qty_to_receive", operator, value)]
+        po_lines = po_line_obj.search(cond)
+        orders = po_lines.mapped("order_id")
+        return [("id", "in", orders.ids)]
+
     qty_to_invoice = fields.Float(
         compute="_compute_qty_to_invoice",
         search="_search_qty_to_invoice",
