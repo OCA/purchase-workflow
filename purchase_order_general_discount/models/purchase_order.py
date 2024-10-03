@@ -36,7 +36,7 @@ class PurchaseOrder(models.Model):
         discount_field = self.company_id.purchase_general_discount_field
         return discount_field or "discount"
 
-    @api.onchange("general_discount")
+    @api.onchange("general_discount", "order_line")
     def onchange_general_discount(self):
         discount_field = self._get_general_discount_field()
         self.mapped("order_line").update({discount_field: self.general_discount})
