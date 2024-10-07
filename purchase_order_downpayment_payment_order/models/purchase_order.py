@@ -15,10 +15,16 @@ class PurchaseOrder(models.Model):
         """Retrieve the communication string for the payment order."""
         communication_type = "normal"
         if self.partner_ref:
-            communication = self.partner_ref or "" + "_" + self.name or ""
+            communication = (self.partner_ref or "") + (
+                (self.name and "_" + self.name) or ""
+            )
         else:
             communication = self.name or ""
         return communication_type, communication
+
+    def _get_partner_bank(self):
+        partner_bank_id = first(self.partner_id.bank_ids)
+        return partner_bank_id
 
     def _prepare_payment_line_vals(self, payment_order, amount_advance):
         self.ensure_one()
@@ -27,7 +33,7 @@ class PurchaseOrder(models.Model):
             currency_id = self.currency_id.id
         else:
             currency_id = self.company_id.currency_id.id
-        partner_bank_id = first(self.partner_id.bank_ids).id
+        partner_bank_id = self._get_partner_bank().id
         vals = {
             "order_id": payment_order.id,
             "partner_bank_id": partner_bank_id,

@@ -1,4 +1,4 @@
-from odoo import _, api, fields, models
+from odoo import _, fields, models
 from odoo.exceptions import UserError
 
 
@@ -14,15 +14,6 @@ class PurchaseOrderDownPaymentWizard(models.TransientModel):
         related="order_id.company_id",
         store=True,
     )
-
-    @api.depends("bank_partner_id")
-    def _compute_partner_bank_id(self):
-        for move in self:
-            # This will get the bank account from the partner in an order with the trusted first
-            bank_ids = move.bank_partner_id.bank_ids.filtered(
-                lambda bank: not bank.company_id or bank.company_id == move.company_id
-            ).sorted(lambda bank: not bank.allow_out_payment)
-            move.partner_bank_id = bank_ids[:1]
 
     def get_account_payment_domain(self, payment_mode, currency):
         return [
