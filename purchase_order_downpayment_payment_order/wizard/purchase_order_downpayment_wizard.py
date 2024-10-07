@@ -24,8 +24,15 @@ class PurchaseOrderDownPaymentWizard(models.TransientModel):
             ).sorted(lambda bank: not bank.allow_out_payment)
             move.partner_bank_id = bank_ids[:1]
 
-    def get_account_payment_domain(self, payment_mode):
-        return [("payment_mode_id", "=", payment_mode.id), ("state", "=", "draft")]
+    def get_account_payment_domain(self, payment_mode, currency):
+        return [
+            ("payment_mode_id", "=", payment_mode.id),
+            ("state", "=", "draft"),
+            "|",
+            ("journal_id", "=", False),
+            ("journal_id", "!=", False),
+            ("journal_id.currency_id", "=", currency.id),
+        ]
 
     def _prepare_new_payment_order(self, payment_mode=None):
         self.ensure_one()
@@ -42,7 +49,10 @@ class PurchaseOrderDownPaymentWizard(models.TransientModel):
             action_payment_type = "debit"
             apoo = self.env["account.payment.order"]
             payorder = apoo.search(
-                self.get_account_payment_domain(self.payment_mode_id), limit=1
+                self.get_account_payment_domain(
+                    self.payment_mode_id, self.order_id.currency_id
+                ),
+                limit=1,
             )
             new_payorder = False
             if payorder:
