@@ -12,12 +12,12 @@
                     <field name="product_id" />
                     <field
                         name="include_commercial_partner"
-                        attrs="{'invisible': [('partner_id', '=', False)]}"
+                        invisible="not partner_id"
                     />
                     <field name="include_rfq" />
                 </group>
                 <group string="Purchase history">
-                    <field name="line_ids" nolabel="1" readonly="1">
+                    <field name="line_ids" nolabel="1" readonly="1" colspan="2">
                         <form>
                             <div class="oe_button_box" name="button_box">
                                 <button
@@ -44,7 +44,7 @@
                             <field name="order_id" />
                             <field
                                 name="partner_id"
-                                attrs="{'column_invisible': [('parent.partner_id', '!=', False)]}"
+                                column_invisible="not parent.partner_id"
                             />
                             <field name="purchase_order_date_order" />
                             <field name="product_qty" />
