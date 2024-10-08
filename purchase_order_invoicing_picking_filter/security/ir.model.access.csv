@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_purchase_invoicing_picking_filter,access.purchase.invoicing.picking.filter,model_purchase_invoicing_picking_filter,purchase.group_purchase_user,1,1,1,0

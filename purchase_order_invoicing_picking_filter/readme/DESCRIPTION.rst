@@ -1,0 +1,1 @@
+This modules allows to create invoices from purchase orders based on the products in pickings related to the order.
