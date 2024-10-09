@@ -4,7 +4,8 @@
 
 from openupgradelib import openupgrade
 
-from ..hooks import pre_init_hook
+# pylint: disable=W8150
+from odoo.addons.product_main_seller import pre_init_hook
 
 
 @openupgrade.migrate()
