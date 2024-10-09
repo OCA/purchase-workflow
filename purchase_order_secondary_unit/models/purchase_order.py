@@ -15,17 +15,18 @@ class PurchaseOrderLine(models.Model):
     product_qty = fields.Float(copy=True)
 
     @api.depends("secondary_uom_qty", "secondary_uom_id", "product_packaging_qty")
-    @api.depends_context('skip_computation')
+    @api.depends_context("skip_computation")
     def _compute_product_qty(self):
         res = super()._compute_product_qty()
-        if self.env.context.get('skip_computation'):
+        if self.env.context.get("skip_compute_product_qty"):
             return res
         return self._compute_helper_target_field_qty()
 
     @api.onchange("product_uom")
     def onchange_product_uom_for_secondary(self):
         self.with_context(
-            skip_computation=True)._onchange_helper_product_uom_for_secondary()
+            skip_compute_product_qty=True
+        )._onchange_helper_product_uom_for_secondary()
 
     @api.onchange("product_id")
     def onchange_product_id(self):
