@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2016-11-17 03:38+0000\n"
 "PO-Revision-Date: 2024-06-27 09:35+0000\n"
 "Last-Translator: jakobkrabbe <jakob@syscare.se>\n"
-"Language-Team: Swedish (http://www.transifex.com/oca/"
-"OCA-purchase-workflow-10-0/language/sv/)\n"
+"Language-Team: Swedish (http://www.transifex.com/oca/OCA-purchase-"
+"workflow-10-0/language/sv/)\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -51,8 +51,8 @@ msgid ""
 "<li><b>%(product_name)s</b>: Transferred quantity %(product_qty)s "
 "%(product_uom)s</li>"
 msgstr ""
-"<li><b>%(product_name)s</b>: Överförd mängd %(product_qty)s "
-"%(product_uom)s</li>"
+"<li><b>%(product_name)s</b>: Överförd mängd %(product_qty)s %(product_uom)s</"
+"li>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
@@ -548,6 +548,18 @@ msgid "If checked, some messages have a delivery error."
 msgstr "Om kryssrutan är markerad får vissa meddelanden ett leveransfel."
 
 #. module: purchase_request
+#: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
+#: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
+#: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
+msgid "In Progress"
+msgstr ""
+
+#. module: purchase_request
+#: model:ir.model.fields.selection,name:purchase_request.selection__purchase_request__state__in_progress
+msgid "In progress"
+msgstr ""
+
+#. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__is_editable
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__is_editable
 msgid "Is Editable"
@@ -862,8 +874,8 @@ msgstr "Inköpsbegäran %s har redan slutförts"
 #. odoo-python
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
 #, python-format
-msgid "Purchase Request %s is not approved"
-msgstr "Inköpsbegäran %s är inte godkänd"
+msgid "Purchase Request %s is not approved or in progress"
+msgstr ""
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_request_allocation
@@ -1117,6 +1129,12 @@ msgstr "Begäran är gjord"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
+msgid "Request is in progress"
+msgstr ""
+
+#. module: purchase_request
+#: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
+#: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Request is rejected"
 msgstr "Begäran avvisas"
 
@@ -1281,7 +1299,8 @@ msgstr "Leverantör"
 #, python-format
 msgid ""
 "The company of the purchase request must match with that of the location."
-msgstr "Företaget i inköpsbegäran måste överensstämma med företaget på platsen."
+msgstr ""
+"Företaget i inköpsbegäran måste överensstämma med företaget på platsen."
 
 #. module: purchase_request
 #. odoo-python
@@ -1494,3 +1513,7 @@ msgstr "Du måste välja rader från samma Plocktyp."
 #, python-format
 msgid "You have to select lines from the same company."
 msgstr "Du måste välja rader från samma bolag."
+
+#, python-format
+#~ msgid "Purchase Request %s is not approved"
+#~ msgstr "Inköpsbegäran %s är inte godkänd"

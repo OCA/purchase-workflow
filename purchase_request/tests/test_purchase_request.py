@@ -51,6 +51,19 @@ class TestPurchaseRequest(TransactionCase):
         self.assertEqual(purchase_request.is_editable, True, "Should be editable")
         self.assertEqual(purchase_request.state, "draft", "Should be in state draft")
         purchase_request.button_to_approve()
+        purchase_request.button_in_progress()
+        self.assertEqual(
+            purchase_request.state, "in_progress", "Should be in state in_progress"
+        )
+        self.assertEqual(purchase_request.is_editable, False, "Should not be editable")
+        with self.assertRaises(exceptions.UserError) as e:
+            purchase_request.unlink()
+        msg = "You cannot delete a purchase request which is not draft."
+        self.assertIn(msg, e.exception.args[0])
+        purchase_request.button_draft()
+        self.assertEqual(purchase_request.is_editable, True, "Should be editable")
+        self.assertEqual(purchase_request.state, "draft", "Should be in state draft")
+        purchase_request.button_to_approve()
         purchase_request.button_done()
         self.assertEqual(purchase_request.is_editable, False, "Should not be editable")
         with self.assertRaises(exceptions.UserError) as e:
@@ -268,6 +281,15 @@ class TestPurchaseRequest(TransactionCase):
 
         pr.button_to_approve()
         self.assertEqual(pr.state, "to_approve", "Should be in state to_approve")
+        with self.assertRaises(exceptions.UserError) as e:
+            pr_lines.unlink()
+        msg = (
+            "You can only delete a purchase request line "
+            "if the purchase request is in draft state."
+        )
+        self.assertIn(msg, e.exception.args[0])
+        pr.button_in_progress()
+        self.assertEqual(pr.state, "in_progress", "Should be in state in_progress")
         with self.assertRaises(exceptions.UserError) as e:
             pr_lines.unlink()
         msg = (

@@ -23,6 +23,7 @@ addon | version | maintainers | summary
 --- | --- | --- | ---
 [partner_supplierinfo_smartbutton](partner_supplierinfo_smartbutton/) | 16.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Access supplied products from the vendor
 [procurement_purchase_no_grouping](procurement_purchase_no_grouping/) | 16.0.1.0.0 |  | Procurement Purchase No Grouping
+[product_main_seller](product_main_seller/) | 16.0.1.0.0 | [![legalsylvain](https://github.com/legalsylvain.png?size=30px)](https://github.com/legalsylvain) [![quentinDupont](https://github.com/quentinDupont.png?size=30px)](https://github.com/quentinDupont) | Main Vendor for a product
 [product_supplier_code_purchase](product_supplier_code_purchase/) | 16.0.1.0.0 |  | This module adds to the purchase order line the supplier code defined in the product.
 [product_supplierinfo_purchase_contact](product_supplierinfo_purchase_contact/) | 16.0.1.0.0 |  | Add Purchase Contact in product supplier info
 [product_supplierinfo_qty_multiplier](product_supplierinfo_qty_multiplier/) | 16.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) [![legalsylvain](https://github.com/legalsylvain.png?size=30px)](https://github.com/legalsylvain) | Product supplierinfo qty multiplier
@@ -47,7 +48,7 @@ addon | version | maintainers | summary
 [purchase_line_procurement_group](purchase_line_procurement_group/) | 16.0.1.0.0 |  | Group purchase order line according to procurement group
 [purchase_location_by_line](purchase_location_by_line/) | 16.0.1.0.0 |  | Allows to define a specific destination location on each PO line
 [purchase_lot](purchase_lot/) | 16.0.1.0.0 | [![florian-dacosta](https://github.com/florian-dacosta.png?size=30px)](https://github.com/florian-dacosta) | Purchase Lot
-[purchase_manual_delivery](purchase_manual_delivery/) | 16.0.1.1.4 |  | Prevents pickings to be auto generated upon Purchase Order confirmation and adds the ability to manually generate them as the supplier confirms the different purchase order lines.
+[purchase_manual_delivery](purchase_manual_delivery/) | 16.0.1.1.5 |  | Prevents pickings to be auto generated upon Purchase Order confirmation and adds the ability to manually generate them as the supplier confirms the different purchase order lines.
 [purchase_merge](purchase_merge/) | 16.0.1.0.3 |  | Wizard to merge purchase with required conditions
 [purchase_no_rfq](purchase_no_rfq/) | 16.0.1.0.0 | [![legalsylvain](https://github.com/legalsylvain.png?size=30px)](https://github.com/legalsylvain) | Purchase Order - No Request For Quotation
 [purchase_only_by_packaging](purchase_only_by_packaging/) | 16.0.1.0.1 |  | Manage purchase of packaging
@@ -80,7 +81,9 @@ addon | version | maintainers | summary
 [purchase_product_packaging_container_deposit](purchase_product_packaging_container_deposit/) | 16.0.1.0.0 |  | Purchase Product Packaging Container Deposit
 [purchase_reception_status](purchase_reception_status/) | 16.0.1.0.1 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Add reception status on purchase orders
 [purchase_reorder_control](purchase_reorder_control/) | 16.0.1.0.0 |  | Restrict reordering unpurchaseable product
-[purchase_request](purchase_request/) | 16.0.1.3.2 |  | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
+[purchase_request](purchase_request/) | 16.0.2.0.1 |  | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
+[purchase_request_department](purchase_request_department/) | 16.0.1.0.0 |  | Purchase Request Department
+[purchase_request_exception](purchase_request_exception/) | 16.0.1.0.0 |  | Custom exceptions on purchase request
 [purchase_request_tier_validation](purchase_request_tier_validation/) | 16.0.1.0.0 |  | Extends the functionality of Purchase Requests to support a tier validation process.
 [purchase_request_type](purchase_request_type/) | 16.0.1.0.0 |  | Purchase Request Type
 [purchase_requisition_tier_validation](purchase_requisition_tier_validation/) | 16.0.1.0.0 |  | Extends the functionality of Purchase Agreements to support a tier validation process.

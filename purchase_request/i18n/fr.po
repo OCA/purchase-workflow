@@ -547,6 +547,18 @@ msgid "If checked, some messages have a delivery error."
 msgstr "Si coché, certains messages ont une erreur d'envoi."
 
 #. module: purchase_request
+#: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
+#: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
+#: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
+msgid "In Progress"
+msgstr ""
+
+#. module: purchase_request
+#: model:ir.model.fields.selection,name:purchase_request.selection__purchase_request__state__in_progress
+msgid "In progress"
+msgstr ""
+
+#. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__is_editable
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__is_editable
 msgid "Is Editable"
@@ -871,8 +883,8 @@ msgstr "Demande d'achat %s rejetée"
 #. odoo-python
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
 #, python-format
-msgid "Purchase Request %s is not approved"
-msgstr "Demande d'achat %s est non approuvée"
+msgid "Purchase Request %s is not approved or in progress"
+msgstr ""
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_request_allocation
@@ -1128,6 +1140,12 @@ msgstr "Demande approuvée"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Request is done"
+msgstr ""
+
+#. module: purchase_request
+#: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
+#: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
+msgid "Request is in progress"
 msgstr ""
 
 #. module: purchase_request
@@ -1496,6 +1514,10 @@ msgstr ""
 #, python-format
 msgid "You have to select lines from the same company."
 msgstr ""
+
+#, python-format
+#~ msgid "Purchase Request %s is not approved"
+#~ msgstr "Demande d'achat %s est non approuvée"
 
 #~ msgid "<strong>Analytic Account</strong>"
 #~ msgstr "<strong>Compte analytique</strong>"
