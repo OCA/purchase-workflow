@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 ACSONE SA/NV
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field
+            name="name"
+        >purchase.order.form (in purchase_order_line_stock_move_cancel)</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='order_line']/tree/field[@name='price_tax']"
+                position="after"
+            >
+                <field name="can_cancel_moves" invisible="1" />
+                <button
+                    icon="fa-ban"
+                    title="Cancel related moves"
+                    type="object"
+                    name="action_cancel_moves"
+                    attrs="{'invisible': [('can_cancel_moves', '=', False)]}"
+                />
+            </xpath>
+        </field>
+    </record>
+
+
+
+</odoo>
