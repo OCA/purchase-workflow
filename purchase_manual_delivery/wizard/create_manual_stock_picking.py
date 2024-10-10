@@ -34,8 +34,7 @@ class CreateManualStockPickingWizard(models.TransientModel):
                 self.env["purchase.order.line"]
                 .browse(po_line_ids)
                 .filtered(
-                    lambda p: p.product_id.type in ["product", "consu"]
-                    and p.pending_to_receive
+                    lambda p: p.product_id.type == "consu" and p.pending_to_receive
                 )
             )
         elif active_model == "purchase.order":
@@ -45,8 +44,7 @@ class CreateManualStockPickingWizard(models.TransientModel):
                 .browse(po_ids)
                 .mapped("order_line")
                 .filtered(
-                    lambda p: p.product_id.type in ["product", "consu"]
-                    and p.pending_to_receive
+                    lambda p: p.product_id.type == "consu" and p.pending_to_receive
                 )
             )
         self._check_purchase_line_constrains(purchase_lines)

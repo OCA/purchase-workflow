@@ -3,7 +3,7 @@
 
 from odoo import fields
 from odoo.exceptions import UserError
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests import Form, TransactionCase
 
 from odoo.addons.mail.tests.common import mail_new_test_user
 
@@ -207,7 +207,7 @@ class TestPurchaseManualDelivery(TransactionCase):
                 "to_refund": False,
             }
         )
-        return_wiz.create_returns()
+        return_wiz.action_create_returns()
 
         # The refund line is open to re-receive the returned item
         self.assertTrue(self.po1_line1.pending_to_receive)
@@ -369,7 +369,8 @@ class TestPurchaseManualDelivery(TransactionCase):
         product_in_progress = self.env["product.product"].create(
             {
                 "name": "Test product pending",
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
                 "list_price": 1,
                 "standard_price": 1,
             }
