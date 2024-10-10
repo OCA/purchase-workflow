@@ -26,10 +26,11 @@ class PurchaseOrder(models.Model):
             po.manual_delivery = po.company_id.purchase_manual_delivery
 
     def _compute_pending_to_receive(self):
+        """An order is 'pending to receive' if one of its lines is"""
         for order in self:
-            order.pending_to_receive = True
-            if not any(order.mapped("order_line.pending_to_receive")):
-                order.pending_to_receive = False
+            order.pending_to_receive = any(
+                order.order_line.mapped("pending_to_receive")
+            )
 
     def button_confirm_manual(self):
         return super(
