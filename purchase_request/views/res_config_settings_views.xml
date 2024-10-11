@@ -1,0 +1,55 @@
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field
+            name="name"
+        >res.config.settings.view.form.inherit.purchase_request</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="20" />
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div
+                    class="app_settings_block"
+                    data-string="Purchase Requests"
+                    data-key="purchase_request"
+                    groups="base.group_system"
+                    string="Purchase Requests"
+                >
+                    <div name="purchase_request_settings">
+                        <h2>Aprrover</h2>
+                        <div class="row mt16 o_settings_container" name="file">
+                            <div class="col-12 col-md-6 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">Default approver</span>
+                                    <div class="content-group">
+                                        <div class="row mt16">
+                                            <field
+                                                name="purchase_request_approver_user_id"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+    <record id="action_purchase_request_settings_general" model="ir.actions.act_window">
+        <field name="name">General Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module' : 'purchase_request'}</field>
+    </record>
+    <menuitem
+        id="menu_purchase_request_config_settings_general"
+        name="General Settings"
+        parent="menu_purchase_request_config"
+        sequence="0"
+        action="action_purchase_request_settings_general"
+        groups="base.group_system"
+    />
+</odoo>

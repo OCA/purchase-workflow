@@ -1,4 +1,5 @@
 # Copyright 2018-2019 ForgeFlow, S.L.
+# Copyright 2024 Tecnativa - Víctor Martínez
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 
 from odoo import _, api, fields, models
@@ -84,6 +85,18 @@ class PurchaseRequest(models.Model):
         default=_get_default_requested_by,
         index=True,
     )
+    approver_user_id = fields.Many2one(
+        comodel_name="res.users",
+        string="Approver user",
+        default=lambda self: self.env.company.purchase_request_approver_user_id.id,
+        domain=lambda self: [
+            (
+                "groups_id",
+                "in",
+                self.env.ref("purchase_request.group_purchase_request_user").id,
+            )
+        ],
+    )
     assigned_to = fields.Many2one(
         comodel_name="res.users",
         string="Approver",
@@ -130,6 +143,7 @@ class PurchaseRequest(models.Model):
     )
     is_editable = fields.Boolean(compute="_compute_is_editable", readonly=True)
     to_approve_allowed = fields.Boolean(compute="_compute_to_approve_allowed")
+    is_approvable = fields.Boolean(compute="_compute_is_approvable")
     picking_type_id = fields.Many2one(
         comodel_name="stock.picking.type",
         string="Picking Type",
@@ -159,6 +173,18 @@ class PurchaseRequest(models.Model):
         string="Total Estimated Cost",
         store=True,
     )
+
+    @api.depends("approver_user_id")
+    def _compute_is_approvable(self):
+        user = self.env.user
+        user_request_manager = user.has_group(
+            "purchase_request.group_purchase_request_manager"
+        )
+        approvable_states = ["to_approve", "done"]
+        for item in self:
+            item.is_approvable = item.state in approvable_states and (
+                user_request_manager or item.approver_user_id == user
+            )
 
     @api.depends("line_ids", "line_ids.estimated_cost")
     def _compute_estimated_cost(self):
@@ -237,32 +263,42 @@ class PurchaseRequest(models.Model):
         default = dict(default or {})
         self.ensure_one()
         default.update({"state": "draft", "name": self._get_default_name()})
-        return super(PurchaseRequest, self).copy(default)
-
-    @api.model
-    def _get_partner_id(self, request):
-        user_id = request.assigned_to or self.env.user
-        return user_id.partner_id.id
+        return super().copy(default)
 
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
             if vals.get("name", _("New")) == _("New"):
                 vals["name"] = self._get_default_name()
-        requests = super(PurchaseRequest, self).create(vals_list)
+        requests = super().create(vals_list)
         for vals, request in zip(vals_list, requests):
             if vals.get("assigned_to"):
-                partner_id = self._get_partner_id(request)
-                request.message_subscribe(partner_ids=[partner_id])
+                request._message_subscribe_assigned_to()
+            if vals.get("approver_user_id"):
+                request._message_subscribe_approver_user()
         return requests
 
     def write(self, vals):
-        res = super(PurchaseRequest, self).write(vals)
+        res = super().write(vals)
         for request in self:
             if vals.get("assigned_to"):
-                partner_id = self._get_partner_id(request)
-                request.message_subscribe(partner_ids=[partner_id])
+                request._message_subscribe_assigned_to()
+            if vals.get("approver_user_id"):
+                request._message_subscribe_approver_user()
         return res
+
+    def _message_subscribe_assigned_to(self):
+        self.ensure_one()
+        user = self.assigned_to or self.env.user
+        self.message_subscribe(partner_ids=[user.partner_id.id])
+
+    def _message_subscribe_approver_user(self):
+        """Subscribe the approver user so that he can view the corresponding request
+        (even if he is a user without Manager permissions).
+        """
+        self.ensure_one()
+        if self.approver_user_id:
+            self.message_subscribe(partner_ids=[self.approver_user_id.partner_id.id])
 
     def _can_be_deleted(self):
         self.ensure_one()
@@ -285,11 +321,15 @@ class PurchaseRequest(models.Model):
         return self.write({"state": "to_approve"})
 
     def button_approved(self):
-        return self.write({"state": "approved"})
+        if not self.is_approvable:
+            raise UserError(_("You are not allowed to approve this request."))
+        return self.sudo().write({"state": "approved"})
 
     def button_rejected(self):
-        self.mapped("line_ids").do_cancel()
-        return self.write({"state": "rejected"})
+        if not self.is_approvable:
+            raise UserError(_("You are not allowed to reject this request."))
+        self.mapped("line_ids").sudo().do_cancel()
+        return self.sudo().write({"state": "rejected"})
 
     def button_in_progress(self):
         return self.write({"state": "in_progress"})
