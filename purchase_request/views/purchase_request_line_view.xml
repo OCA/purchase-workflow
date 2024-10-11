@@ -609,7 +609,7 @@
                         </group>
                         <newline />
                         <group>
-                            <field name="purchase_lines" nolabel="1" />
+                            <field name="purchase_lines" nolabel="1" colspan="2" />
                         </group>
                     </page>
                 </notebook>
