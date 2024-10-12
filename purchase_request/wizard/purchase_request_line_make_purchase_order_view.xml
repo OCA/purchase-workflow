@@ -26,7 +26,7 @@
                 <newline />
                 <group>
                     <field name="item_ids" nolabel="1" colspan="2">
-                        <tree name="Details" create="false" editable="bottom">
+                        <list name="Details" create="false" editable="bottom">
                             <field
                                 name="line_id"
                                 options="{'no_open': true}"
@@ -43,7 +43,7 @@
                             />
                             <field name="product_uom_id" groups="uom.group_uom" />
                             <field name="keep_description" />
-                        </tree>
+                        </list>
                     </field>
                 </group>
                 <newline />
