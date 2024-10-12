@@ -7,6 +7,56 @@ from odoo import _, api, exceptions, fields, models
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
+    purchase_request_count = fields.Integer(
+        compute="_compute_purchase_request_count",
+        default=0,
+    )
+    purchase_request_line_count = fields.Integer(
+        compute="_compute_purchase_request_line_count",
+        default=0,
+    )
+
+    @api.depends("order_line.purchase_request_lines")
+    def _compute_purchase_request_count(self):
+        for order in self:
+            order.purchase_request_count = len(
+                order.order_line.mapped("purchase_request_lines.request_id")
+            )
+
+    @api.depends("order_line.purchase_request_lines")
+    def _compute_purchase_request_line_count(self):
+        for order in self:
+            order.purchase_request_line_count = len(
+                order.order_line.mapped("purchase_request_lines")
+            )
+
+    def action_open_purchase_request(self):
+        self.ensure_one()
+        requests = self.order_line.mapped("purchase_request_lines.request_id")
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "purchase_request.purchase_request_form_action"
+        )
+        action["context"] = {}
+        if len(requests) == 1:
+            action.update(
+                {
+                    "res_id": requests.id,
+                    "views": [(False, "form")],
+                }
+            )
+        else:
+            action["domain"] = [("id", "in", requests.ids)]
+        return action
+
+    def action_open_purchase_request_lines(self):
+        self.ensure_one()
+        request_line_ids = self.order_line.mapped("purchase_request_lines").ids
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "purchase_request.purchase_request_line_form_action"
+        )
+        action["domain"] = [("id", "in", request_line_ids)]
+        return action
+
     def _purchase_request_confirm_message_content(self, request, request_dict=None):
         self.ensure_one()
         if not request_dict:
