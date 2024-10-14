@@ -1,0 +1,56 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_reception_status_line
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields,field_description:purchase_reception_status_line.field_purchase_order_line__force_received
+msgid "Force Received"
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields.selection,name:purchase_reception_status_line.selection__purchase_order_line__reception_status__received
+msgid "Fully Received"
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields,help:purchase_reception_status_line.field_purchase_order_line__force_received
+msgid ""
+"If true, the reception status will be forced to Fully Received, even if some"
+" quantities are not fully received. "
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields.selection,name:purchase_reception_status_line.selection__purchase_order_line__reception_status__no
+msgid "Nothing Received"
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields.selection,name:purchase_reception_status_line.selection__purchase_order_line__reception_status__partial
+msgid "Partially Received"
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model,name:purchase_reception_status_line.model_purchase_order
+msgid "Purchase Order"
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model,name:purchase_reception_status_line.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields,field_description:purchase_reception_status_line.field_purchase_order_line__reception_status
+msgid "Reception Status"
+msgstr ""
