@@ -1,0 +1,16 @@
+<odoo>
+    <record id="view_po_downpayment_wizard" model="ir.ui.view">
+        <field name="model">purchase.order.down.payment.wizard</field>
+        <field
+            name="inherit_id"
+            ref="purchase_order_downpayment.view_po_downpayment_wizard"
+        />
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <field name="order_id" position="after">
+                <field name="company_id" invisible="1" />
+                <field name="payment_mode_id" />
+            </field>
+        </field>
+    </record>
+</odoo>
