@@ -1,0 +1,1 @@
+**Purchase Manual Delivery** module changes default behaviour of __Confirm__ button on RFQs form and because of those changes **Purchase Order Partial Confirmation** module functionality doesn't work, which makes both modules incompatible. This module solves the issue.
