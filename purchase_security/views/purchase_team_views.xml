@@ -80,6 +80,12 @@
                     widget="many2many_avatar_user"
                     domain="[('share', '=', False)]"
                 />
+                <button
+                    icon="fa-pencil"
+                    name="open_form_view"
+                    type="object"
+                    title="Open Form View"
+                />
             </tree>
         </field>
     </record>

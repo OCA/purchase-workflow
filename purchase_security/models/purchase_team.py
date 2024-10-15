@@ -19,3 +19,24 @@ class PurchaseTeam(models.Model):
         column2="res_users_id",
         string="Purchase Users",
     )
+
+    def open_form_view(self):
+        """Allow to open the form view from the editable tree view.
+
+        The main reason to use the form view is to manage the team members
+        of larger teams. The many2many_avatar_user widget in the tree view
+        does not allow to remove some of the users if ellipsis ('+3') is
+        triggered in the widget.
+        """
+        self.ensure_one()
+        action = self.env["ir.actions.actions"]._for_xml_id(
+            "purchase_security.action_purchase_team_display"
+        )
+        action.update(
+            {
+                "res_id": self.id,
+                "view_mode": "form",
+                "views": [(False, "form")],
+            }
+        )
+        return action
