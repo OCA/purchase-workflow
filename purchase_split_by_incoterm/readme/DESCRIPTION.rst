@@ -1,0 +1,1 @@
+This module allows you to separate automatic purchases by incoterm which is configured on the system parameters
