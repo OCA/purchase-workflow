@@ -25,6 +25,7 @@
                 <field name="date_required" />
                 <field name="estimated_cost" widget="monetary" />
                 <field name="currency_id" invisible="1" />
+                <field name="rfq_qty" />
                 <field name="purchased_qty" />
                 <field
                     name="purchase_state"
@@ -170,6 +171,7 @@
                     <notebook>
                         <page name="purchase_lines" string="Purchase Order Lines">
                             <group>
+                                <field name="rfq_qty" />
                                 <field name="purchased_qty" />
                                 <field name="purchase_state" />
                             </group>
