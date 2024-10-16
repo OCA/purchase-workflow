@@ -1,0 +1,5 @@
+<odoo>
+    <record id="purchase_stock.route_warehouse0_buy" model="stock.route">
+        <field name="force_vendor_with_best_promotion">True</field>
+    </record>
+</odoo>
