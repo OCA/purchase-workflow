@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="base_substate_type_purchase" model="base.substate.type">
+        <field name="name">Purchase Order Substate</field>
+        <field name="model">purchase.order</field>
+        <field name="target_state_field">state</field>
+    </record>
+    <!-- Purchase related substate to Purchase state (draft, purchase) -->
+    <record id="target_state_value_draft" model="target.state.value">
+        <field name="name">RFQ</field>
+        <field name="base_substate_type_id" ref="base_substate_type_purchase" />
+        <field name="target_state_value">draft</field>
+    </record>
+    <record id="target_state_value_purchase" model="target.state.value">
+        <field name="name">Purchase</field>
+        <field name="base_substate_type_id" ref="base_substate_type_purchase" />
+        <field name="target_state_value">purchase</field>
+    </record>
+</odoo>
