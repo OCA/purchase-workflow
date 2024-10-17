@@ -1,0 +1,3 @@
+- [Camptocamp](https://www.camptocamp.com):
+  - Thomas Nowicki \<<thomas.nowicki@camptocamp.com>\>
+  - Bojan Anchev \<<bojan.anchev@camptocamp.com>\>

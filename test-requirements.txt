@@ -1,1 +1,2 @@
 odoo_test_helper
+odoo-addon-purchase_order_approved @ git+https://github.com/OCA/purchase-workflow.git@refs/pull/2262/head#subdirectory=purchase_order_approved
