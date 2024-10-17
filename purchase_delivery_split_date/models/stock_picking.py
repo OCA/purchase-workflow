@@ -15,5 +15,5 @@ class StockPicking(models.Model):
         for rec in self:
             for key_element in key:
                 if "date_planned" in key_element.keys():
-                    rec.date = key_element["date_planned"]
+                    rec.scheduled_date = key_element["date_planned"]
         return False
