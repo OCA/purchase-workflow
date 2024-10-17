@@ -181,6 +181,7 @@
                                     />
                                     <field name="cancelled" column_invisible="1" />
                                     <field name="is_editable" column_invisible="1" />
+                                    <field name="rfq_qty" />
                                     <field name="purchased_qty" />
                                     <field
                                         name="purchase_state"
