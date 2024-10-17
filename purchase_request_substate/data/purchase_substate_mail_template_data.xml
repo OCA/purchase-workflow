@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record
+        id="mail_template_data_purchase_request_substate_verified"
+        model="mail.template"
+    >
+        <field name="name">Verified</field>
+        <field name="model_id" ref="purchase_request.model_purchase_request" />
+        <field name="subject">Your purchase request ${object.name} is verified</field>
+        <field name="use_default_to" eval="True" />
+        <field name="body_html" type="html">
+            <div>
+    Dear ${object.requested_by.name or 'requester'},<br />
+    This email is to inform that your purchase request ${object.name} was verified by procurement team.
+       <br /><br />
+    Thank you,
+    <br />
+</div>
+        </field>
+        <field name="auto_delete" eval="True" />
+    </record>
+</odoo>
