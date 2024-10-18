@@ -27,7 +27,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         self.product_product = self.env["product.product"].create(
             {
                 "name": "Product Product Test",
-                "type": "product",
+                "type": "consu",
                 "description_purchase": "Test Description",
             }
         )
@@ -307,7 +307,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         product = self.env["product.product"].create(
             {
                 "name": "Widget",
-                "type": "product",
+                "type": "consu",
                 "seller_ids": [
                     (0, 0, {"partner_id": supplier.id, "delay": 10, "min_qty": 5})
                 ],

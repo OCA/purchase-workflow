@@ -3,7 +3,7 @@
 
 from odoo import SUPERUSER_ID, exceptions
 from odoo.exceptions import UserError
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests import Form, TransactionCase
 
 
 class TestPurchaseRequest(TransactionCase):
@@ -207,7 +207,6 @@ class TestPurchaseRequest(TransactionCase):
 
     def test_default_picking_type(self):
         with Form(self.purchase_request_obj) as f:
-            f.name = "Test Purchase"
             f.requested_by = self.env.user
         f.save()
 
