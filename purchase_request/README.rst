@@ -96,6 +96,11 @@ Lines.
 
 It is possible to filter requests by its approval status.
 
+Known issues / Roadmap
+======================
+
+Add approver by employee (``hr_purchase_request``).
+
 Bug Tracker
 ===========
 

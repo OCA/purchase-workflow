@@ -1,68 +1,68 @@
 # Copyright 2018-2019 ForgeFlow, S.L.
+# Copyright 2024 Tecnativa - Víctor Martínez
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 
 from odoo import SUPERUSER_ID
 from odoo.tests import common
 
+from .common import TestPurchaseRequestBase
 
-class TestPurchaseRequestToRfq(common.TransactionCase):
-    def setUp(self):
-        super(TestPurchaseRequestToRfq, self).setUp()
-        self.purchase_request = self.env["purchase.request"]
-        self.purchase_request_line = self.env["purchase.request.line"]
-        self.wiz = self.env["purchase.request.line.make.purchase.order"]
-        self.purchase_order = self.env["purchase.order"]
-        vendor = self.env["res.partner"].create({"name": "Partner #2"})
-        self.service_product = self.env["product.product"].create(
+
+class TestPurchaseRequestToRfq(TestPurchaseRequestBase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        vendor = cls.env["res.partner"].create({"name": "Partner #2"})
+        cls.service_product = cls.env["product.product"].create(
             {"name": "Product Service Test", "type": "service"}
         )
-        self.product_product = self.env["product.product"].create(
+        cls.product_product = cls.env["product.product"].create(
             {
                 "name": "Product Product Test",
                 "type": "product",
                 "description_purchase": "Test Description",
             }
         )
-        self.env["product.supplierinfo"].create(
+        cls.env["product.supplierinfo"].create(
             {
                 "partner_id": vendor.id,
-                "product_tmpl_id": self.service_product.product_tmpl_id.id,
+                "product_tmpl_id": cls.service_product.product_tmpl_id.id,
             }
         )
-        self.env["product.supplierinfo"].create(
+        cls.env["product.supplierinfo"].create(
             {
                 "partner_id": vendor.id,
-                "product_tmpl_id": self.product_product.product_tmpl_id.id,
+                "product_tmpl_id": cls.product_product.product_tmpl_id.id,
             }
         )
 
     def test_purchase_request_allocation(self):
         vals = {
-            "picking_type_id": self.env.ref("stock.picking_type_in").id,
+            "picking_type_id": self.picking_type_id.id,
             "requested_by": SUPERUSER_ID,
         }
-        purchase_request1 = self.purchase_request.create(vals)
+        purchase_request1 = self.purchase_request_obj.create(vals)
         vals = {
             "request_id": purchase_request1.id,
             "product_id": self.product_product.id,
             "product_uom_id": self.env.ref("uom.product_uom_unit").id,
             "product_qty": 2.0,
         }
-        purchase_request_line1 = self.purchase_request_line.create(vals)
+        purchase_request_line1 = self.purchase_request_line_obj.create(vals)
         vals = {
-            "picking_type_id": self.env.ref("stock.picking_type_in").id,
+            "picking_type_id": self.picking_type_id.id,
             "requested_by": SUPERUSER_ID,
         }
-        purchase_request2 = self.purchase_request.create(vals)
+        self.purchase_request_obj.create(vals)
         vals = {
             "request_id": purchase_request1.id,
             "product_id": self.product_product.id,
             "product_uom_id": self.env.ref("uom.product_uom_unit").id,
             "product_qty": 2.0,
         }
-        purchase_request_line2 = self.purchase_request_line.create(vals)
-        purchase_request1.button_approved()
-        purchase_request2.button_approved()
+        purchase_request_line2 = self.purchase_request_line_obj.create(vals)
+        purchase_request1.button_to_approve()
+        purchase_request1.with_user(self.manager_user).button_approved()
         purchase_request1.action_view_purchase_request_line()
         vals = {"supplier_id": self.env.ref("base.res_partner_1").id}
         wiz_id = self.wiz.with_context(
@@ -138,20 +138,21 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
 
     def test_purchase_request_allocation_services(self):
         vals = {
-            "picking_type_id": self.env.ref("stock.picking_type_in").id,
+            "picking_type_id": self.picking_type_id.id,
             "requested_by": SUPERUSER_ID,
             "assigned_to": SUPERUSER_ID,
         }
-        purchase_request1 = self.purchase_request.create(vals)
+        purchase_request1 = self.purchase_request_obj.create(vals)
         vals = {
             "request_id": purchase_request1.id,
             "product_id": self.service_product.id,
             "product_uom_id": self.env.ref("uom.product_uom_unit").id,
             "product_qty": 2.0,
         }
-        purchase_request_line1 = self.purchase_request_line.create(vals)
+        purchase_request_line1 = self.purchase_request_line_obj.create(vals)
         vals = {"supplier_id": self.env.ref("base.res_partner_1").id}
-        purchase_request1.button_approved()
+        purchase_request1.button_to_approve()
+        purchase_request1.with_user(self.manager_user).button_approved()
         purchase_request1.action_view_purchase_request_line()
         wiz_id = self.wiz.with_context(
             active_model="purchase.request.line", active_ids=[purchase_request_line1.id]
@@ -172,20 +173,21 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         self.assertEqual(purchase_request_line1.pending_qty_to_receive, 1.5)
         # Case revieve 2 product
         vals = {
-            "picking_type_id": self.env.ref("stock.picking_type_in").id,
+            "picking_type_id": self.picking_type_id.id,
             "requested_by": SUPERUSER_ID,
             "assigned_to": SUPERUSER_ID,
         }
-        purchase_request2 = self.purchase_request.create(vals)
+        purchase_request2 = self.purchase_request_obj.create(vals)
         vals = {
             "request_id": purchase_request2.id,
             "product_id": self.service_product.id,
             "product_uom_id": self.env.ref("uom.product_uom_unit").id,
             "product_qty": 2.0,
         }
-        purchase_request_line2 = self.purchase_request_line.create(vals)
+        purchase_request_line2 = self.purchase_request_line_obj.create(vals)
         vals = {"supplier_id": self.env.ref("base.res_partner_1").id}
-        purchase_request2.button_approved()
+        purchase_request2.button_to_approve()
+        purchase_request2.with_user(self.manager_user).button_approved()
         purchase_request2.action_view_purchase_request_line()
         wiz_id = self.wiz.with_context(
             active_model="purchase.request.line", active_ids=[purchase_request_line2.id]
@@ -203,17 +205,17 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
 
     def test_purchase_request_allocation_min_qty(self):
         vals = {
-            "picking_type_id": self.env.ref("stock.picking_type_in").id,
+            "picking_type_id": self.picking_type_id.id,
             "requested_by": SUPERUSER_ID,
         }
-        purchase_request1 = self.purchase_request.create(vals)
+        purchase_request1 = self.purchase_request_obj.create(vals)
         vals = {
             "request_id": purchase_request1.id,
             "product_id": self.product_product.id,
             "product_uom_id": self.env.ref("uom.product_uom_unit").id,
             "product_qty": 2.0,
         }
-        purchase_request_line1 = self.purchase_request_line.create(vals)
+        purchase_request_line1 = self.purchase_request_line_obj.create(vals)
         # add a vendor
         vendor1 = self.env.ref("base.res_partner_1")
         self.env["product.supplierinfo"].create(
@@ -224,7 +226,8 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
             }
         )
         vals = {"supplier_id": self.env.ref("base.res_partner_1").id}
-        purchase_request1.button_approved()
+        purchase_request1.button_to_approve()
+        purchase_request1.with_user(self.manager_user).button_approved()
         wiz_id = self.wiz.with_context(
             active_model="purchase.request.line", active_ids=[purchase_request_line1.id]
         ).create(vals)
@@ -239,26 +242,27 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         product.uom_po_id = self.env.ref("uom.product_uom_dozen")
 
         vals = {
-            "picking_type_id": self.env.ref("stock.picking_type_in").id,
+            "picking_type_id": self.picking_type_id.id,
             "requested_by": SUPERUSER_ID,
         }
-        purchase_request = self.purchase_request.create(vals)
+        purchase_request = self.purchase_request_obj.create(vals)
         vals = {
             "request_id": purchase_request.id,
             "product_id": product.id,
             "product_uom_id": self.env.ref("uom.product_uom_unit").id,
             "product_qty": 12.0,
         }
-        purchase_request_line1 = self.purchase_request_line.create(vals)
+        purchase_request_line1 = self.purchase_request_line_obj.create(vals)
         vals = {
             "request_id": purchase_request.id,
             "product_id": product.id,
             "product_uom_id": self.env.ref("uom.product_uom_dozen").id,
             "product_qty": 1,
         }
-        purchase_request_line2 = self.purchase_request_line.create(vals)
+        purchase_request_line2 = self.purchase_request_line_obj.create(vals)
         vals = {"supplier_id": self.env.ref("base.res_partner_1").id}
-        purchase_request.button_approved()
+        purchase_request.button_to_approve()
+        purchase_request.with_user(self.manager_user).button_approved()
         wiz_id = self.wiz.with_context(
             active_model="purchase.request.line",
             active_ids=[purchase_request_line1.id, purchase_request_line2.id],
@@ -331,19 +335,20 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         product.uom_po_id = self.env.ref("uom.product_uom_dozen")
 
         vals = {
-            "picking_type_id": self.env.ref("stock.picking_type_in").id,
+            "picking_type_id": self.picking_type_id.id,
             "requested_by": SUPERUSER_ID,
         }
-        purchase_request = self.purchase_request.create(vals)
+        purchase_request = self.purchase_request_obj.create(vals)
         vals = {
             "request_id": purchase_request.id,
             "product_id": product.id,
             "product_uom_id": self.env.ref("uom.product_uom_unit").id,
             "product_qty": 12.0,
         }
-        purchase_request_line1 = self.purchase_request_line.create(vals)
+        purchase_request_line1 = self.purchase_request_line_obj.create(vals)
         vals = {"supplier_id": self.env.ref("base.res_partner_1").id}
-        purchase_request.button_approved()
+        purchase_request.button_to_approve()
+        purchase_request.with_user(self.manager_user).button_approved()
         wiz_id = self.wiz.with_context(
             active_model="purchase.request.line", active_ids=[purchase_request_line1.id]
         ).create(vals)
@@ -365,17 +370,17 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
 
     def test_onchange_product_id(self):
         vals = {
-            "picking_type_id": self.env.ref("stock.picking_type_in").id,
+            "picking_type_id": self.picking_type_id.id,
             "requested_by": SUPERUSER_ID,
         }
-        purchase_request1 = self.purchase_request.create(vals)
+        purchase_request1 = self.purchase_request_obj.create(vals)
         vals = {
             "request_id": purchase_request1.id,
             "product_id": self.product_product.id,
             "product_uom_id": self.env.ref("uom.product_uom_unit").id,
             "product_qty": 2.0,
         }
-        purchase_request_line1 = self.purchase_request_line.create(vals)
+        purchase_request_line1 = self.purchase_request_line_obj.create(vals)
         purchase_request_line1.onchange_product_id()
 
     def test_empty_records_for_company_constraint(self):
@@ -385,14 +390,14 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         """Suppliers are not assigned across the company boundary"""
         product = self.env.ref("product.product_product_6")
         product.seller_ids.unlink()
-        purchase_request = self.purchase_request.create(
+        purchase_request = self.purchase_request_obj.create(
             {
-                "picking_type_id": self.env.ref("stock.picking_type_in").id,
+                "picking_type_id": self.picking_type_id.id,
                 "requested_by": SUPERUSER_ID,
                 "company_id": self.env.ref("base.main_company").id,
             }
         )
-        purchase_request_line = self.purchase_request_line.create(
+        purchase_request_line = self.purchase_request_line_obj.create(
             {
                 "request_id": purchase_request.id,
                 "product_id": product.id,
