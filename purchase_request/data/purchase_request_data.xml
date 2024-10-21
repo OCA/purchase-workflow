@@ -27,4 +27,25 @@
         <field name="default" eval="True" />
         <field name="description">Purchase Request is done</field>
     </record>
+    <record id="mt_company_purchase_request_to_approve" model="mail.message.subtype">
+        <field name="name">Purchase Request to be approved</field>
+        <field name="res_model">res.company</field>
+        <field name="default" eval="False" />
+        <field name="parent_id" ref="mt_request_to_approve" />
+        <field name="relation_field">company_id</field>
+    </record>
+    <record id="mt_company_purchase_request_approved" model="mail.message.subtype">
+        <field name="name">Purchase Request approved</field>
+        <field name="res_model">res.company</field>
+        <field name="default" eval="False" />
+        <field name="parent_id" ref="mt_request_approved" />
+        <field name="relation_field">company_id</field>
+    </record>
+    <record id="mt_company_purchase_request_rejected" model="mail.message.subtype">
+        <field name="name">Purchase Request rejected</field>
+        <field name="res_model">res.company</field>
+        <field name="default" eval="False" />
+        <field name="parent_id" ref="mt_request_rejected" />
+        <field name="relation_field">company_id</field>
+    </record>
 </odoo>
