@@ -4,6 +4,8 @@ from . import purchase_request_allocation
 from . import orderpoint
 from . import purchase_request
 from . import purchase_request_line
+from . import res_company
+from . import res_config_settings
 from . import stock_rule
 from . import product_template
 from . import purchase_order

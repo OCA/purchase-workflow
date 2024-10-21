@@ -1,32 +1,31 @@
 # Copyright 2018-2019 ForgeFlow, S.L.
+# Copyright 2024 Tecnativa - Víctor Martínez
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 
 from odoo import SUPERUSER_ID, exceptions
 from odoo.exceptions import UserError
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests.common import Form
+
+from .common import TestPurchaseRequestBase
 
 
-class TestPurchaseRequest(TransactionCase):
-    def setUp(self):
-        super(TestPurchaseRequest, self).setUp()
-        self.purchase_request_obj = self.env["purchase.request"]
-        self.purchase_request_line_obj = self.env["purchase.request.line"]
-        self.purchase_order = self.env["purchase.order"]
-        self.wiz = self.env["purchase.request.line.make.purchase.order"]
-        self.picking_type_id = self.env.ref("stock.picking_type_in")
+class TestPurchaseRequest(TestPurchaseRequestBase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
         vals = {
-            "group_id": self.env["procurement.group"].create({}).id,
-            "picking_type_id": self.picking_type_id.id,
+            "group_id": cls.env["procurement.group"].create({}).id,
+            "picking_type_id": cls.picking_type_id.id,
             "requested_by": SUPERUSER_ID,
         }
-        self.purchase_request = self.purchase_request_obj.create(vals)
+        cls.purchase_request = cls.purchase_request_obj.create(vals)
         vals = {
-            "request_id": self.purchase_request.id,
-            "product_id": self.env.ref("product.product_product_13").id,
-            "product_uom_id": self.env.ref("uom.product_uom_unit").id,
+            "request_id": cls.purchase_request.id,
+            "product_id": cls.env.ref("product.product_product_13").id,
+            "product_uom_id": cls.env.ref("uom.product_uom_unit").id,
             "product_qty": 5.0,
         }
-        self.purchase_request_line_obj.create(vals)
+        cls.purchase_request_line_obj.create(vals)
 
     def test_purchase_request_line_action(self):
         action = self.purchase_request.line_ids.action_show_details()
@@ -70,7 +69,7 @@ class TestPurchaseRequest(TransactionCase):
             purchase_request.unlink()
         msg = "You cannot delete a purchase request which is not draft."
         self.assertIn(msg, e.exception.args[0])
-        purchase_request.button_rejected()
+        purchase_request.with_user(self.manager_user).button_rejected()
         self.assertEqual(purchase_request.is_editable, False, "Should not be editable")
         vals = {
             "request_id": purchase_request.id,
@@ -95,7 +94,8 @@ class TestPurchaseRequest(TransactionCase):
         purchase_request2 = purchase_request.copy(
             {"picking_type_id": self.picking_type_id.copy().id}
         )
-        purchase_request2.button_approved()
+        purchase_request2.button_to_approve()
+        purchase_request2.with_user(self.manager_user).button_approved()
         with self.assertRaisesRegex(UserError, "same Picking Type"):
             self.wiz.with_context(
                 active_model="purchase.request.line",
@@ -266,7 +266,7 @@ class TestPurchaseRequest(TransactionCase):
             ).create(vals)
         # Change product_qty to negative
         purchase_request_line.write({"product_qty": -6})
-        purchase_request.button_approved()
+        purchase_request.with_user(self.manager_user).button_approved()
         self.assertEqual(purchase_request.state, "approved")
         vals = {"supplier_id": self.env.ref("base.res_partner_1").id}
         wiz_id = self.wiz.with_context(
