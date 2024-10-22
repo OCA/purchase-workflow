@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="work_acceptance_evaluation_report_tree_view" model="ir.ui.view">
+        <field name="name">work.acceptance.evaluation.report.tree.view</field>
+        <field name="model">work.acceptance.evaluation.report</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="partner_id" />
+                <field name="wa_id" />
+                <field name="wa_state" optional="hide" />
+                <field name="date_accept" widget="date" />
+                <field name="case_id" />
+                <field name="score_id" />
+                <field name="score" optional="hide" />
+                <field name="note" />
+            </tree>
+        </field>
+    </record>
+    <record id="work_acceptance_evaluation_report_form_view" model="ir.ui.view">
+        <field name="name">work.acceptance.evaluation.report.form.view</field>
+        <field name="model">work.acceptance.evaluation.report</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="partner_id" />
+                            <field name="wa_id" />
+                            <field name="date_accept" widget="date" />
+                            <field name="case_id" />
+                            <field name="score_id" />
+                            <field name="note" />
+                        </group>
+                        <group />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="work_acceptance_evaluation_report_search_view" model="ir.ui.view">
+        <field name="name">work.acceptance.evaluation.report.search.view</field>
+        <field name="model">work.acceptance.evaluation.report</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="partner_id" />
+                <field name="wa_id" />
+                <field name="case_id" />
+                <separator />
+                <filter
+                    string="Accepted"
+                    name="filter_wa_accepted"
+                    domain="[('wa_state', '=', 'accept')]"
+                />
+                <filter
+                    string="Not Accepted"
+                    name="filter_wa_not_accepted"
+                    domain="[('wa_state', '!=', 'accept')]"
+                />
+                <group expand="1" string="Group By" name="groupby">
+                    <filter
+                        name="group_partner_id"
+                        string="Vendor"
+                        context="{'group_by': 'partner_id'}"
+                    />
+                    <filter
+                        name="group_wa_id"
+                        string="WA Reference"
+                        context="{'group_by': 'wa_id'}"
+                    />
+                    <filter
+                        name="group_case_id"
+                        string="Case Name"
+                        context="{'group_by': 'case_id'}"
+                    />
+                    <filter
+                        name="group_score_id"
+                        string="Score"
+                        context="{'group_by': 'score_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="work_acceptance_evaluation_report_pivot_view" model="ir.ui.view">
+        <field name="name">work.acceptance.evaluation.report.pivot.view</field>
+        <field name="model">work.acceptance.evaluation.report</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="wa_id" type="row" />
+                <field name="case_id" type="col" />
+                <field name="score_id" type="col" />
+                <field name="score" type="measure" />
+            </pivot>
+        </field>
+    </record>
+    <record id="work_acceptance_evaluation_report_graph_view" model="ir.ui.view">
+        <field name="name">work.acceptance.evaluation.report.graph.view</field>
+        <field name="model">work.acceptance.evaluation.report</field>
+        <field name="arch" type="xml">
+            <graph>
+                <field name="wa_id" type="row" />
+                <field name="score" type="measure" />
+            </graph>
+        </field>
+    </record>
+    <record id="work_acceptance_evaluation_report_action" model="ir.actions.act_window">
+        <field name="name">Work Acceptance Evaluation Report</field>
+        <field name="res_model">work.acceptance.evaluation.report</field>
+        <field name="view_mode">pivot,graph,tree,form</field>
+        <field name="context">{'search_default_filter_wa_accepted': 1}</field>
+    </record>
+    <menuitem
+        action="work_acceptance_evaluation_report_action"
+        id="work_acceptance_evaluation_report_menu"
+        name="Work Acceptance Evaluation Report"
+        parent="purchase.purchase_report"
+        groups="purchase_work_acceptance_evaluation.group_enable_eval_on_wa"
+        sequence="99"
+    />
+</odoo>

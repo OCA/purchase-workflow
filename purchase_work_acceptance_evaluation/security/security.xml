@@ -1,0 +1,16 @@
+<odoo>
+
+    <record id="group_enable_eval_on_wa" model="res.groups">
+        <field name="name">Enable Evaluation on Work Acceptance</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+    </record>
+
+    <record id="work_acceptance_evaluation_report_comp_rule" model="ir.rule">
+        <field name="name">Work Acceptance Evaluation Report multi-company</field>
+        <field name="model_id" ref="model_work_acceptance_evaluation_report" />
+        <field
+            name="domain_force"
+        >['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
+    </record>
+
+</odoo>
