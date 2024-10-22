@@ -1,0 +1,520 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* purchase_update_proposal
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_update_proposal
+#: model:account.tax,name:purchase_update_proposal.tax17
+msgid "17"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: selection:purchase.order.line,received:0
+msgid "All"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.purchase_order_form
+msgid "Approve"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.supplier_purchase_order_form
+msgid "Approve Order"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.purchase_order_form
+msgid "Approve Proposal"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.view_supplier_purchase_order_filter
+#: selection:purchase.order,proposal_state:0
+msgid "Approved"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: code:addons/purchase_update_proposal/models/purchase_order_line.py:49
+#, python-format
+msgid "Cancel"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: field:purchase.line.proposal,check_price:0
+#: field:purchase.order,check_price_on_proposal:0
+#: field:res.partner,check_price_on_proposal:0
+msgid "Check price on proposal"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: help:purchase.order,proposal_updatable:0
+msgid "Computed to be sure that stock move are in a state compatible with update"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.view_supplier_purchase_order_filter
+msgid "Confirmed"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: field:purchase.line.proposal,create_uid:0
+msgid "Created by"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: code:addons/purchase_update_proposal/models/purchase_order.py:251
+#, python-format
+msgid "Created line: %s"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: field:purchase.line.proposal,create_date:0
+msgid "Created on"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: help:purchase.order.line,received:0
+msgid "Defined if quantity is partially or completely received (at least the quantity of the line)"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: field:purchase.line.proposal,display_name:0
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.supplier_purchase_order_form
+msgid "Display a date field which update dates all lines"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: field:purchase.order,proposal_display:0
+msgid "Display/Hide Proposal"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.view_supplier_purchase_order_filter
+msgid "Exception"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.view_supplier_purchase_order_filter
+msgid "Expected Month"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.view_supplier_purchase_order_filter
+msgid "Group By"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: field:purchase.line.proposal,id:0
+msgid "ID"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: help:purchase.line.proposal,check_price:0
+#: help:purchase.order,check_price_on_proposal:0
+#: help:res.partner,check_price_on_proposal:0
+msgid "If checked, match price on purchase proposal"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: help:purchase.order,proposal_display:0
+msgid "If checked, rejected proposals are hidden."
+msgstr ""
+
+#. module: purchase_update_proposal
+#: help:purchase.order.line,supplier_cancel_status:0
+msgid "Indicate if the line is cancelled"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: model:res.groups,name:purchase_update_proposal.group_purchase_proposal_user
+msgid "Internal Purchase Proposal"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: field:purchase.line.proposal,__last_update:0
+msgid "Last Modified on"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: field:purchase.line.proposal,write_uid:0
+msgid "Last Updated by"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: field:purchase.line.proposal,write_date:0
+msgid "Last Updated on"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: field:purchase.line.proposal,line_id_:0
+msgid "Line id "
+msgstr ""
+
+#. module: purchase_update_proposal
+#: model:ir.model,name:purchase_update_proposal.model_purchase_line_proposal
+msgid "Modification proposal on quantity, date, ..."
+msgstr ""
+
+#. module: purchase_update_proposal
+#: field:purchase.line.proposal,date:0
+msgid "New Date"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.view_supplier_purchase_order_filter
+msgid "New Mail"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: field:purchase.line.proposal,price_u:0
+msgid "New Price U."
+msgstr ""
+
+#. module: purchase_update_proposal
+#: field:purchase.line.proposal,qty:0
+msgid "New Qty"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: selection:purchase.order,proposal_updatable:0
+#: selection:purchase.order.line,received:0
+msgid "No"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: code:addons/purchase_update_proposal/models/purchase_order.py:234
+#, python-format
+msgid "No data to update for line ID '%s'"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.view_supplier_purchase_order_filter
+msgid "Not Invoiced"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: field:purchase.line.proposal,date_planned:0
+msgid "Old Date"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: field:purchase.line.proposal,price_unit:0
+msgid "Old Price"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: field:purchase.line.proposal,product_qty:0
+msgid "Old Qty"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.view_supplier_purchase_order_filter
+msgid "Order Month"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: selection:purchase.order.line,received:0
+msgid "Partially"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: model:ir.model,name:purchase_update_proposal.model_res_partner
+msgid "Partner"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.purchase_order_form
+msgid "Prices are not updated for this supplier"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.supplier_purchase_order_form
+msgid "Prices are not updated for this supplier."
+msgstr ""
+
+#. module: purchase_update_proposal
+#: field:purchase.line.proposal,product_id:0
+msgid "Product"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.supplier_purchase_order_form
+msgid "Products"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: field:purchase.order,proposal_count:0
+#: field:purchase.order.line,proposal_count:0
+msgid "Proposal count"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: field:purchase.order,proposal_ids:0
+msgid "Proposal ids"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: field:purchase.order,proposal_state:0
+msgid "Proposal state"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: field:purchase.order,proposal_updatable:0
+msgid "Proposal updatable"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: field:purchase.line.proposal,order_id:0
+msgid "Purchase"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: field:purchase.line.proposal,line_id:0
+msgid "Purchase Line"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: model:ir.model,name:purchase_update_proposal.model_purchase_order
+#: view:purchase.order:purchase_update_proposal.supplier_purchase_order_form
+#: view:purchase.order:purchase_update_proposal.supplier_purchase_order_tree
+msgid "Purchase Order"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: model:ir.model,name:purchase_update_proposal.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.supplier_purchase_order_form
+msgid "Purchase Order Lines"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: model:ir.actions.act_window,name:purchase_update_proposal.supplier_purchase_order_action
+msgid "Purchase Order Supplier"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.supplier_purchase_order_form
+msgid "Purchase content before update"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.supplier_purchase_order_form
+msgid "Purchaser view"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: field:purchase.order.line,received:0
+msgid "Received"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: field:purchase.line.proposal,supplier_ref:0
+msgid "Ref"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.supplier_purchase_order_tree
+#: view:purchase.order:purchase_update_proposal.view_supplier_purchase_order_filter
+msgid "Reference"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.purchase_order_form
+msgid "Reject"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.purchase_order_form
+msgid "Reject Proposal"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.view_supplier_purchase_order_filter
+#: selection:purchase.order,proposal_state:0
+msgid "Rejected"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.purchase_order_form
+#: view:purchase.order:purchase_update_proposal.supplier_purchase_order_form
+msgid "Reset"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.purchase_order_form
+#: view:purchase.order:purchase_update_proposal.supplier_purchase_order_form
+msgid "Reset Proposal"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.view_supplier_purchase_order_filter
+msgid "Search Purchase Order"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: field:purchase.order.line,supplier_cancel_status:0
+msgid "Status"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.purchase_order_form
+#: view:purchase.order:purchase_update_proposal.supplier_purchase_order_form
+msgid "Submit"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.purchase_order_form
+#: view:purchase.order:purchase_update_proposal.supplier_purchase_order_form
+msgid "Submit Proposal"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.view_purchase_order_filter
+#: view:purchase.order:purchase_update_proposal.view_supplier_purchase_order_filter
+msgid "Submitted"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.supplier_purchase_order_form
+msgid "Suggest Modification"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: model:ir.ui.menu,name:purchase_update_proposal.supplier_main_menu
+msgid "Supplier"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.purchase_order_form
+msgid "Supplier view"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: model:res.groups,name:purchase_update_proposal.group_supplier_own_purchase
+msgid "Supplier: see its own purchases"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.supplier_purchase_order_form
+msgid "Terms and conditions..."
+msgstr ""
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.supplier_purchase_order_form
+msgid "These data have to be approved before update purchase line."
+msgstr ""
+
+#. module: purchase_update_proposal
+#: selection:purchase.order,proposal_state:0
+msgid "To Approve by an internal user"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: selection:purchase.order,proposal_state:0
+msgid "To Submit"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.supplier_purchase_order_tree
+msgid "Total Untaxed amount"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.supplier_purchase_order_tree
+msgid "Total amount"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.supplier_purchase_order_tree
+msgid "Untaxed"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.supplier_purchase_order_form
+msgid "Update"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.purchase_order_form
+#: view:purchase.order:purchase_update_proposal.supplier_purchase_order_form
+msgid "Update Proposal"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: help:purchase.order,proposal_date:0
+msgid "Update all date of the order with this date"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.supplier_purchase_order_form
+msgid "Update all dates"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: field:purchase.order,proposal_date:0
+msgid "Update all dates at once"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.supplier_purchase_order_form
+msgid "Update new fields below and submit modifications."
+msgstr ""
+
+#. module: purchase_update_proposal
+#: code:addons/purchase_update_proposal/models/purchase_order.py:240
+#, python-format
+msgid "Updated line '%s' with %s"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.purchase_order_form
+#: view:purchase.order:purchase_update_proposal.supplier_purchase_order_form
+msgid "We can't complete your request because our incoming workflow is partially finished or cancelled"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: selection:purchase.order,proposal_updatable:0
+msgid "Yes"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: code:addons/purchase_update_proposal/models/purchase_order.py:135
+#, python-format
+msgid "You are not authorized to approve this proposal"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: code:addons/purchase_update_proposal/models/purchase_order.py:260
+#, python-format
+msgid "You can only update purchase proposal, not other fields"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: code:addons/purchase_update_proposal/models/purchase_order_line.py:55
+#, python-format
+msgid "You shouldn't update proposal on multiple orders"
+msgstr ""
+
+#. module: purchase_update_proposal
+#: selection:purchase.order,proposal_updatable:0
+msgid "undefined"
+msgstr ""
+

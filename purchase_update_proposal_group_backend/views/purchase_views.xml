@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Allow group backend user to see the purchase menu -->
+    <record model='ir.ui.menu' id='purchase.menu_purchase_root'>
+        <field name="groups_id" eval="[(4,ref('base_group_backend.group_backend'))]" />
+    </record>
+
+    <!-- Remove base menu -->
+    <record model='ir.ui.menu' id='purchase.menu_procurement_management'>
+        <field
+            name="groups_id"
+            eval="[(4,ref('purchase.group_purchase_user')), (4, ref('purchase.group_purchase_manager'))]"
+        />
+    </record>
+    <record model='ir.ui.menu' id='purchase.menu_purchase_products'>
+        <field
+            name="groups_id"
+            eval="[(4,ref('purchase.group_purchase_user')), (4, ref('purchase.group_purchase_manager'))]"
+        />
+    </record>
+    <record model='ir.ui.menu' id='purchase.menu_purchase_config'>
+        <field
+            name="groups_id"
+            eval="[(4,ref('purchase.group_purchase_user')), (4, ref('purchase.group_purchase_manager'))]"
+        />
+    </record>
+
+    <record id="purchase_supplier_orders" model="ir.actions.act_window">
+        <field name="name">Orders</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">purchase.order</field>
+        <field name="view_mode">tree,form</field>
+        <field
+            name="view_ids"
+            eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('purchase_update_proposal.supplier_purchase_order_tree')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('purchase_update_proposal.supplier_purchase_order_form')}),
+            ]"
+        />
+        <field name="domain">[]</field>
+        <field
+            name="search_view_id"
+            ref="purchase_update_proposal.view_supplier_purchase_order_filter"
+        />
+        <field name="context">{'quotation_only': True}</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            No request for quotation found. Let's create one!
+          </p><p>
+            Requests for quotation are documents that will be sent to your suppliers to request prices for different products you consider buying.
+            Once an agreement has been found with the supplier, they will be confirmed and turned into purchase orders.
+          </p>
+        </field>
+    </record>
+
+    <record id="supplier_purchase_order_form" model="ir.ui.view">
+        <field name="model">purchase.order</field>
+        <field
+            name="inherit_id"
+            ref="purchase_update_proposal.supplier_purchase_order_form"
+        />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//button[@name='populate_all_purchase_lines']"
+                position="attributes"
+            >
+                <attribute
+                    name="groups"
+                >purchase_update_proposal.group_purchase_proposal_user,purchase_update_proposal.group_supplier_own_purchase,base_group_backend.group_backend</attribute>
+            </xpath>
+            <xpath expr="//button[@name='submit_proposal']" position="attributes">
+                <attribute
+                    name="groups"
+                >purchase_update_proposal.group_purchase_proposal_user,purchase_update_proposal.group_supplier_own_purchase,base_group_backend.group_backend</attribute>
+            </xpath>
+            <xpath expr="//button[@name='reset_proposal']" position="attributes">
+                <attribute
+                    name="groups"
+                >purchase_update_proposal.group_purchase_proposal_user,purchase_update_proposal.group_supplier_own_purchase,base_group_backend.group_backend</attribute>
+            </xpath>
+            <xpath
+                expr="//button[@name='button_supplier_update_proposal']"
+                position="attributes"
+            >
+                <attribute
+                    name="groups"
+                >purchase_update_proposal.group_purchase_proposal_user,purchase_update_proposal.group_supplier_own_purchase,base_group_backend.group_backend</attribute>
+            </xpath>
+        </field>
+    </record>
+    <!-- add proposal menu item -->
+    <menuitem
+        action="purchase_update_proposal.supplier_purchase_order_action"
+        id="menu_supplier_orders"
+        name="Orders"
+        parent="purchase.menu_purchase_root"
+        sequence="1"
+        groups="base_group_backend.group_backend"
+    />
+</odoo>
