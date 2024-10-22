@@ -1,4 +1,4 @@
-# Copyright 2017 ForgeFlow S.L.
+# Copyright 2023 ForgeFlow S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.fields import Datetime
@@ -90,6 +90,38 @@ class TestPurchaseOpenQty(TransactionCase):
         }
         self.purchase_order_line_3 = purchase_order_line_model.sudo().create(pl_dict3)
         self.purchase_order_3.button_confirm()
+
+        # Purchase Order Num 4
+        po_dict4 = {"partner_id": self.partner2.id}
+        self.purchase_order_4 = self.purchase_order_model.create(po_dict4)
+        pr_dict4 = {
+            "name": "Product Test 4",
+            "uom_id": uom_id,
+            "purchase_method": "receive",
+        }
+        self.product4 = prod_model.sudo().create(pr_dict4)
+        self.tax_prueba_4 = self.env["account.tax"].create(
+            {
+                "name": "tax_prueba",
+                "amount_type": "percent",
+                "amount": 20,
+                "price_include": True,
+                "include_base_amount": False,
+            }
+        )
+        pl_dict4 = {
+            "date_planned": Datetime.now(),
+            "name": "PO04",
+            "order_id": self.purchase_order_4.id,
+            "product_id": self.product4.id,
+            "product_uom": uom_id,
+            "price_unit": 10.0,
+            "product_qty": 10.0,
+            "account_analytic_id": self.analytic_account_1.id,
+            "taxes_id": self.tax_prueba_4,
+        }
+        self.purchase_order_line_4 = purchase_order_line_model.sudo().create(pl_dict4)
+        self.purchase_order_4.button_confirm()
 
     def test_compute_qty_to_invoice_and_receive(self):
         self.assertEqual(
@@ -206,4 +238,29 @@ class TestPurchaseOpenQty(TransactionCase):
         )
         self.assertEqual(
             self.purchase_order_line_3.qty_to_invoice, 3.0,
+        )
+
+    def test_04_compute_subtotal_qty_received_and_to_receive(self):
+
+        self.subtotal_to_receive_ini = self.purchase_order_line_4.subtotal_to_receive
+        self.subtotal_received_ini = self.purchase_order_line_4.subtotal_received
+
+        self.assertEqual(
+            self.subtotal_received_ini + self.subtotal_to_receive_ini,
+            self.purchase_order_line_4.price_subtotal,
+        )
+
+        self.assertEqual(self.purchase_order_line_4.qty_received, 0.0)
+        self.assertEqual(self.purchase_order_line_4.qty_to_receive, 10.0)
+        self.purchase_order_line_4.qty_received = 5.0
+        self.assertEqual(self.purchase_order_line_4.qty_received, 5.0)
+
+        self.subtotal_to_receive = self.purchase_order_line_4.subtotal_to_receive
+        self.subtotal_received = self.purchase_order_line_4.subtotal_received
+        self.assertNotEqual(self.subtotal_received, self.subtotal_received_ini)
+        self.assertNotEqual(self.subtotal_to_receive, self.subtotal_to_receive_ini)
+
+        self.assertEqual(
+            round(self.subtotal_received + self.subtotal_to_receive, 1),
+            round(self.purchase_order_line_4.price_subtotal, 1),
         )
