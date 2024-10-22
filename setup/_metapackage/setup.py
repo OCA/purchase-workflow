@@ -106,6 +106,8 @@ setuptools.setup(
         'odoo-addon-purchase_work_acceptance_tier_validation>=15.0dev,<15.1dev',
         'odoo-addon-sale_purchase_force_vendor>=15.0dev,<15.1dev',
         'odoo-addon-sale_purchase_secondary_unit>=15.0dev,<15.1dev',
+        'odoo-addon-stock_move_purchase_price_update>=15.0dev,<15.1dev',
+        'odoo-addon-stock_picking_batch_purchase_price_update>=15.0dev,<15.1dev',
         'odoo-addon-subcontracted_service>=15.0dev,<15.1dev',
         'odoo-addon-supplier_calendar>=15.0dev,<15.1dev',
     ],

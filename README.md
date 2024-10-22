@@ -119,6 +119,8 @@ addon | version | maintainers | summary
 [purchase_work_acceptance_tier_validation](purchase_work_acceptance_tier_validation/) | 15.0.1.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Extends the functionality of Work Acceptance to support a tier validation process.
 [sale_purchase_force_vendor](sale_purchase_force_vendor/) | 15.0.1.1.1 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Sale Purchase Force Vendor
 [sale_purchase_secondary_unit](sale_purchase_secondary_unit/) | 15.0.1.0.1 |  | Propagate sale secondary uom to purchase orders
+[stock_move_purchase_price_update](stock_move_purchase_price_update/) | 15.0.1.0.0 | [![carlosdauden](https://github.com/carlosdauden.png?size=30px)](https://github.com/carlosdauden) | Allow update purchase price from incoming picking operations
+[stock_picking_batch_purchase_price_update](stock_picking_batch_purchase_price_update/) | 15.0.1.0.0 | [![carlosdauden](https://github.com/carlosdauden.png?size=30px)](https://github.com/carlosdauden) | Allow update purchase price from incoming picking batch operations
 [subcontracted_service](subcontracted_service/) | 15.0.1.0.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Subcontracted service
 [supplier_calendar](supplier_calendar/) | 15.0.1.0.1 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Supplier Calendar
 
