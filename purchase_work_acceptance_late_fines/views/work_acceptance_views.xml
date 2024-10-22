@@ -90,4 +90,18 @@
             </xpath>
         </field>
     </record>
+    <record id="view_work_acceptance_tree" model="ir.ui.view">
+        <field name="name">work.acceptance.tree</field>
+        <field name="model">work.acceptance</field>
+        <field
+            name="inherit_id"
+            ref="purchase_work_acceptance.view_work_acceptance_tree"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state']" position="before">
+                <field name="fines_late" optional="show" />
+            </xpath>
+        </field>
+    </record>
+
 </odoo>
