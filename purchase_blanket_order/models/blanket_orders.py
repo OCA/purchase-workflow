@@ -15,11 +15,11 @@ class BlanketOrder(models.Model):
 
     @api.model
     def _default_currency(self):
-        return self.env.user.company_id.currency_id
+        return self.env.company.currency_id
 
     @api.model
     def _default_company(self):
-        return self.env.user.company_id
+        return self.env.company
 
     @api.depends("line_ids.price_total")
     def _compute_amount_all(self):
@@ -61,9 +61,7 @@ class BlanketOrder(models.Model):
         "product.product", related="line_ids.product_id", string="Product",
     )
     currency_id = fields.Many2one(
-        "res.currency",
-        required=True,
-        default=lambda self: self.env.user.company_id.currency_id.id,
+        "res.currency", required=True, default=_default_currency,
     )
     payment_term_id = fields.Many2one(
         "account.payment.term",
@@ -72,9 +70,11 @@ class BlanketOrder(models.Model):
         states={"draft": [("readonly", False)]},
     )
     confirmed = fields.Boolean(copy=False)
+    sent = fields.Boolean(copy=False)
     state = fields.Selection(
         selection=[
             ("draft", "Draft"),
+            ("sent", "BO Sent"),
             ("open", "Open"),
             ("done", "Done"),
             ("expired", "Expired"),
@@ -172,17 +172,17 @@ class BlanketOrder(models.Model):
         for blanket_order in self:
             blanket_order.purchase_count = len(blanket_order._get_purchase_orders())
 
-    @api.depends(
-        "line_ids.remaining_uom_qty", "validity_date", "confirmed",
-    )
+    @api.depends("line_ids.remaining_uom_qty", "validity_date", "confirmed", "sent")
     def _compute_state(self):
         today = fields.Date.today()
         precision = self.env["decimal.precision"].precision_get(
             "Product Unit of Measure"
         )
         for order in self:
-            if not order.confirmed:
+            if not order.confirmed and not order.sent:
                 order.state = "draft"
+            elif not order.confirmed:
+                order.state = "sent"
             elif order.validity_date <= today:
                 order.state = "expired"
             elif float_is_zero(
@@ -232,9 +232,19 @@ class BlanketOrder(models.Model):
         if self.partner_id.user_id:
             self.user_id = self.partner_id.user_id.id
 
+    @api.model
+    def create(self, vals):
+        sequence_obj = self.env["ir.sequence"]
+        company_id = vals.get("company_id", False)
+        if company_id:
+            sequence_obj = sequence_obj.with_context(force_company=company_id)
+        name = sequence_obj.next_by_code("purchase.blanket.order") or "Draft"
+        vals.update({"name": name})
+        return super(BlanketOrder, self).create(vals)
+
     def unlink(self):
         for order in self:
-            if order.state not in ("draft", "cancel"):
+            if order.state not in ("draft", "expired"):
                 raise UserError(
                     _(
                         "You can not delete an open blanket order! "
@@ -265,13 +275,68 @@ class BlanketOrder(models.Model):
 
     def set_to_draft(self):
         for order in self:
-            order.write({"state": "draft"})
+            order.write({"state": "draft", "sent": False, "confirmed": False})
         return True
+
+    def action_pbo_send(self):
+        """
+        This function opens a window to compose an email,
+        with the edi purchase blanket order template message loaded by default
+        """
+        self.ensure_one()
+        ir_model_data = self.env["ir.model.data"]
+        try:
+            template_id = ir_model_data.get_object_reference(
+                "purchase_blanket_order", "email_template_edi_purchase_blanket_order",
+            )[1]
+        except ValueError:
+            template_id = False
+        try:
+            compose_form_id = ir_model_data.get_object_reference(
+                "mail", "email_compose_message_wizard_form"
+            )[1]
+        except ValueError:
+            compose_form_id = False
+        ctx = dict(self.env.context or {})
+        ctx.update(
+            {
+                "default_model": "purchase.blanket.order",
+                "active_model": "purchase.blanket.order",
+                "active_id": self.ids[0],
+                "default_res_id": self.ids[0],
+                "default_use_template": bool(template_id),
+                "default_template_id": template_id,
+                "default_composition_mode": "comment",
+                "force_email": True,
+                "mark_pbo_as_sent": True,
+                "model_description": _("Purchase Blanket Order"),
+            }
+        )
+
+        lang = self.env.context.get("lang")
+        if {"default_template_id", "default_model", "default_res_id"} <= ctx.keys():
+            template = self.env["mail.template"].browse(ctx["default_template_id"])
+            if template and template.lang:
+                lang = template._render_template(
+                    template.lang, ctx["default_model"], ctx["default_res_id"]
+                )
+        self = self.with_context(lang=lang)
+
+        return {
+            "name": _("Compose Email"),
+            "type": "ir.actions.act_window",
+            "view_mode": "form",
+            "res_model": "mail.compose.message",
+            "views": [(compose_form_id, "form")],
+            "view_id": compose_form_id,
+            "target": "new",
+            "context": ctx,
+        }
 
     def action_confirm(self):
         self._validate()
         for order in self:
-            vals = {"confirmed": True}
+            vals = {"confirmed": True, "sent": True}
             # Set name by sequence only if is necessary
             if order.name == "Draft":
                 sequence_obj = self.env["ir.sequence"]
@@ -371,6 +436,14 @@ class BlanketOrder(models.Model):
         order_ids = bo_lines.mapped("order_id")
         res.append(("id", "in", order_ids.ids))
         return res
+
+    @api.returns("mail.message", lambda value: value.id)
+    def message_post(self, **kwargs):
+        if self.env.context.get("mark_pbo_as_sent"):
+            self.filtered(lambda o: o.state == "draft").write({"sent": True})
+        return super(
+            BlanketOrder, self.with_context(mail_post_autofollow=True)
+        ).message_post(**kwargs)
 
 
 class BlanketOrderLine(models.Model):
