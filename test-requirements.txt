@@ -1,1 +1,2 @@
 odoo_test_helper
+odoo-addon-base_cancel_confirm @ git+https://github.com/OCA/server-ux@refs/pull/661/head#subdirectory=setup/base_cancel_confirm
