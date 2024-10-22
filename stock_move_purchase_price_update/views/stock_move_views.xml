@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!--  This view is used in picking operations  -->
+    <record id="view_picking_form" model="ir.ui.view">
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='move_ids_without_package']/tree/field[@name='product_uom']"
+                position="after"
+            >
+                <field
+                    name="purchase_line_id"
+                    invisible="1"
+                    groups="purchase.group_purchase_user"
+                />
+                <field
+                    name="is_purchase_price_editable"
+                    invisible="1"
+                    groups="purchase.group_purchase_user"
+                />
+                <field
+                    name="purchase_price_unit"
+                    optional="hide"
+                    attrs="{'column_invisible': [('parent.picking_type_code', '!=', 'incoming')], 'invisible': [('purchase_line_id', '=', False)], 'readonly': [('is_purchase_price_editable', '=', False)]}"
+                    groups="purchase.group_purchase_user"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <!--  This view is used in picking detailed operations  -->
+    <record id="view_stock_move_line_detailed_operation_tree" model="ir.ui.view">
+        <field name="model">stock.move.line</field>
+        <field
+            name="inherit_id"
+            ref="stock.view_stock_move_line_detailed_operation_tree"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_uom_id']" position="after">
+                <field
+                    name="purchase_line_id"
+                    invisible="1"
+                    groups="purchase.group_purchase_user"
+                />
+                <field
+                    name="is_purchase_price_editable"
+                    invisible="1"
+                    groups="purchase.group_purchase_user"
+                />
+                <field
+                    name="purchase_price_unit"
+                    optional="hide"
+                    attrs="{'column_invisible': [('parent.picking_type_code', '!=', 'incoming')], 'invisible': [('purchase_line_id', '=', False)], 'readonly': [('is_purchase_price_editable', '=', False)]}"
+                    groups="purchase.group_purchase_user"
+                />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
