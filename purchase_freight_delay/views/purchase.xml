@@ -1,0 +1,45 @@
+<odoo>
+
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//page[@name='purchase_delivery_invoice']/group[1]"
+                position="inside"
+            >
+                <group name="freight" string="Freight" cols="2">
+                    <field
+                        name="freight_change_selector"
+                        widget="radio"
+                        options="{'horizontal': true}"
+                    />
+                    <field name="freight_change_policy" invisible="1" />
+                    <field
+                        name="dispatch_date"
+                        widget="date"
+                        attrs="{'readonly':[['freight_change_policy', '=', 'dispatch']]}"
+                    />
+                    <field
+                        name="receive_date"
+                        widget="date"
+                        attrs="{'readonly':[['freight_change_policy', '=', 'receive']]}"
+                    />
+                    <field
+                        name="freight_duration"
+                        attrs="{'readonly':[['freight_change_policy', '=', 'duration']]}"
+                    />
+                    <field
+                        name="freight_rule_id"
+                        domain="[('partner_src_id', 'in', (False, incoterm_address_id))]"
+                        attrs="{'readonly':[['freight_change_policy', '=', 'duration']]}"
+                    />
+                </group>
+            </xpath>
+            <field name="incoterm_address_id" position="after">
+                <field name="incoterm_date" widget="date" />
+            </field>
+        </field>
+    </record>
+
+</odoo>

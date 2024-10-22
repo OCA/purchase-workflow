@@ -1,0 +1,16 @@
+<odoo>
+
+    <record id="view_picking_form" model="ir.ui.view">
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='extra']" position="inside">
+                <group name="freight" string="Freight" col="2">
+                    <field name="dispatch_date" widget="date" />
+                    <field name="freight_duration" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
