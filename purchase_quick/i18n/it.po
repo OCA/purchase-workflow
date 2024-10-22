@@ -1,0 +1,106 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_quick
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-04-18 12:34+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
+
+#. module: purchase_quick
+#: model_terms:ir.ui.view,arch_db:purchase_quick.view_purchase_form
+msgid "Add"
+msgstr "Aggiungi"
+
+#. module: purchase_quick
+#: model_terms:ir.ui.view,arch_db:purchase_quick.product_search_form_view
+msgid "Filter products supplied by the supplier of the current parent object"
+msgstr "Filtra prodotti forniti dal fornitore dell'oggetto genitore corrente"
+
+#. module: purchase_quick
+#: model_terms:ir.ui.view,arch_db:purchase_quick.product_search_form_view
+msgid "For current supplier"
+msgstr "Per il fornitore selezionato"
+
+#. module: purchase_quick
+#: code:addons/purchase_quick/models/purchase_order.py:0
+#, python-format
+msgid ""
+"Must have only 1 line per product for mass addition, but there are {nr_lines}"
+"s lines for the product %(product)s"
+msgstr ""
+
+#. module: purchase_quick
+#: model_terms:ir.ui.view,arch_db:purchase_quick.product_tree_view4purchase
+msgid "Open"
+msgstr "Apri"
+
+#. module: purchase_quick
+#: model:ir.model.fields,field_description:purchase_quick.field_product_product__po_line_ids
+msgid "Po Line"
+msgstr "Riga PO"
+
+#. module: purchase_quick
+#: model:ir.model,name:purchase_quick.model_product_product
+msgid "Product"
+msgstr "Prodotto"
+
+#. module: purchase_quick
+#: code:addons/purchase_quick/models/purchase_order.py:0
+#, python-format
+msgid "Product Variants"
+msgstr "Varianti prodotto"
+
+#. module: purchase_quick
+#: model:ir.model,name:purchase_quick.model_purchase_order
+msgid "Purchase Order"
+msgstr "Ordine di acquisto"
+
+#. module: purchase_quick
+#: model:ir.model.fields,field_description:purchase_quick.field_product_product__seller_price
+msgid "Seller Price"
+msgstr "Prezzo Fornitore"
+
+#. module: purchase_quick
+#: model:ir.model.fields,help:purchase_quick.field_product_product__po_line_ids
+msgid "Technical: used to compute quantities to purchase."
+msgstr "Tecnico: utilizzato per calcolare quantità da acquistare."
+
+#. module: purchase_quick
+#: model_terms:ir.ui.view,arch_db:purchase_quick.product_tree_view4purchase
+msgid "UoM"
+msgstr "UdM"
+
+#. module: purchase_quick
+#: model:ir.model.fields,field_description:purchase_quick.field_product_product__variant_specific_seller_ids
+msgid "Variant Specific Seller"
+msgstr "Fornitore specifica variante"
+
+#~ msgid "Display Name"
+#~ msgstr "Nome visualizzato"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
+
+#, python-format
+#~ msgid ""
+#~ "Must have only 1 line per product for mass addition, but there are %s "
+#~ "lines for the product %s"
+#~ msgstr ""
+#~ "Dev'esserci solo 1 riga per prodotto per aggiungerli massivamente, ma ci "
+#~ "sono %s righe per il prodotto %s"
+
+#~ msgid "Products for purchase"
+#~ msgstr "Prodotti da acquistare"
