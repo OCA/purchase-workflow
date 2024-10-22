@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 Jarsa
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0) -->
+<odoo>
+    <record id="purchase_request_view_form" model="ir.ui.view">
+        <field name="name">purchase.request.view.form</field>
+        <field name="model">purchase.request</field>
+        <field name="inherit_id" ref="purchase_request.view_purchase_request_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='requested_by']" position="after">
+                <field
+                    name="requested_employee_id"
+                    attrs="{'readonly': [('is_editable', '=', False)]}"
+                />
+            </xpath>
+        </field>
+    </record>
+    <record id="purchase_request_view_tree" model="ir.ui.view">
+        <field name="name">purchase.request.view.tree</field>
+        <field name="model">purchase.request</field>
+        <field name="inherit_id" ref="purchase_request.view_purchase_request_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='requested_by']" position="after">
+                <field
+                    name="requested_employee_id"
+                    widget="many2one_avatar_employee"
+                    optional="show"
+                />
+            </xpath>
+        </field>
+    </record>
+    <record id="purchase_request_view_search" model="ir.ui.view">
+        <field name="name">purchase.request.view.search</field>
+        <field name="model">purchase.request</field>
+        <field name="inherit_id" ref="purchase_request.view_purchase_request_search" />
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='requested_by']" position="after">
+                <filter
+                    string="Requested by Employee"
+                    name="requested_employee_id"
+                    context="{'group_by': 'requested_employee_id'}"
+                />
+            </xpath>
+            <xpath expr="//field[@name='state']" position="after">
+                <field name="requested_employee_id" />
+            </xpath>
+        </field>
+    </record>
+    <record id="purchase_request_line_view_form" model="ir.ui.view">
+        <field name="name">purchase.request.line.view.form</field>
+        <field name="model">purchase.request.line</field>
+        <field name="inherit_id" ref="purchase_request.purchase_request_line_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='requested_by']" position="after">
+                <field
+                    name="requested_employee_id"
+                    attrs="{'readonly': [('is_editable', '=', False)]}"
+                />
+            </xpath>
+        </field>
+    </record>
+    <record id="purchase_request_line_view_tree" model="ir.ui.view">
+        <field name="name">purchase.request.line.view.tree</field>
+        <field name="model">purchase.request.line</field>
+        <field name="inherit_id" ref="purchase_request.purchase_request_line_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='requested_by']" position="after">
+                <field
+                    name="requested_employee_id"
+                    widget="many2one_avatar_employee"
+                    optional="show"
+                />
+            </xpath>
+        </field>
+    </record>
+    <record id="purchase_request_line_view_search" model="ir.ui.view">
+        <field name="name">purchase.request.line.view.search</field>
+        <field name="model">purchase.request.line</field>
+        <field name="inherit_id" ref="purchase_request.purchase_request_line_search" />
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='requested_by']" position="after">
+                <filter
+                    string="Requested by Employee"
+                    name="requested_employee_id"
+                    context="{'group_by': 'requested_employee_id'}"
+                />
+            </xpath>
+            <xpath expr="//field[@name='requested_by']" position="after">
+                <field name="requested_employee_id" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
