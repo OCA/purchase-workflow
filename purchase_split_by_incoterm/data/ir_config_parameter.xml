@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="account_incoterm" model="ir.config_parameter">
+        <field name="key">account_incoterm</field>
+        <field name="value">FOB</field>
+    </record>
+</odoo>
