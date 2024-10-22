@@ -5,7 +5,7 @@
     "name": "Purchase Receipt Expectation From Partner",
     "version": "15.0.1.0.0",
     "category": "Purchase Management",
-    "author": "Camptocamp SA, Odoo Community Association (OCA)",
+    "author": "Camptocamp, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
     "license": "AGPL-3",
     "data": [
