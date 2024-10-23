@@ -1,0 +1,1 @@
+This module fixes incompatibility issue between **Purchase Order Partial Confirmation** and **Purchase Manual Delivery** modules.
