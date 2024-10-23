@@ -1,0 +1,58 @@
+<odoo>
+
+    <record id="purchase_merge_automatic_wizard_form" model="ir.ui.view">
+        <field name='name'>purchase.merge.automatic.wizard.form</field>
+        <field name='model'>purchase.merge.automatic.wizard</field>
+        <field name='arch' type='xml'>
+            <form string='Automatic Merge Wizard'>
+                <sheet>
+                    <group col="1">
+                        <p class="oe_grey">
+                            Selected purchase will be merged together.
+                        </p>
+                        <group col="2">
+                            <field
+                                name="dst_purchase_id"
+                                domain="[('id', 'in', purchase_ids or False)]"
+                            />
+                        </group>
+                        <field name="purchase_ids" nolabel="1" string="Purchase">
+                            <tree>
+                                <field name="name" />
+                                <field name="date_order" />
+                                <field name="date_planned" />
+                                <field name="amount_total" />
+                                <field name="state" />
+                                <field name="invoice_status" />
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+                <footer>
+                    <button
+                        name='action_merge'
+                        string='Merge Purchase'
+                        class='oe_highlight'
+                        type='object'
+                    />
+                    <button
+                        special="cancel"
+                        string="Cancel"
+                        type="object"
+                        class="btn btn-default oe_inline"
+                    />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_purchase_merge" model="ir.actions.act_window">
+        <field name="name">Merge Selected Purchase</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">purchase.merge.automatic.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="binding_model_id" ref="purchase.model_purchase_order" />
+        <field name="target">new</field>
+    </record>
+
+</odoo>
