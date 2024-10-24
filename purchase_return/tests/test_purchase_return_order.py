@@ -78,7 +78,6 @@ class TestPurchaseReturnOrder(AccountTestInvoicingCommon):
                 "order_id": purchase_return_order.id,
                 "refund_only": True,
                 "taxes_id": False,
-                "display_type": "product",
             }
         )
         self.assertEqual(purchase_return_order.invoice_status, "no")
@@ -116,7 +115,6 @@ class TestPurchaseReturnOrder(AccountTestInvoicingCommon):
                 "order_id": purchase_return_order.id,
                 "refund_only": False,
                 "taxes_id": False,
-                "display_type": "product",
             }
         )
         self.assertEqual(purchase_return_order.invoice_status, "no")
@@ -148,7 +146,6 @@ class TestPurchaseReturnOrder(AccountTestInvoicingCommon):
                 "order_id": purchase_return_order.id,
                 "refund_only": True,
                 "taxes_id": False,
-                "display_type": "product",
             }
         )
         self.assertEqual(purchase_return_order.state, "draft")
@@ -226,7 +223,6 @@ class TestPurchaseReturnOrder(AccountTestInvoicingCommon):
                 "order_id": purchase_return_order.id,
                 "refund_only": False,
                 "taxes_id": False,
-                "display_type": "product",
             }
         )
         purchase_return_order.button_confirm()
@@ -277,7 +273,6 @@ class TestPurchaseReturnOrder(AccountTestInvoicingCommon):
                         "refund_only": False,
                         "taxes_id": False,
                         "company_id": company_b.id,
-                        "display_type": "product",
                     }
                 )
             )

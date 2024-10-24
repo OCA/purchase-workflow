@@ -223,7 +223,6 @@
                                         <create
                                             name="add_product_control"
                                             string="Add a product"
-                                            context="{'default_display_type': 'product'}"
                                         />
                                         <create
                                             name="add_section_control"
@@ -255,7 +254,7 @@
                                         name="product_id"
                                         attrs="{
                                             'readonly': [('state', 'in', ('purchase', 'to approve','done', 'cancel'))],
-                                            'required': [('display_type', '=', 'product')],
+                                            'required': [('display_type', '=', False)],
                                         }"
                                         context="{'partner_id':parent.partner_id, 'quantity':product_qty,'uom':product_uom, 'company_id': parent.company_id}"
                                         force_save="1"
