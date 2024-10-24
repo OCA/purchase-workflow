@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2024 ForgeFlow (http://www.akretion.com/)
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="name">received_status.purchase.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <field name="qty_received" position="after">
+                <field name="reception_status" states="purchase,done" optional="hide" />
+                <field
+                    name="force_received"
+                    groups="purchase.group_purchase_manager"
+                    states="purchase,done"
+                    optional="hide"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
