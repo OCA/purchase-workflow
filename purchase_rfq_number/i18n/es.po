@@ -1,0 +1,81 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_rfq_number
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-10-28 19:59+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: purchase_rfq_number
+#: model:ir.model.fields,field_description:purchase_rfq_number.field_res_company__auto_attachment_rfq
+#: model:ir.model.fields,field_description:purchase_rfq_number.field_res_config_settings__auto_attachment_rfq
+msgid "Auto Attachment RFQ"
+msgstr "Solicitud de presupuesto de conexión automática"
+
+#. module: purchase_rfq_number
+#: model:ir.model.fields,help:purchase_rfq_number.field_res_company__auto_attachment_rfq
+#: model:ir.model.fields,help:purchase_rfq_number.field_res_config_settings__auto_attachment_rfq
+#: model_terms:ir.ui.view,arch_db:purchase_rfq_number.res_config_settings_view_form_purchase_rfq_number
+msgid "Auto attachment requests for quotation after confirm"
+msgstr ""
+"Adjuntar automáticamente solicitudes de presupuesto tras la confirmación"
+
+#. module: purchase_rfq_number
+#: model:ir.model,name:purchase_rfq_number.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: purchase_rfq_number
+#: model:ir.model.fields,help:purchase_rfq_number.field_res_company__keep_name_po
+#: model:ir.model.fields,help:purchase_rfq_number.field_res_config_settings__keep_name_po
+msgid ""
+"If this is unchecked, purchase rfq use a different sequence from Purchase "
+"orders"
+msgstr ""
+"Si esta opción no está seleccionada, los requerimientos de compra utilizarán "
+"una secuencia diferente a la de los Pedidos de compra"
+
+#. module: purchase_rfq_number
+#: model_terms:ir.ui.view,arch_db:purchase_rfq_number.res_config_settings_view_form_purchase_rfq_number
+msgid ""
+"If this is unchecked, purchase rfq use a different sequence from purchase "
+"orders"
+msgstr ""
+"Si esta opción no está seleccionada, los requerimientos de compra utilizarán "
+"una secuencia diferente a la de los pedidos de compra"
+
+#. module: purchase_rfq_number
+#: model:ir.model.fields,field_description:purchase_rfq_number.field_purchase_order__po_number
+msgid "PO Reference"
+msgstr "Referencia OC"
+
+#. module: purchase_rfq_number
+#: model:ir.model,name:purchase_rfq_number.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr "Configuración de la agrupación de adquisición de compras"
+
+#. module: purchase_rfq_number
+#: model:ir.model,name:purchase_rfq_number.model_purchase_order
+msgid "Purchase Order"
+msgstr "Orden de Compra"
+
+#. module: purchase_rfq_number
+#: model:ir.model.fields,field_description:purchase_rfq_number.field_purchase_order__rfq_number
+msgid "RFQ Reference"
+msgstr "Referencia de la Solicitud de Oferta"
+
+#. module: purchase_rfq_number
+#: model:ir.model.fields,field_description:purchase_rfq_number.field_res_company__keep_name_po
+#: model:ir.model.fields,field_description:purchase_rfq_number.field_res_config_settings__keep_name_po
+msgid "Use Same Enumeration"
+msgstr "Usar la Misma Enumeración"
