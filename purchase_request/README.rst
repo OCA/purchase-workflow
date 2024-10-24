@@ -146,6 +146,7 @@ Contributors
 -  ``Trobz <https://trobz.com>``\ \_:
 
    -  Son Ho sonhd@trobz.com
+   -  Do Anh Duy duyda@trobz.com
 
 Other credits
 -------------
