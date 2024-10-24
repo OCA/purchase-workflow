@@ -2,41 +2,39 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 
 from odoo import fields
-from odoo.tests import common
+
+from .common import TestPurchaseRequestBase
 
 
-class TestPurchaseRequestProcurement(common.TransactionCase):
-    def setUp(self):
-        super(TestPurchaseRequestProcurement, self).setUp()
-
+class TestPurchaseRequestProcurement(TestPurchaseRequestBase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
         # Get required Model
-        self.pr_model = self.env["purchase.request"]
-        self.prl_model = self.env["purchase.request.line"]
-        self.product_uom_model = self.env["uom.uom"]
-        self.location = self.env.ref("stock.stock_location_stock")
-        self.customer_location = self.env.ref("stock.stock_location_customers")
+        cls.location = cls.env.ref("stock.stock_location_stock")
+        cls.customer_location = cls.env.ref("stock.stock_location_customers")
 
         # Get required Model data
-        self.product_1 = self.env.ref("product.product_product_16")
-        self.product_1.purchase_request = True
-        self.route_buy = self.env.ref("purchase_stock.route_warehouse0_buy")
-        self.rule_buy = self.route_buy.rule_ids.filtered(
-            lambda rule: rule.location_dest_id == self.location
+        cls.product_1 = cls.env.ref("product.product_product_16")
+        cls.product_1.purchase_request = True
+        cls.route_buy = cls.env.ref("purchase_stock.route_warehouse0_buy")
+        cls.rule_buy = cls.route_buy.rule_ids.filtered(
+            lambda rule: rule.location_dest_id == cls.location
         )
         # Create Supplier
-        self.supplier = self.env["res.partner"].create(
+        cls.supplier = cls.env["res.partner"].create(
             {"name": "Supplier", "is_company": True, "company_id": False}
         )
 
         # Add supplier to product_1
-        self.product_1.write(
+        cls.product_1.write(
             {
                 "seller_ids": [
                     (
                         0,
                         0,
                         {
-                            "partner_id": self.supplier.id,
+                            "partner_id": cls.supplier.id,
                             "price": 100.0,
                             "company_id": False,
                         },

@@ -20,7 +20,7 @@ msgstr ""
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.6.2\n"
 
@@ -57,6 +57,11 @@ msgid ""
 msgstr ""
 "<li><b>%(product_name)s</b>: Cantidad transferida %(product_qty)s "
 "%(product_uom)s</li>"
+
+#. module: purchase_request
+#: model_terms:ir.ui.view,arch_db:purchase_request.res_config_settings_view_form
+msgid "<span class=\"o_form_label\">Default approver</span>"
+msgstr ""
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
@@ -258,8 +263,19 @@ msgstr "Aprobado"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__assigned_to
+#: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Approver"
 msgstr "Autorizador"
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request__approver_user_id
+msgid "Approver user"
+msgstr "Aprobador"
+
+#. module: purchase_request
+#: model_terms:ir.ui.view,arch_db:purchase_request.res_config_settings_view_form
+msgid "Aprrover"
+msgstr "Aprobador"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__assigned_to
@@ -331,11 +347,26 @@ msgid "Click to start a new purchase request process."
 msgstr "Haga clic para iniciar un nuevo proceso de solicitud de compra."
 
 #. module: purchase_request
+#: model:ir.model,name:purchase_request.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__company_id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__company_id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__company_id
 msgid "Company"
 msgstr "Compañía"
+
+#. module: purchase_request
+#: model:ir.model,name:purchase_request.model_res_config_settings
+msgid "Config Settings"
+msgstr "Ajustes de configuración"
+
+#. module: purchase_request
+#: model:ir.ui.menu,name:purchase_request.menu_purchase_request_config
+msgid "Configuration"
+msgstr "Configuración"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__product_uom_category_id
@@ -501,6 +532,12 @@ msgstr ""
 "compra"
 
 #. module: purchase_request
+#: model:ir.actions.act_window,name:purchase_request.action_purchase_request_settings_general
+#: model:ir.ui.menu,name:purchase_request.menu_purchase_request_config_settings_general
+msgid "General Settings"
+msgstr "Opciones generales"
+
+#. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_search_sub
 msgid "Group By"
 msgstr "Agrupado por"
@@ -566,6 +603,11 @@ msgstr "En Progreso"
 #: model:ir.model.fields.selection,name:purchase_request.selection__purchase_request__state__in_progress
 msgid "In progress"
 msgstr "En Progreso"
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request__is_approvable
+msgid "Is Approvable"
+msgstr ""
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__is_editable
@@ -659,6 +701,11 @@ msgstr "Regla de inventario mínimo"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__my_activity_date_deadline
 msgid "My Activity Deadline"
 msgstr "Fecha límite de mi actividad"
+
+#. module: purchase_request
+#: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
+msgid "My assigned approvals"
+msgstr ""
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
@@ -900,6 +947,12 @@ msgid "Purchase Request Allocations"
 msgstr "Asignaciones de Solicitudes de Compra"
 
 #. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_res_company__purchase_request_approver_user_id
+#: model:ir.model.fields,field_description:purchase_request.field_res_config_settings__purchase_request_approver_user_id
+msgid "Purchase Request Approver User"
+msgstr ""
+
+#. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_request_line
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__purchase_request_line_id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__line_id
@@ -947,6 +1000,7 @@ msgstr "Usuario de la petición de compra"
 
 #. module: purchase_request
 #: model:mail.message.subtype,description:purchase_request.mt_request_approved
+#: model:mail.message.subtype,name:purchase_request.mt_company_purchase_request_approved
 #: model:mail.message.subtype,name:purchase_request.mt_request_approved
 msgid "Purchase Request approved"
 msgstr "Petición de compra aprobada"
@@ -963,12 +1017,14 @@ msgstr "Solicitud de Compra hecha"
 
 #. module: purchase_request
 #: model:mail.message.subtype,description:purchase_request.mt_request_rejected
+#: model:mail.message.subtype,name:purchase_request.mt_company_purchase_request_rejected
 #: model:mail.message.subtype,name:purchase_request.mt_request_rejected
 msgid "Purchase Request rejected"
 msgstr "Petición de compra rechazada"
 
 #. module: purchase_request
 #: model:mail.message.subtype,description:purchase_request.mt_request_to_approve
+#: model:mail.message.subtype,name:purchase_request.mt_company_purchase_request_to_approve
 #: model:mail.message.subtype,name:purchase_request.mt_request_to_approve
 msgid "Purchase Request to be approved"
 msgstr "Solicitud de compra que debe aprobarse"
@@ -981,6 +1037,7 @@ msgstr "Solicitud de compra que debe aprobarse"
 #: model:ir.ui.menu,name:purchase_request.menu_purchase_request_act
 #: model:ir.ui.menu,name:purchase_request.menu_purchase_request_pro_mgt
 #: model:ir.ui.menu,name:purchase_request.parent_menu_purchase_request
+#: model_terms:ir.ui.view,arch_db:purchase_request.res_config_settings_view_form
 msgid "Purchase Requests"
 msgstr "Solicitudes de Compra"
 
@@ -1375,11 +1432,6 @@ msgid "To Approve"
 msgstr "A aprobar"
 
 #. module: purchase_request
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request__to_approve_allowed
-msgid "To Approve Allowed"
-msgstr "Permitido para Aprobar"
-
-#. module: purchase_request
 #: model:ir.model.fields.selection,name:purchase_request.selection__purchase_request__state__to_approve
 msgid "To be approved"
 msgstr "Para ser aprobado"
@@ -1462,6 +1514,20 @@ msgstr "Asistente"
 
 #. module: purchase_request
 #. odoo-python
+#: code:addons/purchase_request/models/purchase_request.py:0
+#, python-format
+msgid "You are not allowed to approve this request."
+msgstr ""
+
+#. module: purchase_request
+#. odoo-python
+#: code:addons/purchase_request/models/purchase_request.py:0
+#, python-format
+msgid "You are not allowed to reject this request."
+msgstr ""
+
+#. module: purchase_request
+#. odoo-python
 #: code:addons/purchase_request/models/purchase_request_line.py:0
 #, python-format
 msgid ""
@@ -1527,43 +1593,3 @@ msgstr "Debe seleccionar líneas del mismo tipo de recogida."
 #, python-format
 msgid "You have to select lines from the same company."
 msgstr "Debe seleccionar líneas de la misma compañía."
-
-#~ msgid "SMS Delivery error"
-#~ msgstr "Error en la entrega de SMS"
-
-#~ msgid "Number of messages which requires an action"
-#~ msgstr "Número de mensajes que requieren una acción"
-
-#~ msgid "<strong>Analytic Account</strong>"
-#~ msgstr "<strong>Cuenta analítica</strong>"
-
-#~ msgid "Analytic Account"
-#~ msgstr "Cuenta analítica"
-
-#, fuzzy
-#~ msgid "Number of unread messages"
-#~ msgstr "Mensajes no leídos"
-
-#, fuzzy
-#~ msgid "Product Template"
-#~ msgstr "Producto"
-
-#, fuzzy
-#~ msgid "Unread Messages Counter"
-#~ msgstr "Mensajes no leídos"
-
-#~ msgid "<li><b>%s</b>: Ordered quantity %s %s, Planned date %s</li>"
-#~ msgstr "<li><b>%s</b>: Cantidad pedida %s %s, Fecha planificada %s</li>"
-
-#~ msgid "<li><b>%s</b>: Received quantity %s %s</li>"
-#~ msgstr "<li><b>%s</b>: Cantidad recibida %s %s</li>"
-
-#~ msgid "<li><b>%s</b>: Transferred quantity %s %s</li>"
-#~ msgstr "<li><b>%s</b>: Cantidad transferida %s %s</li>"
-
-#~ msgid "Product Unit of Measure"
-#~ msgstr "Unidad de medida"
-
-#, fuzzy
-#~ msgid "Procurement Rule"
-#~ msgstr "Abastecimiento"
