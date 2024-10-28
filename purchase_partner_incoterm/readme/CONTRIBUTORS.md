@@ -5,6 +5,7 @@
 - [Trobz](https://trobz.com):
   - Son Ho \<<sonhd@trobz.com>\>
   - Chau Le \<<chaulb@trobz.com>\>
+  - Nhan Tran \<<nhant@trobz.com>\>
 
 - [Akretion](https://akretion.com):
   - David BEAL \<<david.beal@akretion.com>\>
