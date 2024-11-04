@@ -94,6 +94,9 @@ Contributors
 -  Naglis Jonaitis <naglis@versada.eu>
 -  Pedro Gonzalez <pedro.gonzalez@pesol.es>
 -  Kitti U. <kittiu@ecosoft.co.th> (migrate to v14)
+-  * `Komit <https://komit-consulting.com>`__:
+
+    * Quan.nhm <quan.nhm@komit-consulting.com>
 
 Maintainers
 -----------
