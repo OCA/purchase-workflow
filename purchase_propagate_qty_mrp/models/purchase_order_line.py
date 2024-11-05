@@ -21,11 +21,21 @@ class PurchaseOrderLine(models.Model):
 
     def _propagate_qty_to_moves_mrp(self):
         self.ensure_one()
-        bom = self.env["mrp.bom"].sudo()._bom_find(product=self.product_id)
-        if not bom or bom.type != "phantom":
+        relevant_bom = False
+        for bom in self.move_ids.bom_line_id.bom_id:
+            if bom.type != "phantom":
+                continue
+            if (
+                bom.product_id == self.product_id
+                or bom.product_tmpl_id == self.product_id.product_tmpl_id
+                and not bom.product_id
+            ):
+                relevant_bom = bom
+                break
+        if not relevant_bom:
             return None
         new_kit_quantity = self.product_uom_qty
-        boms, bom_sub_lines = bom.explode(self.product_id, new_kit_quantity)
+        boms, bom_sub_lines = relevant_bom.explode(self.product_id, new_kit_quantity)
         for bom_line, bom_line_data in bom_sub_lines:
             bom_line_uom = bom_line.product_uom_id
             quant_uom = bom_line.product_id.uom_id
@@ -33,8 +43,7 @@ class PurchaseOrderLine(models.Model):
                 bom_line_data["qty"], quant_uom
             )
             moves = self.move_ids.filtered(
-                lambda move: move.product_id == bom_line.product_id
-                and move.state != "cancel"
+                lambda move: move.bom_line_id == bom_line and move.state != "cancel"
             )
             previous_component_qty = sum(moves.mapped("product_uom_qty"))
             removable_qty = moves._get_removable_qty()
