@@ -7,6 +7,7 @@
     "summary": "",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
+    "maintainers": ["TDu"],
     "category": "Purchase Management",
     "license": "AGPL-3",
     "depends": ["purchase_propagate_qty", "mrp"],

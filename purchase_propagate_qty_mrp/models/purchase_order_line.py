@@ -33,6 +33,12 @@ class PurchaseOrderLine(models.Model):
                 relevant_bom = bom
                 break
         if not relevant_bom:
+            relevant_bom = (
+                self.env["mrp.bom"]
+                .sudo()
+                ._bom_find(product=self.product_id, bom_type="phantom")
+            )
+        if not relevant_bom:
             return None
         new_kit_quantity = self.product_uom_qty
         boms, bom_sub_lines = relevant_bom.explode(self.product_id, new_kit_quantity)
