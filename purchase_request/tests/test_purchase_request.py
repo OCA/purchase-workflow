@@ -242,3 +242,15 @@ class TestPurchaseRequest(TransactionCase):
         pr.button_draft()
         self.assertEqual(pr.state, "draft", "Should be in state draft")
         pr_lines.unlink()
+
+    def test_tracking(self):
+        """Tests Purchase Request tracking.
+        changes on status should use the proper mail subtypes"""
+        purchase_request = self.purchase_request
+        purchase_request.message_subscribe(
+            partner_ids=[self.env.ref("base.user_demo").partner_id.id]
+        )
+        purchase_request.button_to_approve()
+        subtype = purchase_request._track_subtype({"state": "to_approve"})
+        to_approve_subtype = self.env.ref("purchase_request.mt_request_to_approve")
+        self.assertEqual(subtype, to_approve_subtype)

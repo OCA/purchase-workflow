@@ -157,6 +157,19 @@ class PurchaseRequest(models.Model):
         store=True,
     )
 
+    def _track_subtype(self, init_values):
+        if self:
+            record = self[0]
+            if "state" in init_values and record.state == "to_approve":
+                return self.env.ref("purchase_request.mt_request_to_approve")
+            elif "state" in init_values and record.state == "approved":
+                return self.env.ref("purchase_request.mt_request_approved")
+            elif "state" in init_values and record.state == "rejected":
+                return self.env.ref("purchase_request.mt_request_rejected")
+            elif "state" in init_values and record.state == "done":
+                return self.env.ref("purchase_request.mt_request_done")
+        return super()._track_subtype(init_values)
+
     @api.depends("line_ids", "line_ids.estimated_cost")
     def _compute_estimated_cost(self):
         for rec in self:
