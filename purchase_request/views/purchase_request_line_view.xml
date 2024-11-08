@@ -3,10 +3,10 @@
      License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0) -->
 <odoo>
     <record id="purchase_request_line_tree" model="ir.ui.view">
-        <field name="name">purchase.request.line.tree</field>
+        <field name="name">purchase.request.line.list</field>
         <field name="model">purchase.request.line</field>
         <field name="arch" type="xml">
-            <tree
+            <list
                 name="Purchase Request Lines"
                 create="false"
                 decoration-muted="cancelled == True"
@@ -57,7 +57,7 @@
                 <field name="qty_in_progress" column_invisible="1" />
                 <field name="qty_done" column_invisible="1" />
                 <field name="qty_cancelled" column_invisible="1" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="purchase_request_line_form" model="ir.ui.view">
@@ -153,17 +153,17 @@
                             </group>
                             <field
                                 name="purchase_lines"
-                                mode="tree"
+                                mode="list"
                                 readonly="purchase_state in ('cancel')"
                                 domain="[('product_id', '=', product_id)]"
                                 context="{'form_view_ref' : 'purchase_request.purchase_order_line_form2_sub',
-                                             'tree_view_ref' : 'purchase_request.purchase_order_line_tree_sub',
+                                             'list_view_ref' : 'purchase_request.purchase_order_line_tree_sub',
                                              'search_view_ref' : 'purchase_request.purchase_order_line_search_sub'}"
                             />
                         </page>
                         <page name="allocations" string="Allocations">
                             <field name="purchase_request_allocation_ids">
-                                <tree decoration-muted="purchase_state == 'cancel'">
+                                <list decoration-muted="purchase_state == 'cancel'">
                                     <field name="purchase_line_id" />
                                     <field name="stock_move_id" />
                                     <field name="product_id" />
@@ -172,16 +172,12 @@
                                     <field name="open_product_qty" />
                                     <field name="product_uom_id" />
                                     <field name="purchase_state" column_invisible="1" />
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>
                 </sheet>
-                <div class="oe_chatter">
-                    <field name="message_follower_ids" widget="mail_followers" />
-                    <field name="activity_ids" widget="mail_activity" />
-                    <field name="message_ids" widget="mail_thread" />
-                </div>
+                <chatter />
             </form>
         </field>
     </record>
@@ -351,7 +347,7 @@
         <field name="name">Purchase Request Lines</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">purchase.request.line</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="search_view_id" ref="purchase_request_line_search" />
     </record>
     <record
@@ -359,7 +355,7 @@
         model="ir.actions.act_window.view"
     >
         <field eval="1" name="sequence" />
-        <field name="view_mode">tree</field>
+        <field name="view_mode">list</field>
         <field name="view_id" ref="purchase_request_line_tree" />
         <field name="act_window_id" ref="purchase_request_line_form_action" />
     </record>
@@ -448,10 +444,10 @@
         </field>
     </record>
     <record id="purchase_order_line_tree_sub" model="ir.ui.view">
-        <field name="name">purchase.order.line.tree</field>
+        <field name="name">purchase.order.line.list</field>
         <field name="model">purchase.order.line</field>
         <field name="arch" type="xml">
-            <tree name="Purchase Order Lines" create="true">
+            <list name="Purchase Order Lines" create="true">
                 <field name="order_id" />
                 <field name="name" />
                 <field name="partner_id" string="Vendor" />
@@ -462,7 +458,7 @@
                 <field name="price_subtotal" widget="monetary" />
                 <field name="date_planned" widget="date" />
                 <field name="purchase_request_lines" column_invisible="1" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="purchase_order_line_search_sub" model="ir.ui.view">
@@ -504,76 +500,79 @@
         <field name="model">purchase.request.line</field>
         <field name="priority">1000</field>
         <field name="arch" type="xml">
-        <form>
-            <sheet>
-                <group name="main">
-                    <group>
-                        <field name="is_editable" invisible="1" />
-                        <field name="product_id" readonly="is_editable == False" />
-                        <field name="name" readonly="is_editable == False" />
-                        <label for="product_qty" />
-                        <div class="o_row">
-                            <field
+            <form>
+                <sheet>
+                    <group name="main">
+                        <group>
+                            <field name="is_editable" invisible="1" />
+                            <field name="product_id" readonly="is_editable == False" />
+                            <field name="name" readonly="is_editable == False" />
+                            <label for="product_qty" />
+                            <div class="o_row">
+                                <field
                                     name="product_qty"
                                     class="oe_inline"
                                     readonly="is_editable == False"
                                 />
-                            <field name="product_uom_category_id" invisible="1" />
-                            <field
+                                <field name="product_uom_category_id" invisible="1" />
+                                <field
                                     name="product_uom_id"
                                     groups="uom.group_uom"
                                     class="oe_inline"
                                     readonly="is_editable == False"
                                 />
-                        </div>
-                        <field
+                            </div>
+                            <field
                                 name="analytic_distribution"
                                 widget="analytic_distribution"
                                 groups="analytic.group_analytic_accounting"
                                 options="{'product_field': 'product_id', 'business_domain': 'purchase_order'}"
                                 readonly="is_editable == False"
                             />
-                        <field name="date_required" readonly="is_editable == False" />
-                        <field
+                            <field
+                                name="date_required"
+                                readonly="is_editable == False"
+                            />
+                            <field
                                 name="estimated_cost"
                                 widget="monetary"
                                 readonly="is_editable == False"
                             />
-                        <field name="currency_id" invisible="1" />
-                        <field name="cancelled" widget="boolean" />
+                            <field name="currency_id" invisible="1" />
+                            <field name="cancelled" widget="boolean" />
+                        </group>
                     </group>
-                </group>
-                <group name="specifications">
-                    <separator string="Specifications" />
-                    <newline />
-                    <field
+                    <group name="specifications">
+                        <separator string="Specifications" />
+                        <newline />
+                        <field
                             name="specifications"
                             nolabel="1"
                             readonly="is_editable == False"
                         />
-                </group>
-                <group name="quantities" string="Tracking">
-                    <group>
-                        <field name="pending_qty_to_receive" />
-                        <field name="qty_in_progress" />
-                        <field name="qty_done" />
-                        <field name="qty_cancelled" />
                     </group>
-                </group>
-                <notebook>
-                    <page name="purchase_lines" string="Purchase Order Lines">
-                        <group name="purchase_state">
-                            <field name="purchased_qty" />
-                            <field name="purchase_state" />
+                    <group name="quantities" string="Tracking">
+                        <group>
+                            <field name="pending_qty_to_receive" />
                             <field name="qty_in_progress" />
                             <field name="qty_done" />
+                            <field name="qty_cancelled" />
                         </group>
-                        <newline />
-                        <field name="purchase_lines" nolabel="1" />
-                    </page>
-                </notebook>
-            </sheet>
-        </form>
+                    </group>
+                    <notebook>
+                        <page name="purchase_lines" string="Purchase Order Lines">
+                            <group name="purchase_state">
+                                <field name="purchased_qty" />
+                                <field name="purchase_state" />
+                                <field name="qty_in_progress" />
+                                <field name="qty_done" />
+                            </group>
+                            <newline />
+                            <field name="purchase_lines" nolabel="1" />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
         </field>
     </record>
     <menuitem

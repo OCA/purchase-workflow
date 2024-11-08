@@ -99,12 +99,10 @@ class TestPurchaseRequestProcurement(common.TransactionCase):
         self.assertEqual(pr.origin, "Test Purchase Request Procurement")
 
         # Now cancel the move. An activity is created on the request.
-        # Even if the activity type was deleted
         activity = self.env.ref("mail.mail_activity_data_todo")
         self.env["mail.activity"].search(
             [("activity_type_id", "=", activity.id)]
         ).unlink()
-        activity.unlink()
         self.assertFalse(move.created_purchase_request_line_id.request_id.activity_ids)
         move._action_cancel()
         self.assertTrue(move.created_purchase_request_line_id.request_id.activity_ids)

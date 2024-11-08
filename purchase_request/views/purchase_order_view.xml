@@ -7,7 +7,7 @@
         <field name="model">purchase.order</field>
         <field name="inherit_id" ref="purchase.purchase_order_form" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='order_line']/tree" position="inside">
+            <xpath expr="//field[@name='order_line']/list" position="inside">
                 <field name="purchase_request_lines" column_invisible="1" />
                 <button
                     invisible="not purchase_request_lines"
@@ -31,11 +31,11 @@
         </field>
     </record>
     <record id="purchase_order_line_tree" model="ir.ui.view">
-        <field name="name">purchase.order.line.tree</field>
+        <field name="name">purchase.order.line.list</field>
         <field name="model">purchase.order.line</field>
         <field name="inherit_id" ref="purchase.purchase_order_line_tree" />
         <field name="arch" type="xml">
-            <xpath expr="//tree" position="inside">
+            <xpath expr="//list" position="inside">
                 <field name="purchase_request_lines" column_invisible="1" />
                 <button
                     invisible="not purchase_request_lines"

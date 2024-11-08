@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 
 from odoo import SUPERUSER_ID
-from odoo.tests import common
+from odoo.tests import Form, common
 
 
 class TestPurchaseRequestToRfq(common.TransactionCase):
@@ -19,7 +19,8 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         self.product_product = self.env["product.product"].create(
             {
                 "name": "Product Product Test",
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
                 "description_purchase": "Test Description",
             }
         )
@@ -112,7 +113,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
 
         picking.move_line_ids[0].write({"quantity": 2.0})
         backorder_wiz_id = picking.button_validate()
-        common.Form(
+        Form(
             self.env[backorder_wiz_id["res_model"]].with_context(
                 **backorder_wiz_id["context"]
             )
@@ -123,7 +124,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         backorder_picking = purchase.picking_ids.filtered(lambda p: p.id != picking.id)
         backorder_picking.move_line_ids[0].write({"quantity": 1.0})
         backorder_wiz_id2 = backorder_picking.button_validate()
-        common.Form(
+        Form(
             self.env[backorder_wiz_id2["res_model"]].with_context(
                 **backorder_wiz_id2["context"]
             )

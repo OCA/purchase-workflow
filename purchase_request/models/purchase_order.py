@@ -1,6 +1,8 @@
 # Copyright 2018-2019 ForgeFlow, S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 
+from markupsafe import Markup
+
 from odoo import _, api, exceptions, fields, models
 
 
@@ -15,14 +17,13 @@ class PurchaseOrder(models.Model):
             "po_name": self.name,
             "pr_name": request.name,
         }
-        message = "<h3>%s</h3><ul>" % title
+        message = f"<h3>{title}</h3><ul>"
         message += _(
             "The following requested items from Purchase Request %(pr_name)s "
-            "have now been confirmed in Purchase Order %(po_name)s:"
-        ) % {
-            "po_name": self.name,
-            "pr_name": request.name,
-        }
+            "have now been confirmed in Purchase Order %(po_name)s:",
+            po_name=self.name,
+            pr_name=request.name,
+        )
 
         for line in request_dict.values():
             message += _(
@@ -46,7 +47,7 @@ class PurchaseOrder(models.Model):
                     request_id = request_line.request_id.id
                     if request_id not in requests_dict:
                         requests_dict[request_id] = {}
-                    date_planned = "%s" % line.date_planned
+                    date_planned = line.date_planned
                     data = {
                         "name": request_line.name,
                         "product_qty": line.product_qty,
@@ -60,9 +61,8 @@ class PurchaseOrder(models.Model):
                     request, requests_dict[request_id]
                 )
                 request.message_post(
-                    body=message,
+                    body=Markup(message),
                     subtype_id=self.env.ref("mail.mt_comment").id,
-                    body_is_html=True,
                 )
         return True
 
@@ -132,7 +132,7 @@ class PurchaseOrderLine(models.Model):
             "name": _("Purchase Request Lines"),
             "type": "ir.actions.act_window",
             "res_model": "purchase.request.line",
-            "view_mode": "tree,form",
+            "view_mode": "list,form",
             "domain": domain,
         }
 
@@ -182,9 +182,8 @@ class PurchaseOrderLine(models.Model):
                     message_data
                 )
                 alloc.purchase_request_line_id.request_id.message_post(
-                    body=message,
+                    body=Markup(message),
                     subtype_id=self.env.ref("mail.mt_comment").id,
-                    body_is_html=True,
                 )
 
                 alloc.purchase_request_line_id._compute_qty()
@@ -195,24 +194,22 @@ class PurchaseOrderLine(models.Model):
         title = (
             _("Service confirmation for Request %s") % (message_data["request_name"])
         )
-        message = "<h3>%s</h3>" % title
+        message = f"<h3>{title}</h3>"
         message += _(
             "The following requested services from Purchase"
             " Request %(request_name)s requested by %(requestor)s "
-            "have now been received:"
-        ) % {
-            "request_name": message_data["request_name"],
-            "requestor": message_data["requestor"],
-        }
+            "have now been received:",
+            request_name=message_data["request_name"],
+            requestor=message_data["requestor"],
+        )
         message += "<ul>"
         message += _(
             "<li><b>%(product_name)s</b>: "
-            "Received quantity %(product_qty)s %(product_uom)s</li>"
-        ) % {
-            "product_name": message_data["product_name"],
-            "product_qty": message_data["product_qty"],
-            "product_uom": message_data["product_uom"],
-        }
+            "Received quantity %(product_qty)s %(product_uom)s</li>",
+            product_name=message_data["product_name"],
+            product_qty=message_data["product_qty"],
+            product_uom=message_data["product_uom"],
+        )
         message += "</ul>"
         return message
 

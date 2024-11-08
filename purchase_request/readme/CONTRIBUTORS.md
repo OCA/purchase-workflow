@@ -10,3 +10,5 @@
 - `Trobz <https://trobz.com>`_:
 
     * Son Ho <sonhd@trobz.com>
+- [Komit Company Limited](https://komit-consulting.com/):
+  - Quoc Pham Ngoc \<<quoc-pn@komit-consulting.com>\>
