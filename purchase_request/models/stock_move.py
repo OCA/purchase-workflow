@@ -41,10 +41,7 @@ class StockMove(models.Model):
         """Create an activity on the request for the cancelled procurement move"""
         for move in self:
             if move.created_purchase_request_line_id:
-                try:
-                    activity_type_id = self.env.ref("mail.mail_activity_data_todo").id
-                except ValueError:
-                    activity_type_id = False
+                activity_type_id = self.env.ref("mail.mail_activity_data_todo").id
                 pr_line = move.created_purchase_request_line_id
                 self.env["mail.activity"].sudo().create(
                     {
