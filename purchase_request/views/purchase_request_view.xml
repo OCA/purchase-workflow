@@ -133,7 +133,11 @@
                                 readonly="is_editable == False"
                             />
                             <field name="description" readonly="is_editable == False" />
-                            <field name="group_id" readonly="is_editable == False" />
+                            <field
+                                name="group_id"
+                                readonly="is_editable == False"
+                                groups="base.group_no_one"
+                            />
                         </group>
                         <group>
                             <field name="date_start" readonly="is_editable == False" />
