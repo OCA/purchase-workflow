@@ -63,7 +63,6 @@ class TestPurchaseRequest(TransactionCase):
         self.purchase_request.button_to_approve()
 
     def test_purchase_request_department(self):
-
         self.assertEqual(
             self.purchase_request.department_id,
             self.department_test,
