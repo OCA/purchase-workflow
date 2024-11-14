@@ -16,10 +16,7 @@
         <field name="inherit_id" ref="purchase_request.view_purchase_request_form" />
         <field name="arch" type="xml">
             <field name="requested_by" position="after">
-                <field
-                    name="department_id"
-                    attrs="{'readonly': [('state', '!=', 'draft')]}"
-                />
+                <field name="department_id" readonly="state != 'draft'" />
             </field>
         </field>
     </record>
@@ -56,10 +53,7 @@
         <field name="inherit_id" ref="purchase_request.purchase_request_line_form" />
         <field name="arch" type="xml">
             <field name="requested_by" position="after">
-                <field
-                    name="department_id"
-                    attrs="{'readonly': [('request_state', '!=', 'draft')]}"
-                />
+                <field name="department_id" readonly="request_state != 'draft'" />
             </field>
         </field>
     </record>
