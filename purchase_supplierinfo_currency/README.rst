@@ -58,7 +58,7 @@ Authors
 Contributors
 ------------
 
--  Alan Ramos <alan.ramos@jarsa.com>
+- Alan Ramos <alan.ramos@jarsa.com>
 
 Maintainers
 -----------
