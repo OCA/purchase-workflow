@@ -3,7 +3,7 @@
 
 {
     "name": "Purchase Supplierinfo Currency",
-    "version": "16.0.1.0.0",
+    "version": "17.0.1.0.0",
     "summary": "When a PO is created from an stock rule this module verifes "
     "the product supplier info of the product to create PO per currency",
     "author": "Jarsa, Odoo Community Association (OCA)",
