@@ -15,8 +15,10 @@ class PurchaseOrder(models.Model):
     @api.onchange("partner_id")
     def onchange_partner_id(self):
         res = super().onchange_partner_id()
-        self.incoterm_id = self.partner_id.commercial_partner_id.purchase_incoterm_id
-        self.incoterm_address_id = (
-            self.partner_id.commercial_partner_id.purchase_incoterm_address_id
-        )
+        # Since https://github.com/OCA/purchase-workflow/pull/1533,
+        # purchase_incoterm_id and purchase_incoterm_address_id should be synced
+        # from parent to child partners. No need to retrieve incoterm
+        # from the commercial entity
+        self.incoterm_id = self.partner_id.purchase_incoterm_id
+        self.incoterm_address_id = self.partner_id.purchase_incoterm_address_id
         return res

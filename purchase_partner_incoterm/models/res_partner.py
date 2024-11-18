@@ -17,9 +17,10 @@ class ResPartner(models.Model):
         string="Default Purchase Incoterm Address",
     )
 
-    @api.model
-    def _commercial_fields(self):
-        return super()._commercial_fields() + [
-            "purchase_incoterm_address_id",
-            "purchase_incoterm_id",
-        ]
+    # TODO this should be enabled throught a config parameter
+    # @api.model
+    # def _commercial_fields(self):
+        # return super()._commercial_fields() + [
+            # "purchase_incoterm_address_id",
+            # "purchase_incoterm_id",
+        # ]
