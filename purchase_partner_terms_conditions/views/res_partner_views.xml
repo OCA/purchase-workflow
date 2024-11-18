@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Alberto Martínez <alberto.martinez@sygel.es>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="res_partner_form_view" model="ir.ui.view">
+        <field name="name">res.partner.form.view</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="purchase.view_partner_property_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='purchase'][last()]" position="inside">
+
+                <label for='purchase_conditions'>Terms and Conditions</label>
+                <field
+                    name="purchase_conditions"
+                    nolabel="1"
+                    placeholder="Define your partner purchase special terms and conditions..."
+                    colspan="2"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

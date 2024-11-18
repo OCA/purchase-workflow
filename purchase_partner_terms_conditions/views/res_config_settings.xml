@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Alberto Martínez <alberto.martinez@sygel.es>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record
+        id="res_config_settings_view_form_partner_purchase_conditions"
+        model="ir.ui.view"
+    >
+        <field
+            name="name"
+        >res.config.settings.view.form.partner.special.conditions</field>
+        <field name="model">res.config.settings</field>
+        <field
+            name="inherit_id"
+            ref="purchase.res_config_settings_view_form_purchase"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//block[@name='purchase_setting_container']" position="inside">
+                <setting
+                    id="purchase_partner_conditions"
+                    help="If marked, the partner terms and conditions of a contact company will be propagated to their individuals and addresses"
+                >
+                    <field
+                        name="is_partner_purchase_conditions_commercial"
+                        string="Purchase Partner Terms and Conditions Commercial Field"
+                    />
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>
