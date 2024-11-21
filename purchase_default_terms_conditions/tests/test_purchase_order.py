@@ -31,7 +31,6 @@ class TestPurchase(AccountTestInvoicingCommon):
         )
 
     def test_onchange_partner_id(self):
-
         purchase_order = (
             self.env["purchase.order"]
             .with_context(tracking_disable=True)

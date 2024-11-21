@@ -6,7 +6,6 @@ from odoo.tools import is_html_empty
 
 
 class PurchaseOrder(models.Model):
-
     _inherit = "purchase.order"
 
     @api.onchange("partner_id", "company_id")
