@@ -5,43 +5,38 @@
     <record model="ir.ui.view" id="res_config_settings_view_form_purchase">
         <field
             name="name"
-        >res.config.settings.form (in purchase_default_terms_conditions)</field>
+        >res.config.settings.form (in purchase_default_terms_conditions)
+        </field>
         <field name="model">res.config.settings</field>
         <field
             name="inherit_id"
             ref="purchase.res_config_settings_view_form_purchase"
         />
         <field name="arch" type="xml">
-            <xpath expr="//div[@name='purchase_setting_container']" position="inside">
-                <div class="col-12 col-lg-6 o_setting_box">
-                    <div class="o_setting_left_pane">
-                        <field name="use_purchase_note" />
-                    </div>
-                    <div class="o_setting_right_pane">
-                        <label for="use_purchase_note" />
-                        <span
-                            class="fa fa-lg fa-building-o"
-                            title="Values set here are company-specific."
-                            aria-label="Values set here are company-specific."
-                            groups="base.group_multi_company"
-                            role="img"
-                        />
-                        <div class="text-muted">
-                            Show standard terms &amp; conditions on orders
-                        </div>
-                        <div
-                            class="content-group"
-                            attrs="{'invisible': [('use_purchase_note','=',False)]}"
-                        >
-                            <div class="mt16">
+            <xpath expr="//block[@name='purchase_setting_container']" position="inside">
+
+                <setting
+                    id="use_purchase_terms"
+                    company_dependent="1"
+                    help="Add your terms &amp; conditions at the bottom of bills/orders/quotations"
+                >
+                    <field
+                        name="use_purchase_note"
+                        string="Default Terms &amp; Conditions"
+                    />
+                    <div class="content-group" invisible="not use_purchase_note">
+                        <div class="mt16">
+                            <div>
                                 <field
                                     name="purchase_note"
+                                    widget="html"
+                                    class="oe_account_terms mt-5 w-100"
                                     placeholder="Insert your terms &amp; conditions here..."
                                 />
                             </div>
                         </div>
                     </div>
-                </div>
+                </setting>
             </xpath>
         </field>
     </record>

@@ -10,7 +10,7 @@ from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 class TestPurchase(AccountTestInvoicingCommon):
     @classmethod
     def setUpClass(cls):
-        super(TestPurchase, cls).setUpClass()
+        super().setUpClass()
         uom_unit = cls.env.ref("uom.product_uom_unit")
         cls.env.ref("uom.product_uom_hour")
         cls.product_order = cls.env["product.product"].create(
