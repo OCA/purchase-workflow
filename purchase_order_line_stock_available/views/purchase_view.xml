@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="purchase.purchase_order_form" />
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='order_line']/tree//field[@name='qty_invoiced']"
+                expr="//field[@name='order_line']/list//field[@name='qty_invoiced']"
                 position="after"
             >
                 <field name="virtual_available" optional="show" />
