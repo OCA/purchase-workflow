@@ -13,7 +13,7 @@ class TestPurchase(BaseCommon):
         cls.company = cls.env.ref("base.main_company")
         cls.partner = cls.env["res.partner"].create({"name": "Test partner"})
         cls.product = cls.env["product.product"].create(
-            {"name": "Test product", "type": "product", "detailed_type": "product"}
+            {"name": "Test product", "is_storable": True}
         )
         cls.location_stock = cls.env.ref("stock.stock_location_stock")
         cls.location_suppliers = cls.env.ref("stock.stock_location_suppliers")
