@@ -8,10 +8,11 @@
 
 /*
 :Author: David Goodger (goodger@python.org)
-:Id: $Id: html4css1.css 8954 2022-01-20 10:10:25Z milde $
+:Id: $Id: html4css1.css 9511 2024-01-13 09:50:07Z milde $
 :Copyright: This stylesheet has been placed in the public domain.
 
 Default cascading style sheet for the HTML output of Docutils.
+Despite the name, some widely supported CSS2 features are used.
 
 See https://docutils.sourceforge.io/docs/howto/html-stylesheets.html for how to
 customize this style sheet.
@@ -274,7 +275,7 @@ pre.literal-block, pre.doctest-block, pre.math, pre.code {
   margin-left: 2em ;
   margin-right: 2em }
 
-pre.code .ln { color: grey; } /* line numbers */
+pre.code .ln { color: gray; } /* line numbers */
 pre.code, code { background-color: #eeeeee }
 pre.code .comment, code .comment { color: #5C6576 }
 pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
@@ -300,7 +301,7 @@ span.option {
 span.pre {
   white-space: pre }
 
-span.problematic {
+span.problematic, pre.problematic {
   color: red }
 
 span.section-subtitle {
@@ -368,11 +369,11 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:58805054abf039c59925ef0f83b9d3521ed2a043b376d7411ab967d36068ede5
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/purchase-workflow/tree/16.0/purchase_order_general_discount"><img alt="OCA/purchase-workflow" src="https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/purchase-workflow-16-0/purchase-workflow-16-0-purchase_order_general_discount"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&amp;target_branch=16.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>This module allows to set a general discount in a purchase order. This general
-discount is applied to each line order.</p>
-<p>You can also set a default general discount on suppliers and configure to which
-line field the discount will be applied.</p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/purchase-workflow/tree/18.0/purchase_order_general_discount"><img alt="OCA/purchase-workflow" src="https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/purchase-workflow-18-0/purchase-workflow-18-0-purchase_order_general_discount"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&amp;target_branch=18.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p>This module allows to set a general discount in a purchase order. This
+general discount is applied to each line order.</p>
+<p>You can also set a default general discount on suppliers and configure
+to which line field the discount will be applied.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -389,18 +390,19 @@ line field the discount will be applied.</p>
 </div>
 <div class="section" id="configuration">
 <h1><a class="toc-backref" href="#toc-entry-1">Configuration</a></h1>
-<p>You can set in settings another discount field to be applied.
-For example, if we had <cite>purchase_triple_discount</cite>, we could set the general
+<p>You can set in settings another discount field to be applied. For
+example, if we had purchase_triple_discount, we could set the general
 discount in discount3 to be applied after all other discounts.</p>
 <p>To do so:</p>
 <ol class="arabic simple">
-<li>Go to <em>Purchases &gt; Configuration &gt; Settings</em> and <em>Purchase Discount Field</em></li>
-<li>Select the discount you’d wish to use. <cite>purchase_triple_discount</cite> fields
-will appear when the module is installed.</li>
+<li>Go to <em>Purchases &gt; Configuration &gt; Settings</em> and <em>Purchase Discount
+Field</em></li>
+<li>Select the discount you’d wish to use. purchase_triple_discount
+fields will appear when the module is installed.</li>
 </ol>
-<p>There’s a method at <cite>res.company</cite> called <cite>_get_purchase_discount_fields</cite> that
-can be used to extend more line discount fields. For example, if we had the
-field <cite>discount4</cite>, we could extend it like this:</p>
+<p>There’s a method at res.company called _get_purchase_discount_fields
+that can be used to extend more line discount fields. For example, if we
+had the field discount4, we could extend it like this:</p>
 <pre class="code python literal-block">
 <span class="nd">&#64;api</span><span class="o">.</span><span class="n">model</span><span class="w">
 </span><span class="k">def</span> <span class="nf">_get_purchase_discount_fields</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span><span class="w">
@@ -413,13 +415,14 @@ field <cite>discount4</cite>, we could extend it like this:</p>
 <h1><a class="toc-backref" href="#toc-entry-2">Usage</a></h1>
 <p>To set a partner default general discount you need to:</p>
 <ol class="arabic simple">
-<li>Go to a partner and set the general discount in <em>Sales &amp; Purchases</em> tab.</li>
+<li>Go to a partner and set the general discount in <em>Sales &amp; Purchases</em>
+tab.</li>
 </ol>
 <p>To set a general discount in a purchase order you need to:</p>
 <ol class="arabic simple">
 <li>Create a purchase order.</li>
-<li>Either select a partner with a purchase general discount defined or set one
-in the summary section of the order.</li>
+<li>Either select a partner with a purchase general discount defined or
+set one in the summary section of the order.</li>
 <li>This discount will be applied to every line.</li>
 </ol>
 </div>
@@ -428,7 +431,7 @@ in the summary section of the order.</li>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/purchase-workflow/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_order_general_discount%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_order_general_discount%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -471,11 +474,13 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <div class="section" id="maintainers">
 <h2><a class="toc-backref" href="#toc-entry-7">Maintainers</a></h2>
 <p>This module is maintained by the OCA.</p>
-<a class="reference external image-reference" href="https://odoo-community.org"><img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" /></a>
+<a class="reference external image-reference" href="https://odoo-community.org">
+<img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
+</a>
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/purchase-workflow/tree/16.0/purchase_order_general_discount">OCA/purchase-workflow</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/purchase-workflow/tree/18.0/purchase_order_general_discount">OCA/purchase-workflow</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>
