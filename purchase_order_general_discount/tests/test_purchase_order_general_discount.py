@@ -2,7 +2,7 @@
 # Copyright 2022 Tecnativa - Pilar Vargas
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo.tests import Form, TransactionCase, common
+from odoo.tests import Form, TransactionCase
 
 
 class TestPurchaseOrderLineInput(TransactionCase):
@@ -15,7 +15,7 @@ class TestPurchaseOrderLineInput(TransactionCase):
         cls.product = cls.env["product.product"].create(
             {"name": "test_product", "type": "service"}
         )
-        order_form = common.Form(cls.env["purchase.order"])
+        order_form = Form(cls.env["purchase.order"])
         order_form.partner_id = cls.partner
         with order_form.order_line.new() as line_form:
             line_form.product_id = cls.product
