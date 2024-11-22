@@ -61,7 +61,7 @@ class PurchaseOrder(models.Model):
                 order_line_field = order_line_fields[0]
                 context = order_line_field.attrib.get("context", "{}").replace(
                     "{",
-                    "{{'default_{}': general_discount, ".format(discount_field),
+                    f"{{'default_{discount_field}': general_discount, ",
                     1,
                 )
                 order_line_field.attrib["context"] = context
