@@ -33,21 +33,23 @@ class PurchaseOrderLine(models.Model):
                 bom_type="phantom",
             ):
                 continue
-            line.move_ids.write({"price_unit": line._get_stock_move_price_unit()})
-            # Apply sudo() to avoid access errors with users without Inventory > Admin
-            # permissions.
-            svls = (
-                line.move_ids.sudo()
-                .mapped("stock_valuation_layer_ids")
-                .filtered(
-                    # Filter children SVLs (like landed cost)
-                    lambda x: not x.stock_valuation_layer_id
+            moves = line.move_ids.filtered(lambda m: m.state == "done")
+            if moves:
+                moves.write({"price_unit": line._get_stock_move_price_unit()})
+                # Apply sudo() to avoid access errors with users without Inventory > Admin
+                # permissions.
+                svls = (
+                    moves.sudo()
+                    .mapped("stock_valuation_layer_ids")
+                    .filtered(
+                        # Filter children SVLs (like landed cost)
+                        lambda x: not x.stock_valuation_layer_id
+                    )
                 )
-            )
-            svls.write(
-                {
-                    "unit_cost": line.with_context(
-                        skip_stock_price_unit_sync=True
-                    )._get_stock_move_price_unit(),
-                }
-            )
+                svls.write(
+                    {
+                        "unit_cost": line.with_context(
+                            skip_stock_price_unit_sync=True
+                        )._get_stock_move_price_unit(),
+                    }
+                )
