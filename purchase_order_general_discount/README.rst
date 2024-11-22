@@ -17,22 +17,22 @@ Purchase Order General Discount
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/purchase-workflow/tree/16.0/purchase_order_general_discount
+    :target: https://github.com/OCA/purchase-workflow/tree/18.0/purchase_order_general_discount
     :alt: OCA/purchase-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/purchase-workflow-16-0/purchase-workflow-16-0-purchase_order_general_discount
+    :target: https://translation.odoo-community.org/projects/purchase-workflow-18-0/purchase-workflow-18-0-purchase_order_general_discount
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module allows to set a general discount in a purchase order. This general
-discount is applied to each line order.
+This module allows to set a general discount in a purchase order. This
+general discount is applied to each line order.
 
-You can also set a default general discount on suppliers and configure to which
-line field the discount will be applied.
+You can also set a default general discount on suppliers and configure
+to which line field the discount will be applied.
 
 **Table of contents**
 
@@ -42,41 +42,43 @@ line field the discount will be applied.
 Configuration
 =============
 
-You can set in settings another discount field to be applied.
-For example, if we had `purchase_triple_discount`, we could set the general
+You can set in settings another discount field to be applied. For
+example, if we had purchase_triple_discount, we could set the general
 discount in discount3 to be applied after all other discounts.
 
 To do so:
 
-#. Go to *Purchases > Configuration > Settings* and *Purchase Discount Field*
-#. Select the discount you'd wish to use. `purchase_triple_discount` fields
-   will appear when the module is installed.
+1. Go to *Purchases > Configuration > Settings* and *Purchase Discount
+   Field*
+2. Select the discount you'd wish to use. purchase_triple_discount
+   fields will appear when the module is installed.
 
-There's a method at `res.company` called `_get_purchase_discount_fields` that
-can be used to extend more line discount fields. For example, if we had the
-field `discount4`, we could extend it like this:
+There's a method at res.company called \_get_purchase_discount_fields
+that can be used to extend more line discount fields. For example, if we
+had the field discount4, we could extend it like this:
 
-.. code-block:: python
+.. code:: python
 
-    @api.model
-    def _get_purchase_discount_fields(self):
-        discount_fields = super()._get_purchase_discount_fields()
-        discount_fields += [('discount4', _('Discount 4'))]
-        return discount_fields
+   @api.model
+   def _get_purchase_discount_fields(self):
+       discount_fields = super()._get_purchase_discount_fields()
+       discount_fields += [('discount4', _('Discount 4'))]
+       return discount_fields
 
 Usage
 =====
 
 To set a partner default general discount you need to:
 
-#. Go to a partner and set the general discount in *Sales & Purchases* tab.
+1. Go to a partner and set the general discount in *Sales & Purchases*
+   tab.
 
 To set a general discount in a purchase order you need to:
 
-#. Create a purchase order.
-#. Either select a partner with a purchase general discount defined or set one
-   in the summary section of the order.
-#. This discount will be applied to every line.
+1. Create a purchase order.
+2. Either select a partner with a purchase general discount defined or
+   set one in the summary section of the order.
+3. This discount will be applied to every line.
 
 Bug Tracker
 ===========
@@ -84,7 +86,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/purchase-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_order_general_discount%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_order_general_discount%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -92,32 +94,32 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Tecnativa
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Tecnativa <https://www.tecnativa.com>`_:
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-    * David Vidal
-    * Pedro M. Baeza
-    * Rafael Blasco
-    * Carlos Roca
-    * Pilar Vargas
+      -  David Vidal
+      -  Pedro M. Baeza
+      -  Rafael Blasco
+      -  Carlos Roca
+      -  Pilar Vargas
 
-* `Aures TIC <https://www.aurestic.es>`_:
+-  `Aures TIC <https://www.aurestic.es>`__:
 
-    * Jose Zambudio
-    * Anna Martinez
+      -  Jose Zambudio
+      -  Anna Martinez
 
-* `Komit <https://komit-consulting.com>`_:
+-  `Komit <https://komit-consulting.com>`__:
 
-  * Cuong Nguyen Mtm <cuong.nmtm@komit-consulting.com>
+   -  Cuong Nguyen Mtm <cuong.nmtm@komit-consulting.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -129,6 +131,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/16.0/purchase_order_general_discount>`_ project on GitHub.
+This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/18.0/purchase_order_general_discount>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
