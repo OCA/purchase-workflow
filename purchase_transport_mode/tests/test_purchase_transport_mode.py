@@ -78,3 +78,25 @@ class TestPurchaseTransportMode(TransactionCase):
             self.constraint_a.filter_valid_purchase(self.purchase_order),
             self.purchase_order,
         )
+
+    def test_create_po_with_partner_transport_mode(self):
+        """Test that the transport mode of the partner is set on the purchase order."""
+        no_transport_mode_po = self.env["purchase.order"].create(
+            {
+                "company_id": self.env.company.id,
+                "partner_id": self.env.ref("base.res_partner_12").id,
+            }
+        )
+        self.assertFalse(no_transport_mode_po.transport_mode_id)
+        self.env.ref(
+            "base.res_partner_12"
+        ).purchase_transport_mode_id = self.transport_mode_a
+        with_transport_mode_po = self.env["purchase.order"].create(
+            {
+                "company_id": self.env.company.id,
+                "partner_id": self.env.ref("base.res_partner_12").id,
+            }
+        )
+        self.assertEqual(
+            with_transport_mode_po.transport_mode_id, self.transport_mode_a
+        )

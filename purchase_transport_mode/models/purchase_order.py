@@ -9,7 +9,12 @@ class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
     _name = "purchase.order"
 
-    transport_mode_id = fields.Many2one("purchase.transport.mode")
+    transport_mode_id = fields.Many2one(
+        "purchase.transport.mode",
+        compute="_compute_transport_mode_id",
+        store=True,
+        readonly=False,
+    )
     transport_mode_status = fields.Json(
         compute="_compute_transport_mode_validation_status",
         help="Collect and validate order details to satisfy transport mode requirements",
@@ -24,6 +29,13 @@ class PurchaseOrder(models.Model):
         help="All transport mode requirements are satisfied",
     )
 
+    @api.depends("partner_id")
+    def _compute_transport_mode_id(self):
+        for rec in self:
+            rec.transport_mode_id = (
+                rec.partner_id.commercial_partner_id.purchase_transport_mode_id
+            )
+
     @api.depends("transport_mode_id")
     def _compute_transport_mode_validation_status(self):
         for rec in self:
@@ -32,14 +44,6 @@ class PurchaseOrder(models.Model):
                 rec._get_transport_mode_validation_status_display()
             )
             rec.transport_mode_status_ok = False if rec.transport_mode_status else True
-
-    @api.onchange("partner_id")
-    def onchange_partner_id(self):
-        if self.partner_id:
-            self.transport_mode_id = (
-                self.partner_id.commercial_partner_id.purchase_transport_mode_id
-            )
-        return super().onchange_partner_id()
 
     def _get_transport_mode_validation_status(self):
         self.ensure_one()
