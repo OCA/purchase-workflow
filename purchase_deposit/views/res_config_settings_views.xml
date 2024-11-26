@@ -9,26 +9,15 @@
             ref="purchase.res_config_settings_view_form_purchase"
         />
         <field name="arch" type="xml">
-            <xpath
-                expr="//field[@name='module_account_3way_match']/../.."
-                position="after"
-            >
-                <div class="col-xs-12 col-md-6 o_setting_box">
-                    <div class="o_setting_left_pane" />
-                    <div class="o_setting_right_pane">
-                        <label
-                            for="purchase_deposit_product_id"
-                            string="Deposit Payments"
-                        />
-                        <div class="text-muted">
-                            Product used for deposit payments
-                        </div>
-                        <div class="text-muted">
-                            <field name="purchase_deposit_product_id" />
-                        </div>
-                    </div>
-                </div>
-            </xpath>
+            <setting id="three_way_matching" position="after">
+                <setting
+                    id="purchase_deposit_product"
+                    string="Deposit Payments"
+                    help="Product used for deposit payments"
+                >
+                    <field name="purchase_deposit_product_id" />
+                </setting>
+            </setting>
         </field>
     </record>
 </odoo>
