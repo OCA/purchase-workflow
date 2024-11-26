@@ -1,9 +1,8 @@
 <!-- Copyright 2023 Moduon Team
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
-
     <record id="purchase_order_line_tree" model="ir.ui.view">
-        <field name="name">purchase.order.line.tree</field>
+        <field name="name">purchase.order.line.list</field>
         <field name="model">purchase.order.line</field>
         <field name="inherit_id" ref="purchase.purchase_order_line_tree" />
         <field name="mode">primary</field>
@@ -38,7 +37,7 @@
             <xpath expr="//field[@name='date_planned']" position="before">
                 <field name="date_order" optional="show" widget="date" />
             </xpath>
-            <xpath expr="//tree" position="inside">
+            <xpath expr="//list" position="inside">
                 <field name="product_packaging_id" optional="hide" />
             </xpath>
             <xpath expr="//field[@name='name']" position="attributes">
@@ -47,7 +46,7 @@
             <xpath expr="//field[@name='date_planned']" position="attributes">
                 <attribute name="optional">hide</attribute>
             </xpath>
-            <xpath expr="/tree" postion="inside">
+            <xpath expr="/list" postion="inside">
                 <field
                     name="invoice_lines"
                     widget="many2many_tags"
@@ -153,7 +152,7 @@
         <field name="name">Purchase Order Lines</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">purchase.order.line</field>
-        <field name="view_mode">tree,pivot</field>
+        <field name="view_mode">list,pivot</field>
         <field
             name="search_view_id"
             ref="purchase_order_line_menu.purchase_order_line_search"
@@ -168,5 +167,4 @@
         parent="purchase.menu_procurement_management"
         sequence="7"
     />
-
 </odoo>
