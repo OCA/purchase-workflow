@@ -29,7 +29,6 @@ msgstr ""
 #. module: purchase_deposit
 #. odoo-python
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
-#, python-format
 msgid "Advance: %s"
 msgstr ""
 
@@ -72,7 +71,6 @@ msgstr ""
 #. module: purchase_deposit
 #. odoo-python
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
-#, python-format
 msgid "Deposit Payment"
 msgstr ""
 
@@ -209,14 +207,12 @@ msgstr ""
 #. module: purchase_deposit
 #. odoo-python
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
-#, python-format
 msgid "The percentage of the deposit must be not over 100"
 msgstr ""
 
 #. module: purchase_deposit
 #. odoo-python
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
-#, python-format
 msgid ""
 "The product used to invoice a down payment should be of type \"Service\". "
 "Please use another product or update this product."
@@ -225,7 +221,6 @@ msgstr ""
 #. module: purchase_deposit
 #. odoo-python
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
-#, python-format
 msgid ""
 "The product used to invoice a down payment should have an invoice policy set "
 "to \"Ordered quantities\". Please update your deposit product to be able to "
@@ -235,14 +230,12 @@ msgstr ""
 #. module: purchase_deposit
 #. odoo-python
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
-#, python-format
 msgid "The value of the deposit must be positive."
 msgstr ""
 
 #. module: purchase_deposit
 #. odoo-python
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
-#, python-format
 msgid ""
 "There is no purchase account defined for this product: %s.\n"
 "You may have to install a chart of account from Accounting app, settings "

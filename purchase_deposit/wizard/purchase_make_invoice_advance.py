@@ -59,7 +59,6 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
         self.deposit_taxes_id = product.supplier_taxes_id
 
     def _prepare_deposit_val(self, order, po_line, amount):
-        ir_property_obj = self.env["ir.property"]
         account_id = False
         product = self.purchase_deposit_product_id
         if product.id:
@@ -68,9 +67,7 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
                 or product.categ_id.property_account_expense_categ_id.id
             )
         if not account_id:
-            inc_acc = ir_property_obj._get(
-                "property_account_expense_categ_id", "product.category"
-            )
+            inc_acc = product.categ_id.property_account_expense_categ_id
             account_id = (
                 order.fiscal_position_id.map_account(inc_acc).id if inc_acc else False
             )

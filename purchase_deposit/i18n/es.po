@@ -31,7 +31,6 @@ msgstr "Cuenta contable para el anticipo"
 #. module: purchase_deposit
 #. odoo-python
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
-#, python-format
 msgid "Advance: %s"
 msgstr "Anticipo:%s"
 
@@ -74,7 +73,6 @@ msgstr "Producto usado para pagos adelantados."
 #. module: purchase_deposit
 #. odoo-python
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
-#, python-format
 msgid "Deposit Payment"
 msgstr "Anticipo"
 
@@ -215,14 +213,12 @@ msgstr "Importe a facturar por adelantado, sin impuestos."
 #. module: purchase_deposit
 #. odoo-python
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
-#, python-format
 msgid "The percentage of the deposit must be not over 100"
 msgstr "El porcentaje del anticipo no puede ser superior al 100"
 
 #. module: purchase_deposit
 #. odoo-python
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
-#, python-format
 msgid ""
 "The product used to invoice a down payment should be of type \"Service\". "
 "Please use another product or update this product."
@@ -233,7 +229,6 @@ msgstr ""
 #. module: purchase_deposit
 #. odoo-python
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
-#, python-format
 msgid ""
 "The product used to invoice a down payment should have an invoice policy set "
 "to \"Ordered quantities\". Please update your deposit product to be able to "
@@ -246,14 +241,12 @@ msgstr ""
 #. module: purchase_deposit
 #. odoo-python
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
-#, python-format
 msgid "The value of the deposit must be positive."
 msgstr "El importe del anticipo debe de ser positivo."
 
 #. module: purchase_deposit
 #. odoo-python
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
-#, python-format
 msgid ""
 "There is no purchase account defined for this product: %s.\n"
 "You may have to install a chart of account from Accounting app, settings "
@@ -273,6 +266,9 @@ msgstr "Impuestos de proveedor"
 msgid "What do you want to invoice?"
 msgstr "¿Que quieres facturar?"
 
+#~ msgid "Config Settings"
+#~ msgstr "Ajustes de configuración"
+
 #~ msgid ""
 #~ "<span attrs=\"{'invisible': [('advance_payment_method', '!=', "
 #~ "'percentage')]}\" class=\"oe_inline\">%</span>"
@@ -282,9 +278,6 @@ msgstr "¿Que quieres facturar?"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Última modificación el"
-
-#~ msgid "Config Settings"
-#~ msgstr "Ajustes de configuración"
 
 #~ msgid ""
 #~ "Deposit payments are made when creating bills from a purhcase order. They "
