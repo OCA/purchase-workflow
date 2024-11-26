@@ -4,7 +4,7 @@
 
 from odoo import fields
 from odoo.exceptions import UserError
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests import Form, TransactionCase
 
 
 class TestPurchaseDeposit(TransactionCase):
