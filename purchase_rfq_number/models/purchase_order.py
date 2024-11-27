@@ -39,23 +39,23 @@ class PurchaseOrder(models.Model):
 
     def button_confirm(self):
         for order in self:
-            if order.state in ["draft", "sent"] and not order.company_id.keep_name_po:
+            if order.state in ["draft", "sent"]:
+                rfq_vals = {"rfq_number": order.name}
                 if order.company_id.auto_attachment_rfq:
                     # save rfq pdf as attachment
                     order.action_get_rfq_attachment()
 
-                po_number = (
-                    order.po_number
-                    if order.po_number != "New"
-                    else self.env["ir.sequence"].next_by_code("purchase.order")
-                )
-                order.write(
-                    {
-                        "rfq_number": order.name,
-                        "name": po_number,
-                        "po_number": po_number,
-                    }
-                )
+                if not order.company_id.keep_name_po:
+                    po_number = (
+                        order.po_number
+                        if order.po_number != "New"
+                        else self.env["ir.sequence"].next_by_code("purchase.order")
+                    )
+                    rfq_vals["name"] = po_number
+                    rfq_vals["po_number"] = po_number
+                else:
+                    rfq_vals["po_number"] = order.name
+                order.write(rfq_vals)
 
         return super().button_confirm()
 
