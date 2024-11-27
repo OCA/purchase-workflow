@@ -12,28 +12,21 @@ class PurchaseOrderLine(models.Model):
     }
     _product_uom_field = "uom_po_id"
 
-    product_qty = fields.Float(
-        store=True,
-        readonly=False,
-        compute="_compute_product_qty",
-        copy=True,
-        precompute=True,
-    )
-    product_packaging_qty = fields.Float(
-        compute="_compute_product_packaging_qty", store=True, precompute=True
-    )
-    product_packaging_id = fields.Many2one(
-        compute="_compute_product_packaging_id", store=True, precompute=True
-    )
+    product_qty = fields.Float(copy=True)
 
-    @api.depends("secondary_uom_qty", "secondary_uom_id")
+    @api.depends("secondary_uom_qty", "secondary_uom_id", "product_packaging_qty")
+    @api.depends_context("skip_computation")
     def _compute_product_qty(self):
-        self._compute_helper_target_field_qty()
-        return super()._compute_product_qty()
+        res = super()._compute_product_qty()
+        if self.env.context.get("skip_compute_product_qty"):
+            return res
+        return self._compute_helper_target_field_qty()
 
     @api.onchange("product_uom")
     def onchange_product_uom_for_secondary(self):
-        self._onchange_helper_product_uom_for_secondary()
+        self.with_context(
+            skip_compute_product_qty=True
+        )._onchange_helper_product_uom_for_secondary()
 
     @api.onchange("product_id")
     def onchange_product_id(self):

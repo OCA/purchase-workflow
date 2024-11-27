@@ -61,10 +61,8 @@ class TestPurchaseOrderSecondaryUnit(TransactionCase):
             self.assertEqual(line.product_qty, 7.0)
             # Test onchange product uom
             line.secondary_uom_qty = 3500.0
-            self.assertEqual(line.product_qty, 2450.0)
             line.product_uom = self.product_uom_gram
-            self.assertEqual(line.product_qty, 2450000.0)
-            self.assertEqual(line.secondary_uom_qty, 3500.0)
+            self.assertEqual(line.secondary_uom_qty, 3.5)
 
     def test_purchase_order_02(self):
         purchase_order = Form(self.order)

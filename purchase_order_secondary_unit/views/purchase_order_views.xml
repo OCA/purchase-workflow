@@ -15,16 +15,19 @@
                     <field
                         name="secondary_uom_qty"
                         class="oe_inline oe_no_button"
-                        attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
+                        groups="uom.group_uom"
+                        readonly="state in ['done', 'cancel']"
                     />
                     <field
                         name="secondary_uom_id"
                         class="oe_inline"
-                        domain="product_id and ['|', ('product_id', '=', product_id),
+                        domain="['|', ('product_id', '=', product_id),
                                     '&amp;', ('product_tmpl_id.product_variant_ids', 'in', [product_id]),
-                                            ('product_id', '=', False)] or [(0, '=', 1)]"
+                                             ('product_id', '=', False)]"
                         options="{'no_create': True}"
-                        attrs="{'readonly': [('state', 'in', ('purchase', 'done', 'cancel'))], 'required': [('secondary_uom_qty', '!=', 0.0)]}"
+                        groups="uom.group_uom"
+                        readonly="state in ['purchase','done', 'cancel']"
+                        required="secondary_uom_qty != 0.0"
                     />
                 </t>
             </xpath>
@@ -34,8 +37,8 @@
             >
                 <field
                     name="secondary_uom_qty"
-                    attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
                     groups="uom.group_uom"
+                    readonly="state in ['done', 'cancel']"
                     optional="show"
                 />
                 <field
@@ -44,8 +47,9 @@
                                 '&amp;', ('product_tmpl_id.product_variant_ids', 'in', [product_id]),
                                          ('product_id', '=', False)] or [(0, '=', 1)]"
                     options="{'no_create': True}"
-                    attrs="{'readonly': [('state', 'in', ('purchase','done', 'cancel'))], 'required': [('secondary_uom_qty', '!=', 0.0)]}"
                     groups="uom.group_uom"
+                    readonly="state in ['purchase','done', 'cancel']"
+                    required="secondary_uom_qty != 0.0"
                     optional="show"
                 />
             </xpath>

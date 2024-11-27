@@ -12,6 +12,7 @@
                     <field
                         name="purchase_secondary_uom_id"
                         options="{'no_create': True}"
+                        groups="uom.group_uom"
                     />
                 </t>
             </field>
