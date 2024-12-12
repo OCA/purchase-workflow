@@ -22,6 +22,9 @@ class PurchaseOrder(models.Model):
         default="New",
     )
 
+    def _generate_sequence(self, sequence_code):
+        return self.env["ir.sequence"].next_by_code(sequence_code) or "New"
+
     @api.model
     def create(self, vals):
 
@@ -33,7 +36,7 @@ class PurchaseOrder(models.Model):
             keep_name_po = self.env.company.keep_name_po
 
         if not keep_name_po and vals.get("name", "New") == "New":
-            vals["name"] = self.env["ir.sequence"].next_by_code("purchase.rfq") or "New"
+            vals["name"] = self._generate_sequence("purchase.rfq")
 
         return super().create(vals)
 
@@ -49,7 +52,7 @@ class PurchaseOrder(models.Model):
                     po_number = (
                         order.po_number
                         if order.po_number != "New"
-                        else self.env["ir.sequence"].next_by_code("purchase.order")
+                        else order._generate_sequence("purchase.order")
                     )
                     rfq_vals["name"] = po_number
                     rfq_vals["po_number"] = po_number
