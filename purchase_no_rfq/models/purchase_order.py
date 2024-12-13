@@ -9,9 +9,18 @@ from odoo import fields, models
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
-    state = fields.Selection(selection_add=[("draft", "Draft"), ("sent", "Sent")])
+    # Renaming the user-facing labels for the existing states `draft` and `sent`
+    # without adding new states. These are already defined in the purchase module.
+    state = fields.Selection(
+        selection_add=[
+            ("draft", "Draft"),
+            ("sent", "Sent"),
+        ]
+    )
 
     def print_quotation(self):
+        # This method is intentionally overloaded to redefine its functionality.
+        # Note: We are breaking the inheritance chain here by not calling super(),
         orders = self.filtered(lambda x: x.state == "draft")
         orders.write({"state": "sent"})
         report = self.env.ref("purchase.action_report_purchase_order")
