@@ -18,16 +18,16 @@
         <field name="name">Purchase Order Cancel Reason</field>
         <field name="model">purchase.order.cancel.reason</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" />
-            </tree>
+            </list>
         </field>
     </record>
 
     <record id="action_purchase_order_cancel_reason" model="ir.actions.act_window">
         <field name="name">Purchase Order Cancel Reason</field>
         <field name="res_model">purchase.order.cancel.reason</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem
