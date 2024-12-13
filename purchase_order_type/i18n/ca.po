@@ -67,7 +67,6 @@ msgstr "Veure el nom"
 #. module: purchase_order_type
 #. odoo-python
 #: code:addons/purchase_order_type/models/purchase_order.py:0
-#, python-format
 msgid "Document's company and type's company mismatch"
 msgstr ""
 
