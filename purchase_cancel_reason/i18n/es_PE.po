@@ -26,14 +26,11 @@ msgstr ""
 
 #. module: purchase_cancel_reason
 #: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.purchase_order_form
+#: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.purchase_order_kpis_tree
+#: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.purchase_order_view_tree
 #: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel
 msgid "Cancel"
 msgstr "Cancelar"
-
-#. module: purchase_cancel_reason
-#: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.purchase_order_form
-msgid "Cancellation reason:"
-msgstr ""
 
 #. module: purchase_cancel_reason
 #: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel
@@ -117,6 +114,12 @@ msgid "Reason"
 msgstr ""
 
 #. module: purchase_cancel_reason
+#. odoo-python
+#: code:addons/purchase_cancel_reason/models/purchase_order.py:0
+msgid "Reason for Cancellation"
+msgstr ""
+
+#. module: purchase_cancel_reason
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order__cancel_reason_id
 msgid "Reason for cancellation"
 msgstr ""
@@ -130,6 +133,15 @@ msgstr ""
 #. module: purchase_cancel_reason
 #: model:purchase.order.cancel.reason,name:purchase_cancel_reason.cancel_reason_no_service_needed
 msgid "Service no longer needed"
+msgstr ""
+
+#. module: purchase_cancel_reason
+#. odoo-python
+#: code:addons/purchase_cancel_reason/models/purchase_order.py:0
+msgid ""
+"You cannot cancel any of the selected orders as they are all in 'Done' or "
+"'Canceled' state:\n"
+"%s"
 msgstr ""
 
 #. module: purchase_cancel_reason
