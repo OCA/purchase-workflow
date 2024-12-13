@@ -5,7 +5,7 @@
         <field name="inherit_id" ref="purchase.purchase_order_view_tree" />
         <field name="arch" type="xml">
             <!-- Add missing decoration-info on that tree view-->
-            <xpath expr="//tree" position="attributes">
+            <xpath expr="//list" position="attributes">
                 <attribute name="decoration-info">state in ('draft','sent')</attribute>
             </xpath>
             <field name="state" position="attributes">
