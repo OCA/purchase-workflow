@@ -6,7 +6,7 @@
         priority="100"
     >
         <xpath
-            expr="//h2[@t-if=&quot;o.state in ['draft', 'sent', 'to approve']&quot;]"
+            expr="//t[@t-if=&quot;o.state in ['draft', 'sent', 'to approve']&quot;]"
             position="replace"
         >
             <h2 t-if="o.state in ['draft', 'sent', 'to approve']">Purchase Order #<span
