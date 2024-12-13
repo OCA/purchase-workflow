@@ -10,8 +10,8 @@ msgstr ""
 "POT-Creation-Date: 2017-08-19 07:43+0000\n"
 "PO-Revision-Date: 2024-06-11 14:35+0000\n"
 "Last-Translator: jakobkrabbe <jakob@syscare.se>\n"
-"Language-Team: Swedish (http://www.transifex.com/oca/"
-"OCA-purchase-workflow-8-0/language/sv/)\n"
+"Language-Team: Swedish (http://www.transifex.com/oca/OCA-purchase-"
+"workflow-8-0/language/sv/)\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -68,7 +68,6 @@ msgstr "Visa namn"
 #. module: purchase_order_type
 #. odoo-python
 #: code:addons/purchase_order_type/models/purchase_order.py:0
-#, python-format
 msgid "Document's company and type's company mismatch"
 msgstr "Dokumentets f??retag och typens f??retag st??mmer inte ??verens"
 

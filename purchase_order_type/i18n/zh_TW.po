@@ -10,8 +10,8 @@ msgstr ""
 "POT-Creation-Date: 2017-08-19 07:43+0000\n"
 "PO-Revision-Date: 2024-08-09 21:58+0000\n"
 "Last-Translator: Andrew Shen <wildfootw@gmail.com>\n"
-"Language-Team: Chinese (Taiwan) (http://www.transifex.com/oca/"
-"OCA-purchase-workflow-8-0/language/zh_TW/)\n"
+"Language-Team: Chinese (Taiwan) (http://www.transifex.com/oca/OCA-purchase-"
+"workflow-8-0/language/zh_TW/)\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -68,7 +68,6 @@ msgstr "????????????"
 #. module: purchase_order_type
 #. odoo-python
 #: code:addons/purchase_order_type/models/purchase_order.py:0
-#, python-format
 msgid "Document's company and type's company mismatch"
 msgstr ""
 
