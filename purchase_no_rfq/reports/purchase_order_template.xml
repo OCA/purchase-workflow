@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
     <template
         id="report_purchaseorder_document"
         inherit_id="purchase.report_purchaseorder_document"
@@ -11,9 +10,8 @@
             position="replace"
         >
             <h2 t-if="o.state in ['draft', 'sent', 'to approve']">Purchase Order #<span
-                    t-field="o.name"
-                /></h2>
+                t-field="o.name"
+            /></h2>
         </xpath>
     </template>
-
 </odoo>
