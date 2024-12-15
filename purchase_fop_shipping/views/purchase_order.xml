@@ -53,14 +53,14 @@
                 />
             </xpath>
             <field name="tax_totals" position="after">
-                 <field
+                <field
                     name="fop_shipping"
                     readonly="1"
                     invisible="fop_shipping == 0"
                     widget="monetary"
                     options="{'currency_field': 'currency_id'}"
                 />
-             </field>
+            </field>
         </field>
     </record>
 </odoo>
