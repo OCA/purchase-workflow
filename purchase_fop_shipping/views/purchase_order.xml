@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <record model="ir.ui.view" id="purchase_order_tree">
+    <record model="ir.ui.view" id="purchase_order_list">
         <field name="model">purchase.order</field>
-        <field name="type">tree</field>
+        <field name="type">list</field>
         <field name="inherit_id" ref="purchase.purchase_order_tree" />
         <field name="arch" type="xml">
-            <xpath expr="//tree" position="attributes">
+            <xpath expr="//list" position="attributes">
                 <attribute name="decoration-danger">fop_reached == False</attribute>
             </xpath>
             <field name="origin" position="after">
@@ -14,12 +14,12 @@
             </field>
         </field>
     </record>
-    <record model="ir.ui.view" id="purchase_order_view_tree">
+    <record model="ir.ui.view" id="purchase_order_view_list">
         <field name="model">purchase.order</field>
-        <field name="type">tree</field>
+        <field name="type">list</field>
         <field name="inherit_id" ref="purchase.purchase_order_view_tree" />
         <field name="arch" type="xml">
-            <xpath expr="//tree" position="attributes">
+            <xpath expr="//list" position="attributes">
                 <attribute name="decoration-danger">fop_reached == False</attribute>
             </xpath>
             <field name="origin" position="after">
@@ -28,12 +28,12 @@
             </field>
         </field>
     </record>
-    <record model="ir.ui.view" id="purchase_order_kpis_tree">
+    <record model="ir.ui.view" id="purchase_order_kpis_list">
         <field name="model">purchase.order</field>
-        <field name="type">tree</field>
+        <field name="type">list</field>
         <field name="inherit_id" ref="purchase.purchase_order_kpis_tree" />
         <field name="arch" type="xml">
-            <xpath expr="//tree" position="attributes">
+            <xpath expr="//list" position="attributes">
                 <attribute name="decoration-danger">fop_reached == False</attribute>
             </xpath>
             <field name="origin" position="after">
