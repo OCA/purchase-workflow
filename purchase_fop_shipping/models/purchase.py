@@ -2,7 +2,7 @@
 #   @author Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import float_compare
 
@@ -58,7 +58,7 @@ class PurchaseOrder(models.Model):
         for po in self:
             if not po.force_order_under_fop and not po.fop_reached:
                 raise UserError(
-                    _(
+                    self.env._(
                         "You cannot confirm a purchase order with amount under "
                         'FOP shipping. To force confirm you must belongs to "FOP'
                         ' shipping Manager".'
