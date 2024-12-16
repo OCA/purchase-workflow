@@ -27,8 +27,7 @@
                                 title="Value to be used if individual category is set to 'System default'"
                                 aria-label="Value set here is default. Specific values are set per category."
                                 role="img"
-                            >
-                            </span>
+                            />
                             <div class="text-muted">
                                 Set the default procurement purchase grouping type
                             </div>
@@ -44,8 +43,7 @@
                                         name="procured_purchase_grouping"
                                         class="oe_inline"
                                         required="1"
-                                    >
-                                    </field>
+                                    />
                                 </div>
                             </div>
                         </div>
