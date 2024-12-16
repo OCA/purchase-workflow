@@ -17,13 +17,13 @@ Procurement Purchase No Grouping
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/purchase-workflow/tree/17.0/procurement_purchase_no_grouping
+    :target: https://github.com/OCA/purchase-workflow/tree/18.0/procurement_purchase_no_grouping
     :alt: OCA/purchase-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/purchase-workflow-17-0/purchase-workflow-17-0-procurement_purchase_no_grouping
+    :target: https://translation.odoo-community.org/projects/purchase-workflow-18-0/purchase-workflow-18-0-procurement_purchase_no_grouping
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&target_branch=17.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -43,16 +43,16 @@ Configuration
 Go to each product category, and select one of these values in the field
 "Procured purchase grouping":
 
--  *Standard grouping*: With this option, procurements will generate
-   purchase orders as always, grouping lines and orders when possible.
--  *No line grouping*: With this value, if there are any open purchase
-   order for the same supplier, it will be reused, but lines won't be
-   merged.
--  *No order grouping*: This option will prevent any kind of grouping.
--  *<empty>*: If you select nothing, default value set up in System
-   settings will be applied.
--  *Product category grouping*: This option groups products in the same
-   purchase order that belongs to the same product category.
+- *Standard grouping*: With this option, procurements will generate
+  purchase orders as always, grouping lines and orders when possible.
+- *No line grouping*: With this value, if there are any open purchase
+  order for the same supplier, it will be reused, but lines won't be
+  merged.
+- *No order grouping*: This option will prevent any kind of grouping.
+- *<empty>*: If you select nothing, default value set up in System
+  settings will be applied.
+- *Product category grouping*: This option groups products in the same
+  purchase order that belongs to the same product category.
 
 System default behaviour can be set up in System settings / Purchase /
 Procurement Purchase Grouping
@@ -60,11 +60,11 @@ Procurement Purchase Grouping
 Known issues / Roadmap
 ======================
 
--  If you reuse the same procurement group between several sales orders,
-   and using "No line grouping", they will be grouped anyways, as the
-   criteria for grouping or not should be kept to the same procurement
-   group, as it's the only way to get proper quantities updates after
-   confirming the sales order.
+- If you reuse the same procurement group between several sales orders,
+  and using "No line grouping", they will be grouped anyways, as the
+  criteria for grouping or not should be kept to the same procurement
+  group, as it's the only way to get proper quantities updates after
+  confirming the sales order.
 
 Bug Tracker
 ===========
@@ -72,7 +72,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/purchase-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20procurement_purchase_no_grouping%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20procurement_purchase_no_grouping%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -88,21 +88,21 @@ Authors
 Contributors
 ------------
 
--  `Tecnativa <https://www.tecnativa.com>`__:
+- `Tecnativa <https://www.tecnativa.com>`__:
 
-   -  Pedro M. Baeza
-   -  Sergio Teruel
-   -  Carlos Dauden
-   -  Alexandre Díaz
-   -  Víctor Martínez
-   -  César A. Sánchez
+  - Pedro M. Baeza
+  - Sergio Teruel
+  - Carlos Dauden
+  - Alexandre Díaz
+  - Víctor Martínez
+  - César A. Sánchez
 
--  Ana Juaristi <ajuaristo@gmail.com>
--  Alfredo de la Fuente <alfredodelafuente@avanzosc.es>
--  Radovan Skolnik <radovan@skolnik.info>
--  `Pesol <https://www.pesol.es>`__:
+- Ana Juaristi <ajuaristo@gmail.com>
+- Alfredo de la Fuente <alfredodelafuente@avanzosc.es>
+- Radovan Skolnik <radovan@skolnik.info>
+- `Pesol <https://www.pesol.es>`__:
 
-   -  Jonathan Oscategui Taza <info@pesol.es>
+  - Jonathan Oscategui Taza <info@pesol.es>
 
 Maintainers
 -----------
@@ -117,6 +117,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/17.0/procurement_purchase_no_grouping>`_ project on GitHub.
+This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/18.0/procurement_purchase_no_grouping>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
