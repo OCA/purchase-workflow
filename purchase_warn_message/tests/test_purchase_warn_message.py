@@ -36,3 +36,26 @@ class TestPurchaseWarnMessage(TransactionCase):
         self.assertEqual(
             purchase.purchase_warn_msg, self.warn_msg_parent + "\n" + self.warn_msg
         )
+
+    def test_partner_with_no_warn(self):
+        purchase = self.env["purchase.order"].create({"partner_id": self.partner.id})
+        self.assertEqual(purchase.purchase_warn_msg, self.warn_msg)
+
+    def test_purchase_order_in_done_state(self):
+        purchase = self.env["purchase.order"].create({"partner_id": self.partner.id})
+        purchase.state = "done"
+        purchase._compute_purchase_warn_msg()
+        self.assertEqual(purchase.purchase_warn_msg, "")
+
+    def test_purchase_order_in_cancel_state(self):
+        purchase = self.env["purchase.order"].create({"partner_id": self.partner.id})
+        purchase.state = "cancel"
+        purchase._compute_purchase_warn_msg()
+        self.assertEqual(purchase.purchase_warn_msg, "")
+
+    def test_parent_and_partner_warn_msg(self):
+        self.partner.update({"parent_id": self.parent.id})
+        purchase = self.env["purchase.order"].create({"partner_id": self.partner.id})
+        self.assertEqual(
+            purchase.purchase_warn_msg, self.warn_msg_parent + "\n" + self.warn_msg
+        )
