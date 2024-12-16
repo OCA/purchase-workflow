@@ -10,3 +10,4 @@
 - Radovan Skolnik \<<radovan@skolnik.info>\>
 - [Pesol](https://www.pesol.es):
   - Jonathan Oscategui Taza \<<info@pesol.es>\>
+- `Heliconia Solutions Pvt. Ltd. <https://www.heliconia.io>`_
