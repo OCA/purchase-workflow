@@ -13,7 +13,7 @@
                 <field
                     name="force_invoiced"
                     optional="show"
-                    attrs="{'column_invisible': [('parent.state', 'not in', ['purchase', 'done'])]}"
+                    attrs="{'column_invisible': [('parent.state', 'not in', ['purchase', 'done'])], 'readonly': [('parent.state', 'not in', ['purchase', 'done'])]}"
                 />
             </xpath>
         </field>
