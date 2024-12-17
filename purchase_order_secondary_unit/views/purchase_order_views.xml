@@ -24,7 +24,8 @@
                                     '&amp;', ('product_tmpl_id.product_variant_ids', 'in', [product_id]),
                                             ('product_id', '=', False)] or [(0, '=', 1)]"
                         options="{'no_create': True}"
-                        attrs="{'readonly': [('state', 'in', ('purchase', 'done', 'cancel'))], 'required': [('secondary_uom_qty', '!=', 0.0)]}"
+                        readonly="state in ['purchase','done', 'cancel']"
+                        required="secondary_uom_qty != 0.0"
                     />
                 </t>
             </xpath>
@@ -34,7 +35,7 @@
             >
                 <field
                     name="secondary_uom_qty"
-                    attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
+                    readonly="state in ['done', 'cancel']"
                     groups="uom.group_uom"
                     optional="show"
                 />
@@ -44,7 +45,8 @@
                                 '&amp;', ('product_tmpl_id.product_variant_ids', 'in', [product_id]),
                                          ('product_id', '=', False)] or [(0, '=', 1)]"
                     options="{'no_create': True}"
-                    attrs="{'readonly': [('state', 'in', ('purchase','done', 'cancel'))], 'required': [('secondary_uom_qty', '!=', 0.0)]}"
+                    readonly="state in ['purchase','done', 'cancel']"
+                    required="secondary_uom_qty != 0.0"
                     groups="uom.group_uom"
                     optional="show"
                 />
