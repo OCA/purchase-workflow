@@ -17,7 +17,7 @@ msgstr ""
 #: model:mail.template,body_html:purchase_substate.mail_template_data_purchase_substate_wait_docs
 msgid ""
 "<div>\n"
-"    Dear ${object.partner_id.name or 'customer'},<br/>\n"
+"    Dear <t t-out=\"object.partner_id.name or 'Customer'\"/>,<br/>\n"
 "    Thank you for your order.<br/>\n"
 "        In order to validate your order we need the legal documentation.\n"
 "       <br/><br/>\n"
@@ -31,7 +31,7 @@ msgstr ""
 #: model:mail.template,body_html:purchase_substate.mail_template_data_purchase_substate_delivery
 msgid ""
 "<div>\n"
-"    Dear ${object.partner_id.name or 'customer'},<br/>\n"
+"    Dear <t t-out=\"object.partner_id.name or 'Customer'\"/>,<br/>\n"
 "    Thank you for your order.<br/>\n"
 "        You order is being prepared for delivery.\n"
 "        You will receive a delivery tracking link to follow your delivery.\n"
@@ -105,7 +105,7 @@ msgstr ""
 #. module: purchase_substate
 #: model:mail.template,subject:purchase_substate.mail_template_data_purchase_substate_delivery
 #: model:mail.template,subject:purchase_substate.mail_template_data_purchase_substate_wait_docs
-msgid "Reception of ${object.name}"
+msgid "Reception of {{ object.name }}"
 msgstr ""
 
 #. module: purchase_substate
