@@ -1,7 +1,6 @@
 <!-- Copyright 2020 - TODAY, Marcel Savegnago - Escodoo
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
-
     <record model="ir.ui.view" id="res_config_settings_view_form_purchase">
         <field
             name="name"
@@ -14,7 +13,6 @@
         />
         <field name="arch" type="xml">
             <xpath expr="//block[@name='purchase_setting_container']" position="inside">
-
                 <setting
                     id="use_purchase_terms"
                     company_dependent="1"
@@ -40,6 +38,4 @@
             </xpath>
         </field>
     </record>
-
-
 </odoo>
