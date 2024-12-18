@@ -28,7 +28,7 @@ Purchase Default Terms Conditions
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module allows purchase default terms & conditions from Suppler or
+This module allows purchase default terms & conditions from Supplier or
 Company
 
 **Table of contents**
