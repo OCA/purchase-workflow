@@ -57,6 +57,5 @@ msgstr "Qty da Ricevere"
 #. module: purchase_open_qty
 #. odoo-python
 #: code:addons/purchase_open_qty/models/purchase_order.py:0
-#, python-format
 msgid "Unsupported search operator"
 msgstr "Operatore di ricerca non supportato"
