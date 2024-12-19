@@ -13,11 +13,11 @@ class Picking(models.Model):
     def _purchase_order_picking_confirm_message_content(self, picking, purchase_dict):
         if not purchase_dict:
             purchase_dict = {}
-        title = _("Receipt confirmation %s") % (picking.name)
-        message = "<h3>%s</h3>" % title
+        title = _("Receipt confirmation {}").format(picking.name)
+        message = f"<h3>{title}</h3>"
         message += _(
-            "The following items have now been received in Incoming Shipment %s:"
-        ) % (picking.name)
+            "The following items have now been received in Incoming Shipment {}:"
+        ).format(picking.name)
         message += "<ul>"
         for purchase_line_id in purchase_dict.values():
             display_name = purchase_line_id["purchase_line"].product_id.display_name
