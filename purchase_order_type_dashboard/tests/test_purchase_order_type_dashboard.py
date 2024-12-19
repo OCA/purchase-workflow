@@ -3,12 +3,14 @@
 
 import time
 
-from odoo.tests import common, tagged
+from odoo.tests import tagged
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
 @tagged("post_install", "-at_install")
-class TestPurchaseOrderTypeDashboard(common.TransactionCase):
+class TestPurchaseOrderTypeDashboard(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
