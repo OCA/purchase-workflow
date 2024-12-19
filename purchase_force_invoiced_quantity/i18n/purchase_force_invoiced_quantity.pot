@@ -1,0 +1,41 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_force_invoiced_quantity
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_force_invoiced_quantity
+#: model:ir.model.fields,field_description:purchase_force_invoiced_quantity.field_purchase_order_line__force_invoiced
+msgid "Force Invoiced"
+msgstr ""
+
+#. module: purchase_force_invoiced_quantity
+#: model:product.template,name:purchase_force_invoiced_quantity.demo_product_purchase_force_invoiced_qty_1_product_template
+msgid "Purchase Force Invoiced qty product 1"
+msgstr ""
+
+#. module: purchase_force_invoiced_quantity
+#: model:product.template,name:purchase_force_invoiced_quantity.demo_product_purchase_force_invoiced_qty_2_product_template
+msgid "Purchase Force Invoiced qty product 2"
+msgstr ""
+
+#. module: purchase_force_invoiced_quantity
+#: model:ir.model,name:purchase_force_invoiced_quantity.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr ""
+
+#. module: purchase_force_invoiced_quantity
+#: model:ir.model.fields,help:purchase_force_invoiced_quantity.field_purchase_order_line__force_invoiced
+msgid ""
+"This amount will be deducted from quantity to invoice.\n"
+"quantity to invoice = delivered - invoiced - force invoiced"
+msgstr ""
