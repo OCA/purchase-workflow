@@ -61,3 +61,9 @@ class TestPurchaseOrderArchive(TransactionCase):
         self.assertEqual(self.po_done.active, False)
         self.po_cancel.toggle_active()
         self.assertEqual(self.po_cancel.active, False)
+
+    def test_check_state_constraint(self):
+        """Test that archived orders cannot have their state changed"""
+        self.po_done.toggle_active()
+        with self.assertRaises(UserError):
+            self.po_done.state = "purchase"
