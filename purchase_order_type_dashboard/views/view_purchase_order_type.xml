@@ -76,29 +76,29 @@
                         <div class="container">
                             <div class="row">
                                 <div class="o_kanban_card_manage_pane">
-                                        <div class="row">
-                                            <div
+                                    <div class="row">
+                                        <div
                                             class="col-6 o_kanban_card_manage_section o_kanban_manage_view"
                                         >
-                                                <h5
+                                            <h5
                                                 role="menuitem"
                                                 class="o_kanban_card_manage_title"
                                             >
-                                                    <span>View</span>
-                                                </h5>
-                                                <div role="menuitem">
-                                                    <a
+                                                <span>View</span>
+                                            </h5>
+                                            <div role="menuitem">
+                                                <a
                                                     name="%(action_purchase_rfq_from_dashboard)d"
                                                     type="action"
                                                 >
                                                         All
                                                     </a>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
                     </t>
                     <t t-name="kanban-box">
                         <div t-attf-class="o_kanban_card_header">
@@ -127,8 +127,8 @@
                                             context="{'search_default_draft': 1}"
                                         >
                                             <t
-                                                t-esc="record.state_rfq_po_count.value"
-                                            /> RFQs
+                                            t-esc="record.state_rfq_po_count.value"
+                                        /> RFQs
                                         </button>
                                     </div>
                                     <div class="col-6 o_kanban_primary_right">
