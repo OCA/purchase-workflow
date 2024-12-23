@@ -6,7 +6,6 @@ from odoo.exceptions import ValidationError
 
 
 class ProductSupplierinfo(models.Model):
-
     _inherit = "product.supplierinfo"
 
     delay = fields.Integer(
