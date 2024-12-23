@@ -32,12 +32,18 @@ class PurchaseOrderLine(models.Model):
         if not self.product_id or not self.date_planned:
             return False
         # When coming from an onchange, the 'order_id.date_order' could be False
-        date_order = self.order_id.date_order or self.order_id._origin.date_order
+        date_order = (
+            self.order_id.date_order
+            and self.order_id.date_order.date()
+            or fields.Date.context_today(self),
+        )
+        params = self._get_select_sellers_params()
         seller = self.product_id._select_seller(
             partner_id=self.partner_id,
             quantity=self.product_qty,
-            date=date_order and date_order.date(),
+            date=date_order,
             uom_id=self.product_uom,
+            params=params,
         )
         if not seller:
             return False
@@ -45,7 +51,9 @@ class PurchaseOrderLine(models.Model):
 
     def _compute_report_date_planned(self):
         for line in self:
-            line.report_date_planned = line.date_planned
             if line.date_planned and line.supplier_date_planned:
-                if line.supplier_date_planned < line.date_planned:
-                    line.report_date_planned = line.supplier_date_planned
+                line.report_date_planned = min(
+                    line.date_planned, line.supplier_date_planned
+                )
+            else:
+                line.report_date_planned = line.date_planned

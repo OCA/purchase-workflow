@@ -15,6 +15,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #. module: vendor_transport_lead_time
+#: model_terms:ir.ui.view,arch_db:vendor_transport_lead_time.report_purchaseorder_document
+msgid "<strong>Date Req.</strong>"
+msgstr ""
+
+#. module: vendor_transport_lead_time
 #: model:ir.model.fields,field_description:vendor_transport_lead_time.field_purchase_order_line__report_date_planned
 msgid "Date planned (used by report)"
 msgstr ""
@@ -22,24 +27,6 @@ msgstr ""
 #. module: vendor_transport_lead_time
 #: model:ir.model.fields,field_description:vendor_transport_lead_time.field_product_supplierinfo__delay
 msgid "Delivery Lead Time"
-msgstr ""
-
-#. module: vendor_transport_lead_time
-#: model:ir.model.fields,field_description:vendor_transport_lead_time.field_product_supplierinfo__display_name
-#: model:ir.model.fields,field_description:vendor_transport_lead_time.field_purchase_order_line__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: vendor_transport_lead_time
-#: model:ir.model.fields,field_description:vendor_transport_lead_time.field_product_supplierinfo__id
-#: model:ir.model.fields,field_description:vendor_transport_lead_time.field_purchase_order_line__id
-msgid "ID"
-msgstr ""
-
-#. module: vendor_transport_lead_time
-#: model:ir.model.fields,field_description:vendor_transport_lead_time.field_product_supplierinfo____last_update
-#: model:ir.model.fields,field_description:vendor_transport_lead_time.field_purchase_order_line____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: vendor_transport_lead_time
@@ -86,8 +73,8 @@ msgid "Transport lead time in days."
 msgstr ""
 
 #. module: vendor_transport_lead_time
+#. odoo-python
 #: code:addons/vendor_transport_lead_time/models/product_supplierinfo.py:0
-#, python-format
 msgid "You can't set a delay inferior to the transport delay."
 msgstr ""
 

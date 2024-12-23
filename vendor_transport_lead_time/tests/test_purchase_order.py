@@ -2,17 +2,16 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
 from odoo import fields
-from odoo.tests.common import Form, SavepointCase
+from odoo.tests import Form, tagged
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestPurchaseOrderDelay(SavepointCase):
-    at_install = False
-    post_install = True
-
+@tagged("post_install", "-at_install")
+class TestPurchaseOrderDelay(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.vendor = cls.env["res.partner"].create({"name": "vendor1"})
         cls.product_consu = cls.env["product.product"].create(
             {
@@ -23,7 +22,7 @@ class TestPurchaseOrderDelay(SavepointCase):
                         0,
                         0,
                         {
-                            "name": cls.vendor.id,
+                            "partner_id": cls.vendor.id,
                             "min_qty": 1,
                             "price": 10,
                             "supplier_delay": 6,

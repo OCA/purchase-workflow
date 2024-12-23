@@ -17,6 +17,11 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: vendor_transport_lead_time
+#: model_terms:ir.ui.view,arch_db:vendor_transport_lead_time.report_purchaseorder_document
+msgid "<strong>Date Req.</strong>"
+msgstr ""
+
+#. module: vendor_transport_lead_time
 #: model:ir.model.fields,field_description:vendor_transport_lead_time.field_purchase_order_line__report_date_planned
 msgid "Date planned (used by report)"
 msgstr "Fecha planificada (utilizada por el informe)"
@@ -25,24 +30,6 @@ msgstr "Fecha planificada (utilizada por el informe)"
 #: model:ir.model.fields,field_description:vendor_transport_lead_time.field_product_supplierinfo__delay
 msgid "Delivery Lead Time"
 msgstr "Tiempo Inicial Entrega"
-
-#. module: vendor_transport_lead_time
-#: model:ir.model.fields,field_description:vendor_transport_lead_time.field_product_supplierinfo__display_name
-#: model:ir.model.fields,field_description:vendor_transport_lead_time.field_purchase_order_line__display_name
-msgid "Display Name"
-msgstr "Mostrar Nombre"
-
-#. module: vendor_transport_lead_time
-#: model:ir.model.fields,field_description:vendor_transport_lead_time.field_product_supplierinfo__id
-#: model:ir.model.fields,field_description:vendor_transport_lead_time.field_purchase_order_line__id
-msgid "ID"
-msgstr "ID"
-
-#. module: vendor_transport_lead_time
-#: model:ir.model.fields,field_description:vendor_transport_lead_time.field_product_supplierinfo____last_update
-#: model:ir.model.fields,field_description:vendor_transport_lead_time.field_purchase_order_line____last_update
-msgid "Last Modified on"
-msgstr "Última Modificación el"
 
 #. module: vendor_transport_lead_time
 #: model:ir.model.fields,help:vendor_transport_lead_time.field_product_supplierinfo__delay
@@ -91,8 +78,8 @@ msgid "Transport lead time in days."
 msgstr "Plazo de entrega del transporte en días."
 
 #. module: vendor_transport_lead_time
+#. odoo-python
 #: code:addons/vendor_transport_lead_time/models/product_supplierinfo.py:0
-#, python-format
 msgid "You can't set a delay inferior to the transport delay."
 msgstr "No puedes establecer un retardo inferior al retardo de transporte."
 
@@ -100,3 +87,12 @@ msgstr "No puedes establecer un retardo inferior al retardo de transporte."
 #: model_terms:ir.ui.view,arch_db:vendor_transport_lead_time.product_supplierinfo_form_view
 msgid "days"
 msgstr "días"
+
+#~ msgid "Display Name"
+#~ msgstr "Mostrar Nombre"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última Modificación el"

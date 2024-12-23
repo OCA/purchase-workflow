@@ -8,7 +8,7 @@
         <field name="inherit_id" ref="purchase.purchase_order_form" />
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='order_line']/tree/field[@name='date_planned']"
+                expr="//field[@name='order_line']/list/field[@name='date_planned']"
                 position="after"
             >
                 <field name="supplier_date_planned" optional="hide" />

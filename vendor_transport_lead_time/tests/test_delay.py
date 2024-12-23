@@ -2,22 +2,21 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
 from odoo.exceptions import ValidationError
-from odoo.tests.common import Form, SavepointCase
+from odoo.tests import Form, tagged
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestDelay(SavepointCase):
-    at_install = False
-    post_install = True
-
+@tagged("post_install", "-at_install")
+class TestDelay(BaseCommon):
     @classmethod
     def setUpClass(cls):
-        super(TestDelay, cls).setUpClass()
-        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
+        super().setUpClass()
         cls.supplier = cls.env["res.partner"].create({"name": "supplier test"})
 
     def test_set_delay_from_form(self):
         form = Form(self.env["product.supplierinfo"])
-        form.name = self.supplier
+        form.partner_id = self.supplier
         # test compute method
         form.transport_delay = 5
         self.assertEqual(form.delay, 5)
@@ -27,7 +26,7 @@ class TestDelay(SavepointCase):
 
     def test_set_delay_from_create(self):
         record = self.env["product.supplierinfo"].create(
-            {"name": self.supplier.id, "transport_delay": 5, "supplier_delay": 5}
+            {"partner_id": self.supplier.id, "transport_delay": 5, "supplier_delay": 5}
         )
         # test compute method
         self.assertEqual(record.transport_delay, 5)
@@ -45,7 +44,7 @@ class TestDelay(SavepointCase):
     def test_set_delay_from_create_with_delay(self):
         record = self.env["product.supplierinfo"].create(
             {
-                "name": self.supplier.id,
+                "partner_id": self.supplier.id,
                 "transport_delay": 5,
                 "supplier_delay": 5,
                 "delay": 12,

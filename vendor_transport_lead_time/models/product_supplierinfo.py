@@ -1,7 +1,7 @@
 # Copyright 2020 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -34,15 +34,15 @@ class ProductSupplierinfo(models.Model):
             record.supplier_delay = record.delay - record.transport_delay
 
     @api.constrains("supplier_delay")
-    def _check_delay(self):
+    def _check_supplier_delay(self):
         for seller in self:
             if seller.supplier_delay < 0:
                 raise ValidationError(
-                    _("You can't set a delay inferior to the transport delay.")
+                    self.env._("You can't set a delay inferior to the transport delay.")
                 )
 
     @api.model
-    def _setup_fields(self):
+    def _setup_fields(self):  # pylint: disable=W8110
         # "remove" the default lambda on "delay" field (from 'product' module)
         # to not let Odoo put a value in this field when 'create' is called
         self._fields["delay"].default = False
