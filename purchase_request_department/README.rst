@@ -63,8 +63,8 @@ Authors
 Contributors
 ------------
 
-- Gisela Mora Comas <gisela.mora@forgeflow.com>
-- Héctor Villarreal <hector.villarreal@forgeflow.com>
+-  Gisela Mora Comas <gisela.mora@forgeflow.com>
+-  Héctor Villarreal <hector.villarreal@forgeflow.com>
 
 Other credits
 -------------
