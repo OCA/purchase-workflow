@@ -39,7 +39,7 @@ class PurchaseOrderLine(models.Model):
                 ("product_id", "=", line.product_id.id),
                 ("date_order", ">", line.date_order),
             ]
-            if not self.env["purchase.order.line"].search(domain, limit=1):
+            if not self.env["purchase.order.line"].search_count(domain, limit=1):
                 params = {"order_id": line.order_id}
                 seller = line.product_id._select_seller(
                     partner_id=line.partner_id,
@@ -70,3 +70,5 @@ class PurchaseOrderLine(models.Model):
         # Set price
         if new_seller_price != seller.price:
             seller.sudo().price = new_seller_price
+        if self.discount != seller.discount:
+            seller.sudo().discount = self.discount
