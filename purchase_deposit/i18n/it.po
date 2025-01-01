@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-03-05 14:35+0000\n"
+"PO-Revision-Date: 2024-12-20 19:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
@@ -195,6 +195,13 @@ msgid "Purchase Deposit Product"
 msgstr "Prodotto cauzione acquisto"
 
 #. module: purchase_deposit
+#. odoo-python
+#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
+#, python-format
+msgid "Purchase Deposits"
+msgstr "Depositi acquisto"
+
+#. module: purchase_deposit
 #: model:ir.model,name:purchase_deposit.model_purchase_order
 msgid "Purchase Order"
 msgstr "Ordine di acquisto"
@@ -234,8 +241,8 @@ msgid ""
 "The product used to invoice a down payment should be of type \"Service\". "
 "Please use another product or update this product."
 msgstr ""
-"Il prodottoutilizzato per fatturare un acconto deve essere di tipo \"Servizio"
-"\". Utilizzare un altro prodotto o modificare questo."
+"Il prodottoutilizzato per fatturare un acconto deve essere di tipo "
+"\"Servizio\". Utilizzare un altro prodotto o modificare questo."
 
 #. module: purchase_deposit
 #. odoo-python

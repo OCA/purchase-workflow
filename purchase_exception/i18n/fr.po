@@ -9,28 +9,28 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-23 17:50+0000\n"
-"PO-Revision-Date: 2018-02-23 17:50+0000\n"
-"Last-Translator: Quentin THEURET <odoo@kerpeo.com>, 2018\n"
+"PO-Revision-Date: 2024-12-31 13:06+0000\n"
+"Last-Translator: samibc2c <sami.bouzidi@camptocamp.com>\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: purchase_exception
 #: model_terms:ir.ui.view,arch_db:purchase_exception.view_order_form
 msgid "<strong>There are exceptions blocking this Purchase Order:</strong>"
-msgstr ""
+msgstr "<strong>Des exceptions bloquent cet achat:</strong>"
 
 #. module: purchase_exception
 #: model:ir.model.fields,field_description:purchase_exception.field_exception_rule__model
 msgid "Apply on"
-msgstr ""
+msgstr "Appliquer sur"
 
 #. module: purchase_exception
 #: model_terms:ir.ui.view,arch_db:purchase_exception.view_purchase_order_filter
-#, fuzzy
 msgid "Blocked in Draft"
 msgstr "Bloquée en brouillon"
 
@@ -38,7 +38,7 @@ msgstr "Bloquée en brouillon"
 #: model_terms:ir.ui.view,arch_db:purchase_exception.view_order_form
 msgid ""
 "Click here to be able to confirm this Agreement regardless of the exceptions."
-msgstr ""
+msgstr "Cliquez ici pour confirmer, quelles que soient les exceptions."
 
 #. module: purchase_exception
 #: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__create_uid
@@ -57,7 +57,6 @@ msgstr "Nom affiché"
 
 #. module: purchase_exception
 #: model:ir.model,name:purchase_exception.model_exception_rule
-#, fuzzy
 msgid "Exception Rule"
 msgstr "Règles d'exception"
 
@@ -69,13 +68,12 @@ msgstr "Exceptions"
 #. module: purchase_exception
 #: model:ir.model.fields,field_description:purchase_exception.field_purchase_order__exceptions_summary
 msgid "Exceptions Summary"
-msgstr ""
+msgstr "Résumé des axceptions"
 
 #. module: purchase_exception
 #: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__exception_ids
-#, fuzzy
 msgid "Exceptions to resolve"
-msgstr "Règles d'exception"
+msgstr "Exceptions à résoudre"
 
 #. module: purchase_exception
 #: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__id
@@ -87,9 +85,8 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:purchase_exception.field_purchase_order__ignore_exception
 #: model:ir.model.fields,field_description:purchase_exception.field_purchase_order_line__ignore_exception
 #: model_terms:ir.ui.view,arch_db:purchase_exception.view_order_form
-#, fuzzy
 msgid "Ignore Exceptions"
-msgstr "Exceptions"
+msgstr "Ignorer les exceptions"
 
 #. module: purchase_exception
 #: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm____last_update
@@ -109,7 +106,7 @@ msgstr "Dernière mise à jour le"
 #. module: purchase_exception
 #: model:ir.model.fields,field_description:purchase_exception.field_purchase_order__main_exception_id
 msgid "Main Exception"
-msgstr ""
+msgstr "Exception principale"
 
 #. module: purchase_exception
 #: model:exception.rule,description:purchase_exception.po_excep_no_email
@@ -144,9 +141,8 @@ msgstr "Commande"
 
 #. module: purchase_exception
 #: model:ir.model,name:purchase_exception.model_purchase_order_line
-#, fuzzy
 msgid "Purchase Order Line"
-msgstr "Commande"
+msgstr "Ligne de commande d'achat"
 
 #. module: purchase_exception
 #: model:ir.model,name:purchase_exception.model_purchase_exception_confirm
@@ -160,15 +156,13 @@ msgstr "La quantité sur la ligne doit être positive"
 
 #. module: purchase_exception
 #: model:ir.model.fields.selection,name:purchase_exception.selection__exception_rule__model__purchase_order
-#, fuzzy
 msgid "Purchase order"
-msgstr "Commande"
+msgstr "Commande d'achat"
 
 #. module: purchase_exception
 #: model:ir.model.fields.selection,name:purchase_exception.selection__exception_rule__model__purchase_order_line
-#, fuzzy
 msgid "Purchase order line"
-msgstr "Commande"
+msgstr "Ligne de commande d'achat"
 
 #. module: purchase_exception
 #: model:ir.actions.server,name:purchase_exception.ir_cron_test_po_order_except_ir_actions_server
@@ -178,14 +172,13 @@ msgstr "Achat : Test des exceptions des commandes en brouillon"
 
 #. module: purchase_exception
 #: model:ir.model.fields,field_description:purchase_exception.field_exception_rule__purchase_ids
-#, fuzzy
 msgid "Purchases"
 msgstr "Achat"
 
 #. module: purchase_exception
 #: model:exception.rule,name:purchase_exception.pol_excep_qty_check
 msgid "Quantity not positive"
-msgstr ""
+msgstr "Quantité non positive"
 
 #~ msgid ""
 #~ "You have an outstanding\n"

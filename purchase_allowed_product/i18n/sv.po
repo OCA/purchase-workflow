@@ -9,19 +9,20 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 02:48+0000\n"
-"PO-Revision-Date: 2017-06-01 02:48+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2024-06-26 16:47+0000\n"
+"Last-Translator: jakobkrabbe <jakob@syscare.se>\n"
 "Language-Team: Swedish (https://www.transifex.com/oca/teams/23907/sv/)\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: purchase_allowed_product
 #: model:ir.model,name:purchase_allowed_product.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Kontakt"
 
 #. module: purchase_allowed_product
 #: model:ir.model.fields,help:purchase_allowed_product.field_res_partner__use_only_supplied_product
@@ -31,6 +32,9 @@ msgid ""
 "supplied by this supplier when creating a supplier invoice or purchase for "
 "it. This value can be changed by invoice or purchase."
 msgstr ""
+"Om det är markerat kan du som standard bara välja produkter som kan "
+"levereras av den här leverantören när du skapar en leverantörsfaktura eller "
+"ett inköp för den. Detta värde kan ändras via fakturan eller inköpet."
 
 #. module: purchase_allowed_product
 #: model:ir.model.fields,help:purchase_allowed_product.field_account_bank_statement_line__use_only_supplied_product
@@ -40,37 +44,39 @@ msgstr ""
 #: model:ir.model.fields,help:purchase_allowed_product.field_supplied_product_mixin__use_only_supplied_product
 msgid "If checked, only the products provided by this supplier will be shown."
 msgstr ""
+"Om den är markerad visas endast de produkter som tillhandahålls av denna "
+"leverantör."
 
 #. module: purchase_allowed_product
 #: model:ir.model,name:purchase_allowed_product.model_account_move
 msgid "Journal Entry"
-msgstr ""
+msgstr "Journalanteckning"
 
 #. module: purchase_allowed_product
 #: model:ir.model,name:purchase_allowed_product.model_supplied_product_mixin
 msgid "Mixin for documents that want to restrict products"
-msgstr ""
+msgstr "Mixin för dokument som vill begränsa produkter"
 
 #. module: purchase_allowed_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_res_partner__use_only_supplied_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_res_users__use_only_supplied_product
 msgid "Order and invoice only supplied products"
-msgstr ""
+msgstr "Beställ och fakturera endast levererade produkter"
 
 #. module: purchase_allowed_product
 #: model:ir.model,name:purchase_allowed_product.model_product_product
 msgid "Product Variant"
-msgstr ""
+msgstr "Produktvariant"
 
 #. module: purchase_allowed_product
 #: model:ir.model,name:purchase_allowed_product.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Inköpsorder"
 
 #. module: purchase_allowed_product
 #: model:ir.model,name:purchase_allowed_product.model_product_supplierinfo
 msgid "Supplier Pricelist"
-msgstr ""
+msgstr "Prislista för leverantörer"
 
 #. module: purchase_allowed_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_account_bank_statement_line__use_only_supplied_product
@@ -79,12 +85,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_purchase_order__use_only_supplied_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin__use_only_supplied_product
 msgid "Use only allowed products"
-msgstr ""
+msgstr "Använd endast tillåtna produkter"
 
 #. module: purchase_allowed_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_product_supplierinfo__partner_id
 msgid "Vendor"
-msgstr ""
+msgstr "Leverantör"
 
 #~ msgid "ID"
 #~ msgstr "ID"

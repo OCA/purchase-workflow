@@ -193,6 +193,13 @@ msgid "Purchase Deposit Product"
 msgstr "Article d'acompte à l'achat"
 
 #. module: purchase_deposit
+#. odoo-python
+#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
+#, python-format
+msgid "Purchase Deposits"
+msgstr ""
+
+#. module: purchase_deposit
 #: model:ir.model,name:purchase_deposit.model_purchase_order
 msgid "Purchase Order"
 msgstr "Commande fournisseur"

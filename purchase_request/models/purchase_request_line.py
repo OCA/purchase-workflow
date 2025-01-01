@@ -8,8 +8,9 @@ _STATES = [
     ("draft", "Draft"),
     ("to_approve", "To be approved"),
     ("approved", "Approved"),
-    ("rejected", "Rejected"),
+    ("in_progress", "In progress"),
     ("done", "Done"),
+    ("rejected", "Rejected"),
 ]
 
 
@@ -247,7 +248,13 @@ class PurchaseRequestLine(models.Model):
     )
     def _compute_is_editable(self):
         for rec in self:
-            if rec.request_id.state in ("to_approve", "approved", "rejected", "done"):
+            if rec.request_id.state in (
+                "to_approve",
+                "approved",
+                "rejected",
+                "in_progress",
+                "done",
+            ):
                 rec.is_editable = False
             else:
                 rec.is_editable = True

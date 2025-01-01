@@ -34,6 +34,12 @@ msgid "Advance Payment Status"
 msgstr "Statut de l'acompte"
 
 #. module: purchase_advance_payment
+#: model:ir.actions.act_window,name:purchase_advance_payment.action_account_advance_payments_payable
+#: model:ir.ui.menu,name:purchase_advance_payment.menu_account_advance_payments_payable
+msgid "Advance Payments"
+msgstr ""
+
+#. module: purchase_advance_payment
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.purchase_order_kpis_tree
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.purchase_order_view_tree
 msgid "Amount Residual"
@@ -67,6 +73,16 @@ msgstr "Le montant de l'acompte est supérieur au montant résiduel de l'achat"
 #, python-format
 msgid "Amount of advance must be positive."
 msgstr "Le montant de l'acompte doit être positif."
+
+#. module: purchase_advance_payment
+#: model:ir.model.fields,field_description:purchase_advance_payment.field_res_config_settings__auto_post_purchase_advance_payments
+msgid "Auto Post Purchase Advance Payments"
+msgstr ""
+
+#. module: purchase_advance_payment
+#: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__available_payment_method_line_ids
+msgid "Available Payment Method Line"
+msgstr ""
 
 #. module: purchase_advance_payment
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_voucher_wizard
@@ -110,6 +126,11 @@ msgid "ID"
 msgstr ""
 
 #. module: purchase_advance_payment
+#: model_terms:ir.ui.view,arch_db:purchase_advance_payment.res_config_settings_view_form_purchase
+msgid "If enabled, advance payments created from POs are automatically posted."
+msgstr ""
+
+#. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__journal_id
 msgid "Journal"
 msgstr ""
@@ -145,19 +166,19 @@ msgid "Not Paid"
 msgstr "Non payé"
 
 #. module: purchase_advance_payment
-#: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_voucher_wizard
-msgid "Operation"
-msgstr "Opération"
+#: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_payment_search
+msgid "Not Reconciled"
+msgstr ""
+
+#. module: purchase_advance_payment
+#: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_payment_search
+msgid "Not Sent"
+msgstr ""
 
 #. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__order_id
 msgid "Order"
 msgstr "Commande"
-
-#. module: purchase_advance_payment
-#: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_voucher_wizard
-msgid "Order Currency"
-msgstr "Devise de la commande"
 
 #. module: purchase_advance_payment
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_voucher_wizard
@@ -180,9 +201,14 @@ msgid "Pay purchase advanced"
 msgstr "Payer un acompte d'achat"
 
 #. module: purchase_advance_payment
-#: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_voucher_wizard
+#: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__payment_method_line_id
 msgid "Payment Method"
 msgstr "Mode de paiement"
+
+#. module: purchase_advance_payment
+#: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_supplier_payment_tree
+msgid "Payment Sent?"
+msgstr ""
 
 #. module: purchase_advance_payment
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.purchase_order_form
@@ -198,6 +224,11 @@ msgstr "Lignes de paiements"
 #: model:ir.model,name:purchase_advance_payment.model_account_payment
 msgid "Payments"
 msgstr "Paiements"
+
+#. module: purchase_advance_payment
+#: model:ir.model,name:purchase_advance_payment.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr ""
 
 #. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_account_payment__purchase_id
@@ -223,3 +254,14 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_purchase_order__amount_residual
 msgid "Residual amount"
 msgstr "Montant résiduel"
+
+#. module: purchase_advance_payment
+#: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_payment_search
+msgid "Vendor Advance Payments"
+msgstr ""
+
+#~ msgid "Operation"
+#~ msgstr "Opération"
+
+#~ msgid "Order Currency"
+#~ msgstr "Devise de la commande"

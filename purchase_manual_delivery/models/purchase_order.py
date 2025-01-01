@@ -57,6 +57,7 @@ class PurchaseOrderLine(models.Model):
         "move_ids.state",
         "move_ids.location_id",
         "move_ids.location_dest_id",
+        "product_uom_qty",
     )
     def _compute_existing_qty(self):
         for line in self:
@@ -92,10 +93,13 @@ class PurchaseOrderLine(models.Model):
                             move.product_uom_qty, line.product_uom
                         )
             line.existing_qty = total
-            if float_compare(
-                line.product_uom_qty,
-                line.existing_qty,
-                precision_digits=precision_digits,
+            if (
+                float_compare(
+                    line.product_qty,
+                    line.existing_qty,
+                    precision_digits=precision_digits,
+                )
+                == 1
             ):
                 line.pending_to_receive = True
             else:

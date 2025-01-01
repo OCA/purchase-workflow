@@ -654,7 +654,7 @@
                     <field
                     name="name"
                     string="Order"
-                    filter_domain="['|', '|', ('name', 'ilike', self), ('partner_id', 'child_of', self)]"
+                    filter_domain="['|', ('name', 'ilike', self), ('partner_id', 'child_of', self)]"
                 />
                     <field name="partner_id" operator="child_of" />
                     <field name="user_id" />

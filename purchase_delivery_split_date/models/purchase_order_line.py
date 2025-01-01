@@ -45,7 +45,10 @@ class PurchaseOrderLine(models.Model):
         moves = self.env["stock.move"]
         # Group the order lines by group key
         order_lines = sorted(
-            self.filtered(lambda l: not l.display_type),
+            self.filtered(
+                lambda l: not l.display_type
+                and l.product_id.type in ["product", "consu"]
+            ),
             key=lambda l: self._get_sorted_keys(l),
         )
         date_groups = groupby(

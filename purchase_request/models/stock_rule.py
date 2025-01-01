@@ -41,6 +41,8 @@ class StockRule(models.Model):
             "company_id": values["company_id"].id,
             "picking_type_id": self.picking_type_id.id,
             "group_id": group_id or False,
+            "requested_by": self.env.context.get("uid", self.env.uid),
+            "assigned_to": False,
         }
 
     @api.model

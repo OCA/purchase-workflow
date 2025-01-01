@@ -17,14 +17,17 @@ class TestSalePurchaseForceVendor(TestSalePurchaseForceVendorBase):
     def test_misc_force_vendor_restrict(self):
         self.env.company.sale_purchase_force_vendor_restrict = True
         self.sale_order.action_confirm()
-        line_0 = self.sale_order.order_line[0]
-        partners = self.env["res.partner"].search(line_0.vendor_id_domain)
-        self.assertNotIn(self.partner, partners)
-        self.assertIn(self.vendor_a, partners)
-        self.assertIn(self.vendor_b, partners)
+        partners_sol_a = self.env["res.partner"].search(self.sol_a.vendor_id_domain)
+        self.assertNotIn(self.partner, partners_sol_a)
+        self.assertIn(self.vendor_a, partners_sol_a)
+        self.assertIn(self.vendor_b, partners_sol_a)
+        partners_sol_b = self.env["res.partner"].search(self.sol_b.vendor_id_domain)
+        self.assertNotIn(self.partner, partners_sol_b)
+        self.assertNotIn(self.vendor_a, partners_sol_b)
+        self.assertIn(self.vendor_b, partners_sol_b)
 
     def test_misc_not_force_vendor_restrict(self):
         self.env.company.sale_purchase_force_vendor_restrict = False
         self.sale_order.action_confirm()
-        line_0 = self.sale_order.order_line[0]
-        self.assertEqual(line_0.vendor_id_domain, [])
+        self.assertEqual(self.sol_a.vendor_id_domain, [])
+        self.assertEqual(self.sol_b.vendor_id_domain, [])

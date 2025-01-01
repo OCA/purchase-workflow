@@ -68,11 +68,6 @@ msgid "Purchase Report"
 msgstr ""
 
 #. module: purchase_discount
-#: model:ir.model,name:purchase_discount.model_stock_move
-msgid "Stock Move"
-msgstr ""
-
-#. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_product_supplierinfo
 msgid "Supplier Pricelist"
 msgstr ""
