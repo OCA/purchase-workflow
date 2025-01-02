@@ -58,8 +58,8 @@ To use this module, you need to:
 Known issues / Roadmap
 ======================
 
--  Refactor that module to share algorithm with similar module
-   account_invoice_supplierinfo_update.
+- Refactor that module to share algorithm with similar module
+  account_invoice_supplierinfo_update.
 
 Bug Tracker
 ===========
@@ -82,13 +82,13 @@ Authors
 Contributors
 ------------
 
--  `Tecnativa <https://www.tecnativa.com>`__:
+- `Tecnativa <https://www.tecnativa.com>`__:
 
-   -  Ernesto Tejeda
-   -  Carlos Dauden
+  - Ernesto Tejeda
+  - Carlos Dauden
 
--  Daniel Reis <dreis@opensourceintegrators.com>, `Open Source
-   Integrators <https://www.opensourceintegrators.eu>`__:
+- Daniel Reis <dreis@opensourceintegrators.com>, `Open Source
+  Integrators <https://www.opensourceintegrators.eu>`__:
 
 Maintainers
 -----------

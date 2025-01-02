@@ -4,16 +4,16 @@
 from dateutil.relativedelta import relativedelta
 
 from odoo import fields
-from odoo.tests import Form, TransactionCase
+from odoo.models import Command
+from odoo.tests import Form
 
-from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestPurchaseOrderSupplierinfoUpdate(TransactionCase):
+class TestPurchaseOrderSupplierinfoUpdate(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
         cls.product = cls.env["product.product"].create(
             {"name": "Product Test", "type": "consu"}  # do not depend on stock module
         )
@@ -117,16 +117,16 @@ class TestPurchaseOrderSupplierinfoUpdate(TransactionCase):
         purchase_order_1.write(
             {
                 "order_line": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": self.product_2.id,
                             "product_uom": self.product_2.uom_po_id.id,
                             "price_unit": 20.00,
-                        },
+                            "discount": 10.00,
+                        }
                     )
                 ]
             }
         )
         self.assertEqual(self.supplierinfo_2.price, 20)
+        self.assertEqual(self.supplierinfo_2.discount, 10)
