@@ -17,22 +17,24 @@ Purchase Force Invoiced Quantity
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/purchase-workflow/tree/16.0/purchase_force_invoiced_quantity
+    :target: https://github.com/OCA/purchase-workflow/tree/18.0/purchase_force_invoiced_quantity
     :alt: OCA/purchase-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/purchase-workflow-16-0/purchase-workflow-16-0-purchase_force_invoiced_quantity
+    :target: https://translation.odoo-community.org/projects/purchase-workflow-18-0/purchase-workflow-18-0-purchase_force_invoiced_quantity
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module add a new "Force Invoiced" field to purchase order lines. This field is used as modifier when computing quantity to be invoiced.
+This module add a new "Force Invoiced" field to purchase order lines.
+This field is used as modifier when computing quantity to be invoiced.
 
-Current behaviour: quantity to invoice = delivered -  invoiced
+Current behaviour: quantity to invoice = delivered - invoiced
 
-Implemented behaviour: quantity to invoice = delivered -  invoiced - force invoiced
+Implemented behaviour: quantity to invoice = delivered - invoiced -
+force invoiced
 
 **Table of contents**
 
@@ -42,24 +44,28 @@ Implemented behaviour: quantity to invoice = delivered -  invoiced - force invoi
 Use Cases / Context
 ===================
 
-This module implements additional featured for the `Purchase Force Invoiced <https://github.com/OCA/purchase-workflow/tree/16.0/purchase_force_invoiced>`_ module.
+This module implements additional featured for the `Purchase Force
+Invoiced <https://github.com/OCA/purchase-workflow/tree/16.0/purchase_force_invoiced>`__
+module.
 
 It covers the following scenarios:
 
-* One need to modify the quantity to be invoiced after the products were received. Eg .you negotiated an extra discount from your vendor.
-* You would like to fix some issues with quantities invoiced cause by incorrect data entry.
+- One need to modify the quantity to be invoiced after the products were
+  received. Eg .you negotiated an extra discount from your vendor.
+- You would like to fix some issues with quantities invoiced cause by
+  incorrect data entry.
 
 Configuration
 =============
 
 No configuration is required.
 
-
 Usage
 =====
 
-Open a purchase order and add an amount into the "Force Invoiced" field. Amount to invoice will be adjusted accordingly.
-This field is optional so you can hide it if you don't need it.
+Open a purchase order and add an amount into the "Force Invoiced" field.
+Amount to invoice will be adjusted accordingly. This field is optional
+so you can hide it if you don't need it.
 
 Bug Tracker
 ===========
@@ -67,7 +73,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/purchase-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_force_invoiced_quantity%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_force_invoiced_quantity%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -75,20 +81,22 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Cetmix
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Cetmix <http://cetmix.com>`_
+- `Cetmix <http://cetmix.com>`__
 
- * Ivan Sokolov
- * Dessan Hemrayev
+..
+
+   - Ivan Sokolov
+   - Dessan Hemrayev
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -100,6 +108,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/16.0/purchase_force_invoiced_quantity>`_ project on GitHub.
+This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/18.0/purchase_force_invoiced_quantity>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
