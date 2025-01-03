@@ -21,7 +21,7 @@ class PurchaseOrderLine(models.Model):
         Compute the quantity to invoice.
         """
         res = super()._compute_qty_invoiced()
-        for line in self.filtered(lambda l: l.force_invoiced):
+        for line in self.filtered(lambda ln: ln.force_invoiced):
             # compute qty_to_invoice
             if (
                 line.order_id.state in ["purchase", "done"]
