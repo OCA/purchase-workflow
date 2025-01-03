@@ -7,13 +7,14 @@
         <field name="priority" eval="99" />
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='order_line']/tree/field[@name='qty_invoiced']"
+                expr="//field[@name='order_line']/list/field[@name='qty_invoiced']"
                 position="after"
             >
                 <field
                     name="force_invoiced"
                     optional="show"
-                    attrs="{'column_invisible': [('parent.state', 'not in', ['purchase', 'done'])], 'readonly': [('parent.state', 'not in', ['purchase', 'done'])]}"
+                    column_invisible="parent.state not in ('purchase', 'done')"
+                    readonly="parent.state not in ('purchase', 'done')"
                 />
             </xpath>
         </field>
