@@ -4,7 +4,7 @@
 {
     "name": "Purchase Force Invoiced Quantity",
     "summary": "Add manual invoice quantity in purchase order lines",
-    "version": "16.0.1.0.0",
+    "version": "18.0.1.0.0",
     "author": "Cetmix, Odoo Community Association (OCA)",
     "category": "Purchase Management",
     "license": "AGPL-3",
