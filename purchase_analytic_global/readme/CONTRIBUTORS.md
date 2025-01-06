@@ -2,6 +2,7 @@
   - Guewen Baconnier \<<guewen.baconnier@camptocamp.com>\>
   - Yannick Vaucher \<<yannick.vaucher@camptocamp.com>\>
   - Iryna Vyshnevska \<<i.vyshnevska@camptocamp.com>\>
+  - Maksym Yankin \<<maksym.yankin@camptocamp.com>\>
 
 - [ERP Harbor](https://erpharbor.com):  
   - Sudhir Arya \<<sudhir@erpharbor.com>\>
