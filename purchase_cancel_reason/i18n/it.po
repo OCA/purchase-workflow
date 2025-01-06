@@ -26,14 +26,11 @@ msgstr "Richiede il motivo per l'annullamento dell'ordine di acquisto."
 
 #. module: purchase_cancel_reason
 #: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.purchase_order_form
+#: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.purchase_order_kpis_tree
+#: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.purchase_order_view_tree
 #: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel
 msgid "Cancel"
 msgstr "Annulla"
-
-#. module: purchase_cancel_reason
-#: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.purchase_order_form
-msgid "Cancellation reason:"
-msgstr "Motivo annullamento:"
 
 #. module: purchase_cancel_reason
 #: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel
@@ -119,6 +116,12 @@ msgid "Reason"
 msgstr "Motivo"
 
 #. module: purchase_cancel_reason
+#. odoo-python
+#: code:addons/purchase_cancel_reason/models/purchase_order.py:0
+msgid "Reason for Cancellation"
+msgstr ""
+
+#. module: purchase_cancel_reason
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order__cancel_reason_id
 msgid "Reason for cancellation"
 msgstr "Motivo annullamento"
@@ -135,9 +138,21 @@ msgid "Service no longer needed"
 msgstr "Servizio non più necessario"
 
 #. module: purchase_cancel_reason
+#. odoo-python
+#: code:addons/purchase_cancel_reason/models/purchase_order.py:0
+msgid ""
+"You cannot cancel any of the selected orders as they are all in 'Done' or "
+"'Canceled' state:\n"
+"%s"
+msgstr ""
+
+#. module: purchase_cancel_reason
 #: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel
 msgid "or"
 msgstr "o"
+
+#~ msgid "Cancellation reason:"
+#~ msgstr "Motivo annullamento:"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Ultima modifica il"

@@ -17,8 +17,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
-"%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"(n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #. module: purchase_cancel_reason
 #: model:ir.model,name:purchase_cancel_reason.model_purchase_order_cancel
@@ -27,13 +27,10 @@ msgstr ""
 
 #. module: purchase_cancel_reason
 #: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.purchase_order_form
+#: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.purchase_order_kpis_tree
+#: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.purchase_order_view_tree
 #: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel
 msgid "Cancel"
-msgstr ""
-
-#. module: purchase_cancel_reason
-#: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.purchase_order_form
-msgid "Cancellation reason:"
 msgstr ""
 
 #. module: purchase_cancel_reason
@@ -118,6 +115,12 @@ msgid "Reason"
 msgstr ""
 
 #. module: purchase_cancel_reason
+#. odoo-python
+#: code:addons/purchase_cancel_reason/models/purchase_order.py:0
+msgid "Reason for Cancellation"
+msgstr ""
+
+#. module: purchase_cancel_reason
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order__cancel_reason_id
 msgid "Reason for cancellation"
 msgstr ""
@@ -131,6 +134,15 @@ msgstr ""
 #. module: purchase_cancel_reason
 #: model:purchase.order.cancel.reason,name:purchase_cancel_reason.cancel_reason_no_service_needed
 msgid "Service no longer needed"
+msgstr ""
+
+#. module: purchase_cancel_reason
+#. odoo-python
+#: code:addons/purchase_cancel_reason/models/purchase_order.py:0
+msgid ""
+"You cannot cancel any of the selected orders as they are all in 'Done' or "
+"'Canceled' state:\n"
+"%s"
 msgstr ""
 
 #. module: purchase_cancel_reason
