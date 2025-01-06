@@ -29,7 +29,7 @@ Purchase - Analytic Account Global
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module adds an analytic account on the purchases that is applied on
-all the lines.
+all the lines distributions.
 
 **Table of contents**
 
@@ -62,6 +62,7 @@ Contributors
    -  Guewen Baconnier <guewen.baconnier@camptocamp.com>
    -  Yannick Vaucher <yannick.vaucher@camptocamp.com>
    -  Iryna Vyshnevska <i.vyshnevska@camptocamp.com>
+   -  Maksym Yankin <maksym.yankin@camptocamp.com>
 
 -  `ERP Harbor <https://erpharbor.com>`__:
 
@@ -74,7 +75,7 @@ Contributors
 Other credits
 -------------
 
-The migration of this module from 14.0 to 15.0 was financially supported
+The migration of this module from 15.0 to 18.0 was financially supported
 by Camptocamp
 
 Maintainers

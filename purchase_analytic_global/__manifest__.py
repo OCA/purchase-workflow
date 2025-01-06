@@ -3,7 +3,7 @@
 
 {
     "name": "Purchase - Analytic Account Global",
-    "version": "15.0.1.0.1",
+    "version": "18.0.1.0.0",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "maintainer": "Camptocamp",
     "license": "AGPL-3",
@@ -11,7 +11,7 @@
     "complexity": "easy",
     "depends": ["purchase"],
     "website": "https://github.com/OCA/purchase-workflow",
-    "data": ["views/purchase.xml"],
+    "data": ["views/purchase_order.xml"],
     "installable": True,
     "auto_install": False,
 }
