@@ -1,10 +1,10 @@
 <?xml version="1.0" ?>
 <odoo>
-    <record id="action_purchase_test_tree" model="ir.actions.act_window">
+    <record id="action_purchase_test_list" model="ir.actions.act_window">
         <field name="name">Purchase Exception Rules</field>
         <field name="res_model">exception.rule</field>
         <field name="view_mode">tree,form</field>
-        <field name="view_id" ref="base_exception.view_exception_rule_tree" />
+        <field name="view_id" ref="base_exception.view_exception_rule_list" />
         <field
             name="domain"
         >[('model', 'in', ['purchase.order', 'purchase.order.line'])]</field>
@@ -13,7 +13,7 @@
         >{'active_test': False, 'default_model' : 'purchase.order'}</field>
     </record>
     <menuitem
-        action="action_purchase_test_tree"
+        action="action_purchase_test_list"
         id="menu_purchase_test"
         parent="purchase.menu_purchase_config"
     />
