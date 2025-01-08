@@ -81,7 +81,7 @@ msgstr "Valuta"
 
 #. module: purchase_manual_delivery
 #: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.res_config_settings_view_form
-msgid "Deliveries on purchase orders should be created manually."
+msgid "Deliveries on purchase orders should be created manually by default."
 msgstr ""
 
 #. module: purchase_manual_delivery
@@ -113,17 +113,6 @@ msgid "Display Name"
 msgstr "Prikazani naziv"
 
 #. module: purchase_manual_delivery
-#: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.view_create_stock_picking
-msgid "Existing Qty"
-msgstr "Obstoječa kol"
-
-#. module: purchase_manual_delivery
-#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__existing_qty
-#: model:ir.model.fields,field_description:purchase_manual_delivery.field_purchase_order_line__existing_qty
-msgid "Existing Quantity"
-msgstr "Obstoječa količina"
-
-#. module: purchase_manual_delivery
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__date_planned
 msgid "Expected Arrival"
 msgstr ""
@@ -150,12 +139,6 @@ msgid "If active, Receipt of purchase orders should be manual created."
 msgstr ""
 
 #. module: purchase_manual_delivery
-#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard____last_update
-#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line____last_update
-msgid "Last Modified on"
-msgstr "Zadnjič spremenjeno"
-
-#. module: purchase_manual_delivery
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard__write_uid
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__write_uid
 msgid "Last Updated by"
@@ -180,6 +163,11 @@ msgstr "Lokacija zaloge za prejem proizvodov."
 #. module: purchase_manual_delivery
 #: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.res_config_settings_view_form
 msgid "Manual Delivery"
+msgstr ""
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_purchase_order__manual_delivery
+msgid "Manual delivery"
 msgstr ""
 
 #. module: purchase_manual_delivery
@@ -232,6 +220,11 @@ msgid "Product"
 msgstr "Proizvod"
 
 #. module: purchase_manual_delivery
+#: model:ir.model,name:purchase_manual_delivery.model_product_product
+msgid "Product Variant"
+msgstr ""
+
+#. module: purchase_manual_delivery
 #: model:ir.actions.act_window,name:purchase_manual_delivery.action_order_line_delivery_tree
 #: model:ir.ui.menu,name:purchase_manual_delivery.menu_delivery_purchase_order_lines
 msgid "Purchase Manual Receipt"
@@ -269,10 +262,15 @@ msgstr ""
 "ustvarjene prejemnice"
 
 #. module: purchase_manual_delivery
-#: model:ir.model.fields,field_description:purchase_manual_delivery.field_purchase_order__manual_delivery
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_res_company__purchase_manual_delivery
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_res_config_settings__purchase_manual_delivery
 msgid "Purchase manual delivery?"
+msgstr ""
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__qty_in_receipt
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_purchase_order_line__qty_in_receipt
+msgid "Qty In Receipt"
 msgstr ""
 
 #. module: purchase_manual_delivery
@@ -282,15 +280,20 @@ msgid "Quantity"
 msgstr "Količina"
 
 #. module: purchase_manual_delivery
-#: model:ir.model.fields,help:purchase_manual_delivery.field_create_stock_picking_wizard_line__existing_qty
-#: model:ir.model.fields,help:purchase_manual_delivery.field_purchase_order_line__existing_qty
-msgid "Quantity already planned or shipped (stock movements already created)"
-msgstr "Že planirana ali dobavljena količina (že ustvarjeni premiki zaloge)"
+#: model:ir.model.fields,help:purchase_manual_delivery.field_create_stock_picking_wizard_line__qty_in_receipt
+#: model:ir.model.fields,help:purchase_manual_delivery.field_purchase_order_line__qty_in_receipt
+msgid "Quantity for which there are pending stock moves"
+msgstr ""
 
 #. module: purchase_manual_delivery
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__qty
 msgid "Quantity to Receive"
 msgstr "Količina za prejem"
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__qty_received
+msgid "Received Qty"
+msgstr ""
 
 #. module: purchase_manual_delivery
 #: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.view_purchase_order_unreceived_line_filter
@@ -306,6 +309,13 @@ msgstr "Preostala kol"
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__remaining_qty
 msgid "Remaining Quantity"
 msgstr "Preostala količina"
+
+#. module: purchase_manual_delivery
+#. odoo-javascript
+#: code:addons/purchase_manual_delivery/static/src/purchase_manual_delivery_forecasted/forecasted_details.xml:0
+#, python-format
+msgid "Requests without delivery"
+msgstr ""
 
 #. module: purchase_manual_delivery
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard__scheduled_date
@@ -333,6 +343,17 @@ msgstr "Iskanje ne dobavljenih postavk"
 #, python-format
 msgid "Stock Picking"
 msgstr "Prejemnica"
+
+#. module: purchase_manual_delivery
+#: model:ir.model,name:purchase_manual_delivery.model_stock_forecasted_product_product
+msgid "Stock Replenishment Report"
+msgstr ""
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,help:purchase_manual_delivery.field_purchase_order__manual_delivery
+msgid ""
+"Stock transfers need to be created manually to receive this PO's products"
+msgstr ""
 
 #. module: purchase_manual_delivery
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__taxes_id
@@ -387,6 +408,19 @@ msgid ""
 msgstr ""
 "Ne morete prejeti več, kot je preostala količina. Če je to potrebno uredite "
 "popravite nabavni nalog."
+
+#~ msgid "Existing Qty"
+#~ msgstr "Obstoječa kol"
+
+#~ msgid "Existing Quantity"
+#~ msgstr "Obstoječa količina"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Zadnjič spremenjeno"
+
+#~ msgid ""
+#~ "Quantity already planned or shipped (stock movements already created)"
+#~ msgstr "Že planirana ali dobavljena količina (že ustvarjeni premiki zaloge)"
 
 #~ msgid "Purchase Order Lines"
 #~ msgstr "Postavke nabavnih nalogov"
