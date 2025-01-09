@@ -48,7 +48,7 @@
                     column_invisible="parent.state not in ('purchase', 'done')"
                 />
             </field>
-            <xpath expr="//field[@name='order_line']/tree" position="attributes">
+            <xpath expr="//field[@name='order_line']/list" position="attributes">
                 <attribute
                     name="decoration-info"
                 >state == 'purchase' and pending_to_receive</attribute>
@@ -66,7 +66,7 @@
         <field name="model">purchase.order.line</field>
         <field name="inherit_id" ref="purchase.purchase_order_line_tree" />
         <field name="arch" type="xml">
-            <xpath expr="/tree" position="attributes">
+            <xpath expr="/list" position="attributes">
                 <attribute
                     name="decoration-info"
                 >state == 'purchase' and pending_to_receive</attribute>
@@ -115,7 +115,7 @@
         <field name="name">Purchase Manual Receipt</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">purchase.order.line</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="search_view_id" ref="view_purchase_order_unreceived_line_filter" />
         <field
             name="context"
