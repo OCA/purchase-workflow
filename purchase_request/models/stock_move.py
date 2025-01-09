@@ -108,41 +108,43 @@ class StockMove(models.Model):
         """
         if default is None:
             default = {}
-        if not default.get("purchase_request_allocation_ids") and (
-            default.get("product_uom_qty") or self.state in ("done", "cancel")
-        ):
-            default["purchase_request_allocation_ids"] = []
-            new_move_qty = default.get("product_uom_qty") or self.product_uom_qty
-            rounding = self.product_id.uom_id.rounding
-            for alloc in self.purchase_request_allocation_ids.filtered(
-                "open_product_qty"
+        vals_list = super().copy_data(default)
+        for move, vals in zip(self, vals_list, strict=False):
+            if not default.get("purchase_request_allocation_ids") and (
+                default.get("product_uom_qty") or move.state in ("done", "cancel")
             ):
-                if (
-                    float_compare(
-                        new_move_qty,
-                        0,
-                        precision_rounding=self.product_id.uom_id.rounding,
-                    )
-                    <= 0
-                    or float_compare(
-                        alloc.open_product_qty, 0, precision_rounding=rounding
-                    )
-                    <= 0
+                vals["purchase_request_allocation_ids"] = []
+                new_move_qty = default.get("product_uom_qty") or move.product_uom_qty
+                rounding = move.product_id.uom_id.rounding
+                for alloc in move.purchase_request_allocation_ids.filtered(
+                    "open_product_qty"
                 ):
-                    break
-                open_qty = min(new_move_qty, alloc.open_product_qty)
-                new_move_qty -= open_qty
-                default["purchase_request_allocation_ids"].append(
-                    (
-                        0,
-                        0,
-                        {
-                            "purchase_request_line_id": (
-                                alloc.purchase_request_line_id.id
-                            ),
-                            "requested_product_uom_qty": open_qty,
-                        },
+                    if (
+                        float_compare(
+                            new_move_qty,
+                            0,
+                            precision_rounding=move.product_id.uom_id.rounding,
+                        )
+                        <= 0
+                        or float_compare(
+                            alloc.open_product_qty, 0, precision_rounding=rounding
+                        )
+                        <= 0
+                    ):
+                        break
+                    open_qty = min(new_move_qty, alloc.open_product_qty)
+                    new_move_qty -= open_qty
+                    vals["purchase_request_allocation_ids"].append(
+                        (
+                            0,
+                            0,
+                            {
+                                "purchase_request_line_id": (
+                                    alloc.purchase_request_line_id.id
+                                ),
+                                "requested_product_uom_qty": open_qty,
+                            },
+                        )
                     )
-                )
-                alloc.requested_product_uom_qty -= open_qty
-        return super().copy_data(default)
+                    alloc.requested_product_uom_qty -= open_qty
+        return vals_list
