@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-07-22 08:58+0000\n"
+"PO-Revision-Date: 2025-01-09 11:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -82,6 +82,8 @@ msgstr "Valuta"
 #: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.res_config_settings_view_form
 msgid "Deliveries on purchase orders should be created manually by default."
 msgstr ""
+"Per impostazione predefinita, le consegne degli ordini di acquisto devono "
+"essere create manualmente."
 
 #. module: purchase_manual_delivery
 #: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.res_config_settings_view_form
@@ -171,7 +173,7 @@ msgstr "Consegna manuale"
 #. module: purchase_manual_delivery
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_purchase_order__manual_delivery
 msgid "Manual delivery"
-msgstr ""
+msgstr "Consegna manuale"
 
 #. module: purchase_manual_delivery
 #: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.view_create_stock_picking
@@ -225,7 +227,7 @@ msgstr "Prodotto"
 #. module: purchase_manual_delivery
 #: model:ir.model,name:purchase_manual_delivery.model_product_product
 msgid "Product Variant"
-msgstr ""
+msgstr "Variante prodotto"
 
 #. module: purchase_manual_delivery
 #: model:ir.actions.act_window,name:purchase_manual_delivery.action_order_line_delivery_tree
@@ -274,7 +276,7 @@ msgstr "Consegna manuale acquisto?"
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__qty_in_receipt
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_purchase_order_line__qty_in_receipt
 msgid "Qty In Receipt"
-msgstr ""
+msgstr "Q.tà in ricezione"
 
 #. module: purchase_manual_delivery
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__product_qty
@@ -286,7 +288,7 @@ msgstr "Quantità"
 #: model:ir.model.fields,help:purchase_manual_delivery.field_create_stock_picking_wizard_line__qty_in_receipt
 #: model:ir.model.fields,help:purchase_manual_delivery.field_purchase_order_line__qty_in_receipt
 msgid "Quantity for which there are pending stock moves"
-msgstr ""
+msgstr "Quantità per la quale ci sono movimenti di magazzino in sospeso"
 
 #. module: purchase_manual_delivery
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__qty
@@ -296,7 +298,7 @@ msgstr "Quantità da ricevere"
 #. module: purchase_manual_delivery
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__qty_received
 msgid "Received Qty"
-msgstr ""
+msgstr "Q.tà ricevuta"
 
 #. module: purchase_manual_delivery
 #: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.view_purchase_order_unreceived_line_filter
@@ -318,7 +320,7 @@ msgstr "Quantità rimanente"
 #: code:addons/purchase_manual_delivery/static/src/purchase_manual_delivery_forecasted/forecasted_details.xml:0
 #, python-format
 msgid "Requests without delivery"
-msgstr ""
+msgstr "Richieste senza consegna"
 
 #. module: purchase_manual_delivery
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard__scheduled_date
@@ -351,13 +353,15 @@ msgstr "Prelievo di magazzino"
 #. module: purchase_manual_delivery
 #: model:ir.model,name:purchase_manual_delivery.model_stock_forecasted_product_product
 msgid "Stock Replenishment Report"
-msgstr ""
+msgstr "Resoconto rifornimento di magazzino"
 
 #. module: purchase_manual_delivery
 #: model:ir.model.fields,help:purchase_manual_delivery.field_purchase_order__manual_delivery
 msgid ""
 "Stock transfers need to be created manually to receive this PO's products"
 msgstr ""
+"I trasferimenti di magazzino devono essere creati manualmente per ricevere i "
+"prodotti di questo OA"
 
 #. module: purchase_manual_delivery
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__taxes_id
