@@ -1,0 +1,812 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_service_picking
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-03-18 13:06+0000\n"
+"PO-Revision-Date: 2025-03-18 13:06+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model_terms:ir.ui.view,arch_db:purchase_service_picking.view_service_picking_form
+msgid "Additional Info"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking_line__returned_line_ids
+msgid "All returned lines"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model_terms:ir.ui.view,arch_db:purchase_service_picking.view_immediate_transfer
+msgid "Apply"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__backorder_id
+msgid "Back Order of"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__backorder_ids
+msgid "Back Orders"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model,name:purchase_service_picking.model_service_backorder_confirmation
+msgid "Backorder Confirmation"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model,name:purchase_service_picking.model_service_backorder_confirmation_line
+msgid "Backorder Confirmation Line"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model_terms:ir.ui.view,arch_db:purchase_service_picking.view_backorder_confirmation
+msgid "Backorder creation"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model_terms:ir.ui.view,arch_db:purchase_service_picking.view_service_picking_search
+msgid "Backorders"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model_terms:ir.ui.view,arch_db:purchase_service_picking.view_immediate_transfer
+#: model_terms:ir.ui.view,arch_db:purchase_service_picking.view_service_picking_form
+#: model_terms:ir.ui.view,arch_db:purchase_service_picking.view_service_return_picking_form
+msgid "Cancel"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields.selection,name:purchase_service_picking.selection__service_picking__state__cancel
+#: model_terms:ir.ui.view,arch_db:purchase_service_picking.view_service_picking_search
+msgid "Cancelled"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__company_id
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking_line__company_id
+msgid "Company"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model_terms:ir.ui.view,arch_db:purchase_service_picking.view_service_picking_form
+msgid "Confirm"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__partner_id
+#: model_terms:ir.ui.view,arch_db:purchase_service_picking.view_service_picking_form
+msgid "Contact"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model_terms:ir.ui.view,arch_db:purchase_service_picking.view_backorder_confirmation
+msgid "Create Backorder"
+msgstr ""
+
+#. module: purchase_service_picking
+#: code:addons/purchase_service_picking/models/service_picking.py:0
+#, python-format
+msgid "Create Backorder?"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model_terms:ir.ui.view,arch_db:purchase_service_picking.view_backorder_confirmation
+msgid ""
+"Create a backorder if you expect to process the remaining\n"
+"                        services later. Do not create a backorder if you will not\n"
+"                        process the remaining services."
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_backorder_confirmation__create_uid
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_backorder_confirmation_line__create_uid
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_immediate_transfer__create_uid
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_immediate_transfer_line__create_uid
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__create_uid
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking_line__create_uid
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_return_picking__create_uid
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_return_picking_line__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_backorder_confirmation__create_date
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_backorder_confirmation_line__create_date
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_immediate_transfer__create_date
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_immediate_transfer_line__create_date
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__create_date
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking_line__create_date
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_return_picking__create_date
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_return_picking_line__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__date
+msgid "Creation Date"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,help:purchase_service_picking.field_service_picking__date
+msgid "Creation Date, usually the time of the order"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,help:purchase_service_picking.field_service_picking__date_deadline
+#: model:ir.model.fields,help:purchase_service_picking.field_service_picking_line__date_deadline
+msgid "Date Promise to the customer on the top level document (SO/PO)"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking_line__date
+msgid "Date Scheduled"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,help:purchase_service_picking.field_service_picking__date_done
+msgid "Date at which the transfer has been processed or cancelled."
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__date_done
+msgid "Date of Transfer"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__date_deadline
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking_line__date_deadline
+msgid "Deadline"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking_line__product_uom_qty
+msgid "Demand"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking_line__name
+#: model_terms:ir.ui.view,arch_db:purchase_service_picking.view_service_picking_form
+msgid "Description"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking_line__description_picking
+msgid "Description of Picking"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:purchase_service_picking.field_purchase_order_line__display_name
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_backorder_confirmation__display_name
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_backorder_confirmation_line__display_name
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_immediate_transfer__display_name
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_immediate_transfer_line__display_name
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__display_name
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking_line__display_name
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_return_picking__display_name
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_return_picking_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields.selection,name:purchase_service_picking.selection__service_picking__state__done
+#: model_terms:ir.ui.view,arch_db:purchase_service_picking.view_service_picking_form
+#: model_terms:ir.ui.view,arch_db:purchase_service_picking.view_service_picking_search
+msgid "Done"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields.selection,name:purchase_service_picking.selection__service_picking__state__draft
+#: model_terms:ir.ui.view,arch_db:purchase_service_picking.view_service_picking_search
+msgid "Draft"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model_terms:ir.ui.view,arch_db:purchase_service_picking.view_service_picking_form
+msgid "Effective Date"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__message_channel_ids
+msgid "Followers (Channels)"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,help:purchase_service_picking.field_service_picking__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model_terms:ir.ui.view,arch_db:purchase_service_picking.view_service_picking_search
+msgid "Group By"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_purchase_order__id
+#: model:ir.model.fields,field_description:purchase_service_picking.field_purchase_order_line__id
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_backorder_confirmation__id
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_backorder_confirmation_line__id
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_immediate_transfer__id
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_immediate_transfer_line__id
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__id
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking_line__id
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_return_picking__id
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_return_picking_line__id
+msgid "ID"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,help:purchase_service_picking.field_service_picking__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,help:purchase_service_picking.field_service_picking__message_needaction
+#: model:ir.model.fields,help:purchase_service_picking.field_service_picking__message_unread
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,help:purchase_service_picking.field_service_picking__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model,name:purchase_service_picking.model_service_immediate_transfer
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_backorder_confirmation_line__backorder_confirmation_id
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_immediate_transfer_line__immediate_transfer_id
+msgid "Immediate Transfer"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model,name:purchase_service_picking.model_service_immediate_transfer_line
+msgid "Immediate Transfer Line"
+msgstr ""
+
+#. module: purchase_service_picking
+#: code:addons/purchase_service_picking/models/service_picking.py:0
+#, python-format
+msgid "Immediate Transfer?"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model_terms:ir.ui.view,arch_db:purchase_service_picking.view_immediate_transfer
+msgid "Immediate transfer?"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields.selection,name:purchase_service_picking.selection__service_picking__state__in_progress
+#: model_terms:ir.ui.view,arch_db:purchase_service_picking.view_service_picking_search
+msgid "In progress"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_purchase_order__is_service_shipped
+msgid "Is Service Shipped"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_purchase_order____last_update
+#: model:ir.model.fields,field_description:purchase_service_picking.field_purchase_order_line____last_update
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_backorder_confirmation____last_update
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_backorder_confirmation_line____last_update
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_immediate_transfer____last_update
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_immediate_transfer_line____last_update
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking____last_update
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking_line____last_update
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_return_picking____last_update
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_return_picking_line____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_backorder_confirmation__write_uid
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_backorder_confirmation_line__write_uid
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_immediate_transfer__write_uid
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_immediate_transfer_line__write_uid
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__write_uid
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking_line__write_uid
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_return_picking__write_uid
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_return_picking_line__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_backorder_confirmation__write_date
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_backorder_confirmation_line__write_date
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_immediate_transfer__write_date
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_immediate_transfer_line__write_date
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__write_date
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking_line__write_date
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_return_picking__write_date
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_return_picking_line__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_return_picking_line__line_id
+msgid "Line"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,help:purchase_service_picking.field_service_picking_line__origin_returned_line_id
+msgid "Line that created the return line"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_backorder_confirmation__line_ids
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_immediate_transfer__line_ids
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__line_ids
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_return_picking__product_return_lines
+#: model_terms:ir.ui.view,arch_db:purchase_service_picking.view_service_picking_form
+msgid "Lines"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model_terms:ir.ui.view,arch_db:purchase_service_picking.view_service_picking_search
+msgid "My Transfers"
+msgstr ""
+
+#. module: purchase_service_picking
+#: code:addons/purchase_service_picking/models/service_picking.py:0
+#, python-format
+msgid "New"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model_terms:ir.ui.view,arch_db:purchase_service_picking.view_backorder_confirmation
+msgid "No Backorder"
+msgstr ""
+
+#. module: purchase_service_picking
+#: code:addons/purchase_service_picking/wizards/service_picking_return.py:0
+#, python-format
+msgid ""
+"No products to return (only lines in Done state and not fully returned yet "
+"can be returned)."
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,help:purchase_service_picking.field_service_picking__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,help:purchase_service_picking.field_service_picking__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,help:purchase_service_picking.field_service_picking__message_unread_counter
+msgid "Number of unread messages"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking_line__origin_returned_line_id
+msgid "Origin return line"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model_terms:ir.ui.view,arch_db:purchase_service_picking.view_service_picking_form
+msgid "Other Information"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_backorder_confirmation__picking_ids
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_immediate_transfer__picking_ids
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking_line__picking_id
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_return_picking__picking_id
+msgid "Picking"
+msgstr ""
+
+#. module: purchase_service_picking
+#: code:addons/purchase_service_picking/wizards/service_picking_return.py:0
+#, python-format
+msgid "Please specify at least one non-zero quantity."
+msgstr ""
+
+#. module: purchase_service_picking
+#: code:addons/purchase_service_picking/wizards/service_picking_return.py:0
+#, python-format
+msgid "Please specify at least one service."
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking_line__product_id
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_return_picking_line__product_id
+msgid "Product"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking_line__purchase_line_id
+msgid "Purchase Line"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model,name:purchase_service_picking.model_purchase_order
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__purchase_id
+msgid "Purchase Order"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model,name:purchase_service_picking.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model_terms:ir.ui.view,arch_db:purchase_service_picking.view_service_picking_form
+msgid "Qty"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_return_picking_line__quantity
+msgid "Quantity"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking_line__quantity_done
+msgid "Quantity Done"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model_terms:ir.ui.view,arch_db:purchase_service_picking.purchase_order_view_form
+msgid "Receive Services"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__name
+msgid "Reference"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.constraint,message:purchase_service_picking.constraint_service_picking_name_uniq
+msgid "Reference must be unique per company!"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,help:purchase_service_picking.field_service_picking__origin
+msgid "Reference of the document"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__user_id
+msgid "Responsible"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model_terms:ir.ui.view,arch_db:purchase_service_picking.view_service_picking_form
+#: model_terms:ir.ui.view,arch_db:purchase_service_picking.view_service_return_picking_form
+msgid "Return"
+msgstr ""
+
+#. module: purchase_service_picking
+#: code:addons/purchase_service_picking/wizards/service_picking_return.py:0
+#, python-format
+msgid "Return of %s"
+msgstr ""
+
+#. module: purchase_service_picking
+#: code:addons/purchase_service_picking/wizards/service_picking_return.py:0
+#, python-format
+msgid "Returned Picking"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.actions.act_window,name:purchase_service_picking.act_service_return_picking
+msgid "Reverse Service Picking"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__scheduled_date
+#: model_terms:ir.ui.view,arch_db:purchase_service_picking.view_service_picking_search
+msgid "Scheduled Date"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking_line__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model,name:purchase_service_picking.model_service_picking
+#: model_terms:ir.ui.view,arch_db:purchase_service_picking.purchase_order_view_form
+msgid "Service Picking"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model,name:purchase_service_picking.model_service_picking_line
+msgid "Service Picking Line"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_purchase_order__service_picking_count
+msgid "Service Picking count"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.actions.act_window,name:purchase_service_picking.action_service_picking_tree_all
+msgid "Service Pickings"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_purchase_order__service_picking_ids
+msgid "Service Receptions"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model,name:purchase_service_picking.model_service_return_picking
+msgid "Service Return Picking"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model,name:purchase_service_picking.model_service_return_picking_line
+msgid "Service Return Picking Line"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_purchase_order_line__service_picking_line_ids
+msgid "Service picking lines"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__origin
+#: model_terms:ir.ui.view,arch_db:purchase_service_picking.view_service_picking_search
+msgid "Source Document"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__state
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking_line__state
+#: model_terms:ir.ui.view,arch_db:purchase_service_picking.view_service_picking_search
+msgid "Status"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,help:purchase_service_picking.field_service_picking__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: purchase_service_picking
+#: code:addons/purchase_service_picking/models/service_picking.py:0
+#, python-format
+msgid ""
+"The backorder <a href=# data-oe-model=service.picking data-oe-id=%d>%s</a> "
+"has been created."
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_backorder_confirmation_line__to_backorder
+msgid "To Backorder"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_immediate_transfer_line__to_immediate
+msgid "To Process"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_backorder_confirmation_line__picking_id
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_immediate_transfer_line__picking_id
+#: model_terms:ir.ui.view,arch_db:purchase_service_picking.view_service_picking_search
+msgid "Transfer"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,help:purchase_service_picking.field_service_picking__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: purchase_service_picking
+#: code:addons/purchase_service_picking/models/purchase_order.py:0
+#, python-format
+msgid ""
+"Unable to cancel purchase order %s as some service pickings have already "
+"been done."
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking_line__product_uom_id
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_return_picking_line__uom_id
+#: model_terms:ir.ui.view,arch_db:purchase_service_picking.view_service_picking_form
+msgid "Unit of Measure"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__message_unread
+msgid "Unread Messages"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model_terms:ir.ui.view,arch_db:purchase_service_picking.view_service_picking_form
+msgid "Validate"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_picking__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,help:purchase_service_picking.field_service_picking__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model:ir.model.fields,field_description:purchase_service_picking.field_service_return_picking_line__wizard_id
+msgid "Wizard"
+msgstr ""
+
+#. module: purchase_service_picking
+#: code:addons/purchase_service_picking/models/service_picking.py:0
+#, python-format
+msgid "You cannot change the Scheduled Date on a done or cancelled transfer."
+msgstr ""
+
+#. module: purchase_service_picking
+#: code:addons/purchase_service_picking/models/purchase_order.py:0
+#, python-format
+msgid ""
+"You cannot decrease the ordered quantity below the received quantity.\n"
+"Create a return first."
+msgstr ""
+
+#. module: purchase_service_picking
+#: code:addons/purchase_service_picking/wizards/service_picking_return.py:0
+#, python-format
+msgid "You cannot set a quantity greater than the quantity done."
+msgstr ""
+
+#. module: purchase_service_picking
+#: model_terms:ir.ui.view,arch_db:purchase_service_picking.view_immediate_transfer
+msgid ""
+"You have not recorded <i>done</i> quantities yet, by clicking on "
+"<i>apply</i> Odoo will process all the quantities."
+msgstr ""
+
+#. module: purchase_service_picking
+#: model_terms:ir.ui.view,arch_db:purchase_service_picking.view_backorder_confirmation
+msgid "You have processed less services than the initial demand."
+msgstr ""
+
+#. module: purchase_service_picking
+#: code:addons/purchase_service_picking/wizards/service_picking_return.py:0
+#, python-format
+msgid "You may only return Done pickings."
+msgstr ""
+
+#. module: purchase_service_picking
+#: code:addons/purchase_service_picking/wizards/service_picking_return.py:0
+#, python-format
+msgid "You may only return one picking at a time."
+msgstr ""
+
+#. module: purchase_service_picking
+#: model_terms:ir.ui.view,arch_db:purchase_service_picking.view_backorder_confirmation
+msgid "_Cancel"
+msgstr ""
+
+#. module: purchase_service_picking
+#: model_terms:ir.ui.view,arch_db:purchase_service_picking.view_service_picking_form
+msgid "e.g. PO0032"
+msgstr ""

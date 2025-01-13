@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_backorder_confirmation" model="ir.ui.view">
+        <field name="name">service_backorder_confirmation</field>
+        <field name="model">service.backorder.confirmation</field>
+        <field name="arch" type="xml">
+            <form string="Backorder creation">
+                <group>
+                    <p>
+                        You have processed less services than the initial demand.
+                    </p><p class="text-muted">
+                        Create a backorder if you expect to process the remaining
+                        services later. Do not create a backorder if you will not
+                        process the remaining services.
+                    </p>
+                </group>
+                <field name="picking_ids" invisible="1" />
+                <field name="line_ids" nolabel="1">
+                    <tree create="0" delete="0" editable="top">
+                        <field name="picking_id" />
+                        <field name="to_backorder" widget="boolean_toggle" />
+                    </tree>
+                </field>
+                <footer>
+                    <button
+                        name="process"
+                        string="Create Backorder"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    <button
+                        name="process_cancel_backorder"
+                        string="No Backorder"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="_Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

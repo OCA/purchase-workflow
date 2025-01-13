@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_service_picking_purchase_user,service.picking,model_service_picking,purchase.group_purchase_user,1,1,1,1
+access_service_picking_line_purchase_user,service.picking.line,model_service_picking_line,purchase.group_purchase_user,1,1,1,0
+access_service_picking_line_purchase_user_manager,service.picking.line,model_service_picking_line,purchase.group_purchase_manager,1,1,1,1
+access_service_immediate_transfer,access.service.immediate.transfer,model_service_immediate_transfer,purchase.group_purchase_user,1,1,1,0
+access_service_immediate_transfer_line,access.service.immediate.transfer.line,model_service_immediate_transfer_line,purchase.group_purchase_user,1,1,1,0
+access_service_backorder_confirmation,access.service.backorder.confirmation,model_service_backorder_confirmation,purchase.group_purchase_user,1,1,1,0
+access_service_backorder_confirmation_line,access.service.backorder.confirmation.line,model_service_backorder_confirmation_line,purchase.group_purchase_user,1,1,1,0
+access_service_return_picking,access.service.return.picking,model_service_return_picking,purchase.group_purchase_user,1,1,1,0
+access_service_return_picking_line,access.service.return.picking.line,model_service_return_picking_line,purchase.group_purchase_user,1,1,1,1

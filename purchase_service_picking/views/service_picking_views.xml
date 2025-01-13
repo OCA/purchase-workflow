@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_service_picking_search" model="ir.ui.view">
+        <field name="name">service.picking</field>
+        <field name="model">service.picking</field>
+        <field name="arch" type="xml">
+            <search>
+                <field
+                    name="name"
+                    string="Transfer"
+                    filter_domain="['|', ('name', 'ilike', self), ('origin', 'ilike', self)]"
+                />
+                <field
+                    name="partner_id"
+                    filter_domain="[('partner_id', 'child_of', self)]"
+                />
+                <field name="origin" />
+                <filter
+                    name="my_transfers"
+                    string="My Transfers"
+                    domain="[('user_id', '=', uid)]"
+                />
+                <separator />
+                <filter
+                    name="draft"
+                    string="Draft"
+                    domain="[('state', '=', 'draft')]"
+                />
+                <filter
+                    name="in_progress"
+                    string="In progress"
+                    domain="[('state', '=', 'in_progress')]"
+                />
+                <filter name="done" string="Done" domain="[('state', '=', 'done')]" />
+                <filter
+                    name="cancel"
+                    string="Cancelled"
+                    domain="[('state', '=', 'cancel')]"
+                />
+                <separator />
+                <filter
+                    name="backorder"
+                    string="Backorders"
+                    domain="[('backorder_id', '!=', False), ('state', '=', 'in_progress')]"
+                />
+                <separator />
+                <group expand="0" string="Group By">
+                    <filter
+                        string="Status"
+                        name="status"
+                        domain="[]"
+                        context="{'group_by': 'state'}"
+                    />
+                    <filter
+                        string="Scheduled Date"
+                        name="expected_date"
+                        domain="[]"
+                        context="{'group_by': 'scheduled_date'}"
+                    />
+                    <filter
+                        string="Source Document"
+                        name="origin"
+                        domain="[]"
+                        context="{'group_by': 'origin'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="view_service_picking_tree" model="ir.ui.view">
+        <field name="name">service.picking.tree</field>
+        <field name="model">service.picking</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" decoration-bf="1" />
+                <field name="partner_id" optional="show" />
+                <field name="user_id" optional="hide" widget="many2one_avatar_user" />
+                <field
+                    name="scheduled_date"
+                    optional="show"
+                    widget="remaining_days"
+                    attrs="{'invisible':[('state', 'in', ('done', 'cancel'))]}"
+                />
+                <field
+                    name="date_deadline"
+                    optional="hide"
+                    widget="remaining_days"
+                    attrs="{'invisible':[('state', 'in', ('done', 'cancel'))]}"
+                />
+                <field name="origin" optional="show" />
+                <field name="backorder_id" optional="hide" />
+                <field
+                    name="company_id"
+                    groups="base.group_multi_company"
+                    optional="show"
+                />
+                <field
+                    name="state"
+                    optional="show"
+                    widget="badge"
+                    decoration-success="state == 'done'"
+                    decoration-info="state not in ('done', 'cancel')"
+                />
+            </tree>
+        </field>
+    </record>
+    <record id="view_service_picking_form" model="ir.ui.view">
+        <field name="name">service.picking.form</field>
+        <field name="model">service.picking</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                        name="action_confirm"
+                        attrs="{'invisible': [('state', '!=', 'draft')]}"
+                        string="Confirm"
+                        type="object"
+                        class="oe_highlight"
+                        groups="base.group_user"
+                    />
+                    <button
+                        name="action_validate"
+                        attrs="{'invisible': [('state', '!=', 'in_progress')]}"
+                        string="Validate"
+                        type="object"
+                        class="oe_highlight"
+                        groups="base.group_user"
+                    />
+                    <button
+                        name="%(act_service_return_picking)d"
+                        string="Return"
+                        attrs="{'invisible': [('state', '!=', 'done')]}"
+                        type="action"
+                        groups="base.group_user"
+                    />
+                    <button
+                        name="action_cancel"
+                        attrs="{'invisible': [('state', '!=', 'in_progress')]}"
+                        string="Cancel"
+                        groups="base.group_user"
+                        type="object"
+                    />
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,in_progress,done"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field
+                                name="name"
+                                attrs="{'invisible': [('name','=','/')]}"
+                            />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <div class="o_td_label">
+                                <label
+                                    for="partner_id"
+                                    string="Contact"
+                                    style="font-weight:bold;"
+                                />
+                            </div>
+                            <field name="partner_id" nolabel="1" />
+                            <field
+                                name="backorder_id"
+                                attrs="{'invisible': [('backorder_id','=',False)]}"
+                            />
+                        </group>
+                        <group>
+                            <label for="scheduled_date" />
+                            <div class="o_row">
+                                <field
+                                    name="scheduled_date"
+                                    attrs="{'required': [('id', '!=', False)]}"
+                                    decoration-warning="state not in ('done', 'cancel') and scheduled_date &lt; now"
+                                    decoration-danger="state not in ('done', 'cancel') and scheduled_date &lt; current_date"
+                                    decoration-bf="state not in ('done', 'cancel') and (scheduled_date &lt; current_date or scheduled_date &lt; now)"
+                                />
+                            </div>
+                            <field
+                                name="date_deadline"
+                                attrs="{'invisible': ['|', ('state', 'in', ('done', 'cancel')), ('date_deadline', '=', False)]}"
+                                decoration-danger="date_deadline and date_deadline &lt; current_date"
+                                decoration-bf="date_deadline and date_deadline &lt; current_date"
+                            />
+                            <field
+                                name="date_done"
+                                string="Effective Date"
+                                attrs="{'invisible': [('state', '!=', 'done')]}"
+                            />
+                            <field name="origin" placeholder="e.g. PO0032" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Lines" name="lines">
+                            <field
+                                name="line_ids"
+                                mode="tree"
+                                attrs="{'readonly': [('state', '=', 'done')]}"
+                                context="{'default_date': scheduled_date, 'default_date_deadline': date_deadline, 'default_picking_id': id}"
+                            >
+                                <tree editable="bottom">
+                                    <field name="name" invisible="1" />
+                                    <field name="state" invisible="1" readonly="0" />
+                                    <field
+                                        name="product_id"
+                                        required="1"
+                                        context="{'default_type': 'sevice'}"
+                                        attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                    />
+                                    <field
+                                        name="description_picking"
+                                        string="Description"
+                                        optional="hide"
+                                    />
+                                    <field name="date" optional="hide" />
+                                    <field name="date_deadline" optional="hide" />
+                                    <field
+                                        name="product_uom_qty"
+                                        string="Qty"
+                                        attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                    />
+                                    <field
+                                        name="quantity_done"
+                                        string="Done"
+                                        attrs="{'readonly': [('state', '!=', 'in_progress')]}"
+                                    />
+                                    <field
+                                        name="product_uom_id"
+                                        attrs="{'readonly': [('state', '!=', 'draft'), ('id', '!=', False)]}"
+                                        options="{'no_open': True, 'no_create': True}"
+                                        string="Unit of Measure"
+                                        groups="uom.group_uom"
+                                    />
+                                </tree>
+                                <form>
+                                    <group>
+                                        <field name="product_id" />
+                                        <field name="product_uom_qty" />
+                                        <field name="quantity_done" />
+                                        <field
+                                            name="description_picking"
+                                            string="Description"
+                                        />
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                        <page string="Additional Info" name="extra">
+                            <group>
+                                <group string="Other Information" name="other_infos">
+                                    <field
+                                        name="user_id"
+                                        domain="[('share', '=', False)]"
+                                    />
+                                    <field name="purchase_id" />
+                                    <field
+                                        name="company_id"
+                                        groups="base.group_multi_company"
+                                    />
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="action_service_picking_tree_all" model="ir.actions.act_window">
+        <field name="name">Service Pickings</field>
+        <field name="res_model">service.picking</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
