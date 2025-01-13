@@ -17,22 +17,22 @@ Purchase Order Line Deep Sort
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/purchase-workflow/tree/15.0/purchase_order_line_deep_sort
+    :target: https://github.com/OCA/purchase-workflow/tree/17.0/purchase_order_line_deep_sort
     :alt: OCA/purchase-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/purchase-workflow-15-0/purchase-workflow-15-0-purchase_order_line_deep_sort
+    :target: https://translation.odoo-community.org/projects/purchase-workflow-17-0/purchase-workflow-17-0-purchase_order_line_deep_sort
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&target_branch=15.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module was written to extend the functionality of purchase order and allow
-you to manage sort of lines.
+This module was written to extend the functionality of purchase order
+and allow you to manage sort of lines.
 
-You can set the default sort order for the current company or you can set sort
-order for a particular purchase order.
+You can set the default sort order for the current company or you can
+set sort order for a particular purchase order.
 
 **Table of contents**
 
@@ -42,24 +42,24 @@ order for a particular purchase order.
 Configuration
 =============
 
-* Sort criteria items can be defined with a dot notation. This means that you
-  can define an order as follows: **product_id.default_code**. But the field
-  defined must exist in database. If you define, e.g., a calculated field, sort
-  criteria won't work.
+- Sort criteria items can be defined with a dot notation. This means
+  that you can define an order as follows: **product_id.default_code**.
+  But the field defined must exist in database. If you define, e.g., a
+  calculated field, sort criteria won't work.
 
 Usage
 =====
 
-#. Go to **Purchase > Settings > Default Sort Criteria** and select one.
-#. You must select sort direction too.
-#. Create a new purchase and add several lines.
-#. On saving purchase order you must see how the purchase lines are ordered
-   with your selected sort order.
+1. Go to **Purchase > Settings > Default Sort Criteria** and select one.
+2. You must select sort direction too.
+3. Create a new purchase and add several lines.
+4. On saving purchase order you must see how the purchase lines are
+   ordered with your selected sort order.
 
 Known issues / Roadmap
 ======================
 
-* Add support for ordering purchase lines by partner.
+- Add support for ordering purchase lines by partner.
 
 Bug Tracker
 ===========
@@ -67,7 +67,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/purchase-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_order_line_deep_sort%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_order_line_deep_sort%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -75,25 +75,26 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Tecnativa
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Tecnativa <https://www.tecnativa.com:>`_:
+- `Tecnativa <https://www.tecnativa.com:>`__:
 
-  * Vicent Cubells <vicent.cubells@tecnativa.com>
-  * Pedro M. Baeza
-  * Stefan Ungureanu
+  - Vicent Cubells <vicent.cubells@tecnativa.com>
+  - Pedro M. Baeza
+  - Stefan Ungureanu
 
-* `Prothai <https://www.prothaitechnology.com:>`_:
+- `Prothai <https://www.prothaitechnology.com:>`__:
 
-    * Prapassorn Sornkaew <prapassorn.s@prothaitechnology.com> (migrate to v14)
+     - Prapassorn Sornkaew <prapassorn.s@prothaitechnology.com> (migrate
+       to v14)
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -105,6 +106,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/15.0/purchase_order_line_deep_sort>`_ project on GitHub.
+This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/17.0/purchase_order_line_deep_sort>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
