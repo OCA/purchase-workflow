@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from dateutil.relativedelta import relativedelta
+
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
@@ -9,8 +10,8 @@ from odoo.exceptions import ValidationError
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
-    default_start_date = fields.Date(string="Default Start Date")
-    default_end_date = fields.Date(string="Default End Date")
+    default_start_date = fields.Date()
+    default_end_date = fields.Date()
 
     @api.constrains("default_start_date", "default_end_date")
     def _check_default_start_end_dates(self):
@@ -49,12 +50,8 @@ class PurchaseOrder(models.Model):
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
-    start_date = fields.Date(
-        string="Start Date", readonly=True, states={"draft": [("readonly", False)]}
-    )
-    end_date = fields.Date(
-        string="End Date", readonly=True, states={"draft": [("readonly", False)]}
-    )
+    start_date = fields.Date(readonly=True)
+    end_date = fields.Date(readonly=True)
     number_of_days = fields.Integer(
         compute="_compute_number_of_days",
         inverse="_inverse_number_of_days",
@@ -63,6 +60,17 @@ class PurchaseOrderLine(models.Model):
         store=True,
     )
     must_have_dates = fields.Boolean(related="product_id.must_have_dates")
+
+    def _prepare_account_move_line(self, move=False):
+        data = super()._prepare_account_move_line(move=move)
+        if self.product_id.must_have_dates:
+            data.update(
+                {
+                    "start_date": self.start_date,
+                    "end_date": self.end_date,
+                }
+            )
+        return data
 
     @api.depends("start_date", "end_date")
     def _compute_number_of_days(self):
@@ -79,10 +87,15 @@ class PurchaseOrderLine(models.Model):
             if line.number_of_days < 0:
                 res["warning"]["title"] = _("Wrong number of days")
                 res["warning"]["message"] = _(
-                    "On purchase order line with product '%s', the "
-                    "number of days is negative (%d) ; this is not "
+                    "On purchase order line with product '%(product_name)s', the "
+                    "number of days is negative (%(number_of_days)s) ; this is not "
                     "allowed. The number of days has been forced to 1."
-                ) % (line.product_id.display_name, line.number_of_days)
+                ) % (
+                    {
+                        "product_name": line.product_id.display_name,
+                        "number_of_days": line.number_of_days,
+                    }
+                )
                 line.number_of_days = 1
             if line.start_date:
                 line.end_date = line.start_date + relativedelta(

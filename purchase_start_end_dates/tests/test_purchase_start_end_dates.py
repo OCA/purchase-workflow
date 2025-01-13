@@ -10,11 +10,24 @@ from odoo.tests.common import TransactionCase
 
 class TestPurchaseStartEndDates(TransactionCase):
     def setUp(self):
-        super(TestPurchaseStartEndDates, self).setUp()
-        self.AccountInvoice = self.env["account.invoice"]
+        super().setUp()
+        self.AccountInvoice = self.env["account.move"]
         self.partner = self.env.ref("base.res_partner_1")
-        self.product_id = self.env.ref("product.product_product_6")
-        self.product_id.must_have_dates = True
+        uom_unit = self.env.ref("uom.product_uom_unit")
+        self.product_id = self.env["product.product"].create(
+            {
+                "name": "Product",
+                "standard_price": 235.0,
+                "list_price": 280.0,
+                "type": "consu",
+                "uom_id": uom_unit.id,
+                "uom_po_id": uom_unit.id,
+                "purchase_method": "purchase",
+                "default_code": "PRODUCT",
+                "taxes_id": False,
+                "must_have_dates": True,
+            }
+        )
         self.default_start_date = datetime.datetime.now()
         self.default_end_date = self.default_start_date + datetime.timedelta(days=9)
         self.po = self.env["purchase.order"].create(
@@ -119,15 +132,8 @@ class TestPurchaseStartEndDates(TransactionCase):
         )
 
     def test_vendor_bill_start_end_date(self):
-        self.invoice = self.AccountInvoice.create(
-            {
-                "partner_id": self.partner.id,
-                "purchase_id": self.po.id,
-                "account_id": self.partner.property_account_payable_id.id,
-                "type": "in_invoice",
-            }
-        )
-        self.invoice.purchase_order_change()
+        action = self.po.action_create_invoice()
+        self.invoice = self.env["account.move"].browse(action["res_id"])
         self.assertEqual(
             self.invoice.invoice_line_ids.mapped("start_date")[0],
             self.default_start_date.date(),

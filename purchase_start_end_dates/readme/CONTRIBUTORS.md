@@ -1,0 +1,2 @@
+- [Stesi Consulting](https://www.stesi.consulting):
+  - Michele Di Croce
