@@ -59,7 +59,7 @@ class TestProductCostPriceAvcoSync(TransactionCase):
         self.order.button_confirm()
         picking = self.order.picking_ids[:1]
         move = picking.move_ids[:1]
-        move.quantity_done = move.product_uom_qty
+        move.picked = True
         picking._action_done()
         svl = move.sudo().stock_valuation_layer_ids[:1]
         self.assertAlmostEqual(svl.unit_cost, 8.0, 2)
