@@ -2,13 +2,13 @@
 # Copyright 2019 Tecnativa - Sergio Teruel
 # Copyright 2023 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import fields
-from odoo.tests.common import TransactionCase, new_test_user, users
+from odoo import Command, fields
+from odoo.tests import new_test_user, users
 
-from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
+from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT, BaseCommon
 
 
-class TestProductCostPriceAvcoSync(TransactionCase):
+class TestProductCostPriceAvcoSync(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -23,7 +23,8 @@ class TestProductCostPriceAvcoSync(TransactionCase):
         cls.product = cls.env["product.product"].create(
             {
                 "name": "Product for test",
-                "type": "product",
+                "is_storable": True,
+                "type": "consu",
                 "tracking": "none",
                 "categ_id": cls.product_category.id,
                 "standard_price": 1,
@@ -34,9 +35,7 @@ class TestProductCostPriceAvcoSync(TransactionCase):
             {
                 "partner_id": cls.partner.id,
                 "order_line": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "name": "Test line",
                             "product_qty": 10.0,
@@ -59,7 +58,8 @@ class TestProductCostPriceAvcoSync(TransactionCase):
         self.order.button_confirm()
         picking = self.order.picking_ids[:1]
         move = picking.move_ids[:1]
-        move.quantity_done = move.product_uom_qty
+        move.quantity = move.product_uom_qty
+        move.picked = True
         picking._action_done()
         svl = move.sudo().stock_valuation_layer_ids[:1]
         self.assertAlmostEqual(svl.unit_cost, 8.0, 2)
