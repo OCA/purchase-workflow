@@ -20,7 +20,7 @@ class PurchaseOrderLine(models.Model):
         return res
 
     def stock_price_unit_sync(self):
-        for line in self.filtered(lambda l: l.state in ["purchase", "done"]):
+        for line in self.filtered(lambda rec: rec.state in ["purchase", "done"]):
             # When the affected product is a kit we do nothing, which is the
             # default behavior on the standard: the move is exploded into moves
             # for the components and those get the default price_unit for the
@@ -36,8 +36,8 @@ class PurchaseOrderLine(models.Model):
             moves = line.move_ids.filtered(lambda m: m.state == "done")
             if moves:
                 moves.write({"price_unit": line._get_stock_move_price_unit()})
-                # Apply sudo() to avoid access errors with users without Inventory > Admin
-                # permissions.
+                # Apply sudo() to avoid access errors with users
+                # without Inventory > Admin permissions.
                 svls = (
                     moves.sudo()
                     .mapped("stock_valuation_layer_ids")
