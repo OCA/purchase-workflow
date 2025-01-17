@@ -4,10 +4,12 @@
 from freezegun import freeze_time
 
 from odoo.fields import Datetime
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests import Form
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestDeliverySingle(TransactionCase):
+class TestDeliverySingle(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -17,7 +19,7 @@ class TestDeliverySingle(TransactionCase):
         cls.p1 = cls.product1 = cls.product_model.create(
             {
                 "name": "Test Product 1",
-                "type": "product",
+                "type": "consu",
                 "default_code": "PROD1",
                 "standard_price": 10,
             }
@@ -25,7 +27,7 @@ class TestDeliverySingle(TransactionCase):
         cls.p2 = cls.product2 = cls.product_model.create(
             {
                 "name": "Test Product 2",
-                "type": "product",
+                "type": "consu",
                 "default_code": "PROD2",
                 "standard_price": 10,
             }
@@ -33,7 +35,7 @@ class TestDeliverySingle(TransactionCase):
         cls.p3 = cls.product2 = cls.product_model.create(
             {
                 "name": "Test Product 3",
-                "type": "product",
+                "type": "consu",
                 "default_code": "PROD3",
                 "standard_price": 10,
             }
