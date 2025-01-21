@@ -10,22 +10,15 @@ from odoo.exceptions import UserError, ValidationError
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
-    manual_currency = fields.Boolean(
-        readonly=True,
-        states={"draft": [("readonly", False)]},
-    )
+    manual_currency = fields.Boolean()
     is_manual = fields.Boolean(compute="_compute_currency")
     type_currency = fields.Selection(
         selection=lambda self: self._get_label_currency_name(),
         default=lambda self: self._get_label_currency_name()[0][0],
-        readonly=True,
-        states={"draft": [("readonly", False)]},
     )
     manual_currency_rate = fields.Float(
         digits="Manual Currency",
         tracking=True,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
         help="Set new currency rate to apply on the invoice\n."
         "This rate will be taken in order to convert amounts between the "
         "currency on the purchase order and last currency",
@@ -118,13 +111,9 @@ class PurchaseOrder(models.Model):
         return True
 
     @api.model
-    def _fields_view_get(
-        self, view_id=None, view_type="form", toolbar=False, submenu=False
-    ):
+    def get_view(self, view_id=None, view_type="form", **options):
         """Change string name to company currency"""
-        result = super()._fields_view_get(
-            view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=submenu
-        )
+        result = super().get_view(view_id=view_id, view_type=view_type, **options)
         if view_type == "form":
             company_currency_name = (
                 self.env["res.company"].browse(self._context.get("company_id"))
@@ -173,7 +162,4 @@ class PurchaseOrder(models.Model):
                         "manual_currency_rate": purchases[0].manual_currency_rate,
                     }
                 )
-                inv.line_ids.with_context(
-                    check_move_validity=False
-                )._onchange_amount_currency()
         return result
