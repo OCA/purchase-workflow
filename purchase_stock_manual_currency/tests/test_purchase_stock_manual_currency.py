@@ -90,12 +90,12 @@ class TestPurchaseStockManualCurrency(TransactionCase):
         self.assertEqual(len(self.p_order.picking_ids), 1)
         stock_picking = self.p_order.picking_ids
 
-        self.assertTrue(stock_picking.move_lines)
-        self.assertEqual(len(stock_picking.move_lines), 1)
-        stock_move = stock_picking.move_lines
+        self.assertTrue(stock_picking.move_ids)
+        self.assertEqual(len(stock_picking.move_ids), 1)
+        stock_move = stock_picking.move_ids
         price = stock_move._get_price_unit()
         self.assertEqual(round(price, 2), 7.21)
-        stock_picking.move_lines.write({"quantity_done": 10})
+        stock_picking.move_ids.write({"quantity": 10})
         stock_picking.button_validate()
 
         self.assertTrue(stock_move.stock_valuation_layer_ids)
@@ -121,12 +121,12 @@ class TestPurchaseStockManualCurrency(TransactionCase):
         self.assertEqual(len(self.p_order.picking_ids), 1)
         stock_picking = self.p_order.picking_ids
 
-        self.assertTrue(stock_picking.move_lines)
-        self.assertEqual(len(stock_picking.move_lines), 1)
-        stock_move = stock_picking.move_lines
+        self.assertTrue(stock_picking.move_ids)
+        self.assertEqual(len(stock_picking.move_ids), 1)
+        stock_move = stock_picking.move_ids
         price = stock_move._get_price_unit()
         self.assertEqual(round(price, 2), 4.00)
-        stock_picking.move_lines.write({"quantity_done": 10})
+        stock_picking.move_ids.write({"quantity": 10})
         stock_picking.button_validate()
 
         self.assertTrue(stock_move.stock_valuation_layer_ids)
@@ -151,12 +151,12 @@ class TestPurchaseStockManualCurrency(TransactionCase):
         self.assertEqual(len(self.p_order.picking_ids), 1)
         stock_picking = self.p_order.picking_ids
 
-        self.assertTrue(stock_picking.move_lines)
-        self.assertEqual(len(stock_picking.move_lines), 1)
-        stock_move = stock_picking.move_lines
+        self.assertTrue(stock_picking.move_ids)
+        self.assertEqual(len(stock_picking.move_ids), 1)
+        stock_move = stock_picking.move_ids
         price = stock_move._get_price_unit()
         self.assertEqual(round(price, 2), 8.00)
-        stock_picking.move_lines.write({"quantity_done": 10})
+        stock_picking.move_ids.write({"quantity": 10})
         stock_picking.button_validate()
 
         self.assertTrue(stock_move.stock_valuation_layer_ids)
