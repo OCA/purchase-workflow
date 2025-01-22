@@ -9,7 +9,7 @@
                 <field name="sale_purchase_force_vendor_restrict" invisible="1" />
             </field>
             <xpath
-                expr="//field[@name='order_line']/tree/field[@name='price_unit']"
+                expr="//field[@name='order_line']/list/field[@name='price_unit']"
                 position="before"
             >
                 <field name="vendor_id_domain" column_invisible="1" />
@@ -26,7 +26,7 @@
                     <field
                         name="vendor_id"
                         domain="vendor_id_domain"
-                        readonly="'state' in ('done', 'cancel')"
+                        readonly="'state' in ('sale', 'cancel')"
                         options='{"no_create": True}'
                     />
                 </group>
