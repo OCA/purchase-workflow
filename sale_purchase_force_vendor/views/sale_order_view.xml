@@ -19,7 +19,7 @@
                     options='{"no_create": True}'
                     optional="hide"
                 />
-           </xpath>
+            </xpath>
             <xpath expr="//field[@name='order_line']/form/group" position="inside">
                 <group string="Vendor" name="vendor">
                     <field name="vendor_id_domain" column_invisible="1" />
