@@ -8,7 +8,7 @@
         and adds the ability to manually generate them as the supplier confirms
         the different purchase order lines.
     """,
-    "version": "16.0.1.1.5",
+    "version": "16.0.2.0.1",
     "license": "AGPL-3",
     "author": "ForgeFlow S.L.," "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
@@ -19,4 +19,9 @@
         "views/purchase_order_views.xml",
         "views/res_config_view.xml",
     ],
+    "assets": {
+        "web.assets_backend": [
+            "purchase_manual_delivery/static/src/**/*",
+        ]
+    },
 }

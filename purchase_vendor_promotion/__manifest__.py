@@ -3,7 +3,7 @@
 
 {
     "name": "Purchase Vendor Promotion",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.0.1",
     "development_status": "Beta",
     "category": "Purchase Management",
     "summary": "Purchase Vendor Promotion",

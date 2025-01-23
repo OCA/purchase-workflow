@@ -5,6 +5,8 @@ from odoo import fields
 from odoo.exceptions import UserError
 from odoo.tests.common import TransactionCase
 
+from odoo.addons.mail.tests.common import mail_new_test_user
+
 
 class TestPurchaseManualDelivery(TransactionCase):
     def setUp(self):
@@ -301,3 +303,123 @@ class TestPurchaseManualDelivery(TransactionCase):
 
         # The PO Line should not be pending to receive
         self.assertFalse(po_existing_bigger.pending_to_receive)
+
+    def test_05_purchase_order_in_progress(self):
+        """
+        Create a new Product and Purchase Order.
+        Confirm Purchase Order and create a Picking with only a partial amount of
+        the selected amount of the Purchase Order Line. Confirm the Picking.
+        The quantity in progress is the pending to receive quantity of the Purchase
+        Order Line.
+        """
+        product_in_progress = self.env["product.product"].create(
+            {
+                "name": "Test product pending",
+                "type": "product",
+                "list_price": 1,
+                "standard_price": 1,
+            }
+        )
+        po_in_progress = self.purchase_order_obj.create(
+            {
+                "partner_id": self.ref("base.res_partner_3"),
+            }
+        )
+        self.purchase_order_line_obj.create(
+            {
+                "order_id": po_in_progress.id,
+                "product_id": product_in_progress.id,
+                "product_uom": product_in_progress.uom_id.id,
+                "name": product_in_progress.name,
+                "price_unit": product_in_progress.standard_price,
+                "date_planned": fields.datetime.now(),
+                "product_qty": 5.0,
+            }
+        )
+        po_in_progress.button_confirm_manual()
+        location = self.env["stock.location"].browse(
+            po_in_progress.picking_type_id.default_location_dest_id.id
+        )
+        wizard = (
+            self.env["create.stock.picking.wizard"]
+            .with_context(
+                **{
+                    "active_model": "purchase.order",
+                    "active_id": po_in_progress.id,
+                    "active_ids": po_in_progress.ids,
+                }
+            )
+            .create({})
+        )
+        wizard.fill_lines(po_in_progress.order_line)
+        wizard.line_ids[0].qty = 2
+        wizard.create_stock_picking()
+        po_in_progress.picking_ids[0].button_validate()
+        qty, _ = product_in_progress._get_quantity_in_progress(
+            location_ids=location.ids
+        )
+        self.assertEqual(qty.get((product_in_progress.id, location.id)), 3)
+
+    def test_06_purchase_order_manual_delivery_double_validation(self):
+        """
+        Confirm Purchase Order 1, check no incoming shipments have been
+        pre-created. Approve Purchase Order 1, check no incoming shipments
+        have been pre-created.
+        """
+        self.user_purchase_user = mail_new_test_user(
+            self.env,
+            name="Pauline Poivraisselle",
+            login="pauline",
+            email="pur@example.com",
+            notification_type="inbox",
+            groups="purchase.group_purchase_user",
+        )
+
+        # make double validation two step
+        self.env.company.write(
+            {"po_double_validation": "two_step", "po_double_validation_amount": 2000.00}
+        )
+
+        # Create draft RFQ
+        po_vals = {
+            "partner_id": self.ref("base.res_partner_3"),
+            "order_line": [
+                (
+                    0,
+                    0,
+                    {
+                        "name": self.product1.name,
+                        "product_id": self.product1.id,
+                        "product_qty": 5.0,
+                        "product_uom": self.product1.uom_po_id.id,
+                        "price_unit": 5000000.0,
+                    },
+                )
+            ],
+        }
+        self.po = (
+            self.env["purchase.order"]
+            .with_user(self.user_purchase_user)
+            .create(po_vals)
+        )
+
+        # confirm RFQ
+        self.po.button_confirm_manual()
+        self.assertTrue(self.po.order_line.pending_to_receive)
+        self.assertEqual(self.po.order_line.existing_qty, 0)
+        self.assertFalse(
+            self.po.picking_ids,
+            "Purchase Manual Delivery: no picking should had been created",
+        )
+        self.assertEqual(self.po.state, "to approve")
+
+        # PO approved by manager
+        self.po.env.user.groups_id += self.env.ref("purchase.group_purchase_manager")
+        self.po.button_approve()
+        self.assertTrue(self.po.order_line.pending_to_receive)
+        self.assertEqual(self.po.order_line.existing_qty, 0)
+        self.assertFalse(
+            self.po.picking_ids,
+            "Purchase Manual Delivery: no picking should had been created",
+        )
+        self.assertEqual(self.po.state, "purchase")

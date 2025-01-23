@@ -27,6 +27,11 @@ msgid "Companies"
 msgstr "Compañías"
 
 #. module: purchase_manual_delivery
+#: model:ir.model,name:purchase_manual_delivery.model_res_config_settings
+msgid "Config Settings"
+msgstr "Ajustes de Config"
+
+#. module: purchase_manual_delivery
 #: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.purchase_order_view_form_inherit
 msgid "Confirm Order"
 msgstr "Confirmar Pedido"
@@ -225,14 +230,14 @@ msgid "Please select one purchase order at a time"
 msgstr "Por favor, seleccione una orden de compra cada vez"
 
 #. module: purchase_manual_delivery
-#: model:ir.model,name:purchase_manual_delivery.model_res_config_settings
-msgid "Procurement purchase grouping settings"
-msgstr "Configuración de la agrupación de compra abastecida"
-
-#. module: purchase_manual_delivery
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__product_id
 msgid "Product"
 msgstr "Producto"
+
+#. module: purchase_manual_delivery
+#: model:ir.model,name:purchase_manual_delivery.model_product_product
+msgid "Product Variant"
+msgstr ""
 
 #. module: purchase_manual_delivery
 #: model:ir.actions.act_window,name:purchase_manual_delivery.action_order_line_delivery_tree
@@ -311,6 +316,13 @@ msgid "Remaining Quantity"
 msgstr "Cantidad Restante"
 
 #. module: purchase_manual_delivery
+#. odoo-javascript
+#: code:addons/purchase_manual_delivery/static/src/purchase_manual_delivery_forecasted/forecasted_details.xml:0
+#, python-format
+msgid "Requests without delivery"
+msgstr ""
+
+#. module: purchase_manual_delivery
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard__scheduled_date
 msgid "Scheduled Date"
 msgstr "Fecha Prevista"
@@ -337,6 +349,11 @@ msgstr "Buscar Líneas no Entregadas"
 #, python-format
 msgid "Stock Picking"
 msgstr "Albarán de Existencias"
+
+#. module: purchase_manual_delivery
+#: model:ir.model,name:purchase_manual_delivery.model_report_stock_report_product_product_replenishment
+msgid "Stock Replenishment Report"
+msgstr ""
 
 #. module: purchase_manual_delivery
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__taxes_id
@@ -392,8 +409,8 @@ msgstr ""
 "No puede recibir más de la cantidad restante. Si necesita hacerlo, edite "
 "primero la orden de compra."
 
+#~ msgid "Procurement purchase grouping settings"
+#~ msgstr "Configuración de la agrupación de compra abastecida"
+
 #~ msgid "Purchase Order Lines"
 #~ msgstr "Líneas de Orden de Compra"
-
-#~ msgid "Config Settings"
-#~ msgstr "Ajustes de Config"
