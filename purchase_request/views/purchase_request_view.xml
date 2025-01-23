@@ -262,6 +262,10 @@
                                         <field name="name" />
                                         <field name="product_qty" />
                                         <field name="product_uom_id" />
+                                        <field
+                                            name="product_uom_category_id"
+                                            invisible="1"
+                                        />
                                         <field name="date_required" />
                                         <field name="estimated_cost" widget="monetary" />
                                         <field name="currency_id" invisible="1" />
