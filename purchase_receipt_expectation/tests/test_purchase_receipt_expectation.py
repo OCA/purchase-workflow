@@ -12,9 +12,7 @@ class TestPurchaseReceiptExpectation(TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.po_partner = cls.env["res.partner"].create({"name": "Partner"})
-        cls.po_product = cls.env["product.product"].create(
-            {"name": "Product", "detailed_type": "product"}
-        )
+        cls.po_product = cls.env["product.product"].create({"name": "Product"})
         cls.po_vals = {
             "partner_id": cls.po_partner.id,
             "order_line": [
@@ -69,7 +67,7 @@ class TestPurchaseReceiptExpectation(TransactionCase):
         """
 
         class PurchaseOrderMockUp(models.Model):
-            _inherit = "purchase.order"
+            _inherit = "purchase.order"  # pylint: disable=R8180
 
             receipt_expectation = fields.Selection(
                 selection_add=[
@@ -103,5 +101,5 @@ class TestPurchaseReceiptExpectation(TransactionCase):
         with self.assertRaises(NotImplementedError) as error:
             failing_order.button_confirm()
         method = "_create_picking_for_failing_receipt_expectation"
-        msg = "Method `purchase.order.%s()` not implemented" % method
+        msg = f"Method `purchase.order.{method}()` not implemented"
         self.assertEqual(error.exception.args[0], msg)

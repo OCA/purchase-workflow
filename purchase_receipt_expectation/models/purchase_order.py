@@ -31,11 +31,11 @@ class PurchaseOrder(models.Model):
             groups[order.receipt_expectation].append(order.id)
         for exp, order_ids in groups.items():
             orders = self.browse(order_ids)
-            method = "_create_picking_for_%s_receipt_expectation" % exp
+            method = f"_create_picking_for_{exp}_receipt_expectation"
             if hasattr(orders, method):
                 getattr(orders, method)()
             else:
-                msg = "Method `%s.%s()` not implemented" % (self._name, method)
+                msg = f"Method `{self._name}.{method}()` not implemented"
                 raise NotImplementedError(msg)
         return True
 

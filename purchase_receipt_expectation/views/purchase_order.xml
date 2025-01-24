@@ -12,7 +12,7 @@
                 <field
                     name="receipt_expectation"
                     widget="radio"
-                    attrs="{'readonly': [('state', 'in', ('purchase', 'done'))]}"
+                    readonly="state in ['purchase', 'done']"
                 />
             </field>
         </field>
