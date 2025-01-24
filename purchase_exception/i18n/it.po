@@ -20,8 +20,8 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:purchase_exception.view_order_form
 msgid "<strong>There are exceptions blocking this Purchase Order:</strong>"
 msgstr ""
-"<strong>Ci sono delle eccezioni che bloccano questo ordine di "
-"acquisto:</strong>"
+"<strong>Ci sono delle eccezioni che bloccano questo ordine di acquisto:</"
+"strong>"
 
 #. module: purchase_exception
 #: model:ir.model.fields,field_description:purchase_exception.field_exception_rule__model
@@ -36,8 +36,7 @@ msgstr "Bloccati in bozza"
 #. module: purchase_exception
 #: model_terms:ir.ui.view,arch_db:purchase_exception.view_order_form
 msgid ""
-"Click here to be able to confirm this Agreement regardless of the "
-"exceptions."
+"Click here to be able to confirm this Agreement regardless of the exceptions."
 msgstr ""
 "Fare clic qui per poter confermare questo accordo indipendentemente dalle "
 "eccezioni."
@@ -126,7 +125,7 @@ msgid "Purchase"
 msgstr "Acquisto"
 
 #. module: purchase_exception
-#: model:ir.actions.act_window,name:purchase_exception.action_purchase_test_tree
+#: model:ir.actions.act_window,name:purchase_exception.action_purchase_test_list
 #: model:ir.ui.menu,name:purchase_exception.menu_purchase_test
 msgid "Purchase Exception Rules"
 msgstr "Regole eccezione acquisto"

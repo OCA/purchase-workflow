@@ -127,7 +127,7 @@ msgid "Purchase"
 msgstr "Achat"
 
 #. module: purchase_exception
-#: model:ir.actions.act_window,name:purchase_exception.action_purchase_test_tree
+#: model:ir.actions.act_window,name:purchase_exception.action_purchase_test_list
 #: model:ir.ui.menu,name:purchase_exception.menu_purchase_test
 msgid "Purchase Exception Rules"
 msgstr "Règles d'exception des achats"
