@@ -22,7 +22,7 @@ class TestPurchaseOrderRevision(test_base_revision.TestBaseRevision):
         # Create a new revision
         return tester.create_revision()
 
-    def _create_tester(self):
+    def _create_tester(self, vals_list=None):
         purchase_form = Form(self.revision_model)
         purchase_form.partner_id = self.partner
         with purchase_form.order_line.new() as line_form:
