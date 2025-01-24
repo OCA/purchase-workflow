@@ -3,9 +3,10 @@
 
 from datetime import datetime, timedelta
 
-from odoo.tests.common import Form
+from odoo.tests import Form
 
-from odoo.addons.purchase_receipt_expectation.tests.test_purchase_receipt_expectation import (
+# on line split ruff resetting to this state then complaining about it being too long
+from odoo.addons.purchase_receipt_expectation.tests.test_purchase_receipt_expectation import (  # noqa: E501
     TestPurchaseReceiptExpectation,
 )
 

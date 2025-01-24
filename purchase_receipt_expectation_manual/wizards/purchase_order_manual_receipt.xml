@@ -17,16 +17,16 @@
                         role="alert"
                         class="alert alert-warning"
                         name="checks_result"
-                        attrs="{'invisible': [('checks_result', '=', 'success')]}"
+                        invisible="checks_result == 'success'"
                     >
                         <field name="checks_result" invisible="1" />
                         <field name="checks_result_msg" nolabel="1" readonly="1" />
                     </div>
                     <field name="line_ids" nolabel="1">
-                        <tree editable="bottom">
-                            <field name="wizard_id" invisible="1" />
-                            <field name="purchase_order_id" invisible="1" />
-                            <field name="uom_category_id" invisible="1" />
+                        <list editable="bottom">
+                            <field name="wizard_id" column_invisible="1" />
+                            <field name="purchase_order_id" column_invisible="1" />
+                            <field name="uom_category_id" column_invisible="1" />
                             <field
                                 name="purchase_line_id"
                                 string="Line to receive"
@@ -38,9 +38,9 @@
                                 name="uom_id"
                                 domain="[('category_id', '=', uom_category_id)]"
                             />
-                            <field name="currency_id" invisible="1" />
+                            <field name="currency_id" column_invisible="1" />
                             <field name="unit_price" />
-                        </tree>
+                        </list>
                     </field>
                 </sheet>
                 <footer>

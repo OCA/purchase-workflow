@@ -1,2 +1,3 @@
 - Silvio Gregorini \<<silvio.gregorini@camptocamp.com>\>
 - Dhara Solanki \<<dhara.solanki@initos.com>\>
+- Kevin Khao \<<kevinkhao@gmail.com>\>
