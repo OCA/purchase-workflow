@@ -3,7 +3,7 @@
 {
     "name": "Purchase order revisions",
     "summary": "Keep track of revised quotations",
-    "version": "15.0.0.0.0",
+    "version": "16.0.1.0.0",
     "category": "Purchase",
     "author": "Open Source Integrators," "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
