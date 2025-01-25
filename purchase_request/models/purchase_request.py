@@ -29,7 +29,7 @@ class PurchaseRequest(models.Model):
 
     @api.model
     def _get_default_name(self):
-        return self.env["ir.sequence"].next_by_code("purchase.request")
+        return self.env["ir.sequence"].with_company(self.env.company).sudo().next_by_code("purchase.request")
 
     @api.model
     def _default_picking_type(self):
@@ -239,7 +239,11 @@ class PurchaseRequest(models.Model):
     def create(self, vals_list):
         for vals in vals_list:
             if vals.get("name", _("New")) == _("New"):
+<<<<<<< Updated upstream
                 vals["name"] = self._get_default_name()
+=======
+                vals['name'] = self.env['ir.sequence'].with_company(vals.get('company_id')).next_by_code('purchase.request') or _("New")
+>>>>>>> Stashed changes
         requests = super().create(vals_list)
         for vals, request in zip(vals_list, requests, strict=True):
             if vals.get("assigned_to"):
