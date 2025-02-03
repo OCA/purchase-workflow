@@ -54,6 +54,12 @@ class PurchaseRequest(models.Model):
                     vals["name"] = purchase_type.sequence_id.next_by_id()
         return super().create(vals_list)
 
+    @api.model
+    def _get_default_name(self):
+        if self and self.request_type.sequence_id:
+            return self.request_type.sequence_id.next_by_id()
+        return super()._get_default_name()
+
     @api.constrains("company_id")
     def _check_pr_type_company(self):
         if self.filtered(
