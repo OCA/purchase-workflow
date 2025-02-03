@@ -28,6 +28,9 @@ class TestPurchaseRequestType(BaseCommon):
         # Picking Type
         cls.picking_type = cls.env.ref("stock.picking_type_in")
         cls.picking_type2 = cls.env.ref("stock.picking_type_internal")
+
+        # Add company in purchase type
+        cls.type2.company_id = cls.picking_type.company_id
         cls.type2.picking_type_id = cls.picking_type
         cls.company2 = cls.company_obj.create({"name": "company2"})
 
