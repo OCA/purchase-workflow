@@ -42,6 +42,12 @@ class PurchaseRequest(models.Model):
             if request.request_type.picking_type_id:
                 request.picking_type_id = request.request_type.picking_type_id.id
 
+    @api.model
+    def _get_default_name(self):
+        if self and self.request_type.sequence_id:
+            return self.request_type.sequence_id.next_by_id()
+        return super()._get_default_name()
+
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
