@@ -53,11 +53,14 @@ class PurchaseOrderLine(models.Model):
 
     @api.model
     def _apply_value_from_seller(self, seller):
-        super()._apply_value_from_seller(seller)
-        if not seller:
-            return
-        self.discount2 = seller.discount2
-        self.discount3 = seller.discount3
+        res = super()._apply_value_from_seller(seller)
+        self.discount2 = (
+            seller.discount2 or self.partner_id.default_supplierinfo_discount2
+        )
+        self.discount3 = (
+            seller.discount3 or self.partner_id.default_supplierinfo_discount3
+        )
+        return res
 
     def _prepare_account_move_line(self, move=False):
         self.ensure_one()
