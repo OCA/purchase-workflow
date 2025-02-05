@@ -83,9 +83,7 @@ class PurchaseOrderLine(models.Model):
     def _apply_value_from_seller(self, seller):
         """Overload this function to prepare other data from seller,
         like in purchase_triple_discount module"""
-        if not seller:
-            return
-        self.discount = seller.discount
+        self.discount = seller.discount or self.partner_id.default_supplierinfo_discount
 
     def _prepare_account_move_line(self, move=False):
         vals = super()._prepare_account_move_line(move)
@@ -119,9 +117,9 @@ class PurchaseOrderLine(models.Model):
     def _prepare_purchase_order_line_from_seller(self, seller):
         """Overload this function to prepare other data from seller,
         like in purchase_triple_discount module"""
-        if not seller:
-            return {}
-        return {"discount": seller.discount}
+        return {
+            "discount": seller.discount or self.partner_id.default_supplierinfo_discount
+        }
 
     def write(self, vals):
         res = super().write(vals)
