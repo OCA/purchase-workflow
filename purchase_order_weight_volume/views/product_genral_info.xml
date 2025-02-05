@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_product_template_form_inherit_pos" model="ir.ui.view">
+        <field name="name">product.template.form.inherit.pos</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <!-- Add weight and volume after the standard fields -->
+              <xpath expr="//page[@name='general_information']//group" position="inside">
+                <group>
+                    <field name="weight"/>
+                    <field name="volume"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
