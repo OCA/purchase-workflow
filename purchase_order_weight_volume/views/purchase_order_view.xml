@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="purchase_order_form_inerit" model="ir.ui.view">
         <field name="name">purchase.order.form.inherit</field>
         <field name="model">purchase.order</field>
         <field name="inherit_id" ref="purchase.purchase_order_form" />
         <field name="arch" type="xml">
-
             <xpath expr="//field[@name='partner_ref']" position="after">
                 <group>
-                    <field name="total_weight" class="oe_inline"/>]
-                    <field name="total_volume" class="oe_inline"/>
+                    <field name="total_weight" class="oe_inline" />]
+                    <field name="total_volume" class="oe_inline" />
                 </group>
             </xpath>
-
 
             <xpath
                 expr="//field[@name='order_line']//list//field[@name='price_unit']"
@@ -27,29 +24,25 @@
                 position="after"
             >
                 <group class="oe_right">
-                    <label
-                        for="total_weight"
-                    />
-                    <div
-                        class="text-nowrap"
-                    >
+                    <label for="total_weight" />
+                    <div class="text-nowrap">
                         <field name="total_weight" class="oe_inline" />
-                        <span style="margin-left:3px;"><field
+                        <span style="margin-left:3px;">
+                            <field
                                 name="total_weight_uom_id"
                                 class="oe_inline pull-right"
-                            /></span>
+                            />
+                        </span>
                     </div>
-                    <label
-                        for="total_volume"
-                    />
-                    <div
-                        class="text-nowrap"
-                    >
+                    <label for="total_volume" />
+                    <div class="text-nowrap">
                         <field name="total_volume" class="oe_inline" />
-                        <span style="margin-left:3px;"><field
+                        <span style="margin-left:3px;">
+                            <field
                                 name="total_volume_uom_id"
                                 class="oe_inline pull-right"
-                            /></span>
+                            />
+                        </span>
                     </div>
                 </group>
             </xpath>
@@ -66,5 +59,4 @@
             </field>
         </field>
     </record>
-
 </odoo>
