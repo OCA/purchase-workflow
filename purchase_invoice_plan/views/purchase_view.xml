@@ -3,7 +3,7 @@
         <field name="name">view.purchase.invoice.plan.tree</field>
         <field name="model">purchase.invoice.plan</field>
         <field name="arch" type="xml">
-            <tree editable="bottom">
+            <list editable="bottom">
                 <field name="no_edit" column_invisible="1" />
                 <field name="installment" readonly="no_edit == True" />
                 <field name="plan_date" readonly="no_edit == True" />
@@ -14,7 +14,7 @@
                 <field name="to_invoice" />
                 <field name="invoiced" />
                 <field name="invoice_ids" optional="hide" widget="many2many_tags" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="view_purchase_invoice_plan_form" model="ir.ui.view">
@@ -52,7 +52,6 @@
                 </div>
             </xpath>
             <xpath expr="//button[@name='action_create_invoice']" position="before">
-                <field name="ip_invoice_plan" invisible="1" />
                 <button
                     name="%(action_view_purchase_make_planned_invoice)d"
                     string="Create Bill by Plan"
@@ -162,7 +161,7 @@
         <field name="name">view.purchase.invoice.plan.tree</field>
         <field name="model">purchase.invoice.plan</field>
         <field name="arch" type="xml">
-            <tree edit="0" create="0" delete="0">
+            <list edit="0" create="0" delete="0">
                 <field name="purchase_id" />
                 <field name="installment" />
                 <field name="plan_date" />
@@ -173,7 +172,7 @@
                 <field name="to_invoice" />
                 <field name="invoiced" />
                 <field name="invoice_ids" widget="many2many_tags" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="action_purchase_invoice_plan" model="ir.actions.act_window">

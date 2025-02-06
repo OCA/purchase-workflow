@@ -3,7 +3,7 @@
 
 from dateutil.relativedelta import relativedelta
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools.float_utils import float_compare, float_round
 
@@ -56,7 +56,9 @@ class PurchaseOrder(models.Model):
             installments = rec.invoice_plan_ids.filtered("installment")
             ip_total_percent = sum(installments.mapped("percent"))
             if float_round(ip_total_percent, 0) > 100:
-                raise UserError(_("Invoice plan total percentage must not exceed 100%"))
+                raise UserError(
+                    self.env._("Invoice plan total percentage must not exceed 100%")
+                )
 
     @api.constrains("state")
     def _check_invoice_plan(self):
@@ -64,12 +66,14 @@ class PurchaseOrder(models.Model):
             if rec.state != "draft":
                 if rec.invoice_plan_ids.filtered(lambda pln: not pln.percent):
                     raise ValidationError(
-                        _("Please fill percentage for all invoice plan lines")
+                        self.env._("Please fill percentage for all invoice plan lines")
                     )
 
     def button_confirm(self):
         if self.filtered(lambda r: r.use_invoice_plan and not r.invoice_plan_ids):
-            raise UserError(_("Use Invoice Plan selected, but no plan created"))
+            raise UserError(
+                self.env._("Use Invoice Plan selected, but no plan created")
+            )
         return super().button_confirm()
 
     def create_invoice_plan(
@@ -117,7 +121,7 @@ class PurchaseOrder(models.Model):
         return next_date
 
     def action_view_invoice(self, invoices=False):
-        invoice_plan_id = self._context.get("invoice_plan_id")
+        invoice_plan_id = self.env.context.get("invoice_plan_id")
         if invoice_plan_id and invoices:
             plan = self.env["purchase.invoice.plan"].browse(invoice_plan_id)
             for invoice in invoices:
@@ -298,9 +302,12 @@ class PurchaseInvoicePlan(models.Model):
         """Hook function"""
         plan_qty = self._get_plan_qty(line.purchase_line_id, percent)
         prec = line.purchase_line_id.product_uom.rounding
-        if float_compare(abs(plan_qty), abs(line.quantity), prec) == 1:
+        if (
+            float_compare(abs(plan_qty), abs(line.quantity), precision_rounding=prec)
+            == 1
+        ):
             raise ValidationError(
-                _(
+                self.env._(
                     "Plan quantity: %(plan)s, exceed invoiceable quantity: %(qty)s"
                     "\nProduct should be delivered before invoice"
                 )
@@ -319,7 +326,7 @@ class PurchaseInvoicePlan(models.Model):
         if lines:
             installments = [str(x) for x in lines.mapped("installment")]
             raise UserError(
-                _(
+                self.env._(
                     "Installment %s: already used and not allowed to delete.\n"
                     "Please discard changes."
                 )
