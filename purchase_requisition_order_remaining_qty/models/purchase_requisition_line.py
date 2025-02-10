@@ -1,4 +1,4 @@
-# Copyright 2021 Tecnativa - Víctor Martínez
+# Copyright 2021-2025 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
@@ -7,7 +7,9 @@ from odoo import api, fields, models
 class PurchaseRequisitionLine(models.Model):
     _inherit = "purchase.requisition.line"
 
-    proposed_qty = fields.Float(compute="_compute_proposed_qty", store=True)
+    proposed_qty = fields.Float(
+        compute="_compute_proposed_qty", store=True, digits="Product Unit of Measure"
+    )
 
     @api.depends(
         "requisition_id.purchase_ids",
@@ -22,7 +24,9 @@ class PurchaseRequisitionLine(models.Model):
                 item.requisition_id.purchase_ids.filtered(
                     lambda x: x.state not in ("cancel")
                 )
-                .order_line.filtered(lambda x: x.product_id == item.product_id)
+                .order_line.filtered(
+                    lambda x, item=item: x.product_id == item.product_id
+                )
                 .mapped("product_qty")
             )
 

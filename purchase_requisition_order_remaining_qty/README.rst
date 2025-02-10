@@ -42,16 +42,17 @@ Configuration
 
 To configure this module, you need to:
 
-1. Go to **Purchase > Configuration > Purchase Agreement Types**
-2. Create or update some record and set "Quantities" to "Use remaining
-   quantities of agreement".
+1. Go to **Purchase > Order > Blanket Orders**
+2. Go to any existing record.
+3. In the "Agreement Type" field create or update some record and set
+   "Quantities" to "Use remaining quantities of agreement".
 
 Usage
 =====
 
 To use this module, you need to:
 
-1. Go to **Purchase > Order > Purchase Agreements**
+1. Go to **Purchase > Order > Blanket Orders**
 2. Create an agreement and set "Remaining Qty" type and create a line
    with any product and set quantity to 5.
 3. Go to "New quotation" button.

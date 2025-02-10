@@ -1,6 +1,6 @@
 To use this module, you need to:
 
-1.  Go to **Purchase \> Order \> Purchase Agreements**
+1.  Go to **Purchase \> Order \> Blanket Orders**
 2.  Create an agreement and set "Remaining Qty" type and create a line
     with any product and set quantity to 5.
 3.  Go to "New quotation" button.
