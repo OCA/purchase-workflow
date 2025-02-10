@@ -35,7 +35,7 @@ class PurchaseOrderLine(models.Model):
         date_order = (
             self.order_id.date_order
             and self.order_id.date_order.date()
-            or fields.Date.context_today(self),
+            or fields.Date.context_today(self)
         )
         params = self._get_select_sellers_params()
         seller = self.product_id._select_seller(
