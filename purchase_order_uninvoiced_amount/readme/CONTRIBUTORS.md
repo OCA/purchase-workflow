@@ -4,3 +4,4 @@
   - Pedro M. Baeza
   - Ernesto Tejeda
   - Víctor Martínez
+  - Juan Carlos Oñate

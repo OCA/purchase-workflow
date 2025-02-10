@@ -4,16 +4,15 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 from odoo import fields
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests import Form
 
-from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestPurchaseOrderUninvoiceAmount(TransactionCase):
+class TestPurchaseOrderUninvoiceAmount(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
         # Environmet
         cls.purchase_order_model = cls.env["purchase.order"]
         cls.purchase_order_line_model = cls.env["purchase.order.line"]
@@ -80,7 +79,7 @@ class TestPurchaseOrderUninvoiceAmount(TransactionCase):
             self.account_move_model.with_context(
                 default_move_type="in_invoice",
                 default_purchase_id=purchase,
-                default_partner_id=purchase.partner_id,
+                default_partner_id=purchase.partner_id.id,
             )
         )
         return invoice_form.save()
