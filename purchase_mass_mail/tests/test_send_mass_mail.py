@@ -6,8 +6,9 @@ from odoo.tests.common import Form, TransactionCase, tagged
 
 @tagged("post_install", "-at_install")
 class TestSendSomePurchaseOrders(TransactionCase):
-    def setUp(self):
-        super().setUp()
+    @classmethod
+    def setUpClass(self):
+        super().setUpClass()
         self.partner = self.env["res.partner"].create({"name": "Test1"})
         self.product1 = self.env["product.product"].create(
             {
@@ -80,8 +81,8 @@ class TestSendSomePurchaseOrders(TransactionCase):
             mark_rfq_as_sent=True,
         )
         self.po1.action_all_rfq_related_send()
-        wizard_f = Form(self.env["mail.compose.message"].with_context(ctx))
-        wizard_f.save().send_mail()
+        wizard_f = Form(self.env["mail.compose.message"].with_context(**ctx))
+        wizard_f.save().action_send_mail()
         self.assertEqual(self.po1.state, "sent")
         self.assertEqual(self.po2.state, "sent")
         message = self.po1.message_ids[0]

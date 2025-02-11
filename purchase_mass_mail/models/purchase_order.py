@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 
 
-from odoo import models
+from odoo import _, models
 
 
 class PurchaseOrder(models.Model):
@@ -26,6 +26,7 @@ class PurchaseOrder(models.Model):
         )
 
         return {
+            "name": _("Mass mailing for purchases"),
             "type": "ir.actions.act_window",
             "view_mode": "form",
             "res_model": "mail.compose.message",
