@@ -44,7 +44,9 @@
                                                     >
                                                         <strong
                                                             class="o_kanban_record_title oe_partner_heading"
-                                                        ><field name="name" /></strong>
+                                                        >
+                                                            <field name="name" />
+                                                        </strong>
                                                         <div
                                                             class="d-flex align-items-baseline text-break"
                                                         >
@@ -53,7 +55,8 @@
                                                                 role="img"
                                                                 aria-label="Email"
                                                                 title="Email"
-                                                            /><field name="email" />
+                                                            />
+                                                            <field name="email" />
                                                         </div>
                                                     </div>
                                                 </div>
