@@ -147,8 +147,7 @@ msgstr "Rata"
 
 #. module: purchase_invoice_plan
 #. odoo-python
-#: code:addons/purchase_invoice_plan/models/purchase.py:0
-#, python-format
+#: code:addons/purchase_invoice_plan/models/purchase_invoice_plan.py:0
 msgid ""
 "Installment %s: already used and not allowed to delete.\n"
 "Please discard changes."
@@ -199,8 +198,7 @@ msgstr "Dettaglio piano di fatturazione"
 
 #. module: purchase_invoice_plan
 #. odoo-python
-#: code:addons/purchase_invoice_plan/models/purchase.py:0
-#, python-format
+#: code:addons/purchase_invoice_plan/models/purchase_order.py:0
 msgid "Invoice plan total percentage must not exceed 100%"
 msgstr "Il totale percentuale del piano fatturazione non può superare il 100%"
 
@@ -213,13 +211,6 @@ msgstr "Fatture"
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__last
 msgid "Last Installment"
 msgstr "Ultima rata"
-
-#. module: purchase_invoice_plan
-#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_create_invoice_plan____last_update
-#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan____last_update
-#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_make_planned_invoice____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
 
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_create_invoice_plan__write_uid
@@ -258,7 +249,6 @@ msgstr "Non modifcare"
 #. module: purchase_invoice_plan
 #. odoo-python
 #: code:addons/purchase_invoice_plan/wizard/purchase_create_invoice_plan.py:0
-#, python-format
 msgid "Number Installment must greater than 1"
 msgstr "Il numero di rate deve essere maggiore di 1"
 
@@ -281,8 +271,7 @@ msgstr "Pianifica data"
 
 #. module: purchase_invoice_plan
 #. odoo-python
-#: code:addons/purchase_invoice_plan/models/purchase.py:0
-#, python-format
+#: code:addons/purchase_invoice_plan/models/purchase_invoice_plan.py:0
 msgid ""
 "Plan quantity: %(plan)s, exceed invoiceable quantity: %(qty)s\n"
 "Product should be delivered before invoice"
@@ -292,8 +281,7 @@ msgstr ""
 
 #. module: purchase_invoice_plan
 #. odoo-python
-#: code:addons/purchase_invoice_plan/models/purchase.py:0
-#, python-format
+#: code:addons/purchase_invoice_plan/models/purchase_order.py:0
 msgid "Please fill percentage for all invoice plan lines"
 msgstr "Inserire la percentuale per tutte le righe del piano di fatturazione"
 
@@ -402,8 +390,7 @@ msgstr "Utilizzare il piano di fatturazione"
 
 #. module: purchase_invoice_plan
 #. odoo-python
-#: code:addons/purchase_invoice_plan/models/purchase.py:0
-#, python-format
+#: code:addons/purchase_invoice_plan/models/purchase_order.py:0
 msgid "Use Invoice Plan selected, but no plan created"
 msgstr "Piano di fatturazione selezionato, ma nessun piano creato"
 
@@ -443,3 +430,6 @@ msgstr "⇒ Crea un piano di fatturazione"
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.purchase_order_form
 msgid "⇒ Remove Invoice Plan"
 msgstr "⇒ Rimuovi il piano di fatturazione"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
