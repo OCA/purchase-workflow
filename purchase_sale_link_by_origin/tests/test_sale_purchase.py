@@ -2,10 +2,11 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
 from odoo import Command
-from odoo.tests.common import TransactionCase
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestSalePurchaseOrder(TransactionCase):
+class TestSalePurchaseOrder(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

@@ -15,6 +15,6 @@ class SaleOrder(models.Model):
         po_related = self.env["purchase.order"]
         for order in self:
             po_related |= self.env["purchase.order"].search(
-                [("origin", "ilike", order.name)]
+                [("origin", "=", order.name)]
             )
         return super()._get_purchase_orders() | po_related
