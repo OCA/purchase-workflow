@@ -7,26 +7,27 @@ from odoo.tests.common import TransactionCase
 
 
 class TestBaseSubstate(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.substate_test_purchase = self.env["purchase.order"]
-        self.substate_test_purchase_line = self.env["purchase.order.line"]
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.substate_test_purchase = cls.env["purchase.order"]
+        cls.substate_test_purchase_line = cls.env["purchase.order.line"]
 
-        self.substate_under_nego = self.env.ref(
+        cls.substate_under_nego = cls.env.ref(
             "purchase_substate.base_substate_under_nego"
         )
-        self.substate_won = self.env.ref("purchase_substate.base_substate_won")
-        self.substate_wait_docs = self.env.ref(
+        cls.substate_won = cls.env.ref("purchase_substate.base_substate_won")
+        cls.substate_wait_docs = cls.env.ref(
             "purchase_substate.base_substate_wait_docs"
         )
-        self.substate_valid_docs = self.env.ref(
+        cls.substate_valid_docs = cls.env.ref(
             "purchase_substate.base_substate_valid_docs"
         )
-        self.substate_in_receipt = self.env.ref(
+        cls.substate_in_receipt = cls.env.ref(
             "purchase_substate.base_substate_in_receipt"
         )
 
-        self.product = self.env["product.product"].create({"name": "Test"})
+        cls.product = cls.env["product.product"].create({"name": "Test"})
 
     def test_purchase_order_substate(self):
         partner = self.env.ref("base.res_partner_1")

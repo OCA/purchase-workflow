@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -79,17 +79,13 @@ msgstr ""
 
 #. module: purchase_substate
 #: model:ir.model,name:purchase_substate.model_purchase_order
+#: model:ir.model.fields.selection,name:purchase_substate.selection__base_substate_type__model__purchase_order
 msgid "Purchase Order"
 msgstr ""
 
 #. module: purchase_substate
 #: model:base.substate.type,name:purchase_substate.base_substate_type_purchase
 msgid "Purchase Order Substate"
-msgstr ""
-
-#. module: purchase_substate
-#: model:ir.model.fields.selection,name:purchase_substate.selection__base_substate_type__model__purchase_order
-msgid "Purchase order"
 msgstr ""
 
 #. module: purchase_substate
