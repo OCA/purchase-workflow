@@ -9,7 +9,7 @@ class BaseSubstateType(models.Model):
     _inherit = "base.substate.type"
 
     model = fields.Selection(
-        selection_add=[("purchase.order", "Purchase order")],
+        selection_add=[("purchase.order", "Purchase Order")],
         ondelete={"purchase.order": "cascade"},
     )
 
