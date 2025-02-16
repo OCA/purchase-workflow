@@ -1,0 +1,82 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* partner_supplierinfo_smartbutton
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-14 19:22+0000\n"
+"PO-Revision-Date: 2025-02-14 19:22+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: partner_supplierinfo_smartbutton
+#: model:ir.model.fields,field_description:partner_supplierinfo_smartbutton.field_res_partner__changeset_change_ids
+msgid "Changeset Changes"
+msgstr "变更集变更"
+
+#. module: partner_supplierinfo_smartbutton
+#: model:ir.model.fields,field_description:partner_supplierinfo_smartbutton.field_res_partner__changeset_ids
+msgid "Changesets"
+msgstr "变更集"
+
+#. module: partner_supplierinfo_smartbutton
+#: model:ir.model,name:partner_supplierinfo_smartbutton.model_res_partner
+msgid "Contact"
+msgstr "联系我们"
+
+#. module: partner_supplierinfo_smartbutton
+#: model:ir.model.fields,field_description:partner_supplierinfo_smartbutton.field_res_partner__count_changesets
+msgid "Count Changesets"
+msgstr "计数变更集"
+
+#. module: partner_supplierinfo_smartbutton
+#: model:ir.model.fields,field_description:partner_supplierinfo_smartbutton.field_res_partner__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr "统计待处理的变更集变更"
+
+#. module: partner_supplierinfo_smartbutton
+#: model:ir.model.fields,field_description:partner_supplierinfo_smartbutton.field_res_partner__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr "统计待处理的变更集"
+
+#. module: partner_supplierinfo_smartbutton
+#: model:ir.model.fields,field_description:partner_supplierinfo_smartbutton.field_res_partner__product_supplied_count
+#: model:ir.model.fields,field_description:partner_supplierinfo_smartbutton.field_res_users__product_supplied_count
+msgid "Product Supplied Count"
+msgstr "产品供应数量"
+
+#. module: partner_supplierinfo_smartbutton
+#: model_terms:ir.ui.view,arch_db:partner_supplierinfo_smartbutton.view_partner_form
+msgid "Products Supplied"
+msgstr "供应产品"
+
+#. module: partner_supplierinfo_smartbutton
+#: model:ir.model.fields,field_description:partner_supplierinfo_smartbutton.field_res_partner__smart_search
+msgid "Smart Search"
+msgstr "智能搜索"
+
+#. module: partner_supplierinfo_smartbutton
+#: model:ir.model.fields,help:partner_supplierinfo_smartbutton.field_res_partner__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr "此记录的待更改次数"
+
+#. module: partner_supplierinfo_smartbutton
+#: model:ir.model.fields,help:partner_supplierinfo_smartbutton.field_res_partner__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr "此记录的待处理更改集数量"
+
+#. module: partner_supplierinfo_smartbutton
+#: model:ir.model.fields,help:partner_supplierinfo_smartbutton.field_res_partner__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr "该记录的更改集总数"
+
+#. module: partner_supplierinfo_smartbutton
+#: model:ir.model.fields,field_description:partner_supplierinfo_smartbutton.field_res_partner__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr "用户可查看变更集"

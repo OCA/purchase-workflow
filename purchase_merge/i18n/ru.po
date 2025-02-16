@@ -1,0 +1,205 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_merge
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-14 19:21+0000\n"
+"PO-Revision-Date: 2025-02-14 19:21+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_merge
+#: model_terms:ir.ui.view,arch_db:purchase_merge.purchase_merge_automatic_wizard_form
+msgid "Automatic Merge Wizard"
+msgstr "Мастер автоматического слияния"
+
+#. module: purchase_merge
+#: model_terms:ir.ui.view,arch_db:purchase_merge.purchase_merge_automatic_wizard_form
+msgid "Cancel"
+msgstr "Отменить"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__changeset_change_ids
+msgid "Changeset Changes"
+msgstr "Набор изменений Изменения"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__changeset_ids
+msgid "Changesets"
+msgstr "Наборы изменений"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__count_changesets
+msgid "Count Changesets"
+msgstr "Наборы изменений"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr "Подсчет ожидающих изменений набора изменений"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr "Подсчет ожидающих изменений"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__create_uid
+msgid "Created by"
+msgstr "Создано"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__create_date
+msgid "Created on"
+msgstr "Создано на"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__dst_purchase_id
+msgid "Destination"
+msgstr "Направление"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__display_name
+msgid "Display Name"
+msgstr "Отображаемое имя"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__id
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard____last_update
+msgid "Last Modified on"
+msgstr "Последнее изменение"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Последнее обновление"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__write_date
+msgid "Last Updated on"
+msgstr "Последнее обновление"
+
+#. module: purchase_merge
+#: model_terms:ir.ui.view,arch_db:purchase_merge.purchase_merge_automatic_wizard_form
+msgid "Merge Purchase"
+msgstr "Слияние Покупки"
+
+#. module: purchase_merge
+#: model:ir.actions.act_window,name:purchase_merge.action_purchase_merge
+msgid "Merge Selected Purchase"
+msgstr "Объединить выбранные покупки"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__purchase_ids
+#: model_terms:ir.ui.view,arch_db:purchase_merge.purchase_merge_automatic_wizard_form
+msgid "Purchase"
+msgstr "Приобрести"
+
+#. module: purchase_merge
+#: model:ir.model,name:purchase_merge.model_purchase_merge_automatic_wizard
+msgid "Purchase Merge Automatic Wizard"
+msgstr "Мастер автоматического слияния покупок"
+
+#. module: purchase_merge
+#: model_terms:ir.ui.view,arch_db:purchase_merge.purchase_merge_automatic_wizard_form
+msgid "Selected purchase will be merged together."
+msgstr "Выбранные покупки будут объединены."
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__smart_search
+msgid "Smart Search"
+msgstr "Умный поиск"
+
+#. module: purchase_merge
+#: model:ir.model.fields,help:purchase_merge.field_purchase_merge_automatic_wizard__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr "Количество ожидающих изменений этой записи"
+
+#. module: purchase_merge
+#: model:ir.model.fields,help:purchase_merge.field_purchase_merge_automatic_wizard__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr "Количество ожидающих изменений этой записи"
+
+#. module: purchase_merge
+#: model:ir.model.fields,help:purchase_merge.field_purchase_merge_automatic_wizard__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr "Общее количество наборов изменений этой записи"
+
+#. module: purchase_merge
+#. odoo-python
+#: code:addons/purchase_merge/wizard/purchase_merge.py:0
+#, python-format
+msgid "This purchase order lines have been merged %(way)s : %(po_names)s"
+msgstr ""
+"Строки этого заказа на поставку были объединены %(way)s : %(po_names)s"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr "Пользователь может видеть набор изменений"
+
+#. module: purchase_merge
+#. odoo-python
+#: code:addons/purchase_merge/wizard/purchase_merge.py:0
+#, python-format
+msgid "You can't merge purchase orders that aren't in draft state like: {}"
+msgstr ""
+"Вы не можете объединить заказы на поставку, которые не находятся в состоянии"
+" черновика, например: {}"
+
+#. module: purchase_merge
+#. odoo-python
+#: code:addons/purchase_merge/wizard/purchase_merge.py:0
+#, python-format
+msgid "You can't merge purchase orders with different currencies: %s"
+msgstr "Вы не можете объединить заказы на поставку с разными валютами: %s"
+
+#. module: purchase_merge
+#. odoo-python
+#: code:addons/purchase_merge/wizard/purchase_merge.py:0
+#, python-format
+msgid "You can't merge purchase orders with different fiscal positions: %s"
+msgstr ""
+"Вы не можете объединить заказы на поставку с разными фискальными позициями: "
+"%s"
+
+#. module: purchase_merge
+#. odoo-python
+#: code:addons/purchase_merge/wizard/purchase_merge.py:0
+#, python-format
+msgid "You can't merge purchase orders with different incoterms: %s"
+msgstr "Вы не можете объединить заказы на поставку с разными инкотермами: %s"
+
+#. module: purchase_merge
+#. odoo-python
+#: code:addons/purchase_merge/wizard/purchase_merge.py:0
+#, python-format
+msgid "You can't merge purchase orders with different payment terms: %s"
+msgstr ""
+"Вы не можете объединить заказы на поставку с разными условиями оплаты: %s"
+
+#. module: purchase_merge
+#. odoo-python
+#: code:addons/purchase_merge/wizard/purchase_merge.py:0
+#, python-format
+msgid "You can't merge purchase orders with different picking types: %s"
+msgstr ""
+"Вы не можете объединить заказы на поставку с разными типами комплектации: %s"
+
+#. module: purchase_merge
+#. odoo-python
+#: code:addons/purchase_merge/wizard/purchase_merge.py:0
+#, python-format
+msgid "You can't merge purchase orders with different suppliers: %s"
+msgstr "Вы не можете объединить заказы на закупку у разных поставщиков: %s"

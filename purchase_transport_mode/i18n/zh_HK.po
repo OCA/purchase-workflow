@@ -1,0 +1,290 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_transport_mode
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-14 19:24+0000\n"
+"PO-Revision-Date: 2025-02-14 19:24+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_order__transport_mode_status_ok
+msgid "All transport mode requirements are satisfied"
+msgstr "满足所有运输模式要求"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_order__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_company__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_config_settings__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_partner__changeset_change_ids
+msgid "Changeset Changes"
+msgstr "变更集变更"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_order__changeset_ids
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__changeset_ids
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__changeset_ids
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_company__changeset_ids
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_config_settings__changeset_ids
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_partner__changeset_ids
+msgid "Changesets"
+msgstr "变更集"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_order__transport_mode_status
+msgid ""
+"Collect and validate order details to satisfy transport mode requirements"
+msgstr "收集和验证订单详细信息，以满足运输模式要求"
+
+#. module: purchase_transport_mode
+#: model:ir.model,name:purchase_transport_mode.model_res_company
+msgid "Companies"
+msgstr "公司"
+
+#. module: purchase_transport_mode
+#: model:ir.model,name:purchase_transport_mode.model_res_config_settings
+msgid "Config Settings"
+msgstr "配置设置"
+
+#. module: purchase_transport_mode
+#: model:ir.model,name:purchase_transport_mode.model_res_partner
+msgid "Contact"
+msgstr "联系我们"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_order__count_changesets
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__count_changesets
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__count_changesets
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_company__count_changesets
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_config_settings__count_changesets
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_partner__count_changesets
+msgid "Count Changesets"
+msgstr "计数变更集"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_order__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_company__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_config_settings__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_partner__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr "统计待处理的变更集变更"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_order__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_company__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_config_settings__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_partner__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr "统计待处理的变更集"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__create_uid
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__create_uid
+msgid "Created by"
+msgstr "创建者"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__create_date
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__create_date
+msgid "Created on"
+msgstr "创建于"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__description
+msgid "Description"
+msgstr "翻译内容"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__display_name
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__display_name
+msgid "Display Name"
+msgstr "显示名称"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_transport_mode_constraint__purchase_domain
+msgid "Domain based on purchase"
+msgstr "基于购买的领域"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__id
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__id
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode____last_update
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint____last_update
+msgid "Last Modified on"
+msgstr "最后修改日期"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__write_uid
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__write_uid
+msgid "Last Updated by"
+msgstr "最后更新"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__write_date
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__write_date
+msgid "Last Updated on"
+msgstr "最后更新日期"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__name
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__name
+msgid "Name"
+msgstr "公司名称"
+
+#. module: purchase_transport_mode
+#: model:ir.model,name:purchase_transport_mode.model_purchase_order
+msgid "Purchase Order"
+msgstr "采购订单"
+
+#. module: purchase_transport_mode
+#: model:ir.actions.act_window,name:purchase_transport_mode.purchase_transport_mode_action
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__purchase_transport_mode_id
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_partner__purchase_transport_mode_id
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_users__purchase_transport_mode_id
+#: model:ir.ui.menu,name:purchase_transport_mode.menu_purchase_transport_mode_action
+msgid "Purchase Transport Mode"
+msgstr "采购运输模式"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_company__purchase_transport_mode_contraint_enabled
+msgid "Purchase Transport Mode Contraint Enabled"
+msgstr "已启用采购运输模式限制"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__constraint_ids
+msgid "Purchase Transport mode Constraints"
+msgstr "采购运输模式限制"
+
+#. module: purchase_transport_mode
+#: model_terms:ir.ui.view,arch_db:purchase_transport_mode.purchase_transport_mode_form
+msgid "Purchase transport constraints"
+msgstr "采购运输限制"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_order__transport_mode_status_display
+msgid "Render transport_mode_status in the UI"
+msgstr "在用户界面中渲染 transport_mode_status"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_order__smart_search
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__smart_search
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__smart_search
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_company__smart_search
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_config_settings__smart_search
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_partner__smart_search
+msgid "Smart Search"
+msgstr "智能搜索"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__purchase_domain
+msgid "Source Purchase Domain"
+msgstr "源采购域"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_order__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_transport_mode__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_transport_mode_constraint__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_transport_mode.field_res_company__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_transport_mode.field_res_config_settings__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_transport_mode.field_res_partner__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr "此记录的待更改次数"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_order__count_pending_changesets
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_transport_mode__count_pending_changesets
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_transport_mode_constraint__count_pending_changesets
+#: model:ir.model.fields,help:purchase_transport_mode.field_res_company__count_pending_changesets
+#: model:ir.model.fields,help:purchase_transport_mode.field_res_config_settings__count_pending_changesets
+#: model:ir.model.fields,help:purchase_transport_mode.field_res_partner__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr "此记录的待处理更改集数量"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_order__count_changesets
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_transport_mode__count_changesets
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_transport_mode_constraint__count_changesets
+#: model:ir.model.fields,help:purchase_transport_mode.field_res_company__count_changesets
+#: model:ir.model.fields,help:purchase_transport_mode.field_res_config_settings__count_changesets
+#: model:ir.model.fields,help:purchase_transport_mode.field_res_partner__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr "该记录的更改集总数"
+
+#. module: purchase_transport_mode
+#: model:ir.model,name:purchase_transport_mode.model_purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_order__transport_mode_id
+msgid "Transport Mode"
+msgstr "运输模式"
+
+#. module: purchase_transport_mode
+#: model:ir.model,name:purchase_transport_mode.model_purchase_transport_mode_constraint
+msgid "Transport Mode Constraint"
+msgstr "运输模式限制"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_order__transport_mode_status
+msgid "Transport Mode Status"
+msgstr "运输模式状态"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_order__transport_mode_status_display
+msgid "Transport Mode Status Display"
+msgstr "运输模式状态显示"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_order__transport_mode_status_ok
+msgid "Transport Mode Status Ok"
+msgstr "传输模式状态 Ok"
+
+#. module: purchase_transport_mode
+#: model:exception.rule,name:purchase_transport_mode.po_excep_transport_mode
+msgid "Transport mode"
+msgstr "运输模式"
+
+#. module: purchase_transport_mode
+#: model_terms:ir.ui.view,arch_db:purchase_transport_mode.purchase_order_transport_mode_status_display
+msgid "Transport mode errors"
+msgstr "运输模式错误"
+
+#. module: purchase_transport_mode
+#: model:exception.rule,description:purchase_transport_mode.po_excep_transport_mode
+msgid "Transport mode requirements not satisfied"
+msgstr "未满足运输模式要求"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_order__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_company__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_config_settings__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_partner__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr "用户可查看变更集"
+
+#. module: purchase_transport_mode
+#: model_terms:ir.ui.view,arch_db:purchase_transport_mode.res_config_settings_view_form_purchase_inherit
+msgid "Validate purchase order details to satisfy transport mode requirements"
+msgstr "验证采购订单详细信息以满足运输模式要求"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_config_settings__purchase_transport_mode_contraint_enabled
+msgid "Validate purchase transport mode"
+msgstr "验证采购运输模式"

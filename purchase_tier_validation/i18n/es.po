@@ -4,17 +4,16 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-11-06 21:37+0000\n"
-"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
-"Language-Team: none\n"
-"Language: es\n"
+"POT-Creation-Date: 2025-02-14 19:22+0000\n"
+"PO-Revision-Date: 2025-02-14 19:22+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"Plural-Forms: \n"
 
 #. module: purchase_tier_validation
 #: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__can_review
@@ -29,7 +28,7 @@ msgstr "Tiene Comentario"
 #. module: purchase_tier_validation
 #: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__is_reevaluation_required
 msgid "Is Reevaluation Required"
-msgstr ""
+msgstr "¿Es necesaria una reevaluación?"
 
 #. module: purchase_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_tier_validation.view_purchase_order_filter
@@ -59,7 +58,7 @@ msgstr "POs validadas y preparadas para ser confirmadas"
 #. module: purchase_tier_validation
 #: model:ir.model,name:purchase_tier_validation.model_purchase_order
 msgid "Purchase Order"
-msgstr "Orden de Compra"
+msgstr "Pedido de compra"
 
 #. module: purchase_tier_validation
 #: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__rejected
@@ -106,32 +105,3 @@ msgstr "Estado de validación"
 #: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__review_ids
 msgid "Validations"
 msgstr "Validaciones"
-
-#~ msgid ""
-#~ "<i class=\"fa fa-info-circle\"/>This PO needs to be\n"
-#~ "                        validated."
-#~ msgstr ""
-#~ "<i class=\"fa fa-info-circle\"/>Esta PO debe ser\n"
-#~ "                        validada."
-
-#~ msgid "<i class=\"fa fa-thumbs-down\"/> Operation has been <b>rejected</b>."
-#~ msgstr ""
-#~ "<i class=\"fa fa-thumbs-down\"/>La operación ha sido <b>rechazada</b>."
-
-#~ msgid "<i class=\"fa fa-thumbs-up\"/> Operation has been <b>validated</b>!"
-#~ msgstr "<i class=\"fa fa-thumbs-up\"/>La operación ha sido <b>validada</b>!"
-
-#~ msgid "Reject"
-#~ msgstr "Rechazar"
-
-#~ msgid "Request Validation"
-#~ msgstr "Solicitar Validación"
-
-#~ msgid "Restart Validation"
-#~ msgstr "Reiniciar Validación"
-
-#~ msgid "Validate"
-#~ msgstr "Validar"
-
-#~ msgid "Reviews"
-#~ msgstr "Revisiones"

@@ -1,0 +1,165 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_order_line_sequence
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-14 19:23+0000\n"
+"PO-Revision-Date: 2025-02-14 19:23+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_order_line_sequence
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_sequence.report_purchase_order_sequence_qweb
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_sequence.report_purchase_quote_sequence_qweb
+msgid "<strong>Line Number</strong>"
+msgstr "<strong>Номер на линията</strong>"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_account_move_line__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order_line__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_stock_move__changeset_change_ids
+msgid "Changeset Changes"
+msgstr "Промени в набора от промени"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_account_move_line__changeset_ids
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order__changeset_ids
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order_line__changeset_ids
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_stock_move__changeset_ids
+msgid "Changesets"
+msgstr "Промени"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_account_move_line__count_changesets
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order__count_changesets
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order_line__count_changesets
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_stock_move__count_changesets
+msgid "Count Changesets"
+msgstr "Промени в броя"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_account_move_line__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order_line__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_stock_move__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr "Отчитане на чакащите промени в набора от промени"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_account_move_line__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order_line__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_stock_move__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr "Брой чакащи промени"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_purchase_order_line__visible_sequence
+msgid "Displays the sequence of the line in the purchase order."
+msgstr "Показва последователността на реда в поръчката за покупка."
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_purchase_order_line__sequence
+msgid "Gives the sequence of the line when displaying the purchase order."
+msgstr ""
+"Дава последователността на реда при показване на поръчката за покупка."
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order_line__sequence
+msgid "Hidden Sequence"
+msgstr "Последователност"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model,name:purchase_order_line_sequence.model_account_move_line
+msgid "Journal Item"
+msgstr "Счетоводна Операция"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order_line__visible_sequence
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_sequence.report_invoice_document_inherit_purchase_sequence
+msgid "Line Number"
+msgstr "Номер на линията"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order__max_line_sequence
+msgid "Max sequence in lines"
+msgstr "Максимална последователност в редове"
+
+#. module: purchase_order_line_sequence
+#. odoo-python
+#: code:addons/purchase_order_line_sequence/models/stock_move.py:0
+#, python-format
+msgid ""
+"Not allowed to change the sequence of moves from the picking, you can do it "
+"from the PO."
+msgstr ""
+"Не е позволено да променяте последователността на движенията от "
+"комплектоването, можете да го направите от ПО."
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_account_move_line__related_po_sequence
+msgid "PO Line Number"
+msgstr "Номер на линията на ПО"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model,name:purchase_order_line_sequence.model_purchase_order
+msgid "Purchase Order"
+msgstr "Поръчка"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model,name:purchase_order_line_sequence.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Ред на поръчка за покупка"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_account_move_line__smart_search
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order__smart_search
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order_line__smart_search
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_stock_move__smart_search
+msgid "Smart Search"
+msgstr "Smart Search"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model,name:purchase_order_line_sequence.model_stock_move
+msgid "Stock Move"
+msgstr "Движение в склада"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_account_move_line__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_purchase_order__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_purchase_order_line__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_stock_move__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr "Брой на предстоящите промени на този запис"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_account_move_line__count_pending_changesets
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_purchase_order__count_pending_changesets
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_purchase_order_line__count_pending_changesets
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_stock_move__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr "Броят на чакащите промени в този запис"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_account_move_line__count_changesets
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_purchase_order__count_changesets
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_purchase_order_line__count_changesets
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_stock_move__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr "Общ брой на промените в този запис"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_account_move_line__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order_line__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_stock_move__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr "Потребителят може да види набора от промени"

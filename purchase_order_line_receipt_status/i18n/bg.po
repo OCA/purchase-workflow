@@ -1,0 +1,91 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_order_line_receipt_status
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-14 19:24+0000\n"
+"PO-Revision-Date: 2025-02-14 19:24+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_order_line_receipt_status
+#: model:ir.model.fields,field_description:purchase_order_line_receipt_status.field_purchase_order_line__changeset_change_ids
+msgid "Changeset Changes"
+msgstr "Промени в набора от промени"
+
+#. module: purchase_order_line_receipt_status
+#: model:ir.model.fields,field_description:purchase_order_line_receipt_status.field_purchase_order_line__changeset_ids
+msgid "Changesets"
+msgstr "Промени"
+
+#. module: purchase_order_line_receipt_status
+#: model:ir.model.fields,field_description:purchase_order_line_receipt_status.field_purchase_order_line__count_changesets
+msgid "Count Changesets"
+msgstr "Промени в броя"
+
+#. module: purchase_order_line_receipt_status
+#: model:ir.model.fields,field_description:purchase_order_line_receipt_status.field_purchase_order_line__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr "Отчитане на чакащите промени в набора от промени"
+
+#. module: purchase_order_line_receipt_status
+#: model:ir.model.fields,field_description:purchase_order_line_receipt_status.field_purchase_order_line__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr "Брой чакащи промени"
+
+#. module: purchase_order_line_receipt_status
+#: model:ir.model.fields.selection,name:purchase_order_line_receipt_status.selection__purchase_order_line__receipt_status__full
+msgid "Fully Received"
+msgstr "Напълно приет"
+
+#. module: purchase_order_line_receipt_status
+#: model:ir.model.fields.selection,name:purchase_order_line_receipt_status.selection__purchase_order_line__receipt_status__pending
+msgid "Not Received"
+msgstr "Не е получена"
+
+#. module: purchase_order_line_receipt_status
+#: model:ir.model.fields.selection,name:purchase_order_line_receipt_status.selection__purchase_order_line__receipt_status__partial
+msgid "Partially Received"
+msgstr "Частично получена"
+
+#. module: purchase_order_line_receipt_status
+#: model:ir.model,name:purchase_order_line_receipt_status.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Ред на поръчка за покупка"
+
+#. module: purchase_order_line_receipt_status
+#: model:ir.model.fields,field_description:purchase_order_line_receipt_status.field_purchase_order_line__receipt_status
+msgid "Receipt Status"
+msgstr "Статус на получаване"
+
+#. module: purchase_order_line_receipt_status
+#: model:ir.model.fields,field_description:purchase_order_line_receipt_status.field_purchase_order_line__smart_search
+msgid "Smart Search"
+msgstr "Smart Search"
+
+#. module: purchase_order_line_receipt_status
+#: model:ir.model.fields,help:purchase_order_line_receipt_status.field_purchase_order_line__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr "Брой на предстоящите промени на този запис"
+
+#. module: purchase_order_line_receipt_status
+#: model:ir.model.fields,help:purchase_order_line_receipt_status.field_purchase_order_line__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr "Броят на чакащите промени в този запис"
+
+#. module: purchase_order_line_receipt_status
+#: model:ir.model.fields,help:purchase_order_line_receipt_status.field_purchase_order_line__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr "Общ брой на промените в този запис"
+
+#. module: purchase_order_line_receipt_status
+#: model:ir.model.fields,field_description:purchase_order_line_receipt_status.field_purchase_order_line__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr "Потребителят може да види набора от промени"

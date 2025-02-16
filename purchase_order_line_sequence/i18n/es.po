@@ -4,23 +4,62 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-05-29 19:08+0000\n"
-"Last-Translator: JHernandezConinpe <jhernandez@coninpe.es>\n"
-"Language-Team: none\n"
-"Language: es\n"
+"POT-Creation-Date: 2025-02-14 19:23+0000\n"
+"PO-Revision-Date: 2025-02-14 19:23+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"Plural-Forms: \n"
 
 #. module: purchase_order_line_sequence
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_sequence.report_purchase_order_sequence_qweb
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_sequence.report_purchase_quote_sequence_qweb
 msgid "<strong>Line Number</strong>"
-msgstr ""
+msgstr "<strong>Número de línea</strong>"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_account_move_line__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order_line__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_stock_move__changeset_change_ids
+msgid "Changeset Changes"
+msgstr "Cambios en el conjunto de cambios"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_account_move_line__changeset_ids
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order__changeset_ids
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order_line__changeset_ids
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_stock_move__changeset_ids
+msgid "Changesets"
+msgstr "Changesets"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_account_move_line__count_changesets
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order__count_changesets
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order_line__count_changesets
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_stock_move__count_changesets
+msgid "Count Changesets"
+msgstr "Contar los cambios"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_account_move_line__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order_line__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_stock_move__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr "Contar cambios pendientes"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_account_move_line__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order_line__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_stock_move__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr "Contar conjuntos de cambios pendientes"
 
 #. module: purchase_order_line_sequence
 #: model:ir.model.fields,help:purchase_order_line_sequence.field_purchase_order_line__visible_sequence
@@ -40,13 +79,13 @@ msgstr "Secuencia oculta"
 #. module: purchase_order_line_sequence
 #: model:ir.model,name:purchase_order_line_sequence.model_account_move_line
 msgid "Journal Item"
-msgstr ""
+msgstr "Partida individual"
 
 #. module: purchase_order_line_sequence
 #: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order_line__visible_sequence
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_sequence.report_invoice_document_inherit_purchase_sequence
 msgid "Line Number"
-msgstr ""
+msgstr "Número de línea"
 
 #. module: purchase_order_line_sequence
 #: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order__max_line_sequence
@@ -61,11 +100,13 @@ msgid ""
 "Not allowed to change the sequence of moves from the picking, you can do it "
 "from the PO."
 msgstr ""
+"No se permite cambiar la secuencia de movimientos desde el picking, se puede"
+" hacer desde el pedido."
 
 #. module: purchase_order_line_sequence
 #: model:ir.model.fields,field_description:purchase_order_line_sequence.field_account_move_line__related_po_sequence
 msgid "PO Line Number"
-msgstr ""
+msgstr "Número de línea PO"
 
 #. module: purchase_order_line_sequence
 #: model:ir.model,name:purchase_order_line_sequence.model_purchase_order
@@ -75,24 +116,49 @@ msgstr "Pedido de compra"
 #. module: purchase_order_line_sequence
 #: model:ir.model,name:purchase_order_line_sequence.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr "Línea de pedido de compra"
+msgstr "Línea de Pedido de Compra"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_account_move_line__smart_search
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order__smart_search
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order_line__smart_search
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_stock_move__smart_search
+msgid "Smart Search"
+msgstr "Búsqueda inteligente"
 
 #. module: purchase_order_line_sequence
 #: model:ir.model,name:purchase_order_line_sequence.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Movimiento de existencias"
 
-#~ msgid "<strong>Sequence</strong>"
-#~ msgstr "<strong>Número de línea</strong>"
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_account_move_line__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_purchase_order__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_purchase_order_line__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_stock_move__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr "El número de cambios pendientes de este registro"
 
-#~ msgid "Display Name"
-#~ msgstr "Nombre mostrado"
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_account_move_line__count_pending_changesets
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_purchase_order__count_pending_changesets
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_purchase_order_line__count_pending_changesets
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_stock_move__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr "El número de cambios pendientes de este registro"
 
-#~ msgid "ID"
-#~ msgstr "ID"
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_account_move_line__count_changesets
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_purchase_order__count_changesets
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_purchase_order_line__count_changesets
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_stock_move__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr "El número total de cambios de este registro"
 
-#~ msgid "Last Modified on"
-#~ msgstr "Última modificación"
-
-#~ msgid "Sequence"
-#~ msgstr "Número de línea"
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_account_move_line__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order_line__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_stock_move__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr "El usuario puede ver el conjunto de cambios"

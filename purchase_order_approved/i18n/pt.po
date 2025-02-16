@@ -1,0 +1,280 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_order_approved
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-14 19:22+0000\n"
+"PO-Revision-Date: 2025-02-14 19:22+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_order_approved
+#: model_terms:ir.ui.view,arch_db:purchase_order_approved.view_purchase_configuration
+msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" groups=\"base.group_multi_company\"/>"
+msgstr ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" groups=\"base.group_multi_company\"/>"
+
+#. module: purchase_order_approved
+#: model_terms:ir.ui.view,arch_db:purchase_order_approved.view_purchase_configuration
+msgid ""
+"Adds an extra state in purchase orders previous to 'Purchase Order' state."
+msgstr ""
+"Adiciona um estado extra nas ordens de compra anteriores ao estado 'Ordem de"
+" compra'."
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,help:purchase_order_approved.field_res_company__purchase_approve_active
+#: model:ir.model.fields,help:purchase_order_approved.field_res_config_settings__purchase_approve_active
+msgid ""
+"Adds an extra state in purchase orders previous to 'Purchase Order'. After "
+"confirming and approving a purchase order it will go to state 'Approved'. In"
+" this state the incoming shipments are not created yet and you still can go "
+"back to draft. You can release the creation of the incoming shipments moving"
+" the purchase order to state 'Purchase Order'."
+msgstr ""
+"Adiciona um estado extra nas ordens de compra anterior à \"Ordem de "
+"compra\". Depois de confirmar e aprovar uma ordem de compra, passa para o "
+"estado \"Aprovado\". Neste estado, as remessas recebidas ainda não foram "
+"criadas e pode voltar ao rascunho. Pode liberar a criação das remessas "
+"recebidas movendo o pedido de compra para o estado \"Pedido de compra\"."
+
+#. module: purchase_order_approved
+#: model:ir.model.fields.selection,name:purchase_order_approved.selection__res_partner__purchase_requires_second_approval__always
+msgid "Always"
+msgstr "Sempre"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields.selection,name:purchase_order_approved.selection__purchase_order__state__approved
+msgid "Approved"
+msgstr "Aprovado"
+
+#. module: purchase_order_approved
+#: model_terms:ir.ui.view,arch_db:purchase_order_approved.view_purchase_order_filter
+msgid "Approved Orders"
+msgstr "Encomendas aprovadas"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields.selection,name:purchase_order_approved.selection__res_partner__purchase_requires_second_approval__based_on_company
+msgid "Based on company policy"
+msgstr "Com base na política da empresa"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_company__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_config_settings__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_partner__changeset_change_ids
+msgid "Changeset Changes"
+msgstr "Alterações do conjunto de alterações"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__changeset_ids
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_company__changeset_ids
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_config_settings__changeset_ids
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_partner__changeset_ids
+msgid "Changesets"
+msgstr "Conjunto de alterações"
+
+#. module: purchase_order_approved
+#: model:ir.model,name:purchase_order_approved.model_res_company
+msgid "Companies"
+msgstr "Empresas"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__company_id
+msgid "Company"
+msgstr "Empresa"
+
+#. module: purchase_order_approved
+#: model:ir.model,name:purchase_order_approved.model_res_config_settings
+msgid "Config Settings"
+msgstr "Configurações"
+
+#. module: purchase_order_approved
+#: model:ir.model,name:purchase_order_approved.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: purchase_order_approved
+#: model_terms:ir.ui.view,arch_db:purchase_order_approved.purchase_order_form
+msgid "Convert to Purchase Order"
+msgstr "Converta para Ordem de Compra"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__count_changesets
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_company__count_changesets
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_config_settings__count_changesets
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_partner__count_changesets
+msgid "Count Changesets"
+msgstr "Contagem de conjuntos de alterações"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_company__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_config_settings__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_partner__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr "Conte as alterações pendentes do conjunto de alterações"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_company__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_config_settings__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_partner__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr "Conte os conjuntos de alterações pendentes"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__currency_id
+msgid "Currency"
+msgstr "Moeda"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__picking_type_id
+msgid "Deliver To"
+msgstr "Entregar a"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__date_order
+msgid ""
+"Depicts the date within which the Quotation should be confirmed and "
+"converted into a purchase order."
+msgstr ""
+"Representa até quando a cotação deve ser confirmada e convertida em um "
+"pedido de compra."
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__dest_address_id
+msgid "Dropship Address"
+msgstr "Endereço de Envio Direto"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields.selection,name:purchase_order_approved.selection__res_partner__purchase_requires_second_approval__never
+msgid "Never"
+msgstr "Nunca"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__date_order
+msgid "Order Deadline"
+msgstr "Prazo do pedido"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__order_line
+msgid "Order Lines"
+msgstr "Linhas da Encomenda"
+
+#. module: purchase_order_approved
+#: model:ir.model,name:purchase_order_approved.model_purchase_order
+msgid "Purchase Order"
+msgstr "Ordem de Compra"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_partner__purchase_requires_second_approval
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_users__purchase_requires_second_approval
+msgid "Purchase Requires Second Approval"
+msgstr "A compra requer uma segunda aprovação"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__dest_address_id
+msgid ""
+"Put an address if you want to deliver directly from the vendor to the "
+"customer. Otherwise, keep empty to deliver to your own company."
+msgstr ""
+"Coloque uma morada, se desejar entregar diretamente do fornecedor ao "
+"cliente. Caso contrário, mantenha vazio para entregar na sua própria "
+"empresa."
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__origin
+msgid ""
+"Reference of the document that generated this purchase order request (e.g. a"
+" sales order)"
+msgstr ""
+"Referência do documento que gerou este pedido de encomenda (ex. uma ordem de"
+" venda)"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__smart_search
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_company__smart_search
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_config_settings__smart_search
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_partner__smart_search
+msgid "Smart Search"
+msgstr "Pesquisa inteligente"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__origin
+msgid "Source Document"
+msgstr "Documento de Origem"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_config_settings__purchase_approve_active
+msgid "State 'Approved' in Purchase Orders"
+msgstr "Indique \"Aprovado\" nas ordens de compra"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__state
+msgid "Status"
+msgstr "Estado"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_order_approved.field_res_company__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_order_approved.field_res_config_settings__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_order_approved.field_res_partner__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr "O número de alterações pendentes deste registo"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__count_pending_changesets
+#: model:ir.model.fields,help:purchase_order_approved.field_res_company__count_pending_changesets
+#: model:ir.model.fields,help:purchase_order_approved.field_res_config_settings__count_pending_changesets
+#: model:ir.model.fields,help:purchase_order_approved.field_res_partner__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr "O número de conjuntos de alterações pendentes deste registo"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__count_changesets
+#: model:ir.model.fields,help:purchase_order_approved.field_res_company__count_changesets
+#: model:ir.model.fields,help:purchase_order_approved.field_res_config_settings__count_changesets
+#: model:ir.model.fields,help:purchase_order_approved.field_res_partner__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr "O número total de conjuntos de alterações deste registo"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__picking_type_id
+msgid "This will determine operation type of incoming shipment"
+msgstr "Isto determinará o tipo de operação do envio de entrada"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_company__purchase_approve_active
+msgid "Use State 'Approved' in Purchase Orders"
+msgstr "Utilize o estado \"Aprovado\" nas ordens de compra"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_company__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_config_settings__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_partner__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr "O utilizador pode ver o conjunto de alterações"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__partner_id
+msgid "Vendor"
+msgstr "Fornecedor"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__partner_id
+msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
+msgstr ""
+"É possível encontrar um fornecedor por seu nome, NIF, e-mail ou referência "
+"interna."

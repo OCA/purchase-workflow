@@ -1,0 +1,173 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_order_line_menu
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-14 19:24+0000\n"
+"PO-Revision-Date: 2025-02-14 19:24+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,field_description:purchase_order_line_menu.field_purchase_order_line__invoice_status
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "Billing Status"
+msgstr "Κατάσταση χρέωσης"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "Cancelled"
+msgstr "Ακυρωμένο"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,field_description:purchase_order_line_menu.field_purchase_order_line__changeset_change_ids
+msgid "Changeset Changes"
+msgstr "Αλλαγές σετ αλλαγών"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,field_description:purchase_order_line_menu.field_purchase_order_line__changeset_ids
+msgid "Changesets"
+msgstr "Changesets"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,field_description:purchase_order_line_menu.field_purchase_order_line__count_changesets
+msgid "Count Changesets"
+msgstr "Count Changesets"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,field_description:purchase_order_line_menu.field_purchase_order_line__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr "Μετρήστε τις αλλαγές που εκκρεμούν"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,field_description:purchase_order_line_menu.field_purchase_order_line__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr "Μετρήστε τα σύνολα αλλαγών που εκκρεμούν"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,help:purchase_order_line_menu.field_purchase_order_line__date_order
+msgid ""
+"Depicts the date within which the Quotation should be confirmed and "
+"converted into a purchase order."
+msgstr ""
+"Απεικονίζει την ημερομηνία εντός της οποίας η Προσφορά πρέπει να "
+"επιβεβαιωθεί και να μετατραπεί σε παραγγελία αγοράς."
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "Fully Billed"
+msgstr "Πλήρης τιμολόγηση"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "Locked"
+msgstr "Κλειδωμένο"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "Nothing to Bill"
+msgstr "Τίποτα για το Bill"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,field_description:purchase_order_line_menu.field_purchase_order_line__date_order
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "Order Date"
+msgstr "Ημερ. Παραγγελίας"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.view_purchase_order_line_pivot
+msgid "Order Lines"
+msgstr "Γραμμές παραγγελιών"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "Order date"
+msgstr "Ημερομηνία παραγγελίας"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "Planned date"
+msgstr "Προγραμματισμένη ημερομηνία"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_tree
+msgid "Price Subtotal"
+msgstr "Υποσύνολο τιμών"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_tree
+msgid "Price Tax"
+msgstr "Φορολογική τιμή"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_tree
+msgid "Price Total"
+msgstr "Τιμή Σύνολο"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "Purchase Order"
+msgstr "Παραγγελία αγοράς"
+
+#. module: purchase_order_line_menu
+#: model:ir.model,name:purchase_order_line_menu.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Γραμμή Παραγγελίας Αγοράς"
+
+#. module: purchase_order_line_menu
+#: model:ir.actions.act_window,name:purchase_order_line_menu.action_purchase_orders_lines
+#: model:ir.ui.menu,name:purchase_order_line_menu.purchase_order_line_menu
+msgid "Purchase Order Lines"
+msgstr "Γραμμές παραγγελίας αγοράς"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "RFQ"
+msgstr "RFQ"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "RFQ Sent"
+msgstr "Αποστολή RFQ"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,field_description:purchase_order_line_menu.field_purchase_order_line__smart_search
+msgid "Smart Search"
+msgstr "Έξυπνη αναζήτηση"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,help:purchase_order_line_menu.field_purchase_order_line__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr "Ο αριθμός των εκκρεμών αλλαγών αυτής της εγγραφής"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,help:purchase_order_line_menu.field_purchase_order_line__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr "Ο αριθμός των εκκρεμών συνόλων αλλαγών αυτής της εγγραφής"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,help:purchase_order_line_menu.field_purchase_order_line__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr "Ο συνολικός αριθμός των αλλαγών αυτού του αρχείου"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "To Approve"
+msgstr "Για να εγκρίνετε"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,field_description:purchase_order_line_menu.field_purchase_order_line__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr "Ο χρήστης μπορεί να δει το σύνολο αλλαγών"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "Waiting Bills"
+msgstr "Λογαριασμοί σε αναμονή"

@@ -1,0 +1,294 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_transport_mode
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-14 19:24+0000\n"
+"PO-Revision-Date: 2025-02-14 19:24+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_order__transport_mode_status_ok
+msgid "All transport mode requirements are satisfied"
+msgstr "Tüm taşıma modu gereksinimleri karşılanıyor"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_order__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_company__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_config_settings__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_partner__changeset_change_ids
+msgid "Changeset Changes"
+msgstr "Changeset Değişiklikleri"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_order__changeset_ids
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__changeset_ids
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__changeset_ids
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_company__changeset_ids
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_config_settings__changeset_ids
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_partner__changeset_ids
+msgid "Changesets"
+msgstr "Changesets"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_order__transport_mode_status
+msgid ""
+"Collect and validate order details to satisfy transport mode requirements"
+msgstr ""
+"Taşıma modu gereksinimlerini karşılamak için sipariş ayrıntılarını toplayın "
+"ve doğrulayın"
+
+#. module: purchase_transport_mode
+#: model:ir.model,name:purchase_transport_mode.model_res_company
+msgid "Companies"
+msgstr "Şirketler"
+
+#. module: purchase_transport_mode
+#: model:ir.model,name:purchase_transport_mode.model_res_config_settings
+msgid "Config Settings"
+msgstr "Yapılandırma Ayarları"
+
+#. module: purchase_transport_mode
+#: model:ir.model,name:purchase_transport_mode.model_res_partner
+msgid "Contact"
+msgstr "İletişim"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_order__count_changesets
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__count_changesets
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__count_changesets
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_company__count_changesets
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_config_settings__count_changesets
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_partner__count_changesets
+msgid "Count Changesets"
+msgstr "Sayım Değişiklik Setleri"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_order__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_company__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_config_settings__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_partner__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr "Bekleyen Değişiklik Seti Değişikliklerini Say"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_order__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_company__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_config_settings__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_partner__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr "Bekleyen Değişiklik Setlerini Say"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__create_uid
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__create_uid
+msgid "Created by"
+msgstr "Tarafından oluşturuldu"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__create_date
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__create_date
+msgid "Created on"
+msgstr "Üzerinde oluşturuldu"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__description
+msgid "Description"
+msgstr "Açıklama"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__display_name
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__display_name
+msgid "Display Name"
+msgstr "Ekran Adı"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_transport_mode_constraint__purchase_domain
+msgid "Domain based on purchase"
+msgstr "Satın almaya dayalı alan adı"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__id
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__id
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode____last_update
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint____last_update
+msgid "Last Modified on"
+msgstr "Son Değişiklik Tarihi"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__write_uid
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__write_uid
+msgid "Last Updated by"
+msgstr "Son Güncelleme"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__write_date
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__write_date
+msgid "Last Updated on"
+msgstr "Son Güncelleme Tarihi"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__name
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__name
+msgid "Name"
+msgstr "İsim"
+
+#. module: purchase_transport_mode
+#: model:ir.model,name:purchase_transport_mode.model_purchase_order
+msgid "Purchase Order"
+msgstr "Satınalma Siparişi"
+
+#. module: purchase_transport_mode
+#: model:ir.actions.act_window,name:purchase_transport_mode.purchase_transport_mode_action
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__purchase_transport_mode_id
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_partner__purchase_transport_mode_id
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_users__purchase_transport_mode_id
+#: model:ir.ui.menu,name:purchase_transport_mode.menu_purchase_transport_mode_action
+msgid "Purchase Transport Mode"
+msgstr "Satın Alma Taşıma Modu"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_company__purchase_transport_mode_contraint_enabled
+msgid "Purchase Transport Mode Contraint Enabled"
+msgstr "Satın Alma Taşıma Modu Kısıtlaması Etkin"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__constraint_ids
+msgid "Purchase Transport mode Constraints"
+msgstr "Satın Alma Taşıma Modu Kısıtlamaları"
+
+#. module: purchase_transport_mode
+#: model_terms:ir.ui.view,arch_db:purchase_transport_mode.purchase_transport_mode_form
+msgid "Purchase transport constraints"
+msgstr "Satın alma nakliye kısıtlamaları"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_order__transport_mode_status_display
+msgid "Render transport_mode_status in the UI"
+msgstr "Kullanıcı arayüzünde transport_mode_status oluşturun"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_order__smart_search
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__smart_search
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__smart_search
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_company__smart_search
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_config_settings__smart_search
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_partner__smart_search
+msgid "Smart Search"
+msgstr "Akıllı Arama"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__purchase_domain
+msgid "Source Purchase Domain"
+msgstr "Kaynak Satın Alma Alanı"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_order__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_transport_mode__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_transport_mode_constraint__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_transport_mode.field_res_company__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_transport_mode.field_res_config_settings__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_transport_mode.field_res_partner__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr "Bu kaydın bekleyen değişiklik sayısı"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_order__count_pending_changesets
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_transport_mode__count_pending_changesets
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_transport_mode_constraint__count_pending_changesets
+#: model:ir.model.fields,help:purchase_transport_mode.field_res_company__count_pending_changesets
+#: model:ir.model.fields,help:purchase_transport_mode.field_res_config_settings__count_pending_changesets
+#: model:ir.model.fields,help:purchase_transport_mode.field_res_partner__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr "Bu kaydın bekleyen değişiklik setlerinin sayısı"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_order__count_changesets
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_transport_mode__count_changesets
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_transport_mode_constraint__count_changesets
+#: model:ir.model.fields,help:purchase_transport_mode.field_res_company__count_changesets
+#: model:ir.model.fields,help:purchase_transport_mode.field_res_config_settings__count_changesets
+#: model:ir.model.fields,help:purchase_transport_mode.field_res_partner__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr "Bu kaydın toplam değişiklik seti sayısı"
+
+#. module: purchase_transport_mode
+#: model:ir.model,name:purchase_transport_mode.model_purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_order__transport_mode_id
+msgid "Transport Mode"
+msgstr "Taşıma Modu"
+
+#. module: purchase_transport_mode
+#: model:ir.model,name:purchase_transport_mode.model_purchase_transport_mode_constraint
+msgid "Transport Mode Constraint"
+msgstr "Taşıma Modu Kısıtlaması"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_order__transport_mode_status
+msgid "Transport Mode Status"
+msgstr "Taşıma Modu Durumu"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_order__transport_mode_status_display
+msgid "Transport Mode Status Display"
+msgstr "Taşıma Modu Durum Ekranı"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_order__transport_mode_status_ok
+msgid "Transport Mode Status Ok"
+msgstr "Taşıma Modu Durumu Tamam"
+
+#. module: purchase_transport_mode
+#: model:exception.rule,name:purchase_transport_mode.po_excep_transport_mode
+msgid "Transport mode"
+msgstr "Taşıma modu"
+
+#. module: purchase_transport_mode
+#: model_terms:ir.ui.view,arch_db:purchase_transport_mode.purchase_order_transport_mode_status_display
+msgid "Transport mode errors"
+msgstr "Taşıma modu hataları"
+
+#. module: purchase_transport_mode
+#: model:exception.rule,description:purchase_transport_mode.po_excep_transport_mode
+msgid "Transport mode requirements not satisfied"
+msgstr "Taşıma modu gereksinimleri karşılanmadı"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_order__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_company__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_config_settings__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_partner__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr "Kullanıcı Değişiklikleri Görebilir"
+
+#. module: purchase_transport_mode
+#: model_terms:ir.ui.view,arch_db:purchase_transport_mode.res_config_settings_view_form_purchase_inherit
+msgid "Validate purchase order details to satisfy transport mode requirements"
+msgstr ""
+"Taşıma modu gereksinimlerini karşılamak için satın alma siparişi "
+"ayrıntılarını doğrulayın"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_config_settings__purchase_transport_mode_contraint_enabled
+msgid "Validate purchase transport mode"
+msgstr "Satın alma taşıma modunu doğrulayın"

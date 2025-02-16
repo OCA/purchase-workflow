@@ -1,0 +1,194 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_order_weight_volume
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-14 19:23+0000\n"
+"PO-Revision-Date: 2025-02-14 19:23+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_order_weight_volume
+#: model_terms:ir.ui.view,arch_db:purchase_order_weight_volume.report_purchaseorder_document
+#: model_terms:ir.ui.view,arch_db:purchase_order_weight_volume.report_purchasequotation_document
+msgid "<strong>Total Volume</strong>"
+msgstr "<strong>Toplam Hacim</strong>"
+
+#. module: purchase_order_weight_volume
+#: model_terms:ir.ui.view,arch_db:purchase_order_weight_volume.report_purchaseorder_document
+#: model_terms:ir.ui.view,arch_db:purchase_order_weight_volume.report_purchasequotation_document
+msgid "<strong>Total Weight</strong>"
+msgstr "<strong>Toplam Ağırlık</strong>"
+
+#. module: purchase_order_weight_volume
+#: model_terms:ir.ui.view,arch_db:purchase_order_weight_volume.report_purchaseorder_document
+#: model_terms:ir.ui.view,arch_db:purchase_order_weight_volume.report_purchasequotation_document
+msgid "<strong>Volume</strong>"
+msgstr "<strong>Hacim</strong>"
+
+#. module: purchase_order_weight_volume
+#: model_terms:ir.ui.view,arch_db:purchase_order_weight_volume.report_purchaseorder_document
+#: model_terms:ir.ui.view,arch_db:purchase_order_weight_volume.report_purchasequotation_document
+msgid "<strong>Weight</strong>"
+msgstr "<strong>Ağırlık</strong>"
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order_line__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_company__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_config_settings__changeset_change_ids
+msgid "Changeset Changes"
+msgstr "Changeset Değişiklikleri"
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__changeset_ids
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order_line__changeset_ids
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_company__changeset_ids
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_config_settings__changeset_ids
+msgid "Changesets"
+msgstr "Changesets"
+
+#. module: purchase_order_weight_volume
+#: model:ir.model,name:purchase_order_weight_volume.model_res_company
+msgid "Companies"
+msgstr "Şirketler"
+
+#. module: purchase_order_weight_volume
+#: model:ir.model,name:purchase_order_weight_volume.model_res_config_settings
+msgid "Config Settings"
+msgstr "Yapılandırma Ayarları"
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__count_changesets
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order_line__count_changesets
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_company__count_changesets
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_config_settings__count_changesets
+msgid "Count Changesets"
+msgstr "Sayım Değişiklik Setleri"
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order_line__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_company__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_config_settings__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr "Bekleyen Değişiklik Seti Değişikliklerini Say"
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order_line__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_company__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_config_settings__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr "Bekleyen Değişiklik Setlerini Say"
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__display_order_volume_in_po
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_company__display_order_volume_in_po
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_config_settings__display_order_volume_in_po
+msgid "Display Order Volume in PO"
+msgstr "PO'da Sipariş Hacmini Göster"
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__display_order_weight_in_po
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_company__display_order_weight_in_po
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_config_settings__display_order_weight_in_po
+msgid "Display Order Weight in PO"
+msgstr "PO'da Sipariş Ağırlığını Göster"
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__display_total_volume_in_report
+msgid "Display Volume in Report"
+msgstr "Rapordaki Hacmi Göster"
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__display_total_weight_in_report
+msgid "Display Weight in Report"
+msgstr "Raporda Ağırlığı Göster"
+
+#. module: purchase_order_weight_volume
+#: model:ir.model,name:purchase_order_weight_volume.model_purchase_order
+msgid "Purchase Order"
+msgstr "Satınalma Siparişi"
+
+#. module: purchase_order_weight_volume
+#: model:ir.model,name:purchase_order_weight_volume.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Satınalma Sipariş Satırı"
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__smart_search
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order_line__smart_search
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_company__smart_search
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_config_settings__smart_search
+msgid "Smart Search"
+msgstr "Akıllı Arama"
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,help:purchase_order_weight_volume.field_purchase_order__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_order_weight_volume.field_purchase_order_line__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_order_weight_volume.field_res_company__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_order_weight_volume.field_res_config_settings__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr "Bu kaydın bekleyen değişiklik sayısı"
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,help:purchase_order_weight_volume.field_purchase_order__count_pending_changesets
+#: model:ir.model.fields,help:purchase_order_weight_volume.field_purchase_order_line__count_pending_changesets
+#: model:ir.model.fields,help:purchase_order_weight_volume.field_res_company__count_pending_changesets
+#: model:ir.model.fields,help:purchase_order_weight_volume.field_res_config_settings__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr "Bu kaydın bekleyen değişiklik setlerinin sayısı"
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,help:purchase_order_weight_volume.field_purchase_order__count_changesets
+#: model:ir.model.fields,help:purchase_order_weight_volume.field_purchase_order_line__count_changesets
+#: model:ir.model.fields,help:purchase_order_weight_volume.field_res_company__count_changesets
+#: model:ir.model.fields,help:purchase_order_weight_volume.field_res_config_settings__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr "Bu kaydın toplam değişiklik seti sayısı"
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__total_volume
+msgid "Total Volume"
+msgstr "Toplam Hacim"
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__total_volume_uom_id
+msgid "Total Volume Uom"
+msgstr "Toplam Hacim Uom"
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__total_weight
+msgid "Total Weight"
+msgstr "Toplam Ağırlık"
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__total_weight_uom_id
+msgid "Total Weight Uom"
+msgstr "Toplam Ağırlık Uom"
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order_line__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_company__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_config_settings__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr "Kullanıcı Değişiklikleri Görebilir"
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order_line__line_volume
+msgid "Volume"
+msgstr "Hacim"
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order_line__line_weight
+msgid "Weight"
+msgstr "Ağırlık"

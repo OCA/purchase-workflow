@@ -6,15 +6,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-08-12 09:58+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
-"Language-Team: none\n"
-"Language: it\n"
+"POT-Creation-Date: 2025-02-14 19:21+0000\n"
+"PO-Revision-Date: 2025-02-14 19:21+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"Plural-Forms: \n"
 
 #. module: purchase_merge
 #: model_terms:ir.ui.view,arch_db:purchase_merge.purchase_merge_automatic_wizard_form
@@ -25,6 +24,31 @@ msgstr "Procedura guidata unione automatica"
 #: model_terms:ir.ui.view,arch_db:purchase_merge.purchase_merge_automatic_wizard_form
 msgid "Cancel"
 msgstr "Annulla"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__changeset_change_ids
+msgid "Changeset Changes"
+msgstr "Modifiche al set di modifiche"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__changeset_ids
+msgid "Changesets"
+msgstr "Modifiche"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__count_changesets
+msgid "Count Changesets"
+msgstr "Conteggio delle modifiche"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr "Conteggio delle modifiche del Changeset in sospeso"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr "Conteggio dei Changeset in sospeso"
 
 #. module: purchase_merge
 #: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__create_uid
@@ -93,11 +117,37 @@ msgid "Selected purchase will be merged together."
 msgstr "Gli acquisti selezionati verranno uniti."
 
 #. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__smart_search
+msgid "Smart Search"
+msgstr "Ricerca intelligente"
+
+#. module: purchase_merge
+#: model:ir.model.fields,help:purchase_merge.field_purchase_merge_automatic_wizard__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr "Il numero di modifiche in sospeso di questo record"
+
+#. module: purchase_merge
+#: model:ir.model.fields,help:purchase_merge.field_purchase_merge_automatic_wizard__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr "Il numero di changeset in sospeso di questo record"
+
+#. module: purchase_merge
+#: model:ir.model.fields,help:purchase_merge.field_purchase_merge_automatic_wizard__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr "Il numero complessivo di changeset di questo record"
+
+#. module: purchase_merge
 #. odoo-python
 #: code:addons/purchase_merge/wizard/purchase_merge.py:0
 #, python-format
 msgid "This purchase order lines have been merged %(way)s : %(po_names)s"
-msgstr "Queste righe ordine di acquisto sono state unite %(way)s : %(po_names)s"
+msgstr ""
+"Queste righe ordine di acquisto sono state unite %(way)s : %(po_names)s"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr "L'utente può vedere il Changeset"
 
 #. module: purchase_merge
 #. odoo-python
@@ -105,7 +155,8 @@ msgstr "Queste righe ordine di acquisto sono state unite %(way)s : %(po_names)s"
 #, python-format
 msgid "You can't merge purchase orders that aren't in draft state like: {}"
 msgstr ""
-"Non si pososno unire ordini di acquisto che non sono in stato bozza come : {}"
+"Non si pososno unire ordini di acquisto che non sono in stato bozza come : "
+"{}"
 
 #. module: purchase_merge
 #. odoo-python
@@ -150,10 +201,3 @@ msgstr "Non si possono unire ordini di acquisto con tipi prelievo diversi: %s"
 #, python-format
 msgid "You can't merge purchase orders with different suppliers: %s"
 msgstr "Non si possono unire ordini di acquisto con fornitori diversi: %s"
-
-#, python-format
-#~ msgid "This purchase order lines have been merged {way} : {po_names}"
-#~ msgstr "Queste righe ordine di vendita sono state unite {way} : {po_names}"
-
-#~ msgid "purchase.merge.automatic.wizard"
-#~ msgstr "purchase.merge.automatic.wizard"

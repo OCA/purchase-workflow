@@ -1,38 +1,49 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * purchase_cancel_reason
+# 	* purchase_cancel_reason
 #
-# Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2018
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-03 03:48+0000\n"
-"PO-Revision-Date: 2018-03-03 03:48+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
-"Language-Team: Hungarian (https://www.transifex.com/oca/teams/23907/hu/)\n"
-"Language: hu\n"
+"POT-Creation-Date: 2025-02-14 19:22+0000\n"
+"PO-Revision-Date: 2025-02-14 19:22+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: purchase_cancel_reason
 #: model:ir.model,name:purchase_cancel_reason.model_purchase_order_cancel
 msgid "Ask a reason for the purchase order cancellation."
-msgstr ""
+msgstr "Kérjen indoklást a megrendelés törlésére."
 
 #. module: purchase_cancel_reason
 #: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.purchase_order_form
 #: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel"
 
 #. module: purchase_cancel_reason
 #: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.purchase_order_form
 msgid "Cancellation reason:"
-msgstr ""
+msgstr "Lemondás oka:"
+
+#. module: purchase_cancel_reason
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason__changeset_change_ids
+msgid "Changeset Changes"
+msgstr "Változáskészlet-változások"
+
+#. module: purchase_cancel_reason
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order__changeset_ids
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel__changeset_ids
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason__changeset_ids
+msgid "Changesets"
+msgstr "Changesets"
 
 #. module: purchase_cancel_reason
 #: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel
@@ -40,11 +51,34 @@ msgid ""
 "Choose the reason for the cancellation of the\n"
 "                    purchase order."
 msgstr ""
+"Válassza ki a törlés okát\n"
+"                    megrendelés törlésének okát."
 
 #. module: purchase_cancel_reason
 #: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel
 msgid "Confirm"
-msgstr ""
+msgstr "Megerősítés"
+
+#. module: purchase_cancel_reason
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order__count_changesets
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel__count_changesets
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason__count_changesets
+msgid "Count Changesets"
+msgstr "Count Changesets"
+
+#. module: purchase_cancel_reason
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr "Számolja a függőben lévő változtatáskészlet-változásokat"
+
+#. module: purchase_cancel_reason
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr "Függő módosításkészletek számolása"
 
 #. module: purchase_cancel_reason
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel__create_uid
@@ -62,7 +96,7 @@ msgstr "Létrehozás dátuma"
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel__display_name
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Megjelenített név"
 
 #. module: purchase_cancel_reason
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel__id
@@ -73,13 +107,13 @@ msgstr "Azonosító ID"
 #. module: purchase_cancel_reason
 #: model:purchase.order.cancel.reason,name:purchase_cancel_reason.cancel_reason_only_quotation
 msgid "Just for Quotation"
-msgstr ""
+msgstr "Csak árajánlatért"
 
 #. module: purchase_cancel_reason
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel____last_update
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Utolsó módosítás:"
 
 #. module: purchase_cancel_reason
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel__write_uid
@@ -96,48 +130,83 @@ msgstr "Utoljára frissítve ekkor"
 #. module: purchase_cancel_reason
 #: model:purchase.order.cancel.reason,name:purchase_cancel_reason.cancel_reason_other_provider
 msgid "Other Service Provider selected"
-msgstr ""
+msgstr "Egyéb kiválasztott szolgáltató"
 
 #. module: purchase_cancel_reason
 #: model:ir.model,name:purchase_cancel_reason.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Beszerzési megrendelés"
 
 #. module: purchase_cancel_reason
 #: model:ir.actions.act_window,name:purchase_cancel_reason.action_purchase_order_cancel_reason
 #: model:ir.model,name:purchase_cancel_reason.model_purchase_order_cancel_reason
 msgid "Purchase Order Cancel Reason"
-msgstr ""
+msgstr "Megrendelés törlésének oka"
 
 #. module: purchase_cancel_reason
 #: model:ir.ui.menu,name:purchase_cancel_reason.menu_purchase_order_cancel_reason
 #: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel_reason_form
 msgid "Purchase Order Cancel Reasons"
-msgstr ""
+msgstr "Megrendelés törlésének okai"
 
 #. module: purchase_cancel_reason
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel__reason_id
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason__name
 msgid "Reason"
-msgstr ""
+msgstr "Indoklás"
 
 #. module: purchase_cancel_reason
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order__cancel_reason_id
 msgid "Reason for cancellation"
-msgstr ""
+msgstr "A törlés oka"
 
 #. module: purchase_cancel_reason
 #: model:ir.actions.act_window,name:purchase_cancel_reason.action_purchase_order_cancel
 #: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel
 msgid "Reason for the cancellation"
-msgstr ""
+msgstr "A törlés oka"
 
 #. module: purchase_cancel_reason
 #: model:purchase.order.cancel.reason,name:purchase_cancel_reason.cancel_reason_no_service_needed
 msgid "Service no longer needed"
-msgstr ""
+msgstr "A szolgáltatásra már nincs szükség"
+
+#. module: purchase_cancel_reason
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order__smart_search
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel__smart_search
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason__smart_search
+msgid "Smart Search"
+msgstr "Intelligens keresés"
+
+#. module: purchase_cancel_reason
+#: model:ir.model.fields,help:purchase_cancel_reason.field_purchase_order__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_cancel_reason.field_purchase_order_cancel__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_cancel_reason.field_purchase_order_cancel_reason__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr "A bejegyzés függőben lévő módosításainak száma"
+
+#. module: purchase_cancel_reason
+#: model:ir.model.fields,help:purchase_cancel_reason.field_purchase_order__count_pending_changesets
+#: model:ir.model.fields,help:purchase_cancel_reason.field_purchase_order_cancel__count_pending_changesets
+#: model:ir.model.fields,help:purchase_cancel_reason.field_purchase_order_cancel_reason__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr "A rekord folyamatban lévő módosításainak száma"
+
+#. module: purchase_cancel_reason
+#: model:ir.model.fields,help:purchase_cancel_reason.field_purchase_order__count_changesets
+#: model:ir.model.fields,help:purchase_cancel_reason.field_purchase_order_cancel__count_changesets
+#: model:ir.model.fields,help:purchase_cancel_reason.field_purchase_order_cancel_reason__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr "Az e rekordhoz tartozó módosítások teljes száma"
+
+#. module: purchase_cancel_reason
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr "A felhasználó láthatja a változtatáskészletet"
 
 #. module: purchase_cancel_reason
 #: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel
 msgid "or"
-msgstr ""
+msgstr "vagy"

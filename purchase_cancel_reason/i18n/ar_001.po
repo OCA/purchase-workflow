@@ -1,0 +1,212 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_cancel_reason
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-14 19:22+0000\n"
+"PO-Revision-Date: 2025-02-14 19:22+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_cancel_reason
+#: model:ir.model,name:purchase_cancel_reason.model_purchase_order_cancel
+msgid "Ask a reason for the purchase order cancellation."
+msgstr "اسأل عن سبب إلغاء أمر الشراء."
+
+#. module: purchase_cancel_reason
+#: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.purchase_order_form
+#: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: purchase_cancel_reason
+#: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.purchase_order_form
+msgid "Cancellation reason:"
+msgstr "سبب الإلغاء"
+
+#. module: purchase_cancel_reason
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason__changeset_change_ids
+msgid "Changeset Changes"
+msgstr "تغييرات مجموعة التغييرات"
+
+#. module: purchase_cancel_reason
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order__changeset_ids
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel__changeset_ids
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason__changeset_ids
+msgid "Changesets"
+msgstr "مجموعات التغييرات"
+
+#. module: purchase_cancel_reason
+#: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel
+msgid ""
+"Choose the reason for the cancellation of the\n"
+"                    purchase order."
+msgstr ""
+"اختر سبب إلغاء\n"
+"                    طلب الشراء."
+
+#. module: purchase_cancel_reason
+#: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel
+msgid "Confirm"
+msgstr "تأكيد"
+
+#. module: purchase_cancel_reason
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order__count_changesets
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel__count_changesets
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason__count_changesets
+msgid "Count Changesets"
+msgstr "عدد التغييرات"
+
+#. module: purchase_cancel_reason
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr "عدد تغييرات مجموعة التغييرات المعلقة"
+
+#. module: purchase_cancel_reason
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr "عدد مجموعات التغييرات المعلقة"
+
+#. module: purchase_cancel_reason
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel__create_uid
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: purchase_cancel_reason
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel__create_date
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: purchase_cancel_reason
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel__display_name
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: purchase_cancel_reason
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel__id
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason__id
+msgid "ID"
+msgstr "المعرف"
+
+#. module: purchase_cancel_reason
+#: model:purchase.order.cancel.reason,name:purchase_cancel_reason.cancel_reason_only_quotation
+msgid "Just for Quotation"
+msgstr "فقط لعرض الأسعار"
+
+#. module: purchase_cancel_reason
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel____last_update
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason____last_update
+msgid "Last Modified on"
+msgstr "آخر تعديل على"
+
+#. module: purchase_cancel_reason
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel__write_uid
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: purchase_cancel_reason
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel__write_date
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: purchase_cancel_reason
+#: model:purchase.order.cancel.reason,name:purchase_cancel_reason.cancel_reason_other_provider
+msgid "Other Service Provider selected"
+msgstr "مزود خدمة آخر تم اختياره"
+
+#. module: purchase_cancel_reason
+#: model:ir.model,name:purchase_cancel_reason.model_purchase_order
+msgid "Purchase Order"
+msgstr "أمر شراء"
+
+#. module: purchase_cancel_reason
+#: model:ir.actions.act_window,name:purchase_cancel_reason.action_purchase_order_cancel_reason
+#: model:ir.model,name:purchase_cancel_reason.model_purchase_order_cancel_reason
+msgid "Purchase Order Cancel Reason"
+msgstr "سبب إلغاء طلب الشراء"
+
+#. module: purchase_cancel_reason
+#: model:ir.ui.menu,name:purchase_cancel_reason.menu_purchase_order_cancel_reason
+#: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel_reason_form
+msgid "Purchase Order Cancel Reasons"
+msgstr "أسباب إلغاء طلب الشراء"
+
+#. module: purchase_cancel_reason
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel__reason_id
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason__name
+msgid "Reason"
+msgstr "السبب"
+
+#. module: purchase_cancel_reason
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order__cancel_reason_id
+msgid "Reason for cancellation"
+msgstr "سبب الإلغاء"
+
+#. module: purchase_cancel_reason
+#: model:ir.actions.act_window,name:purchase_cancel_reason.action_purchase_order_cancel
+#: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel
+msgid "Reason for the cancellation"
+msgstr "سبب الإلغاء"
+
+#. module: purchase_cancel_reason
+#: model:purchase.order.cancel.reason,name:purchase_cancel_reason.cancel_reason_no_service_needed
+msgid "Service no longer needed"
+msgstr "لم تعد هناك حاجة إلى الخدمة"
+
+#. module: purchase_cancel_reason
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order__smart_search
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel__smart_search
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason__smart_search
+msgid "Smart Search"
+msgstr "البحث الذكي"
+
+#. module: purchase_cancel_reason
+#: model:ir.model.fields,help:purchase_cancel_reason.field_purchase_order__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_cancel_reason.field_purchase_order_cancel__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_cancel_reason.field_purchase_order_cancel_reason__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr "عدد التغييرات المعلقة لهذا السجل"
+
+#. module: purchase_cancel_reason
+#: model:ir.model.fields,help:purchase_cancel_reason.field_purchase_order__count_pending_changesets
+#: model:ir.model.fields,help:purchase_cancel_reason.field_purchase_order_cancel__count_pending_changesets
+#: model:ir.model.fields,help:purchase_cancel_reason.field_purchase_order_cancel_reason__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr "عدد مجموعات التغييرات المعلقة لهذا السجل"
+
+#. module: purchase_cancel_reason
+#: model:ir.model.fields,help:purchase_cancel_reason.field_purchase_order__count_changesets
+#: model:ir.model.fields,help:purchase_cancel_reason.field_purchase_order_cancel__count_changesets
+#: model:ir.model.fields,help:purchase_cancel_reason.field_purchase_order_cancel_reason__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr "العدد الإجمالي للتغييرات في هذا السجل"
+
+#. module: purchase_cancel_reason
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr "يمكن للمستخدم الاطلاع على مجموعة التغييرات"
+
+#. module: purchase_cancel_reason
+#: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel
+msgid "or"
+msgstr "أو"

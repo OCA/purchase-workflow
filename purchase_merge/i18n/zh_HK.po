@@ -1,0 +1,198 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_merge
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-14 19:21+0000\n"
+"PO-Revision-Date: 2025-02-14 19:21+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_merge
+#: model_terms:ir.ui.view,arch_db:purchase_merge.purchase_merge_automatic_wizard_form
+msgid "Automatic Merge Wizard"
+msgstr "自动合并向导"
+
+#. module: purchase_merge
+#: model_terms:ir.ui.view,arch_db:purchase_merge.purchase_merge_automatic_wizard_form
+msgid "Cancel"
+msgstr "取消"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__changeset_change_ids
+msgid "Changeset Changes"
+msgstr "变更集变更"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__changeset_ids
+msgid "Changesets"
+msgstr "变更集"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__count_changesets
+msgid "Count Changesets"
+msgstr "计数变更集"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr "统计待处理的变更集变更"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr "统计待处理的变更集"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__create_uid
+msgid "Created by"
+msgstr "创建者"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__create_date
+msgid "Created on"
+msgstr "创建于"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__dst_purchase_id
+msgid "Destination"
+msgstr "目的地"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__display_name
+msgid "Display Name"
+msgstr "显示名称"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__id
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard____last_update
+msgid "Last Modified on"
+msgstr "最后修改日期"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__write_uid
+msgid "Last Updated by"
+msgstr "最后更新"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__write_date
+msgid "Last Updated on"
+msgstr "最后更新日期"
+
+#. module: purchase_merge
+#: model_terms:ir.ui.view,arch_db:purchase_merge.purchase_merge_automatic_wizard_form
+msgid "Merge Purchase"
+msgstr "合并采购"
+
+#. module: purchase_merge
+#: model:ir.actions.act_window,name:purchase_merge.action_purchase_merge
+msgid "Merge Selected Purchase"
+msgstr "合并所选采购"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__purchase_ids
+#: model_terms:ir.ui.view,arch_db:purchase_merge.purchase_merge_automatic_wizard_form
+msgid "Purchase"
+msgstr "采购"
+
+#. module: purchase_merge
+#: model:ir.model,name:purchase_merge.model_purchase_merge_automatic_wizard
+msgid "Purchase Merge Automatic Wizard"
+msgstr "采购合并自动向导"
+
+#. module: purchase_merge
+#: model_terms:ir.ui.view,arch_db:purchase_merge.purchase_merge_automatic_wizard_form
+msgid "Selected purchase will be merged together."
+msgstr "选定的采购将合并在一起。"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__smart_search
+msgid "Smart Search"
+msgstr "智能搜索"
+
+#. module: purchase_merge
+#: model:ir.model.fields,help:purchase_merge.field_purchase_merge_automatic_wizard__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr "此记录的待更改次数"
+
+#. module: purchase_merge
+#: model:ir.model.fields,help:purchase_merge.field_purchase_merge_automatic_wizard__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr "此记录的待处理更改集数量"
+
+#. module: purchase_merge
+#: model:ir.model.fields,help:purchase_merge.field_purchase_merge_automatic_wizard__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr "该记录的更改集总数"
+
+#. module: purchase_merge
+#. odoo-python
+#: code:addons/purchase_merge/wizard/purchase_merge.py:0
+#, python-format
+msgid "This purchase order lines have been merged %(way)s : %(po_names)s"
+msgstr "此采购订单行已合并 %(方式)s：%(po_names)s"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr "用户可查看变更集"
+
+#. module: purchase_merge
+#. odoo-python
+#: code:addons/purchase_merge/wizard/purchase_merge.py:0
+#, python-format
+msgid "You can't merge purchase orders that aren't in draft state like: {}"
+msgstr "您无法合并非草稿状态的采购订单，例如{}"
+
+#. module: purchase_merge
+#. odoo-python
+#: code:addons/purchase_merge/wizard/purchase_merge.py:0
+#, python-format
+msgid "You can't merge purchase orders with different currencies: %s"
+msgstr "您无法合并不同货币的采购订单：%s"
+
+#. module: purchase_merge
+#. odoo-python
+#: code:addons/purchase_merge/wizard/purchase_merge.py:0
+#, python-format
+msgid "You can't merge purchase orders with different fiscal positions: %s"
+msgstr "您不能合并不同财务状况的采购订单：%s"
+
+#. module: purchase_merge
+#. odoo-python
+#: code:addons/purchase_merge/wizard/purchase_merge.py:0
+#, python-format
+msgid "You can't merge purchase orders with different incoterms: %s"
+msgstr "您无法合并不同术语的采购订单：%s"
+
+#. module: purchase_merge
+#. odoo-python
+#: code:addons/purchase_merge/wizard/purchase_merge.py:0
+#, python-format
+msgid "You can't merge purchase orders with different payment terms: %s"
+msgstr "您不能合并不同付款条件的采购订单：%s"
+
+#. module: purchase_merge
+#. odoo-python
+#: code:addons/purchase_merge/wizard/purchase_merge.py:0
+#, python-format
+msgid "You can't merge purchase orders with different picking types: %s"
+msgstr "您无法合并不同拣选类型的采购订单：%s"
+
+#. module: purchase_merge
+#. odoo-python
+#: code:addons/purchase_merge/wizard/purchase_merge.py:0
+#, python-format
+msgid "You can't merge purchase orders with different suppliers: %s"
+msgstr "您无法合并不同供应商的采购订单：%s"

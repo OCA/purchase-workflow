@@ -1,0 +1,173 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_order_line_menu
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-14 19:24+0000\n"
+"PO-Revision-Date: 2025-02-14 19:24+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,field_description:purchase_order_line_menu.field_purchase_order_line__invoice_status
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "Billing Status"
+msgstr "Статус на фактуриране"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "Cancelled"
+msgstr "Отменен"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,field_description:purchase_order_line_menu.field_purchase_order_line__changeset_change_ids
+msgid "Changeset Changes"
+msgstr "Промени в набора от промени"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,field_description:purchase_order_line_menu.field_purchase_order_line__changeset_ids
+msgid "Changesets"
+msgstr "Промени"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,field_description:purchase_order_line_menu.field_purchase_order_line__count_changesets
+msgid "Count Changesets"
+msgstr "Промени в броя"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,field_description:purchase_order_line_menu.field_purchase_order_line__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr "Отчитане на чакащите промени в набора от промени"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,field_description:purchase_order_line_menu.field_purchase_order_line__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr "Брой чакащи промени"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,help:purchase_order_line_menu.field_purchase_order_line__date_order
+msgid ""
+"Depicts the date within which the Quotation should be confirmed and "
+"converted into a purchase order."
+msgstr ""
+"Показва датата, на която офертата трябва да бъде потвърдена и превърната в "
+"поръчка за покупка."
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "Fully Billed"
+msgstr "Изцяло таксувани"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "Locked"
+msgstr "Заключен"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "Nothing to Bill"
+msgstr "Нищо за плащане"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,field_description:purchase_order_line_menu.field_purchase_order_line__date_order
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "Order Date"
+msgstr "Дата на поръчка"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.view_purchase_order_line_pivot
+msgid "Order Lines"
+msgstr "Линии за поръчки"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "Order date"
+msgstr "Дата на поръчката"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "Planned date"
+msgstr "Планирана дата"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_tree
+msgid "Price Subtotal"
+msgstr "Междинна сума на цената"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_tree
+msgid "Price Tax"
+msgstr "Данък върху цената"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_tree
+msgid "Price Total"
+msgstr "Цена Общо"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "Purchase Order"
+msgstr "Поръчка за покупка"
+
+#. module: purchase_order_line_menu
+#: model:ir.model,name:purchase_order_line_menu.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Ред на поръчка за покупка"
+
+#. module: purchase_order_line_menu
+#: model:ir.actions.act_window,name:purchase_order_line_menu.action_purchase_orders_lines
+#: model:ir.ui.menu,name:purchase_order_line_menu.purchase_order_line_menu
+msgid "Purchase Order Lines"
+msgstr "Редове за поръчки за покупка"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "RFQ"
+msgstr "RFQ"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "RFQ Sent"
+msgstr "Изпратена заявка за участие"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,field_description:purchase_order_line_menu.field_purchase_order_line__smart_search
+msgid "Smart Search"
+msgstr "Smart Search"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,help:purchase_order_line_menu.field_purchase_order_line__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr "Брой на предстоящите промени на този запис"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,help:purchase_order_line_menu.field_purchase_order_line__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr "Броят на чакащите промени в този запис"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,help:purchase_order_line_menu.field_purchase_order_line__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr "Общ брой на промените в този запис"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "To Approve"
+msgstr "За одобряване"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,field_description:purchase_order_line_menu.field_purchase_order_line__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr "Потребителят може да види набора от промени"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "Waiting Bills"
+msgstr "Чакащи сметки"

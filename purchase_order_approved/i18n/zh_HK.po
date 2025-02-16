@@ -1,0 +1,266 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_order_approved
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-14 19:22+0000\n"
+"PO-Revision-Date: 2025-02-14 19:22+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_order_approved
+#: model_terms:ir.ui.view,arch_db:purchase_order_approved.view_purchase_configuration
+msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" groups=\"base.group_multi_company\"/>"
+msgstr ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" groups=\"base.group_multi_company\"/>"
+
+#. module: purchase_order_approved
+#: model_terms:ir.ui.view,arch_db:purchase_order_approved.view_purchase_configuration
+msgid ""
+"Adds an extra state in purchase orders previous to 'Purchase Order' state."
+msgstr "在 \"采购订单 \"状态之前的采购订单中添加额外状态。"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,help:purchase_order_approved.field_res_company__purchase_approve_active
+#: model:ir.model.fields,help:purchase_order_approved.field_res_config_settings__purchase_approve_active
+msgid ""
+"Adds an extra state in purchase orders previous to 'Purchase Order'. After "
+"confirming and approving a purchase order it will go to state 'Approved'. In"
+" this state the incoming shipments are not created yet and you still can go "
+"back to draft. You can release the creation of the incoming shipments moving"
+" the purchase order to state 'Purchase Order'."
+msgstr ""
+"在采购订单中增加 \"采购订单 \"之前的状态。确认并批准采购订单后，订单将进入 \"已批准 "
+"\"状态。在此状态下，尚未创建入库发货单，但仍可返回到草稿状态。您可以将采购订单移动到 \"采购订单 \"状态，以释放入库货物的创建。"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields.selection,name:purchase_order_approved.selection__res_partner__purchase_requires_second_approval__always
+msgid "Always"
+msgstr "始终如一"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields.selection,name:purchase_order_approved.selection__purchase_order__state__approved
+msgid "Approved"
+msgstr "已获批准"
+
+#. module: purchase_order_approved
+#: model_terms:ir.ui.view,arch_db:purchase_order_approved.view_purchase_order_filter
+msgid "Approved Orders"
+msgstr "批准订单"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields.selection,name:purchase_order_approved.selection__res_partner__purchase_requires_second_approval__based_on_company
+msgid "Based on company policy"
+msgstr "根据公司政策"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_company__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_config_settings__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_partner__changeset_change_ids
+msgid "Changeset Changes"
+msgstr "变更集变更"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__changeset_ids
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_company__changeset_ids
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_config_settings__changeset_ids
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_partner__changeset_ids
+msgid "Changesets"
+msgstr "变更集"
+
+#. module: purchase_order_approved
+#: model:ir.model,name:purchase_order_approved.model_res_company
+msgid "Companies"
+msgstr "公司"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__company_id
+msgid "Company"
+msgstr "公司简介"
+
+#. module: purchase_order_approved
+#: model:ir.model,name:purchase_order_approved.model_res_config_settings
+msgid "Config Settings"
+msgstr "配置设置"
+
+#. module: purchase_order_approved
+#: model:ir.model,name:purchase_order_approved.model_res_partner
+msgid "Contact"
+msgstr "联系我们"
+
+#. module: purchase_order_approved
+#: model_terms:ir.ui.view,arch_db:purchase_order_approved.purchase_order_form
+msgid "Convert to Purchase Order"
+msgstr "转换为采购订单"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__count_changesets
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_company__count_changesets
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_config_settings__count_changesets
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_partner__count_changesets
+msgid "Count Changesets"
+msgstr "计数变更集"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_company__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_config_settings__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_partner__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr "统计待处理的变更集变更"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_company__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_config_settings__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_partner__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr "统计待处理的变更集"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__currency_id
+msgid "Currency"
+msgstr "货币"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__picking_type_id
+msgid "Deliver To"
+msgstr "交付至"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__date_order
+msgid ""
+"Depicts the date within which the Quotation should be confirmed and "
+"converted into a purchase order."
+msgstr "表示应确认报价单并将其转换为采购订单的日期。"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__dest_address_id
+msgid "Dropship Address"
+msgstr "发货地址"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields.selection,name:purchase_order_approved.selection__res_partner__purchase_requires_second_approval__never
+msgid "Never"
+msgstr "从不"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__date_order
+msgid "Order Deadline"
+msgstr "订单截止日期"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__order_line
+msgid "Order Lines"
+msgstr "订单线"
+
+#. module: purchase_order_approved
+#: model:ir.model,name:purchase_order_approved.model_purchase_order
+msgid "Purchase Order"
+msgstr "采购订单"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_partner__purchase_requires_second_approval
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_users__purchase_requires_second_approval
+msgid "Purchase Requires Second Approval"
+msgstr "购买需要二次批准"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__dest_address_id
+msgid ""
+"Put an address if you want to deliver directly from the vendor to the "
+"customer. Otherwise, keep empty to deliver to your own company."
+msgstr "如果要从供应商直接交付给客户，请填写地址。否则，请保留空格，以便交付给您自己的公司。"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__origin
+msgid ""
+"Reference of the document that generated this purchase order request (e.g. a"
+" sales order)"
+msgstr "生成此采购订单请求的文件参考（如销售订单）"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__smart_search
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_company__smart_search
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_config_settings__smart_search
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_partner__smart_search
+msgid "Smart Search"
+msgstr "智能搜索"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__origin
+msgid "Source Document"
+msgstr "源文件"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_config_settings__purchase_approve_active
+msgid "State 'Approved' in Purchase Orders"
+msgstr "在采购订单中注明 \"已批准"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__state
+msgid "Status"
+msgstr "现状"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_order_approved.field_res_company__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_order_approved.field_res_config_settings__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_order_approved.field_res_partner__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr "此记录的待更改次数"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__count_pending_changesets
+#: model:ir.model.fields,help:purchase_order_approved.field_res_company__count_pending_changesets
+#: model:ir.model.fields,help:purchase_order_approved.field_res_config_settings__count_pending_changesets
+#: model:ir.model.fields,help:purchase_order_approved.field_res_partner__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr "此记录的待处理更改集数量"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__count_changesets
+#: model:ir.model.fields,help:purchase_order_approved.field_res_company__count_changesets
+#: model:ir.model.fields,help:purchase_order_approved.field_res_config_settings__count_changesets
+#: model:ir.model.fields,help:purchase_order_approved.field_res_partner__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr "该记录的更改集总数"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__picking_type_id
+msgid "This will determine operation type of incoming shipment"
+msgstr "这将决定进货的操作类型"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_company__purchase_approve_active
+msgid "Use State 'Approved' in Purchase Orders"
+msgstr "在采购订单中使用 \"已批准 \"状态"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_company__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_config_settings__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_partner__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr "用户可查看变更集"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__partner_id
+msgid "Vendor"
+msgstr "供应商"
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__partner_id
+msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
+msgstr "您可以通过名称、TIN、电子邮件或内部参考查找供应商。"

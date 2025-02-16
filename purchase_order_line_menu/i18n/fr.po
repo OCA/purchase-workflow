@@ -1,0 +1,173 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_order_line_menu
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-14 19:24+0000\n"
+"PO-Revision-Date: 2025-02-14 19:24+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,field_description:purchase_order_line_menu.field_purchase_order_line__invoice_status
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "Billing Status"
+msgstr "Statut de la facturation"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "Cancelled"
+msgstr "Annulé"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,field_description:purchase_order_line_menu.field_purchase_order_line__changeset_change_ids
+msgid "Changeset Changes"
+msgstr "Changeset Changes"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,field_description:purchase_order_line_menu.field_purchase_order_line__changeset_ids
+msgid "Changesets"
+msgstr "Changements"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,field_description:purchase_order_line_menu.field_purchase_order_line__count_changesets
+msgid "Count Changesets"
+msgstr "Comptez les modifications"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,field_description:purchase_order_line_menu.field_purchase_order_line__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr "Comptez les modifications en cours du jeu de modifications"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,field_description:purchase_order_line_menu.field_purchase_order_line__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr "Comptez les jeux de modifications en attente"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,help:purchase_order_line_menu.field_purchase_order_line__date_order
+msgid ""
+"Depicts the date within which the Quotation should be confirmed and "
+"converted into a purchase order."
+msgstr ""
+"Représente la date à laquelle le devis devrait être validé et converti en "
+"bon de commande."
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "Fully Billed"
+msgstr "Entièrement facturé"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "Locked"
+msgstr "Verrouillé"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "Nothing to Bill"
+msgstr "Rien à facturer"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,field_description:purchase_order_line_menu.field_purchase_order_line__date_order
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "Order Date"
+msgstr "Date de la commande"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.view_purchase_order_line_pivot
+msgid "Order Lines"
+msgstr "Lignes de commande"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "Order date"
+msgstr "Date de la commande"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "Planned date"
+msgstr "Date prévue"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_tree
+msgid "Price Subtotal"
+msgstr "Sous-total du prix"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_tree
+msgid "Price Tax"
+msgstr "Taxe sur les prix"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_tree
+msgid "Price Total"
+msgstr "Prix total"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "Purchase Order"
+msgstr "Bon de commande"
+
+#. module: purchase_order_line_menu
+#: model:ir.model,name:purchase_order_line_menu.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Ligne de bon de commande"
+
+#. module: purchase_order_line_menu
+#: model:ir.actions.act_window,name:purchase_order_line_menu.action_purchase_orders_lines
+#: model:ir.ui.menu,name:purchase_order_line_menu.purchase_order_line_menu
+msgid "Purchase Order Lines"
+msgstr "Lignes de commande"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "RFQ"
+msgstr "DEMANDE DE PRIX"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "RFQ Sent"
+msgstr "Envoi de l'appel d'offres"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,field_description:purchase_order_line_menu.field_purchase_order_line__smart_search
+msgid "Smart Search"
+msgstr "Smart Search"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,help:purchase_order_line_menu.field_purchase_order_line__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr "Le nombre de modifications en attente de cet enregistrement"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,help:purchase_order_line_menu.field_purchase_order_line__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr "Le nombre de jeux de modifications en attente pour cet enregistrement"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,help:purchase_order_line_menu.field_purchase_order_line__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr "Le nombre total de modifications de cet enregistrement"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "To Approve"
+msgstr "Approuver"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,field_description:purchase_order_line_menu.field_purchase_order_line__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr "L'utilisateur peut voir le jeu de modifications"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "Waiting Bills"
+msgstr "Factures en attente"

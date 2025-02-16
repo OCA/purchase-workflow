@@ -1,23 +1,19 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * purchase_exception
+# 	* purchase_exception
 #
-# Translators:
-# Quentin THEURET <odoo@kerpeo.com>, 2018
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-23 17:50+0000\n"
-"PO-Revision-Date: 2024-12-31 13:06+0000\n"
-"Last-Translator: samibc2c <sami.bouzidi@camptocamp.com>\n"
-"Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
-"Language: fr\n"
+"POT-Creation-Date: 2025-02-14 19:25+0000\n"
+"PO-Revision-Date: 2025-02-14 19:25+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"Plural-Forms: \n"
 
 #. module: purchase_exception
 #: model_terms:ir.ui.view,arch_db:purchase_exception.view_order_form
@@ -35,10 +31,51 @@ msgid "Blocked in Draft"
 msgstr "Bloquée en brouillon"
 
 #. module: purchase_exception
+#: model:ir.model.fields,field_description:purchase_exception.field_exception_rule__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order_line__changeset_change_ids
+msgid "Changeset Changes"
+msgstr "Changeset Changes"
+
+#. module: purchase_exception
+#: model:ir.model.fields,field_description:purchase_exception.field_exception_rule__changeset_ids
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__changeset_ids
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order__changeset_ids
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order_line__changeset_ids
+msgid "Changesets"
+msgstr "Changements"
+
+#. module: purchase_exception
 #: model_terms:ir.ui.view,arch_db:purchase_exception.view_order_form
 msgid ""
-"Click here to be able to confirm this Agreement regardless of the exceptions."
+"Click here to be able to confirm this Agreement regardless of the "
+"exceptions."
 msgstr "Cliquez ici pour confirmer, quelles que soient les exceptions."
+
+#. module: purchase_exception
+#: model:ir.model.fields,field_description:purchase_exception.field_exception_rule__count_changesets
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__count_changesets
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order__count_changesets
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order_line__count_changesets
+msgid "Count Changesets"
+msgstr "Comptez les modifications"
+
+#. module: purchase_exception
+#: model:ir.model.fields,field_description:purchase_exception.field_exception_rule__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order_line__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr "Comptez les modifications en cours du jeu de modifications"
+
+#. module: purchase_exception
+#: model:ir.model.fields,field_description:purchase_exception.field_exception_rule__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order_line__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr "Comptez les jeux de modifications en attente"
 
 #. module: purchase_exception
 #: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__create_uid
@@ -137,17 +174,17 @@ msgstr "Règles d'exception des achats"
 #. module: purchase_exception
 #: model:ir.model,name:purchase_exception.model_purchase_order
 msgid "Purchase Order"
-msgstr "Commande"
+msgstr "Bon de commande"
 
 #. module: purchase_exception
 #: model:ir.model,name:purchase_exception.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr "Ligne de commande d'achat"
+msgstr "Ligne de bon de commande"
 
 #. module: purchase_exception
 #: model:ir.model,name:purchase_exception.model_purchase_exception_confirm
 msgid "Purchase exception wizard"
-msgstr ""
+msgstr "Assistant d'exception d'achat"
 
 #. module: purchase_exception
 #: model:exception.rule,description:purchase_exception.pol_excep_qty_check
@@ -180,18 +217,42 @@ msgstr "Achat"
 msgid "Quantity not positive"
 msgstr "Quantité non positive"
 
-#~ msgid ""
-#~ "You have an outstanding\n"
-#~ "                    exception to manage:"
-#~ msgstr ""
-#~ "Vous avez une exception\n"
-#~ "                   non résolue à traiter :"
+#. module: purchase_exception
+#: model:ir.model.fields,field_description:purchase_exception.field_exception_rule__smart_search
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__smart_search
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order__smart_search
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order_line__smart_search
+msgid "Smart Search"
+msgstr "Smart Search"
 
-#~ msgid "Quantity not negative"
-#~ msgstr "Quantité non négative"
+#. module: purchase_exception
+#: model:ir.model.fields,help:purchase_exception.field_exception_rule__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_exception.field_purchase_exception_confirm__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_exception.field_purchase_order__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_exception.field_purchase_order_line__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr "Le nombre de modifications en attente de cet enregistrement"
 
-#~ msgid "purchase.exception.confirm"
-#~ msgstr "purchase.exception.confirm"
+#. module: purchase_exception
+#: model:ir.model.fields,help:purchase_exception.field_exception_rule__count_pending_changesets
+#: model:ir.model.fields,help:purchase_exception.field_purchase_exception_confirm__count_pending_changesets
+#: model:ir.model.fields,help:purchase_exception.field_purchase_order__count_pending_changesets
+#: model:ir.model.fields,help:purchase_exception.field_purchase_order_line__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr "Le nombre de jeux de modifications en attente pour cet enregistrement"
 
-#~ msgid "Rule Group"
-#~ msgstr "Groupe de règle"
+#. module: purchase_exception
+#: model:ir.model.fields,help:purchase_exception.field_exception_rule__count_changesets
+#: model:ir.model.fields,help:purchase_exception.field_purchase_exception_confirm__count_changesets
+#: model:ir.model.fields,help:purchase_exception.field_purchase_order__count_changesets
+#: model:ir.model.fields,help:purchase_exception.field_purchase_order_line__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr "Le nombre total de modifications de cet enregistrement"
+
+#. module: purchase_exception
+#: model:ir.model.fields,field_description:purchase_exception.field_exception_rule__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order_line__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr "L'utilisateur peut voir le jeu de modifications"

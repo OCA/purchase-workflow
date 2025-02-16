@@ -6,6 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-14 19:23+0000\n"
+"PO-Revision-Date: 2025-02-14 19:23+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -38,8 +40,53 @@ msgid "<strong>Weight</strong>"
 msgstr ""
 
 #. module: purchase_order_weight_volume
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order_line__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_company__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_config_settings__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__changeset_ids
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order_line__changeset_ids
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_company__changeset_ids
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_config_settings__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: purchase_order_weight_volume
 #: model:ir.model,name:purchase_order_weight_volume.model_res_company
 msgid "Companies"
+msgstr ""
+
+#. module: purchase_order_weight_volume
+#: model:ir.model,name:purchase_order_weight_volume.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__count_changesets
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order_line__count_changesets
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_company__count_changesets
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_config_settings__count_changesets
+msgid "Count Changesets"
+msgstr ""
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order_line__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_company__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_config_settings__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order_line__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_company__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_config_settings__count_pending_changesets
+msgid "Count Pending Changesets"
 msgstr ""
 
 #. module: purchase_order_weight_volume
@@ -67,11 +114,6 @@ msgid "Display Weight in Report"
 msgstr ""
 
 #. module: purchase_order_weight_volume
-#: model:ir.model,name:purchase_order_weight_volume.model_res_config_settings
-msgid "Procurement purchase grouping settings"
-msgstr ""
-
-#. module: purchase_order_weight_volume
 #: model:ir.model,name:purchase_order_weight_volume.model_purchase_order
 msgid "Purchase Order"
 msgstr ""
@@ -79,6 +121,38 @@ msgstr ""
 #. module: purchase_order_weight_volume
 #: model:ir.model,name:purchase_order_weight_volume.model_purchase_order_line
 msgid "Purchase Order Line"
+msgstr ""
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__smart_search
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order_line__smart_search
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_company__smart_search
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_config_settings__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,help:purchase_order_weight_volume.field_purchase_order__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_order_weight_volume.field_purchase_order_line__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_order_weight_volume.field_res_company__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_order_weight_volume.field_res_config_settings__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr ""
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,help:purchase_order_weight_volume.field_purchase_order__count_pending_changesets
+#: model:ir.model.fields,help:purchase_order_weight_volume.field_purchase_order_line__count_pending_changesets
+#: model:ir.model.fields,help:purchase_order_weight_volume.field_res_company__count_pending_changesets
+#: model:ir.model.fields,help:purchase_order_weight_volume.field_res_config_settings__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr ""
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,help:purchase_order_weight_volume.field_purchase_order__count_changesets
+#: model:ir.model.fields,help:purchase_order_weight_volume.field_purchase_order_line__count_changesets
+#: model:ir.model.fields,help:purchase_order_weight_volume.field_res_company__count_changesets
+#: model:ir.model.fields,help:purchase_order_weight_volume.field_res_config_settings__count_changesets
+msgid "The overall number of changesets of this record"
 msgstr ""
 
 #. module: purchase_order_weight_volume
@@ -99,6 +173,14 @@ msgstr ""
 #. module: purchase_order_weight_volume
 #: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__total_weight_uom_id
 msgid "Total Weight Uom"
+msgstr ""
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order_line__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_company__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_config_settings__user_can_see_changeset
+msgid "User Can See Changeset"
 msgstr ""
 
 #. module: purchase_order_weight_volume

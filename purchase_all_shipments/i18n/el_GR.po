@@ -1,0 +1,87 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_all_shipments
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-14 19:23+0000\n"
+"PO-Revision-Date: 2025-02-14 19:23+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_all_shipments
+#: model:ir.model.fields,field_description:purchase_all_shipments.field_purchase_order__all_picking_ids
+#: model_terms:ir.ui.view,arch_db:purchase_all_shipments.purchase_order_view_form_inherit
+msgid "All Pickings"
+msgstr "Όλες οι επιλογές"
+
+#. module: purchase_all_shipments
+#: model:ir.model.fields,field_description:purchase_all_shipments.field_purchase_order__all_picking_count
+msgid "All Pickings Count"
+msgstr "Όλες οι επιλογές μετράνε"
+
+#. module: purchase_all_shipments
+#: model_terms:ir.ui.view,arch_db:purchase_all_shipments.purchase_order_view_form_inherit
+msgid "All Pickings, including chained"
+msgstr "Όλα τα Pickings, συμπεριλαμβανομένων των αλυσιδωτών"
+
+#. module: purchase_all_shipments
+#: model:ir.model.fields,field_description:purchase_all_shipments.field_purchase_order__changeset_change_ids
+msgid "Changeset Changes"
+msgstr "Αλλαγές σετ αλλαγών"
+
+#. module: purchase_all_shipments
+#: model:ir.model.fields,field_description:purchase_all_shipments.field_purchase_order__changeset_ids
+msgid "Changesets"
+msgstr "Changesets"
+
+#. module: purchase_all_shipments
+#: model:ir.model.fields,field_description:purchase_all_shipments.field_purchase_order__count_changesets
+msgid "Count Changesets"
+msgstr "Count Changesets"
+
+#. module: purchase_all_shipments
+#: model:ir.model.fields,field_description:purchase_all_shipments.field_purchase_order__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr "Μετρήστε τις αλλαγές που εκκρεμούν"
+
+#. module: purchase_all_shipments
+#: model:ir.model.fields,field_description:purchase_all_shipments.field_purchase_order__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr "Μετρήστε τα σύνολα αλλαγών που εκκρεμούν"
+
+#. module: purchase_all_shipments
+#: model:ir.model,name:purchase_all_shipments.model_purchase_order
+msgid "Purchase Order"
+msgstr "Παραγγελία Αγοράς"
+
+#. module: purchase_all_shipments
+#: model:ir.model.fields,field_description:purchase_all_shipments.field_purchase_order__smart_search
+msgid "Smart Search"
+msgstr "Έξυπνη αναζήτηση"
+
+#. module: purchase_all_shipments
+#: model:ir.model.fields,help:purchase_all_shipments.field_purchase_order__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr "Ο αριθμός των εκκρεμών αλλαγών αυτής της εγγραφής"
+
+#. module: purchase_all_shipments
+#: model:ir.model.fields,help:purchase_all_shipments.field_purchase_order__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr "Ο αριθμός των εκκρεμών συνόλων αλλαγών αυτής της εγγραφής"
+
+#. module: purchase_all_shipments
+#: model:ir.model.fields,help:purchase_all_shipments.field_purchase_order__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr "Ο συνολικός αριθμός των αλλαγών αυτού του αρχείου"
+
+#. module: purchase_all_shipments
+#: model:ir.model.fields,field_description:purchase_all_shipments.field_purchase_order__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr "Ο χρήστης μπορεί να δει το σύνολο αλλαγών"

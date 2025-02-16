@@ -1,0 +1,89 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_order_line_stock_available
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-14 19:24+0000\n"
+"PO-Revision-Date: 2025-02-14 19:24+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_order_line_stock_available
+#: model:ir.model.fields,field_description:purchase_order_line_stock_available.field_purchase_order_line__changeset_change_ids
+msgid "Changeset Changes"
+msgstr "Набор изменений Изменения"
+
+#. module: purchase_order_line_stock_available
+#: model:ir.model.fields,field_description:purchase_order_line_stock_available.field_purchase_order_line__changeset_ids
+msgid "Changesets"
+msgstr "Наборы изменений"
+
+#. module: purchase_order_line_stock_available
+#: model:ir.model.fields,field_description:purchase_order_line_stock_available.field_purchase_order_line__count_changesets
+msgid "Count Changesets"
+msgstr "Наборы изменений"
+
+#. module: purchase_order_line_stock_available
+#: model:ir.model.fields,field_description:purchase_order_line_stock_available.field_purchase_order_line__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr "Подсчет ожидающих изменений набора изменений"
+
+#. module: purchase_order_line_stock_available
+#: model:ir.model.fields,field_description:purchase_order_line_stock_available.field_purchase_order_line__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr "Подсчет ожидающих изменений"
+
+#. module: purchase_order_line_stock_available
+#: model:ir.model.fields,help:purchase_order_line_stock_available.field_purchase_order_line__virtual_available
+msgid ""
+"Forecast quantity (computed as Quantity On Hand - Outgoing + Incoming)\n"
+"In a context with a single Stock Location, this includes goods stored in this location, or any of its children.\n"
+"In a context with a single Warehouse, this includes goods stored in the Stock Location of this Warehouse, or any of its children.\n"
+"Otherwise, this includes goods stored in any Stock Location with 'internal' type."
+msgstr ""
+"Прогнозируемое количество (рассчитывается как Количество на руках - Исходящее + Приходящее)\n"
+"В контексте с одним Местом хранения запасов сюда входят товары, хранящиеся в этом месте или в любом из его дочерних мест.\n"
+"В контексте с одним складом сюда входят товары, хранящиеся в складском помещении этого склада или в любом из его дочерних помещений.\n"
+"В противном случае, сюда входят товары, хранящиеся в любом Местонахождении запаса с типом 'internal'."
+
+#. module: purchase_order_line_stock_available
+#: model:ir.model.fields,field_description:purchase_order_line_stock_available.field_purchase_order_line__virtual_available
+msgid "Forecasted Quantity"
+msgstr "Прогнозируемое количество"
+
+#. module: purchase_order_line_stock_available
+#: model:ir.model,name:purchase_order_line_stock_available.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Позиция заказа на поставку"
+
+#. module: purchase_order_line_stock_available
+#: model:ir.model.fields,field_description:purchase_order_line_stock_available.field_purchase_order_line__smart_search
+msgid "Smart Search"
+msgstr "Умный поиск"
+
+#. module: purchase_order_line_stock_available
+#: model:ir.model.fields,help:purchase_order_line_stock_available.field_purchase_order_line__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr "Количество ожидающих изменений этой записи"
+
+#. module: purchase_order_line_stock_available
+#: model:ir.model.fields,help:purchase_order_line_stock_available.field_purchase_order_line__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr "Количество ожидающих изменений этой записи"
+
+#. module: purchase_order_line_stock_available
+#: model:ir.model.fields,help:purchase_order_line_stock_available.field_purchase_order_line__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr "Общее количество наборов изменений этой записи"
+
+#. module: purchase_order_line_stock_available
+#: model:ir.model.fields,field_description:purchase_order_line_stock_available.field_purchase_order_line__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr "Пользователь может видеть набор изменений"

@@ -1,0 +1,246 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_security
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-14 19:21+0000\n"
+"PO-Revision-Date: 2025-02-14 19:21+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_security
+#: model_terms:ir.ui.view,arch_db:purchase_security.purchase_team_form
+msgid "<i class=\"fa fa-envelope mr-1\" role=\"img\" aria-label=\"Email\" title=\"Email\"/>"
+msgstr "<i class=\"fa fa-envelope mr-1\" role=\"img\" aria-label=\"Email\" title=\"Email\"/>"
+
+#. module: purchase_security
+#: model_terms:ir.ui.view,arch_db:purchase_security.purchase_team_form
+msgid "Avatar"
+msgstr "アバター"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_ir_rule__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_order__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_security.field_res_partner__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_security.field_res_users__changeset_change_ids
+msgid "Changeset Changes"
+msgstr "チェンジセットの変更"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_ir_rule__changeset_ids
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_order__changeset_ids
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__changeset_ids
+#: model:ir.model.fields,field_description:purchase_security.field_res_partner__changeset_ids
+#: model:ir.model.fields,field_description:purchase_security.field_res_users__changeset_ids
+msgid "Changesets"
+msgstr "チェンジセット"
+
+#. module: purchase_security
+#: model:ir.model,name:purchase_security.model_res_partner
+msgid "Contact"
+msgstr "連絡先"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_ir_rule__count_changesets
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_order__count_changesets
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__count_changesets
+#: model:ir.model.fields,field_description:purchase_security.field_res_partner__count_changesets
+#: model:ir.model.fields,field_description:purchase_security.field_res_users__count_changesets
+msgid "Count Changesets"
+msgstr "チェンジセット数"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_ir_rule__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_order__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_security.field_res_partner__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_security.field_res_users__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr "保留中のチェンジセットの変更をカウント"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_ir_rule__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_order__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_security.field_res_partner__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_security.field_res_users__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr "保留中のチェンジセットをカウント"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__create_uid
+msgid "Created by"
+msgstr "作成者"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__create_date
+msgid "Created on"
+msgstr "作成日"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__display_name
+msgid "Display Name"
+msgstr "表示名"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__id
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_order__is_user_id_editable
+msgid "Is User Id Editable"
+msgstr "ユーザー ID は編集可能ですか"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team____last_update
+msgid "Last Modified on"
+msgstr "最終更新日"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__write_uid
+msgid "Last Updated by"
+msgstr "最終更新者"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__write_date
+msgid "Last Updated on"
+msgstr "最終更新日"
+
+#. module: purchase_security
+#: model_terms:ir.ui.view,arch_db:purchase_security.purchase_team_form
+msgid "Members"
+msgstr "メンバー"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__name
+msgid "Name"
+msgstr "名称"
+
+#. module: purchase_security
+#: model:ir.model,name:purchase_security.model_purchase_order
+msgid "Purchase Order"
+msgstr "購買オーダ"
+
+#. module: purchase_security
+#: model:ir.model,name:purchase_security.model_purchase_team
+#: model_terms:ir.ui.view,arch_db:purchase_security.purchase_team_form
+msgid "Purchase Team"
+msgstr "購買チーム"
+
+#. module: purchase_security
+#: model:ir.actions.act_window,name:purchase_security.action_purchase_team_display
+#: model:ir.ui.menu,name:purchase_security.menu_purchase_team_tree
+msgid "Purchase Teams"
+msgstr "購買チーム"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__user_ids
+msgid "Purchase Users"
+msgstr "購入ユーザー"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_res_partner__purchase_user_id
+#: model:ir.model.fields,field_description:purchase_security.field_res_users__purchase_user_id
+#: model_terms:ir.ui.view,arch_db:purchase_security.view_res_partner_filter
+msgid "Purchase representative"
+msgstr "購買担当者"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_res_partner__purchase_team_id
+#: model:ir.model.fields,field_description:purchase_security.field_res_users__purchase_team_id
+msgid "Purchase team"
+msgstr "購買チーム"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_res_users__purchase_team_ids
+msgid "Purchases Teams"
+msgstr "購買チーム"
+
+#. module: purchase_security
+#: model:ir.model,name:purchase_security.model_ir_rule
+msgid "Record Rule"
+msgstr "ルール"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__sequence
+msgid "Sequence"
+msgstr "シーケンス"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_ir_rule__smart_search
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_order__smart_search
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__smart_search
+#: model:ir.model.fields,field_description:purchase_security.field_res_partner__smart_search
+#: model:ir.model.fields,field_description:purchase_security.field_res_users__smart_search
+msgid "Smart Search"
+msgstr "スマート検索"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_order__team_id
+msgid "Team"
+msgstr "チーム"
+
+#. module: purchase_security
+#: model:ir.model.fields,help:purchase_security.field_ir_rule__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_security.field_purchase_order__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_security.field_purchase_team__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_security.field_res_partner__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_security.field_res_users__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr "このレコードの保留中の変更数"
+
+#. module: purchase_security
+#: model:ir.model.fields,help:purchase_security.field_ir_rule__count_pending_changesets
+#: model:ir.model.fields,help:purchase_security.field_purchase_order__count_pending_changesets
+#: model:ir.model.fields,help:purchase_security.field_purchase_team__count_pending_changesets
+#: model:ir.model.fields,help:purchase_security.field_res_partner__count_pending_changesets
+#: model:ir.model.fields,help:purchase_security.field_res_users__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr "このレコードの保留中のチェンジセットの数"
+
+#. module: purchase_security
+#: model:ir.model.fields,help:purchase_security.field_ir_rule__count_changesets
+#: model:ir.model.fields,help:purchase_security.field_purchase_order__count_changesets
+#: model:ir.model.fields,help:purchase_security.field_purchase_team__count_changesets
+#: model:ir.model.fields,help:purchase_security.field_res_partner__count_changesets
+#: model:ir.model.fields,help:purchase_security.field_res_users__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr "このレコードの全体のチェンジセット数"
+
+#. module: purchase_security
+#: model:ir.model,name:purchase_security.model_res_users
+msgid "User"
+msgstr "ユーザ"
+
+#. module: purchase_security
+#: model:res.groups,name:purchase_security.group_purchase_own_orders
+msgid "User (own orders)"
+msgstr "ユーザー（自社発注）"
+
+#. module: purchase_security
+#: model:res.groups,name:purchase_security.group_purchase_group_orders
+msgid "User (team orders)"
+msgstr "ユーザー（チームオーダー）"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_ir_rule__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_order__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_security.field_res_partner__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_security.field_res_users__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr "ユーザーは変更セットを見ることができます"
+
+#. module: purchase_security
+#: model_terms:ir.ui.view,arch_db:purchase_security.purchase_team_form
+msgid "e.g. Europe"
+msgstr "例：ヨーロッパ"

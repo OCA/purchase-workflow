@@ -1,0 +1,85 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_order_price_recalculation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-14 19:21+0000\n"
+"PO-Revision-Date: 2025-02-14 19:21+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_order_price_recalculation
+#: model:ir.model.fields,field_description:purchase_order_price_recalculation.field_purchase_order__changeset_change_ids
+msgid "Changeset Changes"
+msgstr "Αλλαγές σετ αλλαγών"
+
+#. module: purchase_order_price_recalculation
+#: model:ir.model.fields,field_description:purchase_order_price_recalculation.field_purchase_order__changeset_ids
+msgid "Changesets"
+msgstr "Changesets"
+
+#. module: purchase_order_price_recalculation
+#: model:ir.model.fields,field_description:purchase_order_price_recalculation.field_purchase_order__count_changesets
+msgid "Count Changesets"
+msgstr "Count Changesets"
+
+#. module: purchase_order_price_recalculation
+#: model:ir.model.fields,field_description:purchase_order_price_recalculation.field_purchase_order__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr "Μετρήστε τις αλλαγές που εκκρεμούν"
+
+#. module: purchase_order_price_recalculation
+#: model:ir.model.fields,field_description:purchase_order_price_recalculation.field_purchase_order__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr "Μετρήστε τα σύνολα αλλαγών που εκκρεμούν"
+
+#. module: purchase_order_price_recalculation
+#: model:ir.model,name:purchase_order_price_recalculation.model_purchase_order
+msgid "Purchase Order"
+msgstr "Παραγγελία Αγοράς"
+
+#. module: purchase_order_price_recalculation
+#: model:ir.model.fields,field_description:purchase_order_price_recalculation.field_purchase_order__smart_search
+msgid "Smart Search"
+msgstr "Έξυπνη αναζήτηση"
+
+#. module: purchase_order_price_recalculation
+#: model:ir.model.fields,help:purchase_order_price_recalculation.field_purchase_order__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr "Ο αριθμός των εκκρεμών αλλαγών αυτής της εγγραφής"
+
+#. module: purchase_order_price_recalculation
+#: model:ir.model.fields,help:purchase_order_price_recalculation.field_purchase_order__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr "Ο αριθμός των εκκρεμών συνόλων αλλαγών αυτής της εγγραφής"
+
+#. module: purchase_order_price_recalculation
+#: model:ir.model.fields,help:purchase_order_price_recalculation.field_purchase_order__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr "Ο συνολικός αριθμός των αλλαγών αυτού του αρχείου"
+
+#. module: purchase_order_price_recalculation
+#: model_terms:ir.ui.view,arch_db:purchase_order_price_recalculation.purchase_order_form
+msgid ""
+"This will update all the line prices based on the vendor currently set. Do "
+"you want to continue?"
+msgstr ""
+"Αυτό θα ενημερώσει όλες τις τιμές γραμμής με βάση τον προμηθευτή που έχει "
+"οριστεί επί του παρόντος. Θέλετε να συνεχίσετε;"
+
+#. module: purchase_order_price_recalculation
+#: model_terms:ir.ui.view,arch_db:purchase_order_price_recalculation.purchase_order_form
+msgid "Update lines info"
+msgstr "Ενημέρωση πληροφοριών γραμμών"
+
+#. module: purchase_order_price_recalculation
+#: model:ir.model.fields,field_description:purchase_order_price_recalculation.field_purchase_order__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr "Ο χρήστης μπορεί να δει το σύνολο αλλαγών"

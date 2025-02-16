@@ -1,0 +1,246 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_security
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-14 19:21+0000\n"
+"PO-Revision-Date: 2025-02-14 19:21+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_security
+#: model_terms:ir.ui.view,arch_db:purchase_security.purchase_team_form
+msgid "<i class=\"fa fa-envelope mr-1\" role=\"img\" aria-label=\"Email\" title=\"Email\"/>"
+msgstr "<i class=\"fa fa-envelope mr-1\" role=\"img\" aria-label=\"Email\" title=\"Email\"/>"
+
+#. module: purchase_security
+#: model_terms:ir.ui.view,arch_db:purchase_security.purchase_team_form
+msgid "Avatar"
+msgstr "Avatar"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_ir_rule__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_order__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_security.field_res_partner__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_security.field_res_users__changeset_change_ids
+msgid "Changeset Changes"
+msgstr "Wijzigingen Wijzigingen"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_ir_rule__changeset_ids
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_order__changeset_ids
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__changeset_ids
+#: model:ir.model.fields,field_description:purchase_security.field_res_partner__changeset_ids
+#: model:ir.model.fields,field_description:purchase_security.field_res_users__changeset_ids
+msgid "Changesets"
+msgstr "Wijzigingssets"
+
+#. module: purchase_security
+#: model:ir.model,name:purchase_security.model_res_partner
+msgid "Contact"
+msgstr "Neem contact op met"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_ir_rule__count_changesets
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_order__count_changesets
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__count_changesets
+#: model:ir.model.fields,field_description:purchase_security.field_res_partner__count_changesets
+#: model:ir.model.fields,field_description:purchase_security.field_res_users__count_changesets
+msgid "Count Changesets"
+msgstr "Tel Wijzigingen"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_ir_rule__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_order__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_security.field_res_partner__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_security.field_res_users__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr "In afwachting van wijzigingen tellen"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_ir_rule__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_order__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_security.field_res_partner__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_security.field_res_users__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr "Aantal Wijzigingen"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__create_uid
+msgid "Created by"
+msgstr "Gemaakt door"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__create_date
+msgid "Created on"
+msgstr "Gemaakt op"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__display_name
+msgid "Display Name"
+msgstr "Naam weergeven"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__id
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_order__is_user_id_editable
+msgid "Is User Id Editable"
+msgstr "Is gebruikers-ID bewerkbaar"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team____last_update
+msgid "Last Modified on"
+msgstr "Laatst gewijzigd op"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__write_uid
+msgid "Last Updated by"
+msgstr "Laatst bijgewerkt door"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__write_date
+msgid "Last Updated on"
+msgstr "Laatst bijgewerkt op"
+
+#. module: purchase_security
+#: model_terms:ir.ui.view,arch_db:purchase_security.purchase_team_form
+msgid "Members"
+msgstr "Leden"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__name
+msgid "Name"
+msgstr "Naam"
+
+#. module: purchase_security
+#: model:ir.model,name:purchase_security.model_purchase_order
+msgid "Purchase Order"
+msgstr "Inkooporder"
+
+#. module: purchase_security
+#: model:ir.model,name:purchase_security.model_purchase_team
+#: model_terms:ir.ui.view,arch_db:purchase_security.purchase_team_form
+msgid "Purchase Team"
+msgstr "Inkoopteam"
+
+#. module: purchase_security
+#: model:ir.actions.act_window,name:purchase_security.action_purchase_team_display
+#: model:ir.ui.menu,name:purchase_security.menu_purchase_team_tree
+msgid "Purchase Teams"
+msgstr "Inkoopteams"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__user_ids
+msgid "Purchase Users"
+msgstr "Inkoop Gebruikers"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_res_partner__purchase_user_id
+#: model:ir.model.fields,field_description:purchase_security.field_res_users__purchase_user_id
+#: model_terms:ir.ui.view,arch_db:purchase_security.view_res_partner_filter
+msgid "Purchase representative"
+msgstr "Inkoopvertegenwoordiger"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_res_partner__purchase_team_id
+#: model:ir.model.fields,field_description:purchase_security.field_res_users__purchase_team_id
+msgid "Purchase team"
+msgstr "Inkoopteam"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_res_users__purchase_team_ids
+msgid "Purchases Teams"
+msgstr "Aankoop Teams"
+
+#. module: purchase_security
+#: model:ir.model,name:purchase_security.model_ir_rule
+msgid "Record Rule"
+msgstr "Regel"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__sequence
+msgid "Sequence"
+msgstr "Volgorde"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_ir_rule__smart_search
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_order__smart_search
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__smart_search
+#: model:ir.model.fields,field_description:purchase_security.field_res_partner__smart_search
+#: model:ir.model.fields,field_description:purchase_security.field_res_users__smart_search
+msgid "Smart Search"
+msgstr "Slim zoeken"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_order__team_id
+msgid "Team"
+msgstr "Team"
+
+#. module: purchase_security
+#: model:ir.model.fields,help:purchase_security.field_ir_rule__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_security.field_purchase_order__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_security.field_purchase_team__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_security.field_res_partner__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_security.field_res_users__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr "Het aantal lopende wijzigingen van deze record"
+
+#. module: purchase_security
+#: model:ir.model.fields,help:purchase_security.field_ir_rule__count_pending_changesets
+#: model:ir.model.fields,help:purchase_security.field_purchase_order__count_pending_changesets
+#: model:ir.model.fields,help:purchase_security.field_purchase_team__count_pending_changesets
+#: model:ir.model.fields,help:purchase_security.field_res_partner__count_pending_changesets
+#: model:ir.model.fields,help:purchase_security.field_res_users__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr "Het aantal hangende wijzigingssets van deze record"
+
+#. module: purchase_security
+#: model:ir.model.fields,help:purchase_security.field_ir_rule__count_changesets
+#: model:ir.model.fields,help:purchase_security.field_purchase_order__count_changesets
+#: model:ir.model.fields,help:purchase_security.field_purchase_team__count_changesets
+#: model:ir.model.fields,help:purchase_security.field_res_partner__count_changesets
+#: model:ir.model.fields,help:purchase_security.field_res_users__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr "Het totale aantal wijzigingen van deze record"
+
+#. module: purchase_security
+#: model:ir.model,name:purchase_security.model_res_users
+msgid "User"
+msgstr "Gebruiker"
+
+#. module: purchase_security
+#: model:res.groups,name:purchase_security.group_purchase_own_orders
+msgid "User (own orders)"
+msgstr "Gebruiker (eigen bestellingen)"
+
+#. module: purchase_security
+#: model:res.groups,name:purchase_security.group_purchase_group_orders
+msgid "User (team orders)"
+msgstr "Gebruiker (teambestellingen)"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_ir_rule__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_order__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_security.field_res_partner__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_security.field_res_users__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr "Gebruiker kan wijzigingen zien"
+
+#. module: purchase_security
+#: model_terms:ir.ui.view,arch_db:purchase_security.purchase_team_form
+msgid "e.g. Europe"
+msgstr "bijv. Europa"

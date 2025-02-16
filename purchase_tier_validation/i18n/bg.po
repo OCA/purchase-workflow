@@ -1,0 +1,107 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_tier_validation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-14 19:22+0000\n"
+"PO-Revision-Date: 2025-02-14 19:22+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_tier_validation
+#: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__can_review
+msgid "Can Review"
+msgstr "Преглед на кутията"
+
+#. module: purchase_tier_validation
+#: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__has_comment
+msgid "Has Comment"
+msgstr "Има коментар"
+
+#. module: purchase_tier_validation
+#: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__is_reevaluation_required
+msgid "Is Reevaluation Required"
+msgstr "Необходима ли е преоценка"
+
+#. module: purchase_tier_validation
+#: model_terms:ir.ui.view,arch_db:purchase_tier_validation.view_purchase_order_filter
+msgid "My Purchases to review"
+msgstr "Моите покупки за преглед"
+
+#. module: purchase_tier_validation
+#: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__need_validation
+msgid "Need Validation"
+msgstr "Утвърждаване на нуждите"
+
+#. module: purchase_tier_validation
+#: model_terms:ir.ui.view,arch_db:purchase_tier_validation.view_purchase_order_filter
+msgid "Needs my Review"
+msgstr "Нуждае се от моя преглед"
+
+#. module: purchase_tier_validation
+#: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__next_review
+msgid "Next Review"
+msgstr "Следващ преглед"
+
+#. module: purchase_tier_validation
+#: model_terms:ir.ui.view,arch_db:purchase_tier_validation.view_purchase_order_filter
+msgid "POs validated and ready to be confirmed"
+msgstr "ПО са валидирани и готови за потвърждаване"
+
+#. module: purchase_tier_validation
+#: model:ir.model,name:purchase_tier_validation.model_purchase_order
+msgid "Purchase Order"
+msgstr "Поръчка"
+
+#. module: purchase_tier_validation
+#: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__rejected
+msgid "Rejected"
+msgstr "Отхвърлени"
+
+#. module: purchase_tier_validation
+#: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__rejected_message
+msgid "Rejected Message"
+msgstr "Отхвърлено съобщение"
+
+#. module: purchase_tier_validation
+#: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__reviewer_ids
+msgid "Reviewers"
+msgstr "Рецензенти"
+
+#. module: purchase_tier_validation
+#: model:ir.model,name:purchase_tier_validation.model_tier_definition
+msgid "Tier Definition"
+msgstr "Определение за ниво"
+
+#. module: purchase_tier_validation
+#: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__to_validate_message
+msgid "To Validate Message"
+msgstr "За потвърждаване на съобщението"
+
+#. module: purchase_tier_validation
+#: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__validated
+#: model_terms:ir.ui.view,arch_db:purchase_tier_validation.view_purchase_order_filter
+msgid "Validated"
+msgstr "Утвърдени"
+
+#. module: purchase_tier_validation
+#: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__validated_message
+msgid "Validated Message"
+msgstr "Утвърдено съобщение"
+
+#. module: purchase_tier_validation
+#: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__validation_status
+msgid "Validation Status"
+msgstr "Статус на валидиране"
+
+#. module: purchase_tier_validation
+#: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__review_ids
+msgid "Validations"
+msgstr "Удостоверения"

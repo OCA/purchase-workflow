@@ -1,0 +1,78 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_order_no_zero_price
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-14 19:22+0000\n"
+"PO-Revision-Date: 2025-02-14 19:22+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_order_no_zero_price
+#: model:ir.model.fields,field_description:purchase_order_no_zero_price.field_purchase_order_line__changeset_change_ids
+msgid "Changeset Changes"
+msgstr "Changeset Änderungen"
+
+#. module: purchase_order_no_zero_price
+#: model:ir.model.fields,field_description:purchase_order_no_zero_price.field_purchase_order_line__changeset_ids
+msgid "Changesets"
+msgstr "Änderungssätze"
+
+#. module: purchase_order_no_zero_price
+#: model:ir.model.fields,field_description:purchase_order_no_zero_price.field_purchase_order_line__count_changesets
+msgid "Count Changesets"
+msgstr "Changesets zählen"
+
+#. module: purchase_order_no_zero_price
+#: model:ir.model.fields,field_description:purchase_order_no_zero_price.field_purchase_order_line__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr "Ausstehende Changeset-Änderungen zählen"
+
+#. module: purchase_order_no_zero_price
+#: model:ir.model.fields,field_description:purchase_order_no_zero_price.field_purchase_order_line__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr "Ausstehende Changesets zählen"
+
+#. module: purchase_order_no_zero_price
+#. odoo-python
+#: code:addons/purchase_order_no_zero_price/models/purchase_order_line.py:0
+#, python-format
+msgid "Missing unit price for Products: %s"
+msgstr "Fehlender Stückpreis für Produkte: %s"
+
+#. module: purchase_order_no_zero_price
+#: model:ir.model,name:purchase_order_no_zero_price.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Bestellposition"
+
+#. module: purchase_order_no_zero_price
+#: model:ir.model.fields,field_description:purchase_order_no_zero_price.field_purchase_order_line__smart_search
+msgid "Smart Search"
+msgstr "Intelligente Suche"
+
+#. module: purchase_order_no_zero_price
+#: model:ir.model.fields,help:purchase_order_no_zero_price.field_purchase_order_line__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr "Die Anzahl der ausstehenden Änderungen in diesem Datensatz"
+
+#. module: purchase_order_no_zero_price
+#: model:ir.model.fields,help:purchase_order_no_zero_price.field_purchase_order_line__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr "Die Anzahl der ausstehenden Changesets dieses Datensatzes"
+
+#. module: purchase_order_no_zero_price
+#: model:ir.model.fields,help:purchase_order_no_zero_price.field_purchase_order_line__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr "Die Gesamtzahl der Änderungen in diesem Datensatz"
+
+#. module: purchase_order_no_zero_price
+#: model:ir.model.fields,field_description:purchase_order_no_zero_price.field_purchase_order_line__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr "Benutzer kann Changeset sehen"

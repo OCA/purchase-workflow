@@ -6,24 +6,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-04-18 08:37+0000\n"
-"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
-"Language-Team: none\n"
-"Language: es\n"
+"POT-Creation-Date: 2025-02-14 19:21+0000\n"
+"PO-Revision-Date: 2025-02-14 19:21+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"Plural-Forms: \n"
 
 #. module: purchase_security
 #: model_terms:ir.ui.view,arch_db:purchase_security.purchase_team_form
-msgid ""
-"<i class=\"fa fa-envelope mr-1\" role=\"img\" aria-label=\"Email\" title="
-"\"Email\"/>"
-msgstr ""
-"<i class=\"fa fa-envelope mr-1\" role=\"img\" aria-label=\"Email\" title="
-"\"Email\"/>"
+msgid "<i class=\"fa fa-envelope mr-1\" role=\"img\" aria-label=\"Email\" title=\"Email\"/>"
+msgstr "<i class=\"fa fa-envelope mr-1\" role=\"img\" aria-label=\"Email\" title=\"Email\"/>"
 
 #. module: purchase_security
 #: model_terms:ir.ui.view,arch_db:purchase_security.purchase_team_form
@@ -31,9 +26,54 @@ msgid "Avatar"
 msgstr "Avatar"
 
 #. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_ir_rule__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_order__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_security.field_res_partner__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_security.field_res_users__changeset_change_ids
+msgid "Changeset Changes"
+msgstr "Cambios en el conjunto de cambios"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_ir_rule__changeset_ids
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_order__changeset_ids
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__changeset_ids
+#: model:ir.model.fields,field_description:purchase_security.field_res_partner__changeset_ids
+#: model:ir.model.fields,field_description:purchase_security.field_res_users__changeset_ids
+msgid "Changesets"
+msgstr "Changesets"
+
+#. module: purchase_security
 #: model:ir.model,name:purchase_security.model_res_partner
 msgid "Contact"
 msgstr "Contacto"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_ir_rule__count_changesets
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_order__count_changesets
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__count_changesets
+#: model:ir.model.fields,field_description:purchase_security.field_res_partner__count_changesets
+#: model:ir.model.fields,field_description:purchase_security.field_res_users__count_changesets
+msgid "Count Changesets"
+msgstr "Contar los cambios"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_ir_rule__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_order__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_security.field_res_partner__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_security.field_res_users__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr "Contar cambios pendientes"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_ir_rule__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_order__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_security.field_res_partner__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_security.field_res_users__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr "Contar conjuntos de cambios pendientes"
 
 #. module: purchase_security
 #: model:ir.model.fields,field_description:purchase_security.field_purchase_team__create_uid
@@ -136,9 +176,45 @@ msgid "Sequence"
 msgstr "Secuencia"
 
 #. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_ir_rule__smart_search
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_order__smart_search
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__smart_search
+#: model:ir.model.fields,field_description:purchase_security.field_res_partner__smart_search
+#: model:ir.model.fields,field_description:purchase_security.field_res_users__smart_search
+msgid "Smart Search"
+msgstr "Búsqueda inteligente"
+
+#. module: purchase_security
 #: model:ir.model.fields,field_description:purchase_security.field_purchase_order__team_id
 msgid "Team"
 msgstr "Equipo"
+
+#. module: purchase_security
+#: model:ir.model.fields,help:purchase_security.field_ir_rule__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_security.field_purchase_order__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_security.field_purchase_team__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_security.field_res_partner__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_security.field_res_users__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr "El número de cambios pendientes de este registro"
+
+#. module: purchase_security
+#: model:ir.model.fields,help:purchase_security.field_ir_rule__count_pending_changesets
+#: model:ir.model.fields,help:purchase_security.field_purchase_order__count_pending_changesets
+#: model:ir.model.fields,help:purchase_security.field_purchase_team__count_pending_changesets
+#: model:ir.model.fields,help:purchase_security.field_res_partner__count_pending_changesets
+#: model:ir.model.fields,help:purchase_security.field_res_users__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr "El número de cambios pendientes de este registro"
+
+#. module: purchase_security
+#: model:ir.model.fields,help:purchase_security.field_ir_rule__count_changesets
+#: model:ir.model.fields,help:purchase_security.field_purchase_order__count_changesets
+#: model:ir.model.fields,help:purchase_security.field_purchase_team__count_changesets
+#: model:ir.model.fields,help:purchase_security.field_res_partner__count_changesets
+#: model:ir.model.fields,help:purchase_security.field_res_users__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr "El número total de cambios de este registro"
 
 #. module: purchase_security
 #: model:ir.model,name:purchase_security.model_res_users
@@ -154,6 +230,15 @@ msgstr "Usuario (pedidos propios)"
 #: model:res.groups,name:purchase_security.group_purchase_group_orders
 msgid "User (team orders)"
 msgstr "Usuario (pedidos del equipo)"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_ir_rule__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_order__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_security.field_res_partner__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_security.field_res_users__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr "El usuario puede ver el conjunto de cambios"
 
 #. module: purchase_security
 #: model_terms:ir.ui.view,arch_db:purchase_security.purchase_team_form

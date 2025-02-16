@@ -1,0 +1,200 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_merge
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-14 19:21+0000\n"
+"PO-Revision-Date: 2025-02-14 19:21+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_merge
+#: model_terms:ir.ui.view,arch_db:purchase_merge.purchase_merge_automatic_wizard_form
+msgid "Automatic Merge Wizard"
+msgstr "Kreator automatycznego scalania"
+
+#. module: purchase_merge
+#: model_terms:ir.ui.view,arch_db:purchase_merge.purchase_merge_automatic_wizard_form
+msgid "Cancel"
+msgstr "Anuluj"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__changeset_change_ids
+msgid "Changeset Changes"
+msgstr "Zmiany w zestawie zmian"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__changeset_ids
+msgid "Changesets"
+msgstr "Changesets"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__count_changesets
+msgid "Count Changesets"
+msgstr "Proszę liczyć zestawy zmian"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr "Proszę policzyć oczekujące zmiany w zestawie zmian"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr "Proszę policzyć oczekujące zestawy zmian"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__create_uid
+msgid "Created by"
+msgstr "Stworzone przez"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__create_date
+msgid "Created on"
+msgstr "Utworzono na"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__dst_purchase_id
+msgid "Destination"
+msgstr "Miejsce docelowe"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__display_name
+msgid "Display Name"
+msgstr "Wyświetlana nazwa"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__id
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard____last_update
+msgid "Last Modified on"
+msgstr "Ostatnia modyfikacja"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Ostatnia aktualizacja"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__write_date
+msgid "Last Updated on"
+msgstr "Ostatnia aktualizacja"
+
+#. module: purchase_merge
+#: model_terms:ir.ui.view,arch_db:purchase_merge.purchase_merge_automatic_wizard_form
+msgid "Merge Purchase"
+msgstr "Merge Purchase"
+
+#. module: purchase_merge
+#: model:ir.actions.act_window,name:purchase_merge.action_purchase_merge
+msgid "Merge Selected Purchase"
+msgstr "Proszę połączyć wybrane zakupy"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__purchase_ids
+#: model_terms:ir.ui.view,arch_db:purchase_merge.purchase_merge_automatic_wizard_form
+msgid "Purchase"
+msgstr "Zakup"
+
+#. module: purchase_merge
+#: model:ir.model,name:purchase_merge.model_purchase_merge_automatic_wizard
+msgid "Purchase Merge Automatic Wizard"
+msgstr "Kreator automatycznego łączenia zakupów"
+
+#. module: purchase_merge
+#: model_terms:ir.ui.view,arch_db:purchase_merge.purchase_merge_automatic_wizard_form
+msgid "Selected purchase will be merged together."
+msgstr "Wybrane zakupy zostaną połączone."
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__smart_search
+msgid "Smart Search"
+msgstr "Inteligentne wyszukiwanie"
+
+#. module: purchase_merge
+#: model:ir.model.fields,help:purchase_merge.field_purchase_merge_automatic_wizard__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr "Liczba oczekujących zmian tego rekordu"
+
+#. module: purchase_merge
+#: model:ir.model.fields,help:purchase_merge.field_purchase_merge_automatic_wizard__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr "Liczba oczekujących zestawów zmian tego rekordu"
+
+#. module: purchase_merge
+#: model:ir.model.fields,help:purchase_merge.field_purchase_merge_automatic_wizard__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr "Ogólna liczba zestawów zmian tego rekordu"
+
+#. module: purchase_merge
+#. odoo-python
+#: code:addons/purchase_merge/wizard/purchase_merge.py:0
+#, python-format
+msgid "This purchase order lines have been merged %(way)s : %(po_names)s"
+msgstr "Linie zamówień zostały połączone %(way)s : %(po_names)s"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr "Użytkownik może zobaczyć zestaw zmian"
+
+#. module: purchase_merge
+#. odoo-python
+#: code:addons/purchase_merge/wizard/purchase_merge.py:0
+#, python-format
+msgid "You can't merge purchase orders that aren't in draft state like: {}"
+msgstr ""
+"Nie może Pan scalić zamówień zakupu, które nie są w stanie roboczym, np: {}"
+
+#. module: purchase_merge
+#. odoo-python
+#: code:addons/purchase_merge/wizard/purchase_merge.py:0
+#, python-format
+msgid "You can't merge purchase orders with different currencies: %s"
+msgstr "Nie można scalić zamówień zakupu w różnych walutach: %s"
+
+#. module: purchase_merge
+#. odoo-python
+#: code:addons/purchase_merge/wizard/purchase_merge.py:0
+#, python-format
+msgid "You can't merge purchase orders with different fiscal positions: %s"
+msgstr "Nie można połączyć zamówień zakupu z różnymi pozycjami fiskalnymi: %s"
+
+#. module: purchase_merge
+#. odoo-python
+#: code:addons/purchase_merge/wizard/purchase_merge.py:0
+#, python-format
+msgid "You can't merge purchase orders with different incoterms: %s"
+msgstr ""
+"Nie mogą Państwo łączyć zamówień zakupu z różnymi warunkami Incoterms: %s"
+
+#. module: purchase_merge
+#. odoo-python
+#: code:addons/purchase_merge/wizard/purchase_merge.py:0
+#, python-format
+msgid "You can't merge purchase orders with different payment terms: %s"
+msgstr "Nie można połączyć zamówień zakupu z różnymi warunkami płatności: %s"
+
+#. module: purchase_merge
+#. odoo-python
+#: code:addons/purchase_merge/wizard/purchase_merge.py:0
+#, python-format
+msgid "You can't merge purchase orders with different picking types: %s"
+msgstr "Nie można scalić zamówień zakupu z różnymi typami kompletacji: %s"
+
+#. module: purchase_merge
+#. odoo-python
+#: code:addons/purchase_merge/wizard/purchase_merge.py:0
+#, python-format
+msgid "You can't merge purchase orders with different suppliers: %s"
+msgstr "Nie mogą Państwo łączyć zamówień zakupu od różnych dostawców: %s"

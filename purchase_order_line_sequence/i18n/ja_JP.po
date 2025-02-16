@@ -1,0 +1,162 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_order_line_sequence
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-14 19:23+0000\n"
+"PO-Revision-Date: 2025-02-14 19:23+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_order_line_sequence
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_sequence.report_purchase_order_sequence_qweb
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_sequence.report_purchase_quote_sequence_qweb
+msgid "<strong>Line Number</strong>"
+msgstr "<strong>行番号</strong>"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_account_move_line__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order_line__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_stock_move__changeset_change_ids
+msgid "Changeset Changes"
+msgstr "チェンジセットの変更"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_account_move_line__changeset_ids
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order__changeset_ids
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order_line__changeset_ids
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_stock_move__changeset_ids
+msgid "Changesets"
+msgstr "チェンジセット"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_account_move_line__count_changesets
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order__count_changesets
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order_line__count_changesets
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_stock_move__count_changesets
+msgid "Count Changesets"
+msgstr "チェンジセット数"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_account_move_line__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order_line__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_stock_move__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr "保留中のチェンジセットの変更をカウント"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_account_move_line__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order_line__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_stock_move__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr "保留中のチェンジセットをカウント"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_purchase_order_line__visible_sequence
+msgid "Displays the sequence of the line in the purchase order."
+msgstr "発注書の行の順序を表示します。"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_purchase_order_line__sequence
+msgid "Gives the sequence of the line when displaying the purchase order."
+msgstr "発注書を表示する際に、行の順序を表示します。"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order_line__sequence
+msgid "Hidden Sequence"
+msgstr "付番"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model,name:purchase_order_line_sequence.model_account_move_line
+msgid "Journal Item"
+msgstr "仕訳明細"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order_line__visible_sequence
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_sequence.report_invoice_document_inherit_purchase_sequence
+msgid "Line Number"
+msgstr "行番号"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order__max_line_sequence
+msgid "Max sequence in lines"
+msgstr "最大行数"
+
+#. module: purchase_order_line_sequence
+#. odoo-python
+#: code:addons/purchase_order_line_sequence/models/stock_move.py:0
+#, python-format
+msgid ""
+"Not allowed to change the sequence of moves from the picking, you can do it "
+"from the PO."
+msgstr "ピッキングから移動の順序を変更することはできません、あなたはPOからそれを行うことができます。"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_account_move_line__related_po_sequence
+msgid "PO Line Number"
+msgstr "POライン番号"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model,name:purchase_order_line_sequence.model_purchase_order
+msgid "Purchase Order"
+msgstr "購買オーダ"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model,name:purchase_order_line_sequence.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "購買オーダ明細行"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_account_move_line__smart_search
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order__smart_search
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order_line__smart_search
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_stock_move__smart_search
+msgid "Smart Search"
+msgstr "スマート検索"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model,name:purchase_order_line_sequence.model_stock_move
+msgid "Stock Move"
+msgstr "在庫移動"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_account_move_line__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_purchase_order__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_purchase_order_line__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_stock_move__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr "このレコードの保留中の変更数"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_account_move_line__count_pending_changesets
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_purchase_order__count_pending_changesets
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_purchase_order_line__count_pending_changesets
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_stock_move__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr "このレコードの保留中のチェンジセットの数"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_account_move_line__count_changesets
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_purchase_order__count_changesets
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_purchase_order_line__count_changesets
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_stock_move__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr "このレコードの全体のチェンジセット数"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_account_move_line__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order_line__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_stock_move__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr "ユーザーは変更セットを見ることができます"

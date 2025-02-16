@@ -1,0 +1,294 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_transport_mode
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-14 19:24+0000\n"
+"PO-Revision-Date: 2025-02-14 19:24+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_order__transport_mode_status_ok
+msgid "All transport mode requirements are satisfied"
+msgstr "Wszystkie wymagania dotyczące trybu transportu są spełnione"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_order__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_company__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_config_settings__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_partner__changeset_change_ids
+msgid "Changeset Changes"
+msgstr "Zmiany w zestawie zmian"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_order__changeset_ids
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__changeset_ids
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__changeset_ids
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_company__changeset_ids
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_config_settings__changeset_ids
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_partner__changeset_ids
+msgid "Changesets"
+msgstr "Changesets"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_order__transport_mode_status
+msgid ""
+"Collect and validate order details to satisfy transport mode requirements"
+msgstr ""
+"Zbieranie i zatwierdzanie szczegółów zamówienia w celu spełnienia wymagań "
+"dotyczących trybu transportu"
+
+#. module: purchase_transport_mode
+#: model:ir.model,name:purchase_transport_mode.model_res_company
+msgid "Companies"
+msgstr "Firmy"
+
+#. module: purchase_transport_mode
+#: model:ir.model,name:purchase_transport_mode.model_res_config_settings
+msgid "Config Settings"
+msgstr "Ustawienia konfiguracji"
+
+#. module: purchase_transport_mode
+#: model:ir.model,name:purchase_transport_mode.model_res_partner
+msgid "Contact"
+msgstr "Kontakt"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_order__count_changesets
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__count_changesets
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__count_changesets
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_company__count_changesets
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_config_settings__count_changesets
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_partner__count_changesets
+msgid "Count Changesets"
+msgstr "Proszę liczyć zestawy zmian"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_order__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_company__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_config_settings__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_partner__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr "Proszę policzyć oczekujące zmiany w zestawie zmian"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_order__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_company__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_config_settings__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_partner__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr "Proszę policzyć oczekujące zestawy zmian"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__create_uid
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__create_uid
+msgid "Created by"
+msgstr "Stworzone przez"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__create_date
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__create_date
+msgid "Created on"
+msgstr "Utworzono na"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__description
+msgid "Description"
+msgstr "Opis"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__display_name
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__display_name
+msgid "Display Name"
+msgstr "Wyświetlana nazwa"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_transport_mode_constraint__purchase_domain
+msgid "Domain based on purchase"
+msgstr "Domena oparta na zakupie"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__id
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__id
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode____last_update
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint____last_update
+msgid "Last Modified on"
+msgstr "Ostatnia modyfikacja"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__write_uid
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__write_uid
+msgid "Last Updated by"
+msgstr "Ostatnia aktualizacja"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__write_date
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__write_date
+msgid "Last Updated on"
+msgstr "Ostatnia aktualizacja"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__name
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__name
+msgid "Name"
+msgstr "Nazwa"
+
+#. module: purchase_transport_mode
+#: model:ir.model,name:purchase_transport_mode.model_purchase_order
+msgid "Purchase Order"
+msgstr "Zamówienie zakupu"
+
+#. module: purchase_transport_mode
+#: model:ir.actions.act_window,name:purchase_transport_mode.purchase_transport_mode_action
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__purchase_transport_mode_id
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_partner__purchase_transport_mode_id
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_users__purchase_transport_mode_id
+#: model:ir.ui.menu,name:purchase_transport_mode.menu_purchase_transport_mode_action
+msgid "Purchase Transport Mode"
+msgstr "Tryb transportu zakupów"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_company__purchase_transport_mode_contraint_enabled
+msgid "Purchase Transport Mode Contraint Enabled"
+msgstr "Włączony tryb transportu zakupów"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__constraint_ids
+msgid "Purchase Transport mode Constraints"
+msgstr "Ograniczenia dotyczące trybu transportu zakupów"
+
+#. module: purchase_transport_mode
+#: model_terms:ir.ui.view,arch_db:purchase_transport_mode.purchase_transport_mode_form
+msgid "Purchase transport constraints"
+msgstr "Ograniczenia związane z transportem zakupów"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_order__transport_mode_status_display
+msgid "Render transport_mode_status in the UI"
+msgstr "Renderowanie transport_mode_status w interfejsie użytkownika"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_order__smart_search
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__smart_search
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__smart_search
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_company__smart_search
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_config_settings__smart_search
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_partner__smart_search
+msgid "Smart Search"
+msgstr "Inteligentne wyszukiwanie"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__purchase_domain
+msgid "Source Purchase Domain"
+msgstr "Źródło: Domena zakupu"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_order__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_transport_mode__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_transport_mode_constraint__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_transport_mode.field_res_company__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_transport_mode.field_res_config_settings__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_transport_mode.field_res_partner__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr "Liczba oczekujących zmian tego rekordu"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_order__count_pending_changesets
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_transport_mode__count_pending_changesets
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_transport_mode_constraint__count_pending_changesets
+#: model:ir.model.fields,help:purchase_transport_mode.field_res_company__count_pending_changesets
+#: model:ir.model.fields,help:purchase_transport_mode.field_res_config_settings__count_pending_changesets
+#: model:ir.model.fields,help:purchase_transport_mode.field_res_partner__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr "Liczba oczekujących zestawów zmian tego rekordu"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_order__count_changesets
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_transport_mode__count_changesets
+#: model:ir.model.fields,help:purchase_transport_mode.field_purchase_transport_mode_constraint__count_changesets
+#: model:ir.model.fields,help:purchase_transport_mode.field_res_company__count_changesets
+#: model:ir.model.fields,help:purchase_transport_mode.field_res_config_settings__count_changesets
+#: model:ir.model.fields,help:purchase_transport_mode.field_res_partner__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr "Ogólna liczba zestawów zmian tego rekordu"
+
+#. module: purchase_transport_mode
+#: model:ir.model,name:purchase_transport_mode.model_purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_order__transport_mode_id
+msgid "Transport Mode"
+msgstr "Tryb transportu"
+
+#. module: purchase_transport_mode
+#: model:ir.model,name:purchase_transport_mode.model_purchase_transport_mode_constraint
+msgid "Transport Mode Constraint"
+msgstr "Ograniczenie trybu transportu"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_order__transport_mode_status
+msgid "Transport Mode Status"
+msgstr "Status trybu transportu"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_order__transport_mode_status_display
+msgid "Transport Mode Status Display"
+msgstr "Wyświetlacz stanu trybu transportu"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_order__transport_mode_status_ok
+msgid "Transport Mode Status Ok"
+msgstr "Tryb transportu Status Ok"
+
+#. module: purchase_transport_mode
+#: model:exception.rule,name:purchase_transport_mode.po_excep_transport_mode
+msgid "Transport mode"
+msgstr "Tryb transportu"
+
+#. module: purchase_transport_mode
+#: model_terms:ir.ui.view,arch_db:purchase_transport_mode.purchase_order_transport_mode_status_display
+msgid "Transport mode errors"
+msgstr "Błędy trybu transportu"
+
+#. module: purchase_transport_mode
+#: model:exception.rule,description:purchase_transport_mode.po_excep_transport_mode
+msgid "Transport mode requirements not satisfied"
+msgstr "Wymagania dotyczące trybu transportu nie są spełnione"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_order__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_purchase_transport_mode_constraint__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_company__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_config_settings__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_partner__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr "Użytkownik może zobaczyć zestaw zmian"
+
+#. module: purchase_transport_mode
+#: model_terms:ir.ui.view,arch_db:purchase_transport_mode.res_config_settings_view_form_purchase_inherit
+msgid "Validate purchase order details to satisfy transport mode requirements"
+msgstr ""
+"Weryfikacja szczegółów zamówienia zakupu w celu spełnienia wymagań "
+"dotyczących trybu transportu"
+
+#. module: purchase_transport_mode
+#: model:ir.model.fields,field_description:purchase_transport_mode.field_res_config_settings__purchase_transport_mode_contraint_enabled
+msgid "Validate purchase transport mode"
+msgstr "Proszę zweryfikować tryb transportu zakupu"

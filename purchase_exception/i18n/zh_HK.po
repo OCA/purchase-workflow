@@ -1,0 +1,258 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_exception
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-14 19:25+0000\n"
+"PO-Revision-Date: 2025-02-14 19:25+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_exception
+#: model_terms:ir.ui.view,arch_db:purchase_exception.view_order_form
+msgid "<strong>There are exceptions blocking this Purchase Order:</strong>"
+msgstr "<strong>本采购订单有例外情况：</strong>"
+
+#. module: purchase_exception
+#: model:ir.model.fields,field_description:purchase_exception.field_exception_rule__model
+msgid "Apply on"
+msgstr "申请"
+
+#. module: purchase_exception
+#: model_terms:ir.ui.view,arch_db:purchase_exception.view_purchase_order_filter
+msgid "Blocked in Draft"
+msgstr "草稿中受阻"
+
+#. module: purchase_exception
+#: model:ir.model.fields,field_description:purchase_exception.field_exception_rule__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order__changeset_change_ids
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order_line__changeset_change_ids
+msgid "Changeset Changes"
+msgstr "变更集变更"
+
+#. module: purchase_exception
+#: model:ir.model.fields,field_description:purchase_exception.field_exception_rule__changeset_ids
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__changeset_ids
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order__changeset_ids
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order_line__changeset_ids
+msgid "Changesets"
+msgstr "变更集"
+
+#. module: purchase_exception
+#: model_terms:ir.ui.view,arch_db:purchase_exception.view_order_form
+msgid ""
+"Click here to be able to confirm this Agreement regardless of the "
+"exceptions."
+msgstr "单击此处即可确认本协议，无论是否存在例外情况。"
+
+#. module: purchase_exception
+#: model:ir.model.fields,field_description:purchase_exception.field_exception_rule__count_changesets
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__count_changesets
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order__count_changesets
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order_line__count_changesets
+msgid "Count Changesets"
+msgstr "计数变更集"
+
+#. module: purchase_exception
+#: model:ir.model.fields,field_description:purchase_exception.field_exception_rule__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order_line__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr "统计待处理的变更集变更"
+
+#. module: purchase_exception
+#: model:ir.model.fields,field_description:purchase_exception.field_exception_rule__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order__count_pending_changesets
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order_line__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr "统计待处理的变更集"
+
+#. module: purchase_exception
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__create_uid
+msgid "Created by"
+msgstr "创建者"
+
+#. module: purchase_exception
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__create_date
+msgid "Created on"
+msgstr "创建于"
+
+#. module: purchase_exception
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__display_name
+msgid "Display Name"
+msgstr "显示名称"
+
+#. module: purchase_exception
+#: model:ir.model,name:purchase_exception.model_exception_rule
+msgid "Exception Rule"
+msgstr "例外规则"
+
+#. module: purchase_exception
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order__exception_ids
+msgid "Exceptions"
+msgstr "例外情况"
+
+#. module: purchase_exception
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order__exceptions_summary
+msgid "Exceptions Summary"
+msgstr "例外总结"
+
+#. module: purchase_exception
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__exception_ids
+msgid "Exceptions to resolve"
+msgstr "解决例外情况"
+
+#. module: purchase_exception
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__id
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_exception
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__ignore
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order__ignore_exception
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order_line__ignore_exception
+#: model_terms:ir.ui.view,arch_db:purchase_exception.view_order_form
+msgid "Ignore Exceptions"
+msgstr "忽略例外情况"
+
+#. module: purchase_exception
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm____last_update
+msgid "Last Modified on"
+msgstr "最后修改日期"
+
+#. module: purchase_exception
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__write_uid
+msgid "Last Updated by"
+msgstr "最后更新"
+
+#. module: purchase_exception
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__write_date
+msgid "Last Updated on"
+msgstr "最后更新日期"
+
+#. module: purchase_exception
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order__main_exception_id
+msgid "Main Exception"
+msgstr "主要例外"
+
+#. module: purchase_exception
+#: model:exception.rule,description:purchase_exception.po_excep_no_email
+msgid "No Email for Vendor"
+msgstr "没有供应商电子邮件"
+
+#. module: purchase_exception
+#: model:exception.rule,name:purchase_exception.po_excep_no_email
+msgid "No email on vendor"
+msgstr "供应商无电子邮件"
+
+#. module: purchase_exception
+#: model:ir.actions.act_window,name:purchase_exception.action_purchase_exception_confirm
+msgid "Outstanding exceptions to manage"
+msgstr "管理突出的异常情况"
+
+#. module: purchase_exception
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__related_model_id
+msgid "Purchase"
+msgstr "采购"
+
+#. module: purchase_exception
+#: model:ir.actions.act_window,name:purchase_exception.action_purchase_test_tree
+#: model:ir.ui.menu,name:purchase_exception.menu_purchase_test
+msgid "Purchase Exception Rules"
+msgstr "采购例外规则"
+
+#. module: purchase_exception
+#: model:ir.model,name:purchase_exception.model_purchase_order
+msgid "Purchase Order"
+msgstr "采购订单"
+
+#. module: purchase_exception
+#: model:ir.model,name:purchase_exception.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "采购订单线"
+
+#. module: purchase_exception
+#: model:ir.model,name:purchase_exception.model_purchase_exception_confirm
+msgid "Purchase exception wizard"
+msgstr "采购异常向导"
+
+#. module: purchase_exception
+#: model:exception.rule,description:purchase_exception.pol_excep_qty_check
+msgid "Purchase line quantity must be positive"
+msgstr "采购数量必须为正数"
+
+#. module: purchase_exception
+#: model:ir.model.fields.selection,name:purchase_exception.selection__exception_rule__model__purchase_order
+msgid "Purchase order"
+msgstr "采购订单"
+
+#. module: purchase_exception
+#: model:ir.model.fields.selection,name:purchase_exception.selection__exception_rule__model__purchase_order_line
+msgid "Purchase order line"
+msgstr "采购订单"
+
+#. module: purchase_exception
+#: model:ir.actions.server,name:purchase_exception.ir_cron_test_po_order_except_ir_actions_server
+#: model:ir.cron,cron_name:purchase_exception.ir_cron_test_po_order_except
+msgid "Purchase: Test Draft Orders Exception"
+msgstr "采购：订单测试草案异常"
+
+#. module: purchase_exception
+#: model:ir.model.fields,field_description:purchase_exception.field_exception_rule__purchase_ids
+msgid "Purchases"
+msgstr "采购"
+
+#. module: purchase_exception
+#: model:exception.rule,name:purchase_exception.pol_excep_qty_check
+msgid "Quantity not positive"
+msgstr "数量不确定"
+
+#. module: purchase_exception
+#: model:ir.model.fields,field_description:purchase_exception.field_exception_rule__smart_search
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__smart_search
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order__smart_search
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order_line__smart_search
+msgid "Smart Search"
+msgstr "智能搜索"
+
+#. module: purchase_exception
+#: model:ir.model.fields,help:purchase_exception.field_exception_rule__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_exception.field_purchase_exception_confirm__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_exception.field_purchase_order__count_pending_changeset_changes
+#: model:ir.model.fields,help:purchase_exception.field_purchase_order_line__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr "此记录的待更改次数"
+
+#. module: purchase_exception
+#: model:ir.model.fields,help:purchase_exception.field_exception_rule__count_pending_changesets
+#: model:ir.model.fields,help:purchase_exception.field_purchase_exception_confirm__count_pending_changesets
+#: model:ir.model.fields,help:purchase_exception.field_purchase_order__count_pending_changesets
+#: model:ir.model.fields,help:purchase_exception.field_purchase_order_line__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr "此记录的待处理更改集数量"
+
+#. module: purchase_exception
+#: model:ir.model.fields,help:purchase_exception.field_exception_rule__count_changesets
+#: model:ir.model.fields,help:purchase_exception.field_purchase_exception_confirm__count_changesets
+#: model:ir.model.fields,help:purchase_exception.field_purchase_order__count_changesets
+#: model:ir.model.fields,help:purchase_exception.field_purchase_order_line__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr "此记录的更改集总数"
+
+#. module: purchase_exception
+#: model:ir.model.fields,field_description:purchase_exception.field_exception_rule__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order__user_can_see_changeset
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order_line__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr "用户可查看变更集"
