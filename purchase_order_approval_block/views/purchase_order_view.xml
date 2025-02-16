@@ -15,6 +15,7 @@
             <field name="date_order" position="after">
                 <field
                     name="approval_block_id"
+                    force_save="1"
                     attrs="{'readonly': ['|',('approval_blocked','=', True), ('state', 'not in', 'draft')]}"
                 />
                 <field name="approval_blocked" invisible="True" />

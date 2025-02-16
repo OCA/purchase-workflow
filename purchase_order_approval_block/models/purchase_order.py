@@ -20,18 +20,21 @@ class PurchaseOrder(models.Model):
         for rec in self:
             rec.approval_blocked = rec.approval_block_id
 
-    @api.model
-    def create(self, vals):
-        po = super(PurchaseOrder, self).create(vals)
-        if "approval_block_id" in vals and vals["approval_block_id"]:
-            po.message_post(
-                body=_('Order "%(order_name)s" blocked with reason "%(block_name)s"')
-                % {
-                    "order_name": po.name,
-                    "block_name": po.approval_block_id.name,
-                }
-            )
-        return po
+    @api.model_create_multi
+    def create(self, mvals):
+        records = super(PurchaseOrder, self).create(mvals)
+        for vals, po in zip(mvals, records):
+            if "approval_block_id" in vals and vals["approval_block_id"]:
+                po.message_post(
+                    body=_(
+                        'Order "%(order_name)s" blocked with reason "%(block_name)s"'
+                    )
+                    % {
+                        "order_name": po.name,
+                        "block_name": po.approval_block_id.name,
+                    }
+                )
+        return records
 
     def write(self, vals):
         res = super(PurchaseOrder, self).write(vals)

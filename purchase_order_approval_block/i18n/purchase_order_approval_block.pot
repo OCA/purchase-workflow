@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -88,6 +88,7 @@ msgid "Name"
 msgstr ""
 
 #. module: purchase_order_approval_block
+#. odoo-python
 #: code:addons/purchase_order_approval_block/models/purchase_order.py:0
 #: code:addons/purchase_order_approval_block/models/purchase_order.py:0
 #, python-format
@@ -95,6 +96,7 @@ msgid "Order \"%(order_name)s\" blocked with reason \"%(block_name)s\""
 msgstr ""
 
 #. module: purchase_order_approval_block
+#. odoo-python
 #: code:addons/purchase_order_approval_block/models/purchase_order.py:0
 #, python-format
 msgid "Order \"%s\" approval block released."
