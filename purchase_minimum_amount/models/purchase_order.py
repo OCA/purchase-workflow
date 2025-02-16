@@ -39,13 +39,14 @@ class PurchaseOrderLine(models.Model):
         """As we are adding a hook, we cannot use api.constrain"""
         return ["product_qty", "price_unit"]
 
-    @api.model
-    def create(self, vals):
-        res = super(PurchaseOrderLine, self).create(vals)
+    @api.model_create_multi
+    def create(self, mvals):
+        records = super(PurchaseOrderLine, self).create(mvals)
         fields = self._check_minimum_amount_fields()
-        if any(field in vals for field in fields):
-            res.order_id._check_minimum_amount()
-        return res
+        for vals, res in zip(mvals, records):
+            if any(field in vals for field in fields):
+                res.order_id._check_minimum_amount()
+        return records
 
     def write(self, vals):
         res = super(PurchaseOrderLine, self).write(vals)
