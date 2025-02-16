@@ -20,11 +20,15 @@ class TestPoAmountBlock(TransactionCase):
         self.group_purchase_user = self.env.ref("purchase.group_purchase_user")
         self.group_purchase_manager = self.env.ref("purchase.group_purchase_manager")
         # Partner
-        self.partner1 = self.env.ref("base.res_partner_1")
+        self.partner1 = self.env["res.partner"].create(
+            {
+                "name": "Partner",
+            }
+        )
         # Products
-        self.product1 = self.env.ref("product.product_product_7")
-        self.product2 = self.env.ref("product.product_product_9")
-        self.product3 = self.env.ref("product.product_product_11")
+        self.product1 = self.env["product.product"].create({"name": "Product 1"})
+        self.product2 = self.env["product.product"].create({"name": "Product 2"})
+        self.product3 = self.env["product.product"].create({"name": "Product 3"})
         # Create users
         self.user1_id = self._create_user(
             "user_1",
@@ -40,7 +44,7 @@ class TestPoAmountBlock(TransactionCase):
     def _create_user(self, login, groups, company):
         """Create a user."""
         group_ids = [group.id for group in groups]
-        user = self.users_obj.with_context({"no_reset_password": True}).create(
+        user = self.users_obj.with_context(no_reset_password=True).create(
             {
                 "name": "Purchase User",
                 "login": login,
@@ -116,7 +120,7 @@ class TestPoAmountBlock(TransactionCase):
         for po_line in purchase1.order_line:
             if po_line.product_id == self.product1:
                 po_line.product_qty = 10
-
+        purchase1.flush_recordset()
         self.assertFalse(purchase1.approval_block_id)
 
         purchase1.with_user(self.user1_id).button_confirm()
