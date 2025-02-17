@@ -4,6 +4,7 @@
 from markupsafe import Markup
 
 from odoo import _, api, exceptions, fields, models
+from odoo.tools import html_escape
 
 
 class PurchaseOrder(models.Model):
@@ -30,13 +31,13 @@ class PurchaseOrder(models.Model):
                 "<li><b>%(prl_name)s</b>: Ordered quantity %(prl_qty)s %(prl_uom)s, "
                 "Planned date %(prl_date_planned)s</li>"
             ) % {
-                "prl_name": line["name"],
+                "prl_name": html_escape(line["name"]),
                 "prl_qty": line["product_qty"],
                 "prl_uom": line["product_uom"],
                 "prl_date_planned": line["date_planned"],
             }
         message += "</ul>"
-        return message
+        return Markup(message)
 
     def _purchase_request_confirm_message(self):
         request_obj = self.env["purchase.request"]
@@ -206,12 +207,12 @@ class PurchaseOrderLine(models.Model):
         message += _(
             "<li><b>%(product_name)s</b>: "
             "Received quantity %(product_qty)s %(product_uom)s</li>",
-            product_name=message_data["product_name"],
+            product_name=html_escape(message_data["product_name"]),
             product_qty=message_data["product_qty"],
             product_uom=message_data["product_uom"],
         )
         message += "</ul>"
-        return message
+        return Markup(message)
 
     def _prepare_request_message_data(self, alloc, request_line, allocated_qty):
         return {
