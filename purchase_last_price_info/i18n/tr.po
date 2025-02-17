@@ -8,57 +8,58 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-07 05:29+0000\n"
-"PO-Revision-Date: 2016-03-08 10:16+0000\n"
-"Last-Translator: <>\n"
-"Language-Team: Turkish (http://www.transifex.com/oca/OCA-purchase-"
-"workflow-8-0/language/tr/)\n"
+"PO-Revision-Date: 2025-02-17 09:06+0000\n"
+"Last-Translator: Ömer KÜLAK <omer.kulak@kitayazilim.com>\n"
+"Language-Team: Turkish (http://www.transifex.com/oca/"
+"OCA-purchase-workflow-8-0/language/tr/)\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: purchase_last_price_info
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_product__last_purchase_currency_id
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_template__last_purchase_currency_id
 msgid "Last Purchase Currency"
-msgstr ""
+msgstr "Son Satınalma P.Birimi"
 
 #. module: purchase_last_price_info
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_product__last_purchase_date
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_template__last_purchase_date
 msgid "Last Purchase Date"
-msgstr ""
+msgstr "Son Satınalma Tarihi"
 
 #. module: purchase_last_price_info
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_product__last_purchase_line_id
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_template__last_purchase_line_id
 msgid "Last Purchase Line"
-msgstr ""
+msgstr "Son Satıınalma Satırı"
 
 #. module: purchase_last_price_info
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_product__last_purchase_line_ids
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_template__last_purchase_line_ids
 msgid "Last Purchase Order Lines"
-msgstr ""
+msgstr "Son Satınalma Satırları"
 
 #. module: purchase_last_price_info
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_product__last_purchase_price
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_template__last_purchase_price
 msgid "Last Purchase Price"
-msgstr ""
+msgstr "Son Satınalma Fiyatı"
 
 #. module: purchase_last_price_info
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_product__last_purchase_supplier_id
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_template__last_purchase_supplier_id
 msgid "Last Supplier"
-msgstr ""
+msgstr "Son Tedarikçi"
 
 #. module: purchase_last_price_info
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_product__last_purchase_price_currency
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_template__last_purchase_price_currency
 msgid "Last currency purchase price"
-msgstr ""
+msgstr "Son p.birimi satınalma fiyatı"
 
 #. module: purchase_last_price_info
 #: model:ir.model,name:purchase_last_price_info.model_product_template
@@ -68,19 +69,19 @@ msgstr "Ürün"
 #. module: purchase_last_price_info
 #: model:ir.model,name:purchase_last_price_info.model_product_product
 msgid "Product Variant"
-msgstr ""
+msgstr "Ürün"
 
 #. module: purchase_last_price_info
 #: model_terms:ir.ui.view,arch_db:purchase_last_price_info.product_product_last_purchase_info_form_view
 #: model_terms:ir.ui.view,arch_db:purchase_last_price_info.product_template_last_purchase_info_form_view
 msgid "Purchase"
-msgstr ""
+msgstr "Satınalma"
 
 #. module: purchase_last_price_info
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_product__show_last_purchase_price_currency
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_template__show_last_purchase_price_currency
 msgid "Show Last Purchase Price Currency"
-msgstr ""
+msgstr "Son Satınalma P.Birimi Fiyatını Göster"
 
 #, fuzzy
 #~ msgid "Product Template"
