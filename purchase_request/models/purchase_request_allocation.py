@@ -4,6 +4,7 @@
 from markupsafe import Markup
 
 from odoo import _, api, fields, models
+from odoo.tools import html_escape
 
 
 class PurchaseRequestAllocation(models.Model):
@@ -105,12 +106,12 @@ class PurchaseRequestAllocation(models.Model):
             "<li><b>%(product_name)s</b>: "
             "Received quantity %(product_qty)s %(product_uom)s</li>"
         ) % {
-            "product_name": message_data["product_name"],
+            "product_name": html_escape(message_data["product_name"]),
             "product_qty": message_data["product_qty"],
             "product_uom": message_data["product_uom"],
         }
         message += "</ul>"
-        return message
+        return Markup(message)
 
     def _prepare_message_data(self, po_line, request, allocated_qty):
         return {
