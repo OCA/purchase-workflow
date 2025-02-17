@@ -91,20 +91,19 @@
                         string="⇒ Create Invoice Plan"
                         type="action"
                         class="oe_link"
-                        attrs="{'invisible': ['|', ('invoice_plan_ids', '!=', []), ('invoice_count', '>', 0)]}"
+                        attrs="{'invisible': [('invoice_plan_ids', '!=', [])]}"
                     />
                     <button
                         name="remove_invoice_plan"
                         string="⇒ Remove Invoice Plan"
                         type="object"
                         class="oe_link"
-                        attrs="{'invisible': ['|', ('invoice_plan_ids', '=', []), ('invoice_count', '>', 0)]}"
+                        attrs="{'invisible': [('invoice_plan_ids', '=', [])]}"
                         confirm="Are you sure to remove this invoice plan?"
                     />
                     <field
                         name="invoice_plan_ids"
                         context="{'tree_view_ref': 'purchase_invoice_plan.view_purchase_invoice_plan_tree'}"
-                        attrs="{'invisible': [('invoice_plan_ids', '=', [])]}"
                     />
                     <group class="oe_subtotal_footer oe_right">
                         <field name="ip_total_percent" />
