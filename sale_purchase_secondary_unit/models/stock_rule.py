@@ -55,3 +55,23 @@ class StockRule(models.Model):
             if move.sale_line_id:
                 return move.sale_line_id
             return self.get_stock_move_sale_line(move)
+
+    @api.model
+    def _merge_procurements(self, procurements_to_merge):
+        # The quantity accumulation is embedded in this method and is not heritable
+        # Avoid process only one procurement
+        if len(procurements_to_merge) == 1 and len(procurements_to_merge[0]) == 1:
+            return super()._merge_procurements(procurements_to_merge)
+        secondary_index_dic = {}
+        # Fill dict with total secondary_uom_qty by group of procurements to merge
+        for index, procurements in enumerate(procurements_to_merge):
+            secondary_index_dic[index] = 0
+            for procurement in procurements:
+                secondary_index_dic[index] += procurement.values.get(
+                    "secondary_uom_qty", 0
+                )
+        merged_procurements = super()._merge_procurements(procurements_to_merge)
+        # Set total secondary_uom_qty from previous dict
+        for index, merged_procurement in enumerate(merged_procurements):
+            merged_procurement.values["secondary_uom_qty"] = secondary_index_dic[index]
+        return merged_procurements
