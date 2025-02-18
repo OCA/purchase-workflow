@@ -32,9 +32,7 @@ class PurchaseOrder(models.Model):
                 order.pending_to_receive = False
 
     def button_confirm_manual(self):
-        return super(
-            PurchaseOrder, self.with_context(manual_delivery=True)
-        ).button_confirm()
+        return self.with_context(manual_delivery=True).button_confirm()
 
     def button_approve(self, force=False):
         if self.manual_delivery:
