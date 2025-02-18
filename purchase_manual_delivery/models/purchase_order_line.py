@@ -75,3 +75,11 @@ class PurchaseOrderLine(models.Model):
                 line.pending_to_receive = True
             else:
                 line.pending_to_receive = False
+
+    def _create_or_update_picking(self):
+        # Avoid creating deliveries on manual delivery orders
+        if self.env.context.get("ignore_manual_delivery"):
+            lines = self
+        else:
+            lines = self.filtered(lambda pol: not pol.order_id.manual_delivery)
+        return super(PurchaseOrderLine, lines)._create_or_update_picking()
