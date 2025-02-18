@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="purchase_order_view_form_inherit" model="ir.ui.view">
         <field name="name">purchase.order.form</field>
         <field name="model">purchase.order</field>
@@ -16,31 +15,6 @@
                     invisible="state != 'purchase' or not pending_to_receive or not manual_delivery"
                 />
             </xpath>
-            <button id="draft_confirm" position="attributes">
-                <attribute name="invisible">1</attribute>
-            </button>
-            <button id="draft_confirm" position="after">
-                <button
-                    name="button_confirm_manual"
-                    type="object"
-                    invisible="state != 'draft'"
-                    string="Confirm Order"
-                    id="draft_confirm_manual"
-                />
-            </button>
-            <button id="bid_confirm" position="attributes">
-                <attribute name="invisible">1</attribute>
-            </button>
-            <button id="bid_confirm" position="after">
-                <button
-                    name="button_confirm_manual"
-                    type="object"
-                    invisible="state != 'sent'"
-                    string="Confirm Order"
-                    class="oe_highlight"
-                    id="bid_confirm_manual"
-                />
-            </button>
             <field name="qty_received" position="before">
                 <field name="pending_to_receive" column_invisible="1" />
                 <field
@@ -62,5 +36,4 @@
             </group>
         </field>
     </record>
-
 </odoo>

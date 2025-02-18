@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="purchase_order_line_tree" model="ir.ui.view">
         <field name="model">purchase.order.line</field>
         <field name="inherit_id" ref="purchase.purchase_order_line_tree" />
@@ -40,5 +39,4 @@
             </group>
         </field>
     </record>
-
 </odoo>

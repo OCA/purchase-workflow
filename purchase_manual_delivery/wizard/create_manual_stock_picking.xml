@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="view_create_stock_picking" model="ir.ui.view">
         <field name="name">Create Stock Picking</field>
         <field name="model">create.stock.picking.wizard</field>
@@ -59,5 +58,4 @@
         <field name="target">new</field>
         <field name="binding_model_id" ref="purchase.model_purchase_order_line" />
     </record>
-
 </odoo>
