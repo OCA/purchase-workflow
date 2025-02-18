@@ -32,6 +32,7 @@ class PurchaseOrder(models.Model):
             )
 
     def _create_picking(self):
+        # Avoid creating deliveries on manual delivery orders
         if self.env.context.get("ignore_manual_delivery"):
             orders = self
         else:

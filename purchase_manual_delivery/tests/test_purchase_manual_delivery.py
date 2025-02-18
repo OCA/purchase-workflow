@@ -506,3 +506,29 @@ class TestPurchaseManualDelivery(TransactionCase):
                 line.pending_to_receive,
                 "Context key did not create stock moves for all quantities",
             )
+
+    def test_08_purchase_order_line_increase_quantity(self):
+        """Increasing the quantity on a confirmed line does not trigger delivery"""
+        self.po1.button_confirm()
+        self.assertFalse(self.po1.picking_ids)
+        self.po1.order_line[0].product_qty += 1
+        self.assertFalse(
+            self.po1.picking_ids,
+            "Increasing the quantity on a confirmed line should not create deliveries",
+        )
+        # Same on line creation
+        self.po1.order_line[0].copy()
+        self.assertFalse(self.po1.picking_ids)
+        self.assertFalse(
+            self.po1.picking_ids,
+            "Adding a line to a confirmed order should not create a delivery",
+        )
+        # Context key forces the delivery
+        self.po1.order_line[0].with_context(
+            ignore_manual_delivery=True
+        ).product_qty += 1
+        self.assertTrue(
+            self.po1.picking_ids,
+            "Passing context key when increasing the quantity on a confirmed line did "
+            "not create a delivery",
+        )
