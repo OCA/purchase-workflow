@@ -422,6 +422,9 @@ Menu). From there you can select multiple PO lines (in this base module
 only PO lines from same PO can be selected) and create the manual
 delivery. Follow the same steps as above to manually generate the
 incoming shipment.</p>
+<p>If, as a developer, you need to override the behaviour you can call
+<tt class="docutils literal">purchase.order</tt>’s <tt class="docutils literal">button_confirm</tt> with context key
+<tt class="docutils literal">ignore_manual_delivery=True</tt>.</p>
 </div>
 <div class="section" id="bug-tracker">
 <h1><a class="toc-backref" href="#toc-entry-3">Bug Tracker</a></h1>

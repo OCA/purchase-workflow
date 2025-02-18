@@ -28,7 +28,7 @@ class TestReportForecast(TestReportsCommon):
 
     def test_report_forecast(self):
         """PO quantities without deliveries are mentioned on the forecast report"""
-        self.po1.button_confirm_manual()
+        self.po1.button_confirm()
         # Create delivery for a part of the ordered quantity
         wizard = (
             self.env["create.stock.picking.wizard"]

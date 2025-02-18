@@ -31,19 +31,9 @@ class PurchaseOrder(models.Model):
                 order.order_line.mapped("pending_to_receive")
             )
 
-    def button_confirm_manual(self):
-        return super(
-            PurchaseOrder, self.with_context(manual_delivery=True)
-        ).button_confirm()
-
-    def button_approve(self, force=False):
-        if self.manual_delivery:
-            self = self.with_context(manual_delivery=True)
-        return super().button_approve(force=force)
-
     def _create_picking(self):
-        if self.env.context.get("manual_delivery", False) and self.manual_delivery:
-            # We do not want to create the picking when confirming the order
-            # if it comes from manual confirmation
-            return
-        return super()._create_picking()
+        if self.env.context.get("ignore_manual_delivery"):
+            orders = self
+        else:
+            orders = self.filtered(lambda po: not po.manual_delivery)
+        return super(PurchaseOrder, orders)._create_picking()

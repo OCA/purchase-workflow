@@ -78,6 +78,10 @@ only PO lines from same PO can be selected) and create the manual
 delivery. Follow the same steps as above to manually generate the
 incoming shipment.
 
+If, as a developer, you need to override the behaviour you can call
+``purchase.order``'s ``button_confirm`` with context key
+``ignore_manual_delivery=True``.
+
 .. |image1| image:: https://raw.githubusercontent.com/OCA/purchase-workflow/18.0/purchase_manual_delivery/static/description/create_incoming_shipment_button.png
 .. |image2| image:: https://raw.githubusercontent.com/OCA/purchase-workflow/18.0/purchase_manual_delivery/static/description/create_incoming_shipment_wizard.png
 
