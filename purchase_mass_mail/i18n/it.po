@@ -15,26 +15,15 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #. module: purchase_mass_mail
-#: model:ir.model.fields,field_description:purchase_mass_mail.field_mail_compose_message__display_name
-#: model:ir.model.fields,field_description:purchase_mass_mail.field_purchase_order__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: purchase_mass_mail
 #: model:ir.model,name:purchase_mass_mail.model_mail_compose_message
 msgid "Email composition wizard"
 msgstr ""
 
 #. module: purchase_mass_mail
-#: model:ir.model.fields,field_description:purchase_mass_mail.field_mail_compose_message__id
-#: model:ir.model.fields,field_description:purchase_mass_mail.field_purchase_order__id
-msgid "ID"
-msgstr ""
-
-#. module: purchase_mass_mail
-#: model:ir.model.fields,field_description:purchase_mass_mail.field_mail_compose_message____last_update
-#: model:ir.model.fields,field_description:purchase_mass_mail.field_purchase_order____last_update
-msgid "Last Modified on"
+#. odoo-python
+#: code:addons/purchase_mass_mail/models/purchase_order.py:0
+#, python-format
+msgid "Mass mailing for purchases"
 msgstr ""
 
 #. module: purchase_mass_mail

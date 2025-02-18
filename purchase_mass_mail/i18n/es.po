@@ -17,27 +17,16 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: purchase_mass_mail
-#: model:ir.model.fields,field_description:purchase_mass_mail.field_mail_compose_message__display_name
-#: model:ir.model.fields,field_description:purchase_mass_mail.field_purchase_order__display_name
-msgid "Display Name"
-msgstr "Mostrar Nombre"
-
-#. module: purchase_mass_mail
 #: model:ir.model,name:purchase_mass_mail.model_mail_compose_message
 msgid "Email composition wizard"
 msgstr "Asistente de redacción de correo electrónico"
 
 #. module: purchase_mass_mail
-#: model:ir.model.fields,field_description:purchase_mass_mail.field_mail_compose_message__id
-#: model:ir.model.fields,field_description:purchase_mass_mail.field_purchase_order__id
-msgid "ID"
-msgstr "ID"
-
-#. module: purchase_mass_mail
-#: model:ir.model.fields,field_description:purchase_mass_mail.field_mail_compose_message____last_update
-#: model:ir.model.fields,field_description:purchase_mass_mail.field_purchase_order____last_update
-msgid "Last Modified on"
-msgstr "Última Modificación el"
+#. odoo-python
+#: code:addons/purchase_mass_mail/models/purchase_order.py:0
+#, python-format
+msgid "Mass mailing for purchases"
+msgstr ""
 
 #. module: purchase_mass_mail
 #: model:ir.model,name:purchase_mass_mail.model_purchase_order
@@ -48,3 +37,12 @@ msgstr "Orden de Compra"
 #: model:ir.actions.server,name:purchase_mass_mail.action_purchase_order_mass_send
 msgid "Send email to selected purchases"
 msgstr "Enviar correo electrónico a las compras seleccionadas"
+
+#~ msgid "Display Name"
+#~ msgstr "Mostrar Nombre"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última Modificación el"
