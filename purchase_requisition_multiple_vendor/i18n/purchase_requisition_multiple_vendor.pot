@@ -1,0 +1,67 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_requisition_multiple_vendor
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_requisition_multiple_vendor
+#: model:ir.model.fields,help:purchase_requisition_multiple_vendor.field_purchase_requisition_create_alternative__partner_id
+msgid "Choose a vendor for alternative PO"
+msgstr ""
+
+#. module: purchase_requisition_multiple_vendor
+#: model:ir.model.fields,field_description:purchase_requisition_multiple_vendor.field_purchase_requisition_create_alternative__partner_ids
+msgid "Partners"
+msgstr ""
+
+#. module: purchase_requisition_multiple_vendor
+#. odoo-python
+#: code:addons/purchase_requisition_multiple_vendor/wizard/purchase_requisition_create_alternative.py:0
+#, python-format
+msgid "Purchase Order Alternatives"
+msgstr ""
+
+#. module: purchase_requisition_multiple_vendor
+#. odoo-python
+#: code:addons/purchase_requisition_multiple_vendor/wizard/purchase_requisition_create_alternative.py:0
+#, python-format
+msgid ""
+"The vendor you have selected or at least one of the products you are copying"
+" from the original order has a blocking warning on it and cannot be selected"
+" to create an alternative."
+msgstr ""
+
+#. module: purchase_requisition_multiple_vendor
+#. odoo-python
+#: code:addons/purchase_requisition_multiple_vendor/wizard/purchase_requisition_create_alternative.py:0
+#, python-format
+msgid "This is a blocking warning!\n"
+msgstr ""
+
+#. module: purchase_requisition_multiple_vendor
+#: model:ir.model.fields,field_description:purchase_requisition_multiple_vendor.field_purchase_requisition_create_alternative__partner_id
+msgid "Vendor"
+msgstr ""
+
+#. module: purchase_requisition_multiple_vendor
+#. odoo-python
+#: code:addons/purchase_requisition_multiple_vendor/wizard/purchase_requisition_create_alternative.py:0
+#, python-format
+msgid ""
+"Warning for %(partner)s:\n"
+"%(warning_message)s\n"
+msgstr ""
+
+#. module: purchase_requisition_multiple_vendor
+#: model:ir.model,name:purchase_requisition_multiple_vendor.model_purchase_requisition_create_alternative
+msgid "Wizard to preset values for alternative PO"
+msgstr ""
