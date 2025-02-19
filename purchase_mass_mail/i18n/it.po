@@ -6,32 +6,34 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2025-02-19 12:06+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: purchase_mass_mail
 #: model:ir.model,name:purchase_mass_mail.model_mail_compose_message
 msgid "Email composition wizard"
-msgstr ""
+msgstr "Procedura guidata creazione e-mail"
 
 #. module: purchase_mass_mail
 #. odoo-python
 #: code:addons/purchase_mass_mail/models/purchase_order.py:0
 #, python-format
 msgid "Mass mailing for purchases"
-msgstr ""
+msgstr "E-mail di massa per acquisti"
 
 #. module: purchase_mass_mail
 #: model:ir.model,name:purchase_mass_mail.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Ordine di acquisto"
 
 #. module: purchase_mass_mail
 #: model:ir.actions.server,name:purchase_mass_mail.action_purchase_order_mass_send
 msgid "Send email to selected purchases"
-msgstr ""
+msgstr "Invia e-mail ad acquisti selezionati"
