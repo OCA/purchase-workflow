@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record
+        model="ir.ui.view"
+        id="purchase_requisition_multiple_vendors_create_alternative_form"
+    >
+        <field
+            name="name"
+        >purchase.requisition.multiple.vendors.create.alternative.form</field>
+        <field name="model">purchase.requisition.create.alternative</field>
+        <field
+            name="inherit_id"
+            ref="purchase_requisition.purchase_requisition_create_alternative_form"
+        />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="partner_id" position="after">
+                <field name="partner_ids" widget="many2many_tags" />
+            </field>
+        </field>
+    </record>
+</odoo>
