@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="action_purchase_requisition_form" model="ir.actions.act_window">
+        <field name="name">Blanket Order</field>
+        <field name="res_model">purchase.requisition</field>
+        <field name="view_mode">form</field>
+        <field
+            name="view_id"
+            ref="purchase_requisition.view_purchase_requisition_form"
+        />
+        <field
+            name="search_view_id"
+            ref="purchase_requisition.view_purchase_requisition_filter"
+        />
+        <field name="target">main</field>
+    </record>
+</odoo>
