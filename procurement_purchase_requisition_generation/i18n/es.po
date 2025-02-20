@@ -18,6 +18,11 @@ msgstr ""
 "X-Generator: Poedit 3.0.1\n"
 
 #. module: procurement_purchase_requisition_generation
+#: model:ir.actions.act_window,name:procurement_purchase_requisition_generation.action_purchase_requisition_form
+msgid "Blanket Order"
+msgstr ""
+
+#. module: procurement_purchase_requisition_generation
 #: model:ir.model.fields.selection,name:procurement_purchase_requisition_generation.selection__product_template__purchase_requisition__rfq
 msgid "Create a draft purchase order"
 msgstr "Crear un pedido de compra borrador"
@@ -27,14 +32,11 @@ msgstr "Crear un pedido de compra borrador"
 #: model:ir.model.fields,help:procurement_purchase_requisition_generation.field_product_template__purchase_requisition
 msgid ""
 "Create a draft purchase order: Based on your product configuration,the "
-"system will create a draft purchase order.Propose a call for tender : If the "
-"'purchase_requisition' module is installed and this option is selected, the "
-"system will create a draft call for tender."
+"system will create a draft purchase order. \n"
+"Propose a call for tender : If the 'purchase_requisition' module is "
+"installed and this option is selected, the system will create a draft call "
+"for tender."
 msgstr ""
-"Crea un pedido de compra en borrador: Basado en la configuración de su "
-"producto, el sistema puede crear una nueva orden. Si el Acuerdo de Compra se "
-"encuentra instalado y está opción es seleccionada, el sistema puede crear un "
-"Acuerdo de Compra automáticamente."
 
 #. module: procurement_purchase_requisition_generation
 #: model:ir.model.fields,field_description:procurement_purchase_requisition_generation.field_product_product__purchase_requisition
@@ -76,3 +78,14 @@ msgstr "Abastecimiento"
 #: model:ir.model,name:procurement_purchase_requisition_generation.model_stock_rule
 msgid "Stock Rule"
 msgstr "Regla de inventario"
+
+#~ msgid ""
+#~ "Create a draft purchase order: Based on your product configuration,the "
+#~ "system will create a draft purchase order.Propose a call for tender : If "
+#~ "the 'purchase_requisition' module is installed and this option is "
+#~ "selected, the system will create a draft call for tender."
+#~ msgstr ""
+#~ "Crea un pedido de compra en borrador: Basado en la configuración de su "
+#~ "producto, el sistema puede crear una nueva orden. Si el Acuerdo de Compra "
+#~ "se encuentra instalado y está opción es seleccionada, el sistema puede "
+#~ "crear un Acuerdo de Compra automáticamente."
