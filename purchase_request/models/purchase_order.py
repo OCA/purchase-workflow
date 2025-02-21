@@ -1,7 +1,10 @@
 # Copyright 2018-2019 ForgeFlow, S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 
+from markupsafe import Markup
+
 from odoo import _, api, exceptions, fields, models
+from odoo.tools import html_escape
 
 
 class PurchaseOrder(models.Model):
@@ -29,13 +32,13 @@ class PurchaseOrder(models.Model):
                 "<li><b>%(prl_name)s</b>: Ordered quantity %(prl_qty)s %(prl_uom)s, "
                 "Planned date %(prl_date_planned)s</li>"
             ) % {
-                "prl_name": line["name"],
+                "prl_name": html_escape(line["name"]),
                 "prl_qty": line["product_qty"],
                 "prl_uom": line["product_uom"],
                 "prl_date_planned": line["date_planned"],
             }
         message += "</ul>"
-        return message
+        return Markup(message)
 
     def _purchase_request_confirm_message(self):
         request_obj = self.env["purchase.request"]
@@ -62,7 +65,6 @@ class PurchaseOrder(models.Model):
                 request.message_post(
                     body=message,
                     subtype_id=self.env.ref("mail.mt_comment").id,
-                    body_is_html=True,
                 )
         return True
 
@@ -184,7 +186,6 @@ class PurchaseOrderLine(models.Model):
                 alloc.purchase_request_line_id.request_id.message_post(
                     body=message,
                     subtype_id=self.env.ref("mail.mt_comment").id,
-                    body_is_html=True,
                 )
 
                 alloc.purchase_request_line_id._compute_qty()
@@ -209,12 +210,12 @@ class PurchaseOrderLine(models.Model):
             "<li><b>%(product_name)s</b>: "
             "Received quantity %(product_qty)s %(product_uom)s</li>"
         ) % {
-            "product_name": message_data["product_name"],
+            "product_name": html_escape(message_data["product_name"]),
             "product_qty": message_data["product_qty"],
             "product_uom": message_data["product_uom"],
         }
         message += "</ul>"
-        return message
+        return Markup(message)
 
     def _prepare_request_message_data(self, alloc, request_line, allocated_qty):
         return {
