@@ -3,13 +3,23 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.tests import common
-from odoo.tests.common import Form
+from odoo.tests.common import Form, tagged
 
 
+@tagged("post_install", "-at_install")
 class TestPurchaseOrder(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(TestPurchaseOrder, cls).setUpClass()
+        if not cls.env.company.chart_template_id:
+            # Load a CoA if there's none in current company
+            coa = cls.env.ref("l10n_generic_coa.configurable_chart_template", False)
+            if not coa:
+                # Load the first available CoA
+                coa = cls.env["account.chart.template"].search(
+                    [("visible", "=", True)], limit=1
+                )
+            coa.try_loading(company=cls.env.company, install_demo=False)
         cls.supplierinfo_obj = cls.env["product.supplierinfo"]
         cls.account_move_model = cls.env["account.move"]
         cls.partner = cls.env["res.partner"].create(

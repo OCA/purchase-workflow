@@ -3,16 +3,26 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests.common import Form, TransactionCase, tagged
 
 from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
 
 
+@tagged("post_install", "-at_install")
 class TestPurchaseOrder(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(TestPurchaseOrder, cls).setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
+        if not cls.env.company.chart_template_id:
+            # Load a CoA if there's none in current company
+            coa = cls.env.ref("l10n_generic_coa.configurable_chart_template", False)
+            if not coa:
+                # Load the first available CoA
+                coa = cls.env["account.chart.template"].search(
+                    [("visible", "=", True)], limit=1
+                )
+            coa.try_loading(company=cls.env.company, install_demo=False)
         cls.categ_cost_average = cls.env["product.category"].create(
             {"name": "Average cost method category", "property_cost_method": "average"}
         )
@@ -199,12 +209,12 @@ class TestPurchaseOrder(TransactionCase):
         line = invoice.invoice_line_ids.filtered(
             lambda x: x.purchase_line_id == self.po_line_1
         )
-        self.assertEqual(line.discount, 50)
+        self.assertAlmostEqual(line.discount, 50)
         line = invoice.invoice_line_ids.filtered(
             lambda x: x.purchase_line_id == self.po_line_2
         )
-        self.assertEqual(line.discount, 30)
+        self.assertAlmostEqual(line.discount, 30)
         line = invoice.invoice_line_ids.filtered(
             lambda x: x.purchase_line_id == self.po_line_3
         )
-        self.assertEqual(line.discount, 0)
+        self.assertAlmostEqual(line.discount, 0)
