@@ -1,0 +1,1 @@
+from . import test_purchase_add_products_from_bom

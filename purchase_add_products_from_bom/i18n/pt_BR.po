@@ -1,0 +1,244 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_add_products_from_bom
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-12-29 15:30+0000\n"
+"PO-Revision-Date: 2021-12-29 15:30+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_add_products_from_bom
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_product_product__bom_count
+msgid "# Bill of Material"
+msgstr "# Lista de Materiais"
+
+#. module: purchase_add_products_from_bom
+#: model_terms:ir.ui.view,arch_db:purchase_add_products_from_bom.add_products_from_bom_wizard_view
+msgid "Add Products"
+msgstr "Adicionar Produtos"
+
+#. module: purchase_add_products_from_bom
+#: model:ir.actions.act_window,name:purchase_add_products_from_bom.add_products_from_bom_act_window
+#: model_terms:ir.ui.view,arch_db:purchase_add_products_from_bom.add_products_from_bom_wizard_view
+msgid "Add Products From BoM"
+msgstr "Adicionar Produtos de uma LdM"
+
+#. module: purchase_add_products_from_bom
+#: model_terms:ir.ui.view,arch_db:purchase_add_products_from_bom.add_products_from_bom_wizard_view
+#: model_terms:ir.ui.view,arch_db:purchase_add_products_from_bom.purchase_add_products_from_bom_form_view
+msgid "Add Products from BoM"
+msgstr "Adicionar Produtos de uma LdM"
+
+#. module: purchase_add_products_from_bom
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom_lines__exploded_product
+msgid "Already Exploded Product"
+msgstr "Produto já Explodido"
+
+#. module: purchase_add_products_from_bom
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom__bom_id
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom_lines__bom_id
+msgid "Bill of Material"
+msgstr "Lista de Materiais"
+
+#. module: purchase_add_products_from_bom
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom__bom_ids
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom_lines__bom_ids
+msgid "Bill of Materials"
+msgstr "Lista de Materiais"
+
+#. module: purchase_add_products_from_bom
+#: model_terms:ir.ui.view,arch_db:purchase_add_products_from_bom.add_products_from_bom_wizard_view
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: purchase_add_products_from_bom
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom__create_uid
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom_lines__create_uid
+msgid "Created by"
+msgstr "Criado por"
+
+#. module: purchase_add_products_from_bom
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom__create_date
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom_lines__create_date
+msgid "Created on"
+msgstr "Criado em"
+
+#. module: purchase_add_products_from_bom
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom__currency_id
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom_lines__currency_id
+msgid "Currency"
+msgstr "Moeda"
+
+#. module: purchase_add_products_from_bom
+#: model:ir.model.fields,help:purchase_add_products_from_bom.field_add_products_from_bom_lines__product_qty_stock
+msgid ""
+"Current quantity of products.\n"
+"In a context with a single Stock Location, this includes goods stored at "
+"this Location, or any of its children.\n"
+"In a context with a single Warehouse, this includes goods stored in the "
+"Stock Location of this Warehouse, or any of its children.\n"
+"stored in the Stock Location of the Warehouse of this Shop, or any of its "
+"children.\n"
+"Otherwise, this includes goods stored in any Stock Location with 'internal' "
+"type."
+msgstr ""
+"Quantidade atual de produtos.\n"
+"Em um contexto com uma única Localização, isso inclui bens armazenados neste "
+"local, ou qualquer um de seus filhos.\n"
+"Em um contexto com um único depósito, isso inclui bens armazenados na "
+"localização deste Armazém, ou qualquer um de seus filhos.\n"
+"Armazenados na Localização do Armazém desta Loja, ou qualquer um de seus "
+"filhos.\n"
+"Caso contrário, isso inclui bens armazenados em qualquer da localização com "
+"tipo 'interno'."
+
+#. module: purchase_add_products_from_bom
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom__display_name
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom_lines__display_name
+msgid "Display Name"
+msgstr "Nome para Exibição"
+
+#. module: purchase_add_products_from_bom
+#: model_terms:ir.ui.view,arch_db:purchase_add_products_from_bom.add_products_from_bom_wizard_view
+msgid "Get Products from BoM"
+msgstr "Obter Produtos de uma LdM"
+
+#. module: purchase_add_products_from_bom
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom_lines__has_bom
+msgid "Has Bom"
+msgstr "Tem LdM"
+
+#. module: purchase_add_products_from_bom
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom__id
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom_lines__id
+msgid "ID"
+msgstr ""
+
+#. module: purchase_add_products_from_bom
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom____last_update
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom_lines____last_update
+msgid "Last Modified on"
+msgstr "Última Modificação em"
+
+#. module: purchase_add_products_from_bom
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom__write_uid
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom_lines__write_uid
+msgid "Last Updated by"
+msgstr "Última atualização por"
+
+#. module: purchase_add_products_from_bom
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom__write_date
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom_lines__write_date
+msgid "Last Updated on"
+msgstr "Última atualização em"
+
+#. module: purchase_add_products_from_bom
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom_lines__main_bom_product_id
+msgid "Main BoM Product"
+msgstr "Produto Principal LdM"
+
+#. module: purchase_add_products_from_bom
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom_lines__orig_bom_product_id
+msgid "Origin BoM Product"
+msgstr "Produto de Origim da LdM"
+
+#. module: purchase_add_products_from_bom
+#: model:ir.model,name:purchase_add_products_from_bom.model_product_product
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom__product_id
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom_lines__product_id
+msgid "Product"
+msgstr "Produto"
+
+#. module: purchase_add_products_from_bom
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom_lines__product_finished_id
+msgid "Product Finished"
+msgstr "Produto Acabado"
+
+#. module: purchase_add_products_from_bom
+#: model:ir.model,name:purchase_add_products_from_bom.model_add_products_from_bom
+msgid "Purchase Add Products From BoM"
+msgstr "Compras Adicionar Produtos de uma LdM"
+
+#. module: purchase_add_products_from_bom
+#: model:ir.model,name:purchase_add_products_from_bom.model_add_products_from_bom_lines
+msgid "Purchase Add Products From BoM Line"
+msgstr "Compras Adicionar Produtos de uma LdM"
+
+#. module: purchase_add_products_from_bom
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom__purchase_id
+msgid "Purchase Order"
+msgstr "Pedido de Compra"
+
+#. module: purchase_add_products_from_bom
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom_lines__purchase_uom_id
+msgid "Purchase Unit of Measure"
+msgstr "Unidade de Medida de Compra"
+
+#. module: purchase_add_products_from_bom
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom__product_qty
+msgid "Quantity"
+msgstr "Quantidade"
+
+#. module: purchase_add_products_from_bom
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom_lines__product_qty_after_buy
+msgid "Quantity After Buy"
+msgstr "Quantidade depois de Comprar"
+
+#. module: purchase_add_products_from_bom
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom_lines__product_qty_stock
+msgid "Quantity Available in Stock"
+msgstr "Quantidade Disponível no Estoque"
+
+#. module: purchase_add_products_from_bom
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom_lines__product_qty
+msgid "Quantity to Buy"
+msgstr "Quantidade para Comprar"
+
+#. module: purchase_add_products_from_bom
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom__raw_product_line_ids
+msgid "Raw Products"
+msgstr "Materias Primas"
+
+#. module: purchase_add_products_from_bom
+#: model_terms:ir.ui.view,arch_db:purchase_add_products_from_bom.add_products_from_bom_wizard_view
+msgid "Return Products from BoM"
+msgstr "Voltar os Produtos da LdM"
+
+#. module: purchase_add_products_from_bom
+#: code:addons/purchase_add_products_from_bom/wizard/add_products_from_bom.py:329
+#, python-format
+msgid "Select one of the BoMs."
+msgstr "Selecione uma das LdM"
+
+#. module: purchase_add_products_from_bom
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom_lines__selected_product
+msgid "Selected Product"
+msgstr "Produto Selecionado"
+
+#. module: purchase_add_products_from_bom
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom_lines__total_product_value
+msgid "Total Product Value"
+msgstr "Valor Total do Produto"
+
+#. module: purchase_add_products_from_bom
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom_lines__price_unit
+msgid "Unit Price"
+msgstr "Preço Unitário"
+
+#. module: purchase_add_products_from_bom
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom__product_uom_id
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom_lines__product_uom_id
+msgid "Unit of Measure"
+msgstr "Unidade de Medida"
+
+#~ msgid "Purchase Order Line"
+#~ msgstr "Linha de Pedido de Compra"
