@@ -1,11 +1,13 @@
 # Copyright 2018 Tecnativa - Sergio Teruel
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import fields
-from odoo.tests.common import Form, TransactionCase, tagged
+from odoo import Command, fields
+from odoo.tests import Form, tagged
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
 @tagged("-at_install", "post_install")
-class TestPurchaseOrderSecondaryUnit(TransactionCase):
+class TestPurchaseOrderSecondaryUnit(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -34,9 +36,7 @@ class TestPurchaseOrderSecondaryUnit(TransactionCase):
             "partner_id": cls.partner.id,
             "company_id": cls.env.company.id,
             "order_line": [
-                (
-                    0,
-                    0,
+                Command.create(
                     {
                         "name": cls.product.name,
                         "product_id": cls.product.id,

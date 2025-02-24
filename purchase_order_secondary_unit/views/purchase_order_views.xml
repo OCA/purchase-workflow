@@ -30,7 +30,7 @@
                 </t>
             </xpath>
             <xpath
-                expr="//field[@name='order_line']/tree//field[@name='product_qty']"
+                expr="//field[@name='order_line']/list//field[@name='product_qty']"
                 position="before"
             >
                 <field
