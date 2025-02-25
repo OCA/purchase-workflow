@@ -241,3 +241,20 @@ class PurchaseOrderLine(models.Model):
             for line in service_lines:
                 line.update_service_allocations(prev_qty_received[line.id])
         return res
+
+    @api.constrains("product_id", "purchase_request_lines")
+    def _check_product_from_request(self):
+        errors = []
+        for line in self:
+            for request_line in line.purchase_request_lines:
+                if request_line.product_id != line.product_id:
+                    errors.append(
+                        _(
+                            "The product %(product_name)s in the Purchase Order Line "
+                            "must be the same as the product in the Purchase Request "
+                            "Line.",
+                            product_name=line.product_id.display_name,
+                        )
+                    )
+        if errors:
+            raise exceptions.ValidationError("\n".join(errors))
