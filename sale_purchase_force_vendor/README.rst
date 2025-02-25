@@ -61,7 +61,8 @@ Usage
 1. Go to *Sale -> Orders -> Quotations* and create a new Quotation.
 2. Create a new line with the following options:
 
-   - \`Route\`: MTO.
+   - \`Route\`: Any MTO-like route, i.e. a route that will trigger a buy
+     rule.
    - \`Vendor\`: Vendor B.
 
 3. Confirm sale order.
@@ -95,6 +96,8 @@ Contributors
 
   - Víctor Martínez
   - Pedro M. Baeza
+
+- Marie Lejeune marie.lejeune@acsone.eu
 
 Maintainers
 -----------
