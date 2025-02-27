@@ -11,7 +11,7 @@
             <field name="invoice_status" position="after">
                 <field
                     name="force_invoiced"
-                    groups="purchase.group_purchase_manager"
+                    groups="purchase_force_invoiced.group_force_invoiced"
                     invisible="state not in ('purchase', 'done')"
                     readonly="state == 'done'"
                     widget="boolean_toggle"

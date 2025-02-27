@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record model="res.groups" id="group_force_invoiced">
+            <field name="name">Set purchase orders to 'Force Invoiced'</field>
+            <field name="category_id" ref="base.module_category_hidden" />
+            <field name="users" eval="[(4, ref('base.user_admin'))]" />
+        </record>
+    </data>
+    <data noupdate="1">
+        <!-- By default, purchase managers are allowed to set orders to Force Invoiced -->
+        <record model="res.groups" id="purchase.group_purchase_manager">
+            <field name="implied_ids" eval="[(4, ref('group_force_invoiced'))]" />
+        </record>
+    </data>
+</odoo>
