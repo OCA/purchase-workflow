@@ -15,11 +15,13 @@ class PurchaseOrderLine(models.Model):
         return fields.first(product_template.packaging_ids)
 
     @api.onchange("product_id")
-    def _onchange_product_id(self):
+    def onchange_product_id(self):
+        super().onchange_product_id()
         if self.company_id.purchase_packaging_default_enabled:
             product_packaging = self._get_default_packaging()
             if product_packaging:
                 self.product_packaging_id = product_packaging
+                self.product_packaging_qty = 1
 
     @api.depends("product_id", "product_qty", "product_uom")
     def _compute_product_packaging_id(self):
