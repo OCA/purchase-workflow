@@ -4,17 +4,15 @@
 
 from odoo import fields
 from odoo.tests import tagged
-from odoo.tests.common import TransactionCase
 
-from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
+from odoo.addons.base.tests.common import BaseCommon
 
 
 @tagged("post_install", "-at_install")
-class TestPurchaseForceInvoiced(TransactionCase):
+class TestPurchaseForceInvoiced(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
         cls.purchase_order_model = cls.env["purchase.order"]
         cls.purchase_order_line_model = cls.env["purchase.order.line"]
         cls.account_invoice_model = cls.env["account.move"]
@@ -22,7 +20,7 @@ class TestPurchaseForceInvoiced(TransactionCase):
         cls.invoice_account = cls.env["account.account"].search(
             [
                 ("account_type", "=", "expense"),
-                ("company_id", "=", cls.env.company.id),
+                ("company_ids", "=", cls.env.company.id),
             ],
             limit=1,
         )
@@ -103,12 +101,22 @@ class TestPurchaseForceInvoiced(TransactionCase):
         self.assertEqual(
             po.invoice_status, "to invoice", "The invoice status should be To Invoice"
         )
+        self.assertEqual(pol2.qty_to_invoice, 2)
+        pol2.flush_recordset()  # Flush to let the SQL report pick up the current value
+        self.assertEqual(
+            self.env["purchase.report"].browse(pol2.id).qty_to_be_billed, 2
+        )
+
         # We set the force invoiced.
         po.button_done()
         po.force_invoiced = True
         self.assertEqual(
             po.invoice_status, "invoiced", "The invoice status should be Invoiced"
         )
+        self.assertFalse(pol2.qty_to_invoice)
+        self.env.invalidate_all()  # Drop cache to force a refresh of the SQL report
+        self.assertFalse(self.env["purchase.report"].browse(pol2.id).qty_to_be_billed)
+
         # We remove the force invoiced.
         po.force_invoiced = False
         self.assertEqual(
