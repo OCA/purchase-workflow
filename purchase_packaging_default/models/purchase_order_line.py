@@ -37,8 +37,10 @@ class PurchaseOrderLine(models.Model):
                 packaging_uom_qty = line.product_uom._compute_quantity(
                     line.product_qty, packaging_uom
                 )
-                # Super computes product_packaging_qty rounding it to packaging_uom.precision.
-                # We must round up that value as we won't sell 0.5, 1.6 boxes/pallets
+                # Super computes product_packaging_qty rounding it
+                # to packaging_uom.precision.
+                # We must round up that value as we won't sell 0.5,
+                # 1.6 boxes/pallets.
                 line.product_packaging_qty = math.ceil(
                     packaging_uom_qty / line.product_packaging_id.qty
                 )
