@@ -28,7 +28,7 @@ class TestStockWarehouseCalendar(TransactionCase):
             {
                 "name": "test product",
                 "default_code": "PRD",
-                "type": "product",
+                "type": "consu",
                 "route_ids": [
                     (4, self.ref("stock.route_warehouse0_mto")),
                     (4, self.ref("purchase_stock.route_warehouse0_buy")),
