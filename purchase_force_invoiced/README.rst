@@ -29,7 +29,7 @@ Purchase Force Invoiced
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module adds the possibility for users to force the invoice status
-of the purchase orders to 'No Bill to Receive', even when not all the
+of the purchase orders to 'Fully Billed', even when not all the
 quantities, ordered or delivered, have been invoiced.
 
 This feature is useful in the following scenario:
@@ -55,6 +55,10 @@ Usage
    order invoicing status is 'Waiting Bills'.
 4. Lock the Purchase Order and change its status to 'Done'.
 5. Check the field 'Force Invoiced'.
+
+The field is only visible for users that have the technical setting 'Set
+purchase orders to Force Invoiced'. By default, all purchase managers
+have this setting.
 
 Bug Tracker
 ===========
