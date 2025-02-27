@@ -1,5 +1,5 @@
 This module adds the possibility for users to force the invoice status
-of the purchase orders to 'No Bill to Receive', even when not all the
+of the purchase orders to 'Fully Billed', even when not all the
 quantities, ordered or delivered, have been invoiced.
 
 This feature is useful in the following scenario:
