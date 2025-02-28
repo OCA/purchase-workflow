@@ -27,8 +27,18 @@ msgid "Purchase Order"
 msgstr "采购订单"
 
 #. module: purchase_force_invoiced
+#: model:ir.model,name:purchase_force_invoiced.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr ""
+
+#. module: purchase_force_invoiced
 #: model:ir.model,name:purchase_force_invoiced.model_purchase_report
 msgid "Purchase Report"
+msgstr ""
+
+#. module: purchase_force_invoiced
+#: model:res.groups,name:purchase_force_invoiced.group_force_invoiced
+msgid "Set purchase orders to 'Force Invoiced'"
 msgstr ""
 
 #. module: purchase_force_invoiced
