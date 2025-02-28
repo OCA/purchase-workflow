@@ -105,9 +105,9 @@
                                                         name="product_qty"
                                                         class="oe_inline"
                                                     />
-                                                    <span
-                                                        class="oe_inline"
-                                                    >&#160;</span>
+                                                    <span class="oe_inline">
+                                                        &#160;
+                                                    </span>
                                                     <field
                                                         name="product_uom"
                                                         class="oe_inline"

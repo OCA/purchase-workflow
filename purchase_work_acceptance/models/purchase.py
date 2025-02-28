@@ -99,12 +99,10 @@ class PurchaseOrder(models.Model):
             wa = self.env["work.acceptance"].browse(ctx["wa_id"])
             invoice = self.env["account.move"].browse(res["res_id"])
             # invoice.ref, adding "/ WA001"
-            invoice.ref = (
-                "{} / {}".format(invoice.ref, wa.name) if invoice.ref else wa.name
-            )
+            invoice.ref = f"{invoice.ref} / {wa.name}" if invoice.ref else wa.name
             # invoice.payment_reference, adding "/ <WA's invoice_ref>"
             invoice.payment_reference = (
-                "{} / {}".format(invoice.payment_reference, wa.invoice_ref)
+                f"{invoice.payment_reference} / {wa.invoice_ref}"
                 if invoice.payment_reference
                 else wa.invoice_ref
             )
