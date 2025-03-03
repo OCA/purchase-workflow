@@ -114,18 +114,26 @@ class AccountVoucherWizardPurchase(models.TransientModel):
                     "currency_id": purchase.currency_id.id,
                 }
             )
-        res["journal_id"] = (
-            self.env["account.journal"]
-            .search(
-                [
-                    ("type", "in", ("bank", "cash")),
-                    ("company_id", "=", purchase.company_id.id),
-                    ("outbound_payment_method_line_ids", "!=", False),
-                ],
+        no_currency_journal_domain = [
+            ("type", "in", ("bank", "cash")),
+            ("company_id", "=", purchase.company_id.id),
+            ("outbound_payment_method_line_ids", "!=", False),
+        ]
+        journal_domain = no_currency_journal_domain
+        if purchase.company_id.currency_id != purchase.currency_id:
+            journal_domain.append(
+                ("currency_id", "=", purchase.currency_id.id),
+            )
+        journal = self.env["account.journal"].search(
+            journal_domain,
+            limit=1,
+        )
+        if not journal:
+            journal = self.env["account.journal"].search(
+                no_currency_journal_domain,
                 limit=1,
             )
-            .id
-        )
+        res["journal_id"] = journal.id
         return res
 
     @api.depends("journal_id", "date", "amount_advance", "journal_currency_id")
