@@ -3,7 +3,7 @@
     <record id="action_purchase_test_list" model="ir.actions.act_window">
         <field name="name">Purchase Exception Rules</field>
         <field name="res_model">exception.rule</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="view_id" ref="base_exception.view_exception_rule_list" />
         <field
             name="domain"
