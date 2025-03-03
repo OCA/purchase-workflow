@@ -179,7 +179,7 @@
         <field name="name">Purchase Invoice Plan</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">purchase.invoice.plan</field>
-        <field name="view_mode">tree</field>
+        <field name="view_mode">list</field>
         <field name="view_id" ref="view_purchase_invoice_plan_tree_readonly" />
         <field name="search_view_id" ref="view_purchase_invoice_plan_filter" />
         <field
