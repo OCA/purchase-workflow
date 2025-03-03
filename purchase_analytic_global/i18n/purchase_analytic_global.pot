@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,8 +14,18 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: purchase_analytic_global
-#: model:ir.model.fields,field_description:purchase_analytic_global.field_purchase_order__account_analytic_id
-msgid "Analytic Account"
+#: model:ir.model.fields,field_description:purchase_analytic_global.field_purchase_order__analytic_distribution
+msgid "Analytic Distribution"
+msgstr ""
+
+#. module: purchase_analytic_global
+#: model:ir.model.fields,field_description:purchase_analytic_global.field_purchase_order__analytic_precision
+msgid "Analytic Precision"
+msgstr ""
+
+#. module: purchase_analytic_global
+#: model:ir.model.fields,field_description:purchase_analytic_global.field_purchase_order__distribution_analytic_account_ids
+msgid "Distribution Analytic Account"
 msgstr ""
 
 #. module: purchase_analytic_global
@@ -24,8 +34,9 @@ msgid "Purchase Order"
 msgstr ""
 
 #. module: purchase_analytic_global
-#: model:ir.model.fields,help:purchase_analytic_global.field_purchase_order__account_analytic_id
+#: model:ir.model.fields,help:purchase_analytic_global.field_purchase_order__analytic_distribution
 msgid ""
-"This account will be propagated to all lines, if you need to use different "
-"accounts, define the account at line level."
+"This analytic distribution will be propagated to all lines analytic "
+"distributions, if you need to use different analytic distribution, define it"
+" at line level."
 msgstr ""
