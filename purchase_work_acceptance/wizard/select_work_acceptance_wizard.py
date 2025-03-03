@@ -1,7 +1,7 @@
 # Copyright 2019 Ecosoft Co., Ltd. (http://ecosoft.co.th)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -45,7 +45,7 @@ class SelectWorkAcceptanceWizard(models.TransientModel):
         wa = self.env["work.acceptance"]._get_valid_wa("invoice", order_id)
         if self.wa_id not in wa:
             raise ValidationError(
-                _("%s was already used by some bill") % self.wa_id.name
+                self.env._(f"{self.wa_id.name} was already used by some bill")
             )
         order = self._get_purchase_order_with_context(order_id)
         return order.sudo().action_create_invoice()

@@ -1,7 +1,7 @@
 # Copyright 2019 Ecosoft Co., Ltd. (http://ecosoft.co.th)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import Command, _, api, fields, models
+from odoo import Command, api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -81,7 +81,7 @@ class PurchaseOrder(models.Model):
                 "purchase_work_acceptance.view_select_work_acceptance_wizard"
             )
             return {
-                "name": _("Select Work Acceptance"),
+                "name": self.env._("Select Work Acceptance"),
                 "type": "ir.actions.act_window",
                 "view_mode": "form",
                 "res_model": "select.work.acceptance.wizard",
@@ -111,15 +111,15 @@ class PurchaseOrder(models.Model):
     def _compute_wa_accepted(self):
         for order in self:
             lines = order.order_line.filtered(
-                lambda l: l.product_qty > 0 and l.qty_to_accept > 0
+                lambda line: line.product_qty > 0 and line.qty_to_accept > 0
             )
             order.wa_accepted = not any(lines)
 
     @api.model
     def _search_wa_accepted(self, operator, value):
         if operator not in ["=", "!="] or not isinstance(value, bool):
-            raise UserError(_("Operation not supported"))
-        recs = self.search([]).filtered(lambda l: l.wa_accepted is value)
+            raise UserError(self.env._("Operation not supported"))
+        recs = self.search([]).filtered(lambda line: line.wa_accepted is value)
         return [("id", "in", recs.ids)]
 
     def _prepare_invoice(self):
@@ -163,7 +163,9 @@ class PurchaseOrderLine(models.Model):
         res = super()._prepare_account_move_line(move=move)
         wa_id = self.env.context.get("wa_id")
         if wa_id:
-            wa_line = self.wa_line_ids.filtered(lambda l: l.wa_id.id == wa_id)
+            wa_line = self.wa_line_ids.filtered(
+                lambda wa_line: wa_line.wa_id.id == wa_id
+            )
             res["quantity"] = wa_line.product_qty
             res["product_uom_id"] = wa_line.product_uom.id
         return res
@@ -179,9 +181,10 @@ class PurchaseOrderLine(models.Model):
         for line in self:
             # compute qty_accepted
             qty_accepted = 0.0
-            for wa_line in line.wa_line_ids.filtered(
-                lambda l: l.wa_id.state == "accept"
-            ):
+            for wa_line in line.wa_line_ids:
+                if wa_line.wa_id.state != "accept":
+                    continue
+
                 qty_accepted += wa_line.product_uom._compute_quantity(
                     wa_line.product_qty, line.product_uom, round=False
                 )
