@@ -5,10 +5,12 @@ import ast
 
 from odoo import Command, fields
 from odoo.exceptions import UserError, ValidationError
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests import Form
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestPurchaseWorkAcceptance(TransactionCase):
+class TestPurchaseWorkAcceptance(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -25,6 +27,7 @@ class TestPurchaseWorkAcceptance(TransactionCase):
         cls.employee = cls.env.ref("base.user_demo")
         cls.main_company = cls.env.ref("base.main_company")
         cls.date_now = fields.Datetime.now()
+
         # Enable and Config WA in PO / Picking
         cls.config_setting_model.create(
             {
@@ -33,13 +36,16 @@ class TestPurchaseWorkAcceptance(TransactionCase):
             }
         ).execute()
 
-        cls.picking_type_return = cls.env["stock.picking.type"].search(
+        # Create new picking type
+        cls.picking_type_in = cls.env["stock.picking.type"].search(
             [
                 ("code", "=", "incoming"),
-                ("return_picking_type_id", "=", False),
                 ("company_id", "=", cls.main_company.id),
             ],
             limit=1,
+        )
+        cls.picking_type_return = cls.picking_type_in.copy(
+            {"use_create_lots": False, "use_existing_lots": True}
         )
 
     def _create_purchase_order(self, qty, product):
@@ -210,9 +216,9 @@ class TestPurchaseWorkAcceptance(TransactionCase):
             p.wa_id = work_acceptance
         p.save()
         with self.assertRaises(ValidationError):
-            picking.move_ids_without_package[0].quantity_done = 30.0
+            picking.move_ids_without_package[0].quantity = 30.0
             picking.button_validate()
-        picking.move_ids_without_package[0].quantity_done = 42.0
+        picking.move_ids_without_package[0].quantity = 42.0
         picking.button_validate()
         # Can't set to draft wa when you validate picking
         with self.assertRaises(UserError):

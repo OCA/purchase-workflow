@@ -1,7 +1,7 @@
 # Copyright 2019 Ecosoft Co., Ltd. (http://ecosoft.co.th)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -56,7 +56,7 @@ class AccountMove(models.Model):
                             invoice_line[line.product_id.id] = qty
                 if wa_line != invoice_line:
                     raise ValidationError(
-                        _(
+                        self.env._(
                             "You cannot validate a bill if Quantity not equal "
                             "accepted quantity"
                         )
@@ -70,7 +70,7 @@ class AccountMove(models.Model):
                 # When use WA, filter for line with qty != 0, good for deposit too.
                 lines = vals.get("invoice_line_ids", [])
                 lines = filter(
-                    lambda l: len(l) == 3 and l[2].get("quantity") != 0, lines
+                    lambda line: len(line) == 3 and line[2].get("quantity") != 0, lines
                 )
                 vals["invoice_line_ids"] = list(lines)
         return super().create(vals_list)

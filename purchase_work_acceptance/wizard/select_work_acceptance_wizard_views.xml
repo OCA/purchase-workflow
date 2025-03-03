@@ -11,7 +11,7 @@
                     <field
                         name="wa_id"
                         options="{'no_create': True}"
-                        attrs="{'required': [('require_wa','=', True)]}"
+                        required="require_wa"
                     />
                     <field name="wa_ids" invisible="1" />
                 </group>

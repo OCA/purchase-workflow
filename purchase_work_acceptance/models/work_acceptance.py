@@ -1,8 +1,9 @@
 # Copyright 2019 Ecosoft Co., Ltd. (http://ecosoft.co.th)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
+from odoo.tools import float_is_zero
 
 
 class WorkAcceptance(models.Model):
@@ -15,15 +16,11 @@ class WorkAcceptance(models.Model):
     date_due = fields.Datetime(
         string="Due Date",
         required=True,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
     )
     date_receive = fields.Datetime(
         string="Received Date",
         default=fields.Datetime.now,
         required=True,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
     )
     date_accept = fields.Datetime(string="Accepted Date", readonly=True)
     invoice_ref = fields.Char(string="Invoice Reference", copy=False)
@@ -33,8 +30,6 @@ class WorkAcceptance(models.Model):
         required=True,
         change_default=True,
         tracking=True,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
     )
     responsible_id = fields.Many2one(
         comodel_name="res.users",
@@ -43,8 +38,6 @@ class WorkAcceptance(models.Model):
         required=True,
         change_default=True,
         tracking=True,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
     )
     currency_id = fields.Many2one(
         comodel_name="res.currency",
@@ -54,7 +47,7 @@ class WorkAcceptance(models.Model):
         readonly=True,
     )
     state = fields.Selection(
-        [("draft", "Draft"), ("accept", "Accepted"), ("cancel", "Cancelled")],
+        selection=[("draft", "Draft"), ("accept", "Accepted"), ("cancel", "Cancelled")],
         string="Status",
         readonly=True,
         index=True,
@@ -87,8 +80,6 @@ class WorkAcceptance(models.Model):
         default=lambda self: self.env.company,
         required=True,
         index=True,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
     )
     purchase_id = fields.Many2one(
         comodel_name="purchase.order", string="Purchase Order", readonly=True
@@ -109,7 +100,7 @@ class WorkAcceptance(models.Model):
                 "purchase_work_acceptance.view_work_accepted_date_wizard"
             )
             return {
-                "name": _("Select Accept Date"),
+                "name": self.env._("Select Accept Date"),
                 "type": "ir.actions.act_window",
                 "view_mode": "form",
                 "res_model": "work.accepted.date.wizard",
@@ -122,11 +113,10 @@ class WorkAcceptance(models.Model):
         self.write({"state": "accept", "date_accept": date_accept})
 
     def button_draft(self):
-        picking_obj = self.env["stock.picking"]
-        wa_ids = picking_obj.search([("wa_id", "in", self.ids)])
+        wa_ids = self.env["stock.picking"].search_count([("wa_id", "in", self.ids)])
         if wa_ids:
             raise UserError(
-                _(
+                self.env._(
                     "Unable set to draft this work acceptance. "
                     "You must first cancel the related receipts."
                 )
@@ -138,28 +128,50 @@ class WorkAcceptance(models.Model):
 
     def _unlink_zero_quantity(self):
         wa_line_zero_quantity = self.wa_line_ids.filtered(
-            lambda l: l.product_qty == 0.0
+            lambda wa_line: float_is_zero(
+                wa_line.product_qty, precision_rounding=wa_line.currency_id.rounding
+            )
         )
         wa_line_zero_quantity.unlink()
 
     def _get_valid_wa(self, doctype, order_id):
-        """Get unused WA when validate invoice or picking"""
+        """Get unused work acceptance records for invoice or picking validation.
+
+        Args:
+            doctype (str): Document type ('invoice' or 'picking')
+            order_id (int): Purchase order ID
+
+        Returns:
+            recordset: Valid work acceptance records that haven't been used
+        """
+        WorkAcceptance = self.env["work.acceptance"]
+
+        # Early return if no order_id
+        if not order_id:
+            return WorkAcceptance
+
+        # Get all accepted WAs for this PO in one query
+        domain = [
+            ("state", "=", "accept"),
+            ("purchase_id", "=", order_id),
+        ]
+        all_wa = WorkAcceptance.search(domain)
+
+        # Return early if no WAs found
+        if not all_wa:
+            return WorkAcceptance
+
+        # Prefetch related records to avoid N+1 queries
         order = self.env["purchase.order"].browse(order_id)
-        all_wa = self.env["work.acceptance"].search(
-            [
-                ("state", "=", "accept"),
-                ("purchase_id", "=", order.id),
-            ]
-        )
         if doctype == "invoice":
             used_wa = order.invoice_ids.filtered(
-                lambda l: l.state in ("draft", "posted")
+                lambda inv: inv.state in ("draft", "posted")
             ).mapped("wa_id")
-            return all_wa - used_wa
-        if doctype == "picking":
+        elif doctype == "picking":
             used_wa = order.picking_ids.mapped("wa_id")
-            return all_wa - used_wa
-        return all_wa
+        else:
+            return all_wa
+        return all_wa - used_wa
 
 
 class WorkAcceptanceLine(models.Model):
@@ -218,6 +230,7 @@ class WorkAcceptanceLine(models.Model):
         readonly=False,
     )
 
+    @api.depends("price_unit", "product_qty")
     def _compute_amount(self):
         for line in self:
             line.price_subtotal = line.product_qty * line.price_unit

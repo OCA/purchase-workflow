@@ -9,7 +9,7 @@
                     <button
                         name="button_accept"
                         type="object"
-                        states="draft"
+                        invisible="state != 'draft'"
                         string="Accept"
                         class="oe_highlight"
                         context="{'manual_date_accept': True}"
@@ -17,32 +17,32 @@
                     <button
                         name="button_draft"
                         type="object"
-                        states="accept,cancel"
+                        invisible="state not in ('accept', 'cancel')"
                         string="Set to draft"
                     />
                     <button
                         name="button_cancel"
                         type="object"
-                        states="draft,accept"
+                        invisible="state not in ('draft', 'accept')"
                         string="Cancel"
                     />
                     <field
                         name="state"
                         widget="statusbar"
                         statusbar_visible="draft,accept"
-                        attrs="{'readonly': True}"
+                        readonly="1"
                     />
                 </header>
                 <sheet>
                     <div class="oe_title">
                         <h1>
-                            <field name="name" attrs="{'readonly': True}" />
+                            <field name="name" readonly="1" />
                         </h1>
                     </div>
                     <group>
                         <group>
-                            <field name="partner_id" />
-                            <field name="responsible_id" />
+                            <field name="partner_id" readonly="state != 'draft'" />
+                            <field name="responsible_id" readonly="state != 'draft'" />
                             <field name="purchase_id" />
                             <field name="invoice_ref" />
                             <field
@@ -52,26 +52,21 @@
                             />
                         </group>
                         <group>
-                            <field name="date_due" />
-                            <field name="date_receive" />
-                            <field
-                                name="date_accept"
-                                attrs="{'invisible': [('state', '=', 'draft')]}"
-                            />
+                            <field name="date_due" readonly="state != 'draft'" />
+                            <field name="date_receive" readonly="state != 'draft'" />
+                            <field name="date_accept" invisible="state == 'draft'" />
                             <field
                                 name="company_id"
                                 groups="base.group_multi_company"
                                 options="{'no_create': True}"
+                                readonly="state != 'draft'"
                             />
                         </group>
                     </group>
                     <notebook>
                         <page string="Products">
-                            <field
-                                name="wa_line_ids"
-                                attrs="{'readonly': [('state', '!=', 'draft')]}"
-                            >
-                                <tree editable="bottom">
+                            <field name="wa_line_ids" readonly="state != 'draft'">
+                                <list editable="bottom">
                                     <field
                                         name="purchase_line_id"
                                         optional="hide"
@@ -92,7 +87,7 @@
                                         widget="monetary"
                                         sum="Total"
                                     />
-                                </tree>
+                                </list>
                                 <form>
                                     <sheet>
                                         <group>
@@ -127,19 +122,15 @@
                         placeholder="Define your terms and conditions ..."
                     />
                 </sheet>
-                <div class="oe_chatter">
-                    <field name="message_follower_ids" widget="mail_followers" />
-                    <field name="activity_ids" widget="mail_activity" />
-                    <field name="message_ids" widget="mail_thread" />
-                </div>
+                <chatter />
             </form>
         </field>
     </record>
-    <record id="view_work_acceptance_tree" model="ir.ui.view">
-        <field name="name">work.acceptance.tree</field>
+    <record id="view_work_acceptance_list" model="ir.ui.view">
+        <field name="name">work.acceptance.list</field>
         <field name="model">work.acceptance</field>
         <field name="arch" type="xml">
-            <tree decoration-muted="state=='cancel'">
+            <list decoration-muted="state=='cancel'">
                 <field name="name" string="Reference" />
                 <field name="date_due" />
                 <field name="date_receive" />
@@ -159,7 +150,7 @@
                 />
                 <field name="purchase_id" optional="hide" />
                 <field name="state" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="view_work_acceptance_search" model="ir.ui.view">
@@ -235,9 +226,9 @@
     <record id="action_work_acceptance" model="ir.actions.act_window">
         <field name="name">Work Acceptance</field>
         <field name="res_model">work.acceptance</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="search_view_id" ref="view_work_acceptance_search" />
-        <field name="view_id" ref="view_work_acceptance_tree" />
+        <field name="view_id" ref="view_work_acceptance_list" />
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">Create a new work acceptance</p>
         </field>
