@@ -577,7 +577,6 @@
                                 <field name="qty_in_progress" />
                                 <field name="qty_done" />
                             </group>
-                            <newline />
                             <field name="purchase_lines" nolabel="1" />
                         </page>
                     </notebook>
