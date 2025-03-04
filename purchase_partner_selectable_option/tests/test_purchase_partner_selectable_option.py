@@ -2,17 +2,10 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from lxml import etree
 
-from odoo.tests import common
-
-from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestPurchasePartnerSelectableOption(common.TransactionCase):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
-
+class TestPurchasePartnerSelectableOption(BaseCommon):
     def test_sale_order(self):
         result = self.env["purchase.order"].get_view(
             view_id=self.env.ref("purchase.purchase_order_form").id,
