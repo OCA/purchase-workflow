@@ -111,7 +111,7 @@ class PurchaseRequestAllocation(models.Model):
             "product_uom": message_data["product_uom"],
         }
         message += "</ul>"
-        return Markup(message)
+        return message
 
     def _prepare_message_data(self, po_line, request, allocated_qty):
         return {

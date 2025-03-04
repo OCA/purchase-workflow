@@ -13,55 +13,57 @@ class StockMoveLine(models.Model):
     @api.model
     def _purchase_request_confirm_done_message_content(self, message_data):
         title = _(
-            "Receipt confirmation %(picking_name)s for your Request %(request_name)s",
+            "Receipt confirmation {picking_name} for your Request {request_name}"
+        ).format(
             picking_name=message_data["picking_name"],
             request_name=message_data["request_name"],
         )
-        message = f"<h3>{title}</h3>"
-        message += _(
-            "The following requested items from Purchase Request %(request_name)s "
-            "have now been received in %(location_name)s using Picking "
-            "%(picking_name)s:",
+
+        message_body = _(
+            "The following requested items from Purchase Request {request_name} "
+            "have now been received in {location_name} "
+            "using Picking {picking_name}:"
+        ).format(
             request_name=message_data["request_name"],
             location_name=message_data["location_name"],
             picking_name=message_data["picking_name"],
         )
-        message += "<ul>"
-        message += _(
-            "<li><b>%(product_name)s</b>: "
-            "Transferred quantity %(product_qty)s %(product_uom)s</li>",
-            product_name=html_escape(message_data["product_name"]),
-            product_qty=message_data["product_qty"],
-            product_uom=message_data["product_uom"],
+
+        product_line = Markup(
+            "<ul><li><b>{}</b>: " + _("Transferred quantity") + " {} {}</li></ul>"
+        ).format(
+            html_escape(message_data["product_name"]),
+            message_data["product_qty"],
+            html_escape(message_data["product_uom"]),
         )
-        message += "</ul>"
-        return Markup(message)
+
+        return Markup("<h3>{}</h3>{}{}").format(title, message_body, product_line)
 
     @api.model
     def _picking_confirm_done_message_content(self, message_data):
-        title = _(
-            "Receipt confirmation for Request %(name)s",
-            name=message_data["request_name"],
+        title = _("Receipt confirmation for Request {name}").format(
+            name=message_data["request_name"]
         )
-        message = f"<h3>{title}</h3>"
-        message += _(
-            "The following requested items from Purchase Request %(request_name)s "
-            "requested by %(requestor)s "
-            "have now been received in %(location_name)s:",
+
+        message_body = _(
+            "The following requested items from Purchase Request {request_name} "
+            "requested by {requestor} "
+            "have now been received in {location_name}:"
+        ).format(
             request_name=message_data["request_name"],
             requestor=message_data["requestor"],
             location_name=message_data["location_name"],
         )
-        message += "<ul>"
-        message += _(
-            "<li><b>%(product_name)s</b>: "
-            "Transferred quantity %(product_qty)s %(product_uom)s</li>",
-            product_name=html_escape(message_data["product_name"]),
-            product_qty=message_data["product_qty"],
-            product_uom=message_data["product_uom"],
+
+        product_line = Markup(
+            "<ul><li><b>{}</b>: " + _("Transferred quantity") + " {} {}</li></ul>"
+        ).format(
+            html_escape(message_data["product_name"]),
+            message_data["product_qty"],
+            html_escape(message_data["product_uom"]),
         )
-        message += "</ul>"
-        return Markup(message)
+
+        return Markup("<h3>{}</h3>{}{}").format(title, message_body, product_line)
 
     def _prepare_message_data(self, ml, request, allocated_qty):
         return {
