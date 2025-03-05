@@ -11,5 +11,6 @@
             name="reviewer_group_id"
             ref='purchase_request.group_purchase_request_manager'
         />
+        <field name="company_id" /> <!-- no company set by default -->
     </record>
 </odoo>
