@@ -18,7 +18,6 @@
                     name="request_type"
                     required="True"
                     attrs="{'readonly': [('is_editable','=', False)]}"
-                    groups="base.group_multi_company"
                 />
             </field>
         </field>
