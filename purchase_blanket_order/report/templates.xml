@@ -4,7 +4,7 @@
         <t t-call="web.external_layout">
             <t t-set="doc" t-value="doc.with_context({'lang':doc.partner_id.lang})" />
             <div class="page">
-                <div class="oe_structure" />
+                <div id="oe_structure" class="oe_structure" />
                 <div class="row">
                     <div class="col-xs-6">
                         <div
@@ -12,8 +12,8 @@
                             t-options='{"widget": "contact", "fields": ["address", "name", "phone", "fax"], "no_marker": True, "phone_icons": True}'
                         />
                         <p t-if="doc.partner_id.vat">VAT: <span
-                                t-field="doc.partner_id.vat"
-                            /></p>
+                            t-field="doc.partner_id.vat"
+                        /></p>
                     </div>
                 </div>
                 <h2>
@@ -115,7 +115,7 @@
                     </div>
                 </div>
                 <p t-field="doc.note" />
-                <div class="oe_structure" />
+                <div id="oe_structure" class="oe_structure" />
             </div>
         </t>
     </template>
