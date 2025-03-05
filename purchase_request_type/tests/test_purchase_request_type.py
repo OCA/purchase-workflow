@@ -74,6 +74,7 @@ class TestPurchaseRequestType(common.TransactionCase):
         self.assertEqual(request2.reduce_step, self.type2.reduce_step)
 
     def test_purchase_request_type_company_error(self):
+        self.type1.company_id = self.env.company
         request = self.pr_obj.create({"picking_type_id": self.picking_type.id})
         self.assertEqual(request.company_id, self.type1.company_id)
         with self.assertRaises(ValidationError):
