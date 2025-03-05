@@ -500,7 +500,7 @@ class BlanketOrderLine(models.Model):
         result = []
         if self.env.context.get("from_purchase_order"):
             for record in self:
-                res = "[%s]" % record.order_id.name
+                res = f"[{record.order_id.name}]"
                 if record.date_schedule:
                     formatted_date = self._format_date(record.date_schedule)
                     res += " - {}: {}".format(_("Date Scheduled"), formatted_date)
