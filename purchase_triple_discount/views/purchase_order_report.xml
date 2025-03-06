@@ -8,7 +8,7 @@
             <th name="th_discount2" class="text-right">
                 <strong>Disc. 2 (%)</strong>
             </th>
-           <th name="th_discount3" class="text-right">
+            <th name="th_discount3" class="text-right">
                 <strong>Disc. 3 (%)</strong>
             </th>
         </xpath>

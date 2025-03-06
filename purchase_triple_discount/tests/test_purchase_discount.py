@@ -9,7 +9,7 @@ from odoo.tests.common import Form
 class TestPurchaseOrder(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(TestPurchaseOrder, cls).setUpClass()
+        super().setUpClass()
         cls.supplierinfo_obj = cls.env["product.supplierinfo"]
         cls.account_move_model = cls.env["account.move"]
         cls.partner = cls.env["res.partner"].create(
