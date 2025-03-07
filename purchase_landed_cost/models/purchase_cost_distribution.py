@@ -467,7 +467,7 @@ class PurchaseCostDistributionLine(models.Model):
     @api.model
     def get_action_purchase_cost_distribution(self):
         xml_id = "purchase_landed_cost.action_purchase_cost_distribution"
-        action = self.env.ref(xml_id).read()[0]
+        action = self.env["ir.actions.act_window"]._for_xml_id(xml_id)
         distributions = self.mapped("distribution")
         if len(distributions) == 1:
             form = self.env.ref("purchase_landed_cost.purchase_cost_distribution_form")
