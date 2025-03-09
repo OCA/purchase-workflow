@@ -32,7 +32,6 @@ msgstr ""
 #. module: purchase_discount
 #: model:ir.model.fields,field_description:purchase_discount.field_product_supplierinfo__discount
 #: model:ir.model.fields,field_description:purchase_discount.field_purchase_order_line__discount
-#: model:ir.model.fields,field_description:purchase_discount.field_purchase_report__discount
 msgid "Discount (%)"
 msgstr ""
 
@@ -72,6 +71,11 @@ msgstr ""
 msgid ""
 "This value will be used as the default one, for each new supplierinfo line "
 "depending on that supplier."
+msgstr ""
+
+#. module: purchase_discount
+#: model:ir.model.fields,field_description:purchase_discount.field_purchase_report__discount
+msgid "Total discount"
 msgstr ""
 
 #. module: purchase_discount
