@@ -38,7 +38,6 @@ msgstr "Standardlieferantenrabatt (%)"
 #. module: purchase_discount
 #: model:ir.model.fields,field_description:purchase_discount.field_product_supplierinfo__discount
 #: model:ir.model.fields,field_description:purchase_discount.field_purchase_order_line__discount
-#: model:ir.model.fields,field_description:purchase_discount.field_purchase_report__discount
 msgid "Discount (%)"
 msgstr "Rabatt (%)"
 
@@ -81,6 +80,11 @@ msgid ""
 msgstr ""
 "Dieser Wert wird als Standardwert für jede neue Lieferanten-Info-Zeile in "
 "Zusammenhang mit diesem Lieferanten verwendet."
+
+#. module: purchase_discount
+#: model:ir.model.fields,field_description:purchase_discount.field_purchase_report__discount
+msgid "Total discount"
+msgstr ""
 
 #. module: purchase_discount
 #: model_terms:ir.ui.view,arch_db:purchase_discount.res_partner_form_view
