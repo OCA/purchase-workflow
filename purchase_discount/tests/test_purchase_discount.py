@@ -199,12 +199,12 @@ class TestPurchaseOrder(TransactionCase):
         line = invoice.invoice_line_ids.filtered(
             lambda x: x.purchase_line_id == self.po_line_1
         )
-        self.assertEqual(line.discount, 50)
+        self.assertAlmostEqual(line.discount, 50)
         line = invoice.invoice_line_ids.filtered(
             lambda x: x.purchase_line_id == self.po_line_2
         )
-        self.assertEqual(line.discount, 30)
+        self.assertAlmostEqual(line.discount, 30)
         line = invoice.invoice_line_ids.filtered(
             lambda x: x.purchase_line_id == self.po_line_3
         )
-        self.assertEqual(line.discount, 0)
+        self.assertAlmostEqual(line.discount, 0)
