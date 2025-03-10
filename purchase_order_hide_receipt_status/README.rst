@@ -57,6 +57,13 @@ Authors
 
 * Quartile Limited
 
+Contributors
+------------
+
+-  `Sodexis <https://www.sodexis.com>`__:
+
+   -  Sowrirajan <sowrirajan@sodexis.com>
+
 Maintainers
 -----------
 
