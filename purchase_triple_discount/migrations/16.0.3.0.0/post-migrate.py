@@ -23,7 +23,7 @@ def compute_purchase_line_discount(env):
         openupgrade.logged_query(
             env.cr,
             """
-            UPDATE prochase_order_line
+            UPDATE purchase_order_line
             SET discount = %s
             WHERE id = %s;
         """,
