@@ -32,7 +32,6 @@ msgstr ""
 
 #. module: purchase_request
 #. odoo-python
-#: code:addons/purchase_request/models/purchase_order.py:0
 #: code:addons/purchase_request/models/purchase_request_allocation.py:0
 msgid ""
 "<li><b>%(product_name)s</b>: Received quantity %(product_qty)s "
@@ -40,16 +39,6 @@ msgid ""
 msgstr ""
 "<li><b>%(product_name)s</b>: Mottagen kvantitet %(product_qty)s "
 "%(product_uom)s</li>"
-
-#. module: purchase_request
-#. odoo-python
-#: code:addons/purchase_request/models/stock_move_line.py:0
-msgid ""
-"<li><b>%(product_name)s</b>: Transferred quantity %(product_qty)s "
-"%(product_uom)s</li>"
-msgstr ""
-"<li><b>%(product_name)s</b>: Överförd mängd %(product_qty)s %(product_uom)s</"
-"li>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
@@ -1020,14 +1009,19 @@ msgstr "RFQ/PO Antal"
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/models/stock_move_line.py:0
-msgid "Receipt confirmation %(picking_name)s for your Request %(request_name)s"
+msgid "Receipt confirmation for Request {name}"
 msgstr ""
-"Mottagningsbekräftelse %(picking_name)s för din förfrågan %(request_name)s"
 
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/models/stock_move_line.py:0
-msgid "Receipt confirmation for Request %(name)s"
+msgid "Receipt confirmation {picking_name} for your Request {request_name}"
+msgstr ""
+
+#. module: purchase_request
+#. odoo-python
+#: code:addons/purchase_request/models/purchase_order.py:0
+msgid "Received quantity"
 msgstr ""
 
 #. module: purchase_request
@@ -1159,8 +1153,8 @@ msgstr "Beställningsorder för service Line"
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/models/purchase_order.py:0
-msgid "Service confirmation for Request %s"
-msgstr "Servicebekräftelse för begäran %s"
+msgid "Service confirmation for Request {request_name}"
+msgstr ""
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line_make_purchase_order_item__keep_description
@@ -1267,31 +1261,25 @@ msgstr ""
 #. odoo-python
 #: code:addons/purchase_request/models/stock_move_line.py:0
 msgid ""
-"The following requested items from Purchase Request %(request_name)s have "
-"now been received in %(location_name)s using Picking %(picking_name)s:"
+"The following requested items from Purchase Request {request_name} have now "
+"been received in {location_name} using Picking {picking_name}:"
 msgstr ""
-"Följande begärda artiklar från inköpsbegäran %(request_name)s har nu "
-"mottagits i %(location_name)s med hjälp av plockning %(picking_name)s:"
 
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/models/stock_move_line.py:0
 msgid ""
-"The following requested items from Purchase Request %(request_name)s "
-"requested by %(requestor)s have now been received in %(location_name)s:"
+"The following requested items from Purchase Request {request_name} requested "
+"by {requestor} have now been received in {location_name}:"
 msgstr ""
-"Följande begärda artiklar från inköpsbegäran %(request_name)s begärd av "
-"%(requestor)s har nu mottagits i %(location_name)s:"
 
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/models/purchase_order.py:0
 msgid ""
-"The following requested services from Purchase Request %(request_name)s "
-"requested by %(requestor)s have now been received:"
+"The following requested services from Purchase Request {request_name} "
+"requested by {requestor} have now been received:"
 msgstr ""
-"Följande begärda tjänster från inköpsorder %(request_name)s begärd av "
-"%(requestor)s har nu mottagits:"
 
 #. module: purchase_request
 #. odoo-python
@@ -1330,6 +1318,12 @@ msgstr "Total beräknad kostnad"
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_line_details
 msgid "Tracking"
 msgstr "Spårning"
+
+#. module: purchase_request
+#. odoo-python
+#: code:addons/purchase_request/models/stock_move_line.py:0
+msgid "Transferred quantity"
+msgstr ""
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__activity_exception_decoration
@@ -1451,6 +1445,42 @@ msgstr "Du måste välja rader från samma Plocktyp."
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
 msgid "You have to select lines from the same company."
 msgstr "Du måste välja linjer från samma bolag."
+
+#~ msgid ""
+#~ "<li><b>%(product_name)s</b>: Transferred quantity %(product_qty)s "
+#~ "%(product_uom)s</li>"
+#~ msgstr ""
+#~ "<li><b>%(product_name)s</b>: Överförd mängd %(product_qty)s "
+#~ "%(product_uom)s</li>"
+
+#~ msgid ""
+#~ "Receipt confirmation %(picking_name)s for your Request %(request_name)s"
+#~ msgstr ""
+#~ "Mottagningsbekräftelse %(picking_name)s för din förfrågan %(request_name)s"
+
+#~ msgid "Service confirmation for Request %s"
+#~ msgstr "Servicebekräftelse för begäran %s"
+
+#~ msgid ""
+#~ "The following requested items from Purchase Request %(request_name)s have "
+#~ "now been received in %(location_name)s using Picking %(picking_name)s:"
+#~ msgstr ""
+#~ "Följande begärda artiklar från inköpsbegäran %(request_name)s har nu "
+#~ "mottagits i %(location_name)s med hjälp av plockning %(picking_name)s:"
+
+#~ msgid ""
+#~ "The following requested items from Purchase Request %(request_name)s "
+#~ "requested by %(requestor)s have now been received in %(location_name)s:"
+#~ msgstr ""
+#~ "Följande begärda artiklar från inköpsbegäran %(request_name)s begärd av "
+#~ "%(requestor)s har nu mottagits i %(location_name)s:"
+
+#~ msgid ""
+#~ "The following requested services from Purchase Request %(request_name)s "
+#~ "requested by %(requestor)s have now been received:"
+#~ msgstr ""
+#~ "Följande begärda tjänster från inköpsorder %(request_name)s begärd av "
+#~ "%(requestor)s har nu mottagits:"
 
 #~ msgid "Analytic Distribution Search"
 #~ msgstr "Objekt distributionssökning"
