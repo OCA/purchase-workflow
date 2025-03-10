@@ -14,8 +14,8 @@ msgstr ""
 "POT-Creation-Date: 2016-11-17 03:38+0000\n"
 "PO-Revision-Date: 2024-11-11 13:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
-"Language-Team: Italian (http://www.transifex.com/oca/"
-"OCA-purchase-workflow-10-0/language/it/)\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-purchase-"
+"workflow-10-0/language/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,23 +35,12 @@ msgstr ""
 
 #. module: purchase_request
 #. odoo-python
-#: code:addons/purchase_request/models/purchase_order.py:0
 #: code:addons/purchase_request/models/purchase_request_allocation.py:0
 msgid ""
 "<li><b>%(product_name)s</b>: Received quantity %(product_qty)s "
 "%(product_uom)s</li>"
 msgstr ""
 "<li><b>%(product_name)s</b>: Quantità ricevuta %(product_qty)s "
-"%(product_uom)s</li>"
-
-#. module: purchase_request
-#. odoo-python
-#: code:addons/purchase_request/models/stock_move_line.py:0
-msgid ""
-"<li><b>%(product_name)s</b>: Transferred quantity %(product_qty)s "
-"%(product_uom)s</li>"
-msgstr ""
-"<li><b>%(product_name)s</b>: quantità trasferita %(product_qty)s "
 "%(product_uom)s</li>"
 
 #. module: purchase_request
@@ -1028,15 +1017,20 @@ msgstr "Q.tà RdP/OA"
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/models/stock_move_line.py:0
-msgid "Receipt confirmation %(picking_name)s for your Request %(request_name)s"
+msgid "Receipt confirmation for Request {name}"
 msgstr ""
-"Conferma ricezione %(picking_name)s per la vostra richiesta %(request_name)s"
 
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/models/stock_move_line.py:0
-msgid "Receipt confirmation for Request %(name)s"
-msgstr "Conferma ricevuta per la richiesta %(name)s"
+msgid "Receipt confirmation {picking_name} for your Request {request_name}"
+msgstr ""
+
+#. module: purchase_request
+#. odoo-python
+#: code:addons/purchase_request/models/purchase_order.py:0
+msgid "Received quantity"
+msgstr ""
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
@@ -1167,8 +1161,8 @@ msgstr "Riga ordine acquisto servizio"
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/models/purchase_order.py:0
-msgid "Service confirmation for Request %s"
-msgstr "Conferma del servizio per la richiesta %s"
+msgid "Service confirmation for Request {request_name}"
+msgstr ""
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line_make_purchase_order_item__keep_description
@@ -1276,32 +1270,25 @@ msgstr ""
 #. odoo-python
 #: code:addons/purchase_request/models/stock_move_line.py:0
 msgid ""
-"The following requested items from Purchase Request %(request_name)s have "
-"now been received in %(location_name)s using Picking %(picking_name)s:"
+"The following requested items from Purchase Request {request_name} have now "
+"been received in {location_name} using Picking {picking_name}:"
 msgstr ""
-"I seguenti elementi richiesti dalla richiesta di acquisto %(request_name)s "
-"sono stati ricevuti ora in %(location_name)s utilizzando il prelievo "
-"%(picking_name)s:"
 
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/models/stock_move_line.py:0
 msgid ""
-"The following requested items from Purchase Request %(request_name)s "
-"requested by %(requestor)s have now been received in %(location_name)s:"
+"The following requested items from Purchase Request {request_name} requested "
+"by {requestor} have now been received in {location_name}:"
 msgstr ""
-"I seguenti elementi richiesti dalla richiesta di acquisto %(request_name)s "
-"richiesta da %(requestor)s sono stati ricevuti ora in %(location_name)s:"
 
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/models/purchase_order.py:0
 msgid ""
-"The following requested services from Purchase Request %(request_name)s "
-"requested by %(requestor)s have now been received:"
+"The following requested services from Purchase Request {request_name} "
+"requested by {requestor} have now been received:"
 msgstr ""
-"I seguenti servizi richiesti dalla richiesta di acquisto %(request_name)s "
-"richiesta da %(requestor)s sono stati ricevuti ora:"
 
 #. module: purchase_request
 #. odoo-python
@@ -1340,6 +1327,12 @@ msgstr "Costi totali stimati"
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_line_details
 msgid "Tracking"
 msgstr "Tracciamento"
+
+#. module: purchase_request
+#. odoo-python
+#: code:addons/purchase_request/models/stock_move_line.py:0
+msgid "Transferred quantity"
+msgstr ""
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__activity_exception_decoration
@@ -1465,6 +1458,48 @@ msgstr "Bisogna selezionare le righe dallo stesso tipo di prelievo."
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
 msgid "You have to select lines from the same company."
 msgstr "Bisogna selezionare le righe della stessa azienda."
+
+#~ msgid ""
+#~ "<li><b>%(product_name)s</b>: Transferred quantity %(product_qty)s "
+#~ "%(product_uom)s</li>"
+#~ msgstr ""
+#~ "<li><b>%(product_name)s</b>: quantità trasferita %(product_qty)s "
+#~ "%(product_uom)s</li>"
+
+#~ msgid ""
+#~ "Receipt confirmation %(picking_name)s for your Request %(request_name)s"
+#~ msgstr ""
+#~ "Conferma ricezione %(picking_name)s per la vostra richiesta "
+#~ "%(request_name)s"
+
+#~ msgid "Receipt confirmation for Request %(name)s"
+#~ msgstr "Conferma ricevuta per la richiesta %(name)s"
+
+#~ msgid "Service confirmation for Request %s"
+#~ msgstr "Conferma del servizio per la richiesta %s"
+
+#~ msgid ""
+#~ "The following requested items from Purchase Request %(request_name)s have "
+#~ "now been received in %(location_name)s using Picking %(picking_name)s:"
+#~ msgstr ""
+#~ "I seguenti elementi richiesti dalla richiesta di acquisto "
+#~ "%(request_name)s sono stati ricevuti ora in %(location_name)s utilizzando "
+#~ "il prelievo %(picking_name)s:"
+
+#~ msgid ""
+#~ "The following requested items from Purchase Request %(request_name)s "
+#~ "requested by %(requestor)s have now been received in %(location_name)s:"
+#~ msgstr ""
+#~ "I seguenti elementi richiesti dalla richiesta di acquisto "
+#~ "%(request_name)s richiesta da %(requestor)s sono stati ricevuti ora in "
+#~ "%(location_name)s:"
+
+#~ msgid ""
+#~ "The following requested services from Purchase Request %(request_name)s "
+#~ "requested by %(requestor)s have now been received:"
+#~ msgstr ""
+#~ "I seguenti servizi richiesti dalla richiesta di acquisto %(request_name)s "
+#~ "richiesta da %(requestor)s sono stati ricevuti ora:"
 
 #~ msgid "Analytic Distribution Search"
 #~ msgstr "Ricerca distribuzione analitica"
