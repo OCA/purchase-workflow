@@ -8,9 +8,14 @@
         <field name="inherit_id" ref="purchase_request.view_purchase_request_form" />
         <field name="arch" type="xml">
             <button name="button_approved" position="attributes">
-                <attribute name="invisible">state != 'draft'</attribute>
+                <attribute
+                    name="invisible"
+                >state != 'draft' or validation_status in ('pending', 'rejected')</attribute>
                 <attribute name="string">Confirm</attribute>
             </button>
+            <field name="state" position="after">
+                <field name="validation_status" invisible="1" />
+            </field>
             <button name="button_to_approve" position="attributes">
                 <attribute name="invisible">1</attribute>
             </button>
