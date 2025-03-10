@@ -37,7 +37,7 @@ class PurchaseOrder(models.Model):
                 "prl_date_planned": line["date_planned"],
             }
         message += "</ul>"
-        return Markup(message)
+        return message
 
     def _purchase_request_confirm_message(self):
         request_obj = self.env["purchase.request"]
@@ -192,27 +192,27 @@ class PurchaseOrderLine(models.Model):
 
     @api.model
     def _purchase_request_confirm_done_message_content(self, message_data):
-        title = (
-            _("Service confirmation for Request %s") % (message_data["request_name"])
+        title = _("Service confirmation for Request {request_name}").format(
+            request_name=message_data["request_name"]
         )
-        message = f"<h3>{title}</h3>"
-        message += _(
-            "The following requested services from Purchase"
-            " Request %(request_name)s requested by %(requestor)s "
-            "have now been received:",
+
+        message_body = _(
+            "The following requested services from Purchase Request {request_name} "
+            "requested by {requestor} have now been received:"
+        ).format(
             request_name=message_data["request_name"],
             requestor=message_data["requestor"],
         )
-        message += "<ul>"
-        message += _(
-            "<li><b>%(product_name)s</b>: "
-            "Received quantity %(product_qty)s %(product_uom)s</li>",
-            product_name=html_escape(message_data["product_name"]),
-            product_qty=message_data["product_qty"],
-            product_uom=message_data["product_uom"],
+
+        product_line = Markup(
+            "<ul><li><b>{}</b>: " + _("Received quantity") + " {} {}</li></ul>"
+        ).format(
+            html_escape(message_data["product_name"]),
+            message_data["product_qty"],
+            html_escape(message_data["product_uom"]),
         )
-        message += "</ul>"
-        return Markup(message)
+
+        return Markup("<h3>{}</h3>{}{}").format(title, message_body, product_line)
 
     def _prepare_request_message_data(self, alloc, request_line, allocated_qty):
         return {
