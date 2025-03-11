@@ -13,7 +13,9 @@
     "installable": True,
     "depends": ["purchase_request", "base_tier_validation"],
     "data": [
-        "data/purchase_request_tier_definition.xml",
         "views/purchase_request_view.xml",
+    ],
+    "demo": [
+        "demo/tier_definition.xml",
     ],
 }
