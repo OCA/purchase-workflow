@@ -66,11 +66,11 @@ To use this module, you need to:
 
 Additional features:
 
-- You can filter the Purchase Request requesting your review through the
-  filter *Needs my Review*.
-- User with rights to confirm the Purchase Request (validate all tiers
-  that would be generated) can directly do the operation, this is, there
-  is no need for her/him to request a validation.
+-  You can filter the Purchase Request requesting your review through
+   the filter *Needs my Review*.
+-  User with rights to confirm the Purchase Request (validate all tiers
+   that would be generated) can directly do the operation, this is,
+   there is no need for her/him to request a validation.
 
 Bug Tracker
 ===========
@@ -93,10 +93,10 @@ Authors
 Contributors
 ------------
 
-- Adria Gil <adria.gil@forgeflow.com>
-- `Komit <https://komit-consulting.com>`__:
+-  Adria Gil <adria.gil@forgeflow.com>
+-  `Komit <https://komit-consulting.com>`__:
 
-  - Quan.nhm <quan.nhm@komit-consulting.com>
+   -  Quan.nhm <quan.nhm@komit-consulting.com>
 
 Other credits
 -------------
@@ -104,7 +104,7 @@ Other credits
 Images
 ~~~~~~
 
-- Enric Tobella (logo)
+-  Enric Tobella (logo)
 
 Maintainers
 -----------
