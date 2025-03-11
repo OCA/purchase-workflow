@@ -535,6 +535,18 @@ msgid "If checked, some messages have a delivery error."
 msgstr "Se selezionata, alcuni messaggi hanno un errore di consegna."
 
 #. module: purchase_request
+#: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
+#: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
+#: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
+msgid "In Progress"
+msgstr ""
+
+#. module: purchase_request
+#: model:ir.model.fields.selection,name:purchase_request.selection__purchase_request__state__in_progress
+msgid "In progress"
+msgstr ""
+
+#. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__is_editable
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__is_editable
 msgid "Is Editable"
@@ -829,8 +841,8 @@ msgstr "La richiesta di acquisto %s è già stata completata"
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
-msgid "Purchase Request %s is not approved"
-msgstr "La richiesta di acquisto %s non è approvata"
+msgid "Purchase Request %s is not approved or in progress"
+msgstr ""
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_request_allocation
@@ -1080,6 +1092,12 @@ msgstr "La richiesta è approvata"
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Request is done"
 msgstr "La richiesta è completata"
+
+#. module: purchase_request
+#: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
+#: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
+msgid "Request is in progress"
+msgstr ""
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
@@ -1458,6 +1476,9 @@ msgstr "Bisogna selezionare le righe dallo stesso tipo di prelievo."
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
 msgid "You have to select lines from the same company."
 msgstr "Bisogna selezionare le righe della stessa azienda."
+
+#~ msgid "Purchase Request %s is not approved"
+#~ msgstr "La richiesta di acquisto %s non è approvata"
 
 #~ msgid ""
 #~ "<li><b>%(product_name)s</b>: Transferred quantity %(product_qty)s "
