@@ -186,11 +186,6 @@
                                     <field name="date_required" />
                                     <field name="estimated_cost" widget="monetary" />
                                     <field name="currency_id" column_invisible="1" />
-                                    <field
-                                        name="company_id"
-                                        groups="base.group_multi_company"
-                                        widget="selection"
-                                    />
                                     <field name="cancelled" column_invisible="1" />
                                     <field name="is_editable" column_invisible="1" />
                                     <field name="purchased_qty" />
