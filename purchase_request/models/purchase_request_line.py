@@ -44,6 +44,7 @@ class PurchaseRequestLine(models.Model):
         related="request_id.company_id",
         string="Company",
         store=True,
+        index=True,
     )
     requested_by = fields.Many2one(
         comodel_name="res.users",
