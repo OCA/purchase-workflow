@@ -43,7 +43,6 @@
             </field>
             <group position="inside">
                 <filter
-                    string="PR Type"
                     name="request_type"
                     domain="[]"
                     context="{'group_by': 'request_type'}"
