@@ -22,7 +22,6 @@ class PurchaseRequest(models.Model):
     )
     request_type = fields.Many2one(
         comodel_name="purchase.request.type",
-        string="PR Type",
         ondelete="restrict",
         domain="[('company_id', 'in', [False, company_id])]",
         default=lambda self: self._default_request_type(),
