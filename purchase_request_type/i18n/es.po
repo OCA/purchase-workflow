@@ -102,12 +102,6 @@ msgid "Name"
 msgstr "Nombre"
 
 #. module: purchase_request_type
-#: model:ir.model.fields,field_description:purchase_request_type.field_purchase_request__request_type
-#: model_terms:ir.ui.view,arch_db:purchase_request_type.view_purchase_request_search
-msgid "PR Type"
-msgstr "Tipo PR"
-
-#. module: purchase_request_type
 #: model:ir.model.fields,field_description:purchase_request_type.field_purchase_request_type__picking_type_id
 #: model_terms:ir.ui.view,arch_db:purchase_request_type.view_purchase_request_type_search
 msgid "Picking Type"
@@ -135,6 +129,11 @@ msgstr "Reducir Paso"
 #: model:ir.model.fields,field_description:purchase_request_type.field_purchase_request__name
 msgid "Request Reference"
 msgstr "Referencia de petición"
+
+#. module: purchase_request_type
+#: model:ir.model.fields,field_description:purchase_request_type.field_purchase_request__request_type
+msgid "Request Type"
+msgstr "Tipo de solicitud"
 
 #. module: purchase_request_type
 #: model:ir.model.fields,field_description:purchase_request_type.field_purchase_request_type__sequence
