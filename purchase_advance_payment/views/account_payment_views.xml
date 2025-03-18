@@ -5,7 +5,7 @@
         <field name="model">account.payment</field>
         <field name="inherit_id" ref="account.view_account_payment_search" />
         <field name="arch" type="xml">
-            <filter name="transfers_filter" position="after">
+            <filter name="outbound_filter" position="after">
                 <separator />
                 <filter
                     string="Vendor Advance Payments"
@@ -13,20 +13,6 @@
                     domain="[('purchase_id', '!=', False)]"
                 />
                 <separator />
-            </filter>
-            <filter name="state_sent" position="after">
-                <filter
-                    string="Not Sent"
-                    name="state_not_sent"
-                    domain="[('is_move_sent', '=', False)]"
-                />
-            </filter>
-            <filter name="reconciled" position="after">
-                <filter
-                    string="Not Reconciled"
-                    name="reconciled"
-                    domain="[('is_reconciled', '=', False)]"
-                />
             </filter>
         </field>
     </record>
@@ -38,7 +24,7 @@
         <field name="arch" type="xml">
             <field name="partner_id" position="after">
                 <field
-                    name="is_move_sent"
+                    name="is_sent"
                     string="Payment Sent?"
                     invisible="not context.get('search_default_vendor_adv_payment_filter')"
                 />
@@ -49,7 +35,7 @@
     <record id="action_account_advance_payments_payable" model="ir.actions.act_window">
         <field name="name">Advance Payments</field>
         <field name="res_model">account.payment</field>
-        <field name="view_mode">tree,kanban,form,graph</field>
+        <field name="view_mode">list,kanban,form,graph</field>
         <field name="context">{
             'default_payment_type': 'outbound',
             'default_partner_type': 'supplier',

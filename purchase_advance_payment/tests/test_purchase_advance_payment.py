@@ -4,14 +4,16 @@
 
 from odoo import fields
 from odoo.exceptions import ValidationError
-from odoo.tests import common
+from odoo.tests import tagged
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestPurchaseAdvancePayment(common.TransactionCase):
+@tagged("post_install", "-at_install")
+class TestPurchaseAdvancePayment(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
 
         # Partners
         cls.res_partner_1 = cls.env["res.partner"].create({"name": "Wood Corner"})
@@ -534,7 +536,7 @@ class TestPurchaseAdvancePayment(common.TransactionCase):
         advance_payment_1.make_advance_payment()
         payment_1 = self.purchase_order_1.account_payment_ids
         self.assertTrue(payment_1)
-        self.assertEqual(payment_1.state, "posted")
+        self.assertEqual(payment_1.state, "in_process")
 
         # Change setting and create a second payment:
         self.env["ir.config_parameter"].sudo().set_param(
