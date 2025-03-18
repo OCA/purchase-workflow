@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
     <record id="view_account_payment_search" model="ir.ui.view">
         <field name="name">account.payment.search</field>
         <field name="model">account.payment</field>
@@ -47,7 +46,7 @@
         </field>
     </record>
 
-     <record id="action_account_advance_payments_payable" model="ir.actions.act_window">
+    <record id="action_account_advance_payments_payable" model="ir.actions.act_window">
         <field name="name">Advance Payments</field>
         <field name="res_model">account.payment</field>
         <field name="view_mode">tree,kanban,form,graph</field>
@@ -66,5 +65,4 @@
         parent="account.menu_finance_payables"
         sequence="22"
     />
-
 </odoo>
