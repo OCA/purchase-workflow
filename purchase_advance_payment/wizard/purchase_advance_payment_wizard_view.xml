@@ -8,7 +8,6 @@
             <form string="Advance Payment">
                 <group>
                     <group>
-                        <field name="order_id" invisible="1" />
                         <field
                             name="journal_id"
                             domain="[('type','in',['bank', 'cash'])]"
@@ -20,7 +19,6 @@
                             required="1"
                             options="{'no_create': True, 'no_open': True}"
                         />
-                        <field name="available_payment_method_line_ids" invisible="1" />
                         <field name="amount_total" string="Order Due Amount" />
                         <field name="currency_id" invisible="1" />
                     </group>

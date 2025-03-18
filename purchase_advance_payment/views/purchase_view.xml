@@ -24,6 +24,9 @@
                     />
                 </page>
             </notebook>
+            <field name="tax_totals" position="attributes">
+                <attribute name="colspan">2</attribute>
+            </field>
             <field name="tax_totals" position="after">
                 <div class="oe_subtotal_footer_separator oe_inline o_td_label">
                     <label for="amount_residual" />
