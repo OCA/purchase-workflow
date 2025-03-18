@@ -534,7 +534,7 @@ class TestPurchaseAdvancePayment(common.TransactionCase):
         advance_payment_1.make_advance_payment()
         payment_1 = self.purchase_order_1.account_payment_ids
         self.assertTrue(payment_1)
-        self.assertEqual(payment_1.state, "posted")
+        self.assertEqual(payment_1.state, "in_process")
 
         # Change setting and create a second payment:
         self.env["ir.config_parameter"].sudo().set_param(
