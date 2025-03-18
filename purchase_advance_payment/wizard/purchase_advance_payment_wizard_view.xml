@@ -43,7 +43,6 @@
                         <field name="date" />
                         <field name="payment_ref" />
                     </group>
-
                 </group>
                 <footer>
                     <button
