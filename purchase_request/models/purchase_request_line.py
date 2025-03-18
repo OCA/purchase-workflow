@@ -107,7 +107,9 @@ class PurchaseRequestLine(models.Model):
     purchase_state = fields.Selection(
         compute="_compute_purchase_state",
         string="Purchase Status",
-        selection=lambda self: self.env["purchase.order"]._fields["state"].selection,
+        selection=lambda self: self.env["purchase.order"]
+        ._fields["state"]
+        ._description_selection(self.env),
         store=True,
     )
     move_dest_ids = fields.One2many(
