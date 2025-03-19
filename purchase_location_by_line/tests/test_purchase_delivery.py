@@ -108,8 +108,7 @@ class TestDeliverySingle(TransactionCase):
         self.assertEqual(
             len_pickings,
             2,
-            "There must be 2 pickings for the PO when confirmed. %s found"
-            % len_pickings,
+            f"There must be 2 pickings for the PO when confirmed. {len_pickings} found",
         )
 
         sorted_pickings = sorted(self.po.picking_ids, key=lambda x: x.scheduled_date)

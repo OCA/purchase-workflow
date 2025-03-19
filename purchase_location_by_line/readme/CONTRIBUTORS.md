@@ -3,3 +3,6 @@
 - Harald Panten \<<harald.panten@sygel.es>\>
 - Juany Davila \<<juany.davila@forgeflow.com>\>
 - Manuel Regidor \<<manuel.regidor@sygel.es>\>
+- Gianmarco Conte \<<gconte@dinamicheaziendali.it>\>
+- [Binhex](https://binhex.cloud/):
+    -   Deriman Alonso
