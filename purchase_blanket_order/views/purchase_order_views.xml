@@ -31,11 +31,11 @@
         <field name="model">purchase.order</field>
         <field name="inherit_id" ref="purchase.purchase_order_form" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='order_line']//tree" position="attributes">
+            <xpath expr="//field[@name='order_line']//list" position="attributes">
                 <attribute name="create">blanket_order_id==False</attribute>
                 <field
                     name="groups"
-                    eval="[(6,0,[ref('purchase_blanket_order.purchase_blanket_orders_disable_adding_lines')])]"
+                    eval="[Command.set([ref('purchase_blanket_order.purchase_blanket_orders_disable_adding_lines')])]"
                 />
             </xpath>
         </field>

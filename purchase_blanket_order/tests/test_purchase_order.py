@@ -157,7 +157,7 @@ class TestPurchaseOrder(common.TransactionCase):
             }
         )
         po_line = po.order_line[0]
-        po_line.with_context(from_purchase_order=True).name_get()
+        po_line.with_context(from_purchase_order=True)._compute_display_name()
         po_line.onchange_product_id()
         self.assertEqual(po_line._get_eligible_bo_lines(), bo_lines)
         bo_line_assigned = self.blanket_order_line_obj.search(
@@ -193,7 +193,7 @@ class TestPurchaseOrder(common.TransactionCase):
             }
         )
         po_line = po.order_line[0]
-        po_line.with_context(from_purchase_order=True).name_get()
+        po_line.with_context(from_purchase_order=True)._compute_display_name()
         po_line.onchange_product_id()
         self.assertEqual(
             po_line._get_eligible_bo_lines(),

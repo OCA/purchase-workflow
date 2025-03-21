@@ -6,7 +6,7 @@
         <field name="name">purchase.blanket.order.tree</field>
         <field name="model">purchase.blanket.order</field>
         <field name="arch" type="xml">
-            <tree
+            <list
                 decoration-info="state in ('draft','to_approve')"
                 decoration-muted="state in ('expired')"
             >
@@ -18,7 +18,7 @@
                 <field name="validity_date" />
                 <field name="activity_ids" widget="list_activity" />
                 <field name="state" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="view_purchase_blanket_order_form" model="ir.ui.view">
@@ -141,9 +141,9 @@
                                 force_save="1"
                                 readonly="state in ('done', 'expired')"
                             >
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="sequence" widget="handle" />
-                                    <field name="name" invisible="1" />
+                                    <field name="name" column_invisible="1" />
                                     <field
                                         name="product_id"
                                         context="{'partner_id':parent.partner_id, 'quantity':original_uom_qty, 'company_id': parent.company_id}"
@@ -168,7 +168,7 @@
                                         options="{'no_create': True}"
                                     />
                                     <field name="price_subtotal" widget="monetary" />
-                                </tree>
+                                </list>
                             </field>
                             <group class="oe_subtotal_footer oe_right">
                                 <field
@@ -220,11 +220,7 @@
                         </page>
                     </notebook>
                 </sheet>
-                <div class="oe_chatter">
-                    <field name="message_follower_ids" widget="mail_followers" />
-                    <field name="activity_ids" widget="mail_activity" />
-                    <field name="message_ids" widget="mail_thread" />
-                </div>
+                <chatter />
             </form>
         </field>
     </record>
@@ -276,7 +272,7 @@
         <field name="name">Blanket Orders</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">purchase.blanket.order</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="search_view_id" ref="view_purchase_blanket_order_search" />
         <field name="domain">[]</field>
         <field name="context">{}</field>
@@ -295,15 +291,15 @@
         <field name="name">purchase.blanket.order.line.tree</field>
         <field name="model">purchase.blanket.order.line</field>
         <field name="arch" type="xml">
-            <tree create="false">
+            <list create="false">
                 <field name="sequence" widget="handle" />
-                <field name="name" invisible="1" />
+                <field name="name" column_invisible="1" />
                 <field name="order_id" />
                 <field
                     name="product_id"
                     context="{'partner_id':parent.partner_id, 'quantity':original_uom_qty, 'company_id': parent.company_id}"
                 />
-                <field name="product_uom" invisible="1" />
+                <field name="product_uom" column_invisible="1" />
                 <field name="price_unit" />
                 <field name="date_schedule" />
                 <field
@@ -316,7 +312,7 @@
                 <field name="received_uom_qty" />
                 <field name="remaining_uom_qty" />
                 <field name="activity_ids" widget="list_activity" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="purchase_blanket_order_line_form" model="ir.ui.view">
@@ -409,18 +405,14 @@
                         <page name="purchase_lines" string="Purchase Order Lines">
                             <field
                                 name="purchase_lines"
-                                mode="tree"
+                                mode="list"
                                 readonly="1"
                                 domain="[('product_id', '=', product_id)]"
                             />
                         </page>
                     </notebook>
                 </sheet>
-                <div class="oe_chatter">
-                    <field name="message_follower_ids" widget="mail_followers" />
-                    <field name="activity_ids" widget="mail_activity" />
-                    <field name="message_ids" widget="mail_thread" />
-                </div>
+                <chatter />
             </form>
         </field>
     </record>
@@ -441,7 +433,7 @@
         <field name="name">Blanket Order Lines</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">purchase.blanket.order.line</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="search_view_id" ref="purchase_blanket_order_line_search" />
     </record>
     <menuitem
