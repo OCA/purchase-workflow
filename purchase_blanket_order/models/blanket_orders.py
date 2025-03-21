@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from datetime import datetime
 
-from odoo import SUPERUSER_ID, _, api, fields, models
+from odoo import SUPERUSER_ID, api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import float_is_zero
 
@@ -232,7 +232,7 @@ class BlanketOrder(models.Model):
         for order in self:
             if order.state not in ("draft", "expired"):
                 raise UserError(
-                    _(
+                    self.env._(
                         "You can not delete an open blanket order! "
                         "Try to cancel it before."
                     )
@@ -249,12 +249,12 @@ class BlanketOrder(models.Model):
         try:
             today = fields.Date.today()
             for order in self:
-                assert order.validity_date, _("Validity date is mandatory")
-                assert order.validity_date > today, _(
+                assert order.validity_date, self.env._("Validity date is mandatory")
+                assert order.validity_date > today, self.env._(
                     "Validity date must be in the future"
                 )
-                assert order.partner_id, _("Partner is mandatory")
-                assert len(order.line_ids) > 0, _("Must have some lines")
+                assert order.partner_id, self.env._("Partner is mandatory")
+                assert len(order.line_ids) > 0, self.env._("Must have some lines")
                 order.line_ids._validate()
         except AssertionError as e:
             raise UserError(e) from e
@@ -284,7 +284,7 @@ class BlanketOrder(models.Model):
                 for po in order._get_purchase_orders():
                     if po.state not in ("cancel"):
                         raise UserError(
-                            _(
+                            self.env._(
                                 "You can not delete a blanket order with opened "
                                 "purchase orders! "
                                 "Try to cancel them before."
@@ -496,22 +496,23 @@ class BlanketOrderLine(models.Model):
         date_format = lang.date_format
         return datetime.strftime(fields.Date.from_string(date), date_format)
 
-    def name_get(self):
-        result = []
+    def _compute_display_name(self):
         if self.env.context.get("from_purchase_order"):
             for record in self:
                 res = f"[{record.order_id.name}]"
                 if record.date_schedule:
                     formatted_date = self._format_date(record.date_schedule)
-                    res += " - {}: {}".format(_("Date Scheduled"), formatted_date)
+                    res += " - {}: {}".format(
+                        self.env._("Date Scheduled"), formatted_date
+                    )
                 res += " ({}: {} {})".format(
-                    _("remaining"),
+                    self.env._("remaining"),
                     record.remaining_uom_qty,
                     record.product_uom.name,
                 )
-                result.append((record.id, res))
-            return result
-        return super().name_get()
+                record.display_name = res
+        else:
+            return super()._compute_display_name()
 
     def _get_display_price(self, product):
         seller = product._select_seller(
@@ -624,8 +625,10 @@ class BlanketOrderLine(models.Model):
     def _validate(self):
         try:
             for line in self:
-                assert line.price_unit > 0.0, _("Price must be greater than zero")
-                assert line.original_uom_qty > 0.0, _(
+                assert line.price_unit > 0.0, self.env._(
+                    "Price must be greater than zero"
+                )
+                assert line.original_uom_qty > 0.0, self.env._(
                     "Quantity must be greater than zero"
                 )
         except AssertionError as e:

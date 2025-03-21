@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from datetime import date, timedelta
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -27,7 +27,7 @@ class PurchaseOrder(models.Model):
         for order in self:
             if order._check_exchausted_blanket_order_line():
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "Cannot confirm order %s as one of the lines refers "
                         "to a blanket order that has no remaining quantity."
                     )
@@ -41,7 +41,7 @@ class PurchaseOrder(models.Model):
             if line.blanket_order_line:
                 if line.blanket_order_line.partner_id != self.partner_id:
                     raise ValidationError(
-                        _(
+                        self.env._(
                             "The vendor must be equal to the blanket order"
                             " lines vendor"
                         )
@@ -55,7 +55,7 @@ class PurchaseOrder(models.Model):
                 for line in rec.order_line.filtered(lambda x: x.blanket_order_line)
             ):
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "The currency of the blanket order must match with that "
                         "of the purchase order."
                     )
@@ -138,7 +138,6 @@ class PurchaseOrderLine(models.Model):
             return self.get_assigned_bo_line()
         return res
 
-    @api.depends("product_qty", "product_uom")
     def _compute_price_unit_and_date_planned_and_name(self):
         res = super()._compute_price_unit_and_date_planned_and_name()
         for rec in self:
@@ -184,7 +183,7 @@ class PurchaseOrderLine(models.Model):
                 and not line.env.context.get("assigned_from_creation", False)
             ):
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "Schedule dates defined on the Purchase Order Line "
                         "and on the Blanket Order Line do not match."
                     )
@@ -196,7 +195,7 @@ class PurchaseOrderLine(models.Model):
             blanket_currency = line.blanket_order_line.order_id.currency_id
             if blanket_currency and line.order_id.currency_id != blanket_currency:
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "The currency of the blanket order must match with that "
                         "of the purchase order."
                     )
