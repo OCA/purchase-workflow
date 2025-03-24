@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo.exceptions import ValidationError
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests import Form, TransactionCase
 
 
 class TestPurchaseManualCurrency(TransactionCase):
@@ -28,6 +28,11 @@ class TestPurchaseManualCurrency(TransactionCase):
             self.purchase_order.order_line[0].subtotal_company_currency,
         )
         self.assertFalse(self.purchase_order.currency_diff)
+
+        # Activate Multi Currency Group
+        multi_currency_group = self.env.ref("base.group_multi_currency")
+        self.env.user.groups_id |= multi_currency_group
+
         # Change currency
         self.assertEqual(self.purchase_order.manual_currency_rate, 0.0)
         with Form(self.purchase_order) as p:
