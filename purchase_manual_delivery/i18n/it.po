@@ -1,0 +1,399 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_manual_delivery
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-07-22 08:58+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
+
+#. module: purchase_manual_delivery
+#: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.view_create_stock_picking
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: purchase_manual_delivery
+#: model:ir.model,name:purchase_manual_delivery.model_res_company
+msgid "Companies"
+msgstr "Aziende"
+
+#. module: purchase_manual_delivery
+#: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.purchase_order_view_form_inherit
+msgid "Confirm Order"
+msgstr "Conferma ordine"
+
+#. module: purchase_manual_delivery
+#: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.purchase_order_view_form_inherit
+msgid "Create Incoming Shipment"
+msgstr "Crea spedizione in ingresso"
+
+#. module: purchase_manual_delivery
+#: model:ir.actions.act_window,name:purchase_manual_delivery.action_create_manual_stock_picking
+msgid "Create Manual Stock Picking"
+msgstr "Crea prelievo di magazzino manuale"
+
+#. module: purchase_manual_delivery
+#: model:ir.model,name:purchase_manual_delivery.model_create_stock_picking_wizard
+msgid "Create Manual Stock Picking Wizard"
+msgstr "Procedura guidata crea prelievo di magazzino manuale"
+
+#. module: purchase_manual_delivery
+#: model:ir.model,name:purchase_manual_delivery.model_create_stock_picking_wizard_line
+msgid "Create Manual Stock Picking Wizard Line"
+msgstr "Riga procedura guidata crea prelievo di magazzino manuale"
+
+#. module: purchase_manual_delivery
+#: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.view_create_stock_picking
+msgid "Create Stock Picking"
+msgstr "Crea prelievo di magazzino"
+
+#. module: purchase_manual_delivery
+#: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.view_create_stock_picking
+msgid "Create and View Picking"
+msgstr "Crea e visualizza prelievo"
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard__create_uid
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard__create_date
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__currency_id
+msgid "Currency"
+msgstr "Valuta"
+
+#. module: purchase_manual_delivery
+#: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.res_config_settings_view_form
+msgid "Deliveries on purchase orders should be created manually."
+msgstr "Le consegne negli ordini di acquisto devono essere create manualmente."
+
+#. module: purchase_manual_delivery
+#: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.res_config_settings_view_form
+msgid "Delivery"
+msgstr "Consegna"
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,help:purchase_manual_delivery.field_create_stock_picking_wizard_line__date_planned
+msgid ""
+"Delivery date expected from vendor. This date respectively defaults to "
+"vendor pricelist lead time then today's date."
+msgstr ""
+"Data consegna attesa dal fornitore. Questa data corrisponde al tempo di "
+"attesa predefinito del fornitore dalla data odierna."
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__name
+msgid "Description"
+msgstr "Descrizione"
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard__location_dest_id
+msgid "Destination Location"
+msgstr "Ubicazione di destinazione"
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard__display_name
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: purchase_manual_delivery
+#: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.view_create_stock_picking
+msgid "Existing Qty"
+msgstr "Q.tà esistente"
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__existing_qty
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_purchase_order_line__existing_qty
+msgid "Existing Quantity"
+msgstr "Quantità esistente"
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__date_planned
+msgid "Expected Arrival"
+msgstr "Arrivo atteso"
+
+#. module: purchase_manual_delivery
+#: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.view_purchase_order_unreceived_line_filter
+msgid "Group By"
+msgstr "Raggruppa per"
+
+#. module: purchase_manual_delivery
+#: model_terms:ir.actions.act_window,help:purchase_manual_delivery.action_order_line_delivery_tree
+msgid "Here is a list of each purchase order line to be received."
+msgstr "Ecco un elenco di ogni linea di ordine di acquisto da ricevere."
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard__id
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_manual_delivery
+#: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.res_config_settings_view_form
+msgid "If active, Receipt of purchase orders should be manual created."
+msgstr ""
+"Se selezionata, la ricevuta degli ordini di acquisto deve essere creata "
+"manualmente."
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard____last_update
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard__write_uid
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard__write_date
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard__line_ids
+msgid "Lines"
+msgstr "Righe"
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,help:purchase_manual_delivery.field_create_stock_picking_wizard__location_dest_id
+msgid "Location where the system will stock the received products."
+msgstr "Ubicazione dove il sistema posizionerà i prodotti ricevuti."
+
+#. module: purchase_manual_delivery
+#: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.res_config_settings_view_form
+msgid "Manual Delivery"
+msgstr "Consegna manuale"
+
+#. module: purchase_manual_delivery
+#: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.view_create_stock_picking
+msgid "Ordered Qty"
+msgstr "Q.tà ordinata"
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_purchase_order_line__pending_to_receive
+msgid "Pending Qty to Receive"
+msgstr "Q.tà da ricevere in attesa"
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_purchase_order__pending_to_receive
+msgid "Pending To Receive"
+msgstr "Da ricevere in attesa"
+
+#. module: purchase_manual_delivery
+#: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.view_purchase_order_unreceived_line_filter
+msgid "Pending to receive"
+msgstr "Da ricevere in attesa"
+
+#. module: purchase_manual_delivery
+#: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.view_create_stock_picking
+msgid "Picking Scheduled Date"
+msgstr "Data prelievo pianificato"
+
+#. module: purchase_manual_delivery
+#. odoo-python
+#: code:addons/purchase_manual_delivery/wizard/create_manual_stock_picking.py:0
+#, python-format
+msgid "Please select one partner at a time"
+msgstr "Si prega di selezionare un partner alla volta"
+
+#. module: purchase_manual_delivery
+#. odoo-python
+#: code:addons/purchase_manual_delivery/wizard/create_manual_stock_picking.py:0
+#, python-format
+msgid "Please select one purchase order at a time"
+msgstr "Si prega di selezionare un ordine di acquisto alla volta"
+
+#. module: purchase_manual_delivery
+#: model:ir.model,name:purchase_manual_delivery.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr "Impostazioni raggruppamento approvvigionamento acquisti"
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__product_id
+msgid "Product"
+msgstr "Prodotto"
+
+#. module: purchase_manual_delivery
+#: model:ir.actions.act_window,name:purchase_manual_delivery.action_order_line_delivery_tree
+#: model:ir.ui.menu,name:purchase_manual_delivery.menu_delivery_purchase_order_lines
+msgid "Purchase Manual Receipt"
+msgstr "Ricevuta manuale acquisto"
+
+#. module: purchase_manual_delivery
+#: model:ir.model,name:purchase_manual_delivery.model_purchase_order
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard__purchase_id
+#: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.view_purchase_order_unreceived_line_filter
+msgid "Purchase Order"
+msgstr "Ordine di acquisto"
+
+#. module: purchase_manual_delivery
+#: model:ir.model,name:purchase_manual_delivery.model_purchase_order_line
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__purchase_order_line_id
+msgid "Purchase Order Line"
+msgstr "Riga ordine di acquisto"
+
+#. module: purchase_manual_delivery
+#: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.view_purchase_order_unreceived_line_filter
+msgid ""
+"Purchase Order Lines that are confirmed or done and an incoming shipment is "
+"created to satisfy them"
+msgstr ""
+"Righe ordine acquisto che sono confermate o evase e viene creata una "
+"spedizione in ingresso per soddisfarle"
+
+#. module: purchase_manual_delivery
+#: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.view_purchase_order_unreceived_line_filter
+msgid ""
+"Purchase Order Lines that are confirmed or done and no incoming shipment is "
+"created to satisfy them"
+msgstr ""
+"Righe ordine acquisto che sono confermate o evase e non viene creata una "
+"spedizione in ingresso per soddisfarle"
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_purchase_order__manual_delivery
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_res_company__purchase_manual_delivery
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_res_config_settings__purchase_manual_delivery
+msgid "Purchase manual delivery?"
+msgstr "Consegna manuale acquisto?"
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__product_qty
+#: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.view_create_stock_picking
+msgid "Quantity"
+msgstr "Quantità"
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,help:purchase_manual_delivery.field_create_stock_picking_wizard_line__existing_qty
+#: model:ir.model.fields,help:purchase_manual_delivery.field_purchase_order_line__existing_qty
+msgid "Quantity already planned or shipped (stock movements already created)"
+msgstr "Quantità già programmata o spedita (movimenti di magazzino già creati)"
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__qty
+msgid "Quantity to Receive"
+msgstr "Quantità da ricevere"
+
+#. module: purchase_manual_delivery
+#: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.view_purchase_order_unreceived_line_filter
+msgid "Reception confirmed"
+msgstr "Ricezione confermata"
+
+#. module: purchase_manual_delivery
+#: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.view_create_stock_picking
+msgid "Remaining Qty"
+msgstr "Q.tà rimanente"
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__remaining_qty
+msgid "Remaining Quantity"
+msgstr "Quantità rimanente"
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard__scheduled_date
+msgid "Scheduled Date"
+msgstr "Data schedulata"
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,help:purchase_manual_delivery.field_create_stock_picking_wizard__scheduled_date
+msgid ""
+"Scheduled time for the first part of the shipment to be processed. Setting "
+"manually a value here would set it as expected date for all the stock moves."
+msgstr ""
+"Data pianificata per la lavorazione della prima parte della spedizione. "
+"Impostare qui manualmente un valore lo imposterà come data prevista per "
+"tutti i movimenti di magazzino."
+
+#. module: purchase_manual_delivery
+#: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.view_purchase_order_unreceived_line_filter
+msgid "Search Undelivered Lines"
+msgstr "Ricerca righe non consegnate"
+
+#. module: purchase_manual_delivery
+#. odoo-python
+#: code:addons/purchase_manual_delivery/wizard/create_manual_stock_picking.py:0
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard__picking_id
+#, python-format
+msgid "Stock Picking"
+msgstr "Prelievo di magazzino"
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__taxes_id
+msgid "Taxes"
+msgstr "Imposte"
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,help:purchase_manual_delivery.field_purchase_order_line__pending_to_receive
+msgid "There is pending quantity to receive not yet planned"
+msgstr "Ci sono quantità in attesa da ricevere non ancora pianficate"
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,help:purchase_manual_delivery.field_create_stock_picking_wizard_line__qty
+msgid "This is the quantity taken into account to create the picking"
+msgstr "Questa è la quantità presa in considerazione per creare il prelievo"
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__price_unit
+msgid "Unit Price"
+msgstr "Prezzo unitario"
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__product_uom
+msgid "Unit of Measure"
+msgstr "Unità di misura"
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard__partner_id
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__partner_id
+msgid "Vendor"
+msgstr "Fornitore"
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__wizard_id
+msgid "Wizard"
+msgstr "Procedura guidata"
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,help:purchase_manual_delivery.field_create_stock_picking_wizard_line__partner_id
+msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
+msgstr ""
+"Un fornitore può essere trovato per nome, codice fiscale, e-mail o "
+"riferimento interno."
+
+#. module: purchase_manual_delivery
+#. odoo-python
+#: code:addons/purchase_manual_delivery/wizard/create_manual_stock_picking.py:0
+#, python-format
+msgid ""
+"You can not receive more than the remaining quantity. If you need to do so, "
+"please edit the purchase order first."
+msgstr ""
+"Non è possibile ricever più della quantità rimanente. Se è necessario, "
+"modificare prima l'ordine di acquisto."
+
+#~ msgid "Purchase Order Lines"
+#~ msgstr "Righe ordine di acquisto"
+
+#~ msgid "Config Settings"
+#~ msgstr "Impostazioni configurazione"

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.manual.delivery</field>
+        <field name="model">res.config.settings</field>
+        <field
+            name="inherit_id"
+            ref="purchase.res_config_settings_view_form_purchase"
+        />
+        <field name="arch" type="xml">
+            <block name="matrix_setting_container" position="after">
+                <block
+                    title="Delivery"
+                    name="purchase_manual_delivery_settings_container"
+                >
+                    <setting
+                        id="purchase_manual_delivery"
+                        title="If active, Receipt of purchase orders should be manual created."
+                        help="Deliveries on purchase orders should be created manually by default."
+                    >
+                        <field
+                            name="purchase_manual_delivery"
+                            string="Manual Delivery"
+                        />
+                    </setting>
+                </block>
+            </block>
+        </field>
+    </record>
+</odoo>

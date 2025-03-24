@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="purchase_order_line_tree" model="ir.ui.view">
+        <field name="model">purchase.order.line</field>
+        <field name="inherit_id" ref="purchase.purchase_order_line_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="/list" position="attributes">
+                <attribute
+                    name="decoration-info"
+                >state == 'purchase' and pending_to_receive</attribute>
+            </xpath>
+            <field name="product_qty" position="after">
+                <field name="qty_in_receipt" />
+            </field>
+            <field name="date_planned" position="after">
+                <field name="pending_to_receive" optional="hide" />
+            </field>
+        </field>
+    </record>
+
+    <record id="purchase_order_line_search" model="ir.ui.view">
+        <field name="model">purchase.order.line</field>
+        <field name="inherit_id" ref="purchase.purchase_order_line_search" />
+        <field name="arch" type="xml">
+            <group position="before">
+                <separator />
+                <filter
+                    string="Reception confirmed"
+                    name="received"
+                    domain="[('pending_to_receive','=', False), ('state', '=', 'purchase')]"
+                    help="Purchase Order Lines that are confirmed or done and an incoming shipment is created to satisfy them"
+                />
+                <filter
+                    string="Pending to receive"
+                    name="unreceived"
+                    domain="[('pending_to_receive','=', True), ('state', '=', 'purchase')]"
+                    help="Purchase Order Lines that are confirmed or done and no incoming shipment is created to satisfy them"
+                />
+            </group>
+        </field>
+    </record>
+</odoo>
