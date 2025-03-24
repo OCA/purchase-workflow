@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="name">purchase.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='currency_id']" position="after">
+                <field name="is_manual" invisible="1" />
+                <label
+                    for="manual_currency"
+                    groups="base.group_multi_currency"
+                    invisible="not is_manual"
+                />
+                <div groups="base.group_multi_currency" invisible="not is_manual">
+                    <field name="manual_currency" readonly="state != 'draft'" />
+                    <label for="manual_currency_rate" invisible='1' />
+                    <div class="o_row" invisible="not manual_currency">
+                        <field
+                            name="manual_currency_rate"
+                            readonly="state != 'draft'"
+                        />
+                        <field
+                            name="type_currency"
+                            required="manual_currency"
+                            readonly="state != 'draft'"
+                        />
+                        <button
+                            aria-label="Opened"
+                            type="object"
+                            name="action_refresh_currency"
+                            class="btn-link"
+                            invisible="state != 'draft'"
+                        >
+                            <i title="Update Currency" class="fa fa-fw fa-refresh" />
+                        </button>
+                    </div>
+                </div>
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']//tree/field[@name='price_subtotal']"
+                position="after"
+            >
+                <field name="subtotal_company_currency" />
+                <field name="company_currency_id" invisible="1" />
+            </xpath>
+            <xpath expr="//field[@name='tax_totals']" position="before">
+                <field name="total_company_currency" invisible="not currency_diff" />
+                <field name="company_currency_id" invisible="1" />
+                <field name="currency_diff" invisible="1" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

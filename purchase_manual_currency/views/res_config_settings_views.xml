@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form_purchase" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.purchase</field>
+        <field name="model">res.config.settings</field>
+        <field
+            name="inherit_id"
+            ref="purchase.res_config_settings_view_form_purchase"
+        />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//block[@name='invoicing_settings_container']"
+                position="inside"
+            >
+                <div class="col-xs-12 col-md-6 o_setting_box">
+                    <setting title="Bill Manual Currency" id="bill_manual_currency">
+                            <field
+                            name="manual_currency_po_inv"
+                            class="o_light_label mt16"
+                            widget="radio"
+                        />
+                    </setting>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
