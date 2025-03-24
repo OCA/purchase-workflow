@@ -3,7 +3,7 @@
 
 {
     "name": "Purchase Stock Manual Currency",
-    "version": "15.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Purchase Management",
     "summary": "Extends manual currency from purchase to stock moves",
     "author": "ForgeFlow, Odoo Community Association (OCA)",

@@ -12,21 +12,26 @@ class StockMove(models.Model):
         # price unit to the company currency by using the manual rate, instead
         # of the default rate.
         self.ensure_one()
-        price_company_curr = super()._get_price_unit()
+        base_price = super()._get_price_unit()
+        if not isinstance(base_price, dict):
+            base_price = {self.env["stock.lot"]: base_price}
         p_order = self.purchase_line_id.order_id
         if p_order and p_order.manual_currency:
             company_curr = p_order.company_id.currency_id
             po_curr = p_order.currency_id
             date = fields.Date.context_today(self)
-            # Convert the price back to the PO's currency
-            price_po_curr = company_curr._convert(
-                price_company_curr, po_curr, p_order.company_id, date, round=False
-            )
-            # Convert the price to the company currency, using the manual rate
-            rate = (
-                p_order.manual_currency_rate
-                if p_order.type_currency == "inverse_company_rate"
-                else (1.0 / p_order.manual_currency_rate)
-            )
-            price_company_curr = price_po_curr * rate
-        return price_company_curr
+            converted_dict = {}
+            for lot, cost_val in base_price.items():
+                # Convert from company currency to PO currency
+                price_po_curr = company_curr._convert(
+                    cost_val, po_curr, p_order.company_id, date, round=False
+                )
+                # Convert the price to the company currency, using the manual rate
+                rate = (
+                    p_order.manual_currency_rate
+                    if p_order.type_currency == "inverse_company_rate"
+                    else (1.0 / p_order.manual_currency_rate)
+                )
+                converted_dict[lot] = price_po_curr * rate
+            return converted_dict
+        return base_price
