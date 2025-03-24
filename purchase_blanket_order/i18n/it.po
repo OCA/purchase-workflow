@@ -1,0 +1,956 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_blanket_order
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-04-15 10:37+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: purchase_blanket_order
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.report_blanketorder_document
+msgid "<span>Blanket Order # </span>"
+msgstr "<span>Ordine aperto #</span>"
+
+#. module: purchase_blanket_order
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.report_blanketorder_document
+msgid "<strong>Currency:</strong>"
+msgstr "<strong>Valuta:</strong>"
+
+#. module: purchase_blanket_order
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.report_blanketorder_document
+msgid "<strong>Payment Terms:</strong>"
+msgstr "<strong>Termini di pagamento:</strong>"
+
+#. module: purchase_blanket_order
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.report_blanketorder_document
+msgid "<strong>Purchase person:</strong>"
+msgstr "<strong>Referente acquisti:</strong>"
+
+#. module: purchase_blanket_order
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.report_blanketorder_document
+msgid "<strong>Subtotal</strong>"
+msgstr "<strong>Subtotale</strong>"
+
+#. module: purchase_blanket_order
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.report_blanketorder_document
+msgid "<strong>Total</strong>"
+msgstr "<strong>Totale</strong>"
+
+#. module: purchase_blanket_order
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.report_blanketorder_document
+msgid "<strong>Validity Date:</strong>"
+msgstr "<strong>Data di validità:</strong>"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__message_needaction
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__message_needaction
+msgid "Action Needed"
+msgstr "Azione richiesta"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__activity_ids
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__activity_ids
+msgid "Activities"
+msgstr "Attività"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__activity_exception_decoration
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Decorazione eccezione attività"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__activity_state
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__activity_state
+msgid "Activity State"
+msgstr "Stato attività"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__activity_type_icon
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Icona tipo attività"
+
+#. module: purchase_blanket_order
+#. odoo-python
+#: code:addons/purchase_blanket_order/wizard/create_purchase_orders.py:0
+#, python-format
+msgid "All lines have already been completed."
+msgstr "Tutte le righe sono già state completate."
+
+#. module: purchase_blanket_order
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.report_blanketorder_document
+msgid "Amount"
+msgstr "Valore"
+
+#. module: purchase_blanket_order
+#. odoo-python
+#: code:addons/purchase_blanket_order/wizard/create_purchase_orders.py:0
+#, python-format
+msgid "An order can't be empty"
+msgstr "Un ordine non può essere vuoto"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__message_attachment_count
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__message_attachment_count
+msgid "Attachment Count"
+msgstr "Conteggio allegati"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_wizard_line__blanket_line_id
+msgid "Blanket Line"
+msgstr "Riga ordine aperto"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_wizard__blanket_order_id
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_form
+msgid "Blanket Order"
+msgstr "Ordine aperto"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_order_line__blanket_order_line
+msgid "Blanket Order Line"
+msgstr "Riga ordine aperto"
+
+#. module: purchase_blanket_order
+#: model:ir.actions.act_window,name:purchase_blanket_order.act_open_purchase_blanket_order_lines_view_tree
+#: model:ir.ui.menu,name:purchase_blanket_order.menu_purchase_blanket_order_line
+msgid "Blanket Order Lines"
+msgstr "Righe ordine aperto"
+
+#. module: purchase_blanket_order
+#: model:ir.model,name:purchase_blanket_order.model_purchase_blanket_order_wizard
+msgid "Blanket Order Wizard"
+msgstr "Procedura guidata ordine aperto"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order__date_start
+msgid "Blanket Order starting date."
+msgstr "Data inizio ordine aperto."
+
+#. module: purchase_blanket_order
+#: model:ir.actions.act_window,name:purchase_blanket_order.act_open_purchase_blanket_order_view
+#: model:ir.ui.menu,name:purchase_blanket_order.menu_purchase_blanket_order_config
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.purchase_config_settings_form_view
+msgid "Blanket Orders"
+msgstr "Ordini aperti"
+
+#. module: purchase_blanket_order
+#. odoo-python
+#: code:addons/purchase_blanket_order/wizard/create_purchase_orders.py:0
+#, python-format
+msgid ""
+"Can not create Purchase Order from Blanket Order lines with different "
+"currencies"
+msgstr ""
+"Non si possono creare ordini di acquisto da righe ordine aperto con valute "
+"diverse"
+
+#. module: purchase_blanket_order
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_create_purchase_order
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_form
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__cancelled
+msgid "Cancelled"
+msgstr "Annullato"
+
+#. module: purchase_blanket_order
+#. odoo-python
+#: code:addons/purchase_blanket_order/models/purchase_order.py:0
+#, python-format
+msgid ""
+"Cannot confirm order %s as one of the lines refers to a blanket order that "
+"has no remaining quantity."
+msgstr ""
+"Non è possibile confermare l'ordine %s in quanto una delle righe si "
+"riferisce ad un ordine aperto che non ha quantità rimanenti."
+
+#. module: purchase_blanket_order
+#: model_terms:ir.actions.act_window,help:purchase_blanket_order.act_open_purchase_blanket_order_view
+msgid ""
+"Click to create a blanket order that can be converted into a purchase order."
+msgstr ""
+"Clicca per creare un ordine aperto che può essere convertito in un ordine di "
+"acquisto."
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__company_id
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__company_id
+msgid "Company"
+msgstr "Azienda"
+
+#. module: purchase_blanket_order
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_form
+msgid "Confirm"
+msgstr "Conferma"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__confirmed
+msgid "Confirmed"
+msgstr "Confermato"
+
+#. module: purchase_blanket_order
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_create_purchase_order
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_form
+msgid "Create Purchase Order"
+msgstr "Crea ordine di acquisto"
+
+#. module: purchase_blanket_order
+#: model:ir.actions.act_window,name:purchase_blanket_order.action_create_purchase_order
+msgid "Create RFQ"
+msgstr "Crea RdP"
+
+#. module: purchase_blanket_order
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_create_purchase_order
+msgid "Create and View Order"
+msgstr "Crea e visualizza ordine"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__create_uid
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__create_uid
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_wizard__create_uid
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_wizard_line__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__create_date
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__create_date
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_wizard__create_date
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_wizard_line__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__currency_id
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__currency_id
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_wizard_line__currency_id
+msgid "Currency"
+msgstr "Valuta"
+
+#. module: purchase_blanket_order
+#. odoo-python
+#: code:addons/purchase_blanket_order/models/blanket_orders.py:0
+#, python-format
+msgid "Date Scheduled"
+msgstr "Data schedulata"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order__validity_date
+msgid ""
+"Date until which the blanket order will be valid, after this date the "
+"blanket order will be marked as expired"
+msgstr ""
+"Data fino alla quale l'ordine aperto sarà valido, dopo questa data l'ordine "
+"aperto sarà indicato come scaduto"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__name
+msgid "Description"
+msgstr "Descrizione"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_res_config_settings__group_purchase_blanket_disable_adding_lines
+msgid "Disable adding more lines to POs"
+msgstr "Disabilita l'aggiunta di altre righe negli OA"
+
+#. module: purchase_blanket_order
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.purchase_config_settings_form_view
+msgid "Disable adding more lines to POs from Blanket Orders"
+msgstr "Disabilita l'aggiunta di altre righe negli OA da ordini aperti"
+
+#. module: purchase_blanket_order
+#: model:res.groups,name:purchase_blanket_order.purchase_blanket_orders_disable_adding_lines
+msgid "Disable adding more lines to POs from Purchase Blanket Orders"
+msgstr ""
+"Disabilita l'aggiunta di altre righe negli OA da ordini aperti di acquisto"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__display_name
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__display_name
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_wizard__display_name
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_wizard_line__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields.selection,name:purchase_blanket_order.selection__purchase_blanket_order__state__done
+msgid "Done"
+msgstr "Evaso"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields.selection,name:purchase_blanket_order.selection__purchase_blanket_order__state__draft
+msgid "Draft"
+msgstr "Bozza"
+
+#. module: purchase_blanket_order
+#: model:ir.actions.server,name:purchase_blanket_order.expired_purchase_blanket_orders_cron_ir_actions_server
+msgid "Expire Blanket Orders"
+msgstr "Scadenza ordini aperti"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields.selection,name:purchase_blanket_order.selection__purchase_blanket_order__state__expired
+msgid "Expired"
+msgstr "Scaduto"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__fiscal_position_id
+msgid "Fiscal Position"
+msgstr "Posizione fiscale"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__message_follower_ids
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__message_follower_ids
+msgid "Followers"
+msgstr "Seguito da"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__message_partner_ids
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguito da (partner)"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order__activity_type_icon
+#: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order_line__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Icona Font Awesome es. fa-tasks"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__has_message
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__has_message
+msgid "Has Message"
+msgstr "Ha un messaggio"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__id
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__id
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_wizard__id
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_wizard_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__activity_exception_icon
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__activity_exception_icon
+msgid "Icon"
+msgstr "Icona"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order__activity_exception_icon
+#: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order_line__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icona per indicare un'attività eccezione."
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order__message_needaction
+#: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order_line__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Se selezionata, nuovi messaggi richiedono attenzione."
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order__message_has_error
+#: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order_line__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Se selezionata, alcuni messaggi hanno un errore di consegna."
+
+#. module: purchase_blanket_order
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_form
+msgid "Invoice Information"
+msgstr "Informazioni fattura"
+
+#. module: purchase_blanket_order
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_search
+msgid "Invoiced Qty"
+msgstr "Q.tà fatturata"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__invoiced_uom_qty
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__invoiced_uom_qty
+msgid "Invoiced quantity"
+msgstr "Quantità fatturata"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__message_is_follower
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__message_is_follower
+msgid "Is Follower"
+msgstr "Segue"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__write_uid
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__write_uid
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_wizard__write_uid
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_wizard_line__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__write_date
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__write_date
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_wizard__write_date
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_wizard_line__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_wizard__line_ids
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_form
+msgid "Lines"
+msgstr "Righe"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__message_has_error
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__message_has_error
+msgid "Message Delivery error"
+msgstr "Errore di consegna messaggio"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__message_ids
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__message_ids
+msgid "Messages"
+msgstr "Messaggi"
+
+#. module: purchase_blanket_order
+#. odoo-python
+#: code:addons/purchase_blanket_order/models/blanket_orders.py:0
+#, python-format
+msgid "Must have some lines"
+msgstr "Deve contenere delle righe"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__my_activity_date_deadline
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Scadenza mia attività"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__name
+msgid "Name"
+msgstr "Nome"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__activity_date_deadline
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Scadenza prossima attività"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__activity_summary
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__activity_summary
+msgid "Next Activity Summary"
+msgstr "Riepilogo prossima attività"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__activity_type_id
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__activity_type_id
+msgid "Next Activity Type"
+msgstr "Tipo prossima attività"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__note
+msgid "Note"
+msgstr "Nota"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__message_needaction_counter
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Numero di azioni"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__message_has_error_counter
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__message_has_error_counter
+msgid "Number of errors"
+msgstr "Numero di errori"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order__message_needaction_counter
+#: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order_line__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Numero di messaggi che richiedono un'azione"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order__message_has_error_counter
+#: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order_line__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Numero di messaggi con errore di consegna"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields.selection,name:purchase_blanket_order.selection__purchase_blanket_order__state__open
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_search
+msgid "Open"
+msgstr "Aperto"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__order_id
+msgid "Order"
+msgstr "Ordine"
+
+#. module: purchase_blanket_order
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_form
+msgid "Order Lines"
+msgstr "Righe ordine"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__line_ids
+msgid "Order lines"
+msgstr "Righe ordine"
+
+#. module: purchase_blanket_order
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_search
+msgid "Ordered Qty"
+msgstr "Q.tà ordinata"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__ordered_uom_qty
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__ordered_uom_qty
+msgid "Ordered quantity"
+msgstr "Quantità ordinata"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_order__blanket_order_id
+msgid "Origin blanket order"
+msgstr "Origine ordine aperto"
+
+#. module: purchase_blanket_order
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.purchase_blanket_order_line_tree
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.report_blanketorder_document
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_form
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_search
+msgid "Original Qty"
+msgstr "Q.tà originale"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__original_uom_qty
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__original_uom_qty
+msgid "Original quantity"
+msgstr "Quantità originale"
+
+#. module: purchase_blanket_order
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_form
+msgid "Other Information"
+msgstr "Altre informazioni"
+
+#. module: purchase_blanket_order
+#. odoo-python
+#: code:addons/purchase_blanket_order/models/blanket_orders.py:0
+#, python-format
+msgid "Partner is mandatory"
+msgstr "Il partner è obbligatorio"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__payment_term_id
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__payment_term_id
+msgid "Payment Terms"
+msgstr "Termini di pagamento"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__price_unit
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_wizard_line__price_unit
+msgid "Price"
+msgstr "Prezzo"
+
+#. module: purchase_blanket_order
+#. odoo-python
+#: code:addons/purchase_blanket_order/models/blanket_orders.py:0
+#, python-format
+msgid "Price must be greater than zero"
+msgstr "Il prezzo deve essere maggiore di zero"
+
+#. module: purchase_blanket_order
+#: model:ir.model,name:purchase_blanket_order.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr "Impostazioni raggruppamento approvvigionamento acquisti"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__product_id
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__product_id
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_wizard_line__product_id
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.report_blanketorder_document
+msgid "Product"
+msgstr "Prodotto"
+
+#. module: purchase_blanket_order
+#: model:ir.actions.report,name:purchase_blanket_order.report_blanket_order
+#: model:ir.model,name:purchase_blanket_order.model_purchase_blanket_order
+msgid "Purchase Blanket Order"
+msgstr "Ordine d'acquisto aperto"
+
+#. module: purchase_blanket_order
+#. odoo-python
+#: code:addons/purchase_blanket_order/wizard/create_purchase_orders.py:0
+#, python-format
+msgid "Purchase Blanket Order %s is not open"
+msgstr "L'ordine di acquisto aperto %s non è aperto"
+
+#. module: purchase_blanket_order
+#: model:ir.model,name:purchase_blanket_order.model_purchase_blanket_order_line
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.purchase_blanket_order_line_form
+msgid "Purchase Blanket Order Line"
+msgstr "Riga ordine di acquisto aperto"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__line_count
+msgid "Purchase Blanket Order Line count"
+msgstr "Numero righe ordine d'acquisto aperto"
+
+#. module: purchase_blanket_order
+#: model:ir.model,name:purchase_blanket_order.model_purchase_blanket_order_wizard_line
+msgid "Purchase Blanket Order Wizard Line"
+msgstr "Riga procedura guidata ordine d'acquisto aperto"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__purchase_count
+msgid "Purchase Count"
+msgstr "Conteggio acquisti"
+
+#. module: purchase_blanket_order
+#: model:ir.model,name:purchase_blanket_order.model_purchase_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_wizard__purchase_order_id
+msgid "Purchase Order"
+msgstr "Ordine di acquisto"
+
+#. module: purchase_blanket_order
+#: model:ir.model,name:purchase_blanket_order.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Riga ordine di acquisto"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__purchase_lines
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.purchase_blanket_order_line_form
+msgid "Purchase Order Lines"
+msgstr "Righe ordine di acquisto"
+
+#. module: purchase_blanket_order
+#. odoo-python
+#: code:addons/purchase_blanket_order/models/blanket_orders.py:0
+#, python-format
+msgid "Quantity must be greater than zero"
+msgstr "La quantità deve essere maggiore di zero"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_wizard_line__qty
+msgid "Quantity to Order"
+msgstr "Quantità da Ordinare"
+
+#. module: purchase_blanket_order
+#. odoo-python
+#: code:addons/purchase_blanket_order/wizard/create_purchase_orders.py:0
+#, python-format
+msgid "RFQ"
+msgstr "RdP"
+
+#. module: purchase_blanket_order
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_form
+msgid "RFQ/Orders"
+msgstr "RdP/Ordini"
+
+#. module: purchase_blanket_order
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_search
+msgid "Received Qty"
+msgstr "Q.tà ricevuta"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__received_uom_qty
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__received_uom_qty
+msgid "Received quantity"
+msgstr "Quantità ricevuta"
+
+#. module: purchase_blanket_order
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_search
+msgid "Remaining Qty"
+msgstr "Q.tà rimanente"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__remaining_uom_qty
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__remaining_uom_qty
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_wizard_line__remaining_uom_qty
+msgid "Remaining quantity"
+msgstr "Quantità rimanente"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__remaining_qty
+msgid "Remaining quantity in base UoM"
+msgstr "Quantità rimanente in UdM base"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__user_id
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__user_id
+msgid "Responsible"
+msgstr "Responsabile"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__activity_user_id
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__activity_user_id
+msgid "Responsible User"
+msgstr "Utente responsabile"
+
+#. module: purchase_blanket_order
+#. odoo-python
+#: code:addons/purchase_blanket_order/models/purchase_order.py:0
+#, python-format
+msgid ""
+"Schedule dates defined on the Purchase Order Line and on the Blanket Order "
+"Line do not match."
+msgstr ""
+"Le date pianificate definite sulla riga ordine di acquisto e sulla riga "
+"ordine aperto non corrispondono."
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__date_schedule
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_wizard_line__date_schedule
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.report_blanketorder_document
+msgid "Scheduled Date"
+msgstr "Data schedulata"
+
+#. module: purchase_blanket_order
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.purchase_blanket_order_line_search
+msgid "Search Purchase Blanket Order Line"
+msgstr "Cerca riga ordine di acquisto aperto"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__sequence
+msgid "Sequence"
+msgstr "Sequenza"
+
+#. module: purchase_blanket_order
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_form
+msgid "Setup default terms and conditions in your company settings."
+msgstr ""
+"Imposta termini predefiniti e condizioni nelle tue impostazioni aziendali."
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__date_start
+msgid "Start Date"
+msgstr "Data inizio"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__state
+msgid "State"
+msgstr "Stato"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order__activity_state
+#: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order_line__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Stato in base alle attività\n"
+"Scaduto: la data richiesta è trascorsa\n"
+"Oggi: la data attività è oggi\n"
+"Pianificato: attività future."
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__price_subtotal
+msgid "Subtotal"
+msgstr "Subtotale"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__price_tax
+msgid "Tax"
+msgstr "Imposta"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__amount_tax
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__taxes_id
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_wizard_line__taxes_id
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.report_blanketorder_document
+msgid "Taxes"
+msgstr "Imposte"
+
+#. module: purchase_blanket_order
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_form
+msgid "Terms and Conditions"
+msgstr "Termini e condizioni"
+
+#. module: purchase_blanket_order
+#. odoo-python
+#: code:addons/purchase_blanket_order/models/purchase_order.py:0
+#, python-format
+msgid ""
+"The currency of the blanket order must match with that of the purchase order."
+msgstr ""
+"La valuta dell'ordine aperto deve corrispondere con quella dell'ordine di "
+"acquisto."
+
+#. module: purchase_blanket_order
+#. odoo-python
+#: code:addons/purchase_blanket_order/models/purchase_order.py:0
+#, python-format
+msgid "The vendor must be equal to the blanket order lines vendor"
+msgstr "Il fornitore deve essere lo stesso delle righe dell'ordine aperto"
+
+#. module: purchase_blanket_order
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_form
+msgid "To Draft"
+msgstr "A bozza"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__amount_total
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__price_total
+msgid "Total"
+msgstr "Totale"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order__activity_exception_decoration
+#: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order_line__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Tipo di attività eccezione sul record."
+
+#. module: purchase_blanket_order
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.report_blanketorder_document
+msgid "Unit Price"
+msgstr "Prezzo unitario"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__product_uom
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_wizard_line__product_uom
+msgid "Unit of Measure"
+msgstr "Unità di misura"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__amount_untaxed
+msgid "Untaxed Amount"
+msgstr "Imponibile"
+
+#. module: purchase_blanket_order
+#: model_terms:ir.actions.act_window,help:purchase_blanket_order.act_open_purchase_blanket_order_view
+msgid ""
+"Use this menu to search within your blanket orders. For each blanket order,\n"
+"                you can track the related discussion with the vendor, "
+"control\n"
+"                the products received and control the vendor bills."
+msgstr ""
+"Usa questo menu per ricercare nei tuoi ordini aperto. Per ogni ordine "
+"aperto,\n"
+"                puoi tracciare le relative conversazioni con il cliente, "
+"controllare\n"
+"                i prodotti spediti e controllare le fatture del fornitore."
+
+#. module: purchase_blanket_order
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.report_blanketorder_document
+msgid "VAT:"
+msgstr "IVA:"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__validity_date
+msgid "Validity Date"
+msgstr "Data validità"
+
+#. module: purchase_blanket_order
+#. odoo-python
+#: code:addons/purchase_blanket_order/models/blanket_orders.py:0
+#, python-format
+msgid "Validity date is mandatory"
+msgstr "La data di validità è obbligatoria"
+
+#. module: purchase_blanket_order
+#. odoo-python
+#: code:addons/purchase_blanket_order/models/blanket_orders.py:0
+#, python-format
+msgid "Validity date must be in the future"
+msgstr "La data di validità deve essere nel futuro"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__partner_id
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__partner_id
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_wizard_line__partner_id
+msgid "Vendor"
+msgstr "Fornitore"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__partner_ref
+msgid "Vendor Reference"
+msgstr "Riferimento venditore"
+
+#. module: purchase_blanket_order
+#: model:ir.actions.server,name:purchase_blanket_order.warnings_purchase_blanket_orders_cron_ir_actions_server
+msgid "Warnings Blanket Orders"
+msgstr "Avvisi ordini aperti"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__website_message_ids
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__website_message_ids
+msgid "Website Messages"
+msgstr "Messaggi sito web"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order__website_message_ids
+#: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order_line__website_message_ids
+msgid "Website communication history"
+msgstr "Cronologia comunicazioni sito web"
+
+#. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_wizard_line__wizard_id
+msgid "Wizard"
+msgstr "Procedura guidata"
+
+#. module: purchase_blanket_order
+#. odoo-python
+#: code:addons/purchase_blanket_order/models/blanket_orders.py:0
+#, python-format
+msgid ""
+"You can not delete a blanket order with opened purchase orders! Try to "
+"cancel them before."
+msgstr ""
+"Non si può cancellare un ordine aperto con ordini di acquisto aperti! "
+"Provare prima a cancellarli."
+
+#. module: purchase_blanket_order
+#. odoo-python
+#: code:addons/purchase_blanket_order/models/blanket_orders.py:0
+#, python-format
+msgid "You can not delete an open blanket order! Try to cancel it before."
+msgstr ""
+"Non si può cancellare un ordine aperto in stato aperto! Prova prima ad "
+"annullarlo."
+
+#. module: purchase_blanket_order
+#. odoo-python
+#: code:addons/purchase_blanket_order/wizard/create_purchase_orders.py:0
+#, python-format
+msgid "You can't create a purchase order from an expired blanket order!"
+msgstr "Non si può creare un ordine di acquisto da un ordine aperto scaduto!"
+
+#. module: purchase_blanket_order
+#. odoo-python
+#: code:addons/purchase_blanket_order/wizard/create_purchase_orders.py:0
+#, python-format
+msgid "You can't order more than the remaining quantities"
+msgstr "Non si può ordinare più della quantità rimanente"
+
+#. module: purchase_blanket_order
+#. odoo-python
+#: code:addons/purchase_blanket_order/wizard/create_purchase_orders.py:0
+#, python-format
+msgid "You have to select lines from the same company."
+msgstr "Bisogna selezionare le righe della stessa azienda."
+
+#. module: purchase_blanket_order
+#. odoo-python
+#: code:addons/purchase_blanket_order/models/blanket_orders.py:0
+#, python-format
+msgid "remaining"
+msgstr "rimanenti"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
+
+#~ msgid "Main Attachment"
+#~ msgstr "Allegato principale"
