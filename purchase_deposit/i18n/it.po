@@ -47,11 +47,6 @@ msgid "Companies"
 msgstr "Aziende"
 
 #. module: purchase_deposit
-#: model:ir.model,name:purchase_deposit.model_res_config_settings
-msgid "Config Settings"
-msgstr "Impostazioni configurazione"
-
-#. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
 msgid "Create Bill"
 msgstr "Crea conto"
@@ -172,6 +167,11 @@ msgid "Last Updated on"
 msgstr "Ultimo aggiornamento il"
 
 #. module: purchase_deposit
+#: model:ir.model,name:purchase_deposit.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr "Impostazioni raggruppamento approvvigionamento acquisti"
+
+#. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.res_config_settings_view_form_purchase
 msgid "Product used for deposit payments"
 msgstr "Prodotto utilizzato per i pagamenti cauzione"
@@ -268,8 +268,8 @@ msgstr "Imposte venditore"
 msgid "What do you want to invoice?"
 msgstr "Cosa si vuole fatturare?"
 
-#~ msgid "Procurement purchase grouping settings"
-#~ msgstr "Impostazioni raggruppamento approvvigionamento acquisti"
+#~ msgid "Config Settings"
+#~ msgstr "Impostazioni configurazione"
 
 #~ msgid ""
 #~ "<span attrs=\"{'invisible': [('advance_payment_method', '!=', "
