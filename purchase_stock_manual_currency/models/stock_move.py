@@ -12,7 +12,7 @@ class StockMove(models.Model):
         # price unit to the company currency by using the manual rate, instead
         # of the default rate.
         self.ensure_one()
-        price_company_curr = super(StockMove, self)._get_price_unit()
+        price_company_curr = super()._get_price_unit()
         p_order = self.purchase_line_id.order_id
         if p_order and p_order.manual_currency:
             company_curr = p_order.company_id.currency_id
