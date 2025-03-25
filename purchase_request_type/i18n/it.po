@@ -149,6 +149,3 @@ msgstr "Tipo"
 #: model:ir.model,name:purchase_request_type.model_purchase_request_type
 msgid "Type of purchase request"
 msgstr "Tipo richiesta di acquisto"
-
-#~ msgid "PR Type"
-#~ msgstr "Tipo RA"
