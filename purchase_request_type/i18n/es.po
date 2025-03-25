@@ -1,0 +1,151 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_request_type
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2025-03-05 19:06+0000\n"
+"Last-Translator: Víctor Martínez <victor.martinez@tecnativa.com>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.2\n"
+
+#. module: purchase_request_type
+#: model:ir.model.fields,field_description:purchase_request_type.field_purchase_request_type__active
+msgid "Active"
+msgstr "Activo"
+
+#. module: purchase_request_type
+#: model_terms:ir.ui.view,arch_db:purchase_request_type.view_purchase_request_type_form
+#: model_terms:ir.ui.view,arch_db:purchase_request_type.view_purchase_request_type_search
+msgid "Archived"
+msgstr ""
+
+#. module: purchase_request_type
+#: model_terms:ir.actions.act_window,help:purchase_request_type.action_purchase_request_type_view
+msgid "Click to set a new type for purchase request."
+msgstr "Haga clic para establecer un nuevo tipo de solicitud de compra."
+
+#. module: purchase_request_type
+#: model:ir.model.fields,field_description:purchase_request_type.field_purchase_request_type__company_id
+#: model_terms:ir.ui.view,arch_db:purchase_request_type.view_purchase_request_type_search
+msgid "Company"
+msgstr "Compañía"
+
+#. module: purchase_request_type
+#: model:ir.model.fields,field_description:purchase_request_type.field_purchase_request_type__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: purchase_request_type
+#: model:ir.model.fields,field_description:purchase_request_type.field_purchase_request_type__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: purchase_request_type
+#: model:ir.model.fields,field_description:purchase_request_type.field_purchase_request_type__description
+msgid "Description"
+msgstr "Descripción"
+
+#. module: purchase_request_type
+#: model:ir.model.fields,field_description:purchase_request_type.field_purchase_request_type__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: purchase_request_type
+#. odoo-python
+#: code:addons/purchase_request_type/models/purchase_request.py:0
+#, python-format
+msgid "Document's company and type's company mismatch"
+msgstr "No coinciden la empresa del documento y la empresa del tipo"
+
+#. module: purchase_request_type
+#: model:ir.model.fields,field_description:purchase_request_type.field_purchase_request_type__sequence_id
+#: model_terms:ir.ui.view,arch_db:purchase_request_type.view_purchase_request_type_search
+msgid "Entry Sequence"
+msgstr "Secuencia de Entrada"
+
+#. module: purchase_request_type
+#: model_terms:ir.ui.view,arch_db:purchase_request_type.view_purchase_request_type_search
+msgid "Group By"
+msgstr "Agrupado por"
+
+#. module: purchase_request_type
+#: model:ir.model.fields,field_description:purchase_request_type.field_purchase_request_type__id
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_request_type
+#: model:ir.model.fields,field_description:purchase_request_type.field_purchase_request_type____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: purchase_request_type
+#: model:ir.model.fields,field_description:purchase_request_type.field_purchase_request_type__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: purchase_request_type
+#: model:ir.model.fields,field_description:purchase_request_type.field_purchase_request_type__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: purchase_request_type
+#: model:ir.model.fields,field_description:purchase_request_type.field_purchase_request_type__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: purchase_request_type
+#: model:ir.model.fields,field_description:purchase_request_type.field_purchase_request_type__picking_type_id
+#: model_terms:ir.ui.view,arch_db:purchase_request_type.view_purchase_request_type_search
+msgid "Picking Type"
+msgstr "Tipo de albarán"
+
+#. module: purchase_request_type
+#: model:ir.model,name:purchase_request_type.model_purchase_request
+msgid "Purchase Request"
+msgstr "Solicitud de compra"
+
+#. module: purchase_request_type
+#: model:ir.actions.act_window,name:purchase_request_type.action_purchase_request_type_view
+#: model:ir.ui.menu,name:purchase_request_type.menu_purchase_request_type
+#: model_terms:ir.ui.view,arch_db:purchase_request_type.view_purchase_request_type_search
+msgid "Purchase Request Types"
+msgstr "Tipos de solicitud de compra"
+
+#. module: purchase_request_type
+#: model:ir.model.fields,field_description:purchase_request_type.field_purchase_request__reduce_step
+#: model:ir.model.fields,field_description:purchase_request_type.field_purchase_request_type__reduce_step
+msgid "Reduce Step"
+msgstr "Reducir Paso"
+
+#. module: purchase_request_type
+#: model:ir.model.fields,field_description:purchase_request_type.field_purchase_request__name
+msgid "Request Reference"
+msgstr "Referencia de petición"
+
+#. module: purchase_request_type
+#: model:ir.model.fields,field_description:purchase_request_type.field_purchase_request__request_type
+msgid "Request Type"
+msgstr "Tipo de solicitud"
+
+#. module: purchase_request_type
+#: model:ir.model.fields,field_description:purchase_request_type.field_purchase_request_type__sequence
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: purchase_request_type
+#: model_terms:ir.ui.view,arch_db:purchase_request_type.view_purchase_request_type_form
+msgid "Type"
+msgstr "Tipo"
+
+#. module: purchase_request_type
+#: model:ir.model,name:purchase_request_type.model_purchase_request_type
+msgid "Type of purchase request"
+msgstr "Tipo de solicitud de compra"
