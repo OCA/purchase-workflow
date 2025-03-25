@@ -5,12 +5,14 @@ import time
 
 from odoo import SUPERUSER_ID
 from odoo.exceptions import ValidationError
-from odoo.tests import common, tagged
+from odoo.tests import tagged
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
 @tagged("post_install", "-at_install")
-class TestPurchaseRequestType(common.TransactionCase):
+class TestPurchaseRequestType(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
