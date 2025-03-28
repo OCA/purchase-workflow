@@ -182,6 +182,7 @@
                                         widget="analytic_distribution"
                                         groups="analytic.group_analytic_accounting"
                                         options="{'product_field': 'product_id', 'business_domain': 'purchase_order'}"
+                                        optional="hide"
                                     />
                                     <field name="date_required" />
                                     <field name="estimated_cost" widget="monetary" />
