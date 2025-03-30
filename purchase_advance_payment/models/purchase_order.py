@@ -90,7 +90,7 @@ class PurchaseOrder(models.Model):
                         invoice_paid_amount += payment[1]
             amount_residual = order.amount_total - advance_amount - invoice_paid_amount
             payment_state = "not_paid"
-            if mls or order.invoice_ids:
+            if mls or invoice_paid_amount != 0.0:
                 has_due_amount = float_compare(
                     amount_residual, 0.0, precision_rounding=order.currency_id.rounding
                 )
