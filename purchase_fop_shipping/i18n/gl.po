@@ -1,0 +1,81 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * purchase_fop_shipping
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-01 02:48+0000\n"
+"PO-Revision-Date: 2017-06-01 02:48+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Galician (https://www.transifex.com/oca/teams/23907/gl/)\n"
+"Language: gl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: purchase_fop_shipping
+#: model:ir.model.fields,field_description:purchase_fop_shipping.field_purchase_order__force_order_under_fop
+msgid "Confirm under FOP"
+msgstr ""
+
+#. module: purchase_fop_shipping
+#: model:ir.model,name:purchase_fop_shipping.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: purchase_fop_shipping
+#: model:ir.model.fields,field_description:purchase_fop_shipping.field_purchase_order__fop_reached
+msgid "FOP reached"
+msgstr ""
+
+#. module: purchase_fop_shipping
+#: model:ir.model.fields,field_description:purchase_fop_shipping.field_purchase_order__fop_shipping
+#: model:ir.model.fields,field_description:purchase_fop_shipping.field_res_partner__fop_shipping
+#: model:ir.model.fields,field_description:purchase_fop_shipping.field_res_users__fop_shipping
+msgid "FOP shipping"
+msgstr ""
+
+#. module: purchase_fop_shipping
+#: model:res.groups,name:purchase_fop_shipping.group_fop_shipping_purchase_manager
+msgid "FOP shipping Manager"
+msgstr ""
+
+#. module: purchase_fop_shipping
+#: model:ir.model.fields,help:purchase_fop_shipping.field_purchase_order__force_order_under_fop
+msgid "Force confirm purchase order under Free-Of-Payment shipping"
+msgstr ""
+
+#. module: purchase_fop_shipping
+#: model:ir.model.fields,help:purchase_fop_shipping.field_purchase_order__fop_reached
+msgid "Free-Of-Payment shipping reached"
+msgstr ""
+
+#. module: purchase_fop_shipping
+#: model:ir.model.fields,help:purchase_fop_shipping.field_res_partner__fop_shipping
+#: model:ir.model.fields,help:purchase_fop_shipping.field_res_users__fop_shipping
+msgid "Min purchase order amount for FOP shipping"
+msgstr ""
+
+#. module: purchase_fop_shipping
+#: model:ir.model.fields,help:purchase_fop_shipping.field_purchase_order__fop_shipping
+msgid "Min purchase order amount for Free-Of-Payment shipping"
+msgstr ""
+
+#. module: purchase_fop_shipping
+#: model:ir.model,name:purchase_fop_shipping.model_purchase_order
+msgid "Purchase Order"
+msgstr "Orde de compra"
+
+#. module: purchase_fop_shipping
+#. odoo-python
+#: code:addons/purchase_fop_shipping/models/purchase.py:0
+#, python-format
+msgid ""
+"You cannot confirm a purchase order with amount under FOP shipping. To force "
+"confirm you must belongs to \"FOP shipping Manager\"."
+msgstr ""
