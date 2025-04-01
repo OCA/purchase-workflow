@@ -4,14 +4,4 @@
         <field name="key">purchase_advance_payment.auto_post_advance_payments</field>
         <field name="value">True</field>
     </record>
-    <record
-        id="auto_reconcile_advance_payments"
-        model="ir.config_parameter"
-        forcecreate="0"
-    >
-        <field
-            name="key"
-        >purchase_advance_payment.auto_reconcile_advance_payments</field>
-        <field name="value">False</field>
-    </record>
 </odoo>
