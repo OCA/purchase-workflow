@@ -64,7 +64,7 @@ class PortalPurchase(CustomerPortal):
             "purchase.order",
             order_sudo.id,
             _("Order signed by %s", name),
-            attachments=[("%s.pdf" % order_sudo.name, pdf)],
+            attachments=[(f"{order_sudo.name}.pdf", pdf)],
             token=access_token,
         )
 
