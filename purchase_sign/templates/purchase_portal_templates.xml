@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <template
         id="portal_my_purchase_order"
         name="Purchase Order Portal Template"
@@ -23,80 +22,80 @@
 
         <xpath expr="//div[@id='portal_purchase_content']" position="before">
             <!-- modal relative to the action sign-->
-                    <div role="dialog" class="modal fade" id="modalaccept">
-                        <div class="modal-dialog" t-if="order._has_to_be_signed()">
-                            <form
+            <div role="dialog" class="modal fade" id="modalaccept">
+                <div class="modal-dialog" t-if="order._has_to_be_signed()">
+                    <form
                         id="accept"
                         method="POST"
                         t-att-data-order-id="order.id"
                         t-att-data-token="order.access_token"
                         class="js_accept_json modal-content js_website_submit_form"
                     >
-                                <input
+                        <input
                             type="hidden"
                             name="csrf_token"
                             t-att-value="request.csrf_token()"
                         />
-                                <header class="modal-header">
-                                    <h4 class="modal-title">Validate Order</h4>
-                                    <button
+                        <header class="modal-header">
+                            <h4 class="modal-title">Validate Order</h4>
+                            <button
                                 type="button"
                                 class="btn-close"
                                 data-bs-dismiss="modal"
                                 aria-label="Close"
                             />
-                                </header>
-                                <main class="modal-body" id="sign-dialog">
-                                    <p>
-                                        <span
+                        </header>
+                        <main class="modal-body" id="sign-dialog">
+                            <p>
+                                <span
                                 >By signing this proposal, I agree to the following terms:</span>
-                                        <ul>
-                                            <li>
-                                                <span
-                                        >Accepted on the behalf of:</span> <b
+                                <ul>
+                                    <li>
+                                        <span>Accepted on the behalf of:</span>
+                                        <b
                                             t-field="order.partner_id.commercial_partner_id"
                                         />
-                                            </li>
-                                            <li>
-                                                <span>For an amount of:</span> <b
+                                    </li>
+                                    <li>
+                                        <span>For an amount of:</span>
+                                        <b
                                             data-id="amount_total"
                                             t-field="order.amount_total"
                                         />
-                                            </li>
-                                            <li t-if="order.payment_term_id">
-                                                <span>With payment terms:</span> <b
-                                            t-field="order.payment_term_id.note"
-                                        />
-                                            </li>
-                                        </ul>
-                                    </p>
-                                    <t t-call="portal.signature_form">
-                                        <t
+                                    </li>
+                                    <li t-if="order.payment_term_id">
+                                        <span>With payment terms:</span>
+                                        <b t-field="order.payment_term_id.note" />
+                                    </li>
+                                </ul>
+                            </p>
+                            <t t-call="portal.signature_form">
+                                <t
                                     t-set="call_url"
                                     t-value="order.get_portal_url(suffix='/accept')"
                                 />
-                                        <t
+                                <t
                                     t-set="default_name"
                                     t-value="order.partner_id.name"
                                 />
-                                    </t>
-                                </main>
-                            </form>
-                        </div>
-                    </div>
+                            </t>
+                        </main>
+                    </form>
+                </div>
+            </div>
 
-                    <!-- status messages -->
-                    <div
+            <!-- status messages -->
+            <div
                 t-if="message == 'sign_ok'"
                 class="alert alert-success alert-dismissible d-print-none"
                 role="status"
             >
                         <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="alert"
-                    aria-label="Close"
-                />
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close"
+            />
                         <strong>Thank You!</strong><br />
                         Order has been confirmed.
                     </div>
@@ -150,5 +149,4 @@
             </section>
         </xpath>
     </template>
-
 </odoo>

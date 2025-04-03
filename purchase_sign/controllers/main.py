@@ -12,7 +12,7 @@ from odoo.addons.portal.controllers.portal import CustomerPortal
 
 class PortalPurchase(CustomerPortal):
     def _purchase_order_get_page_view_values(self, order, access_token, **kwargs):
-        response = super(PortalPurchase, self)._purchase_order_get_page_view_values(
+        response = super()._purchase_order_get_page_view_values(
             order=order, access_token=access_token, **kwargs
         )
         if kwargs.get("message"):
