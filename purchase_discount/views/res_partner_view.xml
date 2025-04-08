@@ -14,11 +14,11 @@
                     attrs="{'invisible': ['|',('is_company', '=', True), ('parent_id', '=', False)]}"
                 >
                     <p>Discount-related settings are managed on <button
-                            name="open_commercial_entity"
-                            type="object"
-                            string="the parent company"
-                            class="oe_link"
-                        /></p>
+                        name="open_commercial_entity"
+                        type="object"
+                        string="the parent company"
+                        class="oe_link"
+                    /></p>
                 </div>
             </xpath>
         </field>
