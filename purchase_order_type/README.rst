@@ -41,20 +41,20 @@ Configuration
 
 To configure this module, you need to:
 
-- Go to **Purchases > Configuration > Purchase types**
-- Modify / create the purchase order types
+-  Go to **Purchases > Configuration > Purchase types**
+-  Modify / create the purchase order types
 
 Usage
 =====
 
 To use this module, you need to:
 
-- Attribute a type when editing purchase orders
+-  Attribute a type when editing purchase orders
 
 Known issues / Roadmap
 ======================
 
-- Suggestion: add a default configuration attached to the types
+-  Suggestion: add a default configuration attached to the types
 
 Bug Tracker
 ===========
@@ -77,9 +77,9 @@ Authors
 Contributors
 ------------
 
-- Guewen Baconnier <guewen.baconnier@camptocamp.com>
-- Pimolnat Suntian <pimolnats@ecosoft.co.th>
-- Roger Sans <roger.sans@sygel.es>
+-  Guewen Baconnier <guewen.baconnier@camptocamp.com>
+-  Pimolnat Suntian <pimolnats@ecosoft.co.th>
+-  Roger Sans <roger.sans@sygel.es>
 
 Maintainers
 -----------
