@@ -26,24 +26,16 @@
         <field name="inherit_id" ref="purchase.purchase_order_form" />
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='order_line']/tree/field[@name='price_unit']"
+                expr="//field[@name='order_line']/list/field[@name='price_unit']"
                 position="after"
             >
-                <field
-                    name="discount"
-                    optional="show"
-                    attrs="{'readonly': [('qty_invoiced', '!=', 0)]}"
-                />
+                <field name="discount" optional="show" readonly="qty_invoiced != 0" />
             </xpath>
             <xpath
                 expr="//field[@name='order_line']/form//field[@name='price_unit']"
                 position="after"
             >
-                <field
-                    name="discount"
-                    optional="show"
-                    attrs="{'readonly': [('qty_invoiced', '!=', 0)]}"
-                />
+                <field name="discount" optional="show" readonly="qty_invoiced != 0" />
             </xpath>
         </field>
     </record>

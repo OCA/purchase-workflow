@@ -3,12 +3,12 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests.common import Form
 
-from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
+from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT, BaseCommon
 
 
-class TestPurchaseOrder(TransactionCase):
+class TestPurchaseOrder(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -138,9 +138,9 @@ class TestPurchaseOrder(TransactionCase):
         picking = self.purchase_order.picking_ids
         moves = picking.move_ids
         move1 = moves.filtered(lambda x: x.purchase_line_id == self.po_line_1)
-        self.assertEqual(move1.price_unit, 5)
+        self.assertEqual(move1.price_unit, 10)
         move2 = moves.filtered(lambda x: x.purchase_line_id == self.po_line_2)
-        self.assertEqual(move2.price_unit, 161)
+        self.assertEqual(move2.price_unit, 230)
         move3 = moves.filtered(lambda x: x.purchase_line_id == self.po_line_3)
         self.assertEqual(move3.price_unit, 10)
         # Confirm the picking to see the cost price

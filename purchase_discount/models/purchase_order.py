@@ -126,10 +126,10 @@ class PurchaseOrderLine(models.Model):
     def write(self, vals):
         res = super().write(vals)
         if "discount" in vals or "price_unit" in vals:
-            for line in self.filtered(lambda l: l.order_id.state == "purchase"):
+            for line in self.filtered(lambda li: li.order_id.state == "purchase"):
                 # Avoid updating kit components' stock.move
                 moves = line.move_ids.filtered(
-                    lambda s: s.state not in ("cancel", "done")
+                    lambda s, line=line: s.state not in ("cancel", "done")
                     and s.product_id == line.product_id
                 )
                 moves.write({"price_unit": line._get_discounted_price_unit()})

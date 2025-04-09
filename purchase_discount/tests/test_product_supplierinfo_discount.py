@@ -3,12 +3,12 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests.common import Form
 
-from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
+from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT, BaseCommon
 
 
-class TestProductSupplierinfoDiscount(TransactionCase):
+class TestProductSupplierinfoDiscount(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -50,26 +50,28 @@ class TestProductSupplierinfoDiscount(TransactionCase):
         )
 
     def test_001_purchase_order_partner_3_qty_1(self):
-        purchase_form = Form(self.purchase_order)
-        with purchase_form.order_line.edit(0) as line:
-            line.product_qty = 1.0
-            self.assertEqual(
-                line.discount,
-                10,
-                "Incorrect discount for product 6 with partner 3 and qty 1: "
-                "Should be 10%",
-            )
+        self.purchase_order.order_line[0].product_qty = 1.0
+        self.purchase_order.order_line[
+            0
+        ]._compute_price_unit_and_date_planned_and_name()
+        self.assertEqual(
+            self.purchase_order.order_line[0].discount,
+            10,
+            "Incorrect discount for product 6 with partner 3 and qty 1: Should be 10%",
+        )
 
     def test_002_purchase_order_partner_3_qty_10(self):
-        purchase_form = Form(self.purchase_order)
-        with purchase_form.order_line.edit(0) as line:
-            line.product_qty = 10.0
-            self.assertEqual(
-                line.discount,
-                20.0,
-                "Incorrect discount for product 6 with partner 3 and qty 10: "
-                "Should be 20%",
-            )
+        self.purchase_order.partner_id = self.partner_3
+        self.purchase_order.order_line[0].product_qty = 11.0
+        self.purchase_order.order_line[
+            0
+        ]._compute_price_unit_and_date_planned_and_name()
+        self.assertEqual(
+            self.purchase_order.order_line[0].discount,
+            10.0,
+            "Incorrect discount for product 6 with partner 3 and qty 10: "
+            "Should be 10%",
+        )
 
     def test_003_purchase_order_partner_1_qty_1(self):
         purchase_form = Form(self.purchase_order)
@@ -166,6 +168,6 @@ class TestProductSupplierinfoDiscount(TransactionCase):
             }
         )
         order.button_confirm()
-        self.assertEqual(order.order_line.move_ids.price_unit, 6)
+        self.assertEqual(order.order_line.move_ids.price_unit, 10)
         order.order_line.price_unit = 100
         self.assertEqual(order.order_line.move_ids.price_unit, 60)

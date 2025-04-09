@@ -3,26 +3,27 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields, models
+from odoo.tools import SQL
 
 
 class PurchaseReport(models.Model):
     _inherit = "purchase.report"
 
-    discount = fields.Float(
-        string="Discount (%)", digits="Discount", group_operator="avg"
-    )
+    discount = fields.Float(string="Discount (%)", digits="Discount", aggregator="avg")
 
     def _select(self):
-        res = super()._select()
+        select_sql = super()._select()
         # There are 3 matches
-        res = res.replace("l.price_unit", self._get_discounted_price_unit_exp())
+        res = select_sql.code.replace(
+            "l.price_unit", self._get_discounted_price_unit_exp()
+        )
         res += ", l.discount AS discount"
-        return res
+        return SQL(res, *select_sql.params)
 
     def _group_by(self):
-        res = super()._group_by()
-        res += ", l.discount"
-        return res
+        group_sql = super()._group_by()
+        code = group_sql.code + ", l.discount"
+        return SQL(code, *group_sql.params)
 
     def _get_discounted_price_unit_exp(self):
         """Inheritable method for getting the SQL expression used for
