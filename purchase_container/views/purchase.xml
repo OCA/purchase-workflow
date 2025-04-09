@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo>
+    <record id="purchase_order_view_form_container" model="ir.ui.view">
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='invoice_info']" position="after">
+                <group>
+                    <field name="state" />
+                    <field name="container_ids" colspan="4" readonly="state != 'draft'">
+                        <list edit="0">
+                            <field name="name" />
+                            <field name="type_id" />
+                            <field name="bill_of_lading_ref" />
+                            <field
+                                name="shipping_agent_id"
+                                options="{'no_create': True}"
+                            />
+                            <button
+                                type="object"
+                                name="get_formview_action"
+                                string="Open"
+                                icon="fa-edit"
+                            />
+                        </list>
+                    </field>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="purchase_order_view_tree" model="ir.ui.view">
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_view_tree" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="container_ids" widget="many2many_tags" optional="hide" />
+            </field>
+        </field>
+    </record>
+</odoo>
