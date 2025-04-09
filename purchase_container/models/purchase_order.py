@@ -1,4 +1,4 @@
-from odoo import api, fields, models
+from odoo import Command, api, fields, models
 
 
 class PurchaseOrder(models.Model):
@@ -8,7 +8,7 @@ class PurchaseOrder(models.Model):
         "purchase.container",
         string="Containers",
         compute="_compute_container_ids",
-        inverse="_set_container_ids",
+        inverse="_inverse_container_ids",
         copy=False,
         store=True,
         index=True,
@@ -19,12 +19,10 @@ class PurchaseOrder(models.Model):
         for purchase in self:
             if purchase.picking_ids:
                 purchase.container_ids = [
-                    (6, 0, 
-                    [c.id for c in purchase.picking_ids.container_id]
-                    )
+                    Command.set(purchase.picking_ids.container_id.ids)
                 ]
 
-    def _set_container_ids(self):
+    def _inverse_container_ids(self):
         pass
 
     def _prepare_picking(self):
