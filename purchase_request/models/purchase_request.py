@@ -6,6 +6,7 @@ from odoo.exceptions import UserError
 
 _STATES = [
     ("draft", "Draft"),
+    ("to_revision", "Revision"),
     ("to_approve", "To be approved"),
     ("approved", "Approved"),
     ("in_progress", "In progress"),
@@ -279,6 +280,9 @@ class PurchaseRequest(models.Model):
     def button_draft(self):
         self.mapped("line_ids").do_uncancel()
         return self.write({"state": "draft"})
+    
+    def button_to_revision(self):
+        self.write({"state": "to_revision"})
 
     def button_to_approve(self):
         self.to_approve_allowed_check()

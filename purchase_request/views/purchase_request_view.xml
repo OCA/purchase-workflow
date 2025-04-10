@@ -10,14 +10,21 @@
                 <header>
                     <button
                         name="button_draft"
-                        states="to_approve,approved,rejected,in_progress,done"
+                        states="to_revision,to_approve,approved,rejected,in_progress,done"
                         string="Reset"
                         type="object"
                         groups="purchase_request.group_purchase_request_manager"
                     />
                     <button
-                        name="button_to_approve"
+                        name="button_to_revision"
                         states="draft"
+                        string="Request revision"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    <button
+                        name="button_to_approve"
+                        states="to_revision"
                         string="Request approval"
                         type="object"
                         class="oe_highlight"
@@ -61,7 +68,7 @@
                     <field
                         name="state"
                         widget="statusbar"
-                        statusbar_visible="draft,to_approve,approved,done,in_progress"
+                        statusbar_visible="draft,revision,to_approve,approved,done,in_progress"
                         statusbar_colors='{"approved":"blue"}'
                     />
                 </header>
