@@ -140,6 +140,7 @@ Contributors
 -  Laurent Mignon <laurent.mignon@acsone.eu>
 -  Moaad Bourhim <moaad.bourhim@gmail.com>
 -  Rolando Duarte <rolando@vauxoo.com>
+-  Elliott Bristow <elliott@glo.systems>
 
 Maintainers
 -----------

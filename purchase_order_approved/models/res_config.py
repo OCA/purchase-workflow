@@ -9,6 +9,6 @@ class ResConfigSettings(models.TransientModel):
 
     purchase_approve_active = fields.Boolean(
         related="company_id.purchase_approve_active",
-        string="State 'Approved' in Purchase Orders",
+        string="Use 'Approved' Stage",
         readonly=False,
     )
