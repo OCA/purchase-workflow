@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-04-15 10:37+0000\n"
+"PO-Revision-Date: 2025-04-14 13:24+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,12 +14,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: purchase_blanket_order
 #: model_terms:ir.ui.view,arch_db:purchase_blanket_order.report_blanketorder_document
 msgid "<span>Blanket Order # </span>"
-msgstr "<span>Ordine aperto #</span>"
+msgstr "<span>Ordine quadro #</span>"
 
 #. module: purchase_blanket_order
 #: model_terms:ir.ui.view,arch_db:purchase_blanket_order.report_blanketorder_document
@@ -115,35 +115,35 @@ msgstr "Riga ordine aperto"
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_wizard__blanket_order_id
 #: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_form
 msgid "Blanket Order"
-msgstr "Ordine aperto"
+msgstr "Ordine quadro"
 
 #. module: purchase_blanket_order
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_order_line__blanket_order_line
 msgid "Blanket Order Line"
-msgstr "Riga ordine aperto"
+msgstr "Riga ordine quadro"
 
 #. module: purchase_blanket_order
 #: model:ir.actions.act_window,name:purchase_blanket_order.act_open_purchase_blanket_order_lines_view_tree
 #: model:ir.ui.menu,name:purchase_blanket_order.menu_purchase_blanket_order_line
 msgid "Blanket Order Lines"
-msgstr "Righe ordine aperto"
+msgstr "Righe ordine quadro"
 
 #. module: purchase_blanket_order
 #: model:ir.model,name:purchase_blanket_order.model_purchase_blanket_order_wizard
 msgid "Blanket Order Wizard"
-msgstr "Procedura guidata ordine aperto"
+msgstr "Procedura guidata ordine quadro"
 
 #. module: purchase_blanket_order
 #: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order__date_start
 msgid "Blanket Order starting date."
-msgstr "Data inizio ordine aperto."
+msgstr "Data inizio ordine quadro."
 
 #. module: purchase_blanket_order
 #: model:ir.actions.act_window,name:purchase_blanket_order.act_open_purchase_blanket_order_view
 #: model:ir.ui.menu,name:purchase_blanket_order.menu_purchase_blanket_order_config
 #: model_terms:ir.ui.view,arch_db:purchase_blanket_order.purchase_config_settings_form_view
 msgid "Blanket Orders"
-msgstr "Ordini aperti"
+msgstr "Ordini quadro"
 
 #. module: purchase_blanket_order
 #. odoo-python
@@ -153,7 +153,7 @@ msgid ""
 "Can not create Purchase Order from Blanket Order lines with different "
 "currencies"
 msgstr ""
-"Non si possono creare ordini di acquisto da righe ordine aperto con valute "
+"Non si possono creare ordini di acquisto da righe ordine quadro con valute "
 "diverse"
 
 #. module: purchase_blanket_order
@@ -176,14 +176,14 @@ msgid ""
 "has no remaining quantity."
 msgstr ""
 "Non è possibile confermare l'ordine %s in quanto una delle righe si "
-"riferisce ad un ordine aperto che non ha quantità rimanenti."
+"riferisce ad un ordine quadro che non ha quantità rimanenti."
 
 #. module: purchase_blanket_order
 #: model_terms:ir.actions.act_window,help:purchase_blanket_order.act_open_purchase_blanket_order_view
 msgid ""
 "Click to create a blanket order that can be converted into a purchase order."
 msgstr ""
-"Clicca per creare un ordine aperto che può essere convertito in un ordine di "
+"Clicca per creare un ordine quadro che può essere convertito in un ordine di "
 "acquisto."
 
 #. module: purchase_blanket_order
@@ -254,8 +254,8 @@ msgid ""
 "Date until which the blanket order will be valid, after this date the "
 "blanket order will be marked as expired"
 msgstr ""
-"Data fino alla quale l'ordine aperto sarà valido, dopo questa data l'ordine "
-"aperto sarà indicato come scaduto"
+"Data fino alla quale l'ordine quadro sarà valido, dopo questa data l'ordine "
+"quadro sarà indicato come scaduto"
 
 #. module: purchase_blanket_order
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__name
@@ -270,13 +270,13 @@ msgstr "Disabilita l'aggiunta di altre righe negli OA"
 #. module: purchase_blanket_order
 #: model_terms:ir.ui.view,arch_db:purchase_blanket_order.purchase_config_settings_form_view
 msgid "Disable adding more lines to POs from Blanket Orders"
-msgstr "Disabilita l'aggiunta di altre righe negli OA da ordini aperti"
+msgstr "Disabilita l'aggiunta di altre righe negli OA da ordini quadro"
 
 #. module: purchase_blanket_order
 #: model:res.groups,name:purchase_blanket_order.purchase_blanket_orders_disable_adding_lines
 msgid "Disable adding more lines to POs from Purchase Blanket Orders"
 msgstr ""
-"Disabilita l'aggiunta di altre righe negli OA da ordini aperti di acquisto"
+"Disabilita l'aggiunta di altre righe negli OA da ordini quadro di acquisto"
 
 #. module: purchase_blanket_order
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__display_name
@@ -299,7 +299,7 @@ msgstr "Bozza"
 #. module: purchase_blanket_order
 #: model:ir.actions.server,name:purchase_blanket_order.expired_purchase_blanket_orders_cron_ir_actions_server
 msgid "Expire Blanket Orders"
-msgstr "Scadenza ordini aperti"
+msgstr "Scadenza ordini quadro"
 
 #. module: purchase_blanket_order
 #: model:ir.model.fields.selection,name:purchase_blanket_order.selection__purchase_blanket_order__state__expired
@@ -523,7 +523,7 @@ msgstr "Quantità ordinata"
 #. module: purchase_blanket_order
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_order__blanket_order_id
 msgid "Origin blanket order"
-msgstr "Origine ordine aperto"
+msgstr "Origine ordine quadro"
 
 #. module: purchase_blanket_order
 #: model_terms:ir.ui.view,arch_db:purchase_blanket_order.purchase_blanket_order_line_tree
@@ -587,30 +587,30 @@ msgstr "Prodotto"
 #: model:ir.actions.report,name:purchase_blanket_order.report_blanket_order
 #: model:ir.model,name:purchase_blanket_order.model_purchase_blanket_order
 msgid "Purchase Blanket Order"
-msgstr "Ordine d'acquisto aperto"
+msgstr "Ordine quadro d'acquisto"
 
 #. module: purchase_blanket_order
 #. odoo-python
 #: code:addons/purchase_blanket_order/wizard/create_purchase_orders.py:0
 #, python-format
 msgid "Purchase Blanket Order %s is not open"
-msgstr "L'ordine di acquisto aperto %s non è aperto"
+msgstr "L'ordine quadro di acquisto %s non è aperto"
 
 #. module: purchase_blanket_order
 #: model:ir.model,name:purchase_blanket_order.model_purchase_blanket_order_line
 #: model_terms:ir.ui.view,arch_db:purchase_blanket_order.purchase_blanket_order_line_form
 msgid "Purchase Blanket Order Line"
-msgstr "Riga ordine di acquisto aperto"
+msgstr "Riga ordine di acquisto quadro"
 
 #. module: purchase_blanket_order
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__line_count
 msgid "Purchase Blanket Order Line count"
-msgstr "Numero righe ordine d'acquisto aperto"
+msgstr "Numero righe ordine d'acquisto quadro"
 
 #. module: purchase_blanket_order
 #: model:ir.model,name:purchase_blanket_order.model_purchase_blanket_order_wizard_line
 msgid "Purchase Blanket Order Wizard Line"
-msgstr "Riga procedura guidata ordine d'acquisto aperto"
+msgstr "Riga procedura guidata ordine quadro d'acquisto"
 
 #. module: purchase_blanket_order
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__purchase_count
@@ -707,7 +707,7 @@ msgid ""
 "Line do not match."
 msgstr ""
 "Le date pianificate definite sulla riga ordine di acquisto e sulla riga "
-"ordine aperto non corrispondono."
+"ordine quadro non corrispondono."
 
 #. module: purchase_blanket_order
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__date_schedule
@@ -719,7 +719,7 @@ msgstr "Data schedulata"
 #. module: purchase_blanket_order
 #: model_terms:ir.ui.view,arch_db:purchase_blanket_order.purchase_blanket_order_line_search
 msgid "Search Purchase Blanket Order Line"
-msgstr "Cerca riga ordine di acquisto aperto"
+msgstr "Cerca riga ordine quadro di acquisto"
 
 #. module: purchase_blanket_order
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__sequence
@@ -786,7 +786,7 @@ msgstr "Termini e condizioni"
 msgid ""
 "The currency of the blanket order must match with that of the purchase order."
 msgstr ""
-"La valuta dell'ordine aperto deve corrispondere con quella dell'ordine di "
+"La valuta dell'ordine quadro deve corrispondere con quella dell'ordine di "
 "acquisto."
 
 #. module: purchase_blanket_order
@@ -794,7 +794,7 @@ msgstr ""
 #: code:addons/purchase_blanket_order/models/purchase_order.py:0
 #, python-format
 msgid "The vendor must be equal to the blanket order lines vendor"
-msgstr "Il fornitore deve essere lo stesso delle righe dell'ordine aperto"
+msgstr "Il fornitore deve essere lo stesso delle righe dell'ordine quadro"
 
 #. module: purchase_blanket_order
 #: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_form
@@ -837,8 +837,8 @@ msgid ""
 "control\n"
 "                the products received and control the vendor bills."
 msgstr ""
-"Usa questo menu per ricercare nei tuoi ordini aperto. Per ogni ordine "
-"aperto,\n"
+"Usa questo menu per ricercare nei tuoi ordini quadro. Per ogni ordine quadro,"
+"\n"
 "                puoi tracciare le relative conversazioni con il cliente, "
 "controllare\n"
 "                i prodotti spediti e controllare le fatture del fornitore."
@@ -882,7 +882,7 @@ msgstr "Riferimento venditore"
 #. module: purchase_blanket_order
 #: model:ir.actions.server,name:purchase_blanket_order.warnings_purchase_blanket_orders_cron_ir_actions_server
 msgid "Warnings Blanket Orders"
-msgstr "Avvisi ordini aperti"
+msgstr "Avvisi ordini quadro"
 
 #. module: purchase_blanket_order
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__website_message_ids
@@ -909,7 +909,7 @@ msgid ""
 "You can not delete a blanket order with opened purchase orders! Try to "
 "cancel them before."
 msgstr ""
-"Non si può cancellare un ordine aperto con ordini di acquisto aperti! "
+"Non si può cancellare un ordine quadro con ordini di acquisto aperti! "
 "Provare prima a cancellarli."
 
 #. module: purchase_blanket_order
@@ -918,7 +918,7 @@ msgstr ""
 #, python-format
 msgid "You can not delete an open blanket order! Try to cancel it before."
 msgstr ""
-"Non si può cancellare un ordine aperto in stato aperto! Prova prima ad "
+"Non si può cancellare un ordine quadro in stato aperto! Prova prima ad "
 "annullarlo."
 
 #. module: purchase_blanket_order
@@ -926,7 +926,7 @@ msgstr ""
 #: code:addons/purchase_blanket_order/wizard/create_purchase_orders.py:0
 #, python-format
 msgid "You can't create a purchase order from an expired blanket order!"
-msgstr "Non si può creare un ordine di acquisto da un ordine aperto scaduto!"
+msgstr "Non si può creare un ordine di acquisto da un ordine quadro scaduto!"
 
 #. module: purchase_blanket_order
 #. odoo-python
