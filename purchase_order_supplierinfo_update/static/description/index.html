@@ -370,11 +370,11 @@ ul.auto-toc {
 !! source digest: sha256:ae75d2a5e2ff3bea51424e8f22562e99d36c3071e49d537e84adfe60ce696816
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 <p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/purchase-workflow/tree/18.0/purchase_order_supplierinfo_update"><img alt="OCA/purchase-workflow" src="https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/purchase-workflow-18-0/purchase-workflow-18-0-purchase_order_supplierinfo_update"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&amp;target_branch=18.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>This module extends the functionality of purchase to allow the price of
-the supplier-info to be updated automatically for each product of the a
-purchase when it is confirmed. This will allow that when a purchase
-order is created, the suggested price for those products is the last one
-purchased.</p>
+<p>This module extends the functionality of purchase to allow the price and
+the discount of the supplier-info to be updated automatically for each
+product of the purchase when it is confirmed. This will allow that when
+a purchase order is created, the suggested price and suggested discount
+for those products is the last one purchased.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -398,11 +398,12 @@ Requests for Quotation with several products.</li>
 <li>Confirm that quotation and the unit prices defined on the lines will
 be stored in the supplier-info (related to the quotation supplier) of
 the products.</li>
-<li>By default the suggested price for the products is the one stored in
-supplier-info, so in this way, if you create another quotation with
-the same supplier and the same products, the suggested price for each
-product will be the same price at which the product was last
-purchased.</li>
+<li>By default the suggested price and the suggested discount for the
+products is the one stored in supplier-info, so in this way, if you
+create another quotation with the same supplier and the same
+products, the suggested price and the suggested discount for each
+product will be the same price and same discount at which the product
+was last purchased.</li>
 </ol>
 </div>
 <div class="section" id="known-issues-roadmap">

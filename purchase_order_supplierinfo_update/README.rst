@@ -28,11 +28,11 @@ Purchase Order Supplierinfo Update
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module extends the functionality of purchase to allow the price of
-the supplier-info to be updated automatically for each product of the a
-purchase when it is confirmed. This will allow that when a purchase
-order is created, the suggested price for those products is the last one
-purchased.
+This module extends the functionality of purchase to allow the price and
+the discount of the supplier-info to be updated automatically for each
+product of the purchase when it is confirmed. This will allow that when
+a purchase order is created, the suggested price and suggested discount
+for those products is the last one purchased.
 
 **Table of contents**
 
@@ -49,17 +49,18 @@ To use this module, you need to:
 2. Confirm that quotation and the unit prices defined on the lines will
    be stored in the supplier-info (related to the quotation supplier) of
    the products.
-3. By default the suggested price for the products is the one stored in
-   supplier-info, so in this way, if you create another quotation with
-   the same supplier and the same products, the suggested price for each
-   product will be the same price at which the product was last
-   purchased.
+3. By default the suggested price and the suggested discount for the
+   products is the one stored in supplier-info, so in this way, if you
+   create another quotation with the same supplier and the same
+   products, the suggested price and the suggested discount for each
+   product will be the same price and same discount at which the product
+   was last purchased.
 
 Known issues / Roadmap
 ======================
 
-- Refactor that module to share algorithm with similar module
-  account_invoice_supplierinfo_update.
+-  Refactor that module to share algorithm with similar module
+   account_invoice_supplierinfo_update.
 
 Bug Tracker
 ===========
@@ -82,13 +83,13 @@ Authors
 Contributors
 ------------
 
-- `Tecnativa <https://www.tecnativa.com>`__:
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  - Ernesto Tejeda
-  - Carlos Dauden
+   -  Ernesto Tejeda
+   -  Carlos Dauden
 
-- Daniel Reis <dreis@opensourceintegrators.com>, `Open Source
-  Integrators <https://www.opensourceintegrators.eu>`__:
+-  Daniel Reis <dreis@opensourceintegrators.com>, `Open Source
+   Integrators <https://www.opensourceintegrators.eu>`__:
 
 Maintainers
 -----------

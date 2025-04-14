@@ -26,7 +26,7 @@ class PurchaseOrderLine(models.Model):
 
     def write(self, vals):
         res = super().write(vals)
-        if vals.get("price_unit"):
+        if vals.get("price_unit") or vals.get("discount"):
             self.update_supplierinfo_price()
         return res
 

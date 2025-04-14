@@ -5,8 +5,8 @@ To use this module, you need to:
 2.  Confirm that quotation and the unit prices defined on the lines will
     be stored in the supplier-info (related to the quotation supplier)
     of the products.
-3.  By default the suggested price for the products is the one stored in
+3.  By default the suggested price and the suggested discount for the products is the one stored in
     supplier-info, so in this way, if you create another quotation with
-    the same supplier and the same products, the suggested price for
-    each product will be the same price at which the product was last
+    the same supplier and the same products, the suggested price and the suggested discount for
+    each product will be the same price and same discount at which the product was last
     purchased.
