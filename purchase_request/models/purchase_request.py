@@ -6,7 +6,7 @@ from odoo.exceptions import UserError
 
 _STATES = [
     ("draft", "Draft"),
-    ("to_revision", "Revision"),
+    ("to_review", "Review"),
     ("to_approve", "To be approved"),
     ("approved", "Approved"),
     ("in_progress", "In progress"),
@@ -230,7 +230,7 @@ class PurchaseRequest(models.Model):
     @api.depends("state", "line_ids.product_qty", "line_ids.cancelled")
     def _compute_to_approve_allowed(self):
         for rec in self:
-            rec.to_approve_allowed = rec.state == "draft" and any(
+            rec.to_approve_allowed = rec.state in ["draft", "to_review"] and any(
                 not line.cancelled and line.product_qty for line in rec.line_ids
             )
 
@@ -281,8 +281,8 @@ class PurchaseRequest(models.Model):
         self.mapped("line_ids").do_uncancel()
         return self.write({"state": "draft"})
     
-    def button_to_revision(self):
-        self.write({"state": "to_revision"})
+    def button_to_review(self):
+        self.write({"state": "to_review"})
 
     def button_to_approve(self):
         self.to_approve_allowed_check()

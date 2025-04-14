@@ -10,21 +10,21 @@
                 <header>
                     <button
                         name="button_draft"
-                        states="to_revision,to_approve,approved,rejected,in_progress,done"
+                        states="to_review,to_approve,approved,rejected,in_progress,done"
                         string="Reset"
                         type="object"
                         groups="purchase_request.group_purchase_request_manager"
                     />
                     <button
-                        name="button_to_revision"
+                        name="button_to_review"
                         states="draft"
-                        string="Request revision"
+                        string="Request review"
                         type="object"
                         class="oe_highlight"
                     />
                     <button
                         name="button_to_approve"
-                        states="to_revision"
+                        states="to_review"
                         string="Request approval"
                         type="object"
                         class="oe_highlight"
@@ -68,7 +68,7 @@
                     <field
                         name="state"
                         widget="statusbar"
-                        statusbar_visible="draft,revision,to_approve,approved,done,in_progress"
+                        statusbar_visible="draft,to_review,to_approve,approved,done,in_progress"
                         statusbar_colors='{"approved":"blue"}'
                     />
                 </header>
@@ -173,7 +173,7 @@
                             <field
                                 name="line_ids"
                                 mode="tree,kanban"
-                                attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                attrs="{'readonly': [('state', 'not in', ['draft','to_review'])]}"
                             >
                                 <tree
                                     decoration-muted="cancelled == True"
@@ -216,7 +216,7 @@
                                         name="purchase_state"
                                         widget="badge"
                                         decoration-success="purchase_state == ('done')"
-                                        decoration-muted="purchase_state == ('draft')"
+                                        decoration-muted="purchase_state in ('draft', 'to_review')"
                                         decoration-info="purchase_state in ('sent', 'purchase')"
                                         decoration-warning="purchase_state == ('to_approve')"
                                         decoration-danger="purchase_state == 'cancelled'"
@@ -321,7 +321,7 @@
         <field name="arch" type="xml">
             <tree
                 decoration-bf="message_needaction==True"
-                decoration-info="state in ('draft','to_approve')"
+                decoration-info="state in ('draft','to_review','to_approve')"
                 decoration-muted="state in ('rejected')"
                 name="Purchase Request"
             >
@@ -342,7 +342,7 @@
                     name="state"
                     widget="badge"
                     decoration-success="state in ('done', 'approved', 'in_progress')"
-                    decoration-muted="state == 'draft'"
+                    decoration-muted="state in ('draft', 'to_review')"
                     decoration-warning="state == 'to_approve'"
                     decoration-danger="state == 'rejected'"
                 />
@@ -370,6 +370,12 @@
                     string="Draft"
                     domain="[('state','=','draft')]"
                     help="Request is to be approved"
+                />
+                <filter
+                    name="state_to_review"
+                    string="To Review"
+                    domain="[('state','=','to_review')]"
+                    help="Request is to be reviewed"
                 />
                 <filter
                     name="state_to_approve"
