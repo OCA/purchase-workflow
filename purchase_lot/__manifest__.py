@@ -9,10 +9,7 @@
     "author": "Akretion, Odoo Community Association (OCA)",
     "maintainers": ["florian-dacosta"],
     "website": "https://github.com/OCA/purchase-workflow",
-    "depends": [
-        "purchase",
-        "sale_order_lot_selection",
-    ],
+    "depends": ["purchase_stock", "stock_restrict_lot"],
     "data": [
         "views/purchase_order_view.xml",
     ],
