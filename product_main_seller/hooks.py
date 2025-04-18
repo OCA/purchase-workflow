@@ -6,8 +6,9 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
-def pre_init_hook(cr):
+def pre_init_hook(env):
     _logger.info("Initializing column main_seller_id on table product_template")
+    cr = env.cr
     cr.execute(
         """
         ALTER TABLE product_template

@@ -7,15 +7,16 @@ from odoo.tests.common import TransactionCase
 
 
 class TestSeller(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.product_workplace = self.env.ref("product.product_product_24")
-        self.product_acoustic = self.env.ref("product.product_product_25")
-        self.product_with_var_chair = self.env.ref("product.product_product_11")
-        self.product_without_seller_desk = self.env.ref("product.product_product_3")
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.product_workplace = cls.env.ref("product.product_product_24")
+        cls.product_acoustic = cls.env.ref("product.product_product_25")
+        cls.product_with_var_chair = cls.env.ref("product.product_product_11")
+        cls.product_without_seller_desk = cls.env.ref("product.product_product_3")
 
-        self.partner_woodcorner = self.env.ref("base.res_partner_1")
-        self.partner_azure = self.env.ref("base.res_partner_12")
+        cls.partner_woodcorner = cls.env.ref("base.res_partner_1")
+        cls.partner_azure = cls.env.ref("base.res_partner_12")
 
     def test_01_computed_main_vendor(self):
         self.assertEqual(
