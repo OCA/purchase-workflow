@@ -6,98 +6,100 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2025-04-18 10:23+0000\n"
+"Last-Translator: Betül Öğmen <betulo@eska.biz>\n"
 "Language-Team: none\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: purchase_request_tier_validation
 #: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__can_review
 msgid "Can Review"
-msgstr ""
+msgstr "Gözden Geçirebilir"
 
 #. module: purchase_request_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_form_inherit_tier
 msgid "Confirm"
-msgstr ""
+msgstr "Onayla"
 
 #. module: purchase_request_tier_validation
 #: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__has_comment
 msgid "Has Comment"
-msgstr ""
+msgstr "Yorum Var"
 
 #. module: purchase_request_tier_validation
 #: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__hide_reviews
 msgid "Hide Reviews"
-msgstr ""
+msgstr "Gözden Geçirmeleri Gizle"
 
 #. module: purchase_request_tier_validation
 #: model:ir.model.fields,help:purchase_request_tier_validation.field_purchase_request__has_comment
 msgid "If set, Allow the reviewer to leave a comment on the review."
-msgstr ""
+msgstr "Ayarlanırsa, gözden geçirenin incelemeye yorum yazmasına izin ver."
 
 #. module: purchase_request_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_filter
 msgid "My Purchases to review"
-msgstr ""
+msgstr "Gözden geçirilecek Satınalmalarım"
 
 #. module: purchase_request_tier_validation
 #: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__need_validation
 msgid "Need Validation"
-msgstr ""
+msgstr "Onay Gerekiyor"
 
 #. module: purchase_request_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_filter
 msgid "Need actions"
-msgstr ""
+msgstr "İşlem Gerekli"
 
 #. module: purchase_request_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_filter
 msgid "Needs my Review"
-msgstr ""
+msgstr "Gözden Geçirmem Gerekenler"
 
 #. module: purchase_request_tier_validation
 #: model:tier.definition,name:purchase_request_tier_validation.purchase_request_default_tier_definition
 msgid "New Tier Validation"
-msgstr ""
+msgstr "Yeni Seviye Doğrulama"
 
 #. module: purchase_request_tier_validation
 #: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__next_review
 msgid "Next Review"
-msgstr ""
+msgstr "Sonraki Gözden Geçirme"
 
 #. module: purchase_request_tier_validation
 #: model:ir.model,name:purchase_request_tier_validation.model_purchase_request
 msgid "Purchase Request"
-msgstr ""
+msgstr "Satınalma Talebi"
 
 #. module: purchase_request_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_filter
 msgid "Purchase Requests validated and ready to be confirmed"
-msgstr ""
+msgstr "Satın Alma Talepleri onaylandı ve doğrulanmaya hazır"
 
 #. module: purchase_request_tier_validation
 #: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__rejected
 msgid "Rejected"
-msgstr ""
+msgstr "Reddedildi"
 
 #. module: purchase_request_tier_validation
 #: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__rejected_message
 msgid "Rejected Message"
-msgstr ""
+msgstr "Reddedilme Mesajı"
 
 #. module: purchase_request_tier_validation
 #: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__reviewer_ids
 msgid "Reviewers"
-msgstr ""
+msgstr "Gözden Geçirenler"
 
 #. module: purchase_request_tier_validation
 #: model:ir.model,name:purchase_request_tier_validation.model_tier_definition
 msgid "Tier Definition"
-msgstr ""
+msgstr "Katman Tanımı"
 
 #. module: purchase_request_tier_validation
 #: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__to_validate_message
@@ -108,19 +110,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__validated
 #: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_filter
 msgid "Validated"
-msgstr ""
+msgstr "Doğrulandı"
 
 #. module: purchase_request_tier_validation
 #: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__validated_message
 msgid "Validated Message"
-msgstr ""
+msgstr "Doğrulanmış Mesaj"
 
 #. module: purchase_request_tier_validation
 #: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__validation_status
 msgid "Validation Status"
-msgstr ""
+msgstr "Doğrulama Durumu"
 
 #. module: purchase_request_tier_validation
 #: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__review_ids
 msgid "Validations"
-msgstr ""
+msgstr "Onaylamalar"
