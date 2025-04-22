@@ -31,9 +31,9 @@ Purchase Reception Status
 This module adds a field *Receiption Status* on purchase orders. On a
 confirmed purchase order, it can have 3 different values:
 
--  Nothing Received
--  Partially Received
--  Fully Received
+- Nothing Received
+- Partially Received
+- Fully Received
 
 **Table of contents**
 
@@ -69,8 +69,8 @@ Authors
 Contributors
 ------------
 
--  Alexis de Lattre <alexis.delattre@akretion.com>
--  Urvisha Desai <udesai@opensoureintegrators.com>
+- Alexis de Lattre <alexis.delattre@akretion.com>
+- Urvisha Desai <udesai@opensoureintegrators.com>
 
 Maintainers
 -----------
