@@ -44,8 +44,9 @@ class PurchaseOrderLine(models.Model):
         values,
     ):
         lot_id = values.get("restrict_lot_id", False)
-        self = self.filtered(lambda line: line.lot_id.id == lot_id)
-        return super()._find_candidate(
+        return super(
+            PurchaseOrderLine, self.filtered(lambda line: line.lot_id.id == lot_id)
+        )._find_candidate(
             product_id,
             product_qty,
             product_uom,
