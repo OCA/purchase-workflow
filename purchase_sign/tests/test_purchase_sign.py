@@ -66,9 +66,7 @@ class TestPurchaseSign(HttpCaseWithUserPortal):
         )
         data = json.dumps({}).encode()
         resp = self.url_open(
-            "/my/purchase/{}/accept".format(
-                purchase_order.id,
-            ),
+            f"/my/purchase/{purchase_order.id}/accept",
             data=data,
             allow_redirects=False,
             headers={"Content-Type": "application/json"},
