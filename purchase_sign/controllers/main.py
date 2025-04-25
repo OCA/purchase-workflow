@@ -1,12 +1,12 @@
-# Copyright 2024 Onestein
+# Copyright 2025 Onestein
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
 import binascii
 
 from odoo import _, fields, http
 from odoo.exceptions import AccessError, MissingError
 from odoo.http import request
 
-from odoo.addons.portal.controllers.mail import _message_post_helper
 from odoo.addons.portal.controllers.portal import CustomerPortal
 
 
@@ -25,7 +25,6 @@ class PortalPurchase(CustomerPortal):
     def portal_purchase_accept(
         self, order_id, access_token=None, name=None, signature=None
     ):
-        # get from query string if not on json param
         access_token = access_token or request.httprequest.args.get("access_token")
         try:
             order_sudo = self._document_check_access(
@@ -49,6 +48,7 @@ class PortalPurchase(CustomerPortal):
                     "signature": signature,
                 }
             )
+            request.env.cr.commit()
         except (TypeError, binascii.Error):
             return {"error": _("Invalid signature data.")}
         order_sudo.button_confirm()
@@ -59,13 +59,16 @@ class PortalPurchase(CustomerPortal):
                 0
             ]
         )
-
-        _message_post_helper(
-            "purchase.order",
-            order_sudo.id,
-            _("Order signed by %s", name),
-            attachments=[("%s.pdf" % order_sudo.name, pdf)],
-            token=access_token,
+        order_sudo.message_post(
+            attachments=[(f"{order_sudo.name}.pdf", pdf)],
+            author_id=(
+                order_sudo.partner_id.id
+                if request.env.user._is_public()
+                else request.env.user.partner_id.id
+            ),
+            body=_("Order signed by %s", name),
+            message_type="comment",
+            subtype_xmlid="mail.mt_comment",
         )
 
         query_string = "&message=sign_ok"
