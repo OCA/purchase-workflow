@@ -9,7 +9,7 @@ class TestThreeStepReception(TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.wh = cls.env.ref("stock.warehouse0")
-        cls.po = cls.env.ref("purchase.purchase_order_1")
+        cls.po = cls.env.ref("purchase.purchase_order_2")
 
     def test_three_steps_generate_three_pickings(self):
         self.wh.reception_steps = "three_steps"
