@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 {
     "name": "Purchase Order Owner",
-    "version": "16.0.1.0.0",
+    "version": "17.0.1.0.0",
     "author": "Quartile Limited, Odoo Community Association (OCA)",
     "category": "Purchase Management",
     "website": "https://github.com/OCA/purchase-workflow",
