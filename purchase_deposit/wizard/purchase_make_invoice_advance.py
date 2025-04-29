@@ -51,12 +51,15 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
         readonly=False,
         help="Taxes used for deposits",
     )
+    company_id = fields.Many2one("res.company", default=lambda self: self.env.company)
 
-    @api.depends("purchase_deposit_product_id")
+    @api.depends("company_id", "purchase_deposit_product_id")
     def _compute_deposit_account_id(self):
         product = self.purchase_deposit_product_id
         self.deposit_account_id = product.property_account_expense_id
-        self.deposit_taxes_id = product.supplier_taxes_id
+        self.deposit_taxes_id = product.supplier_taxes_id.filtered(
+            lambda r: r.company_id == self.company_id or not r.company_id
+        )
 
     def _prepare_deposit_val(self, order, po_line, amount):
         account_id = False
