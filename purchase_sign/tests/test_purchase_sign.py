@@ -8,7 +8,7 @@ from odoo import _
 from odoo.tests import tagged
 
 from odoo.addons.base.tests.common import HttpCaseWithUserPortal
-from odoo.addons.purchase.models.purchase import PurchaseOrder
+from odoo.addons.purchase.models.purchase_order import PurchaseOrder
 
 
 @tagged("post_install", "-at_install")
@@ -35,13 +35,12 @@ class TestPurchaseSign(HttpCaseWithUserPortal):
             }
         )
 
-        # must be sent to the user so he can see it
         email_act = purchase_order.action_rfq_send()
         email_ctx = email_act.get("context", {})
-        purchase_order.with_context(**email_ctx).message_post_with_template(
-            email_ctx.get("default_template_id")
+        purchase_order.with_context(**email_ctx).message_post_with_source(
+            self.env["mail.template"].browse(email_ctx.get("default_template_id")),
+            subtype_xmlid="mail.mt_comment",
         )
-
         self.start_tour("/", "purchase_signature", login="portal")
 
     def test_02_portal_purchase_check_errors(self):
@@ -55,6 +54,7 @@ class TestPurchaseSign(HttpCaseWithUserPortal):
                 "access_token": "test_po",
             }
         )
+        purchase_order.message_subscribe(partner_ids=[portal_user_partner.id])
         self.env["purchase.order.line"].create(
             {
                 "order_id": purchase_order.id,

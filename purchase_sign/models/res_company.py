@@ -7,5 +7,8 @@ class ResCompany(models.Model):
     _inherit = "res.company"
 
     purchase_portal_confirmation_sign = fields.Boolean(
-        string="Purchase Online Signature", default=False
+        string="Online Signature",
+        default=False,
+        help="Enable this to request a digital signature when confirming "
+        "Purchase Orders via the portal.",
     )
