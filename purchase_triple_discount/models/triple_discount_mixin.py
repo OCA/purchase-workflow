@@ -16,6 +16,7 @@ class TripleDiscount(models.AbstractModel):
         compute="_compute_discount",
         store=True,
         readonly=True,
+        digits=None,
     )
     discount1 = fields.Float(
         string="Discount 1 (%)",
