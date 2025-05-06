@@ -132,5 +132,5 @@ class PurchaseRequestAllocation(models.Model):
             message = self._purchase_request_confirm_done_message_content(message_data)
             request.message_post(
                 body=Markup(message),
-                subtype_id=self.env.ref("mail.mt_comment").id,
+                subtype_id=self.env.ref("mail.mt_note").id,
             )
