@@ -8,3 +8,6 @@
 
 - [Trobz](https://trobz.com):  
   - Phuc Tran \<phuc@trobz.com\>
+
+- [Sistecem](https://sistecem.com):
+    - Miguel EB Jimenez \<miguel@sistecem.com\>

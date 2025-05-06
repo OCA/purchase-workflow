@@ -5,27 +5,38 @@ from odoo import api, fields, models
 
 
 class PurchaseOrder(models.Model):
-    _inherit = "purchase.order"
+    _name = "purchase.order"
+    _inherit = ["purchase.order", "analytic.mixin"]
 
-    account_analytic_id = fields.Many2one(
-        "account.analytic.account",
-        string="Analytic Account",
-        compute="_compute_analytic_account",
-        inverse="_inverse_analytic_account",
-        help="This account will be propagated to all lines, if you need "
-        "to use different accounts, define the account at line level.",
+    analytic_distribution = fields.Json(
+        inverse="_inverse_analytic_distribution",
+        store=True,
+        states={"done": [("readonly", True)], "cancel": [("readonly", True)]},
+        help="This analytic distribution will be propagated to all lines, if you need "
+        "to use different analytics, define the account at line level.",
     )
 
-    @api.depends("order_line.account_analytic_id")
-    def _compute_analytic_account(self):
-        for rec in self:
-            account = rec.mapped("order_line.account_analytic_id")
-            if len(account) == 1:
-                rec.account_analytic_id = account
-            else:
-                rec.account_analytic_id = False
+    @api.depends("order_line.analytic_distribution")
+    def _compute_analytic_distribution(self):
+        """Set the analytic distribution on the order based on its order lines.
 
-    def _inverse_analytic_account(self):
+        If all order lines have the same analytic distribution,
+        then set it on the order, otherwise left the field empty.
+        """
+        res = super()._compute_analytic_distribution()
+        for order in self:
+            distributions = order.mapped("order_line.analytic_distribution")
+            if distributions and all(
+                distribute == distributions[0] for distribute in distributions
+            ):
+                order.analytic_distribution = distributions[0]
+            else:
+                order.analytic_distribution = False
+        return res
+
+    def _inverse_analytic_distribution(self):
         for rec in self:
-            if rec.account_analytic_id:
-                rec.order_line.account_analytic_id = rec.account_analytic_id
+            if rec.analytic_distribution:
+                rec.order_line.write(
+                    {"analytic_distribution": rec.analytic_distribution}
+                )
