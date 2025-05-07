@@ -17,6 +17,7 @@ _STATES = [
 class PurchaseRequest(models.Model):
     _name = "purchase.request"
     _description = "Purchase Request"
+    _mail_post_access = "read"
     _inherit = ["mail.thread", "mail.activity.mixin"]
     _order = "id desc"
 
