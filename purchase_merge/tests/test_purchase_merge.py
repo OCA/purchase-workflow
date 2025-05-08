@@ -58,6 +58,14 @@ class TestPurchaseMerge(common.TransactionCase):
         cls.incoterm_2 = cls.env["account.incoterms"].create(
             {"name": "Incoterm 2", "code": "INC2"}
         )
+        cls.purchase_merge = cls.PurchaseMerge.create(
+            {
+                "purchase_ids": [
+                    (6, 0, [cls.purchase_order_1.id, cls.purchase_order_2.id])
+                ],
+                "dst_purchase_id": cls.purchase_order_1.id,
+            }
+        )
 
     def test_count_purchase_order_lines(self):
         self.purchase_merge_1 = self.PurchaseMerge.create(
@@ -306,3 +314,10 @@ class TestPurchaseMerge(common.TransactionCase):
             r"You can't merge purchase orders with different suppliers: .+",
         ):
             purchase_merge._check_all_values(purchase_merge.purchase_ids)
+
+    def test_successful_merge(self):
+        self.purchase_merge.action_merge()
+
+        # Check result
+        self.assertEqual(len(self.purchase_order_1.order_line), 2)
+        self.assertTrue(all(po.state == "cancel" for po in [self.purchase_order_2]))

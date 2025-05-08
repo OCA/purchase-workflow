@@ -54,7 +54,8 @@ class MergePurchaseAutomatic(models.TransientModel):
             po_names = non_draft_po.mapped("name")
             raise ValidationError(
                 _(
-                    "You can't merge purchase orders that aren't in draft state like: {}"
+                    "You can't merge purchase orders that aren't in draft state "
+                    "like: {}"
                 ).format(po_names)
             )
 
@@ -99,10 +100,8 @@ class MergePurchaseAutomatic(models.TransientModel):
         fiscal_positions = purchase_orders.fiscal_position_id
         if len(fiscal_positions) > 1:
             error_messages.append(
-                _(
-                    "You can't merge purchase orders with different fiscal positions: %s",
-                    ", ".join(fiscal_positions.mapped("name")),
-                )
+                _("You can't merge purchase orders with different fiscal positions: %s")
+                % ", ".join(fiscal_positions.mapped("name"))
             )
 
         suppliers = purchase_orders.partner_id
@@ -170,7 +169,7 @@ class MergePurchaseAutomatic(models.TransientModel):
             po_names=" ,".join(po_name),
         )
 
-        po.message_post(body=body, subject=subject, content_subtype="plaintext")
+        po.message_post(body=body, subject=subject)
 
     def _merge(self, purchases, dst_purchase=None):
         """private implementation of merge purchase

@@ -16,14 +16,14 @@
                             />
                         </group>
                         <field name="purchase_ids" nolabel="1" string="Purchase">
-                            <tree>
+                            <list>
                                 <field name="name" />
                                 <field name="date_order" />
                                 <field name="date_planned" />
                                 <field name="amount_total" />
                                 <field name="state" />
                                 <field name="invoice_status" />
-                            </tree>
+                            </list>
                         </field>
                     </group>
                 </sheet>
