@@ -5,7 +5,7 @@ from odoo.tests import common
 class TestPurchaseMerge(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(TestPurchaseMerge, cls).setUpClass()
+        super().setUpClass()
         cls.PurchaseMerge = cls.env["purchase.merge.automatic.wizard"]
         cls.product_1 = cls.env["product.product"].create({"name": "Product 1"})
         cls.product_2 = cls.env["product.product"].create({"name": "Product 2"})
