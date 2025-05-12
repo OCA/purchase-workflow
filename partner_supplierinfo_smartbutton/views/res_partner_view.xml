@@ -11,7 +11,7 @@
                     type="object"
                     class="oe_stat_button"
                     icon="fa-truck"
-                    attrs="{'invisible': [('product_supplied_count', '=', 0)]}"
+                    invisible="product_supplied_count == 0"
                 >
                     <field
                         name="product_supplied_count"
