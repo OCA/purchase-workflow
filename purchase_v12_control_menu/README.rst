@@ -64,6 +64,7 @@ Contributors
 - `Tecnativa <https://www.tecnativa.com>`__:
 
   - David Vidal
+  - David Bañón
 
 Maintainers
 -----------
