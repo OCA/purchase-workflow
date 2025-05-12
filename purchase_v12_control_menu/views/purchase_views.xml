@@ -4,11 +4,11 @@
         <field name="name">Vendor Bills</field>
         <field name="res_model">account.move</field>
         <field name="view_mode">tree,kanban,form,pivot,graph</field>
-        <field eval="False" name="view_id" />
+        <field name="view_id" eval="False" />
         <field name="domain">[('move_type','=','in_invoice')]</field>
         <field
             name="context"
-        >{'default_type':'in_invoice', 'move_type':'in_invoice', 'journal_type': 'purchase'}</field>
+        >{'default_move_type': 'in_invoice', 'move_type':'in_invoice', 'journal_type': 'purchase'}</field>
         <field name="search_view_id" ref="account.view_account_invoice_filter" />
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
