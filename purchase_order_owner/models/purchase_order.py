@@ -3,8 +3,6 @@
 
 from odoo import fields, models
 
-from odoo.addons.purchase.models.purchase import PurchaseOrder
-
 
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
@@ -12,7 +10,6 @@ class PurchaseOrder(models.Model):
     owner_id = fields.Many2one(
         "res.partner",
         "Assign Owner",
-        states=PurchaseOrder.READONLY_STATES,
         check_company=True,
         help="The assigned value will be set on the corresponding field of the "
         "incoming stock picking.",
