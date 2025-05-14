@@ -1,0 +1,1 @@
+from . import test_purchase_return_picking_type_product_supplierinfo_stock_picking_type
