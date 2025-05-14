@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="purchase_return_order_form" model="ir.ui.view">
+        <field name="model">purchase.return.order</field>
+        <field name="inherit_id" ref="purchase_return.purchase_return_order_form" />
+        <field name="arch" type="xml">
+            <group name="other_info" position="inside">
+                <field name="picking_type_id" />
+            </group>
+        </field>
+    </record>
+</odoo>
