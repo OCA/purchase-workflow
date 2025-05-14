@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-17 03:38+0000\n"
-"PO-Revision-Date: 2025-04-15 11:24+0000\n"
+"PO-Revision-Date: 2025-05-14 11:23+0000\n"
 "Last-Translator: Betül Öğmen <betulo@eska.biz>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/"
 "OCA-purchase-workflow-10-0/language/tr/)\n"
@@ -396,7 +396,7 @@ msgstr "Ad Görünümü"
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__distribution_analytic_account_ids
 msgid "Distribution Analytic Account"
-msgstr ""
+msgstr "Analitik Hesap Dağılımı"
 
 #. module: purchase_request
 #: model:ir.model.fields.selection,name:purchase_request.selection__purchase_request__state__done
@@ -1011,30 +1011,30 @@ msgstr "Satın Alınacak Miktar"
 #. odoo-python
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
 msgid "RFQ"
-msgstr ""
+msgstr "Teklif Talebi"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__purchased_qty
 msgid "RFQ/PO Qty"
-msgstr ""
+msgstr "Teklif Talebi/Satınalma Siparişi Miktar"
 
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/models/stock_move_line.py:0
 msgid "Receipt confirmation for Request {name}"
-msgstr ""
+msgstr "Talep {name} için mal kabul onayı"
 
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/models/stock_move_line.py:0
 msgid "Receipt confirmation {picking_name} for your Request {request_name}"
-msgstr ""
+msgstr "Mal kabul {picking_name} talebiniz için {request_name}"
 
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/models/purchase_order.py:0
 msgid "Received quantity"
-msgstr ""
+msgstr "Teslim alınan miktar"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
@@ -1083,25 +1083,25 @@ msgstr "Talep onaylandı"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Request is done"
-msgstr ""
+msgstr "Talep tamamlandı"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Request is in progress"
-msgstr ""
+msgstr "Talep devam ediyor"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Request is rejected"
-msgstr ""
+msgstr "Talep reddedildi"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Request is to be approved"
-msgstr ""
+msgstr "Talep onay bekliyor"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__request_state
@@ -1133,7 +1133,7 @@ msgstr "Talep Eden"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Requested for Quotation"
-msgstr ""
+msgstr "Teklif İstemede"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
@@ -1150,29 +1150,29 @@ msgstr "Sorumlu Kullanıcı"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_has_sms_error
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_has_sms_error
 msgid "SMS Delivery error"
-msgstr ""
+msgstr "SMS Teslim hatası"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_search_sub
 msgid "Search Purchase Order Line"
-msgstr ""
+msgstr "Satın Alma Teklif Satırı Ara"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Search Purchase Request"
-msgstr ""
+msgstr "Satın Alma Talebi Arama"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_allocation__purchase_line_id
 msgid "Service Purchase Order Line"
-msgstr ""
+msgstr "Satın Alma Teklif Satırı Hizmeti"
 
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/models/purchase_order.py:0
 msgid "Service confirmation for Request {request_name}"
-msgstr ""
+msgstr "Talep {request_name} için hizmet onayı"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line_make_purchase_order_item__keep_description
