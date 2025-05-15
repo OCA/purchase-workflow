@@ -1,6 +1,7 @@
 # © 2016 Chafique DELLI @ Akretion
 # © 2017 Today Mourad EL HADJ MIMOUNE @ Akretion
 # 2020 Manuel Calero - Tecnativa
+# 2025 Robrecht Colson - Gumbys
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     "name": "Purchase and Invoice Allowed Product",

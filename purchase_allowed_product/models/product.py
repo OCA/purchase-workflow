@@ -1,6 +1,7 @@
 # Copyright 2017 Today Mourad EL HADJ MIMOUNE @ Akretion
 # Copyright 2020 Tecnativa - Manuel Calero
 # Copyright 2020 Tecnativa - Pedro M. Baeza
+# Copyright 2025 Gumbys - Robrecht Colson
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, models
@@ -16,7 +17,6 @@ class ProductProduct(models.Model):
         offset=0,
         limit=None,
         order=None,
-        access_rights_uid=None,
     ):
         if self.env.context.get("use_only_supplied_product"):
             restrict_supplier_id = self.env.context.get("restrict_supplier_id")
@@ -38,5 +38,4 @@ class ProductProduct(models.Model):
             offset=offset,
             limit=limit,
             order=order,
-            access_rights_uid=access_rights_uid,
         )

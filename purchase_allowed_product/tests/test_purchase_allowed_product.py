@@ -1,9 +1,10 @@
 # Copyright 2017 Today Mourad EL HADJ MIMOUNE @ Akretion
 # Copyright 2020 Tecnativa - Pedro M. Baeza
+# Copyright 2025 Gumbys - Robrecht Colson
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests import Form
+from odoo.tests.common import TransactionCase
 
 
 class TestPurchaseAllowedProduct(TransactionCase):
