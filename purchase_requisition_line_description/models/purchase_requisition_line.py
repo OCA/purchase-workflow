@@ -14,7 +14,6 @@ class PurchaseRequisitionLine(models.Model):
     def _onchange_product_id(self):
         res = super()._onchange_product_id()
         if self.product_id:
-
             partner = (
                 self.requisition_id.purchase_ids.partner_id
                 or first(self.requisition_id.mapped("purchase_ids")).partner_id
