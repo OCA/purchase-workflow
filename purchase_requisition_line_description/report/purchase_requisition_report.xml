@@ -8,11 +8,17 @@
             <attribute name="t-if">False</attribute>
         </xpath>
         <xpath expr="//t[@t-if='o.line_ids']/table//th[1]" position="after">
-            <th><strong>Product</strong></th>
-            <th><strong>Description</strong></th>
+            <th>
+                <strong>Product</strong>
+            </th>
+            <th>
+                <strong>Description</strong>
+            </th>
         </xpath>
         <xpath expr="//t[@t-if='o.line_ids']/table//td[1]" position="after">
-            <td><span t-field="line_ids.name" /></td>
+            <td>
+                <span t-field="line_ids.name" />
+            </td>
         </xpath>
     </template>
 </odoo>
