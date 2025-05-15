@@ -1,10 +1,10 @@
 # Copyright 2021 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo.tests import Form, common
+from odoo.tests import common
 
 
-class TestPurchaseRequisitionLineDescription(common.SavepointCase):
+class TestPurchaseRequisitionLineDescription(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -21,12 +21,23 @@ class TestPurchaseRequisitionLineDescription(common.SavepointCase):
             }
         )
 
-    def test_onchange_product_id(self):
-        with Form(self.env["purchase.requisition"]) as purchase_form:
-            purchase_form.vendor_id = self.partner
-            with purchase_form.line_ids.new() as line_form:
-                line_form.product_id = self.product
-            self.assertEqual(
-                line_form.name,
-                self.product.name + "\n" + self.product.description_purchase,
-            )
+    def test_compute_product_description_name(self):
+        """Test that product description is computed using product and vendor."""
+        requisition = self.env["purchase.requisition"].create(
+            {
+                "vendor_id": self.partner.id,
+                "line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product.id,
+                        },
+                    )
+                ],
+            }
+        )
+        expected_description = (
+            f"{self.product.name}\n{self.product.description_purchase}"
+        )
+        self.assertEqual(requisition.line_ids[0].name, expected_description)
