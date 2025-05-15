@@ -88,6 +88,7 @@ setuptools.setup(
         'odoo14-addon-purchase_request_to_requisition',
         'odoo14-addon-purchase_request_type',
         'odoo14-addon-purchase_requisition_auto_rfq',
+        'odoo14-addon-purchase_requisition_line_description',
         'odoo14-addon-purchase_requisition_tier_validation',
         'odoo14-addon-purchase_rfq_number',
         'odoo14-addon-purchase_security',
