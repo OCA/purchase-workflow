@@ -2,7 +2,7 @@
     <template
         id="purchase_requisition"
         name="Purchase Requisition"
-        inherit_id="purchase_requisition.report_purchaserequisitions"
+        inherit_id="purchase_requisition.report_purchaserequisition_document"
     >
         <xpath expr="//t[@t-if='o.line_ids']/table//th[1]" position="attributes">
             <attribute name="t-if">False</attribute>
@@ -17,7 +17,7 @@
         </xpath>
         <xpath expr="//t[@t-if='o.line_ids']/table//td[1]" position="after">
             <td>
-                <span t-field="line_ids.name" />
+                <span t-field="line_id.name" />
             </td>
         </xpath>
     </template>
