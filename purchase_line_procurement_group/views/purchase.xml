@@ -6,10 +6,14 @@
         <field name="inherit_id" ref="purchase.purchase_order_form" />
         <field name="arch" type="xml">
             <xpath
-                expr="//notebook//field[@name='order_line']/tree/field[@name='date_planned']"
+                expr="//notebook//field[@name='order_line']/list/field[@name='date_planned']"
                 position="after"
             >
-                <field name="procurement_group_id" group_id="base.group_no_one" />
+                <field
+                    name="procurement_group_id"
+                    group_id="base.group_no_one"
+                    optional="hide"
+                />
             </xpath>
             <xpath
                 expr="//notebook//field[@name='order_line']/form//field[@name='date_planned']"

@@ -13,7 +13,7 @@ class TestPOLineProcurementGroup(TransactionCase):
             orderpoint_model = cls.env["stock.warehouse.orderpoint"]
             return orderpoint_model.create(
                 {
-                    "name": "OP/%s" % product.name,
+                    "name": f"OP/{product.name}",
                     "product_id": product.id,
                     "product_min_qty": qty_min,
                     "product_max_qty": qty_max,
@@ -32,7 +32,8 @@ class TestPOLineProcurementGroup(TransactionCase):
             .create(
                 {
                     "name": "Lighter",
-                    "type": "product",
+                    "type": "consu",
+                    "is_storable": True,
                     "purchase_ok": True,
                     "seller_ids": [
                         (

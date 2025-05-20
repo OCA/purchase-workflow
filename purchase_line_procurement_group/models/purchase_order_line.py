@@ -22,10 +22,10 @@ class PurchaseOrderLine(models.Model):
         """Do not merge PO lines if procurement group is different or not set."""
         _self = self
         if "group_id" in values:
-            pg_id = values.get("group_id", False)
-            if pg_id:
+            pg_id = values["group_id"]
+            if isinstance(pg_id, models.Model):
                 pg_id = pg_id.id
-            _self = self.filtered(lambda var: var.procurement_group_id.id == pg_id)
+            _self = self.filtered(lambda pol: pol.procurement_group_id.id == pg_id)
         return super(PurchaseOrderLine, _self)._find_candidate(
             product_id=product_id,
             product_qty=product_qty,
@@ -39,18 +39,36 @@ class PurchaseOrderLine(models.Model):
 
     def _prepare_stock_moves(self, picking):
         res = super()._prepare_stock_moves(picking)
-        if res and res[0] and "group_id" in res[0]:
-            res[0]["group_id"] = (
-                self.procurement_group_id.id or self.order_id.group_id.id
-            )
+        if self.procurement_group_id:
+            for vals in res:
+                if vals and "group_id" in vals:
+                    # override the procurement group with the one from the PO line
+                    vals["group_id"] = self.procurement_group_id.id
         return res
 
     def _prepare_purchase_order_line_from_procurement(
-        self, product_id, product_qty, product_uom, company_id, values, po
+        self,
+        product_id,
+        product_qty,
+        product_uom,
+        location_dest_id,
+        name,
+        origin,
+        company_id,
+        values,
+        po,
     ):
         """Add procurement group to values"""
         res = super()._prepare_purchase_order_line_from_procurement(
-            product_id, product_qty, product_uom, company_id, values, po
+            product_id,
+            product_qty,
+            product_uom,
+            location_dest_id,
+            name,
+            origin,
+            company_id,
+            values,
+            po,
         )
         procurement_group = values.get("group_id")
         if procurement_group:
