@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="purchase_order_line_tree" model="ir.ui.view">
+        <field
+            name="name"
+        >purchase.order.line.tree - purchase_reception_status_line</field>
+        <field name="model">purchase.order.line</field>
+        <field name="inherit_id" ref="purchase.purchase_order_line_tree" />
+        <field name="arch" type="xml">
+            <field name="product_uom" position="after">
+                <field name="reception_status" optional="hide" />
+                <field
+                    name="force_received"
+                    groups="purchase.group_purchase_manager"
+                    optional="hide"
+                />
+                <field name="state" invisible="1" />
+                <button
+                    name="action_commute_force_received"
+                    type="object"
+                    string="Force Receive"
+                    attrs="{'invisible': ['|','|',('state', 'not in', ['purchase', 'done']),('force_received', '=', True),('reception_status','=','received')]}"
+                />
+            </field>
+        </field>
+    </record>
+
+    <record id="purchase_order_line_form2" model="ir.ui.view">
+        <field
+            name="name"
+        >purchase.order.line.form - purchase_reception_status_line</field>
+        <field name="model">purchase.order.line</field>
+        <field name="inherit_id" ref="purchase.purchase_order_line_form2" />
+        <field name="arch" type="xml">
+            <sheet position="after">
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
+                </div>
+            </sheet>
+        </field>
+    </record>
+
+    <record id="purchase_order_line_search_filters" model="ir.ui.view">
+        <field name="name">purchase.order.line.search.reception_status.filters</field>
+        <field name="model">purchase.order.line</field>
+        <field name="inherit_id" ref="purchase.purchase_order_line_search" />
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='hide_cancelled']" position="after">
+                <separator string="Reception Status" />
+                <filter
+                    name="filter_no"
+                    string="Nothing Received"
+                    domain="[('reception_status','=','no'),('state','in',['done','purchase'])]"
+                />
+                <filter
+                    name="filter_partial"
+                    string="Partially Received"
+                    domain="[('reception_status','=','partial'),('state','in',['done','purchase'])]"
+                />
+                <filter
+                    name="filter_received"
+                    string="Fully Received"
+                    domain="[('reception_status','=','received'),('state','in',['done','purchase'])]"
+                />
+                <filter
+                    name="filter_over"
+                    string="Over Received"
+                    domain="[('reception_status','=','over'),('state','in',['done','purchase'])]"
+                />
+                <separator />
+            </xpath>
+        </field>
+    </record>
+</odoo>
