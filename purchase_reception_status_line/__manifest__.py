@@ -11,6 +11,9 @@
     "maintainers": ["DavidJForgeFlow"],
     "website": "https://github.com/OCA/purchase-workflow",
     "depends": ["purchase_reception_status"],
-    "data": ["views/purchase_order.xml"],
+    "data": [
+        "views/purchase_order.xml",
+        "views/purchase_order_line_views.xml",
+    ],
     "installable": True,
 }
