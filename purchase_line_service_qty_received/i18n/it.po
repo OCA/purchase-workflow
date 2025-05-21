@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2025-05-21 08:28+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: purchase_line_service_qty_received
 #: model:ir.model.fields,help:purchase_line_service_qty_received.field_purchase_order_line__qty_received_method
@@ -21,33 +23,37 @@ msgid ""
 "  - Manual: the quantity is set manually on the line\n"
 "  - Stock Moves: the quantity comes from confirmed pickings\n"
 msgstr ""
+"In base alla configurazione del prodotto, la quantità ricevuta può essere "
+"calcolata automaticamente tramite un meccanismo:\n"
+"  - Manuale: la quantità viene impostata manualmente sulla riga\n"
+"  - Movimenti di magazzino: la quantità deriva dai prelievi confermati\n"
 
 #. module: purchase_line_service_qty_received
 #: model:ir.model.fields,field_description:purchase_line_service_qty_received.field_purchase_order_line__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: purchase_line_service_qty_received
 #: model:ir.model.fields,field_description:purchase_line_service_qty_received.field_purchase_order_line__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: purchase_line_service_qty_received
 #: model:ir.model.fields,field_description:purchase_line_service_qty_received.field_purchase_order_line____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: purchase_line_service_qty_received
 #: model:ir.model,name:purchase_line_service_qty_received.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Riga ordine di acquisto"
 
 #. module: purchase_line_service_qty_received
 #: model:ir.model.fields,field_description:purchase_line_service_qty_received.field_purchase_order_line__qty_received_method
 msgid "Received Qty Method"
-msgstr ""
+msgstr "Metodo quantità ricevuta"
 
 #. module: purchase_line_service_qty_received
 #: model:ir.model.fields.selection,name:purchase_line_service_qty_received.selection__purchase_order_line__qty_received_method__reception
 msgid "Reception"
-msgstr ""
+msgstr "Ricezione"
