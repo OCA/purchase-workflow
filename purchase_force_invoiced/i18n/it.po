@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-03-14 15:06+0000\n"
+"PO-Revision-Date: 2025-05-21 08:28+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.2\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: purchase_force_invoiced
 #: model:ir.model.fields,field_description:purchase_force_invoiced.field_purchase_order__display_name
@@ -25,29 +25,29 @@ msgstr "Nome visualizzato"
 #. module: purchase_force_invoiced
 #: model:ir.model.fields,field_description:purchase_force_invoiced.field_purchase_order__force_invoiced
 msgid "Force invoiced"
-msgstr ""
+msgstr "Forza a fatturato"
 
 #. module: purchase_force_invoiced
 #: model:ir.model.fields,field_description:purchase_force_invoiced.field_purchase_order__id
 #: model:ir.model.fields,field_description:purchase_force_invoiced.field_purchase_report__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: purchase_force_invoiced
 #: model:ir.model.fields,field_description:purchase_force_invoiced.field_purchase_order____last_update
 #: model:ir.model.fields,field_description:purchase_force_invoiced.field_purchase_report____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: purchase_force_invoiced
 #: model:ir.model,name:purchase_force_invoiced.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Ordine di acquisto"
 
 #. module: purchase_force_invoiced
 #: model:ir.model,name:purchase_force_invoiced.model_purchase_report
 msgid "Purchase Report"
-msgstr ""
+msgstr "Resoconto di acquisto"
 
 #. module: purchase_force_invoiced
 #: model:ir.model.fields,help:purchase_force_invoiced.field_purchase_order__force_invoiced
@@ -56,3 +56,7 @@ msgid ""
 "billed, even when there may be ordered or delivered quantities pending to "
 "bill. To use this field, the order must be in 'Locked' state"
 msgstr ""
+"Quando si imposta questo campo, l'ordine di acquisto verrà considerato come "
+"completamente pagato, anche se ci sono quantità ordinate o consegnate in "
+"attesa di pagamento. Per usare questo campo, l'ordine deve essere in stato "
+"'Bloccato'"
