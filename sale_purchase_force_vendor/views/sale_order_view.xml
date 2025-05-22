@@ -26,7 +26,7 @@
                     <field
                         name="vendor_id"
                         domain="vendor_id_domain"
-                        readonly="'state' in ('done', 'cancel')"
+                        readonly="'state' in ('sale', 'cancel')"
                         options='{"no_create": True}'
                     />
                 </group>
