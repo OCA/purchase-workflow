@@ -24,6 +24,7 @@ msgstr "Añadir"
 #. module: purchase_quick
 #: model:ir.model.fields,field_description:purchase_quick.field_product_product__display_name
 #: model:ir.model.fields,field_description:purchase_quick.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:purchase_quick.field_purchase_order_line__display_name
 msgid "Display Name"
 msgstr "Mostrar Nombre"
 
@@ -41,12 +42,14 @@ msgstr "Para el proveedor actual"
 #. module: purchase_quick
 #: model:ir.model.fields,field_description:purchase_quick.field_product_product__id
 #: model:ir.model.fields,field_description:purchase_quick.field_purchase_order__id
+#: model:ir.model.fields,field_description:purchase_quick.field_purchase_order_line__id
 msgid "ID"
 msgstr "ID"
 
 #. module: purchase_quick
 #: model:ir.model.fields,field_description:purchase_quick.field_product_product____last_update
 #: model:ir.model.fields,field_description:purchase_quick.field_purchase_order____last_update
+#: model:ir.model.fields,field_description:purchase_quick.field_purchase_order_line____last_update
 msgid "Last Modified on"
 msgstr "Última Modificación el"
 
@@ -85,6 +88,11 @@ msgstr "Variantes del Producto"
 #: model:ir.model,name:purchase_quick.model_purchase_order
 msgid "Purchase Order"
 msgstr "Orden de Compra"
+
+#. module: purchase_quick
+#: model:ir.model,name:purchase_quick.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr ""
 
 #. module: purchase_quick
 #: model:ir.model.fields,field_description:purchase_quick.field_product_product__seller_price
