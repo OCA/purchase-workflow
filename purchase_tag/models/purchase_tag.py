@@ -4,8 +4,7 @@
 
 from random import randint
 
-from odoo import _, api, fields, models
-from odoo.exceptions import ValidationError
+from odoo import api, fields, models
 
 
 class PurchaseTag(models.Model):
@@ -20,34 +19,24 @@ class PurchaseTag(models.Model):
     color = fields.Integer(default=lambda self: self._get_default_color())
     parent_id = fields.Many2one("purchase.tag", index=True, ondelete="cascade")
     child_ids = fields.One2many("purchase.tag", "parent_id")
-    parent_path = fields.Char(index=True, unaccent=False)
+    parent_path = fields.Char(index=True)
 
     _sql_constraints = [
         ("tag_name_uniq", "unique (name)", "Tag name already exists !"),
     ]
 
-    def name_get(self):
-        res = []
+    def _compute_display_name(self):
         for tag in self:
             names = []
             current = tag
             while current:
-                names.append(current.name)
+                if current.name:
+                    names.append(current.name)
                 current = current.parent_id
-            res.append((tag.id, " / ".join(reversed(names))))
-        return res
+            display_name = " / ".join(reversed(names))
+            tag.display_name = display_name
 
     @api.model
-    def _name_search(
-        self, name="", domain=None, operator="ilike", limit=100, order=None
-    ):
-        if name:
-            domain = [("name", operator, name.split(" / ")[-1])] + list(domain or [])
-        return super()._name_search(
-            name=name, domain=domain, operator=operator, limit=limit, order=order
-        )
-
-    @api.constrains("parent_id")
-    def _check_parent_recursion(self):
-        if not self._check_recursion("parent_id"):
-            raise ValidationError(_("Tags cannot be recursive."))
+    def _search_display_name(self, operator, value):
+        domain = [("name", operator, value.split(" / ")[-1])]
+        return domain
