@@ -203,3 +203,12 @@ class PurchaseInvoicePlan(models.Model):
                 )
                 % ", ".join(installments)
             )
+
+    @api.depends("purchase_id", "installment", "plan_date", "percent")
+    def _compute_display_name(self):
+        for rec in self:
+            display_name = (
+                f"{rec.purchase_id.name}, "
+                f"Invoice Plan #{rec.installment}: {rec.plan_date} ({rec.percent}%)"
+            )
+            rec.display_name = display_name

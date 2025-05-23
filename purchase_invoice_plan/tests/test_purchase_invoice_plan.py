@@ -183,6 +183,8 @@ class TestPurchaseInvoicePlan(BaseCommon):
         self.assertEqual(len(self.test_po_product.invoice_plan_ids), 5)
         first_install = self.test_po_product.invoice_plan_ids[0]
         first_install.amount = 1000
+        self.assertIn(self.test_po_product.name, first_install.display_name)
+        self.assertIn("Invoice Plan", first_install.display_name)
         self.test_po_product.invoice_plan_ids[4].amount = 3000
         self.test_po_product.button_confirm()
         self.assertEqual(self.test_po_product.state, "purchase")
