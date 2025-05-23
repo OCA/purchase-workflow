@@ -4,7 +4,9 @@
 # @author Pierrick Brun <pierrick.brun@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
-from odoo import _, models
+from collections import OrderedDict
+
+from odoo import _, api, models
 from odoo.exceptions import ValidationError
 
 
@@ -62,10 +64,20 @@ class PurchaseOrder(models.Model):
         return result
 
     def _get_quick_line_qty_vals(self, product):
-        return {
-            "product_qty": product.qty_to_process,
-            "product_uom": product.quick_uom_id.id,
-        }
+        """
+        OrderedDict allows to guarantee the correct order
+        of the onchanges execution when a new line is
+        added to the purchase order and allows to set the
+        right price unit depending by qty_to_process and
+        min_qty in vendor product pricelist
+        """
+        return OrderedDict(
+            {
+                "product_id": None,
+                "product_uom": product.quick_uom_id.id,
+                "product_qty": product.qty_to_process,
+            }
+        )
 
     def _complete_quick_line_vals(self, vals, lines_key=""):
         # This params are need for playing correctly the onchange
@@ -83,3 +95,14 @@ class PurchaseOrder(models.Model):
         return super(PurchaseOrder, self)._add_quick_line(
             product, lines_key="order_line"
         )
+
+
+class PurchaseOrderLine(models.Model):
+    _inherit = "purchase.order.line"
+
+    @api.onchange("product_qty", "product_uom", "company_id")
+    def _onchange_quantity(self):
+        # Force company_id to po line if not set at the first time
+        if not self.company_id and self.order_id:
+            self.company_id = self.order_id.company_id
+        super(PurchaseOrderLine, self)._onchange_quantity()
