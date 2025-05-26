@@ -17,6 +17,11 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: purchase_lot
+#: model:ir.model.fields,help:purchase_lot.field_purchase_order_line__tracking
+msgid "Ensure the traceability of a storable product in your warehouse."
+msgstr ""
+
+#. module: purchase_lot
 #: model:ir.model,name:purchase_lot.model_purchase_order_line
 msgid "Purchase Order Line"
 msgstr "Línea de Orden de Compra"
@@ -31,3 +36,8 @@ msgstr "Número de Serie"
 #: model:ir.model,name:purchase_lot.model_stock_rule
 msgid "Stock Rule"
 msgstr "Regla de existencias"
+
+#. module: purchase_lot
+#: model:ir.model.fields,field_description:purchase_lot.field_purchase_order_line__tracking
+msgid "Tracking"
+msgstr ""
