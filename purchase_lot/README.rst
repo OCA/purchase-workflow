@@ -28,9 +28,13 @@ Purchase Lot
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module propagate lot from sale orders to purchase orders. It allows
-to buy specific lot for an sale order (may be usefull for fully
-configurable products)
+This module adds the lot_id field in the purchase order lines, and
+propagates it to stock pickings in the order confirmation.
+
+This module can also be used along with sale_order_lot_selection to
+propagate lot from sale orders to purchase orders. It allows to buy
+specific lot for a sale order (may be useful for fully configurable
+products)
 
 **Table of contents**
 
@@ -58,8 +62,8 @@ Authors
 Contributors
 ------------
 
-- Florian Dacosta <florian.dacosta@akretion.com>
-- David BEAL <david.beal@akretion.com>
+-  Florian Dacosta <florian.dacosta@akretion.com>
+-  David BEAL <david.beal@akretion.com>
 
 Maintainers
 -----------
