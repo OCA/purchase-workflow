@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="confirmation_wizard_form_view" model="ir.ui.view">
+        <field name="name">confirmation.wizard.inherit.form.view</field>
+        <field name="model">confirmation.wizard</field>
+        <field
+            name="inherit_id"
+            ref="confirmation_wizard.confirmation_wizard_form_view"
+        />
+        <field name="arch" type="xml">
+            <field name="message" position="attributes">
+                <attribute name="widget">html</attribute>
+            </field>
+        </field>
+    </record>
+
+</odoo>

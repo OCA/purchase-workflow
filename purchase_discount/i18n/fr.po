@@ -39,7 +39,6 @@ msgstr "Remise fournisseur par défaut (%)"
 #. module: purchase_discount
 #: model:ir.model.fields,field_description:purchase_discount.field_product_supplierinfo__discount
 #: model:ir.model.fields,field_description:purchase_discount.field_purchase_order_line__discount
-#: model:ir.model.fields,field_description:purchase_discount.field_purchase_report__discount
 msgid "Discount (%)"
 msgstr "Remise (%)"
 
@@ -82,6 +81,11 @@ msgid ""
 msgstr ""
 "Cette valeur sera utilisée comme valeur par défaut pour chaque nouvelle "
 "information fournisseur de ce fournisseur."
+
+#. module: purchase_discount
+#: model:ir.model.fields,field_description:purchase_discount.field_purchase_report__discount
+msgid "Total discount"
+msgstr ""
 
 #. module: purchase_discount
 #: model_terms:ir.ui.view,arch_db:purchase_discount.res_partner_form_view

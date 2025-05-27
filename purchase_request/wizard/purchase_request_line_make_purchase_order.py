@@ -44,6 +44,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             "name": line.name or line.product_id.name,
             "product_qty": line.pending_qty_to_receive,
             "product_uom_id": line.product_uom_id.id,
+            "estimated_cost": line.estimated_cost,
         }
 
     @api.model
@@ -249,7 +250,11 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             # Allocation UoM has to be the same as PR line UoM
             alloc_uom = line.product_uom_id
             wizard_uom = item.product_uom_id
-            if available_po_lines and not item.keep_description:
+            if (
+                available_po_lines
+                and not item.keep_description
+                and not item.keep_estimated_cost
+            ):
                 new_pr_line = False
                 po_line = available_po_lines[0]
                 po_line.purchase_request_lines = [(4, line.id)]
@@ -294,10 +299,14 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         self.ensure_one()
         line = item.line_id
         # TODO: Check propagate_uom compatibility:
+        price_unit = item.estimated_cost / item.product_qty
         new_qty = self.env["purchase.request.line"]._calc_new_qty(
             line, po_line=po_line, new_pr_line=new_pr_line
         )
         po_line.product_qty = new_qty
+        if item.keep_estimated_cost:
+            po_line.price_unit = price_unit
+            po_line._compute_amount()
         # The quantity update triggers a compute method that alters the
         # unit price (which is what we want, to honor graduate pricing)
         # but also the scheduled date which is what we don't want.
@@ -340,10 +349,20 @@ class PurchaseRequestLineMakePurchaseOrderItem(models.TransientModel):
     product_uom_id = fields.Many2one(
         comodel_name="uom.uom", string="UoM", required=True
     )
+    estimated_cost = fields.Monetary(currency_field="currency_id")
+    currency_id = fields.Many2one(
+        "res.currency", string="Currency", related="line_id.currency_id", readonly=True
+    )
     keep_description = fields.Boolean(
         string="Copy descriptions to new PO",
         help="Set true if you want to keep the "
         "descriptions provided in the "
+        "wizard in the new PO.",
+    )
+    keep_estimated_cost = fields.Boolean(
+        string="Copy estimative cost to new PO",
+        help="Set true if you want to keep the "
+        "estimated cost provided in the "
         "wizard in the new PO.",
     )
 

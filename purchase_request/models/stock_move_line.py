@@ -108,7 +108,7 @@ class StockMoveLine(models.Model):
                     )
                     if message:
                         request.message_post(
-                            body=message, subtype_id=self.env.ref("mail.mt_comment").id
+                            body=message, subtype_id=self.env.ref("mail.mt_note").id
                         )
 
                     picking_message = self._picking_confirm_done_message_content(
@@ -117,7 +117,7 @@ class StockMoveLine(models.Model):
                     if picking_message:
                         ml.move_id.picking_id.message_post(
                             body=picking_message,
-                            subtype_id=self.env.ref("mail.mt_comment").id,
+                            subtype_id=self.env.ref("mail.mt_note").id,
                         )
 
                 allocation._compute_open_product_qty()

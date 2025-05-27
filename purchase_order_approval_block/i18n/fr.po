@@ -1,0 +1,157 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * purchase_order_approval_block
+#
+# Translators:
+# Quentin THEURET <odoo@kerpeo.com>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-23 17:51+0000\n"
+"PO-Revision-Date: 2020-10-06 14:04+0000\n"
+"Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
+"Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.10\n"
+
+#. module: purchase_order_approval_block
+#: model:res.groups,comment:purchase_order_approval_block.group_rfq_approval_block
+msgid ""
+"\n"
+"            The user will be able to release an RFQ blocked for approval.\n"
+"        "
+msgstr ""
+"\n"
+"            L'utilisateur sera capable de débloquer une demande de prix "
+"bloquée pour approbation.\n"
+"        "
+
+#. module: purchase_order_approval_block
+#: model:ir.model.fields,field_description:purchase_order_approval_block.field_purchase_approval_block_reason__active
+msgid "Active"
+msgstr "Actif"
+
+#. module: purchase_order_approval_block
+#: model:ir.model.fields,field_description:purchase_order_approval_block.field_purchase_order__approval_block_id
+msgid "Approval Block Reason"
+msgstr "Motif du blocage de l'approbation"
+
+#. module: purchase_order_approval_block
+#: model:exception.rule,name:purchase_order_approval_block.po_excep_approval_block
+#: model:ir.model.fields,field_description:purchase_order_approval_block.field_purchase_order__approval_blocked
+msgid "Approval Blocked"
+msgstr "Approbation bloquée"
+
+#. module: purchase_order_approval_block
+#: model_terms:ir.ui.view,arch_db:purchase_order_approval_block.view_purchase_order_filter
+msgid "Blocked for Approval"
+msgstr "Bloquée pour approbation"
+
+#. module: purchase_order_approval_block
+#: model:ir.model.fields,field_description:purchase_order_approval_block.field_purchase_approval_block_reason__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: purchase_order_approval_block
+#: model:ir.model.fields,field_description:purchase_order_approval_block.field_purchase_approval_block_reason__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: purchase_order_approval_block
+#: model:ir.model.fields,field_description:purchase_order_approval_block.field_purchase_approval_block_reason__description
+msgid "Description"
+msgstr "Description"
+
+#. module: purchase_order_approval_block
+#: model:ir.model.fields,field_description:purchase_order_approval_block.field_purchase_approval_block_reason__display_name
+msgid "Display Name"
+msgstr "Nom d'affichage"
+
+#. module: purchase_order_approval_block
+#: model:ir.model.fields,field_description:purchase_order_approval_block.field_purchase_approval_block_reason__id
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_order_approval_block
+#: model:ir.model.fields,field_description:purchase_order_approval_block.field_purchase_approval_block_reason____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: purchase_order_approval_block
+#: model:ir.model.fields,field_description:purchase_order_approval_block.field_purchase_approval_block_reason__write_uid
+msgid "Last Updated by"
+msgstr "Dernière modification par"
+
+#. module: purchase_order_approval_block
+#: model:ir.model.fields,field_description:purchase_order_approval_block.field_purchase_approval_block_reason__write_date
+msgid "Last Updated on"
+msgstr "Mis à jour le"
+
+#. module: purchase_order_approval_block
+#: model:ir.model.fields,field_description:purchase_order_approval_block.field_purchase_approval_block_reason__name
+msgid "Name"
+msgstr "Nom"
+
+#. module: purchase_order_approval_block
+#: code:addons/purchase_order_approval_block/models/purchase_order.py:44
+#, python-format
+msgid "Order \"%s\" approval block released."
+msgstr "Suppression du blocage de l'approbation de la commande \"%s\"."
+
+#. module: purchase_order_approval_block
+#: code:addons/purchase_order_approval_block/models/purchase_order.py:29
+#: code:addons/purchase_order_approval_block/models/purchase_order.py:40
+#, python-format
+msgid "Order \"%s\" blocked with reason \"%s\""
+msgstr "Commande \"%s\" bloquée pour le motif \"%s\""
+
+#. module: purchase_order_approval_block
+#: model:ir.model,name:purchase_order_approval_block.model_purchase_approval_block_reason
+msgid "Purchase Approval Block Reason"
+msgstr "Motif de blocage d'une approbation d'achat"
+
+#. module: purchase_order_approval_block
+#: model:ir.actions.act_window,name:purchase_order_approval_block.action_purchase_approval_block_reason
+#: model:ir.ui.menu,name:purchase_order_approval_block.menu_purchase_approval_block_reason
+msgid "Purchase Approval Block Reasons"
+msgstr "Motifs de blocage d'une approbation d'achat"
+
+#. module: purchase_order_approval_block
+#: model:ir.model,name:purchase_order_approval_block.model_purchase_order
+msgid "Purchase Order"
+msgstr "Commande fournisseur"
+
+#. module: purchase_order_approval_block
+#: model_terms:ir.ui.view,arch_db:purchase_order_approval_block.purchase_approval_block_reason_tree_view
+msgid "Purchase Order Approval Block Reasons"
+msgstr "Motifs de blocage d'une approbation de commande d'achat"
+
+#. module: purchase_order_approval_block
+#: model_terms:ir.ui.view,arch_db:purchase_order_approval_block.purchase_order_form
+msgid "Release Approval Block"
+msgstr "Supprimer le motif de blocage"
+
+#. module: purchase_order_approval_block
+#: model:res.groups,name:purchase_order_approval_block.group_rfq_approval_block
+msgid "Release RFQ with approval block"
+msgstr "Débloquer les demandes de prix avec un blocage d'approbation"
+
+#. module: purchase_order_approval_block
+#: model:exception.rule,description:purchase_order_approval_block.po_excep_approval_block
+msgid ""
+"The approval has been blocked,\n"
+"                with a Blocking reason."
+msgstr "L'approbation a été bloquée, à cause d'un motif de blocage."
+
+#. module: purchase_order_approval_block
+#: model:ir.model,name:purchase_order_approval_block.model_purchase_exception_confirm
+msgid "purchase.exception.confirm"
+msgstr "purchase.exception.confirm"
+
+#~ msgid "purchase.approval.block.reason"
+#~ msgstr "purchase.approval.block.reason"

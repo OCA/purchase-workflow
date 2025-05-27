@@ -23,7 +23,9 @@ class ReplenishmentReport(models.AbstractModel):
             ("state", "in", ["purchase", "done"]),
             ("pending_to_receive", "=", True),
         ]
-        domain += self._product_domain(product_template_ids, product_variant_ids)
+        domain += self._product_purchase_domain(
+            product_template_ids, product_variant_ids
+        )
         warehouse_id = self.env.context.get("warehouse", False)
         if warehouse_id:
             domain += [("order_id.picking_type_id.warehouse_id", "=", warehouse_id)]

@@ -6,6 +6,13 @@ from odoo import fields, models
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
+    default_supplierinfo_discount1 = fields.Float(
+        string="Default Supplier Discount 1 (%)",
+        digits="Discount",
+        help="This value will be used as the default one, for each new "
+        "supplierinfo line depending on that supplier.",
+    )
+
     default_supplierinfo_discount2 = fields.Float(
         string="Default Supplier Discount 2 (%)",
         digits="Discount",

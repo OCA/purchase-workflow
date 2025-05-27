@@ -40,7 +40,6 @@ msgstr "Desconto padrão do fornecedor (%)"
 #. module: purchase_discount
 #: model:ir.model.fields,field_description:purchase_discount.field_product_supplierinfo__discount
 #: model:ir.model.fields,field_description:purchase_discount.field_purchase_order_line__discount
-#: model:ir.model.fields,field_description:purchase_discount.field_purchase_report__discount
 msgid "Discount (%)"
 msgstr "Desconto (%)"
 
@@ -83,6 +82,11 @@ msgid ""
 msgstr ""
 "Este valor será usado como padrão, para cada nova linha de informações do "
 "fornecedor dependendo desse fornecedor."
+
+#. module: purchase_discount
+#: model:ir.model.fields,field_description:purchase_discount.field_purchase_report__discount
+msgid "Total discount"
+msgstr ""
 
 #. module: purchase_discount
 #: model_terms:ir.ui.view,arch_db:purchase_discount.res_partner_form_view

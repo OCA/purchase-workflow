@@ -7,13 +7,23 @@ from datetime import datetime
 
 from odoo import fields
 from odoo.exceptions import UserError
-from odoo.tests import common
+from odoo.tests import common, tagged
 
 
+@tagged("post_install", "-at_install")
 class TestPurchaseLandedCost(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(TestPurchaseLandedCost, cls).setUpClass()
+        if not cls.env.company.chart_template_id:
+            # Load a CoA if there's none in current company
+            coa = cls.env.ref("l10n_generic_coa.configurable_chart_template", False)
+            if not coa:
+                # Load the first available CoA
+                coa = cls.env["account.chart.template"].search(
+                    [("visible", "=", True)], limit=1
+                )
+            coa.try_loading(company=cls.env.company, install_demo=False)
         expense_type_obj = cls.env["purchase.expense.type"]
         cls.type_amount = expense_type_obj.create(
             {

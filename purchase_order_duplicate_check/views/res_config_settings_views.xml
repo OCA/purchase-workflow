@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="res_config_settings_form_view" model="ir.ui.view">
+        <field
+            name="name"
+        >res.config.settings.form.view.inherit.purchase_order_duplicate_check</field>
+        <field name="model">res.config.settings</field>
+        <field
+            name="inherit_id"
+            ref="purchase.res_config_settings_view_form_purchase"
+        />
+        <field name="arch" type="xml">
+            <div name="purchase_setting_container" position="inside">
+                <div
+                    class="col-12 col-lg-6 o_setting_box"
+                    id="allow_create_activity_repeating_orders"
+                >
+                    <div class="o_setting_left_pane">
+                        <field name="allow_create_activity_repeating_orders" />
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <span
+                            class="o_form_label"
+                        >Create Activity for Repeating Orders</span>
+                        <div
+                            class="content-group"
+                            attrs="{'invisible': [('allow_create_activity_repeating_orders', '=', False)]}"
+                        >
+                            <div class="row mt16">
+                                <label
+                                    for="repeating_orders_activity_type_id"
+                                    class="col-lg-4 o_light_label"
+                                />
+                                <field name="repeating_orders_activity_type_id" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </field>
+    </record>
+
+</odoo>
