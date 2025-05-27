@@ -1,0 +1,90 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_v12_control_menu
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2025-05-29 08:06+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
+
+#. module: purchase_v12_control_menu
+#: model_terms:ir.ui.view,arch_db:purchase_v12_control_menu.stock_move_view_kanban
+msgid "<i class=\"fa fa-clock-o\" role=\"img\" aria-label=\"Date\" title=\"Date\"/>"
+msgstr ""
+"<i class=\"fa fa-clock-o\" role=\"img\" aria-label=\"Data\" title=\"Data\"/>"
+
+#. module: purchase_v12_control_menu
+#: model:ir.ui.menu,name:purchase_v12_control_menu.menu_purchase_control
+msgid "Control"
+msgstr "Controllo"
+
+#. module: purchase_v12_control_menu
+#: model_terms:ir.actions.act_window,help:purchase_v12_control_menu.action_invoice_pending
+msgid "Create a vendor bill"
+msgstr "Crea una fattura fornitore"
+
+#. module: purchase_v12_control_menu
+#: model_terms:ir.actions.act_window,help:purchase_v12_control_menu.action_receipt_picking_move
+msgid ""
+"Here you can receive individual products, no matter what\n"
+"                purchase order or picking order they come from. You will find\n"
+"                the list of all products you are waiting for."
+msgstr ""
+"Qui si possono ricevere singoli prodotti, indipendentemente \n"
+"                dall'ordine di acquisto o dall'ordine di prelievo da cui "
+"provengono. Si troverà\n"
+"                l'elenco di tutti i prodotti che si stanno aspettando."
+
+#. module: purchase_v12_control_menu
+#: model:ir.actions.act_window,name:purchase_v12_control_menu.action_receipt_picking_move
+#: model:ir.ui.menu,name:purchase_v12_control_menu.menu_action_picking_tree_in_move
+msgid "Incoming  Products"
+msgstr "Prodotti in arrivo"
+
+#. module: purchase_v12_control_menu
+#: model_terms:ir.actions.act_window,help:purchase_v12_control_menu.action_receipt_picking_move
+msgid ""
+"Once you receive an order, you can filter based on the name of\n"
+"                the vendor or the purchase order reference. Then you can confirm\n"
+"                all products received using the buttons on the right of each line."
+msgstr ""
+"Una volta ricevuto un ordine, lo si può filtrare in base al nome del \n"
+"                fornitore o al riferimento dell'ordine di acquisto. Si può "
+"quindi confermare \n"
+"                tutti i prodotti ricevuti utilizzando i pulsanti a destra di "
+"ogni riga."
+
+#. module: purchase_v12_control_menu
+#: model_terms:ir.actions.act_window,help:purchase_v12_control_menu.action_receipt_picking_move
+msgid "Register a product receipt"
+msgstr "Registra una ricevuta del prodotto"
+
+#. module: purchase_v12_control_menu
+#: model_terms:ir.actions.act_window,help:purchase_v12_control_menu.action_invoice_pending
+msgid ""
+"Use this menu to control the invoices to be received from your\n"
+"                vendors. When registering a new bill, set the purchase order\n"
+"                and Odoo will fill the bill automatically according to ordered\n"
+"                or received quantities."
+msgstr ""
+"Utilizzare questo menu per gestire le fatture da ricevere dai propri\n"
+"                fornitori. Quando si registra una nuova fattura, si imposta "
+"l'ordine di acquisto\n"
+"                e Odoo compilerà automaticamente la fattura in base alle "
+"quantità ordinate\n"
+"                o ricevute."
+
+#. module: purchase_v12_control_menu
+#: model:ir.actions.act_window,name:purchase_v12_control_menu.action_invoice_pending
+#: model:ir.ui.menu,name:purchase_v12_control_menu.menu_procurement_management_pending_invoice
+msgid "Vendor Bills"
+msgstr "Fatture fornitore"
