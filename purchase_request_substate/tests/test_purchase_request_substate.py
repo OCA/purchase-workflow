@@ -5,39 +5,40 @@ from odoo.exceptions import ValidationError
 from odoo.tests.common import TransactionCase
 
 
-class TestBaseSubstate(TransactionCase):
-    def setUp(self):
-        super().setUp()
+class TestPurchaseRequestSubstate(TransactionCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
         # Prepare PR
-        self.purchase_request_obj = self.env["purchase.request"]
-        self.purchase_request_line_obj = self.env["purchase.request.line"]
-        self.wiz = self.env["purchase.request.line.make.purchase.order"]
+        cls.purchase_request_obj = cls.env["purchase.request"]
+        cls.purchase_request_line_obj = cls.env["purchase.request.line"]
+        cls.wiz = cls.env["purchase.request.line.make.purchase.order"]
         vals = {
-            "picking_type_id": self.env.ref("stock.picking_type_in").id,
+            "picking_type_id": cls.env.ref("stock.picking_type_in").id,
             "requested_by": SUPERUSER_ID,
         }
-        self.pr_test = self.purchase_request_obj.create(vals)
+        cls.pr_test = cls.purchase_request_obj.create(vals)
         vals = {
-            "request_id": self.pr_test.id,
-            "product_id": self.env.ref("product.product_product_13").id,
-            "product_uom_id": self.env.ref("uom.product_uom_unit").id,
+            "request_id": cls.pr_test.id,
+            "product_id": cls.env.ref("product.product_product_13").id,
+            "product_uom_id": cls.env.ref("uom.product_uom_unit").id,
             "product_qty": 5.0,
         }
-        self.purchase_request_line_obj.create(vals)
+        cls.purchase_request_line_obj.create(vals)
 
         # Prepare states
-        self.substate_to_verify = self.env.ref(
+        cls.substate_to_verify = cls.env.ref(
             "purchase_request_substate.base_substate_to_verify"
         )
-        self.substate_checked = self.env.ref(
+        cls.substate_checked = cls.env.ref(
             "purchase_request_substate.base_substate_checked"
         )
-        self.substate_verified = self.env.ref(
+        cls.substate_verified = cls.env.ref(
             "purchase_request_substate.base_substate_verified"
         )
         # Active substate
         (
-            self.substate_to_verify + self.substate_checked + self.substate_verified
+            cls.substate_to_verify + cls.substate_checked + cls.substate_verified
         ).active = True
 
     def test_purchase_request_order_substate(self):
