@@ -66,7 +66,9 @@ class TestPurchaseRequest(TransactionCase):
         self.assertEqual(
             purchase_request.state, "to_review", "Should be in state to_review"
         )
-        self.assertEqual(purchase_request.state, "draft", "Should be in state draft")
+        self.assertTrue(
+            purchase_request.is_editable, "Should be editable in 'to_review'"
+        )
         purchase_request.button_to_approve()
         purchase_request.button_done()
         self.assertEqual(purchase_request.is_editable, False, "Should not be editable")
