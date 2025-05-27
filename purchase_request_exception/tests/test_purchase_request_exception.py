@@ -3,48 +3,47 @@
 
 from datetime import datetime
 
+from odoo import Command
 from odoo.tests.common import TransactionCase
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
 class TestPurchaseRequestException(TransactionCase):
-    def setUp(self):
-        super().setUp()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+
         # Useful models
-        self.PurchaseRequest = self.env["purchase.request"]
-        self.PurchaseRequestLine = self.env["purchase.request.line"]
-        self.request_user_id = self.env.ref("base.user_admin")
-        self.date_required = datetime.today().strftime(DEFAULT_SERVER_DATETIME_FORMAT)
-        self.purchase_request_exception_confirm = self.env[
+        cls.PurchaseRequest = cls.env["purchase.request"]
+        cls.PurchaseRequestLine = cls.env["purchase.request.line"]
+        cls.request_user_id = cls.env.ref("base.user_admin")
+        cls.date_required = datetime.today().strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+        cls.purchase_request_exception_confirm = cls.env[
             "purchase.request.exception.confirm"
         ]
-        self.exception_noapprover = self.env.ref(
+        cls.exception_noapprover = cls.env.ref(
             "purchase_request_exception.pr_excep_no_approver"
         )
-        self.exception_qtycheck = self.env.ref(
+        cls.exception_qtycheck = cls.env.ref(
             "purchase_request_exception.prl_excep_qty_check"
         )
-        self.pr_vals = {
-            "requested_by": self.request_user_id.id,
+        cls.pr_vals = {
+            "requested_by": cls.request_user_id.id,
             "line_ids": [
-                (
-                    0,
-                    0,
+                Command.create(
                     {
                         "name": "Pen",
                         "product_qty": 5.0,
                         "estimated_cost": 500.0,
-                        "date_required": self.date_required,
+                        "date_required": cls.date_required,
                     },
                 ),
-                (
-                    0,
-                    0,
+                Command.create(
                     {
                         "name": "Ink",
                         "product_qty": 5.0,
                         "estimated_cost": 250.0,
-                        "date_required": self.date_required,
+                        "date_required": cls.date_required,
                     },
                 ),
             ],
@@ -81,9 +80,7 @@ class TestPurchaseRequestException(TransactionCase):
         self.pr.write(
             {
                 "line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "name": "Pencil",
                             "product_qty": 2.0,

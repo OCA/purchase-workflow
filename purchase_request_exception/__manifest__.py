@@ -2,9 +2,9 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
-    "name": "Purchase Reqeust Exception",
+    "name": "Purchase Request Exception",
     "summary": "Custom exceptions on purchase request",
-    "version": "16.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Generic Modules/Purchase",
     "author": "Ecosoft, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",

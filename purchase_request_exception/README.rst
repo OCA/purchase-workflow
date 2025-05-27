@@ -1,5 +1,5 @@
 ==========================
-Purchase Reqeust Exception
+Purchase Request Exception
 ==========================
 
 .. 
@@ -62,7 +62,7 @@ Authors
 Contributors
 ------------
 
-- Kitti U <kittiu@ecosoft.co.th>
+-  Kitti U <kittiu@ecosoft.co.th>
 
 Maintainers
 -----------
