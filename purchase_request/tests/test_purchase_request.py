@@ -62,6 +62,10 @@ class TestPurchaseRequest(TransactionCase):
         self.assertIn(msg, e.exception.args[0])
         purchase_request.button_draft()
         self.assertEqual(purchase_request.is_editable, True, "Should be editable")
+        purchase_request.button_to_review()
+        self.assertEqual(
+            purchase_request.state, "to_review", "Should be in state to_review"
+        )
         self.assertEqual(purchase_request.state, "draft", "Should be in state draft")
         purchase_request.button_to_approve()
         purchase_request.button_done()
