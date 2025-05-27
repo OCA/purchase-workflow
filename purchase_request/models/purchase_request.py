@@ -281,7 +281,7 @@ class PurchaseRequest(models.Model):
     def button_draft(self):
         self.mapped("line_ids").do_uncancel()
         return self.write({"state": "draft"})
-    
+
     def button_to_review(self):
         self.write({"state": "to_review"})
 
