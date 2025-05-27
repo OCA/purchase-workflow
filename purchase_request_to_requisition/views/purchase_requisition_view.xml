@@ -6,7 +6,7 @@
         <field name="name">Purchase Requests</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">purchase.request</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="domain">[('requisition_id','=',active_id)]</field>
         <field name="context">{
                 "default_requisition_id":active_id,
@@ -23,13 +23,13 @@
             ref="purchase_requisition.view_purchase_requisition_form"
         />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='line_ids']/tree" position="inside">
-                <field name="has_purchase_request_lines" invisible="1" />
+            <xpath expr="//field[@name='line_ids']/list" position="inside">
+                <field name="has_purchase_request_lines" column_invisible="1" />
                 <button
-                    string="PR Lines"
-                    attrs="{'invisible':[('has_purchase_request_lines','=',False)]}"
                     name="action_open_request_line_tree_view"
+                    string="PR Lines"
                     type="object"
+                    invisible="not has_purchase_request_lines"
                     icon="fa-folder-open-o"
                 />
             </xpath>
@@ -39,7 +39,7 @@
                     type="object"
                     class="oe_stat_button"
                     icon="fa-file-text-o"
-                    attrs="{'invisible':[('purchase_request_count','=',0)]}"
+                    invisible="not purchase_request_count"
                 >
                     <field
                         name="purchase_request_count"

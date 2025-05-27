@@ -19,7 +19,7 @@
                 <newline />
                 <group>
                     <field name="item_ids" nolabel="1" colspan="2">
-                        <tree create="false" editable="bottom">
+                        <list create="false" editable="bottom">
                             <field name="request_id" />
                             <field
                                 name="line_id"
@@ -30,7 +30,9 @@
                             <field name="name" />
                             <field name="product_qty" />
                             <field name="product_uom_id" groups="uom.group_uom" />
-                        </tree>
+                            <!-- For case no multi-uom -->
+                            <field name="product_uom_id" column_invisible="1" />
+                        </list>
                     </field>
                 </group>
                 <newline />

@@ -1,7 +1,7 @@
 # Copyright 2016 Eficent Business and IT Consulting Services S.L.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
 
-from odoo import _, api, fields, models
+from odoo import Command, api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -10,12 +10,13 @@ class PurchaseRequestLineMakePurchaseRequisition(models.TransientModel):
     _description = "Purchase Request Line Make Purchase Agreement"
 
     item_ids = fields.One2many(
-        "purchase.request.line.make.purchase.requisition.item", "wiz_id", string="Items"
+        comodel_name="purchase.request.line.make.purchase.requisition.item",
+        inverse_name="wiz_id",
+        string="Items",
     )
     purchase_requisition_id = fields.Many2one(
-        "purchase.requisition",
+        comodel_name="purchase.requisition",
         string="Purchase Agreement",
-        required=False,
         domain=[("state", "=", "draft")],
     )
 
@@ -50,19 +51,17 @@ class PurchaseRequestLineMakePurchaseRequisition(models.TransientModel):
             return res
         assert active_model == "purchase.request.line", "Bad context propagation"
 
-        items = []
-        for line in request_line_obj.browse(request_line_ids):
-            items.append([0, 0, self._prepare_item(line)])
+        request_lines = request_line_obj.browse(request_line_ids)
+        items = [Command.create(self._prepare_item(line)) for line in request_lines]
         res["item_ids"] = items
         return res
 
     @api.model
-    def _prepare_purchase_requisition(self, item, picking_type_id, company_id):
+    def _prepare_purchase_requisition(self, picking_type, group_id, company, origin):
         data = {
-            "origin": "",
-            "picking_type_id": picking_type_id,
-            "company_id": company_id,
-            "currency_id": item.request_id.currency_id.id,
+            "reference": origin,
+            "picking_type_id": picking_type.id,
+            "company_id": company.id,
         }
         return data
 
@@ -74,8 +73,7 @@ class PurchaseRequestLineMakePurchaseRequisition(models.TransientModel):
             "product_id": item.product_id.id,
             "product_uom_id": item.product_uom_id.id,
             "purchase_request_lines": [(4, item.line_id.id)],
-            "account_analytic_id": item.line_id.analytic_account_id.id or False,
-            "analytic_tag_ids": item.line_id.analytic_tag_ids.ids or False,
+            "analytic_distribution": item.line_id.analytic_distribution,
             "product_description_variants": item.name,
         }
 
@@ -85,68 +83,65 @@ class PurchaseRequestLineMakePurchaseRequisition(models.TransientModel):
             ("requisition_id", "=", requisition.id),
             ("product_id", "=", item.product_id.id or False),
             ("product_uom_id", "=", item.product_uom_id.id or False),
-            ("account_analytic_id", "=", item.line_id.analytic_account_id.id or False),
-            ("analytic_tag_ids", "in", item.line_id.analytic_tag_ids.ids or False),
         ]
+        # Analytic Distribution
+        if item.line_id.analytic_distribution:
+            analytic_account_ids = list(item.line_id.analytic_distribution.keys())
+            vals.append(("analytic_distribution", "in", analytic_account_ids))
+        else:
+            vals.append(("analytic_distribution", "=", False))
         return vals
 
     def make_purchase_requisition(self):
-        pr_obj = self.env["purchase.requisition"]
-        pr_line_obj = self.env["purchase.requisition.line"]
-        company_id = False
-        picking_type_id = False
-        requisition = False
         res = []
+        purchase_requisition_obj = self.env["purchase.requisition"]
+        purchase_requisition_line_obj = self.env["purchase.requisition.line"]
+        requisition = False
+
         for item in self.item_ids:
             line = item.line_id
             if item.product_qty <= 0.0:
-                raise UserError(_("Enter a positive quantity."))
-            line_company_id = line.company_id and line.company_id.id or False
-            # check company from line previous
-            if company_id and line_company_id != company_id:
-                raise UserError(_("You have to select lines from the same company."))
-            else:
-                company_id = line_company_id
-
-            line_picking_type = line.request_id.picking_type_id
-            # check picking_type_id from line previous
-            if picking_type_id and line_picking_type.id != picking_type_id:
-                raise UserError(
-                    _("You have to select lines from the same picking type.")
-                )
-            else:
-                picking_type_id = line_picking_type.id
-
+                raise UserError(self.env._("Enter a positive quantity."))
             if self.purchase_requisition_id:
                 requisition = self.purchase_requisition_id
             if not requisition:
                 preq_data = self._prepare_purchase_requisition(
-                    item, picking_type_id, company_id
+                    line.request_id.picking_type_id,
+                    line.request_id.group_id,
+                    line.company_id,
+                    line.origin,
                 )
-                requisition = pr_obj.create(preq_data)
+                requisition = purchase_requisition_obj.create(preq_data)
 
-            # Look for any other PO line in the selected PO with same
+            # Look for any other Requisition line in the selected Requisition with same
             # product and UoM to sum quantities instead of creating a new
-            # po line
+            # requisition line
             domain = self._get_requisition_line_search_domain(requisition, item)
-            available_pr_lines = pr_line_obj.search(domain)
+            available_pr_lines = purchase_requisition_line_obj.search(domain)
+
+            # If Unit of Measure is not set, update from wizard.
+            if not line.product_uom_id:
+                line.product_uom_id = item.product_uom_id
+
             if available_pr_lines:
                 pr_line = available_pr_lines[0]
+                pr_line.purchase_request_lines = [(4, line.id)]
                 new_qty = pr_line.product_qty + item.product_qty
                 pr_line.product_qty = new_qty
-                pr_line.purchase_request_lines = [(4, line.id)]
             else:
                 po_line_data = self._prepare_purchase_requisition_line(
                     requisition, item
                 )
-                pr_line_obj.create(po_line_data)
+                purchase_requisition_line_obj.create(po_line_data)
+
             res.append(requisition.id)
 
+        purchase_requests = self.item_ids.mapped("request_id")
+        purchase_requests.button_in_progress()
         return {
-            "domain": "[('id','in', [" + ",".join(map(str, res)) + "])]",
-            "name": _("Purchase Agreement"),
-            "view_type": "form",
-            "view_mode": "tree,form",
+            "domain": [("id", "in", res)],
+            "name": self.env._("Purchase Agreement"),
+            "view_mode": "list,form",
             "res_model": "purchase.requisition",
             "view_id": False,
             "context": False,

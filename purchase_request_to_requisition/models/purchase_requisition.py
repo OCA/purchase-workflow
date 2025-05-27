@@ -1,7 +1,7 @@
 # Copyright 2016 Eficent Business and IT Consulting Services S.L.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 
 class PurchaseRequisition(models.Model):
@@ -15,12 +15,14 @@ class PurchaseRequisition(models.Model):
     def _purchase_request_confirm_message_content(self, pr, request, request_dict):
         if not request_dict:
             request_dict = {}
-        title = _("Bid confirmation %(bid_name)s for your Request %(request_name)s") % {
+        title = self.env._(
+            "Bid confirmation %(bid_name)s for your Request %(request_name)s"
+        ) % {
             "bid_name": pr.name,
             "request_name": request.name,
         }
         message = f"<h3>{title}</h3><ul>"
-        message += _(
+        message += self.env._(
             "The following requested items from Purchase Request %(request_name)s "
             "have now being sent to Suppliers using Purchase Bid "
             "%(bid_name)s:"
@@ -29,7 +31,7 @@ class PurchaseRequisition(models.Model):
             "request_name": request.name,
         }
         for line in request_dict.values():
-            message += _(
+            message += self.env._(
                 "<li><b>%(name)s</b>: Total bid quantity %(qty)s %(uom)s</li>"
             ) % {
                 "name": line["name"],
@@ -62,8 +64,8 @@ class PurchaseRequisition(models.Model):
                 request.message_post(body=message, subtype_xmlid="mail.mt_comment")
         return True
 
-    def action_in_progress(self):
-        res = super().action_in_progress()
+    def action_confirm(self):
+        res = super().action_confirm()
         self._purchase_request_confirm_message()
         return res
 
@@ -84,7 +86,7 @@ class PurchaseRequisition(models.Model):
                 (self.env.ref("purchase_request.view_purchase_request_form").id, "form")
             ]
         else:
-            action["view_mode"] = "tree,form"
+            action["view_mode"] = "list,form"
             action["domain"] = [("id", "in", requests.ids)]
         action["context"] = {}
         return action
@@ -115,11 +117,11 @@ class PurchaseRequisitionLine(models.Model):
         """
         domain = [("id", "in", self.mapped("purchase_request_lines").ids)]
         return {
-            "name": _("Purchase Request Lines"),
+            "name": self.env._("Purchase Request Lines"),
             "type": "ir.actions.act_window",
             "res_model": "purchase.request.line",
             "view_type": "form",
-            "view_mode": "tree,form",
+            "view_mode": "list,form",
             "domain": domain,
         }
 

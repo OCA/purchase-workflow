@@ -3,8 +3,8 @@
 
 {
     "name": "Purchase Request to Purchase Agreement",
-    "version": "15.0.1.0.2",
-    "author": "Eficent,Acsone SA/NV,Odoo Community Association (OCA)",
+    "version": "18.0.1.0.0",
+    "author": "Eficent, Acsone SA/NV, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
     "category": "Purchase Management",
     "depends": [
@@ -18,6 +18,7 @@
         "views/purchase_requisition_view.xml",
         "views/purchase_order_view.xml",
     ],
+    "maintainer": ["Saran440"],
     "license": "AGPL-3",
     "installable": True,
 }
