@@ -46,7 +46,7 @@ class PurchaseRequestLine(models.Model):
 
     @api.depends("purchase_lines")
     def _compute_is_editable(self):
-        res = super(PurchaseRequestLine, self)._compute_is_editable()
+        res = super()._compute_is_editable()
         editable_records = self.filtered(lambda p: p in self and p.requisition_lines)
         editable_records.write({"is_editable": False})
         return res

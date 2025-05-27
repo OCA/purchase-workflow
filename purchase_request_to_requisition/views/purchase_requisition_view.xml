@@ -2,7 +2,6 @@
 <!-- Copyright 2016 Eficent Business and IT Consulting Services S.L.
      License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
 <odoo>
-
     <record id="action_purchase_purchase_list" model="ir.actions.act_window">
         <field name="name">Purchase Requests</field>
         <field name="type">ir.actions.act_window</field>
@@ -51,5 +50,4 @@
             </div>
         </field>
     </record>
-
 </odoo>

@@ -9,7 +9,7 @@ from odoo.tests.common import TransactionCase
 @tagged("post_install", "-at_install")
 class TestPurchaseRequestToRequisition(TransactionCase):
     def setUp(self):
-        super(TestPurchaseRequestToRequisition, self).setUp()
+        super().setUp()
         self.purchase_request = self.env["purchase.request"]
         self.purchase_request_line = self.env["purchase.request.line"]
         self.wiz = self.env["purchase.request.line.make.purchase.requisition"]

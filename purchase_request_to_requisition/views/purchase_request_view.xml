@@ -102,7 +102,6 @@
         </field>
     </record>
 
-
     <record id="purchase_request_line_search" model="ir.ui.view">
         <field name="name">purchase.request.line.search</field>
         <field name="model">purchase.request.line</field>

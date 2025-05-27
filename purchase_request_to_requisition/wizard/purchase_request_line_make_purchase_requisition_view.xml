@@ -14,7 +14,7 @@
                 <separator string="Existing draft purchase agreement to update:" />
                 <newline />
                 <group>
-                <field name="purchase_requisition_id" />
+                    <field name="purchase_requisition_id" />
                 </group>
                 <newline />
                 <group>
