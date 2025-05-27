@@ -55,20 +55,20 @@ Usage
 
 **Usual process of Purchasing with Work Acceptance using Invoice Plan**
 
-- Go to menu Purchase > Create a New Purchase Order.
+-  Go to menu Purchase > Create a New Purchase Order.
 
-- Select option "Use Invoice Plan" and fill information in Invoice Plan
-  Tab.
+-  Select option "Use Invoice Plan" and fill information in Invoice Plan
+   Tab.
 
-- Confirm Purchase Order
+-  Confirm Purchase Order
 
-- To create Work Acceptance, click button "Create WA by Installment"
+-  To create Work Acceptance, click button "Create WA by Installment"
 
-  - Select the installment
-  - For better control of product line to be on WA, select **Based On**
-    1) All product lines 2) Product line with matched amount
+   -  Select the installment
+   -  For better control of product line to be on WA, select **Based
+      On** 1) All product lines 2) Product line with matched amount
 
-- Accept the Work Acceptance.
+-  Accept the Work Acceptance.
 
 **Note:** the **Based On** option is create by server action, it is
 possible to create more option.
@@ -94,9 +94,9 @@ Authors
 Contributors
 ------------
 
-- `Ecosoft <http://ecosoft.co.th>`__:
+-  `Ecosoft <http://ecosoft.co.th>`__:
 
-  - Niaisoh Nikaji <niaisohn@ecosoft.co.th>
+   -  Niaisoh Nikaji <niaisohn@ecosoft.co.th>
 
 Maintainers
 -----------
@@ -114,10 +114,13 @@ promote its widespread use.
 .. |maintainer-kittiu| image:: https://github.com/kittiu.png?size=40px
     :target: https://github.com/kittiu
     :alt: kittiu
+.. |maintainer-Saran440| image:: https://github.com/Saran440.png?size=40px
+    :target: https://github.com/Saran440
+    :alt: Saran440
 
-Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-kittiu| 
+|maintainer-kittiu| |maintainer-Saran440| 
 
 This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/18.0/purchase_work_acceptance_invoice_plan>`_ project on GitHub.
 

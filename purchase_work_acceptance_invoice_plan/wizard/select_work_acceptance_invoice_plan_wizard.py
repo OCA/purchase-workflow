@@ -1,7 +1,7 @@
 # Copyright 2020 Ecosoft Co., Ltd. (http://ecosoft.co.th).
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import float_compare, float_round
 
@@ -66,9 +66,9 @@ class SelectWorkAcceptanceInvoicePlanWizard(models.TransientModel):
         not_installment = order.invoice_plan_ids.filtered_domain(
             [("invoice_type", "!=", "installment")]
         )
-        negative_qty = order.order_line.filtered(lambda l: l.product_qty <= 0)
+        negative_qty = order.order_line.filtered(lambda line: line.product_qty <= 0)
         if not_installment and not negative_qty:
-            raise UserError(_("Please register deposit first."))
+            raise UserError(self.env._("Please register deposit first."))
         return res
 
     @api.depends("installment_id")
@@ -78,7 +78,7 @@ class SelectWorkAcceptanceInvoicePlanWizard(models.TransientModel):
             self.env.context.get("active_ids", [])
         )
         installment_ids = (
-            purchase.wa_ids.filtered(lambda l: l.state != "cancel")
+            purchase.wa_ids.filtered(lambda wa: wa.state != "cancel")
             .mapped("installment_id")
             .ids
         )
@@ -101,7 +101,7 @@ class SelectWorkAcceptanceInvoicePlanWizard(models.TransientModel):
             }
             order_line_ids = self.apply_method_id.with_context(**ctx).run()
             if not order_line_ids:
-                raise UserError(_("No product line with matched amount!"))
+                raise UserError(self.env._("No product line with matched amount!"))
             self.order_line_ids = order_line_ids  # [1,2,3,4]
 
     @api.depends("order_line_ids")
@@ -116,7 +116,7 @@ class SelectWorkAcceptanceInvoicePlanWizard(models.TransientModel):
             order = order_lines[:1].order_id
             all_lines_amount = sum(order.order_line.mapped("price_subtotal"))
             if rec.order_line_ids and not lines_amount:
-                raise UserError(_("Total purchase amount must not be zero!"))
+                raise UserError(self.env._("Total purchase amount must not be zero!"))
             for order_line in rec.order_line_ids:
                 ratio = expect_amount / lines_amount
                 ratio_all = expect_amount / all_lines_amount
@@ -146,18 +146,15 @@ class SelectWorkAcceptanceInvoicePlanWizard(models.TransientModel):
         if not self.installment_id:
             return
         min_installment = min(self.active_installment_ids.mapped("installment"))
-        if self.installment_id.installment > min_installment:
+        installment = self.installment_id.installment
+        if installment > min_installment:
             return {
                 "warning": {
-                    "title": _("Installment Warning:"),
-                    "message": _(
-                        "The 1st installment is 'Invoice Plan %(min_installment)s' "
-                        "but you are choosing 'Invoice Plan %(installment)s'"
-                    )
-                    % {
-                        "min_installment": min_installment,
-                        "installment": self.installment_id.installment,
-                    },
+                    "title": self.env._("Installment Warning:"),
+                    "message": self.env._(
+                        f"The 1st installment is 'Invoice Plan {min_installment}' "
+                        f"but you are choosing 'Invoice Plan {installment}'"
+                    ),
                 }
             }
 
@@ -165,8 +162,9 @@ class SelectWorkAcceptanceInvoicePlanWizard(models.TransientModel):
         purchase = self.env["purchase.order"].browse(self.env.context.get("active_id"))
         if self.installment_id not in self.active_installment_ids:
             raise UserError(
-                _("Installment {} is already used by other WA.").format(
-                    self.installment_id.installment
+                self.env._(
+                    f"Installment {self.installment_id.installment} "
+                    f"is already used by other WA."
                 )
             )
         res = purchase.with_context(
@@ -179,6 +177,7 @@ class SelectWorkAcceptanceInvoicePlanWizard(models.TransientModel):
 
 class ComputeWorkAcceptanceInvoicePlan(models.TransientModel):
     _name = "select.work.acceptance.invoice.plan.qty"
+    _inherit = "analytic.mixin"
     _description = "Compute quantity of each WA lines, according to product lines"
 
     wizard_id = fields.Many2one(
@@ -199,13 +198,8 @@ class ComputeWorkAcceptanceInvoicePlan(models.TransientModel):
         index=True,
         domain="[('order_id', '=', order_id)]",
     )
-    account_analytic_id = fields.Many2one(
-        comodel_name="account.analytic.account",
-        related="order_line_id.account_analytic_id",
-    )
-    analytic_tag_ids = fields.Many2many(
-        comodel_name="account.analytic.tag",
-        related="order_line_id.analytic_tag_ids",
+    analytic_distribution = fields.Json(
+        related="order_line_id.analytic_distribution",
     )
     qty_not_accepted = fields.Float(
         string="Not Accepted",

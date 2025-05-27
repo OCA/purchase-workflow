@@ -28,15 +28,13 @@
                     type="action"
                     class="oe_highlight"
                     groups="purchase_work_acceptance.group_enable_wa_on_po"
-                    attrs="{'invisible': ['|', '|', ('use_invoice_plan', '=', False), ('state', 'not in', ('purchase', 'done')), ('wa_accepted', '=', True)]}"
+                    invisible="not use_invoice_plan or state not in ('purchase', 'done') or wa_accepted"
                 />
             </xpath>
             <xpath expr="//button[@name='action_view_wa']" position="attributes">
-                <field name="action_view_wa" position="attributes">
-                    <attribute name="attrs">
-                          {'invisible': ['|', '|', ('use_invoice_plan', '=', True), ('state', 'not in', ('purchase', 'done')), ('wa_accepted', '=', True)]}
-                     </attribute>
-                </field>
+                <attribute
+                    name="invisible"
+                >use_invoice_plan or state not in ('purchase', 'done') or wa_accepted</attribute>
             </xpath>
         </field>
     </record>

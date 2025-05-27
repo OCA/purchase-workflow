@@ -25,24 +25,6 @@ class PurchaseOrderLine(models.Model):
 class PurchaseInvoicePlan(models.Model):
     _inherit = "purchase.invoice.plan"
 
-    def name_get(self):
-        result = []
-        for rec in self:
-            result.append(
-                (
-                    rec.id,
-                    "%s %s : %s -- %s %s"
-                    % (
-                        "Invoice Plan",
-                        rec.installment,
-                        rec.plan_date,
-                        rec.percent,
-                        "%",
-                    ),
-                )
-            )
-        return result
-
     def _no_edit(self):
         no_edit = super()._no_edit()
         return no_edit or self.env["work.acceptance"].search_count(
