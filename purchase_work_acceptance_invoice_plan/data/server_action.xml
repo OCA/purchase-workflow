@@ -1,5 +1,4 @@
 <odoo>
-
     <record id="apply_on_all_product_line" model="ir.actions.server">
         <field name="name">All product lines</field>
         <field
@@ -31,5 +30,4 @@ action = purchase.order_line.filtered(
 )[:1].ids
         </field>
     </record>
-
 </odoo>
