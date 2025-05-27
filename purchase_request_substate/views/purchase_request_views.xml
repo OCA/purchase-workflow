@@ -5,12 +5,15 @@
         <field name="model">purchase.request</field>
         <field name="inherit_id" ref="purchase_request.view_purchase_request_form" />
         <field name="arch" type="xml">
-            <xpath expr="//header/field[@name='state']" position="before">
-                <field
-                    name="substate_id"
-                    widget="statusbar"
-                    options="{'clickable': '1',}"
-                />
+            <xpath expr="//header" position="after">
+                <header name="substate">
+                    <field
+                        name="substate_id"
+                        widget="statusbar"
+                        options="{'clickable': '1',}"
+                        domain="[('model', '=', 'purchase.request'),('target_state_value_id.target_state_value', '=', state)]"
+                    />
+                </header>
             </xpath>
         </field>
     </record>
