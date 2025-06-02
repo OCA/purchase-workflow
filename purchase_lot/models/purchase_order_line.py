@@ -11,7 +11,6 @@ class PurchaseOrderLine(models.Model):
     lot_id = fields.Many2one(
         "stock.lot",
         string="Serial Number",
-        readonly=True,
         copy=False,
         compute="_compute_lot_id",
         store=True,
@@ -22,9 +21,7 @@ class PurchaseOrderLine(models.Model):
     def _compute_lot_id(self):
         for line in self:
             line.lot_id = (
-                line.move_dest_ids.restrict_lot_id
-                | line.move_ids.restrict_lot_id
-                | line.sale_order_line.lot_id
+                line.move_dest_ids.restrict_lot_id | line.move_ids.restrict_lot_id
             )
 
     @api.model
