@@ -4,7 +4,7 @@
 
 from random import randint
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -20,7 +20,7 @@ class PurchaseTag(models.Model):
     color = fields.Integer(default=lambda self: self._get_default_color())
     parent_id = fields.Many2one("purchase.tag", index=True, ondelete="cascade")
     child_ids = fields.One2many("purchase.tag", "parent_id")
-    parent_path = fields.Char(index=True, unaccent=False)
+    parent_path = fields.Char(index=True)
 
     _sql_constraints = [
         ("tag_name_uniq", "unique (name)", "Tag name already exists !"),
@@ -38,16 +38,15 @@ class PurchaseTag(models.Model):
         return res
 
     @api.model
-    def _name_search(
-        self, name="", domain=None, operator="ilike", limit=100, order=None
-    ):
+    def _search_display_name(self, operator, value):
+        domain = super()._search_display_name(operator, value)
+        name = value or ""
         if name:
             domain = [("name", operator, name.split(" / ")[-1])] + list(domain or [])
-        return super()._name_search(
-            name=name, domain=domain, operator=operator, limit=limit, order=order
-        )
+            return domain
+        return domain
 
     @api.constrains("parent_id")
     def _check_parent_recursion(self):
-        if not self._check_recursion("parent_id"):
-            raise ValidationError(_("Tags cannot be recursive."))
+        if self._has_cycle("parent_id"):
+            raise ValidationError(self.env._("Tags cannot be recursive."))
