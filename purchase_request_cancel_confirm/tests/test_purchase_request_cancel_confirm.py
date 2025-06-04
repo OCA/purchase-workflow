@@ -6,7 +6,7 @@ from odoo.tests.common import Form, TransactionCase
 
 class TestPurchaseRequestCancelConfirm(TransactionCase):
     def setUp(self):
-        super(TestPurchaseRequestCancelConfirm, self).setUp()
+        super().setUp()
         self.purchase_request_obj = self.env["purchase.request"]
         self.env["ir.config_parameter"].sudo().set_param(
             "purchase.request.cancel_confirm_disable", "False"
