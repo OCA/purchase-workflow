@@ -29,12 +29,12 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
-[account_fiscal_position_allowed_journal_purchase](account_fiscal_position_allowed_journal_purchase/) | 13.0.1.0.0 | [![ThomasBinsfeld](https://github.com/ThomasBinsfeld.png?size=30px)](https://github.com/ThomasBinsfeld) | Use an allowed journal when creating an invoice from a purchase order.
+[account_fiscal_position_allowed_journal_purchase](account_fiscal_position_allowed_journal_purchase/) | 13.0.1.0.0 | <a href='https://github.com/ThomasBinsfeld'><img src='https://github.com/ThomasBinsfeld.png' width='32' height='32' style='border-radius:50%;' alt='ThomasBinsfeld'/></a> | Use an allowed journal when creating an invoice from a purchase order.
 [account_fiscal_position_allowed_journal_sale_purchase](account_fiscal_position_allowed_journal_sale_purchase/) | 13.0.1.0.0 |  | Glue module between Sale + purchase + account fiscal position allowed journal purchase
 [procurement_purchase_no_grouping](procurement_purchase_no_grouping/) | 13.0.3.0.1 |  | Procurement Purchase No Grouping
 [procurement_purchase_sale_no_grouping](procurement_purchase_sale_no_grouping/) | 13.0.1.0.0 |  | Procurement Purchase Service No Grouping
-[product_form_purchase_link](product_form_purchase_link/) | 13.0.1.1.0 | [![rousseldenis](https://github.com/rousseldenis.png?size=30px)](https://github.com/rousseldenis) | Add an option to display the purchases lines from product
-[product_supplierinfo_qty_multiplier](product_supplierinfo_qty_multiplier/) | 13.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Product supplierinfo qty multiplier
+[product_form_purchase_link](product_form_purchase_link/) | 13.0.1.1.0 | <a href='https://github.com/rousseldenis'><img src='https://github.com/rousseldenis.png' width='32' height='32' style='border-radius:50%;' alt='rousseldenis'/></a> | Add an option to display the purchases lines from product
+[product_supplierinfo_qty_multiplier](product_supplierinfo_qty_multiplier/) | 13.0.1.0.0 | <a href='https://github.com/victoralmau'><img src='https://github.com/victoralmau.png' width='32' height='32' style='border-radius:50%;' alt='victoralmau'/></a> | Product supplierinfo qty multiplier
 [purchase_all_shipments](purchase_all_shipments/) | 13.0.1.0.0 |  | Purchase All Shipments
 [purchase_allowed_product](purchase_allowed_product/) | 13.0.1.0.0 |  | This module allows to select only products that can be supplied by the vendor
 [purchase_analytic_global](purchase_analytic_global/) | 13.0.1.0.0 |  | Purchase - Analytic Account Global
@@ -45,10 +45,10 @@ addon | version | maintainers | summary
 [purchase_discount](purchase_discount/) | 13.0.1.1.2 |  | Purchase order lines with discounts
 [purchase_exception](purchase_exception/) | 13.0.1.0.0 |  | Custom exceptions on purchase order
 [purchase_force_invoiced](purchase_force_invoiced/) | 13.0.1.0.1 |  | Allows to force the billing status of the purchase order to "Invoiced"
-[purchase_invoice_plan](purchase_invoice_plan/) | 13.0.1.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Add to purchases order, ability to manage future invoice plan
-[purchase_isolated_rfq](purchase_isolated_rfq/) | 13.0.1.1.1 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Purchase Isolated RFQ
+[purchase_invoice_plan](purchase_invoice_plan/) | 13.0.1.0.0 | <a href='https://github.com/kittiu'><img src='https://github.com/kittiu.png' width='32' height='32' style='border-radius:50%;' alt='kittiu'/></a> | Add to purchases order, ability to manage future invoice plan
+[purchase_isolated_rfq](purchase_isolated_rfq/) | 13.0.1.1.1 | <a href='https://github.com/kittiu'><img src='https://github.com/kittiu.png' width='32' height='32' style='border-radius:50%;' alt='kittiu'/></a> | Purchase Isolated RFQ
 [purchase_landed_cost](purchase_landed_cost/) | 13.0.1.2.1 |  | Purchase cost distribution
-[purchase_last_price_info](purchase_last_price_info/) | 13.0.2.0.2 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Purchase Product Last Price Info
+[purchase_last_price_info](purchase_last_price_info/) | 13.0.2.0.2 | <a href='https://github.com/LoisRForgeFlow'><img src='https://github.com/LoisRForgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='LoisRForgeFlow'/></a> | Purchase Product Last Price Info
 [purchase_line_procurement_group](purchase_line_procurement_group/) | 13.0.1.0.1 |  | Group purchase order line according to procurement group
 [purchase_location_by_line](purchase_location_by_line/) | 13.0.1.0.0 |  | Allows to define a specific destination location on each PO line
 [purchase_manual_currency](purchase_manual_currency/) | 13.0.1.0.2 |  | Allows to manual currency of Purchase
@@ -72,30 +72,30 @@ addon | version | maintainers | summary
 [purchase_order_product_recommendation_forecast](purchase_order_product_recommendation_forecast/) | 13.0.1.0.0 |  | Obtain linear progression forecast from reference years
 [purchase_order_product_recommendation_secondary_unit](purchase_order_product_recommendation_secondary_unit/) | 13.0.1.0.0 |  | Add secondary unit to recommend products wizard
 [purchase_order_product_recommendation_xlsx](purchase_order_product_recommendation_xlsx/) | 13.0.1.0.0 |  | Add a way to print recommended products for supplier
-[purchase_order_qty_change_no_recompute](purchase_order_qty_change_no_recompute/) | 13.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Prevent recompute if only quantity has changed in purchase order line
+[purchase_order_qty_change_no_recompute](purchase_order_qty_change_no_recompute/) | 13.0.1.0.0 | <a href='https://github.com/victoralmau'><img src='https://github.com/victoralmau.png' width='32' height='32' style='border-radius:50%;' alt='victoralmau'/></a> | Prevent recompute if only quantity has changed in purchase order line
 [purchase_order_secondary_unit](purchase_order_secondary_unit/) | 13.0.2.0.0 |  | Purchase product in a secondary unit
-[purchase_order_supplierinfo_update](purchase_order_supplierinfo_update/) | 13.0.1.0.2 | [![ernestotejeda](https://github.com/ernestotejeda.png?size=30px)](https://github.com/ernestotejeda) | Update product supplierinfo with the last purchase price
+[purchase_order_supplierinfo_update](purchase_order_supplierinfo_update/) | 13.0.1.0.2 | <a href='https://github.com/ernestotejeda'><img src='https://github.com/ernestotejeda.png' width='32' height='32' style='border-radius:50%;' alt='ernestotejeda'/></a> | Update product supplierinfo with the last purchase price
 [purchase_order_type](purchase_order_type/) | 13.0.1.0.2 |  | Purchase Order Type
-[purchase_order_type_dashboard](purchase_order_type_dashboard/) | 13.0.1.0.0 | [![dalonsod](https://github.com/dalonsod.png?size=30px)](https://github.com/dalonsod) | Purchase Order Type Dashboard
+[purchase_order_type_dashboard](purchase_order_type_dashboard/) | 13.0.1.0.0 | <a href='https://github.com/dalonsod'><img src='https://github.com/dalonsod.png' width='32' height='32' style='border-radius:50%;' alt='dalonsod'/></a> | Purchase Order Type Dashboard
 [purchase_order_uninvoiced_amount](purchase_order_uninvoiced_amount/) | 13.0.2.2.0 |  | Purchase Order Univoiced Amount
-[purchase_origin_link](purchase_origin_link/) | 13.0.1.0.0 | [![JudithAforgeFlow](https://github.com/JudithAforgeFlow.png?size=30px)](https://github.com/JudithAforgeFlow) | Add clickable link in purchase source document.
-[purchase_origin_link_sale](purchase_origin_link_sale/) | 13.0.1.0.1 | [![JudithAforgeFlow](https://github.com/JudithAforgeFlow.png?size=30px)](https://github.com/JudithAforgeFlow) | Add clickable link to the Sale Order in purchase source document.
+[purchase_origin_link](purchase_origin_link/) | 13.0.1.0.0 | <a href='https://github.com/JudithAforgeFlow'><img src='https://github.com/JudithAforgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='JudithAforgeFlow'/></a> | Add clickable link in purchase source document.
+[purchase_origin_link_sale](purchase_origin_link_sale/) | 13.0.1.0.1 | <a href='https://github.com/JudithAforgeFlow'><img src='https://github.com/JudithAforgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='JudithAforgeFlow'/></a> | Add clickable link to the Sale Order in purchase source document.
 [purchase_packaging](purchase_packaging/) | 13.0.1.0.0 |  | In purchase, use package
-[purchase_partner_selectable_option](purchase_partner_selectable_option/) | 13.0.1.1.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Purchase Partner Selectable Option
+[purchase_partner_selectable_option](purchase_partner_selectable_option/) | 13.0.1.1.0 | <a href='https://github.com/victoralmau'><img src='https://github.com/victoralmau.png' width='32' height='32' style='border-radius:50%;' alt='victoralmau'/></a> | Purchase Partner Selectable Option
 [purchase_product_usage](purchase_product_usage/) | 13.0.1.1.1 |  | Purchase Product Usage
 [purchase_propagate_qty](purchase_propagate_qty/) | 13.0.1.1.3 |  | Quantity decrease on purchase line are propagated to the corresponding stock.move
 [purchase_reception_notify](purchase_reception_notify/) | 13.0.1.0.2 |  | Purchase Reception Notify
-[purchase_reception_status](purchase_reception_status/) | 13.0.1.0.0 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Add reception status on purchase orders
+[purchase_reception_status](purchase_reception_status/) | 13.0.1.0.0 | <a href='https://github.com/alexis-via'><img src='https://github.com/alexis-via.png' width='32' height='32' style='border-radius:50%;' alt='alexis-via'/></a> | Add reception status on purchase orders
 [purchase_representative](purchase_representative/) | 13.0.1.0.0 |  | Purchase Representatives will be the point of contact for RFQ's and PO's
 [purchase_request](purchase_request/) | 13.0.4.3.0 |  | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
 [purchase_request_department](purchase_request_department/) | 13.0.1.0.0 |  | Purchase Request Department
 [purchase_request_order_approved](purchase_request_order_approved/) | 13.0.1.0.1 |  | Purchase Request Order Approved
 [purchase_request_tier_validation](purchase_request_tier_validation/) | 13.0.1.1.0 |  | Extends the functionality of Purchase Requests to support a tier validation process.
-[purchase_requisition_grouped_by_procurement](purchase_requisition_grouped_by_procurement/) | 13.0.1.0.1 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Purchase Requisition Grouped by Procurement
-[purchase_requisition_order_remaining_qty](purchase_requisition_order_remaining_qty/) | 13.0.1.0.1 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Purchase Requisition Order Remaining Qty
+[purchase_requisition_grouped_by_procurement](purchase_requisition_grouped_by_procurement/) | 13.0.1.0.1 | <a href='https://github.com/victoralmau'><img src='https://github.com/victoralmau.png' width='32' height='32' style='border-radius:50%;' alt='victoralmau'/></a> | Purchase Requisition Grouped by Procurement
+[purchase_requisition_order_remaining_qty](purchase_requisition_order_remaining_qty/) | 13.0.1.0.1 | <a href='https://github.com/victoralmau'><img src='https://github.com/victoralmau.png' width='32' height='32' style='border-radius:50%;' alt='victoralmau'/></a> | Purchase Requisition Order Remaining Qty
 [purchase_requisition_tier_validation](purchase_requisition_tier_validation/) | 13.0.1.0.0 |  | Extends the functionality of Purchase Agreements to support a tier validation process.
-[purchase_security](purchase_security/) | 13.0.2.0.0 | [![joao-p-marques](https://github.com/joao-p-marques.png?size=30px)](https://github.com/joao-p-marques) | See only your purchase orders
-[purchase_stock_picking_show_currency_rate](purchase_stock_picking_show_currency_rate/) | 13.0.1.0.1 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Show currency rate in purchase stock picking.
+[purchase_security](purchase_security/) | 13.0.2.0.0 | <a href='https://github.com/joao-p-marques'><img src='https://github.com/joao-p-marques.png' width='32' height='32' style='border-radius:50%;' alt='joao-p-marques'/></a> | See only your purchase orders
+[purchase_stock_picking_show_currency_rate](purchase_stock_picking_show_currency_rate/) | 13.0.1.0.1 | <a href='https://github.com/victoralmau'><img src='https://github.com/victoralmau.png' width='32' height='32' style='border-radius:50%;' alt='victoralmau'/></a> | Show currency rate in purchase stock picking.
 [purchase_stock_price_unit_sync](purchase_stock_price_unit_sync/) | 13.0.1.0.5 |  | Update cost price in stock moves already done
 [purchase_stock_return_request](purchase_stock_return_request/) | 13.0.1.0.0 |  | Purchase Stock Return Request
 [purchase_stock_secondary_unit](purchase_stock_secondary_unit/) | 13.0.1.0.2 |  | Get product quantities in a secondary unit
@@ -107,7 +107,7 @@ addon | version | maintainers | summary
 [purchase_v12_control_menu](purchase_v12_control_menu/) | 13.0.1.0.0 |  | Purchase Control Menu from v12
 [purchase_warn_message](purchase_warn_message/) | 13.0.1.0.3 |  | Add a popup warning on purchase to ensure warning is populated
 [purchase_work_acceptance](purchase_work_acceptance/) | 13.0.1.1.2 |  | Purchase Work Acceptance
-[supplier_calendar](supplier_calendar/) | 13.0.1.0.0 | [![NuriaMForgeFlow](https://github.com/NuriaMForgeFlow.png?size=30px)](https://github.com/NuriaMForgeFlow) | Supplier Calendar
+[supplier_calendar](supplier_calendar/) | 13.0.1.0.0 | <a href='https://github.com/NuriaMForgeFlow'><img src='https://github.com/NuriaMForgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='NuriaMForgeFlow'/></a> | Supplier Calendar
 [vendor_transport_lead_time](vendor_transport_lead_time/) | 13.0.1.2.0 |  | Purchase delay based on transport and supplier delays
 
 [//]: # (end addons)
