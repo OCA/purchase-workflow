@@ -1,29 +1,30 @@
 # Copyright 2020 Ecosoft Co., Ltd. (http://ecosoft.co.th)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 from odoo import SUPERUSER_ID
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests import Form, TransactionCase
 
 
 class TestPurchaseRequestCancelConfirm(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.purchase_request_obj = self.env["purchase.request"]
-        self.env["ir.config_parameter"].sudo().set_param(
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.purchase_request_obj = cls.env["purchase.request"]
+        cls.env["ir.config_parameter"].sudo().set_param(
             "purchase.request.cancel_confirm_disable", "False"
         )
-        self.purchase_request_line_obj = self.env["purchase.request.line"]
+        cls.purchase_request_line_obj = cls.env["purchase.request.line"]
         vals = {
-            "picking_type_id": self.env.ref("stock.picking_type_in").id,
+            "picking_type_id": cls.env.ref("stock.picking_type_in").id,
             "requested_by": SUPERUSER_ID,
         }
-        self.purchase_request = self.purchase_request_obj.create(vals)
+        cls.purchase_request = cls.purchase_request_obj.create(vals)
         vals = {
-            "request_id": self.purchase_request.id,
-            "product_id": self.env.ref("product.product_product_13").id,
-            "product_uom_id": self.env.ref("uom.product_uom_unit").id,
+            "request_id": cls.purchase_request.id,
+            "product_id": cls.env.ref("product.product_product_13").id,
+            "product_uom_id": cls.env.ref("uom.product_uom_unit").id,
             "product_qty": 5.0,
         }
-        self.purchase_request_line_obj.create(vals)
+        cls.purchase_request_line_obj.create(vals)
 
     def test_01_cancel_confirm_purchase_request(self):
         """Cancel a document, I expect cancel_reason.
