@@ -7,3 +7,4 @@
 - Pimolnat Suntian \<<pimolnats@ecosoft.co.th>\>
 - Mallory Marcot \<<contact@mallory-marcot.com>\>
 - Denis Roussel \<<denis.roussel@acsone.eu>\>
+- Jacques-Etienne Baudoux (BCIM) \<<je@bcim.be>\>

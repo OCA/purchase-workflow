@@ -200,6 +200,16 @@ class TestDeliverySingle(BaseCommon):
         self.assertEqual(len(moves.mapped("picking_id")), 1)
         self.assertEqual(len(pickings.filtered(lambda r: r.state == "cancel")), 1)
 
+    def test_purchase_line_time_change_nosplit_picking(self):
+        self.po.button_confirm()
+        line1 = self.po.order_line[0]
+        line1.write({"date_planned": Datetime.add(line1.date_planned, minutes=1)})
+        self.assertEqual(
+            len(self.po.picking_ids),
+            1,
+            "There must be 1 picking when I change the time",
+        )
+
     def test_purchase_line_date_change_split_picking(self):
         self.po.button_confirm()
         line1 = self.po.order_line[0]
@@ -207,6 +217,7 @@ class TestDeliverySingle(BaseCommon):
         move1 = self.env["stock.move"].search([("purchase_line_id", "=", line1.id)])
         move2 = self.env["stock.move"].search([("purchase_line_id", "=", line2.id)])
 
+        # Check when date is put later
         line1.write({"date_planned": self.date_later})
         self.assertEqual(
             len(self.po.picking_ids),
@@ -223,9 +234,36 @@ class TestDeliverySingle(BaseCommon):
             "If I change the other line to the same date as the first, "
             "both moves must be in the same picking",
         )
+        self.assertEqual(
+            len(self.po.picking_ids),
+            2,
+            "There must be 2 picking as line3 is still sooner",
+        )
         # Check move is well assigned
         self.assertEqual("assigned", move2.picking_id.state)
         self.assertTrue(move2.move_line_ids)
+        # Now check when date is put sooner
+        line1.write({"date_planned": self.date_sooner})
+        self.assertEqual(
+            len(self.po.picking_ids),
+            2,
+            "There must be 2 pickings when I change the date",
+        )
+        self.assertEqual(move1.date_deadline.strftime("%Y-%m-%d"), self.date_sooner)
+        self.assertEqual(move2.date_deadline.strftime("%Y-%m-%d"), self.date_later)
+        self.assertNotEqual(move1.picking_id, move2.picking_id)
+        line2.write({"date_planned": self.date_sooner})
+        self.assertEqual(
+            move1.picking_id,
+            move2.picking_id,
+            "If I change the other line to the same date as the first, "
+            "both moves must be in the same picking",
+        )
+        self.assertEqual(
+            len(self.po.picking_ids),
+            1,
+            "There must be 1 picking",
+        )
 
     def test_purchase_line_created_afer_confirm(self):
         """Check new line created when order is confirmed.
@@ -280,9 +318,9 @@ class TestDeliverySingle(BaseCommon):
         self.assertEqual(len(self.po.picking_ids), 1)
 
         self.env.user.tz = "Etc/UTC"
-        line1.write({"date_planned": "2021-05-05 03:00:00"})
-        self.assertEqual(len(self.po.picking_ids), 1)
         # No time difference so will be another day (2 pickings)
+        line1.write({"date_planned": "2021-05-05 03:00:00"})
+        self.assertEqual(len(self.po.picking_ids), 2)
         line2.write({"date_planned": "2021-05-04 23:00:00"})
         self.assertEqual(len(self.po.picking_ids), 2)
 
