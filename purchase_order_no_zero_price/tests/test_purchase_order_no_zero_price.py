@@ -4,11 +4,11 @@
 import time
 
 from odoo.exceptions import UserError
-from odoo.tests import common
+from odoo.tests.common import TransactionCase
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
-class TestPurchaseOrderNoZeroPrice(common.TransactionCase):
+class TestPurchaseOrderNoZeroPrice(TransactionCase):
     def setUp(self):
         super().setUp()
 
