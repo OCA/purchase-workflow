@@ -1,0 +1,159 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_security
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-03-13 12:38+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: purchase_security
+#: model_terms:ir.ui.view,arch_db:purchase_security.purchase_team_form
+msgid ""
+"<i class=\"fa fa-envelope mr-1\" role=\"img\" aria-label=\"Email\" title="
+"\"Email\"/>"
+msgstr ""
+"<i class=\"fa fa-envelope mr-1\" role=\"img\" aria-label=\"Email\" title=\"E-"
+"mail\"/>"
+
+#. module: purchase_security
+#: model_terms:ir.ui.view,arch_db:purchase_security.purchase_team_form
+msgid "Avatar"
+msgstr "Avatar"
+
+#. module: purchase_security
+#: model:ir.model,name:purchase_security.model_res_partner
+msgid "Contact"
+msgstr "Contatto"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__id
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_order__is_user_id_editable
+msgid "Is User Id Editable"
+msgstr "L'ID utente è modificabile"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: purchase_security
+#: model_terms:ir.ui.view,arch_db:purchase_security.purchase_team_form
+msgid "Members"
+msgstr "Membri"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__name
+msgid "Name"
+msgstr "Nome"
+
+#. module: purchase_security
+#: model:ir.model,name:purchase_security.model_purchase_order
+msgid "Purchase Order"
+msgstr "Ordine di acquisto"
+
+#. module: purchase_security
+#: model:ir.model,name:purchase_security.model_purchase_team
+#: model_terms:ir.ui.view,arch_db:purchase_security.purchase_team_form
+msgid "Purchase Team"
+msgstr "Team acquisti"
+
+#. module: purchase_security
+#: model:ir.actions.act_window,name:purchase_security.action_purchase_team_display
+#: model:ir.ui.menu,name:purchase_security.menu_purchase_team_tree
+msgid "Purchase Teams"
+msgstr "Team acquisti"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__user_ids
+msgid "Purchase Users"
+msgstr "Utente acquisti"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_res_partner__purchase_user_id
+#: model:ir.model.fields,field_description:purchase_security.field_res_users__purchase_user_id
+#: model_terms:ir.ui.view,arch_db:purchase_security.view_res_partner_filter
+msgid "Purchase representative"
+msgstr "Rappresentante acquisti"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_res_partner__purchase_team_id
+#: model:ir.model.fields,field_description:purchase_security.field_res_users__purchase_team_id
+msgid "Purchase team"
+msgstr "Team acquisti"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_res_users__purchase_team_ids
+msgid "Purchases Teams"
+msgstr "Team acquisti"
+
+#. module: purchase_security
+#: model:ir.model,name:purchase_security.model_ir_rule
+msgid "Record Rule"
+msgstr "Regola su record"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__sequence
+msgid "Sequence"
+msgstr "Sequenza"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_order__team_id
+msgid "Team"
+msgstr "Team"
+
+#. module: purchase_security
+#: model:ir.model,name:purchase_security.model_res_users
+msgid "User"
+msgstr "Utente"
+
+#. module: purchase_security
+#: model:res.groups,name:purchase_security.group_purchase_own_orders
+msgid "User (own orders)"
+msgstr "Utente (solo propri ordini)"
+
+#. module: purchase_security
+#: model:res.groups,name:purchase_security.group_purchase_group_orders
+msgid "User (team orders)"
+msgstr "Utente (ordini team)"
+
+#. module: purchase_security
+#: model_terms:ir.ui.view,arch_db:purchase_security.purchase_team_form
+msgid "e.g. Europe"
+msgstr "es. Europa"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
