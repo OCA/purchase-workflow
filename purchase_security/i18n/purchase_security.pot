@@ -74,6 +74,11 @@ msgid "Name"
 msgstr ""
 
 #. module: purchase_security
+#: model_terms:ir.ui.view,arch_db:purchase_security.purchase_team_tree
+msgid "Open Form View"
+msgstr ""
+
+#. module: purchase_security
 #: model:ir.model,name:purchase_security.model_purchase_order
 msgid "Purchase Order"
 msgstr ""
