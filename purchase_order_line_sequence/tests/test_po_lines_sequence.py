@@ -5,11 +5,13 @@
 
 from datetime import datetime
 
-from odoo.tests import Form, common, tagged
+from odoo.tests import Form, tagged
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
 @tagged("post_install", "-at_install")
-class TestPurchaseOrder(common.TransactionCase):
+class TestPurchaseOrder(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
