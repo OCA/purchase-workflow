@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 from freezegun import freeze_time
 
+from odoo import Command
 from odoo.fields import Datetime
 from odoo.tests import Form
 
@@ -58,9 +59,7 @@ class TestDeliverySingle(BaseCommon):
             {
                 "partner_id": cls.env.ref("base.res_partner_3").id,
                 "order_line": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": cls.p1.id,
                             "product_uom": cls.p1.uom_id.id,
@@ -70,9 +69,7 @@ class TestDeliverySingle(BaseCommon):
                             "product_qty": 42.0,
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": cls.p2.id,
                             "product_uom": cls.p2.uom_id.id,
@@ -82,9 +79,7 @@ class TestDeliverySingle(BaseCommon):
                             "product_qty": 12.0,
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": cls.p1.id,
                             "product_uom": cls.p1.uom_id.id,
@@ -281,9 +276,7 @@ class TestDeliverySingle(BaseCommon):
         )
         self.assertEqual(len(moves_before.mapped("picking_id")), 1)
         self.po.order_line = [
-            (
-                0,
-                0,
+            Command.create(
                 {
                     "product_id": self.p3.id,
                     "product_uom": self.p3.uom_id.id,
