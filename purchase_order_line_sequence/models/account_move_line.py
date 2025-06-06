@@ -16,9 +16,6 @@ class AccountMoveLine(models.Model):
     def _compute_related_po_sequence(self):
         for rec in self:
             if len(rec.move_id.mapped("line_ids.purchase_order_id")) > 1:
-                rec.related_po_sequence = "{}/{}".format(
-                    rec.purchase_line_id.order_id.name,
-                    rec.purchase_line_id.visible_sequence,
-                )
+                rec.related_po_sequence = f"{rec.purchase_line_id.order_id.name}/{rec.purchase_line_id.visible_sequence}"
             else:
                 rec.related_po_sequence = str(rec.purchase_line_id.visible_sequence)
