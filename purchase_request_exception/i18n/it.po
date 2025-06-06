@@ -1,0 +1,179 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_request_exception
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-08-31 11:06+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
+
+#. module: purchase_request_exception
+#: model_terms:ir.ui.view,arch_db:purchase_request_exception.view_purchase_request_form
+msgid "<strong>There are exceptions blocking this Purchase Order:</strong>"
+msgstr ""
+"<strong>Ci sono delle eccezioni che bloccano questo ordine di "
+"acquisto:</strong>"
+
+#. module: purchase_request_exception
+#: model:ir.model.fields,field_description:purchase_request_exception.field_exception_rule__model
+msgid "Apply on"
+msgstr "Applica a"
+
+#. module: purchase_request_exception
+#: model_terms:ir.ui.view,arch_db:purchase_request_exception.view_purchase_request_search
+msgid "Blocked in Draft"
+msgstr "Bloccati in bozza"
+
+#. module: purchase_request_exception
+#: model_terms:ir.ui.view,arch_db:purchase_request_exception.view_purchase_request_form
+msgid ""
+"Click here to be able to confirm this Agreement regardless of the "
+"exceptions."
+msgstr ""
+"Fare clic qui per poter confermare questo accordo indipendentemente dalle "
+"eccezioni."
+
+#. module: purchase_request_exception
+#: model:ir.model.fields,field_description:purchase_request_exception.field_purchase_request_exception_confirm__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: purchase_request_exception
+#: model:ir.model.fields,field_description:purchase_request_exception.field_purchase_request_exception_confirm__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: purchase_request_exception
+#: model:ir.model.fields,field_description:purchase_request_exception.field_purchase_request_exception_confirm__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: purchase_request_exception
+#: model:ir.model,name:purchase_request_exception.model_exception_rule
+msgid "Exception Rule"
+msgstr "Regola eccezione"
+
+#. module: purchase_request_exception
+#: model:ir.model.fields,field_description:purchase_request_exception.field_purchase_request__exception_ids
+msgid "Exceptions"
+msgstr "Eccezioni"
+
+#. module: purchase_request_exception
+#: model:ir.model.fields,field_description:purchase_request_exception.field_purchase_request__exceptions_summary
+msgid "Exceptions Summary"
+msgstr "Riepilogo eccezioni"
+
+#. module: purchase_request_exception
+#: model:ir.model.fields,field_description:purchase_request_exception.field_purchase_request_exception_confirm__exception_ids
+msgid "Exceptions to resolve"
+msgstr "Eccezioni da risolvere"
+
+#. module: purchase_request_exception
+#: model:ir.model.fields,field_description:purchase_request_exception.field_purchase_request_exception_confirm__id
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_request_exception
+#: model:ir.model.fields,field_description:purchase_request_exception.field_purchase_request__ignore_exception
+#: model:ir.model.fields,field_description:purchase_request_exception.field_purchase_request_exception_confirm__ignore
+#: model:ir.model.fields,field_description:purchase_request_exception.field_purchase_request_line__ignore_exception
+#: model_terms:ir.ui.view,arch_db:purchase_request_exception.view_purchase_request_form
+msgid "Ignore Exceptions"
+msgstr "Ignora eccezioni"
+
+#. module: purchase_request_exception
+#: model:ir.model.fields,field_description:purchase_request_exception.field_purchase_request_exception_confirm____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: purchase_request_exception
+#: model:ir.model.fields,field_description:purchase_request_exception.field_purchase_request_exception_confirm__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: purchase_request_exception
+#: model:ir.model.fields,field_description:purchase_request_exception.field_purchase_request_exception_confirm__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: purchase_request_exception
+#: model:ir.model.fields,field_description:purchase_request_exception.field_purchase_request__main_exception_id
+msgid "Main Exception"
+msgstr "Eccezione principale"
+
+#. module: purchase_request_exception
+#: model:exception.rule,name:purchase_request_exception.pr_excep_no_approver
+msgid "No approver"
+msgstr "Nessun approvatore"
+
+#. module: purchase_request_exception
+#: model:exception.rule,description:purchase_request_exception.pr_excep_no_approver
+msgid "No approver assigned for this request"
+msgstr "Nessun approvatore assegnato a questa richiesta"
+
+#. module: purchase_request_exception
+#: model:ir.actions.act_window,name:purchase_request_exception.action_purchase_request_exception_confirm
+msgid "Outstanding exceptions to manage"
+msgstr "Eccezione rilevante da gestire"
+
+#. module: purchase_request_exception
+#: model:ir.model,name:purchase_request_exception.model_purchase_request
+msgid "Purchase Request"
+msgstr "Richiesta di acquisto"
+
+#. module: purchase_request_exception
+#: model:ir.actions.act_window,name:purchase_request_exception.action_purchase_request_test_tree
+#: model:ir.ui.menu,name:purchase_request_exception.menu_purchase_request_test
+msgid "Purchase Request Exception Rules"
+msgstr "Regole eccezione richiesta acquisto"
+
+#. module: purchase_request_exception
+#: model:ir.model,name:purchase_request_exception.model_purchase_request_line
+msgid "Purchase Request Line"
+msgstr "Riga richiesta di acquisto"
+
+#. module: purchase_request_exception
+#: model:ir.actions.server,name:purchase_request_exception.ir_cron_test_pr_request_except_ir_actions_server
+#: model:ir.cron,cron_name:purchase_request_exception.ir_cron_test_pr_request_except
+msgid "Purchase Request: Test Draft Purchase Requests Exception"
+msgstr "Richiesta acquisto: testa eccezione richieste acquisto in bozza"
+
+#. module: purchase_request_exception
+#: model:ir.model.fields,field_description:purchase_request_exception.field_exception_rule__purchase_request_ids
+msgid "Purchase Requests"
+msgstr "Richieste di acquisto"
+
+#. module: purchase_request_exception
+#: model:ir.model.fields,field_description:purchase_request_exception.field_purchase_request_exception_confirm__related_model_id
+#: model:ir.model.fields.selection,name:purchase_request_exception.selection__exception_rule__model__purchase_request
+msgid "Purchase request"
+msgstr "Richiesta di acquisto"
+
+#. module: purchase_request_exception
+#: model:ir.model,name:purchase_request_exception.model_purchase_request_exception_confirm
+msgid "Purchase request exception wizard"
+msgstr "Procedura guidata eccezione richiesta di acquisto"
+
+#. module: purchase_request_exception
+#: model:ir.model.fields.selection,name:purchase_request_exception.selection__exception_rule__model__purchase_request_line
+msgid "Purchase request line"
+msgstr "Riga richiesta di acquisto"
+
+#. module: purchase_request_exception
+#: model:exception.rule,description:purchase_request_exception.prl_excep_qty_check
+msgid "Purchase request line quantity must be positive"
+msgstr "La quantità della riga di richiesta di acquisto deve essere positiva"
+
+#. module: purchase_request_exception
+#: model:exception.rule,name:purchase_request_exception.prl_excep_qty_check
+msgid "Quantity not positive"
+msgstr "Quantità non positiva"
