@@ -19,8 +19,8 @@ msgstr ""
 #. module: purchase_security
 #: model_terms:ir.ui.view,arch_db:purchase_security.purchase_team_form
 msgid ""
-"<i class=\"fa fa-envelope mr-1\" role=\"img\" aria-label=\"Email\" title="
-"\"Email\"/>"
+"<i class=\"fa fa-envelope mr-1\" role=\"img\" aria-label=\"Email\" "
+"title=\"Email\"/>"
 msgstr ""
 "<i class=\"fa fa-envelope mr-1\" role=\"img\" aria-label=\"Email\" title=\"E-"
 "mail\"/>"
@@ -79,6 +79,11 @@ msgstr "Membri"
 #: model:ir.model.fields,field_description:purchase_security.field_purchase_team__name
 msgid "Name"
 msgstr "Nome"
+
+#. module: purchase_security
+#: model_terms:ir.ui.view,arch_db:purchase_security.purchase_team_tree
+msgid "Open Form View"
+msgstr ""
 
 #. module: purchase_security
 #: model:ir.model,name:purchase_security.model_purchase_order
