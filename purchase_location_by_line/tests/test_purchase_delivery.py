@@ -4,10 +4,10 @@
 
 import time
 
-from odoo.tests.common import TransactionCase
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestDeliverySingle(TransactionCase):
+class TestDeliverySingle(BaseCommon):
     def setUp(self):
         super().setUp()
         # Products
@@ -108,8 +108,8 @@ class TestDeliverySingle(TransactionCase):
         self.assertEqual(
             len_pickings,
             2,
-            "There must be 2 pickings for the PO when confirmed. %s found"
-            % len_pickings,
+            f"There must be 2 pickings for the PO when confirmed. "
+            f"{len_pickings} found",
         )
 
         sorted_pickings = sorted(self.po.picking_ids, key=lambda x: x.scheduled_date)

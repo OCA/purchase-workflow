@@ -9,7 +9,6 @@
                 expr="//field[@name='order_line']//field[@name='date_planned']"
                 position="after"
             >
-                <field name="state" invisible="1" />
                 <field
                     name="location_dest_id"
                     readonly="state in ('purchase','done', 'cancel')"
@@ -32,7 +31,9 @@
         </field>
     </record>
     <record id="purchase_order_line_tree" model="ir.ui.view">
-        <field name="name">purchase.order.line.tree</field>
+        <field
+            name="name"
+        >purchase.order.line.list.inherit.purchase_location_by_line</field>
         <field name="model">purchase.order.line</field>
         <field name="inherit_id" ref="purchase.purchase_order_line_tree" />
         <field name="arch" type="xml">
