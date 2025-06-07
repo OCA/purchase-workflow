@@ -35,7 +35,7 @@ class PurchaseOrder(models.Model):
         for order in self:
             if any(
                 [
-                    ptype in ["product", "consu"]
+                    ptype == "consu"
                     for ptype in order.order_line.mapped("product_id.type")
                 ]
             ):
