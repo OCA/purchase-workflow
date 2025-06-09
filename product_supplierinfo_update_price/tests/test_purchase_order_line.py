@@ -57,7 +57,8 @@ class TestPurchaseOrderLine(common.TransactionCase):
         self.assertEqual(
             self.purchase_supplierinfo.price,
             120.0,
-            "The supplier info price should be updated to the purchase order line price.",
+            "The supplier info price should be updated to "
+            "the purchase order line price.",
         )
 
     def test_create_non_existing_supplierinfo(self):
@@ -122,5 +123,6 @@ class TestPurchaseOrderLine(common.TransactionCase):
         purchase_order_line.invalidate_recordset()
         self.assertTrue(
             purchase_order_line.can_update_product_supplierinfo,
-            "can_update_product_supplierinfo should be True after supplierinfo price change.",
+            "can_update_product_supplierinfo should be True "
+            "after supplierinfo price change.",
         )

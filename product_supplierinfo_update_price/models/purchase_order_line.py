@@ -46,7 +46,8 @@ class PurchaseOrderLine(models.Model):
     @api.onchange("product_id", "partner_id", "price_unit")
     def _compute_can_update_product_supplierinfo(self):
         for line in self:
-            # We need this condition because in some situations the onchange methods can fail.
+            # We need this condition because in some situations
+            # the onchange methods can fail.
             if (
                 not line._origin.id
                 or not line.product_id
