@@ -17,4 +17,8 @@
         </field>
     </record>
 
+    <record model="ir.actions.act_window" id="purchase_quick_add_product_action">
+        <field name="res_model">product.product</field>
+    </record>
+
 </odoo>
