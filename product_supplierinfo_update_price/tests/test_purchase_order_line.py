@@ -43,7 +43,6 @@ class TestPurchaseOrderLine(common.TransactionCase):
         )
 
     def test_update_supplierinfo_price(self):
-
         purchase_order_line = self.env["purchase.order.line"].create(
             {
                 "order_id": self.purchase_order.id,
