@@ -14,16 +14,6 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: purchase_security
-#: model_terms:ir.ui.view,arch_db:purchase_security.purchase_team_form
-msgid "<i class=\"fa fa-envelope mr-1\" role=\"img\" aria-label=\"Email\" title=\"Email\"/>"
-msgstr ""
-
-#. module: purchase_security
-#: model_terms:ir.ui.view,arch_db:purchase_security.purchase_team_form
-msgid "Avatar"
-msgstr ""
-
-#. module: purchase_security
 #: model:ir.model,name:purchase_security.model_res_partner
 msgid "Contact"
 msgstr ""
@@ -71,6 +61,11 @@ msgstr ""
 #. module: purchase_security
 #: model:ir.model.fields,field_description:purchase_security.field_purchase_team__name
 msgid "Name"
+msgstr ""
+
+#. module: purchase_security
+#: model_terms:ir.ui.view,arch_db:purchase_security.purchase_team_tree
+msgid "Open Form View"
 msgstr ""
 
 #. module: purchase_security

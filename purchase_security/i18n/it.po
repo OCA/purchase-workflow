@@ -17,20 +17,6 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: purchase_security
-#: model_terms:ir.ui.view,arch_db:purchase_security.purchase_team_form
-msgid ""
-"<i class=\"fa fa-envelope mr-1\" role=\"img\" aria-label=\"Email\" title="
-"\"Email\"/>"
-msgstr ""
-"<i class=\"fa fa-envelope mr-1\" role=\"img\" aria-label=\"Email\" title=\"E-"
-"mail\"/>"
-
-#. module: purchase_security
-#: model_terms:ir.ui.view,arch_db:purchase_security.purchase_team_form
-msgid "Avatar"
-msgstr "Avatar"
-
-#. module: purchase_security
 #: model:ir.model,name:purchase_security.model_res_partner
 msgid "Contact"
 msgstr "Contatto"
@@ -79,6 +65,11 @@ msgstr "Membri"
 #: model:ir.model.fields,field_description:purchase_security.field_purchase_team__name
 msgid "Name"
 msgstr "Nome"
+
+#. module: purchase_security
+#: model_terms:ir.ui.view,arch_db:purchase_security.purchase_team_tree
+msgid "Open Form View"
+msgstr ""
 
 #. module: purchase_security
 #: model:ir.model,name:purchase_security.model_purchase_order
@@ -154,6 +145,16 @@ msgstr "Utente (ordini team)"
 #: model_terms:ir.ui.view,arch_db:purchase_security.purchase_team_form
 msgid "e.g. Europe"
 msgstr "es. Europa"
+
+#~ msgid ""
+#~ "<i class=\"fa fa-envelope mr-1\" role=\"img\" aria-label=\"Email\" "
+#~ "title=\"Email\"/>"
+#~ msgstr ""
+#~ "<i class=\"fa fa-envelope mr-1\" role=\"img\" aria-label=\"Email\" "
+#~ "title=\"E-mail\"/>"
+
+#~ msgid "Avatar"
+#~ msgstr "Avatar"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Ultima modifica il"
