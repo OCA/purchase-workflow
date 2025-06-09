@@ -38,17 +38,22 @@ class PurchaseOrder(models.Model):
         xmlid = "purchase_quick.purchase_quick_add_product_action"
         action = self.env["ir.actions.act_window"]._for_xml_id(xmlid)
         res = self._common_action_keys()
-        res["context"].update(self._get_context_add_products())
-        domain = self._get_domain_add_products()
-        if domain:
-            res["domain"] = domain
-        commercial = self.partner_id.commercial_partner_id.name
+        commercial = self.partner_id.commercial_partner_id
+        res["domain"] = "[('purchase_ok', '=', True)]"
+        res["context"].update(
+            {
+                "search_default_filter_for_current_supplier": 1,
+                "quick_access_rights_purchase": 1,
+                "po_partner_id": commercial.id,
+            }
+        )
         res["display_name"] = "🔙 {} ({})".format(_("Product Variants"), commercial.name)
         res["view_id"] = (self.env.ref("purchase_quick.product_tree_view4purchase").id,)
         res["search_view_id"] = (
             self.env.ref("purchase_quick.product_search_form_view").id,
         )
-        return action.update(res)
+        action.update(res)
+        return action
 
     def _get_quick_line(self, product):
         result = self.env["purchase.order.line"].search(
