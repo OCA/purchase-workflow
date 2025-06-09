@@ -26,16 +26,16 @@ class PurchaseTag(models.Model):
         ("tag_name_uniq", "unique (name)", "Tag name already exists !"),
     ]
 
-    def name_get(self):
-        res = []
+    def _compute_display_name(self):
         for tag in self:
             names = []
             current = tag
             while current:
-                names.append(current.name)
+                if current.name:
+                    names.append(current.name)
                 current = current.parent_id
-            res.append((tag.id, " / ".join(reversed(names))))
-        return res
+            display_name = " / ".join(reversed(names))
+            tag.display_name = display_name
 
     @api.model
     def _name_search(
