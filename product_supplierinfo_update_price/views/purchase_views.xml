@@ -12,13 +12,13 @@
                 expr="//field[@name='order_line']/tree/field[@name='price_unit']"
                 position="after"
             >
-                <field name="can_update_product_supplierinfo" invisible="1" />
+                <field name="can_update_product_supplierinfo" column_invisible="1" />
                 <button
                     name="action_update_product_supplierinfo"
                     type="object"
                     icon="fa-refresh"
                     title="Update Product Supplierinfo Price"
-                    attrs="{'invisible': ['|', ('id', '=', False),('can_update_product_supplierinfo', '=', False)]}"
+                    invisible="not id or not can_update_product_supplierinfo"
                 />
             </xpath>
         </field>
