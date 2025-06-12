@@ -1,0 +1,732 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_work_acceptance
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-04-18 08:37+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: purchase_work_acceptance
+#. odoo-python
+#: code:addons/purchase_work_acceptance/wizard/select_work_acceptance_wizard.py:0
+#, python-format
+msgid "%s was already used by some bill"
+msgstr "%s ya fue utilizado por alguna factura"
+
+#. module: purchase_work_acceptance
+#. odoo-python
+#: code:addons/purchase_work_acceptance/models/stock_picking.py:0
+#, python-format
+msgid "%s was used in some picking."
+msgstr "%s se utilizó en algún albarán."
+
+#. module: purchase_work_acceptance
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_acceptance_form
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_accepted_date_wizard
+msgid "Accept"
+msgstr "Aceptar"
+
+#. module: purchase_work_acceptance
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_acceptance_search
+msgid "Accepte Date"
+msgstr "Aceptar Fecha"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields.selection,name:purchase_work_acceptance.selection__work_acceptance__state__accept
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.purchase_order_form_inherit
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_acceptance_search
+msgid "Accepted"
+msgstr "Aceptado"
+
+#. module: purchase_work_acceptance
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_acceptance_search
+msgid "Accepted By"
+msgstr "Aceptado por"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__date_accept
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance_line__date_accept
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_accepted_date_wizard__date_accept
+msgid "Accepted Date"
+msgstr "Fecha Aceptada"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_purchase_order_line__qty_accepted
+msgid "Accepted Qty."
+msgstr "Cantd Aceptada."
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__access_warning
+msgid "Access warning"
+msgstr "Aviso de Acceso"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__message_needaction
+msgid "Action Needed"
+msgstr "Necesita Acción"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__activity_ids
+msgid "Activities"
+msgstr "Actividades"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Decoración de Actividad de Excepción"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__activity_state
+msgid "Activity State"
+msgstr "Estado de la Actividad"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Icono para el Tipo de Actividad"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__message_attachment_count
+msgid "Attachment Count"
+msgstr "Conteo de Archivos Adjuntos"
+
+#. module: purchase_work_acceptance
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_select_work_acceptance_wizard
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_acceptance_form
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_accepted_date_wizard
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields.selection,name:purchase_work_acceptance.selection__work_acceptance__state__cancel
+msgid "Cancelled"
+msgstr "Cancelado"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__company_id
+msgid "Company"
+msgstr "Companía"
+
+#. module: purchase_work_acceptance
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_select_work_acceptance_wizard
+msgid "Create Vendor Bill"
+msgstr "Crear Factura de Proveedor"
+
+#. module: purchase_work_acceptance
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.purchase_order_form_inherit
+msgid "Create WA"
+msgstr "Crear WA"
+
+#. module: purchase_work_acceptance
+#: model_terms:ir.actions.act_window,help:purchase_work_acceptance.action_work_acceptance
+msgid "Create a new work acceptance"
+msgstr "Crear una nueva aceptación de trabajo"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_select_work_acceptance_wizard__create_uid
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__create_uid
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance_line__create_uid
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_accepted_date_wizard__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_select_work_acceptance_wizard__create_date
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__create_date
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance_line__create_date
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_accepted_date_wizard__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__currency_id
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance_line__currency_id
+msgid "Currency"
+msgstr "Divisa"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,help:purchase_work_acceptance.field_work_acceptance__access_url
+msgid "Customer Portal URL"
+msgstr "URL del Portal de Cliente"
+
+#. module: purchase_work_acceptance
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_acceptance_form
+msgid "Define your terms and conditions ..."
+msgstr "Defina sus términos y condiciones ..."
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance_line__name
+msgid "Description"
+msgstr "Descripción"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_select_work_acceptance_wizard__display_name
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__display_name
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance_line__display_name
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_accepted_date_wizard__display_name
+msgid "Display Name"
+msgstr "Mostrar Nombre"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields.selection,name:purchase_work_acceptance.selection__work_acceptance__state__draft
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_acceptance_search
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__date_due
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance_line__date_due
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_acceptance_search
+msgid "Due Date"
+msgstr "Fecha de Vencimiento"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_res_config_settings__group_enable_wa_on_in
+#: model:res.groups,name:purchase_work_acceptance.group_enable_wa_on_in
+msgid "Enable WA on Goods Receipt"
+msgstr "Activar WA en la Recepción de Mercancías"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_res_config_settings__group_enable_wa_on_po
+#: model:res.groups,name:purchase_work_acceptance.group_enable_wa_on_po
+msgid "Enable WA on Purchase Order"
+msgstr "Activar WA en la Orden de Compra"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_res_config_settings__group_enable_wa_on_invoice
+#: model:res.groups,name:purchase_work_acceptance.group_enable_wa_on_invoice
+msgid "Enable WA on Vendor Bill"
+msgstr "Activar WA en la Factura del Vendedor"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_res_config_settings__group_enforce_wa_on_in
+#: model:res.groups,name:purchase_work_acceptance.group_enforce_wa_on_in
+msgid "Enforce WA on Goods Receipt"
+msgstr "Aplicar la WA en la Entrada de Mercancías"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_res_config_settings__group_enforce_wa_on_invoice
+#: model:res.groups,name:purchase_work_acceptance.group_enforce_wa_on_invoice
+msgid "Enforce WA on Vendor Bill"
+msgstr "Aplicar WA en la Factura del Vendedor"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores/as"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Socios)"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,help:purchase_work_acceptance.field_work_acceptance__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Icono de fuente impresionante, por ejemplo fa-tasks"
+
+#. module: purchase_work_acceptance
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_acceptance_search
+msgid "Group By"
+msgstr "Agrupar Por"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__has_message
+msgid "Has Message"
+msgstr "Tiene Mensaje"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_select_work_acceptance_wizard__id
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__id
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance_line__id
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_accepted_date_wizard__id
+msgid "ID"
+msgstr "ID (identificación)"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__activity_exception_icon
+msgid "Icon"
+msgstr "Icono"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,help:purchase_work_acceptance.field_work_acceptance__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icono para indicar una actividad por excepción."
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,help:purchase_work_acceptance.field_work_acceptance__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcado, nuevos mensajes requieren de su atención."
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,help:purchase_work_acceptance.field_work_acceptance__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si está marcada, algunos mensajes tienen error de entrega."
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__invoice_ref
+msgid "Invoice Reference"
+msgstr "Referencia de Factura"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__message_is_follower
+msgid "Is Follower"
+msgstr "Es Seguidor/a"
+
+#. module: purchase_work_acceptance
+#: model:ir.model,name:purchase_work_acceptance.model_account_move
+msgid "Journal Entry"
+msgstr "Entrada Diaria"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_select_work_acceptance_wizard____last_update
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance____last_update
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance_line____last_update
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_accepted_date_wizard____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_select_work_acceptance_wizard__write_uid
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__write_uid
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance_line__write_uid
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_accepted_date_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_select_work_acceptance_wizard__write_date
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__write_date
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance_line__write_date
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_accepted_date_wizard__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Archivo Adjunto Principal"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__message_has_error
+msgid "Message Delivery error"
+msgstr "Error en Entrega de Mensaje"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Fecha Límite de Mi Actividad"
+
+#. module: purchase_work_acceptance
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_acceptance_search
+msgid "My Work Acceptance"
+msgstr "Aceptación de Mi Trabajo"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Fecha Límite para la siguiente Actividad"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__activity_summary
+msgid "Next Activity Summary"
+msgstr "Resumen de la Siguiente Actividad"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__activity_type_id
+msgid "Next Activity Type"
+msgstr "Tipo Siguiente Actividad"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__notes
+msgid "Notes"
+msgstr "Notas"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de Acciones"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__message_has_error_counter
+msgid "Number of errors"
+msgstr "Número de errores"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,help:purchase_work_acceptance.field_work_acceptance__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Número de mensajes que requieren una acción"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,help:purchase_work_acceptance.field_work_acceptance__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Número de mensajes con error de entrega"
+
+#. module: purchase_work_acceptance
+#. odoo-python
+#: code:addons/purchase_work_acceptance/models/purchase.py:0
+#, python-format
+msgid "Operation not supported"
+msgstr "Operación no permitida"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance_line__partner_id
+msgid "Partner"
+msgstr "Socio"
+
+#. module: purchase_work_acceptance
+#: model:ir.model,name:purchase_work_acceptance.model_stock_picking_type
+msgid "Picking Type"
+msgstr "Tipo de Recogida"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__access_url
+msgid "Portal Access URL"
+msgstr "URL Acceso Portal"
+
+#. module: purchase_work_acceptance
+#: model:ir.model,name:purchase_work_acceptance.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr "Configuración de la agrupación de compras"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__product_id
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance_line__product_id
+msgid "Product"
+msgstr "Producto"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance_line__product_uom
+msgid "Product Unit of Measure"
+msgstr "Unidad de Medida del Producto"
+
+#. module: purchase_work_acceptance
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_acceptance_form
+msgid "Products"
+msgstr "Productos"
+
+#. module: purchase_work_acceptance
+#: model:ir.model,name:purchase_work_acceptance.model_purchase_order
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__purchase_id
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_acceptance_search
+msgid "Purchase Order"
+msgstr "Orden de Compra"
+
+#. module: purchase_work_acceptance
+#: model:ir.model,name:purchase_work_acceptance.model_purchase_order_line
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance_line__purchase_line_id
+msgid "Purchase Order Line"
+msgstr "Línea de Orden de Compra"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance_line__product_qty
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: purchase_work_acceptance
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_acceptance_search
+msgid "Receive Date"
+msgstr "Fecha de Recepción"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__date_receive
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance_line__date_receive
+msgid "Received Date"
+msgstr "Recibido Fecha"
+
+#. module: purchase_work_acceptance
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_acceptance_search
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_acceptance_tree
+msgid "Reference"
+msgstr "Referencia"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_account_bank_statement_line__require_wa
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_account_move__require_wa
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_account_payment__require_wa
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_select_work_acceptance_wizard__require_wa
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_stock_picking__require_wa
+msgid "Require Wa"
+msgstr "Requerir Wa"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__responsible_id
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance_line__responsible_id
+msgid "Responsible Person"
+msgstr "Persona Responsable"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__activity_user_id
+msgid "Responsible User"
+msgstr "Usuario Responsable"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__access_token
+msgid "Security Token"
+msgstr "Ficha de Seguridad"
+
+#. module: purchase_work_acceptance
+#. odoo-python
+#: code:addons/purchase_work_acceptance/models/work_acceptance.py:0
+#, python-format
+msgid "Select Accept Date"
+msgstr "Seleccionar Fecha de Aceptación"
+
+#. module: purchase_work_acceptance
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_accepted_date_wizard
+msgid "Select Accepted Date"
+msgstr "Seleccionar Fecha Aceptada"
+
+#. module: purchase_work_acceptance
+#. odoo-python
+#: code:addons/purchase_work_acceptance/models/purchase.py:0
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_select_work_acceptance_wizard
+#, python-format
+msgid "Select Work Acceptance"
+msgstr "Seleccione Aceptación del Trabajo"
+
+#. module: purchase_work_acceptance
+#: model:ir.model,name:purchase_work_acceptance.model_select_work_acceptance_wizard
+msgid "Select Work Acceptance Wizard"
+msgstr "Seleccione Asistente de Aceptación del Trabajo"
+
+#. module: purchase_work_acceptance
+#: model:ir.model,name:purchase_work_acceptance.model_work_accepted_date_wizard
+msgid "Select work accepted date"
+msgstr "Seleccione la fecha de aceptación del trabajo"
+
+#. module: purchase_work_acceptance
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_acceptance_form
+msgid "Set to draft"
+msgstr "Establecer a borrador"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__state
+msgid "Status"
+msgstr "Situación"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,help:purchase_work_acceptance.field_work_acceptance__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Estado basado en actividades\n"
+"Atrasado: La fecha de vencimiento ya ha pasado\n"
+"Hoy: La fecha de la actividad es hoy\n"
+"Planeado: Actividades futuras."
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance_line__price_subtotal
+msgid "Subtotal"
+msgstr "Subtotal"
+
+#. module: purchase_work_acceptance
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.purchase_order_form_inherit
+msgid "To Accept"
+msgstr "Para Aceptar"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_purchase_order_line__qty_to_accept
+msgid "To Accept Qty."
+msgstr "Ctd para Aceptar."
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,help:purchase_work_acceptance.field_account_bank_statement_line__wa_id
+#: model:ir.model.fields,help:purchase_work_acceptance.field_account_move__wa_id
+#: model:ir.model.fields,help:purchase_work_acceptance.field_account_payment__wa_id
+msgid ""
+"To control quantity and unit price of the vendor bill, to be according to "
+"the quantity and unit price of the work acceptance."
+msgstr ""
+"Controlar la cantidad y el precio unitario de la factura del proveedor, para "
+"que estén de acuerdo con la cantidad y el precio unitario de la aceptación "
+"del trabajo."
+
+#. module: purchase_work_acceptance
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_acceptance_form
+msgid "Total"
+msgstr "Total"
+
+#. module: purchase_work_acceptance
+#: model:ir.model,name:purchase_work_acceptance.model_stock_picking
+msgid "Transfer"
+msgstr "Transferencia"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,help:purchase_work_acceptance.field_work_acceptance__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Tipo (o clase) de actividad excepcional registrada."
+
+#. module: purchase_work_acceptance
+#. odoo-python
+#: code:addons/purchase_work_acceptance/models/work_acceptance.py:0
+#, python-format
+msgid ""
+"Unable set to draft this work acceptance. You must first cancel the related "
+"receipts."
+msgstr ""
+"No se puede redactar esta aceptación de trabajo. Primero debe cancelar los "
+"recibos relacionados."
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance_line__price_unit
+msgid "Unit Price"
+msgstr "Precio Unitario"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__partner_id
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_acceptance_search
+msgid "Vendor"
+msgstr "Vendedor"
+
+#. module: purchase_work_acceptance
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.purchase_order_form_inherit
+msgid "WA"
+msgstr "WA"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_purchase_order__wa_accepted
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.purchase_order_view_search
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_purchase_order_filter
+msgid "WA Accepted"
+msgstr "WA Aceptado"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_purchase_order__wa_line_ids
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_purchase_order_line__wa_line_ids
+msgid "WA Lines"
+msgstr "Líneas WA"
+
+#. module: purchase_work_acceptance
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.purchase_order_view_search
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_purchase_order_filter
+msgid "WA Not Accepted"
+msgstr "WA No Aceptado"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_account_bank_statement_line__wa_id
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_account_move__wa_id
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_account_payment__wa_id
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_stock_picking__wa_id
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance_line__wa_id
+msgid "WA Reference"
+msgstr "Referencia WA"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_purchase_order__wa_count
+msgid "WA count"
+msgstr "Conteo WA"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_stock_picking_type__bypass_wa
+msgid "WA not required"
+msgstr "WA no requerido"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_select_work_acceptance_wizard__wa_ids
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_stock_picking__wa_ids
+msgid "Wa"
+msgstr "Wa"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del Sitio Web"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,help:purchase_work_acceptance.field_work_acceptance__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de la comunicación en el sitio web"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,help:purchase_work_acceptance.field_stock_picking_type__bypass_wa
+msgid ""
+"When 'Enforce WA on Goods Receipt' is set, this option type can by pass it"
+msgstr ""
+"Cuando se establece \"Aplicar WA en la entrada de mercancías\", este tipo de "
+"opción puede pasarla por alto"
+
+#. module: purchase_work_acceptance
+#: model:ir.actions.act_window,name:purchase_work_acceptance.action_work_acceptance
+#: model:ir.model,name:purchase_work_acceptance.model_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_select_work_acceptance_wizard__wa_id
+#: model:ir.ui.menu,name:purchase_work_acceptance.menu_work_acceptance
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.res_config_settings_view_form_purchase
+msgid "Work Acceptance"
+msgstr "Aceptación de Trabajo"
+
+#. module: purchase_work_acceptance
+#: model:ir.model,name:purchase_work_acceptance.model_work_acceptance_line
+msgid "Work Acceptance Line"
+msgstr "Línea de Aceptación de Trabajo"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__wa_line_ids
+msgid "Work Acceptance Lines"
+msgstr "Líneas de Aceptación de Trabajo"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__user_id
+msgid "Work Acceptance Representative"
+msgstr "Representante de Aceptación de Trabajo"
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_purchase_order__wa_ids
+msgid "Work Acceptances"
+msgstr "Aceptaciones de Trabajo"
+
+#. module: purchase_work_acceptance
+#. odoo-python
+#: code:addons/purchase_work_acceptance/models/account_move.py:0
+#, python-format
+msgid "You cannot validate a bill if Quantity not equal accepted quantity"
+msgstr ""
+"No se puede validar una factura si Cantidad no es igual a cantidad aceptada"
+
+#. module: purchase_work_acceptance
+#. odoo-python
+#: code:addons/purchase_work_acceptance/models/stock_picking.py:0
+#, python-format
+msgid ""
+"You cannot validate a transfer if done quantity not equal accepted quantity"
+msgstr ""
+"No se puede validar una transferencia si la cantidad realizada no es igual a "
+"la cantidad aceptada"
+
+#~ msgid "Number of messages which requires an action"
+#~ msgstr "Número de mensajes que requieren una acción"
+
+#~ msgid "Number of unread messages"
+#~ msgstr "Número de mensajes no leídos"
+
+#~ msgid "Unread Messages"
+#~ msgstr "Mensajes no Leídos"
+
+#~ msgid "Unread Messages Counter"
+#~ msgstr "Contador de Mensajes no Leídos"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Error en la entrega de SMS"
