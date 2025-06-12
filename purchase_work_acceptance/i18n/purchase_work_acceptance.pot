@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -12,20 +12,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-
-#. module: purchase_work_acceptance
-#. odoo-python
-#: code:addons/purchase_work_acceptance/wizard/select_work_acceptance_wizard.py:0
-#, python-format
-msgid "%s was already used by some bill"
-msgstr ""
-
-#. module: purchase_work_acceptance
-#. odoo-python
-#: code:addons/purchase_work_acceptance/models/stock_picking.py:0
-#, python-format
-msgid "%s was used in some picking."
-msgstr ""
 
 #. module: purchase_work_acceptance
 #: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_acceptance_form
@@ -206,6 +192,16 @@ msgid "Enable WA on Vendor Bill"
 msgstr ""
 
 #. module: purchase_work_acceptance
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.res_config_settings_view_form_purchase
+msgid "Enable to use work acceptance on purchase order."
+msgstr ""
+
+#. module: purchase_work_acceptance
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.res_config_settings_view_form_purchase
+msgid "Enable work acceptance on purchase order"
+msgstr ""
+
+#. module: purchase_work_acceptance
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_res_config_settings__group_enforce_wa_on_in
 #: model:res.groups,name:purchase_work_acceptance.group_enforce_wa_on_in
 msgid "Enforce WA on Goods Receipt"
@@ -267,6 +263,7 @@ msgstr ""
 
 #. module: purchase_work_acceptance
 #: model:ir.model.fields,help:purchase_work_acceptance.field_work_acceptance__message_has_error
+#: model:ir.model.fields,help:purchase_work_acceptance.field_work_acceptance__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -286,14 +283,6 @@ msgid "Journal Entry"
 msgstr ""
 
 #. module: purchase_work_acceptance
-#: model:ir.model.fields,field_description:purchase_work_acceptance.field_select_work_acceptance_wizard____last_update
-#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance____last_update
-#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance_line____last_update
-#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_accepted_date_wizard____last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: purchase_work_acceptance
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_select_work_acceptance_wizard__write_uid
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__write_uid
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance_line__write_uid
@@ -307,11 +296,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance_line__write_date
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_accepted_date_wizard__write_date
 msgid "Last Updated on"
-msgstr ""
-
-#. module: purchase_work_acceptance
-#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__message_main_attachment_id
-msgid "Main Attachment"
 msgstr ""
 
 #. module: purchase_work_acceptance
@@ -382,7 +366,6 @@ msgstr ""
 #. module: purchase_work_acceptance
 #. odoo-python
 #: code:addons/purchase_work_acceptance/models/purchase.py:0
-#, python-format
 msgid "Operation not supported"
 msgstr ""
 
@@ -452,15 +435,14 @@ msgid "Received Date"
 msgstr ""
 
 #. module: purchase_work_acceptance
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_acceptance_list
 #: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_acceptance_search
-#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_acceptance_tree
 msgid "Reference"
 msgstr ""
 
 #. module: purchase_work_acceptance
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_account_bank_statement_line__require_wa
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_account_move__require_wa
-#: model:ir.model.fields,field_description:purchase_work_acceptance.field_account_payment__require_wa
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_select_work_acceptance_wizard__require_wa
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_stock_picking__require_wa
 msgid "Require Wa"
@@ -478,6 +460,11 @@ msgid "Responsible User"
 msgstr ""
 
 #. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: purchase_work_acceptance
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__access_token
 msgid "Security Token"
 msgstr ""
@@ -485,7 +472,6 @@ msgstr ""
 #. module: purchase_work_acceptance
 #. odoo-python
 #: code:addons/purchase_work_acceptance/models/work_acceptance.py:0
-#, python-format
 msgid "Select Accept Date"
 msgstr ""
 
@@ -498,7 +484,6 @@ msgstr ""
 #. odoo-python
 #: code:addons/purchase_work_acceptance/models/purchase.py:0
 #: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_select_work_acceptance_wizard
-#, python-format
 msgid "Select Work Acceptance"
 msgstr ""
 
@@ -549,7 +534,6 @@ msgstr ""
 #. module: purchase_work_acceptance
 #: model:ir.model.fields,help:purchase_work_acceptance.field_account_bank_statement_line__wa_id
 #: model:ir.model.fields,help:purchase_work_acceptance.field_account_move__wa_id
-#: model:ir.model.fields,help:purchase_work_acceptance.field_account_payment__wa_id
 msgid ""
 "To control quantity and unit price of the vendor bill, to be according to "
 "the quantity and unit price of the work acceptance."
@@ -573,7 +557,6 @@ msgstr ""
 #. module: purchase_work_acceptance
 #. odoo-python
 #: code:addons/purchase_work_acceptance/models/work_acceptance.py:0
-#, python-format
 msgid ""
 "Unable set to draft this work acceptance. You must first cancel the related "
 "receipts."
@@ -617,7 +600,6 @@ msgstr ""
 #. module: purchase_work_acceptance
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_account_bank_statement_line__wa_id
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_account_move__wa_id
-#: model:ir.model.fields,field_description:purchase_work_acceptance.field_account_payment__wa_id
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_stock_picking__wa_id
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance_line__wa_id
 msgid "WA Reference"
@@ -687,14 +669,5 @@ msgstr ""
 #. module: purchase_work_acceptance
 #. odoo-python
 #: code:addons/purchase_work_acceptance/models/account_move.py:0
-#, python-format
 msgid "You cannot validate a bill if Quantity not equal accepted quantity"
-msgstr ""
-
-#. module: purchase_work_acceptance
-#. odoo-python
-#: code:addons/purchase_work_acceptance/models/stock_picking.py:0
-#, python-format
-msgid ""
-"You cannot validate a transfer if done quantity not equal accepted quantity"
 msgstr ""
