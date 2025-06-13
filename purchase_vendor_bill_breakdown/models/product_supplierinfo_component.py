@@ -24,7 +24,8 @@ class ProductSupplierInfoComponent(models.Model):
     def get_supplier_by_args(self, product_id, partner_id):
         """Get first supplier by product and vendor name"""
         return self.env["product.supplierinfo"].search(
-            [("product_tmpl_id", "=", product_id), ("name", "=", partner_id)], limit=1
+            [("product_tmpl_id", "=", product_id), ("partner_id", "=", partner_id)],
+            limit=1,
         )
 
     @api.depends("component_id", "component_id.seller_ids")
@@ -33,7 +34,8 @@ class ProductSupplierInfoComponent(models.Model):
         for rec in self:
             price = (
                 self.get_supplier_by_args(
-                    rec.component_id.product_tmpl_id.id, rec.supplierinfo_id.name.id
+                    rec.component_id.product_tmpl_id.id,
+                    rec.supplierinfo_id.partner_id.id,
                 ).price
                 or rec.component_id.standard_price
             )

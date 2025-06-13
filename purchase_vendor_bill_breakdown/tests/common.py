@@ -80,20 +80,20 @@ class PurchaseTransactionCase(TransactionCase):
 
         with Form(self.product_product_component_test_1) as form:
             with form.seller_ids.new() as line:
-                line.name = self.res_partner_supplier
+                line.partner_id = self.res_partner_supplier
                 line.price = 5.0
             with form.seller_ids.new() as line:
-                line.name = self.res_partner_supplier_2
+                line.partner_id = self.res_partner_supplier_2
                 line.price = 6.0
 
         with Form(self.product_product_component_test_2) as form:
             with form.seller_ids.new() as line:
-                line.name = self.res_partner_supplier
+                line.partner_id = self.res_partner_supplier
                 line.price = 3.0
 
         with Form(self.product_product_test_1) as form:
             with form.seller_ids.new() as line:
-                line.name = self.res_partner_test_use_product_components
+                line.partner_id = self.res_partner_test_use_product_components
                 line.price = 100
 
         self.product_supplier_info = self.product_product_test_1.seller_ids[0]
@@ -108,22 +108,22 @@ class PurchaseTransactionCase(TransactionCase):
 
         with Form(self.product_product_component_test_3) as form:
             with form.seller_ids.new() as line:
-                line.name = self.res_partner_supplier
+                line.partner_id = self.res_partner_supplier
                 line.price = 1.0
 
         with Form(self.product_product_component_test_4) as form:
             with form.seller_ids.new() as line:
-                line.name = self.res_partner_supplier
+                line.partner_id = self.res_partner_supplier
                 line.price = 5.0
 
         with Form(self.product_product_component_test_5) as form:
             with form.seller_ids.new() as line:
-                line.name = self.res_partner_supplier
+                line.partner_id = self.res_partner_supplier
                 line.price = 6.0
 
         with Form(self.product_product_test_3) as form:
             with form.seller_ids.new() as line:
-                line.name = self.supplier_partner
+                line.partner_id = self.supplier_partner
                 line.price = 100
 
         seller_id = self.product_product_test_3.seller_ids[0]

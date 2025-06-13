@@ -9,7 +9,7 @@ class ProductSupplierInfoComponent(models.Model):
         comodel_name="product.supplierinfo", string="Supplier Info"
     )
     parent_product_ids = fields.One2many(related="supplierinfo_id.product_variant_ids")
-    partner_id = fields.Many2one(related="supplierinfo_id.name")
+    partner_id = fields.Many2one(related="supplierinfo_id.partner_id")
     component_id = fields.Many2one(
         comodel_name="product.product",
         string="Component",

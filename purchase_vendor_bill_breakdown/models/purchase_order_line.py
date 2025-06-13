@@ -53,7 +53,7 @@ class PurchaseOrderLine(models.Model):
             rec.supplier_id = self.env["product.supplierinfo"].search(
                 [
                     ("product_tmpl_id", "=", rec.product_id.product_tmpl_id.id),
-                    ("name", "=", rec.order_id.partner_id.id),
+                    ("partner_id", "=", rec.order_id.partner_id.id),
                 ],
                 limit=1,
             )

@@ -16,7 +16,7 @@ class TestComponentsFlow(PurchaseTransactionCase):
         PurchaseOrder = self.env["purchase.order"]
         with Form(self.product_product_test_1) as form:
             with form.seller_ids.new() as line:
-                line.name = self.res_partner_test_use_product_components
+                line.partner_id = self.res_partner_test_use_product_components
                 line.price = 1.0
 
         with Form(
@@ -34,30 +34,30 @@ class TestComponentsFlow(PurchaseTransactionCase):
 
         with Form(self.product_product_component_test_1) as form:
             with form.seller_ids.new() as line:
-                line.name = self.res_partner_test_use_product_components
+                line.partner_id = self.res_partner_test_use_product_components
                 line.price = 100.0
             with form.seller_ids.new() as line:
-                line.name = self.res_partner_test_use_product_components
+                line.partner_id = self.res_partner_test_use_product_components
                 line.price = 200.0
 
         with Form(self.product_product_component_test_2) as form:
             with form.seller_ids.new() as line:
-                line.name = self.res_partner_test_use_product_components
+                line.partner_id = self.res_partner_test_use_product_components
                 line.price = 150.0
 
         with Form(self.product_product_component_test_3) as form:
             with form.seller_ids.new() as line:
-                line.name = self.res_partner_test_use_product_components
+                line.partner_id = self.res_partner_test_use_product_components
                 line.price = 200.0
 
         with Form(self.product_product_component_test_4) as form:
             with form.seller_ids.new() as line:
-                line.name = self.res_partner_test_use_product_components
+                line.partner_id = self.res_partner_test_use_product_components
                 line.price = 180.0
 
         with Form(self.product_product_component_test_5) as form:
             with form.seller_ids.new() as line:
-                line.name = self.res_partner_test_use_product_components
+                line.partner_id = self.res_partner_test_use_product_components
                 line.price = 170.0
 
         form = Form(PurchaseOrder)

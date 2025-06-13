@@ -107,12 +107,12 @@ class TestProductSupplierInfoComponent(SupplierInfoCommon):
         supplier_empty = SupplierInfoComponent.get_supplier_by_args(
             self.product_product_component_hammer.product_tmpl_id.id,
             self.res_partner_supplier_max.id,
-        ).name
+        ).partner_id
         self.assertFalse(supplier_empty, msg="Recordset must be empty")
         supplier_valid = SupplierInfoComponent.get_supplier_by_args(
             self.product_product_component_hammer.product_tmpl_id.id,
             self.res_partner_anna.id,
-        ).name
+        ).partner_id
         self.assertEqual(
             supplier_valid,
             self.res_partner_anna,
@@ -125,12 +125,12 @@ class TestProductSupplierInfoComponent(SupplierInfoCommon):
         supplier_empty = SupplierInfoComponent.get_supplier_by_args(
             self.product_product_component_hammer.product_tmpl_id.id,
             self.res_partner_anna.id,
-        ).name
+        ).partner_id
         self.assertFalse(supplier_empty, msg="Recordset must be empty")
         supplier_valid = SupplierInfoComponent.get_supplier_by_args(
             self.product_product_component_hammer.product_tmpl_id.id,
             self.res_partner_supplier_max.id,
-        ).name
+        ).partner_id
         self.assertEqual(
             supplier_valid,
             self.res_partner_supplier_max,

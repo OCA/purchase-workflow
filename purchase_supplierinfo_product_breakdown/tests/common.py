@@ -32,17 +32,17 @@ class SupplierInfoCommon(TransactionCase):
 
         with Form(self.product_product_component_hammer) as form:
             with form.seller_ids.new() as seller:
-                seller.name = self.res_partner_supplier_max
+                seller.partner_id = self.res_partner_supplier_max
                 seller.price = 5
 
         with Form(self.product_product_component_saw) as form:
             with form.seller_ids.new() as seller:
-                seller.name = self.res_partner_supplier_max
+                seller.partner_id = self.res_partner_supplier_max
                 seller.price = 3.0
 
         with Form(self.product_product_toolbox) as form:
             with form.seller_ids.new() as seller:
-                seller.name = self.res_partner_anna
+                seller.partner_id = self.res_partner_anna
                 seller.price = 100.0
 
         self.product_supplier_info = self.product_product_toolbox.seller_ids

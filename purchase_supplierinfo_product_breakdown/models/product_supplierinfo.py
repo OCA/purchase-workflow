@@ -7,7 +7,7 @@ class ProductSupplierInfo(models.Model):
     product_use_components = fields.Boolean(
         related="product_tmpl_id.use_product_components"
     )
-    partner_use_components = fields.Boolean(related="name.use_product_components")
+    partner_use_components = fields.Boolean(related="partner_id.use_product_components")
     component_ids = fields.One2many(
         comodel_name="product.supplierinfo.component", inverse_name="supplierinfo_id"
     )
