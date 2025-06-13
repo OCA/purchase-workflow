@@ -10,21 +10,22 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-17 03:38+0000\n"
-"PO-Revision-Date: 2016-10-22 22:23+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Turkish (http://www.transifex.com/oca/OCA-purchase-"
-"workflow-10-0/language/tr/)\n"
+"PO-Revision-Date: 2025-06-13 10:26+0000\n"
+"Last-Translator: Betül Öğmen <betulo@eska.biz>\n"
+"Language-Team: Turkish (http://www.transifex.com/oca/"
+"OCA-purchase-workflow-10-0/language/tr/)\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_order.py:0
 #, python-format
 msgid "<li><b>%s</b>: Ordered quantity %s %s, Planned date %s</li>"
-msgstr ""
+msgstr "<li><b>%s</b>: Sipariş edilen miktar %s %s, Planlanan tarih %s</li>"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_order.py:0
@@ -32,18 +33,18 @@ msgstr ""
 #: code:addons/purchase_request/models/stock_picking.py:0
 #, python-format
 msgid "<li><b>%s</b>: Received quantity %s %s</li>"
-msgstr ""
+msgstr "<li><b>%s</b>: Teslim alınan miktar %s %s</li>"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/stock_move_line.py:0
 #, python-format
 msgid "<li><b>%s</b>: Transferred quantity %s %s</li>"
-msgstr ""
+msgstr "<li><b>%s</b>: Transfer edilen miktar %s %s</li>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 msgid "<strong>Analytic Account</strong>"
-msgstr ""
+msgstr "<strong>Analitik Hesap</strong>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
@@ -51,6 +52,8 @@ msgid ""
 "<strong>Assigned to:</strong>\n"
 "                                <br/>"
 msgstr ""
+"<strong>Atanan:</strong>\n"
+"                                <br/>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
@@ -58,6 +61,8 @@ msgid ""
 "<strong>Creation Date:</strong>\n"
 "                                <br/>"
 msgstr ""
+"<strong>Oluşturulma Tarihi:</strong>\n"
+"                                <br/>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
@@ -65,16 +70,18 @@ msgid ""
 "<strong>Description:</strong>\n"
 "                                <br/>"
 msgstr ""
+"<strong>Açıklama:</strong>\n"
+"                                <br/>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 msgid "<strong>Description</strong>"
-msgstr ""
+msgstr "<strong>Açıklama</strong>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 msgid "<strong>Estimated Cost</strong>"
-msgstr ""
+msgstr "<strong>Tahmini Maliyet</strong>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
@@ -82,16 +89,18 @@ msgid ""
 "<strong>Picking Type:</strong>\n"
 "                                <br/>"
 msgstr ""
+"<strong>Toplama Türü:</strong>\n"
+"                                <br/>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 msgid "<strong>Product UoM</strong>"
-msgstr ""
+msgstr "<strong>Ürün Ölçü Birimi</strong>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 msgid "<strong>Qty</strong>"
-msgstr ""
+msgstr "<strong>Miktar</strong>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
@@ -99,11 +108,13 @@ msgid ""
 "<strong>Request Reference:</strong>\n"
 "                                <br/>"
 msgstr ""
+"<strong>Talep Referansı:</strong>\n"
+"                                <br/>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 msgid "<strong>Requested Date</strong>"
-msgstr ""
+msgstr "<strong>Talep Tarihi</strong>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
@@ -111,6 +122,8 @@ msgid ""
 "<strong>Requested by:</strong>\n"
 "                                <br/>"
 msgstr ""
+"<strong>Talep eden:</strong>\n"
+"                                <br/>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
@@ -118,11 +131,13 @@ msgid ""
 "<strong>Source:</strong>\n"
 "                                <br/>"
 msgstr ""
+"<strong>Kaynak:</strong>\n"
+"                                <br/>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 msgid "<strong>Specifications</strong>"
-msgstr ""
+msgstr "<strong>Tanımlayıcı Özellikler</strong>"
 
 #. module: purchase_request
 #: model_terms:ir.actions.act_window,help:purchase_request.purchase_request_form_action
@@ -131,6 +146,9 @@ msgid ""
 "            a certain quantity of materials services, so that they are\n"
 "            available at a certain point in time."
 msgstr ""
+"Bir Satın Alma talebi, belli miktarda ürün ve hizmetin\n"
+"            belli bir zaman içerisinde hazır olması için\n"
+"            Satın Alma'ya tedarik etmesi için gönderilen emirdir."
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/stock_move.py:0
@@ -139,133 +157,135 @@ msgid ""
 "A sale/manufacturing order that generated this purchase request has been "
 "cancelled/deleted. Check if an action is needed."
 msgstr ""
+"Bu Satın Alma talebini oluşturan satış/üretim emri iptal edildi veya "
+"silindi.Yapılması gereken bir eylem varsa kontrol edin."
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_needaction
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "Eylem Gerekiyor"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__activity_ids
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__activity_ids
 msgid "Activities"
-msgstr ""
+msgstr "Aktiviteler"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__activity_exception_decoration
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__activity_exception_decoration
 msgid "Activity Exception Decoration"
-msgstr ""
+msgstr "Aktivite İstisna Donatımı"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__activity_state
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__activity_state
 msgid "Activity State"
-msgstr ""
+msgstr "Aktivite Durumu"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__activity_type_icon
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__activity_type_icon
 msgid "Activity Type Icon"
-msgstr ""
+msgstr "Aktivite Türü İkonu"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "All Bought"
-msgstr ""
+msgstr "Tümü Alınmış"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__allocated_product_qty
 msgid "Allocated Quantity"
-msgstr ""
+msgstr "Tahsis Edilen Miktar"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_form
 msgid "Allocations"
-msgstr ""
+msgstr "Tahsisler"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__analytic_account_id
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Analytic Account"
-msgstr ""
+msgstr "Analitik Hesap"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__analytic_tag_ids
 msgid "Analytic Tags"
-msgstr ""
+msgstr "Analitik Hesap"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Approve"
-msgstr ""
+msgstr "Onayla"
 
 #. module: purchase_request
 #: model:ir.model.fields.selection,name:purchase_request.selection__purchase_request__state__approved
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Approved"
-msgstr ""
+msgstr "Onaylanmış"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__assigned_to
 msgid "Approver"
-msgstr ""
+msgstr "Onaylayan"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__assigned_to
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Assigned to"
-msgstr ""
+msgstr "Atanan"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Assigned to me"
-msgstr ""
+msgstr "Bana atanan"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "At least a Draft PO has been created"
-msgstr ""
+msgstr "En az bir PO oluşturulmuş"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "At least a PO has been completed"
-msgstr ""
+msgstr "En az bir PO tamamlanmış"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "At least a PO has been confirmed"
-msgstr ""
+msgstr "En az bir PO doğrulanmış"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_attachment_count
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "Ek Adedi"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_line_make_purchase_order
 msgid "Cancel"
-msgstr ""
+msgstr "İptal"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__cancelled
 msgid "Cancelled"
-msgstr ""
+msgstr "İptal Edildi"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Cancelled Quantity"
-msgstr ""
+msgstr "İptal Edilen Miktar"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__product_uom_category_id
 msgid "Category"
-msgstr ""
+msgstr "Katagori"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_product_product__purchase_request
@@ -274,16 +294,18 @@ msgid ""
 "Check this box to generate Purchase Request instead of generating Requests "
 "For Quotation from procurement."
 msgstr ""
+"Tedarikte RFQ oluşturmak yerine Satın Alma Talebi oluşturmak için bu kutuyu "
+"işaretleyin."
 
 #. module: purchase_request
 #: model_terms:ir.actions.act_window,help:purchase_request.purchase_request_form_action
 msgid "Click to start a new purchase request process."
-msgstr ""
+msgstr "Yeni bir Satın Alma talebi işlemi başlatmak için tıklayınız."
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Şirketler"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__company_id
@@ -298,29 +320,30 @@ msgid ""
 "Conversion between Units of Measure can only occur if they belong to the "
 "same category. The conversion will be made based on the ratios."
 msgstr ""
+"Ölçü Birimleri arasında dönüştürme, ancak bunlar aynı kategoriye aitse "
+"gerçekleşebilir. Oranlara göre dönüşüm yapılacaktır."
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__keep_description
 msgid "Copy descriptions to new PO"
-msgstr ""
+msgstr "Açıklamaları yeni bir PO'ya kopyala"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__keep_estimated_cost
 msgid "Copy estimative cost to new PO"
-msgstr ""
+msgstr "Tahmini maliyeti yeni PO'ya kopyala"
 
 #. module: purchase_request
 #: model:ir.actions.act_window,name:purchase_request.action_purchase_request_line_make_purchase_order
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_line_make_purchase_order
-#, fuzzy
 msgid "Create RFQ"
-msgstr "Oluşturan"
+msgstr "RFQ Oluştur"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_stock_move__created_purchase_request_line_id
 msgid "Created Purchase Request Line"
-msgstr ""
+msgstr "Oluşturulan Satın Alma Talep Satırı"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__create_uid
@@ -344,20 +367,20 @@ msgstr "Oluşturuldu"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__date_start
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__date_start
 msgid "Creation date"
-msgstr ""
+msgstr "Oluşturma tarihi"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__currency_id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__currency_id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__currency_id
 msgid "Currency"
-msgstr ""
+msgstr "Para Birimi"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__date_start
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__date_start
 msgid "Date when the user initiated the request."
-msgstr ""
+msgstr "Kullanıcının talebi başlattığı tarih."
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__description
@@ -383,19 +406,19 @@ msgstr "Açıklama"
 #: model:ir.model.fields,field_description:purchase_request.field_stock_rule__display_name
 #: model:ir.model.fields,field_description:purchase_request.field_stock_warehouse_orderpoint__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Görünen İsim"
 
 #. module: purchase_request
 #: model:ir.model.fields.selection,name:purchase_request.selection__purchase_request__state__done
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Done"
-msgstr ""
+msgstr "Tamamlandı"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__move_dest_ids
 msgid "Downstream Moves"
-msgstr ""
+msgstr "Aşağı Yönlü Hareketler"
 
 #. module: purchase_request
 #: model:ir.model.fields.selection,name:purchase_request.selection__purchase_request__state__draft
@@ -408,47 +431,47 @@ msgstr "Taslak"
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
 #, python-format
 msgid "Enter a positive quantity."
-msgstr ""
+msgstr "Artı bir miktar girin."
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
 #, python-format
 msgid "Enter a supplier."
-msgstr ""
+msgstr "Tedarikçi girin."
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__estimated_cost
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__estimated_cost
 msgid "Estimated Cost"
-msgstr ""
+msgstr "Tahmini Maliyet"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__estimated_cost
 msgid "Estimated cost of Purchase Request Line, not propagated to PO."
-msgstr ""
+msgstr "Bu Satın Alma Talep Satırı'nın tahmini maliyeti, PO'ya aktarılmaz."
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_line_make_purchase_order
 msgid "Existing RFQ to update:"
-msgstr ""
+msgstr "Mevcut RFQ'yu güncelle:"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_follower_ids
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "Takipçiler"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_channel_ids
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_channel_ids
 msgid "Followers (Channels)"
-msgstr ""
+msgstr "Takipçiler (Kanal)"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_partner_ids
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "Takipçiler (İş ortakları)"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__activity_type_icon
@@ -461,13 +484,12 @@ msgstr ""
 #, python-format
 msgid ""
 "From last reception this quantity has been allocated to this purchase request"
-msgstr ""
+msgstr "Son alıştan sonra bu miktar bu Satın Alma talebine tahsis edilmiştir"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_search_sub
-#, fuzzy
 msgid "Group By"
-msgstr "Grupla İle..."
+msgstr "Grupla"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
@@ -478,7 +500,7 @@ msgstr "Grupla İle..."
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_search_sub
 msgid "Hide cancelled lines"
-msgstr ""
+msgstr "İptal edilen satırları gizle"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_product_template__id
@@ -509,7 +531,7 @@ msgstr ""
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__activity_exception_icon
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__activity_exception_icon
 msgid "Icon to indicate an exception activity."
-msgstr ""
+msgstr "Bir istisna faaliyetini gösteren simge."
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__message_needaction
@@ -517,35 +539,35 @@ msgstr ""
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__message_needaction
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__message_unread
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "İşaretliyse, yeni mesajlar dikkatinize sunulacak."
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__message_has_error
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__message_has_error
 msgid "If checked, some messages have a delivery error."
-msgstr ""
+msgstr "İşaretliyse,bazı mesajlar gönderi hatası içermektedir."
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_is_follower
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "Takipçi"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__is_name_editable
 msgid "Is Name Editable"
-msgstr ""
+msgstr "İsim Düzenlenebilir Mi"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__is_editable
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__is_editable
 msgid "Is editable"
-msgstr ""
+msgstr "Düzenlenebilir"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order__item_ids
 msgid "Items"
-msgstr ""
+msgstr "Öğeler"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_product_template____last_update
@@ -564,7 +586,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request.field_stock_rule____last_update
 #: model:ir.model.fields,field_description:purchase_request.field_stock_warehouse_orderpoint____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "En son güncelleme tarihi"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__write_uid
@@ -587,183 +609,180 @@ msgstr "Son güncelleme"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Lines"
-msgstr ""
+msgstr "Satırlar"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_main_attachment_id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_main_attachment_id
 msgid "Main Attachment"
-msgstr ""
+msgstr "Ana Ek"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_form2_sub
 msgid "Manual Invoices"
-msgstr ""
+msgstr "Manuel Faturalar"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order__sync_data_planned
 msgid "Merge on PO lines with equal Scheduled Date"
-msgstr ""
+msgstr "Aynı Planlanmış Tarihe sahip PO satırlarını birleştir"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_has_error
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_has_error
 msgid "Message Delivery error"
-msgstr ""
+msgstr "Mesaj Teslim hatası"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_ids
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_ids
-#, fuzzy
 msgid "Messages"
-msgstr "Okunmamış Mesajlar"
+msgstr "Mesajlar"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_stock_warehouse_orderpoint
 msgid "Minimum Inventory Rule"
-msgstr ""
+msgstr "En Düşük Envanter Kuralı"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__my_activity_date_deadline
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__my_activity_date_deadline
 msgid "My Activity Deadline"
-msgstr ""
+msgstr "Aktivitemin Son Tarihi"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "My requests"
-msgstr ""
+msgstr "Taleplerim"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_request.py:0
 #, python-format
 msgid "New"
-msgstr ""
+msgstr "Yeni"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_line_make_purchase_order
 msgid "New PO details:"
-msgstr ""
+msgstr "Yeni PO ayrıntıları:"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__activity_date_deadline
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__activity_date_deadline
 msgid "Next Activity Deadline"
-msgstr ""
+msgstr "Sonraki Aktivite Zaman Sınırı"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__activity_summary
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__activity_summary
 msgid "Next Activity Summary"
-msgstr ""
+msgstr "Sonraki Aktivite Özeti"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__activity_type_id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__activity_type_id
 msgid "Next Activity Type"
-msgstr ""
+msgstr "Sonraki Aktivite Türü"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "No RFQ or Purchase has been created"
-msgstr ""
+msgstr "Hiç RFQ veya Satın Alma oluşturulmamış"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.res_config_settings_view_form
 msgid "Notify followers on request allocation"
-msgstr ""
+msgstr "Talep tahsisi üzerine takipçileri bilgilendir"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_needaction_counter
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_needaction_counter
 msgid "Number of Actions"
-msgstr ""
+msgstr "Eylem Sayısı"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_has_error_counter
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_has_error_counter
 msgid "Number of errors"
-msgstr ""
+msgstr "Hata sayısı"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__message_needaction_counter
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__message_needaction_counter
 msgid "Number of messages which requires an action"
-msgstr ""
+msgstr "Eylem gerektiren mesaj sayısı"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__message_has_error_counter
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
+msgstr "Teslimat hatası olan mesaj sayısı"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__message_unread_counter
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__message_unread_counter
-#, fuzzy
 msgid "Number of unread messages"
-msgstr "Okunmamış Mesajlar"
+msgstr "Okunmamış mesaj sayısı"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__open_product_qty
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Open Quantity"
-msgstr ""
+msgstr "Açık Miktar"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_search_sub
 msgid "Order Reference"
-msgstr ""
+msgstr "Sipariş Referansı"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_order.py:0
 #, python-format
 msgid "Order confirmation %s for your Request %s"
-msgstr ""
+msgstr "Sipariş onaylandı %s talebiniz için %s"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__orderpoint_id
 msgid "Orderpoint"
-msgstr ""
+msgstr "Sipariş Noktası"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__description
-#, fuzzy
 msgid "PR Description"
-msgstr "Açıklama"
+msgstr "PR Açıklama"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__pending_qty_to_receive
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Pending Qty to Receive"
-msgstr ""
+msgstr "Teslim Alınacak Miktar"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__picking_type_id
 msgid "Picking Type"
-msgstr ""
+msgstr "İrsaliye Türü"
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
 #, python-format
 msgid "Please select a product for all lines"
-msgstr ""
+msgstr "Lütfen her bir satır için ürün seçiniz"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__supplier_id
 msgid "Preferred supplier"
-msgstr ""
+msgstr "Tercih edilen tedarikçi"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__group_id
 msgid "Procurement Group"
-msgstr ""
+msgstr "Tedarik Grubu"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_res_config_settings
 msgid "Procurement purchase grouping settings"
-msgstr ""
+msgstr "Satın alma gruplama ayarları"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__product_id
@@ -772,54 +791,54 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__product_id
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Product"
-msgstr ""
+msgstr "Ürün"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_stock_move_line
 msgid "Product Moves (Stock Move Line)"
-msgstr ""
+msgstr "Ürün Hareketleri (Stok Hareket Satırları)"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Ürün Şablonu"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Products"
-msgstr ""
+msgstr "Ürünler"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__line_ids
 msgid "Products to Purchase"
-msgstr ""
+msgstr "Satın Alınacak Ürünler"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Purchase Confirmed"
-msgstr ""
+msgstr "Satın Alma Onaylanmış"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Purchase Done"
-msgstr ""
+msgstr "Satın Alma Tamamlanmış"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__purchase_line_id
 msgid "Purchase Line"
-msgstr ""
+msgstr "Satın Alma Satırı"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_order
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order__purchase_order_id
 msgid "Purchase Order"
-msgstr ""
+msgstr "Satın Alma Siparişi"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Satın Alma Sipariş Satırı"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__purchase_lines
@@ -827,12 +846,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Purchase Order Lines"
-msgstr ""
+msgstr "Satın Alma Sipariş Satırları"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Purchase Orders"
-msgstr ""
+msgstr "Satın Alma Siparişleri"
 
 #. module: purchase_request
 #: model:ir.actions.report,name:purchase_request.action_report_purchase_requests
@@ -846,19 +865,19 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Purchase Request"
-msgstr ""
+msgstr "Satın Alma Talebi"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_order.py:0
 #, python-format
 msgid "Purchase Request %s has already been completed"
-msgstr ""
+msgstr "Satın Alma Talebi %s zaten tamamlanmış"
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
 #, python-format
 msgid "Purchase Request %s is not approved"
-msgstr ""
+msgstr "Satın Alma Talebi %s onaylanmamış"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_request_allocation
@@ -866,13 +885,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__purchase_request_allocation_ids
 #: model:ir.model.fields,field_description:purchase_request.field_stock_move__purchase_request_allocation_ids
 msgid "Purchase Request Allocation"
-msgstr ""
+msgstr "Satın Alma Talebi Tahsisi"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_move_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_picking_form
 msgid "Purchase Request Allocations"
-msgstr ""
+msgstr "Satın Alma Talebi Tahsisleri"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_request_line
@@ -880,22 +899,22 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__line_id
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_form
 msgid "Purchase Request Line"
-msgstr ""
+msgstr "Satın Alma Talebi Satırı"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_request_line_make_purchase_order
 msgid "Purchase Request Line Make Purchase Order"
-msgstr ""
+msgstr "Satın Alma Talep Satırından Satın Alma Oluşturma"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_request_line_make_purchase_order_item
 msgid "Purchase Request Line Make Purchase Order Item"
-msgstr ""
+msgstr "Satın Alma Talep Satırından Satın Alma Kalemi Oluşturma"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__line_count
 msgid "Purchase Request Line count"
-msgstr ""
+msgstr "Satın Alma Talep Satır adedi"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_order.py:0
@@ -907,45 +926,45 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_form2_sub
 #, python-format
 msgid "Purchase Request Lines"
-msgstr ""
+msgstr "Satın Alma Talebi Satırları"
 
 #. module: purchase_request
 #: model:res.groups,name:purchase_request.group_purchase_request_manager
 msgid "Purchase Request Manager"
-msgstr ""
+msgstr "Satın Alma Talebi Yöneticisi"
 
 #. module: purchase_request
 #: model:res.groups,name:purchase_request.group_purchase_request_user
 msgid "Purchase Request User"
-msgstr ""
+msgstr "Satın Alma Talebi Kullanıcısı"
 
 #. module: purchase_request
 #: model:mail.message.subtype,description:purchase_request.mt_request_approved
 #: model:mail.message.subtype,name:purchase_request.mt_request_approved
 msgid "Purchase Request approved"
-msgstr ""
+msgstr "Satın Alma Talebi Onaylandı"
 
 #. module: purchase_request
 #: model:mail.message.subtype,name:purchase_request.mt_request_done
 msgid "Purchase Request done"
-msgstr ""
+msgstr "Satın Alma Talebi tamamlandı"
 
 #. module: purchase_request
 #: model:mail.message.subtype,description:purchase_request.mt_request_done
 msgid "Purchase Request is done"
-msgstr ""
+msgstr "Satın Alma Talebi tamamlandı"
 
 #. module: purchase_request
 #: model:mail.message.subtype,description:purchase_request.mt_request_rejected
 #: model:mail.message.subtype,name:purchase_request.mt_request_rejected
 msgid "Purchase Request rejected"
-msgstr ""
+msgstr "Satın Alma Talebi Reddedildi"
 
 #. module: purchase_request
 #: model:mail.message.subtype,description:purchase_request.mt_request_to_approve
 #: model:mail.message.subtype,name:purchase_request.mt_request_to_approve
 msgid "Purchase Request to be approved"
-msgstr ""
+msgstr "Onaylanacak Satın Alma Talebi"
 
 #. module: purchase_request
 #: model:ir.actions.act_window,name:purchase_request.action_purchase_request_line_product_tree
@@ -956,58 +975,58 @@ msgstr ""
 #: model:ir.ui.menu,name:purchase_request.menu_purchase_request_pro_mgt
 #: model:ir.ui.menu,name:purchase_request.parent_menu_purchase_request
 msgid "Purchase Requests"
-msgstr ""
+msgstr "Satın Alma Talepleri"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__purchase_state
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Purchase Status"
-msgstr ""
+msgstr "Satın Alma Durumu"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__purchase_count
 msgid "Purchases count"
-msgstr ""
+msgstr "Satın Alma adedi"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Purchasing not started"
-msgstr ""
+msgstr "Satın Alma başlamadı"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__qty_cancelled
 msgid "Qty Cancelled"
-msgstr ""
+msgstr "İptal Edilen Miktar"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__qty_done
 msgid "Qty Done"
-msgstr ""
+msgstr "Tamamlanan Miktar"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__qty_in_progress
 msgid "Qty In Progress"
-msgstr ""
+msgstr "Devam Eden Miktar"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__product_qty
 msgid "Quantity"
-msgstr ""
+msgstr "Miktar"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__qty_cancelled
 msgid "Quantity cancelled"
-msgstr ""
+msgstr "İptal Edilen Miktar"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__qty_done
 msgid "Quantity completed"
-msgstr ""
+msgstr "Tamamlanan Miktar"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__qty_in_progress
 msgid "Quantity in progress."
-msgstr ""
+msgstr "Devam Eden Miktar."
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_allocation__allocated_product_qty
@@ -1015,6 +1034,8 @@ msgid ""
 "Quantity of the purchase request line allocated to the stockmove, in the "
 "default UoM of the product"
 msgstr ""
+"Satın Alma talep satırının stok hareketine tahsis edilmiş miktarı, ürünün "
+"varsayılan ölçü birimi cinsinden"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_allocation__requested_product_uom_qty
@@ -1022,11 +1043,13 @@ msgid ""
 "Quantity of the purchase request line allocated to thestock move, in the UoM "
 "of the Purchase Request Line"
 msgstr ""
+"Satın Alma talep satırının stok hareketine tahsis edilmiş miktarı, Satın "
+"Alma Talep Satırı ölçü birimi cinsinden"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__product_qty
 msgid "Quantity to purchase"
-msgstr ""
+msgstr "Satın Alınacak Miktar"
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
@@ -1037,95 +1060,95 @@ msgstr ""
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__purchased_qty
 msgid "RFQ/PO Qty"
-msgstr ""
+msgstr "RFQ/PO Miktar"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/stock_move_line.py:0
 #: code:addons/purchase_request/models/stock_picking.py:0
 #, python-format
 msgid "Receipt confirmation %s for your Request %s"
-msgstr ""
+msgstr "Mal kabul %s talebiniz için %s"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/stock_move_line.py:0
 #, python-format
 msgid "Receipt confirmation for Request %s"
-msgstr ""
+msgstr "Talep %s için mal kabul onayı"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Reject"
-msgstr ""
+msgstr "Reddet"
 
 #. module: purchase_request
 #: model:ir.model.fields.selection,name:purchase_request.selection__purchase_request__state__rejected
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Rejected"
-msgstr ""
+msgstr "Reddedildi"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Request"
-msgstr ""
+msgstr "Talep"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__date_required
 msgid "Request Date"
-msgstr ""
+msgstr "Talep Tarihi"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__name
 msgid "Request Reference"
-msgstr ""
+msgstr "Talep Referansı"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Request approval"
-msgstr ""
+msgstr "Onay iste"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Request is approved"
-msgstr ""
+msgstr "Talep onaylandı"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Request is done"
-msgstr ""
+msgstr "Talep tamamlandı"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Request is rejected"
-msgstr ""
+msgstr "Talep reddedildi"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Request is to be approved"
-msgstr ""
+msgstr "Talep onay bekliyor"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.res_config_settings_view_form
 msgid "Request mail options"
-msgstr ""
+msgstr "Posta seçenekleri talebi"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__request_state
 msgid "Request state"
-msgstr ""
+msgstr "Talep aşaması"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Request status"
-msgstr ""
+msgstr "Talep Durumu"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__requested_product_uom_qty
 msgid "Requested Quantity"
-msgstr ""
+msgstr "Talep Edilen Miktar"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__requested_by
@@ -1133,55 +1156,55 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Requested by"
-msgstr ""
+msgstr "Talep eden"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Requested for Quotation"
-msgstr ""
+msgstr "Teklif İstemede"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Reset"
-msgstr ""
+msgstr "Yeniden Başlat"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__activity_user_id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__activity_user_id
 msgid "Responsible User"
-msgstr ""
+msgstr "Sorumlu Kullanıcı"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_search_sub
 msgid "Search Purchase Order Line"
-msgstr ""
+msgstr "Satın Alma Teklif Satırı Ara"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Search Purchase Request"
-msgstr ""
+msgstr "Satın Alma Talebi Arama"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_res_company__notify_request_allocations
 msgid "Send emails on confirmaion"
-msgstr ""
+msgstr "Onaylandığında e-posta gönder"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_res_config_settings__notify_request_allocations
 msgid "Send emails with request confirmaion"
-msgstr ""
+msgstr "Talep onayı içeren e-postalar gönder"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_allocation__purchase_line_id
 msgid "Service Purchase Order Line"
-msgstr ""
+msgstr "Satın Alma Teklif Satırı Hizmeti"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_order.py:0
 #, python-format
 msgid "Service confirmation for Request %s"
-msgstr ""
+msgstr "Talep %s için hizmet onayı"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line_make_purchase_order_item__keep_description
@@ -1189,6 +1212,8 @@ msgid ""
 "Set true if you want to keep the descriptions provided in the wizard in the "
 "new PO."
 msgstr ""
+"Yeni Satın Alma siparişinde sihirbazdaki açıklamaları korumak istiyorsanız "
+"işaretleyin."
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line_make_purchase_order_item__keep_estimated_cost
@@ -1196,29 +1221,31 @@ msgid ""
 "Set true if you want to keep the estimated cost provided in the wizard in "
 "the new PO."
 msgstr ""
+"Sihirbazda sağlanan tahmini maliyetin yeni PO'da kalmasını istiyorsanız true "
+"değerini ayarlayın."
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Source"
-msgstr ""
+msgstr "Kaynak"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__origin
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__origin
 msgid "Source Document"
-msgstr ""
+msgstr "Kaynak Belge"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__specifications
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Specifications"
-msgstr ""
+msgstr "Tanımlayıcı Özellikler"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Start Date"
-msgstr ""
+msgstr "Başlangıç Tarihi"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__state
@@ -1235,40 +1262,44 @@ msgid ""
 "Today: Activity date is today\n"
 "Planned: Future activities."
 msgstr ""
+"Etkinliklerdeki aşamalar\n"
+"Zamanı Geçmiş: Tarihi geçmiş \n"
+"Bugün: Etkinlik günü bugün\n"
+"Planlanan: Gelecek etkinlikler."
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_stock_move
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__stock_move_id
 msgid "Stock Move"
-msgstr ""
+msgstr "Stok Hareketi"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__move_count
 msgid "Stock Move count"
-msgstr ""
+msgstr "Stok Hareket adedi"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_form2_sub
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Stock Moves"
-msgstr ""
+msgstr "Stok Hareketleri"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_stock_rule
 msgid "Stock Rule"
-msgstr ""
+msgstr "Stok Kuralı"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order__supplier_id
 msgid "Supplier"
-msgstr ""
+msgstr "Tedarikçi"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/stock_move.py:0
 #, python-format
 msgid ""
 "The company of the purchase request must match with that of the location."
-msgstr ""
+msgstr "Satın Alma talebinin konumun tanımıyla tutmuası gerekir."
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_order.py:0
@@ -1277,6 +1308,8 @@ msgid ""
 "The following requested items from Purchase Request %s have now been "
 "confirmed in Purchase Order %s:"
 msgstr ""
+"Satın Alma Talebi %s'te bulunan aşağıdaki talep satırları Satın Alma "
+"Siparişi %s olarak onaylandı:"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/stock_move_line.py:0
@@ -1285,6 +1318,8 @@ msgid ""
 "The following requested items from Purchase Request %s have now been "
 "received in %s using Picking %s:"
 msgstr ""
+"Satın Alma Talebi %s'te bulunan aşağıdaki talep satırları Toplama Listesi %s "
+"konumuna %s ile teslim alındı:"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/stock_picking.py:0
@@ -1293,6 +1328,8 @@ msgid ""
 "The following requested items from Purchase Request %s have now been "
 "received in Incoming Shipment %s:"
 msgstr ""
+"Satınalma Talebi %s'den talep edilen aşağıdaki öğeler artık Gelen Sevkiyat "
+"%s'de alındı:"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/stock_move_line.py:0
@@ -1301,6 +1338,8 @@ msgid ""
 "The following requested items from Purchase Request %s requested by %s have "
 "now been received in %s:"
 msgstr ""
+"Satın Alma Talebi %s'te bulunan %s tarafından talep edilen aşağıdaki talep "
+"satırları %s ile teslim alındı:"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_order.py:0
@@ -1309,70 +1348,72 @@ msgid ""
 "The following requested services from Purchase Request %s requested by %s "
 "have now been received:"
 msgstr ""
+"%s tarafından talep edilen Satınalma Talebi %s'den talep edilen aşağıdaki "
+"hizmetler artık teslim alındı:"
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
 #, python-format
 msgid "The purchase has already been completed."
-msgstr ""
+msgstr "Satın Alma halihazırda tamamlandı."
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__qty_to_buy
 msgid "There is some pending qty to buy"
-msgstr ""
+msgstr "Satın alınacak bazı miktarlar var"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "To Approve"
-msgstr ""
+msgstr "Onaylanacak"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__to_approve_allowed
 msgid "To Approve Allowed"
-msgstr ""
+msgstr "Onaya İzin Verildi"
 
 #. module: purchase_request
 #: model:ir.model.fields.selection,name:purchase_request.selection__purchase_request__state__to_approve
 msgid "To be approved"
-msgstr ""
+msgstr "Onaylanacak"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__estimated_cost
 msgid "Total Estimated Cost"
-msgstr ""
+msgstr "Tahmin Edilen Toplam Fiyat"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Tracking"
-msgstr ""
+msgstr "Takip"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_stock_picking
 msgid "Transfer"
-msgstr ""
+msgstr "Transfer"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__activity_exception_decoration
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
+msgstr "Kayıttaki istisna faaliyetinin türü."
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Unassigned"
-msgstr ""
+msgstr "Atanmamış"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Unassigned Request"
-msgstr ""
+msgstr "Atanmamış Talep"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Uncancelled"
-msgstr ""
+msgstr "İptal Edilmemiş"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_unread
@@ -1384,40 +1425,38 @@ msgstr "Okunmamış Mesajlar"
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_unread_counter
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_unread_counter
-#, fuzzy
 msgid "Unread Messages Counter"
-msgstr "Okunmamış Mesajlar"
+msgstr "Okunmamış Mesaj Sayacı"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__product_uom_id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__product_uom_id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__product_uom_id
 msgid "UoM"
-msgstr ""
+msgstr "Ölçü Birimi"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_search_sub
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_tree_sub
 msgid "Vendor"
-msgstr ""
+msgstr "Tedarikçi"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__website_message_ids
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__website_message_ids
-#, fuzzy
 msgid "Website Messages"
-msgstr "Okunmamış Mesajlar"
+msgstr "Websitesi Mesajları"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__website_message_ids
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "Web Sitesi iletişim geçmişi"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__wiz_id
 msgid "Wizard"
-msgstr ""
+msgstr "Sihirbaz"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_request_line.py:0
@@ -1425,14 +1464,14 @@ msgstr ""
 msgid ""
 "You can only delete a purchase request line if the purchase request is in "
 "draft state."
-msgstr ""
+msgstr "Bir Satın Alma talep satırını ancak taslak durumundaysa silebilirsiniz."
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_request.py:0
 #, python-format
 msgid ""
 "You can't request an approval for a purchase request which is empty. (%s)"
-msgstr ""
+msgstr "Boş olan bir Satın Alma talebi için onay isteyemezsiniz. (%s)"
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
@@ -1441,33 +1480,35 @@ msgid ""
 "You cannot create a single purchase order from purchase requests that have "
 "different procurement group."
 msgstr ""
+"Farklı tedarik grupları olan Satın Alma talepleri için tek bir Satın Alma "
+"siparişi oluşturamazsınız."
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_request.py:0
 #, python-format
 msgid "You cannot delete a purchase request which is not draft."
-msgstr ""
+msgstr "Taslak olmayan bir Satın Alma talebini silemezsiniz."
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_request_line.py:0
 #, python-format
 msgid "You cannot delete a record that refers to purchase lines!"
-msgstr ""
+msgstr "Satın Alma sipariş satırlarına bakan bir kaydı silemezsiniz!"
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
 #, python-format
 msgid "You have to enter a Picking Type."
-msgstr ""
+msgstr "Toplama Türü girmelisiniz."
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
 #, python-format
 msgid "You have to select lines from the same Picking Type."
-msgstr ""
+msgstr "Aynı Toplama Türü'nden satırları seçmelisiniz."
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
 #, python-format
 msgid "You have to select lines from the same company."
-msgstr ""
+msgstr "Aynı şirkete ait satırları seçmelisiniz."
