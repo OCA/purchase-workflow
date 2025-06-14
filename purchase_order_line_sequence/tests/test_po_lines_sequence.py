@@ -185,7 +185,7 @@ class TestPurchaseOrder(common.TransactionCase):
         po.button_confirm()
 
         moves = po.picking_ids[0].move_ids_without_package
-        self.assertNotEquals(len(po.order_line), len(moves))
+        self.assertNotEqual(len(po.order_line), len(moves))
 
         for move in moves:
             self.assertEqual(move.sequence, move.purchase_line_id.visible_sequence)
