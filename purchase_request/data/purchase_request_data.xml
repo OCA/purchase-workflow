@@ -27,4 +27,18 @@
         <field name="default" eval="True" />
         <field name="description">Purchase Request is done</field>
     </record>
+    <record id="mt_request_po_confirmed" model="mail.message.subtype">
+        <field name="name">Purchase Order confirmation</field>
+        <field name="res_model">purchase.request</field>
+        <field name="default" eval="True" />
+        <field name="internal" eval="True" />
+        <field name="description">Purchase Order is confirmed</field>
+    </record>
+    <record id="mt_request_picking_done" model="mail.message.subtype">
+        <field name="name">Purchase receipt confirmation</field>
+        <field name="res_model">purchase.request</field>
+        <field name="default" eval="True" />
+        <field name="internal" eval="True" />
+        <field name="description">Receipt is done</field>
+    </record>
 </odoo>

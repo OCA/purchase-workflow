@@ -812,6 +812,16 @@ msgid "Purchase Order Lines"
 msgstr "Righe ordine di acquisto"
 
 #. module: purchase_request
+#: model:mail.message.subtype,name:purchase_request.mt_request_po_confirmed
+msgid "Purchase Order confirmation"
+msgstr ""
+
+#. module: purchase_request
+#: model:mail.message.subtype,description:purchase_request.mt_request_po_confirmed
+msgid "Purchase Order is confirmed"
+msgstr ""
+
+#. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Purchase Orders"
 msgstr "Ordini di acquisto"
@@ -946,6 +956,11 @@ msgid "Purchase Status"
 msgstr "Stato Acquisto"
 
 #. module: purchase_request
+#: model:mail.message.subtype,name:purchase_request.mt_request_picking_done
+msgid "Purchase receipt confirmation"
+msgstr ""
+
+#. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__purchase_count
 msgid "Purchases count"
 msgstr "Conteggio acquisti"
@@ -1036,6 +1051,11 @@ msgstr "Ricevuta conferma per richiesta {name}"
 msgid "Receipt confirmation {picking_name} for your Request {request_name}"
 msgstr ""
 "Conferma ricezione {picking_name} per la vostra richiesta {request_name}"
+
+#. module: purchase_request
+#: model:mail.message.subtype,description:purchase_request.mt_request_picking_done
+msgid "Receipt is done"
+msgstr ""
 
 #. module: purchase_request
 #. odoo-python
