@@ -85,9 +85,9 @@ To configure the product follow this steps:
 Note that MTO route is archived by default, you should unarchive it
 first:
 
-- Go to Inventory > Configuration > Routes, in the Search dropdown menu,
-  click *Archived* to show *Replenish on Order (MTO)* route and
-  *Unarchive* it.
+-  Go to Inventory > Configuration > Routes, in the Search dropdown
+   menu, click *Archived* to show *Replenish on Order (MTO)* route and
+   *Unarchive* it.
 
 With this configuration, whenever a procurement order is created and the
 supply rule selected is 'Buy' the application will create a Purchase
@@ -125,31 +125,31 @@ Authors
 Contributors
 ------------
 
-- Jordi Ballester Alomar <jordi.ballester@forgeflow.com>
+-  Jordi Ballester Alomar <jordi.ballester@forgeflow.com>
 
-- Jonathan Nemry <jonathan.nemry@acsone.eu>
+-  Jonathan Nemry <jonathan.nemry@acsone.eu>
 
-- Aaron Henriquez <ahenriquez@forgeflow.com>
+-  Aaron Henriquez <ahenriquez@forgeflow.com>
 
-- Adrien Peiffer <adrien.peiffer@acsone.eu>
+-  Adrien Peiffer <adrien.peiffer@acsone.eu>
 
-- Lois Rilo <lois.rilo@forgeflow.com>
+-  Lois Rilo <lois.rilo@forgeflow.com>
 
-- Héctor Villarreal <hector.villarreal@forgeflow.com>
+-  Héctor Villarreal <hector.villarreal@forgeflow.com>
 
-- Ben Cai <ben.cai@elico-corp.com>
+-  Ben Cai <ben.cai@elico-corp.com>
 
-- Rattapong Chokmasermkul <rattapongc@ecosoft.co.th>
+-  Rattapong Chokmasermkul <rattapongc@ecosoft.co.th>
 
-- Stefan Rijnhart <stefan@opener.amsterdam>
+-  Stefan Rijnhart <stefan@opener.amsterdam>
 
-- ``Trobz <https://trobz.com>``\ \_:
+-  ``Trobz <https://trobz.com>``\ \_:
 
-  - Son Ho sonhd@trobz.com
+   -  Son Ho sonhd@trobz.com
 
-- `Komit Company Limited <https://komit-consulting.com/>`__:
+-  `Komit Company Limited <https://komit-consulting.com/>`__:
 
-  - Quoc Pham Ngoc <quoc-pn@komit-consulting.com>
+   -  Quoc Pham Ngoc <quoc-pn@komit-consulting.com>
 
 Other credits
 -------------
@@ -161,7 +161,7 @@ The development of this module has been financially supported by:
 Images
 ~~~~~~
 
-- Enric Tobella (logo)
+-  Enric Tobella (logo)
 
 .. |Aleph Objects, Inc| image:: https://upload.wikimedia.org/wikipedia/en/3/3b/Aleph_Objects_Logo.png
    :target: https://www.alephobjects.com
