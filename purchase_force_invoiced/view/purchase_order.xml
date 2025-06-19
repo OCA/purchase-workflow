@@ -13,7 +13,7 @@
                     name="force_invoiced"
                     groups="purchase_force_invoiced.group_force_invoiced"
                     invisible="state not in ('purchase', 'done')"
-                    readonly="state == 'done'"
+                    readonly="state != 'done'"
                     widget="boolean_toggle"
                 />
             </field>
