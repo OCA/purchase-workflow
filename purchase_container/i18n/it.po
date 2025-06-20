@@ -167,7 +167,6 @@ msgstr "Se selezionata, nuovi messaggi richiedono attenzione."
 
 #. module: purchase_container
 #: model:ir.model.fields,help:purchase_container.field_purchase_container__message_has_error
-#: model:ir.model.fields,help:purchase_container.field_purchase_container__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Se selezionata, alcuni messaggi hanno un errore di consegna."
 
@@ -303,11 +302,6 @@ msgid "Responsible User"
 msgstr "Utente responsabile"
 
 #. module: purchase_container
-#: model:ir.model.fields,field_description:purchase_container.field_purchase_container__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Errore consegna SMS"
-
-#. module: purchase_container
 #: model:ir.model.fields,field_description:purchase_container.field_purchase_container__shipping_agent_id
 #: model_terms:ir.ui.view,arch_db:purchase_container.purchase_container_view_search
 msgid "Shipping Agent"
@@ -381,3 +375,6 @@ msgstr "Unità di misura del peso"
 #: model:ir.model.fields,field_description:purchase_container.field_purchase_container__weight_uom_id
 msgid "Weight Units of Measure"
 msgstr "Unità di misura del peso"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Errore consegna SMS"
