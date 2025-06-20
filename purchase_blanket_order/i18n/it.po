@@ -84,7 +84,6 @@ msgstr "Icona tipo attività"
 #. module: purchase_blanket_order
 #. odoo-python
 #: code:addons/purchase_blanket_order/wizard/create_purchase_orders.py:0
-#, python-format
 msgid "All lines have already been completed."
 msgstr "Tutte le righe sono già state completate."
 
@@ -96,7 +95,6 @@ msgstr "Valore"
 #. module: purchase_blanket_order
 #. odoo-python
 #: code:addons/purchase_blanket_order/wizard/create_purchase_orders.py:0
-#, python-format
 msgid "An order can't be empty"
 msgstr "Un ordine non può essere vuoto"
 
@@ -148,7 +146,6 @@ msgstr "Ordini quadro"
 #. module: purchase_blanket_order
 #. odoo-python
 #: code:addons/purchase_blanket_order/wizard/create_purchase_orders.py:0
-#, python-format
 msgid ""
 "Can not create Purchase Order from Blanket Order lines with different "
 "currencies"
@@ -170,7 +167,6 @@ msgstr "Annullato"
 #. module: purchase_blanket_order
 #. odoo-python
 #: code:addons/purchase_blanket_order/models/purchase_order.py:0
-#, python-format
 msgid ""
 "Cannot confirm order %s as one of the lines refers to a blanket order that "
 "has no remaining quantity."
@@ -244,7 +240,6 @@ msgstr "Valuta"
 #. module: purchase_blanket_order
 #. odoo-python
 #: code:addons/purchase_blanket_order/models/blanket_orders.py:0
-#, python-format
 msgid "Date Scheduled"
 msgstr "Data schedulata"
 
@@ -426,7 +421,6 @@ msgstr "Messaggi"
 #. module: purchase_blanket_order
 #. odoo-python
 #: code:addons/purchase_blanket_order/models/blanket_orders.py:0
-#, python-format
 msgid "Must have some lines"
 msgstr "Deve contenere delle righe"
 
@@ -547,7 +541,6 @@ msgstr "Altre informazioni"
 #. module: purchase_blanket_order
 #. odoo-python
 #: code:addons/purchase_blanket_order/models/blanket_orders.py:0
-#, python-format
 msgid "Partner is mandatory"
 msgstr "Il partner è obbligatorio"
 
@@ -566,7 +559,6 @@ msgstr "Prezzo"
 #. module: purchase_blanket_order
 #. odoo-python
 #: code:addons/purchase_blanket_order/models/blanket_orders.py:0
-#, python-format
 msgid "Price must be greater than zero"
 msgstr "Il prezzo deve essere maggiore di zero"
 
@@ -592,7 +584,6 @@ msgstr "Ordine quadro d'acquisto"
 #. module: purchase_blanket_order
 #. odoo-python
 #: code:addons/purchase_blanket_order/wizard/create_purchase_orders.py:0
-#, python-format
 msgid "Purchase Blanket Order %s is not open"
 msgstr "L'ordine quadro di acquisto %s non è aperto"
 
@@ -637,7 +628,6 @@ msgstr "Righe ordine di acquisto"
 #. module: purchase_blanket_order
 #. odoo-python
 #: code:addons/purchase_blanket_order/models/blanket_orders.py:0
-#, python-format
 msgid "Quantity must be greater than zero"
 msgstr "La quantità deve essere maggiore di zero"
 
@@ -649,7 +639,6 @@ msgstr "Quantità da Ordinare"
 #. module: purchase_blanket_order
 #. odoo-python
 #: code:addons/purchase_blanket_order/wizard/create_purchase_orders.py:0
-#, python-format
 msgid "RFQ"
 msgstr "RdP"
 
@@ -701,7 +690,6 @@ msgstr "Utente responsabile"
 #. module: purchase_blanket_order
 #. odoo-python
 #: code:addons/purchase_blanket_order/models/purchase_order.py:0
-#, python-format
 msgid ""
 "Schedule dates defined on the Purchase Order Line and on the Blanket Order "
 "Line do not match."
@@ -782,7 +770,6 @@ msgstr "Termini e condizioni"
 #. module: purchase_blanket_order
 #. odoo-python
 #: code:addons/purchase_blanket_order/models/purchase_order.py:0
-#, python-format
 msgid ""
 "The currency of the blanket order must match with that of the purchase order."
 msgstr ""
@@ -792,7 +779,6 @@ msgstr ""
 #. module: purchase_blanket_order
 #. odoo-python
 #: code:addons/purchase_blanket_order/models/purchase_order.py:0
-#, python-format
 msgid "The vendor must be equal to the blanket order lines vendor"
 msgstr "Il fornitore deve essere lo stesso delle righe dell'ordine quadro"
 
@@ -837,8 +823,8 @@ msgid ""
 "control\n"
 "                the products received and control the vendor bills."
 msgstr ""
-"Usa questo menu per ricercare nei tuoi ordini quadro. Per ogni ordine quadro,"
-"\n"
+"Usa questo menu per ricercare nei tuoi ordini quadro. Per ogni ordine "
+"quadro,\n"
 "                puoi tracciare le relative conversazioni con il cliente, "
 "controllare\n"
 "                i prodotti spediti e controllare le fatture del fornitore."
@@ -856,14 +842,12 @@ msgstr "Data validità"
 #. module: purchase_blanket_order
 #. odoo-python
 #: code:addons/purchase_blanket_order/models/blanket_orders.py:0
-#, python-format
 msgid "Validity date is mandatory"
 msgstr "La data di validità è obbligatoria"
 
 #. module: purchase_blanket_order
 #. odoo-python
 #: code:addons/purchase_blanket_order/models/blanket_orders.py:0
-#, python-format
 msgid "Validity date must be in the future"
 msgstr "La data di validità deve essere nel futuro"
 
@@ -904,7 +888,6 @@ msgstr "Procedura guidata"
 #. module: purchase_blanket_order
 #. odoo-python
 #: code:addons/purchase_blanket_order/models/blanket_orders.py:0
-#, python-format
 msgid ""
 "You can not delete a blanket order with opened purchase orders! Try to "
 "cancel them before."
@@ -915,7 +898,6 @@ msgstr ""
 #. module: purchase_blanket_order
 #. odoo-python
 #: code:addons/purchase_blanket_order/models/blanket_orders.py:0
-#, python-format
 msgid "You can not delete an open blanket order! Try to cancel it before."
 msgstr ""
 "Non si può cancellare un ordine quadro in stato aperto! Prova prima ad "
@@ -924,28 +906,24 @@ msgstr ""
 #. module: purchase_blanket_order
 #. odoo-python
 #: code:addons/purchase_blanket_order/wizard/create_purchase_orders.py:0
-#, python-format
 msgid "You can't create a purchase order from an expired blanket order!"
 msgstr "Non si può creare un ordine di acquisto da un ordine quadro scaduto!"
 
 #. module: purchase_blanket_order
 #. odoo-python
 #: code:addons/purchase_blanket_order/wizard/create_purchase_orders.py:0
-#, python-format
 msgid "You can't order more than the remaining quantities"
 msgstr "Non si può ordinare più della quantità rimanente"
 
 #. module: purchase_blanket_order
 #. odoo-python
 #: code:addons/purchase_blanket_order/wizard/create_purchase_orders.py:0
-#, python-format
 msgid "You have to select lines from the same company."
 msgstr "Bisogna selezionare le righe della stessa azienda."
 
 #. module: purchase_blanket_order
 #. odoo-python
 #: code:addons/purchase_blanket_order/models/blanket_orders.py:0
-#, python-format
 msgid "remaining"
 msgstr "rimanenti"
 
