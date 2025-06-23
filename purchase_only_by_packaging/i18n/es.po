@@ -1,0 +1,137 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_only_by_packaging
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-12-29 12:12+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: purchase_only_by_packaging
+#: model:ir.model.fields,help:purchase_only_by_packaging.field_product_packaging__force_purchase_qty
+msgid ""
+"Determine if during the creation of a purchase order line, the quantity should be forced with a multiple of the packaging.\n"
+"Example:\n"
+"You purchase a product by packaging of 5 products.\n"
+"When the user will put 3 as quantity, the system can force the quantity to the superior unit (5 for this example)."
+msgstr ""
+"Determinar si durante la creación de una línea de pedido, se debe forzar la "
+"cantidad con un múltiplo del embalaje.\n"
+"Ejemplo:\n"
+"Se compra un producto por embalaje de 5 productos.\n"
+"Cuando el usuario va a poner 3 como cantidad, el sistema puede forzar la "
+"cantidad a la unidad superior (5 para este ejemplo)."
+
+#. module: purchase_only_by_packaging
+#: model:ir.model.fields,field_description:purchase_only_by_packaging.field_product_packaging__force_purchase_qty
+msgid "Force purchase quantity"
+msgstr "Forzar cantidad de compra"
+
+#. module: purchase_only_by_packaging
+#: model:ir.model,name:purchase_only_by_packaging.model_product_packaging_level
+msgid "Level management for product.packaging"
+msgstr "Gestión de niveles para productos.envasados"
+
+#. module: purchase_only_by_packaging
+#: model:ir.model.fields,field_description:purchase_only_by_packaging.field_product_product__min_purchasable_qty
+#: model:ir.model.fields,field_description:purchase_only_by_packaging.field_product_template__min_purchasable_qty
+msgid "Min Purchasable Qty"
+msgstr "Cantidad Mínima Adquirible"
+
+#. module: purchase_only_by_packaging
+#: model:ir.model.fields,help:purchase_only_by_packaging.field_product_product__min_purchasable_qty
+#: model:ir.model.fields,help:purchase_only_by_packaging.field_product_template__min_purchasable_qty
+msgid ""
+"Minimum purchasable quantity, according to the available packagings, if Only"
+" Purchase by Packaging is set."
+msgstr ""
+"Cantidad mínima adquirible, en función de los embalajes disponibles, si se "
+"configura Sólo Compra por Embalaje."
+
+#. module: purchase_only_by_packaging
+#: model:ir.model.fields,field_description:purchase_only_by_packaging.field_product_product__purchase_only_by_packaging
+#: model:ir.model.fields,field_description:purchase_only_by_packaging.field_product_template__purchase_only_by_packaging
+msgid "Only purchase by packaging"
+msgstr "Sólo compra por paquete"
+
+#. module: purchase_only_by_packaging
+#. odoo-python
+#: code:addons/purchase_only_by_packaging/models/product_packaging_level.py:0
+#, python-format
+msgid ""
+"Packaging level \"{}\" must stay with \"Can be purchased\", at least one "
+"product configured as \"purchase only by packaging\" is using it."
+msgstr ""
+"El nivel de embalaje \"{}\" debe permanecer con \"Se puede comprar\", al "
+"menos un producto configurado como \"comprar sólo por embalaje\" lo está "
+"utilizando."
+
+#. module: purchase_only_by_packaging
+#: model:ir.model,name:purchase_only_by_packaging.model_product_template
+msgid "Product"
+msgstr "Producto"
+
+#. module: purchase_only_by_packaging
+#. odoo-python
+#: code:addons/purchase_only_by_packaging/models/purchase_order_line.py:0
+#, python-format
+msgid ""
+"Product %s can only be purchased with a packaging and a packaging quantity."
+msgstr ""
+"El producto %s solo se puede vender con un embalaje y una cantidad de "
+"embalaje."
+
+#. module: purchase_only_by_packaging
+#. odoo-python
+#: code:addons/purchase_only_by_packaging/models/product_template.py:0
+#, python-format
+msgid ""
+"Product %s cannot be defined to be purchased only by packaging if it cannot "
+"be purchased."
+msgstr ""
+"El producto %s no puede ser definido para ser comprado sólo por embalaje si "
+"no puede ser comprado."
+
+#. module: purchase_only_by_packaging
+#. odoo-python
+#: code:addons/purchase_only_by_packaging/models/product_template.py:0
+#, python-format
+msgid ""
+"Product %s cannot be defined to be purchased only by packaging if it does "
+"not have any packaging that can be purchased defined."
+msgstr ""
+"El producto %s no puede definirse para ser comprado sólo por envase si no "
+"tiene definido ningún envase que pueda ser comprado."
+
+#. module: purchase_only_by_packaging
+#: model:ir.model,name:purchase_only_by_packaging.model_product_packaging
+msgid "Product Packaging"
+msgstr "Empaquetado de Producto"
+
+#. module: purchase_only_by_packaging
+#: model:ir.model,name:purchase_only_by_packaging.model_product_product
+msgid "Product Variant"
+msgstr "Variante del Producto"
+
+#. module: purchase_only_by_packaging
+#: model:ir.model,name:purchase_only_by_packaging.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Línea de Orden de Compra"
+
+#. module: purchase_only_by_packaging
+#: model:ir.model.fields,help:purchase_only_by_packaging.field_product_product__purchase_only_by_packaging
+#: model:ir.model.fields,help:purchase_only_by_packaging.field_product_template__purchase_only_by_packaging
+msgid ""
+"Restrict the usage of this product on purchase order lines without packaging"
+" defined"
+msgstr ""
+"Restringir el uso de este producto en líneas de pedido sin embalaje definido"
