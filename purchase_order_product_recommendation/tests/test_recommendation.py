@@ -3,16 +3,14 @@
 # Copyright 2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo import fields
-from odoo.tests.common import TransactionCase
 
-from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class RecommendationCase(TransactionCase):
+class RecommendationCase(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
         cls.partner = cls.env["res.partner"].create({"name": "Mr. Odoo"})
         cls.category_obj = cls.env["product.category"]
         cls.categ1 = cls.category_obj.create({"name": "Test Cat 1"})
@@ -23,7 +21,8 @@ class RecommendationCase(TransactionCase):
                 "default_code": "product-1",
                 "name": "Test Product 1",
                 "categ_id": cls.categ1.id,
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
                 "seller_ids": [(0, 0, {"partner_id": cls.partner.id, "price": 5})],
             }
         )
@@ -32,7 +31,8 @@ class RecommendationCase(TransactionCase):
                 "default_code": "product-2",
                 "name": "Test Product 2",
                 "categ_id": cls.categ2.id,
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
                 "seller_ids": [(0, 0, {"partner_id": cls.partner.id, "price": 10})],
             }
         )
@@ -41,7 +41,8 @@ class RecommendationCase(TransactionCase):
                 "default_code": "product-3",
                 "name": "Test Product 3",
                 "categ_id": cls.categ2.id,
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
                 "seller_ids": [(0, 0, {"partner_id": cls.partner.id, "price": 7})],
             }
         )

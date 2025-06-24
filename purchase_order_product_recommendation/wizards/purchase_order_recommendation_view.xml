@@ -8,8 +8,6 @@
                 <sheet>
                     <group name="group_sup">
                         <group name="col_left">
-                            <field name="order_id" invisible="1" />
-                            <field name="warehouse_count" invisible="1" />
                             <field name="date_begin" />
                             <field name="date_end" />
                             <field
@@ -35,7 +33,7 @@
                     </group>
                     <group col="2">
                         <field name="line_ids" nolabel="1" colspan="2">
-                            <tree
+                            <list
                                 decoration-info="purchase_line_id != False"
                                 decoration-success="units_included &gt; 0 and not purchase_line_id"
                                 decoration-danger="units_virtual_available &lt; 0 and units_included &lt; units_virtual_available * (1 if units_virtual_available &gt; 0 else -1)"
@@ -44,9 +42,9 @@
                                 delete="0"
                                 editable="top"
                             >
-                                <field name="currency_id" invisible="1" />
-                                <field name="purchase_line_id" invisible="1" />
-                                <field name="is_modified" invisible="1" />
+                                <field name="currency_id" column_invisible="1" />
+                                <field name="purchase_line_id" column_invisible="1" />
+                                <field name="is_modified" column_invisible="1" />
                                 <field name="product_id" readonly="1" force_save="1" />
                                 <field
                                     name="product_code"
@@ -81,7 +79,7 @@
                                     string="Qty"
                                     widget="numeric_step"
                                 />
-                            </tree>
+                            </list>
                         </field>
                     </group>
                 </sheet>

@@ -2,10 +2,9 @@
 # Copyright 2020 Manuel Calero - Tecnativa
 # Copyright 2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
 from datetime import datetime, timedelta
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -64,13 +63,13 @@ class PurchaseOrderRecommendation(models.TransientModel):
         help="Constrain search to an specific warehouse",
     )
     warehouse_count = fields.Integer(
-        default=lambda self: len(self.env["stock.warehouse"].search([])),
+        default=lambda self: self.env["stock.warehouse"].search_count([]),
     )
 
     @api.model
     def _default_order_id(self):
         if self.env.context.get("active_model", False) != "purchase.order":
-            raise UserError(_("This wizard is only valid for purchases"))
+            raise UserError(self.env._("This wizard is only valid for purchases"))
         return self.env.context.get("active_id", False)
 
     def _get_total_days(self):
@@ -196,11 +195,11 @@ class PurchaseOrderRecommendation(models.TransientModel):
         product_id = order_line and order_line.product_id or vals["product_id"]
         if self.warehouse_ids:
             units_available = sum(
-                product_id.with_context(warehouse=wh).qty_available
+                product_id.with_context(warehouse_id=wh).qty_available
                 for wh in self.warehouse_ids.ids
             )
             units_virtual_available = sum(
-                product_id.with_context(warehouse=wh).virtual_available
+                product_id.with_context(warehouse_id=wh).virtual_available
                 for wh in self.warehouse_ids.ids
             )
         else:
@@ -213,7 +212,7 @@ class PurchaseOrderRecommendation(models.TransientModel):
         units_included = order_line and order_line.product_qty or qty_to_order
         seller = product_id._select_seller(
             partner_id=self.order_id.partner_id,
-            date=fields.Date.today(),
+            date=fields.Date.context_today(self),
             quantity=units_included,
             uom_id=product_id.uom_po_id,
         )
@@ -373,7 +372,7 @@ class PurchaseOrderRecommendationLine(models.TransientModel):
         self.is_modified = bool(self.purchase_line_id or self.units_included)
         self.price_unit = self.product_id._select_seller(
             partner_id=self.partner_id,
-            date=fields.Date.today(),
+            date=fields.Date.context_today(self),
             quantity=self.units_included,
             uom_id=self.product_id.uom_po_id,
         ).price

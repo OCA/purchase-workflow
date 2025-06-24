@@ -3,3 +3,4 @@
   - Ernesto Tejeda
   - Manuel Calero
   - Pedro M. Baeza
+  - Pilar Vargas
