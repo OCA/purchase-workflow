@@ -826,6 +826,11 @@ msgid "Purchase Order"
 msgstr "Orden de compra"
 
 #. module: purchase_request
+#: model:mail.message.subtype,name:purchase_request.mt_request_po_confirmed
+msgid "Purchase Order confirmation"
+msgstr "Pedido de compra confirmado"
+
+#. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_order_line
 msgid "Purchase Order Line"
 msgstr "Línea de Orden de Compra"
@@ -837,6 +842,11 @@ msgstr "Línea de Orden de Compra"
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_line_details
 msgid "Purchase Order Lines"
 msgstr "Líneas de Orden de compra"
+
+#. module: purchase_request
+#: model:mail.message.subtype,description:purchase_request.mt_request_po_confirmed
+msgid "Purchase Order is confirmed"
+msgstr "El pedido de compra está confirmado"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
@@ -1056,6 +1066,11 @@ msgid "RFQ/PO Qty"
 msgstr "Cantidad compra"
 
 #. module: purchase_request
+#: model:mail.message.subtype,name:purchase_request.mt_request_picking_done
+msgid "Purchase receipt confirmation"
+msgstr "Recepción de compra confirmada"
+
+#. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/models/stock_move_line.py:0
 #, python-format
@@ -1069,6 +1084,11 @@ msgstr ""
 #, python-format
 msgid "Receipt confirmation for Request %s"
 msgstr "Confirmación de recepción de la solicitud %s"
+
+#. module: purchase_request
+#: model:mail.message.subtype,description:purchase_request.mt_request_picking_done
+msgid "Receipt is done"
+msgstr "Recepción hecha"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
@@ -1512,52 +1532,3 @@ msgstr "Debe seleccionar líneas del mismo tipo de recogida."
 #, python-format
 msgid "You have to select lines from the same company."
 msgstr "Debe seleccionar líneas de la misma compañía."
-
-#~ msgid "SMS Delivery error"
-#~ msgstr "Error en la entrega de SMS"
-
-#~ msgid "Analytic"
-#~ msgstr "Analítica"
-
-#~ msgid "Last Modified on"
-#~ msgstr "Última modificación en"
-
-#~ msgid "Main Attachment"
-#~ msgstr "Archivo adjunto principal"
-
-#~ msgid "Number of messages which requires an action"
-#~ msgstr "Número de mensajes que requieren una acción"
-
-#~ msgid "<strong>Analytic Account</strong>"
-#~ msgstr "<strong>Cuenta analítica</strong>"
-
-#~ msgid "Analytic Account"
-#~ msgstr "Cuenta analítica"
-
-#, fuzzy
-#~ msgid "Number of unread messages"
-#~ msgstr "Mensajes no leídos"
-
-#, fuzzy
-#~ msgid "Product Template"
-#~ msgstr "Producto"
-
-#, fuzzy
-#~ msgid "Unread Messages Counter"
-#~ msgstr "Mensajes no leídos"
-
-#~ msgid "<li><b>%s</b>: Ordered quantity %s %s, Planned date %s</li>"
-#~ msgstr "<li><b>%s</b>: Cantidad pedida %s %s, Fecha planificada %s</li>"
-
-#~ msgid "<li><b>%s</b>: Received quantity %s %s</li>"
-#~ msgstr "<li><b>%s</b>: Cantidad recibida %s %s</li>"
-
-#~ msgid "<li><b>%s</b>: Transferred quantity %s %s</li>"
-#~ msgstr "<li><b>%s</b>: Cantidad transferida %s %s</li>"
-
-#~ msgid "Product Unit of Measure"
-#~ msgstr "Unidad de medida"
-
-#, fuzzy
-#~ msgid "Procurement Rule"
-#~ msgstr "Abastecimiento"

@@ -109,10 +109,13 @@ class StockMoveLine(models.Model):
                     message = self._purchase_request_confirm_done_message_content(
                         message_data
                     )
-                    request.message_post(
-                        body=message,
-                        subtype_id=self.env.ref("mail.mt_note").id,
-                    )
+                    if message:
+                        request.message_post(
+                            body=message,
+                            subtype_id=self.env.ref(
+                                "purchase_request.mt_request_picking_done"
+                            ).id,
+                        )
 
                     picking_message = self._picking_confirm_done_message_content(
                         message_data
