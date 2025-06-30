@@ -656,11 +656,6 @@ msgid "Order Reference"
 msgstr ""
 
 #. module: purchase_request
-#: model:mail.message.subtype,name:purchase_request.mt_request_po_confirmed
-msgid "Order confirmation"
-msgstr ""
-
-#. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/models/purchase_order.py:0
 msgid "Order confirmation %(po_name)s for your Request %(pr_name)s"
@@ -772,6 +767,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_line_details
 msgid "Purchase Order Lines"
+msgstr ""
+
+#. module: purchase_request
+#: model:mail.message.subtype,name:purchase_request.mt_request_po_confirmed
+msgid "Purchase Order confirmation"
 msgstr ""
 
 #. module: purchase_request
@@ -914,6 +914,11 @@ msgid "Purchase Status"
 msgstr ""
 
 #. module: purchase_request
+#: model:mail.message.subtype,name:purchase_request.mt_request_picking_done
+msgid "Purchase receipt confirmation"
+msgstr ""
+
+#. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__purchase_count
 msgid "Purchases count"
 msgstr ""
@@ -989,11 +994,6 @@ msgid "RFQ/PO Qty"
 msgstr ""
 
 #. module: purchase_request
-#: model:mail.message.subtype,name:purchase_request.mt_request_picking_done
-msgid "Receipt confirmation"
-msgstr ""
-
-#. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/models/stock_move_line.py:0
 msgid "Receipt confirmation for Request {name}"
@@ -1006,14 +1006,14 @@ msgid "Receipt confirmation {picking_name} for your Request {request_name}"
 msgstr ""
 
 #. module: purchase_request
-#. odoo-python
-#: code:addons/purchase_request/models/purchase_order.py:0
-msgid "Received quantity"
+#: model:mail.message.subtype,description:purchase_request.mt_request_picking_done
+msgid "Receipt is done"
 msgstr ""
 
 #. module: purchase_request
-#: model:mail.message.subtype,description:purchase_request.mt_request_picking_done
-msgid "Receipt is done"
+#. odoo-python
+#: code:addons/purchase_request/models/purchase_order.py:0
+msgid "Received quantity"
 msgstr ""
 
 #. module: purchase_request
