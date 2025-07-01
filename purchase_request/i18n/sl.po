@@ -518,7 +518,6 @@ msgstr ""
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__is_editable
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__is_editable
 msgid "Is Editable"
 msgstr ""
 
@@ -532,6 +531,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__is_name_editable
 msgid "Is Name Editable"
 msgstr ""
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__is_editable
+msgid "Is editable"
+msgstr "Lahko se ureja"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order__item_ids
@@ -1490,9 +1494,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Unread Messages Counter"
 #~ msgstr "Neprebrana sporočila"
-
-#~ msgid "Is editable"
-#~ msgstr "Lahko se ureja"
 
 #~ msgid "Purchase requests"
 #~ msgstr "Nabavne zahteve"
