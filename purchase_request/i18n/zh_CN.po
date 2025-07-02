@@ -527,7 +527,6 @@ msgstr ""
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__is_editable
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__is_editable
 msgid "Is Editable"
 msgstr ""
 
@@ -541,6 +540,11 @@ msgstr "是关注者"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__is_name_editable
 msgid "Is Name Editable"
 msgstr ""
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__is_editable
+msgid "Is editable"
+msgstr "可编辑"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order__item_ids
@@ -1505,9 +1509,6 @@ msgstr "您必须选择同一个公司的请购明细。"
 
 #~ msgid "Followers (Channels)"
 #~ msgstr "关注者(频道)"
-
-#~ msgid "Is editable"
-#~ msgstr "可编辑"
 
 #~ msgid "Order confirmation %s for your Request %s"
 #~ msgstr "确认订单 %s 根据您的请购单 %s"
