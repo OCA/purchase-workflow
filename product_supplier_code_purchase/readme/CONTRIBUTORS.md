@@ -3,3 +3,5 @@
 - Serpent Consulting Services Pvt. Ltd. \<<support@serpentcs.com>\>
 - Aaron Henriquez \<<ahenriquez@forgeflow.com>\>
 - Carlos Reyes \<<carlos@studio73.es>\>
+- Giuliano Lotta \<<giuliano.lotta@gmail.com>\>
+- Elliott Bristow - Glo \<<elliott@glo.systems>\>
