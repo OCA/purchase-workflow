@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="purchase_order_stage_view_tree" model="ir.ui.view">
+        <field name="name">purchase.order.stage.view.tree</field>
+        <field name="model">purchase.order.stage</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="sequence" widget="handle" />
+                <field name="active" />
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+    <record id="action_purchase_order_stage" model="ir.actions.act_window">
+        <field name="name">Stages</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">purchase.order.stage</field>
+        <field name="view_mode">tree</field>
+        <field
+            name="view_id"
+            ref="purchase_order_stage.purchase_order_stage_view_tree"
+        />
+        <field name="domain">['|',('active','=',True), ('active','=',False)]</field>
+    </record>
+    <menuitem
+        action="action_purchase_order_stage"
+        id="purchase_order_stage_option"
+        parent="purchase.menu_purchase_config"
+        sequence="20"
+    />
+</odoo>
