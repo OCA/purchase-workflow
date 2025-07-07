@@ -27,16 +27,12 @@ msgid "Sales Order"
 msgstr "Orden de Venta"
 
 #. module: sale_purchase_secondary_unit
-#: model:ir.model,name:sale_purchase_secondary_unit.model_sale_order_line
-msgid "Sales Order Line"
-msgstr "Línea de la Orden de Venta"
-
-#. module: sale_purchase_secondary_unit
-#: model:ir.model,name:sale_purchase_secondary_unit.model_stock_move
-msgid "Stock Move"
-msgstr "Movimiento de Existencias"
-
-#. module: sale_purchase_secondary_unit
 #: model:ir.model,name:sale_purchase_secondary_unit.model_stock_rule
 msgid "Stock Rule"
 msgstr "Regla de Existencias"
+
+#~ msgid "Sales Order Line"
+#~ msgstr "Línea de la Orden de Venta"
+
+#~ msgid "Stock Move"
+#~ msgstr "Movimiento de Existencias"
