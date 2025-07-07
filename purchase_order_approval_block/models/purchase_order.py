@@ -22,8 +22,8 @@ class PurchaseOrder(models.Model):
 
     @api.model_create_multi
     def create(self, mvals):
-        records = super(PurchaseOrder, self).create(mvals)
-        for vals, po in zip(mvals, records):
+        records = super().create(mvals)
+        for vals, po in zip(mvals, records, strict=False):
             if "approval_block_id" in vals and vals["approval_block_id"]:
                 po.message_post(
                     body=_(
@@ -37,7 +37,7 @@ class PurchaseOrder(models.Model):
         return records
 
     def write(self, vals):
-        res = super(PurchaseOrder, self).write(vals)
+        res = super().write(vals)
         for po in self:
             if "approval_block_id" in vals and vals["approval_block_id"]:
                 po.message_post(
@@ -57,7 +57,7 @@ class PurchaseOrder(models.Model):
         for rec in self:
             if rec.approval_block_id:
                 rec.button_release_approval_block()
-        return super(PurchaseOrder, self).button_approve(force=force)
+        return super().button_approve(force=force)
 
     def button_release_approval_block(self):
         for order in self:
