@@ -1,7 +1,7 @@
 # Copyright 2017 ForgeFlow S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 
 class PurchaseOrder(models.Model):
@@ -26,7 +26,7 @@ class PurchaseOrder(models.Model):
         for vals, po in zip(mvals, records, strict=False):
             if "approval_block_id" in vals and vals["approval_block_id"]:
                 po.message_post(
-                    body=_(
+                    body=self.env._(
                         'Order "%(order_name)s" blocked with reason "%(block_name)s"'
                     )
                     % {
@@ -41,7 +41,7 @@ class PurchaseOrder(models.Model):
         for po in self:
             if "approval_block_id" in vals and vals["approval_block_id"]:
                 po.message_post(
-                    body=_(
+                    body=self.env._(
                         'Order "%(order_name)s" blocked with reason "%(block_name)s"'
                     )
                     % {
@@ -50,7 +50,9 @@ class PurchaseOrder(models.Model):
                     }
                 )
             elif "approval_block_id" in vals and not vals["approval_block_id"]:
-                po.message_post(body=_('Order "%s" approval block released.') % po.name)
+                po.message_post(
+                    body=self.env._('Order "%s" approval block released.') % po.name
+                )
         return res
 
     def button_approve(self, force=False):

@@ -10,13 +10,15 @@
         <field name="inherit_id" ref="purchase.purchase_order_form" />
         <field name="arch" type="xml">
             <button name="button_draft" position="attributes">
-                <attribute name="states">cancel,to approve</attribute>
+                <attribute
+                    name="invisible"
+                >state not in ['cancel', 'to approve']</attribute>
             </button>
             <field name="date_order" position="after">
                 <field
                     name="approval_block_id"
                     force_save="1"
-                    attrs="{'readonly': ['|',('approval_blocked','=', True), ('state', 'not in', 'draft')]}"
+                    readonly="approval_blocked or state != 'draft'"
                 />
                 <field name="approval_blocked" invisible="True" />
             </field>
@@ -27,8 +29,7 @@
                     type="object"
                     class="btn-primary"
                     groups="purchase_order_approval_block.group_rfq_approval_block"
-                    attrs="{'invisible': ['|',('approval_block_id', '=', False),
-                        ('state', 'not in', ['draft', 'sent'])]}"
+                    invisible="not approval_block_id or state not in ['draft', 'sent']"
                 />
             </xpath>
         </field>
