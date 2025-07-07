@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="view_purchase_order_tree" model="ir.ui.view">
         <field name="model">purchase.order</field>
         <field name="inherit_id" ref="purchase.purchase_order_view_tree" />
@@ -29,7 +28,6 @@
             </field>
         </field>
     </record>
-
 
     <record id="purchase_order_form" model="ir.ui.view">
         <field name="model">purchase.order</field>
@@ -64,7 +62,7 @@
 
             <!-- Add a print button, displayed in non draft and sent states -->
             <xpath expr="/form/header/button[@name='print_quotation']" position="after">
-                    <button
+                <button
                     name="print_quotation"
                     string="Print"
                     type="object"
@@ -84,5 +82,4 @@
     <record id="purchase.purchase_form_action" model="ir.actions.act_window">
         <field name="domain">[]</field>
     </record>
-
 </odoo>
