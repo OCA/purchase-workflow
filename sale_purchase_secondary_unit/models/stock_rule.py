@@ -18,11 +18,6 @@ class StockRule(models.Model):
             super(StockRule, self)._get_procurements_to_merge_groupby(procurement),
         )
 
-    def _get_custom_move_fields(self):
-        fields = super(StockRule, self)._get_custom_move_fields()
-        fields.extend(["secondary_uom_id", "secondary_uom_qty"])
-        return fields
-
     @api.model
     def _run_buy(self, procurements):
         return super(
