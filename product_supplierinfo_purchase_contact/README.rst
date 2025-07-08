@@ -37,6 +37,21 @@ the purchase order from supplies (replacement or to order).
 .. contents::
    :local:
 
+Use Cases / Context
+===================
+
+This module had 2 purposes:
+
+-  To specify which contact the purchase orders generated from
+   procurements associated to this supplierinfo have to be put.
+-  That the auto-created supplierinfo from the purchase order has the
+   main partner associated, not the specific contact one.
+
+The 'Purchase contact' (purchase_partner_id) field is required if for
+example you use sales pricelist based on supplierinfo
+(product_pricelist_supplierinfo), you want to use as supplier filter the
+'Supplier' (partner_id) field.
+
 Usage
 =====
 
@@ -72,6 +87,7 @@ Contributors
 
       -  Carolina Fernandez
       -  Pedro M. Baeza
+      -  Víctor Martínez
 
 Maintainers
 -----------
@@ -85,6 +101,14 @@ This module is maintained by the OCA.
 OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
+
+.. |maintainer-victoralmau| image:: https://github.com/victoralmau.png?size=40px
+    :target: https://github.com/victoralmau
+    :alt: victoralmau
+
+Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+
+|maintainer-victoralmau| 
 
 This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/18.0/product_supplierinfo_purchase_contact>`_ project on GitHub.
 

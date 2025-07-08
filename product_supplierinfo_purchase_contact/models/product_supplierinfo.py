@@ -7,5 +7,7 @@ class ProductSupplierInfo(models.Model):
     _inherit = "product.supplierinfo"
 
     purchase_partner_id = fields.Many2one(
-        comodel_name="res.partner", string="Purchase contact"
+        comodel_name="res.partner",
+        string="Purchase contact",
+        domain="[('parent_id', '=', partner_id)]",
     )
