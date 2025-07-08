@@ -7,7 +7,7 @@ from odoo.tests import common
 class TestStockRule(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(TestStockRule, cls).setUpClass()
+        super().setUpClass()
         cls.supplierinfo_obj = cls.env["product.supplierinfo"]
         cls.partner = cls.env["res.partner"].create(
             {
