@@ -62,6 +62,7 @@ addon | version | maintainers | summary
 [purchase_request](purchase_request/) | 18.0.2.3.0 |  | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
 [purchase_request_department](purchase_request_department/) | 18.0.1.0.0 |  | Purchase Request Department
 [purchase_request_exception](purchase_request_exception/) | 18.0.1.0.0 |  | Custom exceptions on purchase request
+[purchase_request_substate](purchase_request_substate/) | 18.0.1.0.0 |  | Purchase Request Sub State
 [purchase_request_tier_validation](purchase_request_tier_validation/) | 18.0.1.1.1 |  | Extends the functionality of Purchase Requests to support a tier validation process.
 [purchase_request_to_requisition](purchase_request_to_requisition/) | 18.0.1.0.0 |  | Purchase Request to Purchase Agreement
 [purchase_request_type](purchase_request_type/) | 18.0.1.0.0 |  | Purchase Request Type
