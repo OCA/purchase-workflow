@@ -260,7 +260,7 @@ class TestDeliverySingle(BaseCommon):
             "There must be 1 picking",
         )
 
-    def test_purchase_line_created_afer_confirm(self):
+    def test_purchase_line_created_after_confirm(self):
         """Check new line created when order is confirmed.
 
         When a new line is added on an already `purchased` order
@@ -343,3 +343,40 @@ class TestDeliverySingle(BaseCommon):
         post_count = self.env["stock.picking"].search_count([])
         new_pickings = post_count - prev_count
         self.assertEqual(new_pickings, 1)
+
+    def test_picking_partner_matches_po_partner(self):
+        """Ensure all pickings' partner_id matches the PO partner_id."""
+        self.po.order_line[0].date_planned = self.date_later
+        self.po.button_confirm()
+        self.assertEqual(
+            len(self.po.picking_ids),
+            2,
+            f"There must be 2 pickings for the PO when confirmed. "
+            f"{len(self.po.picking_ids)} found",
+        )
+        for picking in self.po.picking_ids:
+            self.assertEqual(
+                picking.partner_id,
+                self.po.partner_id,
+                f"Picking {picking.name} partner_id must match the PO partner_id",
+            )
+
+    def test_picking_partner_matches_po_dest_address(self):
+        """Ensure all pickings' partner_id matches the PO dest_address_id (if set)"""
+        # purchase.order.line::_prepare_stock_move_vals
+        # assigns partner_id using the value from order_id.dest_address_id
+        self.po.dest_address_id = self.po.partner_id
+        self.po.order_line[0].date_planned = self.date_later
+        self.po.button_confirm()
+        self.assertEqual(
+            len(self.po.picking_ids),
+            2,
+            f"There must be 2 pickings for the PO when confirmed. "
+            f"{len(self.po.picking_ids)} found",
+        )
+        for picking in self.po.picking_ids:
+            self.assertEqual(
+                picking.partner_id,
+                self.po.dest_address_id,
+                f"Picking {picking.name} partner_id must match the PO dest_address_id",
+            )
