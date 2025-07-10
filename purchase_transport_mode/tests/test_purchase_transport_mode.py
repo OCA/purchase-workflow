@@ -24,7 +24,7 @@ class TestPurchaseTransportMode(TransactionCase):
                 "order_id": cls.purchase_order.id,
                 "name": cls.product_a.name,
                 "product_id": cls.product_a.id,
-                "product_qty": 5,
+                "product_qty": 4,
             }
         )
 
@@ -59,12 +59,13 @@ class TestPurchaseTransportMode(TransactionCase):
             self.purchase_order.transport_mode_status,
             {
                 "errors": [
-                    "Constraint A: The total amount of the order must be higher than 5000"
+                    "Constraint A: The total amount of the order"
+                    " must be higher than 5000"
                 ]
             },
         )
         self.purchase_order.order_line.product_qty = 500
-        self.purchase_order.invalidate_cache()
+        self.purchase_order._invalidate_cache()
         self.purchase_order.button_confirm()
         self.assertEqual(self.purchase_order.state, "purchase")
 

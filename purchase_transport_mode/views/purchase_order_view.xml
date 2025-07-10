@@ -13,7 +13,7 @@
                 <field
                     name="transport_mode_status_display"
                     nolabel="1"
-                    attrs="{'invisible': [('transport_mode_status_ok', '=', True)]}"
+                    invisible="transport_mode_status_ok"
                 />
             </xpath>
         </field>

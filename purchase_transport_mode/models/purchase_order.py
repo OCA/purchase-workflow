@@ -17,7 +17,8 @@ class PurchaseOrder(models.Model):
     )
     transport_mode_status = fields.Json(
         compute="_compute_transport_mode_validation_status",
-        help="Collect and validate order details to satisfy transport mode requirements",
+        help="Collect and validate order details to satisfy"
+        " transport mode requirements",
         default={},
     )
     transport_mode_status_display = fields.Html(

@@ -10,25 +10,13 @@
             ref="purchase.res_config_settings_view_form_purchase"
         />
         <field name="arch" type="xml">
-            <xpath expr="//div[@id='auto_receipt_reminder']" position="after">
-                <div
-                    class="col-12 col-lg-6 o_setting_box"
+            <xpath expr="//setting[@id='auto_receipt_reminder']" position="after">
+                <setting
                     id="check_purchase_transport_mode_constraint"
+                    help="Validate purchase order details to satisfy transport mode requirements"
                 >
-                            <div class="o_setting_left_pane">
-                                <field
-                            name="purchase_transport_mode_contraint_enabled"
-                        />
-                            </div>
-                            <div class="o_setting_right_pane">
-                                <label
-                            for="purchase_transport_mode_contraint_enabled"
-                        />
-                                <div class="text-muted">
-                                    Validate purchase order details to satisfy transport mode requirements
-                                </div>
-                            </div>
-                        </div>
+                    <field name="purchase_transport_mode_contraint_enabled" />
+                </setting>
             </xpath>
         </field>
     </record>
