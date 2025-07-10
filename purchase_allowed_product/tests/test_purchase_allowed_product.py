@@ -3,24 +3,36 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 
+from odoo.tests import tagged
 from odoo.tests.common import Form, TransactionCase
 
 
+@tagged("-at_install", "post_install")
 class TestPurchaseAllowedProduct(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.supplierinfo_model = self.env["product.supplierinfo"]
-        self.product_model = self.env["product.product"]
-        self.partner_4 = self.env.ref("base.res_partner_4")
-        self.supplierinfo = self.supplierinfo_model.search(
-            [("partner_id", "=", self.partner_4.id)]
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        if not cls.env.company.chart_template_id:
+            # Load a CoA if there's none in current company
+            coa = cls.env.ref("l10n_generic_coa.configurable_chart_template", False)
+            if not coa:
+                # Load the first available CoA
+                coa = cls.env["account.chart.template"].search(
+                    [("visible", "=", True)], limit=1
+                )
+            coa.try_loading(company=cls.env.company, install_demo=False)
+        cls.supplierinfo_model = cls.env["product.supplierinfo"]
+        cls.product_model = cls.env["product.product"]
+        cls.partner_4 = cls.env.ref("base.res_partner_4")
+        cls.supplierinfo = cls.supplierinfo_model.search(
+            [("partner_id", "=", cls.partner_4.id)]
         )
-        self.partner_4_supplied_products = self.product_model.search(
+        cls.partner_4_supplied_products = cls.product_model.search(
             [
                 (
                     "product_tmpl_id",
                     "in",
-                    [x.product_tmpl_id.id for x in self.supplierinfo],
+                    [x.product_tmpl_id.id for x in cls.supplierinfo],
                 )
             ]
         )

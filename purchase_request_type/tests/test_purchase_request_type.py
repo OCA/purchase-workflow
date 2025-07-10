@@ -26,6 +26,9 @@ class TestPurchaseRequestType(common.TransactionCase):
         # Picking Type
         cls.picking_type = cls.env.ref("stock.picking_type_in")
         cls.picking_type2 = cls.env.ref("stock.picking_type_internal")
+
+        # Add company in purchase type
+        cls.type2.company_id = cls.picking_type.company_id
         cls.type2.picking_type_id = cls.picking_type
         cls.company2 = cls.company_obj.create({"name": "company2"})
 
@@ -74,6 +77,7 @@ class TestPurchaseRequestType(common.TransactionCase):
         self.assertEqual(request2.reduce_step, self.type2.reduce_step)
 
     def test_purchase_request_type_company_error(self):
+        self.type1.company_id = self.env.company
         request = self.pr_obj.create({"picking_type_id": self.picking_type.id})
         self.assertEqual(request.company_id, self.type1.company_id)
         with self.assertRaises(ValidationError):

@@ -4,7 +4,7 @@
     "name": "Purchase Request Tier Validation",
     "summary": "Extends the functionality of Purchase Requests to "
     "support a tier validation process.",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.1.0",
     "category": "Purchase Management",
     "website": "https://github.com/OCA/purchase-workflow",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
@@ -13,7 +13,9 @@
     "installable": True,
     "depends": ["purchase_request", "base_tier_validation"],
     "data": [
-        "data/purchase_request_tier_definition.xml",
         "views/purchase_request_view.xml",
+    ],
+    "demo": [
+        "demo/tier_definition.xml",
     ],
 }

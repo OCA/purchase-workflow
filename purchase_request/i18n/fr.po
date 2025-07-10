@@ -19,16 +19,16 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-24 07:53+0000\n"
-"PO-Revision-Date: 2019-11-01 18:34+0000\n"
-"Last-Translator: Khalid Hazam <k.hazam@badep.ma>\n"
-"Language-Team: French (http://www.transifex.com/oca/OCA-purchase-"
-"workflow-10-0/language/fr/)\n"
+"PO-Revision-Date: 2025-06-30 17:25+0000\n"
+"Last-Translator: \"Thomas Binsfeld (ACSONE)\" <thomas.binsfeld@acsone.eu>\n"
+"Language-Team: French (http://www.transifex.com/oca/"
+"OCA-purchase-workflow-10-0/language/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: purchase_request
 #. odoo-python
@@ -48,6 +48,8 @@ msgid ""
 "<li><b>%(product_name)s</b>: Received quantity %(product_qty)s "
 "%(product_uom)s</li>"
 msgstr ""
+"<li><b>%(product_name)s</b> : Quantité reçue %(product_qty)s "
+"%(product_uom)s</li>"
 
 #. module: purchase_request
 #. odoo-python
@@ -343,6 +345,11 @@ msgid "Copy descriptions to new PO"
 msgstr "Copier la description au nouveau bon de commande achat"
 
 #. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__keep_estimated_cost
+msgid "Copy estimative cost to new PO"
+msgstr ""
+
+#. module: purchase_request
 #: model:ir.actions.act_window,name:purchase_request.action_purchase_request_line_make_purchase_order
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_line_make_purchase_order
@@ -381,6 +388,7 @@ msgstr "Date de création"
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__currency_id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__currency_id
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__currency_id
 msgid "Currency"
 msgstr "Devise"
 
@@ -448,6 +456,7 @@ msgstr "Entrer un fournisseur."
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__estimated_cost
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__estimated_cost
 msgid "Estimated Cost"
 msgstr "Coût estimé"
 
@@ -839,9 +848,8 @@ msgstr "Demandes d'achat"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_order_line
-#, fuzzy
 msgid "Purchase Order Line"
-msgstr "Ligne de demande d'achat"
+msgstr "Ligne de commande d'achat"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__purchase_lines
@@ -851,6 +859,16 @@ msgstr "Ligne de demande d'achat"
 #, fuzzy
 msgid "Purchase Order Lines"
 msgstr "Lignes de demande d'achat"
+
+#. module: purchase_request
+#: model:mail.message.subtype,name:purchase_request.mt_request_po_confirmed
+msgid "Purchase Order confirmation"
+msgstr ""
+
+#. module: purchase_request
+#: model:mail.message.subtype,description:purchase_request.mt_request_po_confirmed
+msgid "Purchase Order is confirmed"
+msgstr ""
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
@@ -998,6 +1016,11 @@ msgid "Purchase Status"
 msgstr "Demande d'achat"
 
 #. module: purchase_request
+#: model:mail.message.subtype,name:purchase_request.mt_request_picking_done
+msgid "Purchase receipt confirmation"
+msgstr ""
+
+#. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__purchase_count
 #, fuzzy
 msgid "Purchases count"
@@ -1090,6 +1113,11 @@ msgstr ""
 #: code:addons/purchase_request/models/stock_move_line.py:0
 #, python-format
 msgid "Receipt confirmation for Request %s"
+msgstr ""
+
+#. module: purchase_request
+#: model:mail.message.subtype,description:purchase_request.mt_request_picking_done
+msgid "Receipt is done"
 msgstr ""
 
 #. module: purchase_request
@@ -1234,6 +1262,13 @@ msgstr ""
 msgid ""
 "Set true if you want to keep the descriptions provided in the wizard in the "
 "new PO."
+msgstr ""
+
+#. module: purchase_request
+#: model:ir.model.fields,help:purchase_request.field_purchase_request_line_make_purchase_order_item__keep_estimated_cost
+msgid ""
+"Set true if you want to keep the estimated cost provided in the wizard in "
+"the new PO."
 msgstr ""
 
 #. module: purchase_request

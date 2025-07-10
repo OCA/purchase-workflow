@@ -24,6 +24,11 @@ msgid "Has Comment"
 msgstr ""
 
 #. module: purchase_requisition_tier_validation
+#: model:ir.model.fields,field_description:purchase_requisition_tier_validation.field_purchase_requisition__is_reevaluation_required
+msgid "Is Reevaluation Required"
+msgstr ""
+
+#. module: purchase_requisition_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_requisition_tier_validation.view_purchase_requisition_filter
 msgid "My Purchase Agreements to review"
 msgstr ""

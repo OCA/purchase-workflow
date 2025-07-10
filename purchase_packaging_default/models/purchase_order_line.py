@@ -3,7 +3,7 @@
 
 import math
 
-from odoo import api, fields, models
+from odoo import api, models
 
 
 class PurchaseOrderLine(models.Model):
@@ -12,19 +12,19 @@ class PurchaseOrderLine(models.Model):
     def _get_default_packaging(self):
         """From product get 1st packaging found ordered by sequence"""
         product_template = self.product_id.product_tmpl_id
-        return fields.first(product_template.packaging_ids)
-
-    @api.onchange("product_id")
-    def _onchange_product_id(self):
-        if self.env.user.company_id.purchase_packaging_default_enabled:
-            product_packaging = self._get_default_packaging()
-            if product_packaging:
-                self.product_packaging_id = product_packaging
+        for pkg in product_template.packaging_ids:
+            if pkg.purchase:
+                return pkg
+        return product_template.packaging_ids.browse()
 
     @api.depends("product_id", "product_qty", "product_uom")
     def _compute_product_packaging_id(self):
         _self = self
         if self.env.user.company_id.purchase_packaging_default_enabled:
+            for line in self:
+                product_packaging = line._get_default_packaging()
+                if product_packaging:
+                    line.product_packaging_id = product_packaging
             _self = _self.with_context(keep_product_packaging=True)
         return super(PurchaseOrderLine, _self)._compute_product_packaging_id()
 

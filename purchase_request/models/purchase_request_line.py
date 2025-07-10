@@ -45,6 +45,7 @@ class PurchaseRequestLine(models.Model):
         related="request_id.company_id",
         string="Company",
         store=True,
+        index=True,
     )
     requested_by = fields.Many2one(
         comodel_name="res.users",
@@ -107,7 +108,9 @@ class PurchaseRequestLine(models.Model):
     purchase_state = fields.Selection(
         compute="_compute_purchase_state",
         string="Purchase Status",
-        selection=lambda self: self.env["purchase.order"]._fields["state"].selection,
+        selection=lambda self: self.env["purchase.order"]
+        ._fields["state"]
+        ._description_selection(self.env),
         store=True,
     )
     move_dest_ids = fields.One2many(
@@ -404,3 +407,27 @@ class PurchaseRequestLine(models.Model):
                 self.env.context,
             ),
         }
+
+    @api.model
+    def _get_analytic_name(self):
+        return (
+            [
+                "%(name)s (%(value)s)"
+                % {
+                    "name": self.env["account.analytic.account"]
+                    .browse(int(key))
+                    .display_name,
+                    "value": value,
+                }
+                for key, value in self.analytic_distribution.items()
+            ]
+            if self.analytic_distribution
+            else [""]
+        )
+
+    @api.model
+    def _get_analytic_distribution(self):
+        self.ensure_one()
+
+        name = ", ".join(filter(None, self._get_analytic_name()))
+        return name

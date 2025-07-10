@@ -73,13 +73,19 @@ def store_field_qty_to_receive_and_invoice(cr):
     )
     cr.execute(
         """
-        UPDATE purchase_order_line
-        SET qty_to_receive = pol.qty
-        FROM (SELECT purchase_line_id, sum(product_uom_qty) as qty
-              FROM stock_move
-              WHERE purchase_line_id IS NOT NULL AND
-                  state not in ('cancel', 'done')
-              GROUP BY purchase_line_id) as pol
-        WHERE purchase_order_line.id = pol.purchase_line_id
+        UPDATE purchase_order_line pol
+        SET qty_to_receive =
+            CASE
+                WHEN pt.type = 'service' THEN pol.product_qty - pol.qty_received
+                ELSE (
+                    SELECT COALESCE(SUM(sm.product_uom_qty), 0)
+                    FROM stock_move sm
+                    WHERE sm.purchase_line_id = pol.id
+                      AND sm.state NOT IN ('cancel', 'done')
+                )
+            END
+        FROM product_product pp
+        JOIN product_template pt ON pt.id = pp.product_tmpl_id
+        WHERE pp.id = pol.product_id
         """
     )

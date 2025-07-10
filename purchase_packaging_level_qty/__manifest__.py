@@ -1,7 +1,7 @@
 {
     "name": "Purchase Packaging Level Quantity",
     "summary": """Display purchase order packaging level quantity""",
-    "version": "16.0.1.0.0",
+    "version": "16.0.2.0.0",
     "author": "Camptocamp, BCIM, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
     "category": "Purchase Management",

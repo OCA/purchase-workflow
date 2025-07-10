@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-10 05:30+0000\n"
-"PO-Revision-Date: 2017-06-10 05:30+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2025-04-19 10:23+0000\n"
+"Last-Translator: Ahmet Yiğit Budak <yigit@altinkaya.com>\n"
 "Language-Team: Turkish (https://www.transifex.com/oca/teams/23907/tr/)\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: purchase_order_approved
 #: model_terms:ir.ui.view,arch_db:purchase_order_approved.view_purchase_configuration
@@ -24,12 +25,17 @@ msgid ""
 "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
 "specific.\" groups=\"base.group_multi_company\"/>"
 msgstr ""
+"<span class=\"fa fa-lg fa-building-o\" title="
+"\"Buraya girilen değer şirkete özeldir.\" groups=\"base.group_multi_company\""
+"/>"
 
 #. module: purchase_order_approved
 #: model_terms:ir.ui.view,arch_db:purchase_order_approved.view_purchase_configuration
 msgid ""
 "Adds an extra state in purchase orders previous to 'Purchase Order' state."
 msgstr ""
+"Satın alma siparişlerinde 'Satınalma Siparişi' durumundan önce ekstra bir "
+"durum ekler."
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,help:purchase_order_approved.field_res_company__purchase_approve_active
@@ -45,22 +51,22 @@ msgstr ""
 #. module: purchase_order_approved
 #: model:ir.model.fields.selection,name:purchase_order_approved.selection__res_partner__purchase_requires_second_approval__always
 msgid "Always"
-msgstr ""
+msgstr "Her zaman"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields.selection,name:purchase_order_approved.selection__purchase_order__state__approved
 msgid "Approved"
-msgstr ""
+msgstr "Onaylandı"
 
 #. module: purchase_order_approved
 #: model_terms:ir.ui.view,arch_db:purchase_order_approved.view_purchase_order_filter
 msgid "Approved Orders"
-msgstr ""
+msgstr "Onaylanan Şiparişler"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields.selection,name:purchase_order_approved.selection__res_partner__purchase_requires_second_approval__based_on_company
 msgid "Based on company policy"
-msgstr ""
+msgstr "Şirket politikasına göre"
 
 #. module: purchase_order_approved
 #: model:ir.model,name:purchase_order_approved.model_res_company
@@ -69,24 +75,23 @@ msgstr "Şirketler"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__company_id
-#, fuzzy
 msgid "Company"
-msgstr "Şirketler"
+msgstr "Şirket"
 
 #. module: purchase_order_approved
 #: model:ir.model,name:purchase_order_approved.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "İletişim"
 
 #. module: purchase_order_approved
 #: model_terms:ir.ui.view,arch_db:purchase_order_approved.purchase_order_form
 msgid "Convert to Purchase Order"
-msgstr ""
+msgstr "Satınalma Siparişine Dönüştür"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__currency_id
 msgid "Currency"
-msgstr ""
+msgstr "Para Birimi"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__picking_type_id
@@ -95,10 +100,13 @@ msgstr ""
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__date_order
+#, fuzzy
 msgid ""
 "Depicts the date within which the Quotation should be confirmed and "
 "converted into a purchase order."
 msgstr ""
+"Teklifin onaylanıp satın alma siparişine dönüştürülmesi gereken tarihi "
+"gösterir."
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__dest_address_id
@@ -108,7 +116,7 @@ msgstr ""
 #. module: purchase_order_approved
 #: model:ir.model.fields.selection,name:purchase_order_approved.selection__res_partner__purchase_requires_second_approval__never
 msgid "Never"
-msgstr ""
+msgstr "Asla"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__date_order
@@ -117,8 +125,9 @@ msgstr ""
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__order_line
+#, fuzzy
 msgid "Order Lines"
-msgstr ""
+msgstr "Sipariş Satırları"
 
 #. module: purchase_order_approved
 #: model:ir.model,name:purchase_order_approved.model_res_config_settings
@@ -127,14 +136,15 @@ msgstr ""
 
 #. module: purchase_order_approved
 #: model:ir.model,name:purchase_order_approved.model_purchase_order
+#, fuzzy
 msgid "Purchase Order"
-msgstr ""
+msgstr "Satınalma Siparişi"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_res_partner__purchase_requires_second_approval
 #: model:ir.model.fields,field_description:purchase_order_approved.field_res_users__purchase_requires_second_approval
 msgid "Purchase Requires Second Approval"
-msgstr ""
+msgstr "Sipariş İkinci Bir Onayı Zorunlu Kılar"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__dest_address_id
@@ -142,6 +152,8 @@ msgid ""
 "Put an address if you want to deliver directly from the vendor to the "
 "customer. Otherwise, keep empty to deliver to your own company."
 msgstr ""
+"Doğrudan satıcıdan müşteriye teslimat yapmak istiyorsanız bir adres girin. "
+"Aksi takdirde, kendi şirketinize teslim etmek için boş bırakın."
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__origin
@@ -152,8 +164,9 @@ msgstr ""
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__origin
+#, fuzzy
 msgid "Source Document"
-msgstr ""
+msgstr "Kaynak Belge"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_res_config_settings__purchase_approve_active
@@ -162,8 +175,9 @@ msgstr ""
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__state
+#, fuzzy
 msgid "Status"
-msgstr ""
+msgstr "Durumu"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__picking_type_id

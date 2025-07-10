@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-17 03:38+0000\n"
-"PO-Revision-Date: 2024-08-31 11:06+0000\n"
+"PO-Revision-Date: 2025-06-25 09:25+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/"
 "OCA-purchase-workflow-10-0/language/it/)\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: purchase_request
 #. odoo-python
@@ -352,6 +352,11 @@ msgid "Copy descriptions to new PO"
 msgstr "Copia le descrizioni in un nuovo ordine d'acquisto"
 
 #. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__keep_estimated_cost
+msgid "Copy estimative cost to new PO"
+msgstr "Copia il costo stimato al nuovo OP"
+
+#. module: purchase_request
 #: model:ir.actions.act_window,name:purchase_request.action_purchase_request_line_make_purchase_order
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_line_make_purchase_order
@@ -390,6 +395,7 @@ msgstr "Data creazione"
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__currency_id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__currency_id
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__currency_id
 msgid "Currency"
 msgstr "Valuta"
 
@@ -457,6 +463,7 @@ msgstr "Inserire un fornitore."
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__estimated_cost
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__estimated_cost
 msgid "Estimated Cost"
 msgstr "Costo Stimato"
 
@@ -853,6 +860,16 @@ msgid "Purchase Order Lines"
 msgstr "Righe ordine di acquisto"
 
 #. module: purchase_request
+#: model:mail.message.subtype,name:purchase_request.mt_request_po_confirmed
+msgid "Purchase Order confirmation"
+msgstr "Conferma ordine di acquisto"
+
+#. module: purchase_request
+#: model:mail.message.subtype,description:purchase_request.mt_request_po_confirmed
+msgid "Purchase Order is confirmed"
+msgstr "L'ordine di acquisto è confermato"
+
+#. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Purchase Orders"
 msgstr "Ordini di acquisto"
@@ -991,6 +1008,11 @@ msgid "Purchase Status"
 msgstr "Stato Acquisto"
 
 #. module: purchase_request
+#: model:mail.message.subtype,name:purchase_request.mt_request_picking_done
+msgid "Purchase receipt confirmation"
+msgstr "Conferma ricevuta acquisto"
+
+#. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__purchase_count
 msgid "Purchases count"
 msgstr "Conteggio acquisti"
@@ -1084,6 +1106,11 @@ msgstr ""
 #, python-format
 msgid "Receipt confirmation for Request %s"
 msgstr "Ricevuta di conferma per la richiesta %s"
+
+#. module: purchase_request
+#: model:mail.message.subtype,description:purchase_request.mt_request_picking_done
+msgid "Receipt is done"
+msgstr "La ricevuta è pronta"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
@@ -1226,6 +1253,15 @@ msgid ""
 msgstr ""
 "Impostare a vero se si desidera mantenere le descrizioni fornite nella "
 "procedura guidata nel nuovo OA."
+
+#. module: purchase_request
+#: model:ir.model.fields,help:purchase_request.field_purchase_request_line_make_purchase_order_item__keep_estimated_cost
+msgid ""
+"Set true if you want to keep the estimated cost provided in the wizard in "
+"the new PO."
+msgstr ""
+"Impostare a vero se si vuole mantenere il costo fornito nella procedura "
+"guidata nel nuovo OP."
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form

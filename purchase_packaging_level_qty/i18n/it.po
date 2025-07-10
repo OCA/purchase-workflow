@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-03-05 14:35+0000\n"
+"PO-Revision-Date: 2025-06-06 14:50+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: purchase_packaging_level_qty
 #: model:ir.model,name:purchase_packaging_level_qty.model_res_company
@@ -68,6 +68,11 @@ msgstr "Totale q.tà trasporto"
 #: model:ir.model.fields,field_description:purchase_packaging_level_qty.field_purchase_order__transport_packaging_level_id
 msgid "Transport Packaging Level"
 msgstr "Livello imballaggio trasporto"
+
+#. module: purchase_packaging_level_qty
+#: model:ir.model.fields,field_description:purchase_packaging_level_qty.field_purchase_order__transport_packaging_level_total_qty
+msgid "Transport Packaging Level Total Qty"
+msgstr "Q.tà totale livello imbalaggio trasporto"
 
 #. module: purchase_packaging_level_qty
 #: model:ir.model.fields,field_description:purchase_packaging_level_qty.field_purchase_order_line__transport_qty

@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-24 07:53+0000\n"
-"PO-Revision-Date: 2017-11-24 07:53+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2025-01-16 13:56+0000\n"
+"Last-Translator: samibc2c <sami.bouzidi@camptocamp.com>\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: purchase_fop_shipping
 #: model:ir.model.fields,field_description:purchase_fop_shipping.field_purchase_order__force_order_under_fop
@@ -26,7 +27,7 @@ msgstr "Confirmer sous Franco"
 #. module: purchase_fop_shipping
 #: model:ir.model,name:purchase_fop_shipping.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contact"
 
 #. module: purchase_fop_shipping
 #: model:ir.model.fields,field_description:purchase_fop_shipping.field_purchase_order__fop_reached
@@ -43,7 +44,7 @@ msgstr "Franco"
 #. module: purchase_fop_shipping
 #: model:res.groups,name:purchase_fop_shipping.group_fop_shipping_purchase_manager
 msgid "FOP shipping Manager"
-msgstr ""
+msgstr "Gestionnaire Franco"
 
 #. module: purchase_fop_shipping
 #: model:ir.model.fields,help:purchase_fop_shipping.field_purchase_order__force_order_under_fop
@@ -81,7 +82,7 @@ msgid ""
 msgstr ""
 "Vous ne pouvez pas confirmer une commande dont le montant est en dessous du "
 "Franco. Pour forcer les commande en dessous du franco,vous devez avoir le "
-"group \"Franco Manager\""
+"group \"Franco Manager\"."
 
 #~ msgid "Partner"
 #~ msgstr "Partenaire"

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="purchase_order_form_view" model="ir.ui.view">
+        <field name="name">purchase.order.form.view</field>
+        <field name="model">purchase.order</field>
+        <field
+            name="inherit_id"
+            ref="purchase_stock.purchase_order_view_form_inherit"
+        />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//button[@name='action_product_forecast_report'][2]"
+                position="after"
+            >
+
+                <field
+                    name="pending_order_ids"
+                    widget="many2many_tags"
+                    optional="show"
+                    attrs="{
+                        'invisible': [
+                            '|',
+                            ('id', '=', False),
+                            ('product_type', '!=', 'product')
+                        ]
+                    }"
+                />
+                <button
+                    name="action_open_pending_orders"
+                    type="object"
+                    class="oe_link"
+                    optional="show"
+                    icon="fa-credit-card"
+                    string="Open"
+                    attrs="{'invisible': [('pending_order_ids', '=', False)]}"
+                />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

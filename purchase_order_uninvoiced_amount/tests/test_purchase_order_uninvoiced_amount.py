@@ -4,16 +4,27 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 from odoo import fields
+from odoo.tests import tagged
 from odoo.tests.common import Form, TransactionCase
 
 from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
 
 
+@tagged("-at_install", "post_install")
 class TestPurchaseOrderUninvoiceAmount(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
+        if not cls.env.company.chart_template_id:
+            # Load a CoA if there's none in current company
+            coa = cls.env.ref("l10n_generic_coa.configurable_chart_template", False)
+            if not coa:
+                # Load the first available CoA
+                coa = cls.env["account.chart.template"].search(
+                    [("visible", "=", True)], limit=1
+                )
+            coa.try_loading(company=cls.env.company, install_demo=False)
         # Environmet
         cls.purchase_order_model = cls.env["purchase.order"]
         cls.purchase_order_line_model = cls.env["purchase.order.line"]
@@ -79,8 +90,8 @@ class TestPurchaseOrderUninvoiceAmount(TransactionCase):
         invoice_form = Form(
             self.account_move_model.with_context(
                 default_move_type="in_invoice",
-                default_purchase_id=purchase,
-                default_partner_id=purchase.partner_id,
+                default_purchase_id=purchase.id,
+                default_partner_id=purchase.partner_id.id,
             )
         )
         return invoice_form.save()

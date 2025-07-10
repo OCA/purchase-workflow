@@ -510,3 +510,52 @@ class TestPurchaseAdvancePayment(common.TransactionCase):
         payment_2 = self.purchase_order_1.account_payment_ids - payment_1
         self.assertEqual(len(payment_2), 1)
         self.assertEqual(payment_2.state, "draft")
+
+    def test_07_advance_payment_status_with_bill(self):
+        self.assertEqual(
+            self.purchase_order_1.amount_residual,
+            3600,
+        )
+        self.assertEqual(
+            self.purchase_order_1.amount_residual,
+            self.purchase_order_1.amount_total,
+        )
+        self.assertEqual(self.purchase_order_1.advance_payment_status, "not_paid")
+
+        # Create Bill
+        self.purchase_order_1.button_confirm()
+        self.assertEqual(self.purchase_order_1.invoice_status, "to invoice")
+        self.purchase_order_1.action_create_invoice()
+        self.assertEqual(self.purchase_order_1.invoice_status, "invoiced")
+        self.assertEqual(self.purchase_order_1.amount_residual, 3600)
+        invoice = self.purchase_order_1.invoice_ids
+        invoice.invoice_date = fields.Date.today()
+        invoice.action_post()
+        self.assertEqual(self.purchase_order_1.advance_payment_status, "not_paid")
+
+        # Create Payment 1
+        active_ids = invoice.ids
+        self.env["account.payment.register"].with_context(
+            active_model="account.move", active_ids=active_ids
+        ).create(
+            {
+                "amount": 200.0,
+                "group_payment": True,
+                "payment_difference_handling": "open",
+            }
+        )._create_payments()
+        self.assertEqual(self.purchase_order_1.amount_residual, 3400)
+        self.assertEqual(self.purchase_order_1.advance_payment_status, "partial")
+
+        # Create Payment 2
+        self.env["account.payment.register"].with_context(
+            active_model="account.move", active_ids=active_ids
+        ).create(
+            {
+                "amount": 3400.0,
+                "group_payment": True,
+                "payment_difference_handling": "open",
+            }
+        )._create_payments()
+        self.assertEqual(self.purchase_order_1.amount_residual, 0)
+        self.assertEqual(self.purchase_order_1.advance_payment_status, "paid")
