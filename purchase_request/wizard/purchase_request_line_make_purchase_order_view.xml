@@ -35,6 +35,7 @@
                             <field name="request_id" attrs="{'readonly': True}" />
                             <field name="product_id" />
                             <field name="name" />
+                            <field name="estimated_cost" />
                             <field name="product_qty" />
                             <field
                                 name="product_uom_id"
@@ -42,7 +43,16 @@
                                 groups="!uom.group_uom"
                             />
                             <field name="product_uom_id" groups="uom.group_uom" />
-                            <field name="keep_description" widget="boolean_toggle" />
+                            <field
+                                name="keep_description"
+                                widget="boolean_toggle"
+                                options="{'autosave': False}"
+                            />
+                            <field
+                                name="keep_estimated_cost"
+                                widget="boolean_toggle"
+                                options="{'autosave': False}"
+                            />
                         </tree>
                     </field>
                 </group>

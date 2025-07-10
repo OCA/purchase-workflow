@@ -607,10 +607,7 @@
                                 <field name="qty_done" />
                             </group>
                         </group>
-                        <newline />
-                        <group>
-                            <field name="purchase_lines" nolabel="1" />
-                        </group>
+                        <field name="purchase_lines" nolabel="1" />
                     </page>
                 </notebook>
             </sheet>

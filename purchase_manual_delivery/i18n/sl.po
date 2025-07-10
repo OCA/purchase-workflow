@@ -28,6 +28,11 @@ msgid "Companies"
 msgstr ""
 
 #. module: purchase_manual_delivery
+#: model:ir.model,name:purchase_manual_delivery.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: purchase_manual_delivery
 #: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.purchase_order_view_form_inherit
 msgid "Confirm Order"
 msgstr "Potrdi nalog"
@@ -222,14 +227,14 @@ msgid "Please select one purchase order at a time"
 msgstr "Prosimo, da izberete po en nabavni nalog hkrati"
 
 #. module: purchase_manual_delivery
-#: model:ir.model,name:purchase_manual_delivery.model_res_config_settings
-msgid "Procurement purchase grouping settings"
-msgstr ""
-
-#. module: purchase_manual_delivery
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__product_id
 msgid "Product"
 msgstr "Proizvod"
+
+#. module: purchase_manual_delivery
+#: model:ir.model,name:purchase_manual_delivery.model_product_product
+msgid "Product Variant"
+msgstr ""
 
 #. module: purchase_manual_delivery
 #: model:ir.actions.act_window,name:purchase_manual_delivery.action_order_line_delivery_tree
@@ -308,6 +313,13 @@ msgid "Remaining Quantity"
 msgstr "Preostala količina"
 
 #. module: purchase_manual_delivery
+#. odoo-javascript
+#: code:addons/purchase_manual_delivery/static/src/purchase_manual_delivery_forecasted/forecasted_details.xml:0
+#, python-format
+msgid "Requests without delivery"
+msgstr ""
+
+#. module: purchase_manual_delivery
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard__scheduled_date
 msgid "Scheduled Date"
 msgstr "Načrtovani datum"
@@ -333,6 +345,11 @@ msgstr "Iskanje ne dobavljenih postavk"
 #, python-format
 msgid "Stock Picking"
 msgstr "Prejemnica"
+
+#. module: purchase_manual_delivery
+#: model:ir.model,name:purchase_manual_delivery.model_report_stock_report_product_product_replenishment
+msgid "Stock Replenishment Report"
+msgstr ""
 
 #. module: purchase_manual_delivery
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__taxes_id

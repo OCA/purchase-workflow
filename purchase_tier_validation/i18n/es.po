@@ -27,6 +27,11 @@ msgid "Has Comment"
 msgstr "Tiene Comentario"
 
 #. module: purchase_tier_validation
+#: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__is_reevaluation_required
+msgid "Is Reevaluation Required"
+msgstr ""
+
+#. module: purchase_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_tier_validation.view_purchase_order_filter
 msgid "My Purchases to review"
 msgstr "Mis Compras a revisar"

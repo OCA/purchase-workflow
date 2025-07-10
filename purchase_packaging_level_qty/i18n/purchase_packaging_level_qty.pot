@@ -63,6 +63,11 @@ msgid "Transport Packaging Level"
 msgstr ""
 
 #. module: purchase_packaging_level_qty
+#: model:ir.model.fields,field_description:purchase_packaging_level_qty.field_purchase_order__transport_packaging_level_total_qty
+msgid "Transport Packaging Level Total Qty"
+msgstr ""
+
+#. module: purchase_packaging_level_qty
 #: model:ir.model.fields,field_description:purchase_packaging_level_qty.field_purchase_order_line__transport_qty
 msgid "Transport Qty"
 msgstr ""

@@ -38,7 +38,6 @@ msgstr ""
 #. module: purchase_discount
 #: model:ir.model.fields,field_description:purchase_discount.field_product_supplierinfo__discount
 #: model:ir.model.fields,field_description:purchase_discount.field_purchase_order_line__discount
-#: model:ir.model.fields,field_description:purchase_discount.field_purchase_report__discount
 msgid "Discount (%)"
 msgstr ""
 
@@ -75,11 +74,21 @@ msgid "Supplier Pricelist"
 msgstr ""
 
 #. module: purchase_discount
+#: model:ir.model.constraint,message:purchase_discount.constraint_product_supplierinfo_discount_limit
+msgid "Supplier discount must be lower than 100%."
+msgstr ""
+
+#. module: purchase_discount
 #: model:ir.model.fields,help:purchase_discount.field_res_partner__default_supplierinfo_discount
 #: model:ir.model.fields,help:purchase_discount.field_res_users__default_supplierinfo_discount
 msgid ""
 "This value will be used as the default one, for each new supplierinfo line "
 "depending on that supplier."
+msgstr ""
+
+#. module: purchase_discount
+#: model:ir.model.fields,field_description:purchase_discount.field_purchase_report__discount
+msgid "Total discount"
 msgstr ""
 
 #. module: purchase_discount

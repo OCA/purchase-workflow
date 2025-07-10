@@ -22,6 +22,14 @@ class ProductSupplierInfo(models.Model):
         for record in self:
             record.discount = record.partner_id.default_supplierinfo_discount
 
+    _sql_constraints = [
+        (
+            "discount_limit",
+            "CHECK (discount <= 100.0)",
+            "Supplier discount must be lower than 100%.",
+        )
+    ]
+
     @api.model
     def _get_po_to_supplierinfo_synced_fields(self):
         """Overwrite this method for adding other fields to be synchronized

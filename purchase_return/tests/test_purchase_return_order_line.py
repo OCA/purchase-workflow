@@ -74,7 +74,6 @@ class TestPurchaseReturnOrderLine(AccountTestInvoicingCommon):
                 "order_id": purchase_return_order.id,
                 "refund_only": True,
                 "taxes_id": False,
-                "display_type": "product",
             }
         )
         price_subtotal = po_line.product_qty * self.product_order.list_price

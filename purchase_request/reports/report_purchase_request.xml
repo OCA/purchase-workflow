@@ -13,32 +13,39 @@
                             <span t-field="o.name" />
                         </h2>
                         <div class="row mt32 mb32">
-                            <div class="col-2">
+                            <div class="col-auto col-3">
                                 <strong>Request Reference:</strong>
                                 <br />
                                 <span t-field="o.name" />
                             </div>
-                            <div class="col-2">
+                            <div class="col-auto col-3">
                                 <strong>Creation Date:</strong>
                                 <br />
                                 <span t-field="o.date_start" />
                             </div>
-                            <div class="col-2">
+                            <div class="col-auto col-3">
                                 <strong>Source:</strong>
                                 <br />
                                 <span t-field="o.origin" />
                             </div>
-                            <div class="col-2">
+                            <div class="col-auto col-3">
+                                <strong>Description:</strong>
+                                <br />
+                                <span t-field="o.description" />
+                            </div>
+                        </div>
+                        <div class="row mt32 mb32">
+                            <div class="col-auto col-3">
                                 <strong>Requested by:</strong>
                                 <br />
                                 <span t-field="o.requested_by" />
                             </div>
-                            <div class="col-2">
+                            <div class="col-auto col-3">
                                 <strong>Assigned to:</strong>
                                 <br />
                                 <span t-field="o.assigned_to" />
                             </div>
-                            <div class="col-2">
+                            <div class="col-auto col-3">
                                 <strong>Picking Type:</strong>
                                 <br />
                                 <span t-field="o.picking_type_id" />
@@ -86,7 +93,7 @@
                                         </td>
                                         <td groups="analytic.group_analytic_accounting">
                                             <span
-                                                t-field="line_id.analytic_distribution"
+                                                t-esc="line_id._get_analytic_distribution()"
                                             />
                                         </td>
                                         <td class="text-right">

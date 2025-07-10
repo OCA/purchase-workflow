@@ -22,7 +22,6 @@ class PurchaseRequest(models.Model):
     )
     request_type = fields.Many2one(
         comodel_name="purchase.request.type",
-        string="PR Type",
         ondelete="restrict",
         domain="[('company_id', 'in', [False, company_id])]",
         default=lambda self: self._default_request_type(),
@@ -42,6 +41,12 @@ class PurchaseRequest(models.Model):
         for request in self:
             if request.request_type.picking_type_id:
                 request.picking_type_id = request.request_type.picking_type_id.id
+
+    @api.model
+    def _get_default_name(self):
+        if self and self.request_type.sequence_id:
+            return self.request_type.sequence_id.next_by_id()
+        return super()._get_default_name()
 
     @api.model_create_multi
     def create(self, vals_list):

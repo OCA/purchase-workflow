@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2018-2019 ForgeFlow, S.L.
      License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
-<odoo>
+<odoo noupdate="1">
     <!-- Request-related subtypes for messaging / Chatter -->
     <record id="mt_request_to_approve" model="mail.message.subtype">
         <field name="name">Purchase Request to be approved</field>
@@ -26,5 +26,19 @@
         <field name="res_model">purchase.request</field>
         <field name="default" eval="True" />
         <field name="description">Purchase Request is done</field>
+    </record>
+    <record id="mt_request_po_confirmed" model="mail.message.subtype">
+        <field name="name">Purchase Order confirmation</field>
+        <field name="res_model">purchase.request</field>
+        <field name="default" eval="True" />
+        <field name="internal" eval="True" />
+        <field name="description">Purchase Order is confirmed</field>
+    </record>
+    <record id="mt_request_picking_done" model="mail.message.subtype">
+        <field name="name">Purchase receipt confirmation</field>
+        <field name="res_model">purchase.request</field>
+        <field name="default" eval="True" />
+        <field name="internal" eval="True" />
+        <field name="description">Receipt is done</field>
     </record>
 </odoo>

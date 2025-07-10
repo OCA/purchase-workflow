@@ -734,7 +734,6 @@ msgstr ""
 #: model:ir.model,name:purchase_return.model_product_template
 #: model:ir.model.fields,field_description:purchase_return.field_purchase_return_order__product_id
 #: model:ir.model.fields,field_description:purchase_return.field_purchase_return_order_line__product_id
-#: model:ir.model.fields.selection,name:purchase_return.selection__purchase_return_order_line__display_type__product
 #: model_terms:ir.ui.view,arch_db:purchase_return.purchase_return_order_line_search
 msgid "Product"
 msgstr ""
