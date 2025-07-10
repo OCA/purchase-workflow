@@ -67,3 +67,11 @@ class StockMove(models.Model):
                 if not new_picking.partner_id and picking.partner_id:
                     new_picking.partner_id = picking.partner_id
             reserved_moves._action_assign()
+
+    def _get_new_picking_values(self):
+        vals = super()._get_new_picking_values()
+        if self._context.get("purchase_delivery_split_date") and not vals.get(
+            "partner_id"
+        ):
+            vals["partner_id"] = fields.first(self.purchase_line_id.partner_id).id
+        return vals
