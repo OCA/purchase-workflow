@@ -20,7 +20,6 @@ class PurchaseOrderLine(models.Model):
         store=True,
     )
     force_received = fields.Boolean(
-        string="Force closed by Buyer",
         readonly=False,
         states={"draft": [("readonly", True)]},
         store=True,
@@ -29,10 +28,6 @@ class PurchaseOrderLine(models.Model):
         "even if some quantities are not fully received. ",
         tracking=True,
     )
-
-    def action_commute_force_received(self):
-        for rec in self:
-            rec.force_received = not rec.force_received
 
     @api.depends(
         "state",
