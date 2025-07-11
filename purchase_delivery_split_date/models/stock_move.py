@@ -63,7 +63,12 @@ class StockMove(models.Model):
             else:
                 picking.state = "cancel"
             moves.with_context(purchase_delivery_split_date=True)._assign_picking()
-            for new_picking in moves.picking_id:
-                if not new_picking.partner_id and picking.partner_id:
-                    new_picking.partner_id = picking.partner_id
             reserved_moves._action_assign()
+
+    def _get_new_picking_values(self):
+        vals = super()._get_new_picking_values()
+        if self.env.context.get("purchase_delivery_split_date") and not vals.get(
+            "partner_id"
+        ):
+            vals["partner_id"] = fields.first(self.purchase_line_id.partner_id).id
+        return vals
