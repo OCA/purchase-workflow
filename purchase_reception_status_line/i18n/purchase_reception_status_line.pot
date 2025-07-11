@@ -59,18 +59,9 @@ msgid "Font awesome icon e.g. fa-tasks"
 msgstr ""
 
 #. module: purchase_reception_status_line
-#: model_terms:ir.ui.view,arch_db:purchase_reception_status_line.purchase_order_line_tree
-msgid "Force Receive"
-msgstr ""
-
-#. module: purchase_reception_status_line
 #: model:ir.model.fields,field_description:purchase_reception_status_line.field_purchase_order__force_received
-msgid "Force Received"
-msgstr ""
-
-#. module: purchase_reception_status_line
 #: model:ir.model.fields,field_description:purchase_reception_status_line.field_purchase_order_line__force_received
-msgid "Force closed by Buyer"
+msgid "Force Received"
 msgstr ""
 
 #. module: purchase_reception_status_line
