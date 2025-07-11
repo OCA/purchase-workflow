@@ -13,14 +13,9 @@
                     name="force_received"
                     groups="purchase.group_purchase_manager"
                     optional="hide"
+                    widget="boolean_toggle"
                 />
                 <field name="state" invisible="1" />
-                <button
-                    name="action_commute_force_received"
-                    type="object"
-                    string="Force Receive"
-                    attrs="{'invisible': ['|','|',('state', 'not in', ['purchase', 'done']),('force_received', '=', True),('reception_status','=','received')]}"
-                />
             </field>
         </field>
     </record>
