@@ -10,13 +10,14 @@ class PurchaseOrderLine(models.Model):
 
     invoice_status = fields.Selection(
         selection=[
-            ("no", "Nothing to Invoice"),
-            ("to invoice", "To Invoice"),
-            ("invoiced", "Fully Invoiced"),
+            ("no", "Nothing to Bill"),
+            ("to invoice", "Waiting Bills"),
+            ("invoiced", "Fully Billed"),
         ],
         compute="_compute_invoice_status",
         store=True,
         related=False,
+        string="Billing Status",
     )
 
     force_invoiced = fields.Boolean(

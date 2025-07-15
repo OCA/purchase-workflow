@@ -14,6 +14,7 @@
         "purchase_force_invoiced",
         "purchase_order_line_menu",
     ],
+    "post_init_hook": "post_init_hook",
     "data": [
         "views/purchase_order_line_views.xml",
     ],
