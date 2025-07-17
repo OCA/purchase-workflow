@@ -1,3 +1,5 @@
 - [Tecnativa](https://www.tecnativa.com):
   - Víctor Martínez
   - Pedro M. Baeza
+- [Komit](https://komit-consulting.com):
+  - Cai Hoang Huynh

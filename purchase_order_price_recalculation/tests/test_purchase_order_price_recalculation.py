@@ -39,6 +39,14 @@ class TestPurchaseOrderPriceRecalculation(BaseCommon):
         order_form.partner_id = self.partner_b
         # Update partner
         self.order.partner_id = self.partner_b
-        self.assertEqual(product_line.price_unit, 10)
-        self.order.update_lines_info()
         self.assertEqual(product_line.price_unit, 20)
+
+    def test_sale_order_update_lines_after_vendor_price_change(self):
+        product_line = self.order.order_line
+        self.assertEqual(product_line.price_unit, 10)
+        # Change vendor price
+        self.product.seller_ids.filtered(
+            lambda s: s.partner_id == self.partner_a
+        ).write({"price": 15})
+        self.order.update_lines_info()
+        self.assertEqual(product_line.price_unit, 15)
