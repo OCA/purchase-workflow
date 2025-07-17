@@ -17,24 +17,25 @@ Price recalculation in purchases orders
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/purchase-workflow/tree/16.0/purchase_order_price_recalculation
+    :target: https://github.com/OCA/purchase-workflow/tree/18.0/purchase_order_price_recalculation
     :alt: OCA/purchase-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/purchase-workflow-16-0/purchase-workflow-16-0-purchase_order_price_recalculation
+    :target: https://translation.odoo-community.org/projects/purchase-workflow-18-0/purchase-workflow-18-0-purchase_order_price_recalculation
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module adds one button on purchase orders (below the lines) that:
 
-* Recalculates the prices of the order lines that contain a product in them.
+- Recalculates the prices of the order lines that contain a product in
+  them.
 
-It is launched manually as a button to get the user to decide if he/she wants to
-recalculate prices when vendor is changed or after duplicating a purchase order
-to update or not purchase information.
+It is launched manually as a button to get the user to decide if he/she
+wants to recalculate prices when vendor is changed or after duplicating
+a purchase order to update or not purchase information.
 
 **Table of contents**
 
@@ -44,13 +45,16 @@ to update or not purchase information.
 Usage
 =====
 
-#. Go to *Purchase -> Products > Products* and create some record and set differente prices to vendors in Purchase tab, for example: Vendor 1: 10 and Vendor 2: 20.
-#. Go to *Purchase -> Orders > Requests for Quotation* and create some record and set Vendor 1.
-#. Add a line with the previously created product.
-#. The unit price of the product is 10.
-#. Change vendor to Vendor 2.
-#. Click on the "Update lines info" button.
-#. The unit price of the product is 20.
+1. Go to *Purchase -> Products > Products* and create some record and
+   set differente prices to vendors in Purchase tab, for example: Vendor
+   1: 10 and Vendor 2: 20.
+2. Go to *Purchase -> Orders > Requests for Quotation* and create some
+   record and set Vendor 1.
+3. Add a line with the previously created product.
+4. The unit price of the product is 10.
+5. Change vendor to Vendor 2.
+6. Click on the "Update lines info" button.
+7. The unit price of the product is 20.
 
 Bug Tracker
 ===========
@@ -58,7 +62,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/purchase-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_order_price_recalculation%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_order_price_recalculation%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -66,20 +70,20 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Tecnativa
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Tecnativa <https://www.tecnativa.com>`_:
+- `Tecnativa <https://www.tecnativa.com>`__:
 
-  * Víctor Martínez
-  * Pedro M. Baeza
+  - Víctor Martínez
+  - Pedro M. Baeza
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -99,6 +103,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-victoralmau| 
 
-This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/16.0/purchase_order_price_recalculation>`_ project on GitHub.
+This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/18.0/purchase_order_price_recalculation>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
