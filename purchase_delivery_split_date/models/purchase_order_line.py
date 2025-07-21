@@ -55,7 +55,6 @@ class PurchaseOrderLine(models.Model):
             order_lines,
             lambda line: line._purchase_split_date_get_group_keys(picking),
         )
-
         for key, lines in date_groups:
             po_lines = self.browse().concat(*lines)
             if (
