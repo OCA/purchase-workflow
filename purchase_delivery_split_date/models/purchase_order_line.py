@@ -63,7 +63,6 @@ class PurchaseOrderLine(models.Model):
             po_lines = self.env["purchase.order.line"]
             for line in list(lines):
                 po_lines += line
-            picking._update_picking_from_group_key(key)
             moves += super(PurchaseOrderLine, po_lines)._create_stock_moves(
                 first_picking
             )
