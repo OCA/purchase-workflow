@@ -5,13 +5,10 @@
         inherit_id="purchase.report_purchaseorder_document"
         priority="100"
     >
-        <xpath
-            expr="//h2[@t-if=&quot;o.state in ['draft', 'sent', 'to approve']&quot;]"
-            position="replace"
-        >
-            <h2 t-if="o.state in ['draft', 'sent', 'to approve']">Purchase Order #<span
+        <xpath expr="//t[@t-set='layout_document_title']" position="replace">
+            <t t-if="o.state in ['draft', 'sent', 'to approve']">Purchase Order #<span
                 t-field="o.name"
-            /></h2>
+            /></t>
         </xpath>
     </template>
 </odoo>

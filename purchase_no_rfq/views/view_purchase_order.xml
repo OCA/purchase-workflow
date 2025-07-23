@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <record id="view_purchase_order_tree" model="ir.ui.view">
+    <record id="view_purchase_order_list" model="ir.ui.view">
         <field name="model">purchase.order</field>
         <field name="inherit_id" ref="purchase.purchase_order_view_tree" />
         <field name="arch" type="xml">
-            <!-- Add missing decoration-info on that tree view-->
-            <xpath expr="//tree" position="attributes">
+            <!-- Add missing decoration-info on that list view-->
+            <xpath expr="//list" position="attributes">
                 <attribute name="decoration-info">state in ('draft','sent')</attribute>
             </xpath>
             <field name="state" position="attributes">
-                <attribute name="invisible">0</attribute>
+                <attribute name="column_invisible">0</attribute>
                 <attribute name="optional">show</attribute>
                 <attribute name="widget">badge</attribute>
                 <attribute
@@ -22,9 +22,7 @@
             </field>
             <field name="date_order" position="attributes">
                 <attribute name="widget">remaining_days</attribute>
-                <attribute
-                    name="invisible"
-                >state in ('purchase', 'done', 'cancel')</attribute>
+                <attribute name="column_invisible">0</attribute>
             </field>
         </field>
     </record>
@@ -54,20 +52,17 @@
             </xpath>
             <!-- Rename print button from  'Print RFQ' into 'Print' -->
             <xpath
-                expr="/form/header/button[@name='print_quotation']"
+                expr="/form/header/button[@name='print_quotation'][1]"
                 position="attributes"
             >
                 <attribute name="string">Print</attribute>
             </xpath>
-
-            <!-- Add a print button, displayed in non draft and sent states -->
-            <xpath expr="/form/header/button[@name='print_quotation']" position="after">
-                <button
-                    name="print_quotation"
-                    string="Print"
-                    type="object"
-                    groups="base.group_user"
-                />
+            <xpath
+                expr="/form/header/button[@name='print_quotation'][last()]"
+                position="attributes"
+            >
+                <attribute name="string">Print</attribute>
+                <attribute name="invisible">state=='draft'</attribute>
             </xpath>
         </field>
     </record>
