@@ -112,7 +112,7 @@ class PurchaseOrder(models.Model):
                 )
                 request.message_post(
                     body=message,
-                    subtype_id=self.env.ref("mail.mt_note").id,
+                    subtype_id=self.env.ref("mail.mt_comment").id,
                 )
         return True
 
@@ -233,7 +233,7 @@ class PurchaseOrderLine(models.Model):
                 )
                 alloc.purchase_request_line_id.request_id.message_post(
                     body=message,
-                    subtype_id=self.env.ref("mail.mt_note").id,
+                    subtype_id=self.env.ref("mail.mt_comment").id,
                 )
 
                 alloc.purchase_request_line_id._compute_qty()
