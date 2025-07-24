@@ -3,35 +3,6 @@
 from odoo import fields, models
 
 
-class PurchaseRequisition(models.Model):
-    _inherit = "purchase.requisition"
-
-    def _prepare_tender_values(
-        self,
-        product_id,
-        product_qty,
-        product_uom,
-        location_id,
-        name,
-        origin,
-        company_id,
-        values,
-    ):
-        res = super()._prepare_tender_values(
-            product_id,
-            product_qty,
-            product_uom,
-            location_id,
-            name,
-            origin,
-            company_id,
-            values,
-        )
-        if "sale_line_id" in values:
-            res["line_ids"][0][2]["sale_line_id"] = values["sale_line_id"]
-        return res
-
-
 class PurchaseRequisitionLine(models.Model):
     _inherit = "purchase.requisition.line"
 

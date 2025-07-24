@@ -2,20 +2,16 @@
 
 {
     "name": "Purchase Requisition Stock Dropshipping",
-    "version": "1.0",
-    "category": "Hidden",
+    "version": "17.0.1.0.0",
+    "author": "Odoo Community Association (OCA), Odoo SA",
+    "category": "Purchases",
     "summary": "Purchase Requisition, Stock, Dropshipping",
-    "description": """
-This module makes the link between the purchase requisition and dropshipping applications.
-
-Set shipping address on purchase orders created from purchase agreements
-and link with originating sale order.
-""",
-    "depends": ["purchase_requisition_stock", "stock_dropshipping"],
+    "website": "https://github.com/OCA/purchase-workflow",
+    "depends": ["stock_dropshipping", "procurement_purchase_requisition_generation"],
     "data": [
         "views/purchase_views.xml",
     ],
     "installable": True,
-    "auto_install": True,
     "license": "LGPL-3",
+    "maintainers": ["carlos-lopez-tecnativa"],
 }

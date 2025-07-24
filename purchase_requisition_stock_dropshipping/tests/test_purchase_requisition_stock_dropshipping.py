@@ -1,17 +1,21 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 from odoo.fields import Command
-from odoo.tests import common
 from odoo.tests.common import Form
 
+from odoo.addons.base.tests.common import BaseCommon
 
-class TestPurchaseRequisitionStockDropshipping(common.TransactionCase):
+
+class TestPurchaseRequisitionStockDropshipping(BaseCommon):
     def test_purchase_requisition_stock_dropshipping(self):
         # create 'dropship - call for tender' product
         product = self.env["product.product"].create({"name": "prsds-product"})
         dropshipping_route = self.env.ref("stock_dropshipping.route_drop_shipping")
         product.write({"route_ids": [Command.set([dropshipping_route.id])]})
         product.write({"purchase_requisition": "tenders"})
+        requisition_type = self.env["purchase.requisition.type"].create(
+            {"name": "Call for Tender", "quantity_copy": "copy"}
+        )
 
         # sell this product
         customer = self.env["res.partner"].create({"name": "prsds-customer"})
@@ -42,18 +46,19 @@ class TestPurchaseRequisitionStockDropshipping(common.TransactionCase):
             [("origin", "=", sale_order.name)]
         )
         self.assertTrue(call_for_tender)
+        call_for_tender.type_id = requisition_type
 
         # confirm call for tender
         call_for_tender.action_in_progress()
 
         # create purchase order from call for tender
         vendor = self.env["res.partner"].create({"name": "prsds-vendor"})
+        call_for_tender.vendor_id = vendor
         f = Form(
             self.env["purchase.order"].with_context(
                 default_requisition_id=call_for_tender
             )
         )
-        f.partner_id = vendor
         purchase_order = f.save()
 
         # check purchase order
@@ -80,4 +85,15 @@ class TestPurchaseRequisitionStockDropshipping(common.TransactionCase):
             purchase_order_line.sale_line_id.id,
             sale_order.order_line.id,
             "Purchase order line should be linked with sale order line",
+        )
+        purchase_order.button_confirm()
+        self.assertEqual(
+            len(purchase_order.picking_ids),
+            1,
+            "Purchase order picking should be created",
+        )
+        self.assertEqual(
+            purchase_order.picking_ids,
+            sale_order.picking_ids,
+            "Purchase order picking should be linked with sale order picking",
         )
