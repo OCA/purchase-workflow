@@ -1,4 +1,4 @@
-1.  Create a new PO and assign an delivery dates to its lines.
+1.  Create a new PO and assign an expected arrival to its lines.
 2.  Confirm the PO.
-3.  Change the delivery date of some lines.
-4.  Original delivery date is kept unchanged.
+3.  Change the expected arrival of some lines.
+4.  Original expected arrival is kept unchanged.

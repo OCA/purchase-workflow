@@ -11,7 +11,7 @@
                 <field name="original_date_planned" />
             </xpath>
             <xpath
-                expr="//field[@name='order_line']//tree//field[@name='date_planned']"
+                expr="//field[@name='order_line']//list//field[@name='date_planned']"
                 position="after"
             >
                 <field name="original_date_planned" optional="hide" />

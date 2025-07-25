@@ -28,15 +28,15 @@ Purchase Order Line Original Date
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module adds the *Original Delivery Date* to Purchase Order lines.
-This is useful for past analysis and vendor performance reports.
+This module adds the *Original Expected Arrival* to Purchase Order
+lines. This is useful for past analysis and vendor performance reports.
 
-In standard Odoo, once a PO is confirmed with delivery dates on its
+In standard Odoo, once a PO is confirmed with expected arrivals on its
 lines, this dates can still change to reflect changes in the planning
 (e.g. you receive a notification from your supplier that goods will
 arrive a couple of days later). In such situation you lost precious
-information of the original delivery dates that can be used to compute
-the real delay in the receipt from your supplier.
+information of the original expected arrivals that can be used to
+compute the real delay in the receipt from your supplier.
 
 **Table of contents**
 
@@ -46,10 +46,10 @@ the real delay in the receipt from your supplier.
 Usage
 =====
 
-1. Create a new PO and assign an delivery dates to its lines.
+1. Create a new PO and assign an expected arrival to its lines.
 2. Confirm the PO.
-3. Change the delivery date of some lines.
-4. Original delivery date is kept unchanged.
+3. Change the expected arrival of some lines.
+4. Original expected arrival is kept unchanged.
 
 Bug Tracker
 ===========

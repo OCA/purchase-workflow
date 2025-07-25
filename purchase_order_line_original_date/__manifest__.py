@@ -3,8 +3,8 @@
 
 {
     "name": "Purchase Order Line Original Date",
-    "summary": "adds the Original Delivery Date to PO lines.",
-    "version": "15.0.1.0.0",
+    "summary": "adds the Original Expected Arrival to PO lines.",
+    "version": "18.0.1.0.0",
     "category": "Purchase Management",
     "maintainers": ["LoisRForgeFlow"],
     "website": "https://github.com/OCA/purchase-workflow",
