@@ -768,3 +768,72 @@ class TestPurchaseAdvancePayment(common.TransactionCase):
         )._create_payments()
         self.assertEqual(self.purchase_order_1.amount_residual, 0)
         self.assertEqual(self.purchase_order_1.advance_payment_status, "paid")
+
+    def test_11_advance_payments_without_account_moves(self):
+        self.env["ir.config_parameter"].sudo().set_param(
+            "purchase_advance_payment.auto_post_advance_payments", False
+        )
+        self.purchase_order_2.button_confirm()
+        self.assertEqual(
+            self.purchase_order_2.amount_residual,
+            1200,
+        )
+
+        context_payment = {
+            "active_ids": [self.purchase_order_2.id],
+            "active_id": self.purchase_order_2.id,
+        }
+
+        advance_payment_1 = (
+            self.env["account.voucher.wizard.purchase"]
+            .with_context(**context_payment)
+            .create(
+                {
+                    "amount_advance": 300,
+                    "order_id": self.purchase_order_2.id,
+                }
+            )
+        )
+        advance_payment_1.make_advance_payment()
+
+        self.assertEqual(self.purchase_order_2.amount_residual, 900)
+
+        advance_payment_2 = (
+            self.env["account.voucher.wizard.purchase"]
+            .with_context(**context_payment)
+            .create(
+                {
+                    "amount_advance": 200,
+                    "order_id": self.purchase_order_2.id,
+                }
+            )
+        )
+        advance_payment_2.make_advance_payment()
+
+        self.assertEqual(self.purchase_order_2.amount_residual, 700)
+
+        advance_payment_3 = (
+            self.env["account.voucher.wizard.purchase"]
+            .with_context(**context_payment)
+            .create(
+                {
+                    "amount_advance": 250,
+                    "order_id": self.purchase_order_2.id,
+                }
+            )
+        )
+        advance_payment_3.make_advance_payment()
+        self.assertEqual(self.purchase_order_2.amount_residual, 450)
+
+        advance_payment_4 = (
+            self.env["account.voucher.wizard.purchase"]
+            .with_context(**context_payment)
+            .create(
+                {
+                    "amount_advance": 450,
+                    "order_id": self.purchase_order_2.id,
+                }
+            )
+        )
+        advance_payment_4.make_advance_payment()
+        self.assertEqual(self.purchase_order_2.amount_residual, 0)

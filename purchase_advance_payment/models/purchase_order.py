@@ -79,6 +79,26 @@ class PurchaseOrder(models.Model):
                     )
                 else:
                     advance_amount += line_amount
+            # Compute amount by payments without an account.move related.
+            # Also exclude reconciled pre-payments amount because once reconciled
+            # the pre-payment will reduce bill residual amount like any
+            # other payment.
+            adv_pays = order.account_payment_ids.filtered(
+                lambda x: x.state in ["in_process", "paid"]
+                and not x.is_reconciled
+                and not x.move_id
+            )
+            for line in adv_pays:
+                line_currency = line.currency_id or line.company_currency_id
+                if line_currency != order.currency_id:
+                    advance_amount += line.currency_id._convert(
+                        line.amount,
+                        order.currency_id,
+                        order.company_id,
+                        line.date or fields.Date.today(),
+                    )
+                else:
+                    advance_amount += line.amount
             # Consider payments in related invoices.
             invoice_paid_amount = 0.0
             for inv in order.invoice_ids:
