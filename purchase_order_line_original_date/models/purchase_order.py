@@ -8,12 +8,12 @@ class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
     original_date_planned = fields.Datetime(
-        string="Original Receipt Date",
+        string="Original Expected Arrival",
         compute="_compute_original_date_planned",
         store=True,
         readonly=True,
         tracking=True,
-        help="Original Delivery date promised by vendor at PO confirmation.",
+        help="Original Expected Arrival promised by vendor at PO confirmation.",
     )
 
     @api.depends("order_line.original_date_planned")

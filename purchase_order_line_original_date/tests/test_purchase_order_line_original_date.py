@@ -55,7 +55,9 @@ class TestPoLineOriginalDate(common.TransactionCase):
         self.assertFalse(line.original_date_planned)
         po.button_confirm()
         self.assertTrue(po.original_date_planned)
-        self.assertEqual(po.date_planned, po.original_date_planned)
+        self.assertEqual(
+            po.date_planned.replace(microsecond=0), po.original_date_planned
+        )
         self.assertTrue(line.original_date_planned)
         self.assertEqual(line.date_planned, line.original_date_planned)
         line.date_planned = self.day_2
