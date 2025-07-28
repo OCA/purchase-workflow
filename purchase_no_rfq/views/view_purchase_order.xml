@@ -9,7 +9,7 @@
                 <attribute name="decoration-info">state in ('draft','sent')</attribute>
             </xpath>
             <field name="state" position="attributes">
-                <attribute name="invisible">0</attribute>
+                <attribute name="column_invisible">0</attribute>
                 <attribute name="optional">show</attribute>
                 <attribute name="widget">badge</attribute>
                 <attribute
@@ -22,9 +22,7 @@
             </field>
             <field name="date_order" position="attributes">
                 <attribute name="widget">remaining_days</attribute>
-                <attribute
-                    name="invisible"
-                >state in ('purchase', 'done', 'cancel')</attribute>
+                <attribute name="column_invisible">0</attribute>
             </field>
         </field>
     </record>
@@ -59,15 +57,12 @@
             >
                 <attribute name="string">Print</attribute>
             </xpath>
-
-            <!-- Add a print button, displayed in non draft and sent states -->
-            <xpath expr="/form/header/button[@name='print_quotation']" position="after">
-                <button
-                    name="print_quotation"
-                    string="Print"
-                    type="object"
-                    groups="base.group_user"
-                />
+            <xpath
+                expr="/form/header/button[@name='print_quotation'][last()]"
+                position="attributes"
+            >
+                <attribute name="string">Print</attribute>
+                <attribute name="invisible">state=='draft'</attribute>
             </xpath>
         </field>
     </record>
