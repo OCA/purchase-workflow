@@ -46,34 +46,34 @@ class TestReceptionStatus(TransactionCase):
 
     def test_status_nothing_received(self):
         """
-        Test that the reception_status is 'no' when no product quantity has been
+        Test that the receipt_status is 'pending' when no product quantity has been
         received.
         """
         self._update_qty_received(0)
-        self.assertEqual(self.po.reception_status, "no")
+        self.assertEqual(self.po.receipt_status, "pending")
 
     def test_status_partial_received(self):
         """
-        Test that the reception_status is 'partial' when only part of the ordered
+        Test that the receipt_status is 'partial' when only part of the ordered
         quantity is received.
         """
         self._update_qty_received(2)
-        self.assertEqual(self.po.reception_status, "partial")
+        self.assertEqual(self.po.receipt_status, "partial")
 
     def test_status_fully_received(self):
         """
-        Test that the reception_status is 'received' when the full ordered quantity
+        Test that the receipt_status is 'full' when the full ordered quantity
         is received.
         """
         self._update_qty_received(5)
-        self.assertEqual(self.po.reception_status, "received")
+        self.assertEqual(self.po.receipt_status, "full")
 
     def test_force_received(self):
         """
-        Test that the reception_status becomes 'received' when 'force_received' is set
+        Test that the receipt_status becomes 'full' when 'force_received' is set
         to True even if no quantity was received.
         """
         self._update_qty_received(0)
         self.po.button_done()
         self.po.write({"force_received": True})
-        self.assertEqual(self.po.reception_status, "received")
+        self.assertEqual(self.po.receipt_status, "full")

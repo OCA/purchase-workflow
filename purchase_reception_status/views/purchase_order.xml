@@ -12,10 +12,6 @@
         <field name="arch" type="xml">
             <field name="invoice_status" position="before">
                 <field
-                    name="reception_status"
-                    invisible="state not in ['purchase', 'done']"
-                />
-                <field
                     name="force_received"
                     groups="purchase.group_purchase_manager"
                     invisible="state not in ['purchase', 'done']"
@@ -27,29 +23,16 @@
     <record id="purchase_order_tree" model="ir.ui.view">
         <field name="name">received_status.purchase.order.tree</field>
         <field name="model">purchase.order</field>
-        <field name="inherit_id" ref="purchase.purchase_order_tree" />
+        <field name="inherit_id" ref="purchase.purchase_order_kpis_tree" />
         <field name="arch" type="xml">
             <field name="invoice_status" position="before">
+                <field name="effective_date" column_invisible="True" />
                 <field
-                    name="reception_status"
+                    name="receipt_status"
                     widget="badge"
-                    decoration-info="reception_status == 'partial'"
-                    decoration-success="reception_status == 'received'"
-                />
-            </field>
-        </field>
-    </record>
-    <record id="purchase_order_view_tree" model="ir.ui.view">
-        <field name="name">received_status.purchase.order.tree</field>
-        <field name="model">purchase.order</field>
-        <field name="inherit_id" ref="purchase.purchase_order_view_tree" />
-        <field name="arch" type="xml">
-            <field name="invoice_status" position="before">
-                <field
-                    name="reception_status"
-                    widget="badge"
-                    decoration-info="reception_status == 'partial'"
-                    decoration-success="reception_status == 'received'"
+                    decoration-success="date_planned and (date_planned &gt; datetime.datetime.combine(datetime.date.today(), datetime.time(23,59,59)).to_utc().strftime('%Y-%m-%d %H:%M:%S') or receipt_status=='full' and effective_date &lt;= date_planned)"
+                    decoration-danger="date_planned and (date_planned &lt; effective_date or date_planned &lt; datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)).to_utc().strftime('%Y-%m-%d %H:%M:%S') and receipt_status!='full' and effective_date &lt;= date_planned)"
+                    decoration-warning="date_planned and date_planned &gt;= datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)).to_utc().strftime('%Y-%m-%d %H:%M:%S') and date_planned &lt;= datetime.datetime.combine(datetime.date.today(), datetime.time(23,59,59)).to_utc().strftime('%Y-%m-%d %H:%M:%S') and receipt_status!='full'"
                 />
             </field>
         </field>
@@ -63,20 +46,20 @@
                 <filter
                     name="not_fully_received"
                     string="Not Fully Received"
-                    domain="[('reception_status', 'in', ('no', 'partial'))]"
+                    domain="[('receipt_status', 'in', ('pending', 'partial'))]"
                 />
                 <filter
                     name="fully_received"
                     string="Fully Received"
-                    domain="[('reception_status', '=', 'received')]"
+                    domain="[('receipt_status', '=', 'full')]"
                 />
                 <separator />
             </filter>
             <group expand="0" position="inside">
                 <filter
                     string="Reception Status"
-                    name="reception_status_groupby"
-                    context="{'group_by': 'reception_status'}"
+                    name="receipt_status_groupby"
+                    context="{'group_by': 'receipt_status'}"
                 />
             </group>
         </field>
