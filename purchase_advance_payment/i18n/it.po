@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-12-06 20:06+0000\n"
+"PO-Revision-Date: 2025-07-30 12:44+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: purchase_advance_payment
 #: model:ir.model,name:purchase_advance_payment.model_account_voucher_wizard_purchase
@@ -91,7 +91,7 @@ msgstr "Riconcilia automaticamente i pagamenti alla conferma della fattura."
 #. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__available_payment_method_line_ids
 msgid "Available Payment Method Line"
-msgstr "Riga metodo pagamento disponibile"
+msgstr "Riga metodo di pagamento disponibile"
 
 #. module: purchase_advance_payment
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_voucher_wizard
