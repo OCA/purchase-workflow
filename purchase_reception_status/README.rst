@@ -28,10 +28,10 @@ Purchase Reception Status
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module adds a field *Receiption Status* on purchase orders. On a
+This module adds a field *Receipt Status* on purchase orders. On a
 confirmed purchase order, it can have 3 different values:
 
-- Nothing Received
+- Not Received
 - Partially Received
 - Fully Received
 
