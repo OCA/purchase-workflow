@@ -62,6 +62,7 @@ addon | version | maintainers | summary
 [purchase_receipt_expectation](purchase_receipt_expectation/) | 18.0.1.0.0 |  | Purchase Receipt Expectation
 [purchase_reception_notify](purchase_reception_notify/) | 18.0.1.0.1 |  | Purchase Reception Notify
 [purchase_request](purchase_request/) | 18.0.2.3.0 |  | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
+[purchase_request_cancel_confirm](purchase_request_cancel_confirm/) | 18.0.1.0.0 | <a href='https://github.com/kittiu'><img src='https://github.com/kittiu.png' width='32' height='32' style='border-radius:50%;' alt='kittiu'/></a> | Purchase Request Cancel Confirm
 [purchase_request_department](purchase_request_department/) | 18.0.1.0.0 |  | Purchase Request Department
 [purchase_request_exception](purchase_request_exception/) | 18.0.1.0.0 |  | Custom exceptions on purchase request
 [purchase_request_substate](purchase_request_substate/) | 18.0.1.0.0 |  | Purchase Request Sub State
