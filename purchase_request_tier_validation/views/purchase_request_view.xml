@@ -45,7 +45,7 @@
                     <filter
                         name="tier_validated"
                         string="Validated"
-                        domain="[('validated', '=', True)]"
+                        domain="[('validation_status', '=', 'validated')]"
                         help="Purchase Requests validated and ready to be confirmed"
                     />
                 </group>
