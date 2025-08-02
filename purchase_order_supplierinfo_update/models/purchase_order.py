@@ -59,7 +59,7 @@ class PurchaseOrderLine(models.Model):
             new_seller_price = self.currency_id._convert(
                 new_seller_price,
                 seller.currency_id,
-                seller.company_id,
+                seller.company_id or self.company_id,
                 self.date_order or fields.Date.today(),
             )
         # convert according to the UoM if necessary
