@@ -6,5 +6,5 @@ class ResConfigSettings(models.TransientModel):
 
     purchase_partner_disable_autofollow = fields.Boolean(
         config_parameter="purchase_order_partner_no_autofollow.partner_disable_autofollow",
-        string="Customer disable autofollow",
+        string="Vendor disabled autofollow",
     )

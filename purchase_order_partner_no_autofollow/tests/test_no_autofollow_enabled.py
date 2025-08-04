@@ -28,7 +28,7 @@ class TestPurchaseOrderNoAutofollow(NoAutofollowCommon):
         )
 
     def test_message_subscribe_1(self):
-        """'Customer no autofollow' mode is disabled in settings.
+        """'Vendor no autofollow' mode is disabled in settings.
         Test whether the user will be added to the autofollow
         """
         self.purchase_order_1.with_context(
@@ -41,7 +41,7 @@ class TestPurchaseOrderNoAutofollow(NoAutofollowCommon):
         )
 
     def test_message_subscribe_2(self):
-        """'Customer no autofollow' mode is disabled in settings.
+        """'Vendor no autofollow' mode is disabled in settings.
         Test whether the user will be added to the autofollow
         """
         self.purchase_order_1.with_context(
@@ -54,7 +54,7 @@ class TestPurchaseOrderNoAutofollow(NoAutofollowCommon):
         )
 
     def test_message_subscribe_3(self):
-        """'Customer no autofollow' mode is disabled in settings.
+        """'Vendor no autofollow' mode is disabled in settings.
         Test whether the user will be added to the autofollow
         """
         self.purchase_order_1.with_context(
@@ -68,7 +68,7 @@ class TestPurchaseOrderNoAutofollow(NoAutofollowCommon):
 
     def test_purchase_order_create(self):
         """
-        'Customer no autofollow' mode is disabled in settings.
+        'Vendor no autofollow' mode is disabled in settings.
         Test if there is a client among subscribers when creating
         a record
         """
@@ -80,7 +80,7 @@ class TestPurchaseOrderNoAutofollow(NoAutofollowCommon):
 
     def test_purchase_order_button_confirm(self):
         """
-        'Customer no autofollow' mode is disabled in settings.
+        'Vendor no autofollow' mode is disabled in settings.
         Test if there is a customer among the subscribers after confirming the order"""
         self.purchase_order_1.button_confirm()
 

@@ -10,7 +10,7 @@
                 <block title="Auto Follow" name="autofollow_settings_container">
                     <setting
                         id="partner_disable_autofollow_setting"
-                        help="Do not auto-subscribe customer to purchase orders."
+                        help="Do not auto-subscribe vendor to purchase orders."
                     >
                         <field name="purchase_partner_disable_autofollow" />
                     </setting>

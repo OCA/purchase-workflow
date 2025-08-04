@@ -28,7 +28,7 @@ Purchase Order Customer On/Off Autofollow
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-By default Odoo adds customer as follower to all orders. This module
+By default Odoo adds vendor as follower to all purchase order. This module
 allows to disable this behaviour using General Settings.
 
 **Table of contents**

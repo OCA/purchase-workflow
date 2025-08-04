@@ -2,7 +2,7 @@
     "name": "Purchase Order Customer On/Off Autofollow",
     "summary": "Add or do not add customer as follower in Purchases Orders",
     "author": (
-        "Cetmix, Almas Kopeyev, IT-Projects LLC, Odoo Community Association (OCA)"
+        "Almas Kopeyev, IT-Projects LLC, Odoo Community Association (OCA)"
     ),
     "version": "17.0.1.0.0",
     "website": "https://github.com/OCA/purchase-workflow",
