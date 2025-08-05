@@ -62,14 +62,12 @@ msgstr "Valor na Moeda do Pedido"
 #. module: purchase_advance_payment
 #. odoo-python
 #: code:addons/purchase_advance_payment/wizard/purchase_advance_payment_wizard.py:0
-#, python-format
 msgid "Amount of advance is greater than residual amount on purchase"
 msgstr "O valor do adiantamento é maior que o valor residual na compra"
 
 #. module: purchase_advance_payment
 #. odoo-python
 #: code:addons/purchase_advance_payment/wizard/purchase_advance_payment_wizard.py:0
-#, python-format
 msgid "Amount of advance must be positive."
 msgstr "O valor do adiantamento deve ser positivo."
 
@@ -187,11 +185,6 @@ msgid "Not Reconciled"
 msgstr ""
 
 #. module: purchase_advance_payment
-#: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_payment_search
-msgid "Not Sent"
-msgstr ""
-
-#. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__order_id
 msgid "Order"
 msgstr "Pedido"
@@ -254,6 +247,7 @@ msgstr "Compra"
 
 #. module: purchase_advance_payment
 #: model:ir.model,name:purchase_advance_payment.model_purchase_order
+#: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_payment_form
 msgid "Purchase Order"
 msgstr "Pedido Compra"
 
