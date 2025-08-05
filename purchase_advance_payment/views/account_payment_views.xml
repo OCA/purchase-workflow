@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
+    <record id="view_account_payment_form" model="ir.ui.view">
+        <field name="name">account.payment.form - purchase_advance_payment</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form" />
+        <field name="arch" type="xml">
+            <field name="memo" position="after">
+                <field
+                    name="purchase_id"
+                    string="Purchase Order"
+                    invisible="not purchase_id"
+                    readonly="1"
+                />
+            </field>
+        </field>
+    </record>
+
     <record id="view_account_payment_search" model="ir.ui.view">
         <field name="name">account.payment.search</field>
         <field name="model">account.payment</field>
@@ -35,6 +51,11 @@
                     string="Payment Sent?"
                     widget="boolean_toggle"
                     column_invisible="not context.get('show_payment_sent')"
+                />
+                <field
+                    name="purchase_id"
+                    column_invisible="not context.get('show_payment_sent')"
+                    optional="show"
                 />
             </field>
         </field>
