@@ -79,6 +79,31 @@ class PurchaseOrder(models.Model):
                     )
                 else:
                     advance_amount += line_amount
+            # Compute amount by payments without an account.move related.
+            adv_pays = order.account_payment_ids.filtered(
+                lambda x: x.state in ["in_process", "paid"]
+                and not x.outstanding_account_id
+                and not x.move_id
+            )
+            for ap in adv_pays:
+                if ap.invoice_ids:
+                    # This is not perfect but it is the best we can do.
+                    # Once the payment is linked to the invoice, it is better
+                    # to not consider it anymore because is not going to be
+                    # reconciled (it has no move_id), otherwise the risk to
+                    # double-count payments is high.
+                    continue
+
+                ap_currency = ap.currency_id or ap.company_currency_id
+                if ap_currency != order.currency_id:
+                    advance_amount += ap_currency._convert(
+                        ap.amount,
+                        order.currency_id,
+                        order.company_id,
+                        ap.date or fields.Date.today(),
+                    )
+                else:
+                    advance_amount += ap.amount
             # Consider payments in related invoices.
             invoice_paid_amount = 0.0
             for inv in order.invoice_ids:
