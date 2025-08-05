@@ -770,6 +770,8 @@ class TestPurchaseAdvancePayment(common.TransactionCase):
         self.assertEqual(self.purchase_order_1.advance_payment_status, "paid")
 
     def test_11_advance_payments_without_account_moves(self):
+        """Test full flow with advance payments without outstanding
+        account."""
         self.env["ir.config_parameter"].sudo().set_param(
             "purchase_advance_payment.auto_post_advance_payments", False
         )
@@ -783,7 +785,6 @@ class TestPurchaseAdvancePayment(common.TransactionCase):
             "active_ids": [self.purchase_order_2.id],
             "active_id": self.purchase_order_2.id,
         }
-
         advance_payment_1 = (
             self.env["account.voucher.wizard.purchase"]
             .with_context(**context_payment)
@@ -795,6 +796,19 @@ class TestPurchaseAdvancePayment(common.TransactionCase):
             )
         )
         advance_payment_1.make_advance_payment()
+
+        payment_1 = self.purchase_order_2.account_payment_ids
+        self.assertFalse(payment_1.move_id)
+        self.assertEqual(payment_1.state, "draft")
+        if payment_1.outstanding_account_id:
+            # This is forced by Odoo in EE. See
+            # https://github.com/odoo/odoo/commit/0c2810df991b5ac48483f03d4cd0f5d281ece4b8
+            # for more details. We remove it to simulate,
+            # the case of a payment without journal entry.
+            payment_1.outstanding_account_id = False
+        payment_1.action_post()
+        self.assertFalse(payment_1.move_id)
+        self.assertEqual(payment_1.state, "in_process")
 
         self.assertEqual(self.purchase_order_2.amount_residual, 900)
 
@@ -810,30 +824,35 @@ class TestPurchaseAdvancePayment(common.TransactionCase):
         )
         advance_payment_2.make_advance_payment()
 
+        # In the second payment, we confirm without removing the
+        # outstanding account. In CE, this will create the
+        # journal entry anyway, thefore we test the combination of
+        # payments with and without entry.
+        self.assertEqual(self.purchase_order_2.amount_residual, 900)
+        payment_2 = self.purchase_order_2.account_payment_ids - payment_1
+        self.assertEqual(len(payment_2), 1)
+        payment_2.action_post()
+        self.assertEqual(payment_2.state, "in_process")
+        self.assertTrue(payment_2.move_id)
+
         self.assertEqual(self.purchase_order_2.amount_residual, 700)
 
-        advance_payment_3 = (
-            self.env["account.voucher.wizard.purchase"]
-            .with_context(**context_payment)
-            .create(
-                {
-                    "amount_advance": 250,
-                    "order_id": self.purchase_order_2.id,
-                }
-            )
+        self.purchase_order_2.action_create_invoice()
+        self.assertEqual(self.purchase_order_2.invoice_status, "invoiced")
+        aml = self.env["account.move.line"].search(
+            [("purchase_line_id", "=", self.purchase_order_2.order_line.id)]
         )
-        advance_payment_3.make_advance_payment()
-        self.assertEqual(self.purchase_order_2.amount_residual, 450)
-
-        advance_payment_4 = (
-            self.env["account.voucher.wizard.purchase"]
-            .with_context(**context_payment)
-            .create(
-                {
-                    "amount_advance": 450,
-                    "order_id": self.purchase_order_2.id,
-                }
-            )
+        invoice = aml.mapped("move_id")
+        self.assertEqual(len(invoice), 1)
+        self.assertFalse(invoice.matched_payment_ids)
+        invoice.invoice_date = fields.Date.today()
+        invoice.action_post()
+        # We expect payment_1 linked to the invoice because
+        # it has no move_id.
+        self.assertEqual(invoice.matched_payment_ids, payment_1)
+        self.assertEqual(invoice.amount_residual, 1200)
+        self.assertEqual(
+            self.purchase_order_2.amount_residual,
+            1000,
+            "Only payment 2 should be considered at this point.",
         )
-        advance_payment_4.make_advance_payment()
-        self.assertEqual(self.purchase_order_2.amount_residual, 0)
