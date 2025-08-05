@@ -245,6 +245,7 @@ msgstr ""
 
 #. module: purchase_advance_payment
 #: model:ir.model,name:purchase_advance_payment.model_purchase_order
+#: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_payment_form
 msgid "Purchase Order"
 msgstr ""
 
