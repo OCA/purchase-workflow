@@ -62,14 +62,12 @@ msgstr "Importo nella valuta dell'ordine"
 #. module: purchase_advance_payment
 #. odoo-python
 #: code:addons/purchase_advance_payment/wizard/purchase_advance_payment_wizard.py:0
-#, python-format
 msgid "Amount of advance is greater than residual amount on purchase"
 msgstr "L'importo dell'anticipo è superiore all'importo residuo in vendita"
 
 #. module: purchase_advance_payment
 #. odoo-python
 #: code:addons/purchase_advance_payment/wizard/purchase_advance_payment_wizard.py:0
-#, python-format
 msgid "Amount of advance must be positive."
 msgstr "L'importo dell'anticipo deve essere positivo."
 
@@ -191,11 +189,6 @@ msgid "Not Reconciled"
 msgstr "Non riconciliata"
 
 #. module: purchase_advance_payment
-#: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_payment_search
-msgid "Not Sent"
-msgstr "Non inviato"
-
-#. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__order_id
 msgid "Order"
 msgstr "Ordine"
@@ -258,6 +251,7 @@ msgstr "Acquisto"
 
 #. module: purchase_advance_payment
 #: model:ir.model,name:purchase_advance_payment.model_purchase_order
+#: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_payment_form
 msgid "Purchase Order"
 msgstr "Ordine di acquisto"
 
@@ -275,6 +269,9 @@ msgstr "Importo residuo"
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_payment_search
 msgid "Vendor Advance Payments"
 msgstr "Anticipo pagamenti fornitore"
+
+#~ msgid "Not Sent"
+#~ msgstr "Non inviato"
 
 #~ msgid "Operation"
 #~ msgstr "Operazione"
