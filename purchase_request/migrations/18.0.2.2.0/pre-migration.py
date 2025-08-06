@@ -11,7 +11,10 @@ _noupdate_xmlids = [
 
 
 @openupgrade.migrate()
-def migrate(env, version):
+def migrate(cr, version):
+    # Workaround to execute the migration script without errors
+    # see https://github.com/odoo/odoo/blob/2a839ef1ed09c36f27ce7536ca3052d9f65ceed9/odoo/modules/migration.py#L252-L256
+    env = cr
     openupgrade.set_xml_ids_noupdate_value(
         env, "purchase_request", _noupdate_xmlids, True
     )
