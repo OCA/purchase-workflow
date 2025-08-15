@@ -3,40 +3,43 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests import Form
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestPurchaseAllowedProduct(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.supplierinfo_model = self.env["product.supplierinfo"]
-        self.product_model = self.env["product.product"]
-        self.partner_4 = self.env.ref("base.res_partner_4")
-        self.supplierinfo = self.supplierinfo_model.search(
-            [("partner_id", "=", self.partner_4.id)]
+class TestPurchaseAllowedProduct(BaseCommon):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.supplierinfo_model = cls.env["product.supplierinfo"]
+        cls.product_model = cls.env["product.product"]
+        cls.partner = cls.env["res.partner"].create({"name": "Test supplier"})
+        cls.supplierinfo = cls.supplierinfo_model.search(
+            [("partner_id", "=", cls.partner.id)]
         )
-        self.partner_4_supplied_products = self.product_model.search(
+        cls.partner_supplied_products = cls.product_model.search(
             [
                 (
                     "product_tmpl_id",
                     "in",
-                    [x.product_tmpl_id.id for x in self.supplierinfo],
+                    [x.product_tmpl_id.id for x in cls.supplierinfo],
                 )
             ]
         )
 
     def test_purchase_onchange(self):
         """A user creates a purchase from the form."""
-        self.partner_4.use_only_supplied_product = True
+        self.partner.use_only_supplied_product = True
         with Form(
             self.env["purchase.order"], view="purchase.purchase_order_form"
         ) as purchase_form:
-            purchase_form.partner_id = self.partner_4
+            purchase_form.partner_id = self.partner
 
             # Ensure the use_only_supplied_product is set
             self.assertEqual(
                 purchase_form.use_only_supplied_product,
-                self.partner_4.use_only_supplied_product,
+                self.partner.use_only_supplied_product,
             )
 
             self.assertEqual(purchase_form.use_only_supplied_product, True)
@@ -45,23 +48,21 @@ class TestPurchaseAllowedProduct(TransactionCase):
                 "use_only_supplied_product": purchase_form.use_only_supplied_product,
             }
         supplied_product = self.product_model.with_context(**context)._search([])
-        self.assertEqual(
-            set(supplied_product), set(self.partner_4_supplied_products.ids)
-        )
+        self.assertEqual(set(supplied_product), set(self.partner_supplied_products.ids))
 
     def test_invoice_onchange(self):
         """A user creates a invoice from the form."""
-        self.partner_4.use_only_supplied_product = True
+        self.partner.use_only_supplied_product = True
         with Form(
             self.env["account.move"].with_context(default_move_type="out_invoice"),
             view="account.view_move_form",
         ) as invoice_form:
-            invoice_form.partner_id = self.partner_4
+            invoice_form.partner_id = self.partner
 
             # Ensure the use_only_supplied_product is set
             self.assertEqual(
                 invoice_form.use_only_supplied_product,
-                self.partner_4.use_only_supplied_product,
+                self.partner.use_only_supplied_product,
             )
 
             self.assertEqual(invoice_form.use_only_supplied_product, True)
@@ -70,6 +71,4 @@ class TestPurchaseAllowedProduct(TransactionCase):
                 "use_only_supplied_product": invoice_form.use_only_supplied_product,
             }
         supplied_product = self.product_model.with_context(**context)._search([])
-        self.assertEqual(
-            set(supplied_product), set(self.partner_4_supplied_products.ids)
-        )
+        self.assertEqual(set(supplied_product), set(self.partner_supplied_products.ids))
