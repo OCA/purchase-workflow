@@ -7,3 +7,4 @@
 - [Via laurea](https://www.vialaurea.com):
   - Darius Žižys
 - Eduardo de Miguel ([Moduon](https://www.moduon.team/))
+- Alejandro Parrales \<<alejandro17parrales@gmail.com>\>
