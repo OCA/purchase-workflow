@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="name">purchase.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date_order']/.." position="inside">
+                <field
+                    name="owner_id"
+                    readonly="state in ['purchase','done','cancel']"
+                />
+            </xpath>
+        </field>
+    </record>
+    <record id="purchase_order_kpis_tree" model="ir.ui.view">
+        <field name="name">purchase.order.inherit.purchase.order.tree</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_kpis_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date_order']" position="after">
+                <field name="owner_id" optional="show" />
+            </xpath>
+        </field>
+    </record>
+    <record id="purchase_order_view_tree" model="ir.ui.view">
+        <field name="name">purchase.order.view.tree</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_view_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date_order']" position="after">
+                <field name="owner_id" optional="show" />
+            </xpath>
+        </field>
+    </record>
+    <record id="view_purchase_order_filter" model="ir.ui.view">
+        <field name="name">request.quotation.select</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_id']" position="after">
+                <field name="owner_id" string="Owner" />
+            </xpath>
+            <xpath expr="//group/filter[@name='order_date']" position="after">
+                <filter
+                    string="Owner"
+                    name="owner"
+                    domain="[]"
+                    context="{'group_by': 'owner_id'}"
+                />
+            </xpath>
+        </field>
+    </record>
+    <record id="purchase_order_view_search" model="ir.ui.view">
+        <field name="name">purchase.order.select</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_view_search" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_id']" position="after">
+                <field name="owner_id" string="Owner" />
+            </xpath>
+            <xpath expr="//group/filter[@name='order_date']" position="after">
+                <filter
+                    string="Owner"
+                    name="owner"
+                    domain="[]"
+                    context="{'group_by': 'owner_id'}"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
