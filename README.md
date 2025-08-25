@@ -69,7 +69,7 @@ addon | version | maintainers | summary
 [purchase_order_line_packaging_qty](purchase_order_line_packaging_qty/) | 14.0.1.0.1 |  | Define quantities according to product packaging on purchase order lines
 [purchase_order_line_price_history](purchase_order_line_price_history/) | 14.0.1.1.0 |  | Purchase order line price history
 [purchase_order_line_price_history_discount](purchase_order_line_price_history_discount/) | 14.0.1.0.0 |  | Purchase order line price history discount
-[purchase_order_line_sequence](purchase_order_line_sequence/) | 14.0.2.0.0 |  | Adds sequence to PO lines and propagates it toInvoice lines and Stock Moves
+[purchase_order_line_sequence](purchase_order_line_sequence/) | 14.0.2.0.1 |  | Adds sequence to PO lines and propagates it toInvoice lines and Stock Moves
 [purchase_order_line_stock_available](purchase_order_line_stock_available/) | 14.0.1.0.0 |  | Purchase order line stock available
 [purchase_order_partner_manual_rank](purchase_order_partner_manual_rank/) | 14.0.2.0.0 | <a href='https://github.com/aleuffre'><img src='https://github.com/aleuffre.png' width='32' height='32' style='border-radius:50%;' alt='aleuffre'/></a> <a href='https://github.com/renda-dev'><img src='https://github.com/renda-dev.png' width='32' height='32' style='border-radius:50%;' alt='renda-dev'/></a> | Purchase Order Partner Manual Rank
 [purchase_order_payment_term_report](purchase_order_payment_term_report/) | 14.0.1.0.1 |  | Display Purchase Payment Terms in PO Report
