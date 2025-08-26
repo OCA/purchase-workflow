@@ -11,14 +11,14 @@ class TestPurchasePricelistDisable(TransactionCase):
         cls.product = cls.env["product.product"].create(
             {
                 "name": "Test Product",
-                "type": "product",
+                "type": "consu",
             }
         )
 
         cls.product2 = cls.env["product.product"].create(
             {
                 "name": "Test Product 2",
-                "type": "product",
+                "type": "consu",
             }
         )
 
