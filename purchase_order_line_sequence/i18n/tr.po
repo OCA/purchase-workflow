@@ -6,50 +6,52 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2025-08-27 18:25+0000\n"
+"Last-Translator: Bet??l ????men <betulo@eska.biz>\n"
 "Language-Team: none\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: purchase_order_line_sequence
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_sequence.report_purchase_order_sequence_qweb
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_sequence.report_purchase_quote_sequence_qweb
 msgid "<strong>Line Number</strong>"
-msgstr ""
+msgstr "<strong>S??ra Numaras??</strong>"
 
 #. module: purchase_order_line_sequence
 #: model:ir.model.fields,help:purchase_order_line_sequence.field_purchase_order_line__visible_sequence
 msgid "Displays the sequence of the line in the purchase order."
-msgstr ""
+msgstr "Sat??nalma sipari??indeki sat??r??n s??ras??n?? g??r??nt??ler."
 
 #. module: purchase_order_line_sequence
 #: model:ir.model.fields,help:purchase_order_line_sequence.field_purchase_order_line__sequence
 msgid "Gives the sequence of the line when displaying the purchase order."
-msgstr ""
+msgstr "Sat??nalma sipari??ini g??r??nt??lerken sat??r??n s??ras??n?? verir."
 
 #. module: purchase_order_line_sequence
 #: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order_line__sequence
 msgid "Hidden Sequence"
-msgstr ""
+msgstr "Gizli S??ra"
 
 #. module: purchase_order_line_sequence
 #: model:ir.model,name:purchase_order_line_sequence.model_account_move_line
 msgid "Journal Item"
-msgstr ""
+msgstr "Yevmiye Kalemi"
 
 #. module: purchase_order_line_sequence
 #: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order_line__visible_sequence
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_sequence.report_invoice_document_inherit_purchase_sequence
 msgid "Line Number"
-msgstr ""
+msgstr "S??ra Numaras??"
 
 #. module: purchase_order_line_sequence
 #: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order__max_line_sequence
 msgid "Max sequence in lines"
-msgstr ""
+msgstr "Sat??rlardaki maksimum s??ralama"
 
 #. module: purchase_order_line_sequence
 #. odoo-python
@@ -58,23 +60,25 @@ msgid ""
 "Not allowed to change the sequence of moves from the picking, you can do it "
 "from the PO."
 msgstr ""
+"Teslimat sat??rlar??n??n s??ras??n?? de??i??tirme izniniz yoktur, bunu Sat??nalma "
+"Sipari??inden yapabilirsiniz."
 
 #. module: purchase_order_line_sequence
 #: model:ir.model.fields,field_description:purchase_order_line_sequence.field_account_move_line__related_po_sequence
 msgid "PO Line Number"
-msgstr ""
+msgstr "Sat??nalma Sipari??i Sat??r Numaras??"
 
 #. module: purchase_order_line_sequence
 #: model:ir.model,name:purchase_order_line_sequence.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Sat??nalma Sipari??i"
 
 #. module: purchase_order_line_sequence
 #: model:ir.model,name:purchase_order_line_sequence.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Sat??nAlma Sipari?? Sat??r??"
 
 #. module: purchase_order_line_sequence
 #: model:ir.model,name:purchase_order_line_sequence.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Stok Hareketi"
