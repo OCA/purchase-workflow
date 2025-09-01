@@ -6,15 +6,15 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
-def pre_init_hook(cr):
+def pre_init_hook(env):
     _logger.info("Initializing column main_seller_id on table product_template")
-    cr.execute(
+    env.cr.execute(
         """
         ALTER TABLE product_template
         ADD COLUMN IF NOT EXISTS main_seller_id integer;
         """
     )
-    cr.execute(
+    env.cr.execute(
         """
         WITH numbered_supplierinfos as (
             SELECT *, ROW_number() over (
