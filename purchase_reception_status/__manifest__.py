@@ -4,10 +4,10 @@
 
 {
     "name": "Purchase Reception Status",
-    "version": "16.0.1.0.1",
+    "version": "17.0.1.0.0",
     "category": "Purchases",
     "license": "AGPL-3",
-    "summary": "Add reception status on purchase orders",
+    "summary": "Add reception status on purchase orders (OCA logic)",
     "author": "Akretion,Odoo Community Association (OCA)",
     "maintainers": ["alexis-via"],
     "website": "https://github.com/OCA/purchase-workflow",

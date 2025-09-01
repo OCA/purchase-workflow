@@ -11,11 +11,15 @@
         <field name="inherit_id" ref="purchase.purchase_order_form" />
         <field name="arch" type="xml">
             <field name="invoice_status" position="before">
-                <field name="reception_status" states="purchase,done" />
+                <field
+                    name="receipt_status"
+                    invisible="state not in ('purchase', 'done')"
+                />
                 <field
                     name="force_received"
                     groups="purchase.group_purchase_manager"
-                    states="purchase,done"
+                    invisible="state not in ('purchase', 'done')"
+                    readonly="state != 'done'"
                 />
             </field>
         </field>
@@ -27,10 +31,11 @@
         <field name="arch" type="xml">
             <field name="invoice_status" position="before">
                 <field
-                    name="reception_status"
+                    name="receipt_status"
                     widget="badge"
-                    decoration-info="reception_status == 'partial'"
-                    decoration-success="reception_status == 'received'"
+                    decoration-info="receipt_status == 'partial'"
+                    decoration-success="receipt_status == 'full'"
+                    decoration-muted="receipt_status == 'pending'"
                 />
             </field>
         </field>
@@ -42,10 +47,10 @@
         <field name="arch" type="xml">
             <field name="invoice_status" position="before">
                 <field
-                    name="reception_status"
+                    name="receipt_status"
                     widget="badge"
-                    decoration-info="reception_status == 'partial'"
-                    decoration-success="reception_status == 'received'"
+                    decoration-info="receipt_status == 'partial'"
+                    decoration-success="receipt_status == 'full'"
                 />
             </field>
         </field>
@@ -59,20 +64,20 @@
                 <filter
                     name="not_fully_received"
                     string="Not Fully Received"
-                    domain="[('reception_status', 'in', ('no', 'partial'))]"
+                    domain="[('receipt_status', 'in', ('pending', 'partial'))]"
                 />
                 <filter
                     name="fully_received"
                     string="Fully Received"
-                    domain="[('reception_status', '=', 'received')]"
+                    domain="[('receipt_status', '=', 'full')]"
                 />
                 <separator />
             </filter>
             <group expand="0" position="inside">
                 <filter
-                    string="Reception Status"
-                    name="reception_status_groupby"
-                    context="{'group_by': 'reception_status'}"
+                    string="Receipt Status"
+                    name="receipt_status_groupby"
+                    context="{'group_by': 'receipt_status'}"
                 />
             </group>
         </field>
