@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2025 ForgeFlow S.L.
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="purchase_order_form_hide_native_receipt" model="ir.ui.view">
+        <field name="name">purchase.stock.reception.status.form</field>
+        <field name="model">purchase.order</field>
+        <field
+            name="inherit_id"
+            ref="purchase_stock.purchase_order_view_form_inherit"
+        />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='invoice_status']/preceding-sibling::field[@name='receipt_status'][1]"
+                position="attributes"
+            >
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="purchase_order_tree_hide_native_receipt" model="ir.ui.view">
+        <field name="name">purchase.stock.reception.status.tree</field>
+        <field name="model">purchase.order</field>
+        <field
+            name="inherit_id"
+            ref="purchase_stock.purchase_order_view_tree_inherit"
+        />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='receipt_status'][@optional='hide']"
+                position="attributes"
+            >
+                <attribute name="column_invisible">True</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
