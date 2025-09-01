@@ -1,5 +1,4 @@
-# Copyright 2017 Eficent Business and IT Consulting Services S.L.
-#   (http://www.eficent.com)
+# Copyright 2017-25 ForgeFlow S.L. (http://www.forgeflow.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
@@ -8,8 +7,8 @@
     "(or scheduled) date in PO lines.",
     "version": "16.0.1.0.0",
     "development_status": "Mature",
-    "author": "Eficent, " "Odoo Community Association (OCA)",
-    "maintainers": ["lreficent"],
+    "author": "ForgeFlow, Odoo Community Association (OCA)",
+    "maintainers": ["LoisRForgeFlow"],
     "website": "https://github.com/OCA/purchase-workflow",
     "category": "Purchase Management",
     "depends": ["purchase_stock"],
