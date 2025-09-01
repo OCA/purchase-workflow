@@ -201,3 +201,55 @@ class TestDatePlannedManual(TransactionCase):
             orders.date_planned + timedelta(days=1),
             "The date_planned of the PO line should be the same.",
         )
+
+    def test_no_merging_of_po_lines_if_diff_date_planned_batch_procurements(self):
+        """No merge PO lines if they not have same date_planned.
+        Procurements executed together in batch."""
+        origin = "test_no_merging_of_po_lines_if_diff_date_planned"
+        values = {
+            "warehouse_id": self.warehouse,
+            "date_planned": self.next_week_time,
+        }
+        procurement_group_obj = self.env["procurement.group"]
+        procurement_1 = procurement_group_obj.Procurement(
+            self.product_1,
+            1,
+            self.product_1.uom_id,
+            self.final_location,
+            False,
+            origin,
+            self.warehouse.company_id,
+            values,
+        )
+        values_2 = {
+            "warehouse_id": self.warehouse,
+            "date_planned": self.next_week_time + timedelta(days=1),
+        }
+        procurement_2 = procurement_group_obj.Procurement(
+            self.product_1,
+            1,
+            self.product_1.uom_id,
+            self.final_location,
+            False,
+            origin,
+            self.warehouse.company_id,
+            values_2,
+        )
+        rule = procurement_group_obj._get_rule(
+            procurement_1.product_id, procurement_1.location_id, procurement_1.values
+        )
+        self.rule._run_buy([(procurement_1, rule), (procurement_2, rule)])
+        order = self.env["purchase.order"].search([("origin", "=", origin)])
+        self.assertEqual(len(order), 1)
+        self.assertEqual(
+            len(order.order_line),
+            2,
+        )
+        self.assertEqual(
+            order.order_line[0].date_planned,
+            self.next_week_time,
+        )
+        self.assertEqual(
+            order.order_line[1].date_planned,
+            self.next_week_time + timedelta(days=1),
+        )
