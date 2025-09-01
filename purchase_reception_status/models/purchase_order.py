@@ -9,18 +9,17 @@ from odoo.tools import float_compare
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
-    reception_status = fields.Selection(
+    receipt_status = fields.Selection(
         [
-            ("no", "Nothing Received"),
+            ("pending", "Nothing Received"),
             ("partial", "Partially Received"),
-            ("received", "Fully Received"),
+            ("full", "Fully Received"),
         ],
-        compute="_compute_reception_status",
+        compute="_compute_oca_receipt_status",
         store=True,
     )
     force_received = fields.Boolean(
         readonly=True,
-        states={"done": [("readonly", False)]},
         copy=False,
         help="If true, the reception status will be forced to Fully Received, "
         "even if some lines are not fully received. "
@@ -30,13 +29,13 @@ class PurchaseOrder(models.Model):
     @api.depends(
         "state", "force_received", "order_line.qty_received", "order_line.product_qty"
     )
-    def _compute_reception_status(self):
+    def _compute_oca_receipt_status(self):
         prec = self.env["decimal.precision"].precision_get("Product Unit of Measure")
         for order in self:
-            status = "no"
+            status = "pending"
             if order.state in ("purchase", "done"):
                 if order.force_received:
-                    status = "received"
+                    status = "full"
                 elif all(
                     [
                         float_compare(
@@ -46,7 +45,7 @@ class PurchaseOrder(models.Model):
                         for line in order.order_line
                     ]
                 ):
-                    status = "received"
+                    status = "full"
                 elif any(
                     [
                         float_compare(line.qty_received, 0, precision_digits=prec) > 0
@@ -54,4 +53,4 @@ class PurchaseOrder(models.Model):
                     ]
                 ):
                     status = "partial"
-            order.reception_status = status
+            order.receipt_status = status
