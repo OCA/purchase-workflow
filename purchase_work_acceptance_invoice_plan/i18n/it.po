@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-09-02 11:13+0000\n"
+"PO-Revision-Date: 2025-09-02 11:30+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -62,197 +62,203 @@ msgstr ""
 #: model:ir.model,name:purchase_work_acceptance_invoice_plan.model_select_work_acceptance_invoice_plan_qty
 msgid "Compute quantity of each WA lines, according to product lines"
 msgstr ""
+"Calcolo quantità per ogni riga approvazione lavoro, in accordo con le righe "
+"prodotto"
 
 #. module: purchase_work_acceptance_invoice_plan
 #: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_invoice_plan.view_select_work_acceptance_invoice_plan_wizard
 msgid "Create WA"
-msgstr ""
+msgstr "Crea approvazione lavoro"
 
 #. module: purchase_work_acceptance_invoice_plan
 #: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_invoice_plan.purchase_order_form_inherit
 msgid "Create WA by Installment"
-msgstr ""
+msgstr "Crea approvazione lavoro da rata"
 
 #. module: purchase_work_acceptance_invoice_plan
 #: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_select_work_acceptance_invoice_plan_qty__create_uid
 #: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_select_work_acceptance_invoice_plan_wizard__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creato da"
 
 #. module: purchase_work_acceptance_invoice_plan
 #: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_select_work_acceptance_invoice_plan_qty__create_date
 #: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_select_work_acceptance_invoice_plan_wizard__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creato il"
 
 #. module: purchase_work_acceptance_invoice_plan
 #: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_select_work_acceptance_invoice_plan_qty__currency_id
 msgid "Currency"
-msgstr ""
+msgstr "Valuta"
 
 #. module: purchase_work_acceptance_invoice_plan
 #: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_select_work_acceptance_invoice_plan_qty__display_name
 #: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_select_work_acceptance_invoice_plan_wizard__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: purchase_work_acceptance_invoice_plan
 #: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_select_work_acceptance_invoice_plan_qty__distribution_analytic_account_ids
 msgid "Distribution Analytic Account"
-msgstr ""
+msgstr "Conto distribuzione analitica"
 
 #. module: purchase_work_acceptance_invoice_plan
 #: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_select_work_acceptance_invoice_plan_qty__id
 #: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_select_work_acceptance_invoice_plan_wizard__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: purchase_work_acceptance_invoice_plan
 #. odoo-python
 #: code:addons/purchase_work_acceptance_invoice_plan/wizard/select_work_acceptance_invoice_plan_wizard.py:0
 msgid "Installment Warning:"
-msgstr ""
+msgstr "Avviso rata:"
 
 #. module: purchase_work_acceptance_invoice_plan
 #: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_select_work_acceptance_invoice_plan_wizard__installment_id
 #: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_work_acceptance__installment_id
 msgid "Invoice Plan"
-msgstr ""
+msgstr "Piano di fatturazione"
 
 #. module: purchase_work_acceptance_invoice_plan
 #: model:ir.model,name:purchase_work_acceptance_invoice_plan.model_purchase_invoice_plan
 msgid "Invoice Planning Detail"
-msgstr ""
+msgstr "Dettaglio piano di fatturazione"
 
 #. module: purchase_work_acceptance_invoice_plan
 #: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_select_work_acceptance_invoice_plan_qty__write_uid
 #: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_select_work_acceptance_invoice_plan_wizard__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultimo aggiornamento di"
 
 #. module: purchase_work_acceptance_invoice_plan
 #: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_select_work_acceptance_invoice_plan_qty__write_date
 #: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_select_work_acceptance_invoice_plan_wizard__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultimo aggiornamento il"
 
 #. module: purchase_work_acceptance_invoice_plan
 #: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_invoice_plan.view_select_work_acceptance_invoice_plan_wizard
 msgid "Leave blank to apply to all purchase lines"
-msgstr ""
+msgstr "Lasciare vuoto per applicare a tutte le righe acquisto"
 
 #. module: purchase_work_acceptance_invoice_plan
 #: model:ir.model.fields,help:purchase_work_acceptance_invoice_plan.field_select_work_acceptance_invoice_plan_wizard__order_line_ids
 msgid "List of product lines used to create WA. Blank means all"
 msgstr ""
+"Elenco delle righe prodotto utilizzate per creare approvazione lavoro. Vuoto "
+"significa tutte"
 
 #. module: purchase_work_acceptance_invoice_plan
 #: model:ir.model.fields,help:purchase_work_acceptance_invoice_plan.field_select_work_acceptance_invoice_plan_wizard__installment_id
 msgid "List only installment that has not been used in WA (draft, accepted)"
 msgstr ""
+"Elenca solo rata che non è stata usata in approvazione lavoro (bozza, "
+"accettata)"
 
 #. module: purchase_work_acceptance_invoice_plan
 #. odoo-python
 #: code:addons/purchase_work_acceptance_invoice_plan/wizard/select_work_acceptance_invoice_plan_wizard.py:0
 msgid "No product line with matched amount!"
-msgstr ""
+msgstr "Nessuna riga prodotto con valore corrispondente!"
 
 #. module: purchase_work_acceptance_invoice_plan
 #: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_select_work_acceptance_invoice_plan_qty__qty_not_accepted
 msgid "Not Accepted"
-msgstr ""
+msgstr "Non approvata"
 
 #. module: purchase_work_acceptance_invoice_plan
 #: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_select_work_acceptance_invoice_plan_qty__order_id
 #: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_select_work_acceptance_invoice_plan_wizard__order_id
 msgid "Order"
-msgstr ""
+msgstr "Ordine"
 
 #. module: purchase_work_acceptance_invoice_plan
 #. odoo-python
 #: code:addons/purchase_work_acceptance_invoice_plan/wizard/select_work_acceptance_invoice_plan_wizard.py:0
 msgid "Please register deposit first."
-msgstr ""
+msgstr "Registrare prima il deposito."
 
 #. module: purchase_work_acceptance_invoice_plan
 #: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_select_work_acceptance_invoice_plan_wizard__order_line_ids
 msgid "Product Filter"
-msgstr ""
+msgstr "Filtro prodotto"
 
 #. module: purchase_work_acceptance_invoice_plan
 #: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_select_work_acceptance_invoice_plan_qty__order_line_id
 msgid "Product Line"
-msgstr ""
+msgstr "Riga prodotto"
 
 #. module: purchase_work_acceptance_invoice_plan
 #: model:ir.actions.server,name:purchase_work_acceptance_invoice_plan.apply_on_matched_amount
 msgid "Product line with matched amount"
-msgstr ""
+msgstr "Riga prodotto con valore corrispondente"
 
 #. module: purchase_work_acceptance_invoice_plan
 #: model:ir.model,name:purchase_work_acceptance_invoice_plan.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Riga ordine di acquisto"
 
 #. module: purchase_work_acceptance_invoice_plan
 #: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_invoice_plan.view_select_work_acceptance_invoice_plan_wizard
 msgid "Select Work Acceptance"
-msgstr ""
+msgstr "Selezionare approvazione lavoro"
 
 #. module: purchase_work_acceptance_invoice_plan
 #: model:ir.model,name:purchase_work_acceptance_invoice_plan.model_select_work_acceptance_invoice_plan_wizard
 msgid "Select Work Acceptance Invoice Plan Wizard"
-msgstr ""
+msgstr "Procedura guidata selezione piano fattura approvazione lavoro"
 
 #. module: purchase_work_acceptance_invoice_plan
 #: model:ir.model,name:purchase_work_acceptance_invoice_plan.model_select_work_acceptance_wizard
 msgid "Select Work Acceptance Wizard"
-msgstr ""
+msgstr "Procedura guidata selezione approvazione lavoro"
 
 #. module: purchase_work_acceptance_invoice_plan
 #: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_select_work_acceptance_invoice_plan_qty__quantity
 msgid "To Accept"
-msgstr ""
+msgstr "Da approvare"
 
 #. module: purchase_work_acceptance_invoice_plan
 #: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_invoice_plan.view_select_work_acceptance_invoice_plan_wizard
 msgid "Total"
-msgstr ""
+msgstr "Totale"
 
 #. module: purchase_work_acceptance_invoice_plan
 #: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_invoice_plan.view_select_work_acceptance_invoice_plan_wizard
 msgid ""
 "Total amount not equal to installment amount, are you sure to continue?"
-msgstr ""
+msgstr "Valore totale diverso al valore rata, sicuri di continuare?"
 
 #. module: purchase_work_acceptance_invoice_plan
 #. odoo-python
 #: code:addons/purchase_work_acceptance_invoice_plan/wizard/select_work_acceptance_invoice_plan_wizard.py:0
 msgid "Total purchase amount must not be zero!"
-msgstr ""
+msgstr "Il valore totale acquisto non deve essere zero!"
 
 #. module: purchase_work_acceptance_invoice_plan
 #: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_select_work_acceptance_invoice_plan_wizard__valid_amount
 msgid "Valid Amount"
-msgstr ""
+msgstr "Valore valido"
 
 #. module: purchase_work_acceptance_invoice_plan
 #: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_select_work_acceptance_invoice_plan_wizard__wa_qty_line_ids
 msgid "Wa Qty Line"
-msgstr ""
+msgstr "Riga q.tà approvazione ordine"
 
 #. module: purchase_work_acceptance_invoice_plan
 #: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_select_work_acceptance_invoice_plan_qty__wizard_id
 msgid "Wizard"
-msgstr ""
+msgstr "Procedura guidata"
 
 #. module: purchase_work_acceptance_invoice_plan
 #: model:ir.actions.act_window,name:purchase_work_acceptance_invoice_plan.action_view_wa_installment
 #: model:ir.model,name:purchase_work_acceptance_invoice_plan.model_work_acceptance
 msgid "Work Acceptance"
-msgstr ""
+msgstr "Approvazione lavoro"
 
 #. module: purchase_work_acceptance_invoice_plan
 #: model:ir.model.constraint,message:purchase_work_acceptance_invoice_plan.constraint_select_work_acceptance_invoice_plan_qty_order_line_unique
 msgid "You are selecting same product line more than one."
-msgstr ""
+msgstr "Lo stesso prodotto è stato selezionato più volte."
