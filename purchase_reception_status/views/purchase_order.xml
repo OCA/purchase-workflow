@@ -17,6 +17,7 @@
                 />
                 <field
                     name="force_received"
+                    widget="boolean_toggle"
                     groups="purchase.group_purchase_manager"
                     invisible="state not in ('purchase', 'done')"
                     readonly="state != 'done'"
