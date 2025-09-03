@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-09-03 16:35+0000\n"
+"PO-Revision-Date: 2025-09-03 19:43+0000\n"
 "Last-Translator: Douglas Custódio <douglascstd@yahoo.com>\n"
 "Language-Team: none\n"
 "Language: pt_BR\n"
@@ -334,7 +334,7 @@ msgstr ""
 #. module: purchase_container
 #: model:ir.model.fields,help:purchase_container.field_purchase_container__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
+msgstr "Tipo da atividade de exceção no registro."
 
 #. module: purchase_container
 #: model:ir.model,name:purchase_container.model_container_type
