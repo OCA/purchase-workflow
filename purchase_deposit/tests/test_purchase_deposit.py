@@ -199,3 +199,14 @@ class TestPurchaseDeposit(TransactionCase):
         deposit_line = self.po.order_line.filtered(lambda p: p.is_deposit)
         self.assertEqual(deposit_line.price_unit, 500.0)
         self.assertEqual(deposit_line.taxes_id.id, self.tax.id)
+
+    def test_not_allow_deposit_greater_than_po_total(self):
+        self.assertEqual(len(self.po.order_line), 1)
+        # We create invoice from expense
+        f = self.create_advance_payment_form()
+        f.advance_payment_method = "fixed"
+        wizard = f.save()
+        wizard.amount = 5000.0
+        wizard.deposit_account_id = self.account_deposit
+        with self.assertRaises(UserError):
+            wizard.create_invoices()
