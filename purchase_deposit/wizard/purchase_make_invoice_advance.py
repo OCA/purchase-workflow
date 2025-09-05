@@ -5,9 +5,9 @@
 import time
 from datetime import datetime
 
-from odoo import api, fields, models
+from odoo import Command, api, fields, models
 from odoo.exceptions import UserError
-from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
+from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT, float_compare
 
 
 class PurchaseAdvancePaymentInv(models.TransientModel):
@@ -106,9 +106,7 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
             "move_type": "in_invoice",
             "partner_id": order.partner_id.id,
             "invoice_line_ids": [
-                (
-                    0,
-                    0,
+                Command.create(
                     {
                         "name": name,
                         "account_id": account_id,
@@ -117,7 +115,7 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
                         "product_uom_id": product.uom_id.id,
                         "product_id": product.id,
                         "purchase_line_id": po_line.id,
-                        "tax_ids": [(6, 0, tax_ids)],
+                        "tax_ids": [Command.set(tax_ids)],
                         "analytic_distribution": po_line.analytic_distribution,
                     },
                 )
@@ -171,6 +169,30 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
             amount = self.amount
             if self.advance_payment_method == "percentage":  # Case percent
                 amount = self.amount / 100 * order.amount_untaxed
+            # calculate all deposit lines
+            sum_deposit = (
+                sum(
+                    line.price_unit
+                    for line in order.order_line
+                    if (line.is_deposit and line.invoice_lines)
+                )
+                or 0.00
+            )
+            if (
+                float_compare(
+                    sum_deposit + amount,
+                    order.amount_total,
+                    precision_rounding=order.currency_id.rounding,
+                )
+                > 0
+            ):
+                raise UserError(
+                    self.env._(
+                        "The amount to be registered as deposit can't be "
+                        "greater than total amount of %(name)s.",
+                        name=order.name,
+                    )
+                )
             if product.purchase_method != "purchase":
                 raise UserError(
                     self.env._(
@@ -213,6 +235,6 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
             "type": "service",
             "purchase_method": "purchase",
             "property_account_expense_id": self.deposit_account_id.id,
-            "supplier_taxes_id": [(6, 0, self.deposit_taxes_id.ids)],
+            "supplier_taxes_id": [Command.set(self.deposit_taxes_id.ids)],
             "company_id": False,
         }
