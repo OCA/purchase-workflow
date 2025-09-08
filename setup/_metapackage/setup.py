@@ -29,6 +29,7 @@ setuptools.setup(
         'odoo-addon-purchase_fully_received>=15.0dev,<15.1dev',
         'odoo-addon-purchase_invoice_method>=15.0dev,<15.1dev',
         'odoo-addon-purchase_invoice_plan>=15.0dev,<15.1dev',
+        'odoo-addon-purchase_invoice_status_line>=15.0dev,<15.1dev',
         'odoo-addon-purchase_last_price_info>=15.0dev,<15.1dev',
         'odoo-addon-purchase_line_reassign>=15.0dev,<15.1dev',
         'odoo-addon-purchase_location_by_line>=15.0dev,<15.1dev',
