@@ -67,6 +67,7 @@ addon | version | maintainers | summary
 [purchase_partner_incoterm](purchase_partner_incoterm/) | 17.0.1.0.0 | <a href='https://github.com/TDu'><img src='https://github.com/TDu.png' width='32' height='32' style='border-radius:50%;' alt='TDu'/></a> <a href='https://github.com/bealdav'><img src='https://github.com/bealdav.png' width='32' height='32' style='border-radius:50%;' alt='bealdav'/></a> | Add a an incoterm field for supplier and use it on purchase order
 [purchase_partner_selectable_option](purchase_partner_selectable_option/) | 17.0.1.0.0 | <a href='https://github.com/victoralmau'><img src='https://github.com/victoralmau.png' width='32' height='32' style='border-radius:50%;' alt='victoralmau'/></a> | Purchase Partner Selectable Option
 [purchase_reception_notify](purchase_reception_notify/) | 17.0.1.0.1 |  | Purchase Reception Notify
+[purchase_reception_status](purchase_reception_status/) | 17.0.1.0.0 | <a href='https://github.com/alexis-via'><img src='https://github.com/alexis-via.png' width='32' height='32' style='border-radius:50%;' alt='alexis-via'/></a> | Add reception status on purchase orders (OCA logic)
 [purchase_request](purchase_request/) | 17.0.2.3.0 |  | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
 [purchase_request_department](purchase_request_department/) | 17.0.1.0.0 |  | Purchase Request Department
 [purchase_request_tier_validation](purchase_request_tier_validation/) | 17.0.1.1.1 |  | Extends the functionality of Purchase Requests to support a tier validation process.
@@ -79,6 +80,7 @@ addon | version | maintainers | summary
 [purchase_stock_manual_currency](purchase_stock_manual_currency/) | 17.0.1.0.0 |  | Extends manual currency from purchase to stock moves
 [purchase_stock_packaging](purchase_stock_packaging/) | 17.0.1.0.0 | <a href='https://github.com/rousseldenis'><img src='https://github.com/rousseldenis.png' width='32' height='32' style='border-radius:50%;' alt='rousseldenis'/></a> | Allows to transmit the product packaging from the procurement values to the generated purchase order line
 [purchase_stock_price_unit_sync](purchase_stock_price_unit_sync/) | 17.0.1.0.0 |  | Update cost price in stock moves already done
+[purchase_stock_reception_status](purchase_stock_reception_status/) | 17.0.1.0.0 |  | Glue module to integrate OCA reception status with purchase_stock
 [purchase_tag](purchase_tag/) | 17.0.1.1.2 |  | Allows to add multiple tags to purchase orders
 [purchase_tier_validation](purchase_tier_validation/) | 17.0.1.0.0 |  | Extends the functionality of Purchase Orders to support a tier validation process.
 [purchase_v12_control_menu](purchase_v12_control_menu/) | 17.0.1.0.0 |  | Purchase Control Menu from v12
