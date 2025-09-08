@@ -1,4 +1,4 @@
-# Copyright 2025 Joan Marín
+# Copyright 2025 ForgeFlow (http://www.forgeflow.com/)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo.tests import common
