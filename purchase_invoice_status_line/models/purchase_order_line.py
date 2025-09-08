@@ -27,7 +27,6 @@ class PurchaseOrderLine(models.Model):
         copy=False,
         help="If true, the invoice status will be forced to Fully Invoiced, "
         "even if some quantities are not fully invoiced. ",
-        tracking=True,
     )
 
     @api.depends("qty_invoiced", "product_qty", "force_invoiced")
