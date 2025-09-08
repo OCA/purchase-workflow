@@ -1,4 +1,4 @@
-# Copyright 2024 Joan Marín
+# Copyright 2025 ForgeFlow (http://www.forgeflow.com/)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
