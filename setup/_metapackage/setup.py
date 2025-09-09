@@ -100,6 +100,7 @@ setuptools.setup(
         'odoo-addon-purchase_tier_validation>=15.0dev,<15.1dev',
         'odoo-addon-purchase_total_ordered_qty>=15.0dev,<15.1dev',
         'odoo-addon-purchase_triple_discount>=15.0dev,<15.1dev',
+        'odoo-addon-purchase_uninvoiced_amount_force_invoiced_line>=15.0dev,<15.1dev',
         'odoo-addon-purchase_v12_control_menu>=15.0dev,<15.1dev',
         'odoo-addon-purchase_warn_message>=15.0dev,<15.1dev',
         'odoo-addon-purchase_warn_option>=15.0dev,<15.1dev',
