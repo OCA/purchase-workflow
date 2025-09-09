@@ -11,7 +11,7 @@
                 position="after"
             >
                 <field
-                    name="force_invoiced"
+                    name="force_invoiced_qty"
                     optional="show"
                     column_invisible="parent.state not in ('purchase', 'done')"
                     readonly="parent.state not in ('purchase', 'done')"
