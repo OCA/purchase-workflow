@@ -1,7 +1,7 @@
 # Copyright 2018 Sergio Teruel <sergio.teruel@tecnativa.com>
 # Copyright 2018 Carlos Dauden <carlos.dauden@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
-from odoo import _, exceptions, fields, models
+from odoo import exceptions, fields, models
 
 
 class PurchaseOrderLineReassignWiz(models.TransientModel):
@@ -12,9 +12,11 @@ class PurchaseOrderLineReassignWiz(models.TransientModel):
         active_ids = self.env.context.get("active_ids")
         lines = self.env["purchase.order.line"].browse(active_ids)
         partner = lines[:1].order_id.partner_id
-        if lines.filtered(lambda l: (l.invoice_lines or l.partner_id != partner)):
+        if lines.filtered(
+            lambda line: (line.invoice_lines or line.partner_id != partner)
+        ):
             raise exceptions.ValidationError(
-                _("Selected line/s are invoiced or they have distinct vendors")
+                self.env._("Selected line/s are invoiced or they have distinct vendors")
             )
         return partner
 
