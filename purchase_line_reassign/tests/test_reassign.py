@@ -2,10 +2,11 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 from datetime import datetime
 
-from odoo.tests import common
+from odoo import Command
+from odoo.tests.common import TransactionCase
 
 
-class TestReassign(common.TransactionCase):
+class TestReassign(TransactionCase):
     def test_reassign(self):
         vendor = self.env["res.partner"].create(
             {
@@ -21,9 +22,7 @@ class TestReassign(common.TransactionCase):
             {
                 "partner_id": vendor.id,
                 "order_line": [
-                    (
-                        0,
-                        False,
+                    Command.create(
                         {
                             "name": "Test Product",
                             "product_id": product.id,
