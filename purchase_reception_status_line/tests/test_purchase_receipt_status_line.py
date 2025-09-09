@@ -31,7 +31,7 @@ class TestPurchaseReceiptionStatusLine(TransactionCase):
             }
         )
         self.order.button_confirm()
-        self.assertEqual(line1.reception_status, "received")
+        self.assertEqual(line1.receipt_status, "full")
 
     def test_02_order_with_lines(self):
         """Test order w/ lines
@@ -59,20 +59,20 @@ class TestPurchaseReceiptionStatusLine(TransactionCase):
             ]
         )
         self.order.button_confirm()
-        self.assertEqual(self.order.order_line[0].reception_status, "no")
-        self.assertEqual(self.order.order_line[1].reception_status, "partial")
+        self.assertEqual(self.order.order_line[0].receipt_status, "pending")
+        self.assertEqual(self.order.order_line[1].receipt_status, "partial")
         self.order.order_line[0].force_received = True
-        self.assertEqual(self.order.order_line[0].reception_status, "received")
-        self.assertEqual(self.order.order_line[1].reception_status, "partial")
+        self.assertEqual(self.order.order_line[0].receipt_status, "full")
+        self.assertEqual(self.order.order_line[1].receipt_status, "partial")
         self.order.order_line[1].force_received = True
-        self.assertEqual(self.order.order_line[0].reception_status, "received")
-        self.assertEqual(self.order.order_line[1].reception_status, "received")
+        self.assertEqual(self.order.order_line[0].receipt_status, "full")
+        self.assertEqual(self.order.order_line[1].receipt_status, "full")
         self.order.order_line[1].force_received = False
-        self.assertEqual(self.order.order_line[0].reception_status, "received")
-        self.assertEqual(self.order.order_line[1].reception_status, "partial")
+        self.assertEqual(self.order.order_line[0].receipt_status, "full")
+        self.assertEqual(self.order.order_line[1].receipt_status, "partial")
         self.order.force_received = True
-        self.assertEqual(self.order.order_line[0].reception_status, "received")
-        self.assertEqual(self.order.order_line[1].reception_status, "received")
+        self.assertEqual(self.order.order_line[0].receipt_status, "full")
+        self.assertEqual(self.order.order_line[1].receipt_status, "full")
         self.assertEqual(self.order.order_line[1].force_received, True)
 
     def test_03_over_received_status(self):
@@ -86,9 +86,9 @@ class TestPurchaseReceiptionStatusLine(TransactionCase):
             }
         )
         self.order.button_confirm()
-        self.assertEqual(over_line.reception_status, "over")
+        self.assertEqual(over_line.receipt_status, "over")
         over_line.force_received = True
-        self.assertEqual(over_line.reception_status, "received")
+        self.assertEqual(over_line.receipt_status, "full")
 
     def test_04_order_force_logic_and_propagation(self):
         l1 = self.env["purchase.order.line"].create(
@@ -110,8 +110,8 @@ class TestPurchaseReceiptionStatusLine(TransactionCase):
             }
         )
         self.order.button_confirm()
-        self.assertTrue(l1.reception_status == "no")
-        self.assertTrue(l2.reception_status == "no")
+        self.assertTrue(l1.receipt_status == "pending")
+        self.assertTrue(l2.receipt_status == "pending")
         self.assertFalse(self.order.force_received)
         l1.force_received = True
         self.assertFalse(self.order.force_received)

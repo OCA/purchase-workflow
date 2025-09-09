@@ -8,14 +8,15 @@
         <field name="inherit_id" ref="purchase.purchase_order_line_tree" />
         <field name="arch" type="xml">
             <field name="product_uom" position="after">
-                <field name="reception_status" optional="hide" />
+                <field name="receipt_status" optional="hide" />
                 <field
                     name="force_received"
                     groups="purchase.group_purchase_manager"
+                    readonly="state == 'draft'"
                     optional="hide"
                     widget="boolean_toggle"
                 />
-                <field name="state" invisible="1" />
+                <field name="state" column_invisible="1" />
             </field>
         </field>
     </record>
@@ -47,22 +48,22 @@
                 <filter
                     name="filter_no"
                     string="Nothing Received"
-                    domain="[('reception_status','=','no'),('state','in',['done','purchase'])]"
+                    domain="[('receipt_status','=','pending'),('state','in',['done','purchase'])]"
                 />
                 <filter
                     name="filter_partial"
                     string="Partially Received"
-                    domain="[('reception_status','=','partial'),('state','in',['done','purchase'])]"
+                    domain="[('receipt_status','=','partial'),('state','in',['done','purchase'])]"
                 />
                 <filter
                     name="filter_received"
                     string="Fully Received"
-                    domain="[('reception_status','=','received'),('state','in',['done','purchase'])]"
+                    domain="[('receipt_status','=','full'),('state','in',['done','purchase'])]"
                 />
                 <filter
                     name="filter_over"
                     string="Over Received"
-                    domain="[('reception_status','=','over'),('state','in',['done','purchase'])]"
+                    domain="[('receipt_status','=','over'),('state','in',['done','purchase'])]"
                 />
                 <separator />
             </xpath>

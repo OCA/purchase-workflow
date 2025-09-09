@@ -38,6 +38,10 @@ a confirmed purchase order line, it can have 3 different values:
 Also takes this into account when computing the reception status for the
 purchase order.
 
+**Highly Recommended:** Install the ``purchase_order_line_menu`` module
+to access the reception status field in the purchase order line tree
+view for better visibility and management.
+
 **Table of contents**
 
 .. contents::

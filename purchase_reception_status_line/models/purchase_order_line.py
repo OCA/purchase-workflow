@@ -9,19 +9,17 @@ class PurchaseOrderLine(models.Model):
     _name = "purchase.order.line"
     _inherit = ["purchase.order.line", "mail.thread", "mail.activity.mixin"]
 
-    reception_status = fields.Selection(
+    receipt_status = fields.Selection(
         [
-            ("no", "Nothing Received"),
+            ("pending", "Nothing Received"),
             ("partial", "Partially Received"),
-            ("received", "Fully Received"),
+            ("full", "Fully Received"),
             ("over", "Over Received"),
         ],
-        compute="_compute_reception_status",
+        compute="_compute_receipt_status",
         store=True,
     )
     force_received = fields.Boolean(
-        readonly=False,
-        states={"draft": [("readonly", True)]},
         store=True,
         copy=False,
         help="If true, the reception status will be forced to Fully Received, "
@@ -35,13 +33,13 @@ class PurchaseOrderLine(models.Model):
         "qty_received",
         "product_qty",
     )
-    def _compute_reception_status(self):
+    def _compute_receipt_status(self):
         prec = self.env["decimal.precision"].precision_get("Product Unit of Measure")
         for line in self:
-            status = "no"
+            status = "pending"
             if line.order_id.state in ("purchase", "done"):
                 if line.force_received:
-                    status = "received"
+                    status = "full"
                 else:
                     if (
                         float_compare(
@@ -56,7 +54,7 @@ class PurchaseOrderLine(models.Model):
                         )
                         == 0
                     ):
-                        status = "received"
+                        status = "full"
                     elif float_compare(line.qty_received, 0, precision_digits=prec) > 0:
                         status = "partial"
-            line.reception_status = status
+            line.receipt_status = status
