@@ -12,8 +12,8 @@ class PurchaseOrder(models.Model):
         inverse="_inverse_force_received",
         store=True,
         tracking=True,
-        help="If true, the order is marked forced only when all lines are fully received"
-        " and at least one line was manually forced.",
+        help="If true, the order is marked forced only when all lines "
+        "are fully received and at least one line was manually forced.",
     )
 
     @api.depends("order_line.reception_status", "order_line.force_received")
@@ -29,11 +29,11 @@ class PurchaseOrder(models.Model):
         for po in self:
             if po.force_received:
                 to_force = po.order_line.filtered(
-                    lambda l: l.reception_status != "received"
+                    lambda line: line.reception_status != "received"
                 )
                 to_force.write({"force_received": True})
             else:
-                forced_lines = po.order_line.filtered(lambda l: l.force_received)
+                forced_lines = po.order_line.filtered(lambda line: line.force_received)
                 forced_lines.write({"force_received": False})
                 forced_lines._compute_reception_status()
 
