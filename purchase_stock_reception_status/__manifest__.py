@@ -3,7 +3,7 @@
 
 {
     "name": "Purchase Stock Reception Status",
-    "version": "17.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Purchases",
     "license": "AGPL-3",
     "summary": "Glue module to integrate OCA reception status with purchase_stock",

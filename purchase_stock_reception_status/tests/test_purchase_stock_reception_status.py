@@ -2,7 +2,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests import Form
+from odoo.tests.common import TransactionCase
 
 
 class TestPurchaseStockReceptionStatus(TransactionCase):
@@ -19,7 +20,7 @@ class TestPurchaseStockReceptionStatus(TransactionCase):
         cls.product_1 = cls.env["product.product"].create(
             {
                 "name": "Test Product 1",
-                "type": "product",
+                "type": "consu",
                 "purchase_method": "receive",
                 "list_price": 100.0,
             }
