@@ -30,7 +30,7 @@ class PurchaseOrderLine(models.Model):
         po_lines = self.filtered(
             lambda ln: ln.secondary_uom_qty != vals["secondary_uom_qty"]
         )
-        res = super(PurchaseOrderLine, self).write(vals)
+        res = super().write(vals)
         for po_line in po_lines:
             moves = po_line.move_ids
             if len(moves) == 1:
@@ -41,9 +41,7 @@ class PurchaseOrderLine(models.Model):
                 previous_secondary_qty = sum(m.secondary_uom_qty for m in moves[:-1])
                 moves[-1:].filtered(
                     lambda sm: sm.state not in ["done", "cancel"]
-                ).secondary_uom_qty = (
-                    vals["secondary_uom_qty"] - previous_secondary_qty
-                )
+                ).secondary_uom_qty = vals["secondary_uom_qty"] - previous_secondary_qty
         return res
 
     def _prepare_stock_move_vals(
