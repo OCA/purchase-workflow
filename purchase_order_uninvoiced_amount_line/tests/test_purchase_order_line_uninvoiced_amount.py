@@ -80,12 +80,8 @@ class TestPurchaseOrderLineUninvoicedAmount(TransactionCase):
         return purchase, lines
 
     def _create_invoice_from_purchase(self, purchase):
-        invoice_form = Form(
-            self.account_move_model.with_context(default_move_type="in_invoice")
-        )
-        invoice_form.partner_id = purchase.partner_id
-        invoice_form.purchase_id = purchase
-        return invoice_form.save()
+        res = purchase.action_create_invoice()
+        return self.env["account.move"].browse(res["res_id"])
 
     def test_single_line_not_invoiced(self):
         purchase, lines = self._create_purchase_with_lines(
