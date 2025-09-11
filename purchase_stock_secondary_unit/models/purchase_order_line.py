@@ -57,10 +57,27 @@ class PurchaseOrderLine(models.Model):
 
     @api.model
     def _prepare_purchase_order_line_from_procurement(
-        self, product_id, product_qty, product_uom, company_id, values, po
+        self,
+        product_id,
+        product_qty,
+        product_uom,
+        location_dest_id,
+        name,
+        origin,
+        company_id,
+        values,
+        po,
     ):
         res = super()._prepare_purchase_order_line_from_procurement(
-            product_id, product_qty, product_uom, company_id, values, po
+            product_id,
+            product_qty,
+            product_uom,
+            location_dest_id,
+            name,
+            origin,
+            company_id,
+            values,
+            po,
         )
         res["secondary_uom_id"] = values.get("secondary_uom_id", False)
         res["secondary_uom_qty"] = values.get("secondary_uom_qty", 0.0)
