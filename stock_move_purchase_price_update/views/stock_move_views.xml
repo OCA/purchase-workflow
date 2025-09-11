@@ -6,23 +6,20 @@
         <field name="inherit_id" ref="stock.view_picking_form" />
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='move_ids_without_package']/tree/field[@name='product_uom']"
+                expr="//field[@name='move_ids_without_package']/list/field[@name='product_uom']"
                 position="after"
             >
                 <field
-                    name="purchase_line_id"
-                    invisible="1"
-                    groups="purchase.group_purchase_user"
-                />
-                <field
                     name="is_purchase_price_editable"
-                    invisible="1"
+                    column_invisible="1"
                     groups="purchase.group_purchase_user"
                 />
                 <field
                     name="purchase_price_unit"
                     optional="hide"
-                    attrs="{'column_invisible': [('parent.picking_type_code', '!=', 'incoming')], 'invisible': [('purchase_line_id', '=', False)], 'readonly': [('is_purchase_price_editable', '=', False)]}"
+                    column_invisible="parent.picking_type_code != 'incoming'"
+                    invisible="not purchase_line_id"
+                    readonly="not is_purchase_price_editable"
                     groups="purchase.group_purchase_user"
                 />
             </xpath>
@@ -39,19 +36,16 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='product_uom_id']" position="after">
                 <field
-                    name="purchase_line_id"
-                    invisible="1"
-                    groups="purchase.group_purchase_user"
-                />
-                <field
                     name="is_purchase_price_editable"
-                    invisible="1"
+                    column_invisible="1"
                     groups="purchase.group_purchase_user"
                 />
                 <field
                     name="purchase_price_unit"
                     optional="hide"
-                    attrs="{'column_invisible': [('parent.picking_type_code', '!=', 'incoming')], 'invisible': [('purchase_line_id', '=', False)], 'readonly': [('is_purchase_price_editable', '=', False)]}"
+                    column_invisible="picking_code != 'incoming'"
+                    invisible="not purchase_line_id"
+                    readonly="not is_purchase_price_editable"
                     groups="purchase.group_purchase_user"
                 />
             </xpath>

@@ -1,20 +1,17 @@
 # Copyright 2024 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo.tests import common
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestStockMovePurchasePriceUpdate(common.TransactionCase):
+class TestStockMovePurchasePriceUpdate(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.company = cls.env.ref("base.main_company")
         cls.warehouse = cls.env.ref("stock.warehouse0")
         cls.product = cls.env["product.product"].create(
-            {
-                "name": "Product Test",
-                "type": "product",
-            }
+            {"name": "Product Test", "type": "consu", "is_storable": True}
         )
         cls.vendor = cls.env["res.partner"].create(
             {
@@ -45,7 +42,7 @@ class TestStockMovePurchasePriceUpdate(common.TransactionCase):
         cls.picking = cls.purchase_order.picking_ids
 
     def test_stock_move_purchase_price(self):
-        moves = self.picking.move_lines
+        moves = self.picking.move_ids
         self.assertEqual(moves[0].purchase_price_unit, 100.0)
         moves[0].write({"purchase_price_unit": 123.0})
         self.assertEqual(self.purchase_order_line.price_unit, 123.0)
