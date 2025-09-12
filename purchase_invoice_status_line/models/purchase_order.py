@@ -12,7 +12,8 @@ class PurchaseOrder(models.Model):
         inverse="_inverse_force_invoiced",
         store=True,
         tracking=True,
-        help="If true, the order is marked forced only when all lines are fully invoiced"
+        help="If true, the order is marked forced only "
+        "when all lines are fully invoiced"
         " and at least one line was manually forced.",
     )
 
@@ -52,10 +53,10 @@ class PurchaseOrder(models.Model):
         for po in self:
             if po.force_invoiced:
                 to_force = po.order_line.filtered(
-                    lambda l: l.invoice_status != "invoiced"
+                    lambda line: line.invoice_status != "invoiced"
                 )
                 to_force.write({"force_invoiced": True})
             else:
-                forced_lines = po.order_line.filtered(lambda l: l.force_invoiced)
+                forced_lines = po.order_line.filtered(lambda line: line.force_invoiced)
                 forced_lines.write({"force_invoiced": False})
                 forced_lines._compute_invoice_status()

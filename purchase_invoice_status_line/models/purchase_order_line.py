@@ -21,8 +21,6 @@ class PurchaseOrderLine(models.Model):
     )
 
     force_invoiced = fields.Boolean(
-        readonly=False,
-        states={"draft": [("readonly", True)]},
         store=True,
         copy=False,
         help="If true, the invoice status will be forced to Fully Invoiced, "
