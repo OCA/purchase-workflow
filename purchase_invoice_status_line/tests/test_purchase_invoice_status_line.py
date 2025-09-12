@@ -68,12 +68,12 @@ class TestPurchaseInvoiceStatusLine(common.TransactionCase):
         self.assertFalse(po.force_invoiced, "PO should not be forced initially")
         line1.force_invoiced = True
         self.assertEqual(
-            line1.invoice_status, "invoiced", "L1 status should be invoiced"
+            line1.invoice_status, "invoiced", "L1 status should be invoiced when forced"
         )
         self.assertFalse(po.force_invoiced, "PO not forced if only one line is done")
         line2.force_invoiced = True
         self.assertEqual(
-            line2.invoice_status, "invoiced", "L2 status should be invoiced"
+            line2.invoice_status, "invoiced", "L2 status should be invoiced when forced"
         )
         self.assertTrue(
             po.force_invoiced, "PO should be forced when all lines are invoiced"

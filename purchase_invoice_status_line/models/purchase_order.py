@@ -43,10 +43,14 @@ class PurchaseOrder(models.Model):
     @api.depends("order_line.invoice_status", "order_line.force_invoiced")
     def _compute_force_invoiced(self):
         for po in self:
-            all_invoiced = all(
-                line.invoice_status == "invoiced" for line in po.order_line
+            po.order_line._compute_invoice_status()
+            non_display_lines = po.order_line.filtered(
+                lambda line: not line.display_type
             )
-            any_forced = any(line.force_invoiced for line in po.order_line)
+            all_invoiced = all(
+                line.invoice_status == "invoiced" for line in non_display_lines
+            )
+            any_forced = any(line.force_invoiced for line in non_display_lines)
             po.force_invoiced = all_invoiced and any_forced
 
     def _inverse_force_invoiced(self):
