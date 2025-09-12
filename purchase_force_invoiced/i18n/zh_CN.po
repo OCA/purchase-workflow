@@ -22,6 +22,13 @@ msgid "Force Invoiced"
 msgstr ""
 
 #. module: purchase_force_invoiced
+#: model:ir.model.fields,help:purchase_force_invoiced.field_purchase_order__force_invoiced
+msgid ""
+"If true, the order is marked forced only when all lines are fully invoiced "
+"and at least one line was manually forced."
+msgstr ""
+
+#. module: purchase_force_invoiced
 #: model:ir.model,name:purchase_force_invoiced.model_purchase_order
 msgid "Purchase Order"
 msgstr "采购订单"
@@ -29,14 +36,6 @@ msgstr "采购订单"
 #. module: purchase_force_invoiced
 #: model:ir.model,name:purchase_force_invoiced.model_purchase_report
 msgid "Purchase Report"
-msgstr ""
-
-#. module: purchase_force_invoiced
-#: model:ir.model.fields,help:purchase_force_invoiced.field_purchase_order__force_invoiced
-msgid ""
-"When you set this field, the purchase order will be considered as fully "
-"billed, even when there may be ordered or delivered quantities pending to "
-"bill. To use this field, the order must be in 'Locked' state"
 msgstr ""
 
 #~ msgid "Force invoiced"
