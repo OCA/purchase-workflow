@@ -18,7 +18,7 @@ class PurchaseOrder(models.Model):
 
     @api.depends("order_line.invoice_status", "force_invoiced")
     def _get_invoiced(self):
-        super(PurchaseOrder, self)._get_invoiced()
+        super()._get_invoiced()
         for order in self:
             if not order.order_line:
                 order.invoice_status = "no"
