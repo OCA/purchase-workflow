@@ -49,7 +49,7 @@ class TestPurchaseForceInvoicedQTY(TransactionCase):
         pol1.qty_received = 1
         pol2.qty_received = 2
 
-        pol2.force_invoiced = 3
+        pol2.force_invoiced_qty = 3
         self.assertEqual(
             pol2.qty_to_invoice, -1, msg="The quantity to invoice should be -1"
         )
