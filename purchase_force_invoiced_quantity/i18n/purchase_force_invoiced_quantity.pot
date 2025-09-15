@@ -14,8 +14,8 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: purchase_force_invoiced_quantity
-#: model:ir.model.fields,field_description:purchase_force_invoiced_quantity.field_purchase_order_line__force_invoiced
-msgid "Force Invoiced"
+#: model:ir.model.fields,field_description:purchase_force_invoiced_quantity.field_purchase_order_line__force_invoiced_qty
+msgid "Force Invoiced Qty"
 msgstr ""
 
 #. module: purchase_force_invoiced_quantity
@@ -34,8 +34,8 @@ msgid "Purchase Order Line"
 msgstr ""
 
 #. module: purchase_force_invoiced_quantity
-#: model:ir.model.fields,help:purchase_force_invoiced_quantity.field_purchase_order_line__force_invoiced
+#: model:ir.model.fields,help:purchase_force_invoiced_quantity.field_purchase_order_line__force_invoiced_qty
 msgid ""
 "This amount will be deducted from quantity to invoice.\n"
-"quantity to invoice = delivered - invoiced - force invoiced"
+"quantity to invoice = delivered - invoiced - force invoiced qty"
 msgstr ""
