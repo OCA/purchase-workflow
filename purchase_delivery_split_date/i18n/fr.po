@@ -29,7 +29,5 @@ msgstr "Commande d'achat"
 msgid "Purchase Order Line"
 msgstr "Ligne de commande d'achat"
 
-#. module: purchase_delivery_split_date
-#: model:ir.model,name:purchase_delivery_split_date.model_stock_picking
-msgid "Transfer"
-msgstr "Transférer"
+#~ msgid "Transfer"
+#~ msgstr "Transférer"

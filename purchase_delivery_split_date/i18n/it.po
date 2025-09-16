@@ -30,7 +30,5 @@ msgstr "Ordine di acquisto"
 msgid "Purchase Order Line"
 msgstr "Riga ordine di acquisto"
 
-#. module: purchase_delivery_split_date
-#: model:ir.model,name:purchase_delivery_split_date.model_stock_picking
-msgid "Transfer"
-msgstr "Trasferimento"
+#~ msgid "Transfer"
+#~ msgstr "Trasferimento"
