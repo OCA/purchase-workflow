@@ -34,7 +34,7 @@ addon | version | maintainers | summary
 [purchase_cancel_reason](purchase_cancel_reason/) | 17.0.1.0.0 |  | Purchase Cancel Reason
 [purchase_commercial_partner](purchase_commercial_partner/) | 17.0.1.0.0 | <a href='https://github.com/alexis-via'><img src='https://github.com/alexis-via.png' width='32' height='32' style='border-radius:50%;' alt='alexis-via'/></a> | Add stored related field 'Commercial Supplier' on POs
 [purchase_default_terms_conditions](purchase_default_terms_conditions/) | 17.0.1.0.0 |  | This module allows purchase default terms & conditions
-[purchase_delivery_split_date](purchase_delivery_split_date/) | 17.0.1.0.2 |  | Allows Purchase Order you confirm to generate one Incoming Shipment for each expected date indicated in the Purchase Order Lines
+[purchase_delivery_split_date](purchase_delivery_split_date/) | 17.0.1.0.3 |  | Allows Purchase Order you confirm to generate one Incoming Shipment for each expected date indicated in the Purchase Order Lines
 [purchase_deposit](purchase_deposit/) | 17.0.1.1.0 |  | Option to create deposit from purchase order
 [purchase_exception](purchase_exception/) | 17.0.1.0.0 |  | Custom exceptions on purchase order
 [purchase_fop_shipping](purchase_fop_shipping/) | 17.0.1.0.1 |  | Purchase Free-Of-Payment shipping
@@ -43,7 +43,7 @@ addon | version | maintainers | summary
 [purchase_invoice_plan](purchase_invoice_plan/) | 17.0.1.0.1 | <a href='https://github.com/kittiu'><img src='https://github.com/kittiu.png' width='32' height='32' style='border-radius:50%;' alt='kittiu'/></a> | Add to purchases order, ability to manage future invoice plan
 [purchase_invoice_status_line](purchase_invoice_status_line/) | 17.0.1.0.0 | <a href='https://github.com/JoanSForgeFlow'><img src='https://github.com/JoanSForgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='JoanSForgeFlow'/></a> | Add invoice status on purchase order lines
 [purchase_last_price_info](purchase_last_price_info/) | 17.0.1.0.2 | <a href='https://github.com/LoisRForgeFlow'><img src='https://github.com/LoisRForgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='LoisRForgeFlow'/></a> | Purchase Product Last Price Info
-[purchase_location_by_line](purchase_location_by_line/) | 17.0.1.0.0 |  | Allows to define a specific destination location on each PO line
+[purchase_location_by_line](purchase_location_by_line/) | 17.0.1.0.1 |  | Allows to define a specific destination location on each PO line
 [purchase_lot](purchase_lot/) | 17.0.1.0.1 | <a href='https://github.com/florian-dacosta'><img src='https://github.com/florian-dacosta.png' width='32' height='32' style='border-radius:50%;' alt='florian-dacosta'/></a> | Purchase Lot
 [purchase_manual_currency](purchase_manual_currency/) | 17.0.1.0.0 |  | Allows to manual currency of Purchase
 [purchase_manual_delivery](purchase_manual_delivery/) | 17.0.1.0.1 |  | Prevents pickings to be auto generated upon Purchase Order confirmation and adds the ability to manually generate them as the supplier confirms the different purchase order lines.
