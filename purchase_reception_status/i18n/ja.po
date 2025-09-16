@@ -22,7 +22,7 @@ msgid "Force Received"
 msgstr "強制受領"
 
 #. module: purchase_reception_status
-#: model:ir.model.fields.selection,name:purchase_reception_status.selection__purchase_order__reception_status__received
+#: model:ir.model.fields.selection,name:purchase_reception_status.selection__purchase_order__receipt_status__full
 #: model_terms:ir.ui.view,arch_db:purchase_reception_status.view_purchase_order_filter
 msgid "Fully Received"
 msgstr "完納"
@@ -30,13 +30,9 @@ msgstr "完納"
 #. module: purchase_reception_status
 #: model:ir.model.fields,help:purchase_reception_status.field_purchase_order__force_received
 msgid ""
-"If true, the reception status will be forced to Fully Received, even if some "
-"lines are not fully received. To be able to modify this field, you must "
-"first lock the order."
+"If true, the order is marked forced only when all lines are fully received "
+"and at least one line was manually forced."
 msgstr ""
-"チェックを付けた場合、未受領の明細が有ったとしても受領ステータスは強制的に完"
-"全受領済みとなります。この項目を編集するためにはオーダーのロックを解除する必"
-"要があります。"
 
 #. module: purchase_reception_status
 #: model_terms:ir.ui.view,arch_db:purchase_reception_status.view_purchase_order_filter
@@ -44,12 +40,12 @@ msgid "Not Fully Received"
 msgstr "未完納"
 
 #. module: purchase_reception_status
-#: model:ir.model.fields.selection,name:purchase_reception_status.selection__purchase_order__reception_status__no
+#: model:ir.model.fields.selection,name:purchase_reception_status.selection__purchase_order__receipt_status__pending
 msgid "Nothing Received"
 msgstr "未受領"
 
 #. module: purchase_reception_status
-#: model:ir.model.fields.selection,name:purchase_reception_status.selection__purchase_order__reception_status__partial
+#: model:ir.model.fields.selection,name:purchase_reception_status.selection__purchase_order__receipt_status__partial
 msgid "Partially Received"
 msgstr "分納"
 
@@ -59,7 +55,19 @@ msgid "Purchase Order"
 msgstr "購買オーダ"
 
 #. module: purchase_reception_status
-#: model:ir.model.fields,field_description:purchase_reception_status.field_purchase_order__reception_status
+#: model:ir.model.fields,field_description:purchase_reception_status.field_purchase_order__receipt_status
 #: model_terms:ir.ui.view,arch_db:purchase_reception_status.view_purchase_order_filter
-msgid "Reception Status"
-msgstr "納入状況"
+msgid "Receipt Status"
+msgstr ""
+
+#~ msgid ""
+#~ "If true, the reception status will be forced to Fully Received, even if "
+#~ "some lines are not fully received. To be able to modify this field, you "
+#~ "must first lock the order."
+#~ msgstr ""
+#~ "チェックを付けた場合、未受領の明細が有ったとしても受領ステータスは強制的に"
+#~ "完全受領済みとなります。この項目を編集するためにはオーダーのロックを解除す"
+#~ "る必要があります。"
+
+#~ msgid "Reception Status"
+#~ msgstr "納入状況"
