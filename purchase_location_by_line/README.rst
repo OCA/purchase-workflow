@@ -42,6 +42,13 @@ Not be confused.
 .. contents::
    :local:
 
+Known issues / Roadmap
+======================
+
+When adding a new product to a confirmed purchase order with two
+receipts split only by the location, the previous split pickings will
+merge into one picking.
+
 Bug Tracker
 ===========
 
@@ -63,14 +70,14 @@ Authors
 Contributors
 ------------
 
--  Jordi Ballester Alomar <jordi.ballester@forgeflow.com>
--  Hizbul Bahar <hizbul25@gmail.com>
--  Harald Panten <harald.panten@sygel.es>
--  Juany Davila <juany.davila@forgeflow.com>
--  Manuel Regidor <manuel.regidor@sygel.es>
--  `Binhex <https://binhex.cloud/>`__:
+- Jordi Ballester Alomar <jordi.ballester@forgeflow.com>
+- Hizbul Bahar <hizbul25@gmail.com>
+- Harald Panten <harald.panten@sygel.es>
+- Juany Davila <juany.davila@forgeflow.com>
+- Manuel Regidor <manuel.regidor@sygel.es>
+- `Binhex <https://binhex.cloud/>`__:
 
-   -  Deriman Alonso
+  - Deriman Alonso
 
 Maintainers
 -----------
