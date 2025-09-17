@@ -12,7 +12,7 @@ class TestPurchaseOrderLine(common.TransactionCase):
         cls.product_id = cls.env["product.product"].create(
             {
                 "name": "Test Product",
-                "detailed_type": "consu",
+                "type": "consu",
             }
         )
 

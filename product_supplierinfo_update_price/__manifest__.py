@@ -5,7 +5,7 @@
     "name": "Product Supplierinfo Update Price",
     "summary": """Updates the product's vendor price with the price
     set in a purchase order.""",
-    "version": "17.0.1.0.0",
+    "version": "18.0.1.0.0",
     "license": "AGPL-3",
     "author": "Dixmit,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
