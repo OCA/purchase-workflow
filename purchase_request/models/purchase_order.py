@@ -226,6 +226,11 @@ class PurchaseOrderLine(models.Model):
         }
 
     def write(self, vals):
+        # TRESCLOUD: Si se actualiza la cantidad del producto, se actualiza la fecha planificada a la fecha actual
+        # Esto desde una requisición de compra
+        # TRESCLOUD: FIN
+        if 'product_qty' in vals and self.env.context.get('ctx_update_date_planned', False):
+            vals['date_planned'] = fields.Datetime.now()
         #  As services do not generate stock move this tweak is required
         #  to allocate them.
         prev_qty_received = {}

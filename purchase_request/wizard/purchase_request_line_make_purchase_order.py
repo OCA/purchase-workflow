@@ -218,6 +218,10 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         return order_line_data
 
     def make_purchase_order(self):
+        # TRESCLOUD: Se envía el contexto para determinar la fecha planificada al actualizar la cantidad
+        # Esto evita que se duplique la línea de movimiento en la transferencia
+        self = self.with_context(ctx_update_date_planned=True)
+        # TRESCLOUD: FIN
         res = []
         purchase_obj = self.env["purchase.order"]
         po_line_obj = self.env["purchase.order.line"]
