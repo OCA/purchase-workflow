@@ -303,7 +303,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         new_qty = self.env["purchase.request.line"]._calc_new_qty(
             line, po_line=po_line, new_pr_line=new_pr_line
         )
-        po_line.product_qty = new_qty
+        po_line.write({"product_qty": new_qty, 'date_planned': fields.Datetime.now()})
         if item.keep_estimated_cost:
             po_line.price_unit = price_unit
             po_line._compute_amount()
