@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 CreuBlanca
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record model="ir.ui.view" id="purchase_order_form_view">
+        <field
+            name="name"
+        >purchase.order.form.inherit,purchase.invoice.partner.type</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="available_partner_invoice_ids" invisible="1" />
+                <field
+                    name="partner_invoice_id"
+                    readonly="state in ('cancel', 'done', 'purchase')"
+                    context="{'default_type': 'purchase_invoice','default_parent_id': partner_id}"
+                />
+            </field>
+        </field>
+    </record>
+
+</odoo>
