@@ -33,9 +33,10 @@ class PurchaseOrderLine(models.Model):
         res = super().write(vals)
         for po_line in po_lines:
             moves = po_line.move_ids
+            secondary_uom_qty = vals["secondary_uom_qty"]
             if len(moves) == 1:
                 moves.filtered(lambda sm: sm.state not in ["done", "cancel"]).write(
-                    {"secondary_uom_qty": vals["secondary_uom_qty"]}
+                    {"secondary_uom_qty": secondary_uom_qty}
                 )
             elif moves and vals.get("secondary_uom_qty"):
                 previous_secondary_qty = sum(m.secondary_uom_qty for m in moves[:-1])

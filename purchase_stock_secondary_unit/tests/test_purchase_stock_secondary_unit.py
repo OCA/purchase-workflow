@@ -74,7 +74,7 @@ class TestPurchaseStockSecondaryUnit(TransactionCase):
         self.purchase_order.button_confirm()
         picking = self.purchase_order.picking_ids
         picking.action_assign()
-        picking.move_line_ids.qty_done = picking.move_ids.product_uom_qty
+        picking.move_line_ids.quantity = picking.move_ids.product_uom_qty
         picking.button_validate()
         with Form(self.purchase_order) as po_form:
             with po_form.order_line.edit(0) as line:
@@ -90,4 +90,4 @@ class TestPurchaseStockSecondaryUnit(TransactionCase):
         self.assertEqual(
             picking.move_line_ids.secondary_uom_id, self.secondary_product_uom
         )
-        self.assertEqual(picking.move_line_ids.reserved_uom_qty, qty)
+        self.assertEqual(picking.move_line_ids.quantity, qty)
