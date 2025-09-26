@@ -1,4 +1,4 @@
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 
 
 class PurchaseRequest(models.Model):
@@ -25,9 +25,10 @@ class PurchaseRequest(models.Model):
     def _compute_expense_ids(self):
         for request in self:
             expenses = request.line_ids.mapped("expense_ids")
-            request.expense_ids = expenses
-            request.expense_count = len(expenses)
-            # request.expense_amount = sum(expenses.mapped('total_amount'))
+            request.update({
+                "expense_ids": expenses,
+                "expense_count": len(expenses)
+            })
 
     def action_view_expenses(self):
         self.ensure_one()
