@@ -157,32 +157,6 @@ class PurchaseRequestLineMakeExpense(models.TransientModel):
             else False,
         }
 
-        # Only add advance-related fields if the module is installed
-        if self._has_expense_advance_clearing():
-            advance_product = self.env.ref(
-                "hr_expense_advance_clearing.product_emp_advance",
-                raise_if_not_found=False,
-            )
-            if advance_product and item.product_id.id == advance_product.id:
-                vals["advance"] = True
-                if advance_product.property_account_expense_id:
-                    vals["account_id"] = advance_product.property_account_expense_id.id
-                else:
-                    category_account = (
-                        advance_product.categ_id.property_account_expense_categ_id
-                    )
-                    if category_account:
-                        vals["account_id"] = category_account.id
-                    else:
-                        raise UserError(
-                            _(
-                                "No expense account found for advance product. "
-                                "Please configure it first."
-                            )
-                        )
-
-        return vals
-
     def make_expense(self):
         """Create expenses from the wizard items."""
         self.ensure_one()
