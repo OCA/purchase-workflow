@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-09-26 14:38+0000\n"
+"PO-Revision-Date: 2025-09-29 10:42+0000\n"
 "Last-Translator: vladimiruvid <vladimir@uvid.hr>\n"
 "Language-Team: none\n"
 "Language: hr\n"
@@ -31,12 +31,12 @@ msgstr "Stavka Narudžbenice"
 #: model:ir.model.fields,field_description:purchase_lot.field_purchase_order_line__lot_id
 #: model_terms:ir.ui.view,arch_db:purchase_lot.view_purchase_order_filter
 msgid "Serial Number"
-msgstr "Serijski broj"
+msgstr "Lot / SN"
 
 #. module: purchase_lot
 #: model:ir.model,name:purchase_lot.model_stock_rule
 msgid "Stock Rule"
-msgstr ""
+msgstr "Skladišno pravilo"
 
 #. module: purchase_lot
 #: model:ir.model.fields,field_description:purchase_lot.field_purchase_order_line__tracking
