@@ -34,7 +34,7 @@ class PurchaseRequest(models.Model):
         self.ensure_one()
         expenses = self._get_related_expenses()
         action = {
-            "name": "Expenses",
+            "name": _("Expenses"),
             "type": "ir.actions.act_window",
             "res_model": "hr.expense",
             "view_mode": "tree,form",
