@@ -150,6 +150,14 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         }
         return self.env["purchase.request.allocation"].create(vals)
 
+    def _get_date_with_user_tz(self, date):
+        user_tz = pytz.timezone(self.env.user.tz or "UTC")
+        return (
+            user_tz.localize(datetime(date.year, date.month, date.day))
+            .astimezone(pytz.utc)
+            .replace(tzinfo=None)
+        )
+
     @api.model
     def _prepare_purchase_order_line(self, po, item):
         if not item.product_id:
@@ -173,9 +181,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             "product_qty": qty,
             "analytic_distribution": item.line_id.analytic_distribution,
             "purchase_request_lines": [(4, item.line_id.id)],
-            "date_planned": datetime(
-                date_required.year, date_required.month, date_required.day
-            ),
+            "date_planned": self._get_date_with_user_tz(date_required),
             "move_dest_ids": [(4, x.id) for x in item.line_id.move_dest_ids],
         }
 
@@ -214,13 +220,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         if self.sync_data_planned:
             date_required = item.line_id.date_required
             order_line_data += [
-                (
-                    "date_planned",
-                    "=",
-                    datetime(
-                        date_required.year, date_required.month, date_required.day
-                    ),
-                )
+                ("date_planned", "=", self._get_date_with_user_tz(date_required))
             ]
         if not item.product_id:
             order_line_data.append(("name", "=", item.name))
@@ -231,7 +231,6 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         purchase_obj = self.env["purchase.order"]
         po_line_obj = self.env["purchase.order.line"]
         pr_line_obj = self.env["purchase.request.line"]
-        user_tz = pytz.timezone(self.env.user.tz or "UTC")
         purchase = False
 
         for item in self.item_ids:
@@ -291,19 +290,13 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             new_qty = pr_line_obj._calc_new_qty(
                 line, po_line=po_line, new_pr_line=new_pr_line
             )
-            po_line.product_qty = new_qty
             # The quantity update triggers a compute method that alters the
             # unit price (which is what we want, to honor graduate pricing)
             # but also the scheduled date which is what we don't want.
             date_required = item.line_id.date_required
             # we enforce to save the datetime value in the current tz of the user
-            po_line.date_planned = (
-                user_tz.localize(
-                    datetime(date_required.year, date_required.month, date_required.day)
-                )
-                .astimezone(pytz.utc)
-                .replace(tzinfo=None)
-            )
+            date_planned = self._get_date_with_user_tz(date_required)
+            po_line.write({"product_qty": new_qty, "date_planned": date_planned})
             res.append(purchase.id)
 
         purchase_requests = self.item_ids.mapped("request_id")
