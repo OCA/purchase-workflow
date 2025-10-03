@@ -303,17 +303,17 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         new_qty = self.env["purchase.request.line"]._calc_new_qty(
             line, po_line=po_line, new_pr_line=new_pr_line
         )
-        po_line.product_qty = new_qty
-        if item.keep_estimated_cost:
-            po_line.price_unit = price_unit
-            po_line._compute_amount()
         # The quantity update triggers a compute method that alters the
         # unit price (which is what we want, to honor graduate pricing)
         # but also the scheduled date which is what we don't want.
         date_required = line.date_required
-        po_line.date_planned = datetime(
+        date_planned = datetime(
             date_required.year, date_required.month, date_required.day
         )
+        po_line.write({"product_qty": new_qty, "date_planned": date_planned})
+        if item.keep_estimated_cost:
+            po_line.price_unit = price_unit
+            po_line._compute_amount()
 
 
 class PurchaseRequestLineMakePurchaseOrderItem(models.TransientModel):
