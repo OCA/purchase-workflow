@@ -1,0 +1,3 @@
+- David BEAL <david.beal@akretion.com>
+- BADEP
+- Quentin Dupont (<quentin.dupont@grap.coop>)
