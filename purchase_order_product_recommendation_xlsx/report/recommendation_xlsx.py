@@ -1,6 +1,6 @@
 # Copyright 2021 Tecnativa - Carlos Roca
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import _, models
+from odoo import models
 
 
 class RecommendationXlsx(models.AbstractModel):
@@ -31,24 +31,26 @@ class RecommendationXlsx(models.AbstractModel):
         date_format = date_format.replace("%Y", "YYYY")
         date_format = date_format.replace("/", "-")
         date_format = workbook.add_format({"num_format": date_format})
-        sheet = workbook.add_worksheet(_("PRODUCTS"))
+        sheet = workbook.add_worksheet(self.env._("PRODUCTS"))
         sheet.set_column("A:A", 45)
         sheet.set_column("B:H", 15)
         # Title construction
-        sheet.write("A1", _("Recommended products for supplier:"), title_format)
+        sheet.write(
+            "A1", self.env._("Recommended products for supplier:"), title_format
+        )
         sheet.write("B1", book.order_id.partner_id.name)
-        sheet.write("A3", _("Date begin:"), title_format)
+        sheet.write("A3", self.env._("Date begin:"), title_format)
         sheet.write("B3", book.date_begin, date_format)
-        sheet.write("D3", _("Date end:"), title_format)
+        sheet.write("D3", self.env._("Date end:"), title_format)
         sheet.write("E3", book.date_end, date_format)
         # Header construction
-        sheet.write(5, 0, _("Product"), header_format)
+        sheet.write(5, 0, self.env._("Product"), header_format)
         next_col = 1
         line_obj = self.env["purchase.order.recommendation.line"]
         for name in field_names:
             sheet.write(5, next_col, line_obj._fields[name].string, header_format)
             next_col += 1
-        sheet.write(5, next_col, _("Qty"), header_format)
+        sheet.write(5, next_col, self.env._("Qty"), header_format)
         return sheet
 
     def _fill_data(self, workbook, sheet, book, field_names):
@@ -64,11 +66,11 @@ class RecommendationXlsx(models.AbstractModel):
         for line in book.line_ids:
             if line.currency_id.position == "after":
                 monetary_format = workbook.add_format(
-                    {"num_format": "0.00 %s" % line.currency_id.symbol}
+                    {"num_format": f"0.00 {line.currency_id.symbol}"}
                 )
             else:
                 monetary_format = workbook.add_format(
-                    {"num_format": "%s 0.00" % line.currency_id.symbol}
+                    {"num_format": f"{line.currency_id.symbol} 0.00"}
                 )
             sheet.write(next_row, 0, line.product_id.display_name)
             next_col = 1
