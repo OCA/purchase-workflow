@@ -29,6 +29,11 @@ msgid "Purchase Order Line"
 msgstr ""
 
 #. module: purchase_date_planned_manual
+#: model:ir.model,name:purchase_date_planned_manual.model_stock_rule
+msgid "Stock Rule"
+msgstr ""
+
+#. module: purchase_date_planned_manual
 #. odoo-python
 #: code:addons/purchase_date_planned_manual/models/purchase_order.py:0
 #, python-format
