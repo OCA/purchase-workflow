@@ -1,0 +1,99 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_stock_cost_update
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-28 14:47+0000\n"
+"PO-Revision-Date: 2025-10-28 15:50+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.5\n"
+
+#. module: purchase_stock_cost_update
+#: model_terms:ir.ui.view,arch_db:purchase_stock_cost_update.purchase_order_form
+msgid "<i class=\"fa fa-info-circle\" role=\"img\"/> Details"
+msgstr "<i class=\"fa fa-info-circle\" role=\"img\"/> Detalles"
+
+#. module: purchase_stock_cost_update
+#: model_terms:ir.ui.view,arch_db:purchase_stock_cost_update.purchase_order_form
+msgid ""
+"<i class=\"fa fa-warning\"/> There are lines (marked in yellow) which\n"
+"                    prices have changed since they where received in stock."
+msgstr ""
+"<i class=\"fa fa-warning\"/> Hay líneas (resaltadas en amarillo) cuyos\n"
+"                    precios han cambiado desde que se recibieron en almacén."
+
+#. module: purchase_stock_cost_update
+#: model:ir.model.fields,field_description:purchase_stock_cost_update.field_stock_valuation_layer__cost_update_history
+msgid "Cost Update History"
+msgstr "Historial de actualizaciones de coste"
+
+#. module: purchase_stock_cost_update
+#: model_terms:ir.ui.view,arch_db:purchase_stock_cost_update.purchase_order_form
+msgid "Fix valuation"
+msgstr "Corregir valoración"
+
+#. module: purchase_stock_cost_update
+#. odoo-python
+#: code:addons/purchase_stock_cost_update/models/purchase_order.py:0
+#, python-format
+msgid "Price difference layer created from %(line)s"
+msgstr "Capa de diferencia de valoración creada desde %(line)s"
+
+#. module: purchase_stock_cost_update
+#: model:ir.model.fields,field_description:purchase_stock_cost_update.field_stock_valuation_layer__purchase_line_id
+msgid "Purchase Line"
+msgstr "Línea de compra"
+
+#. module: purchase_stock_cost_update
+#: model:ir.model,name:purchase_stock_cost_update.model_purchase_order
+msgid "Purchase Order"
+msgstr "Pedido de compra"
+
+#. module: purchase_stock_cost_update
+#: model:ir.model,name:purchase_stock_cost_update.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Línea de pedido de compra"
+
+#. module: purchase_stock_cost_update
+#: model:ir.model,name:purchase_stock_cost_update.model_stock_valuation_layer
+msgid "Stock Valuation Layer"
+msgstr "Capa de valoración de stock"
+
+#. module: purchase_stock_cost_update
+#: model_terms:ir.ui.view,arch_db:purchase_stock_cost_update.purchase_order_form
+msgid ""
+"This will make unreversible changes to the valuation layers related to the "
+"affected products"
+msgstr ""
+"Esto realizará cambios irreversibles en las capas de valoración "
+"relacionadas con los productos afectados"
+
+#. module: purchase_stock_cost_update
+#: model_terms:ir.ui.view,arch_db:purchase_stock_cost_update.stock_valuation_layer_form
+msgid "Update history"
+msgstr "Historial de actualizaciones"
+
+#. module: purchase_stock_cost_update
+#: model:ir.model.fields,field_description:purchase_stock_cost_update.field_purchase_order_line__valuation_difference
+msgid "Valuation Difference"
+msgstr "Diferencia de valoración"
+
+#. module: purchase_stock_cost_update
+#: model:ir.model.fields,field_description:purchase_stock_cost_update.field_purchase_order__valuation_difference_report
+msgid "Valuation Difference Report"
+msgstr "Informe de diferencias de valoración"
+
+#. module: purchase_stock_cost_update
+#: model:ir.model.fields,field_description:purchase_stock_cost_update.field_purchase_order__valuation_differs
+#: model:ir.model.fields,field_description:purchase_stock_cost_update.field_purchase_order_line__valuation_differs
+msgid "Valuation Differs"
+msgstr "La valoración difiere"
