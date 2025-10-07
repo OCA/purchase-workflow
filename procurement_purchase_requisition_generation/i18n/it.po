@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-04-14 13:24+0000\n"
+"PO-Revision-Date: 2025-10-07 11:43+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -47,7 +47,7 @@ msgstr "Approvvigionamento"
 #. module: procurement_purchase_requisition_generation
 #: model:ir.model.fields,field_description:procurement_purchase_requisition_generation.field_purchase_requisition__procurement_group_id
 msgid "Procurement Group"
-msgstr "Gruppo approvvigionamento"
+msgstr "Gruppo di approvvigionamento"
 
 #. module: procurement_purchase_requisition_generation
 #: model:ir.model,name:procurement_purchase_requisition_generation.model_product_template
