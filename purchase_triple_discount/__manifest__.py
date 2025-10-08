@@ -15,6 +15,7 @@
     "data": [
         "views/product_supplierinfo_view.xml",
         "views/purchase_view.xml",
+        "views/res_partner_view.xml",
     ],
     "post_init_hook": "post_init_hook",
     "installable": True,
