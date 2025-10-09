@@ -43,6 +43,9 @@ class Test(SavepointCase):
         self.cont_b._compute_purchase_order_count()
         self.assertEqual(self.cont_b.purchase_order_count, 2)
 
+        self.cont_b._compute_incoterm_id()
+        self.assertEqual(self.cont_b.displayed_incoterm_id, self.incoterm_id)
+
     def test_action_views(self):
         po = self.get_po()
         po.button_confirm()

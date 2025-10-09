@@ -63,6 +63,7 @@ Contributors
 - Akretion
 
   - Olivier Nibart
+  - Mathieu Delva
 
 Maintainers
 -----------
