@@ -1,0 +1,1 @@
+This module ensures that, when creating a vendor bill from a Purchase Order, invoice lines are only generated for products that have a real, pending quantity to be invoiced.
