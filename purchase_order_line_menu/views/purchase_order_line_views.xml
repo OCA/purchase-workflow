@@ -34,7 +34,7 @@
                 <field name="qty_received_manual" optional="hide" />
             </xpath>
             <xpath expr="//field[@name='price_subtotal']" position="after">
-                <field name="taxes_id" widget="many2many_tags" optional="hide" />
+                <field name="tax_ids" widget="many2many_tags" optional="hide" />
                 <field
                     name="price_tax"
                     widget="monetary"
@@ -50,7 +50,7 @@
                 <field name="date_order" optional="show" widget="date" />
             </xpath>
             <xpath expr="//list" position="inside">
-                <field name="product_packaging_id" optional="hide" />
+                <field name="product_uom_id" optional="hide" />
             </xpath>
             <xpath expr="//field[@name='name']" position="attributes">
                 <attribute name="optional">show</attribute>
