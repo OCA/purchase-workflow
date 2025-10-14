@@ -1,7 +1,7 @@
 # Copyright (C) 2021 ForgeFlow S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html)
 
-from odoo import _, api, exceptions, fields, models
+from odoo import api, exceptions, fields, models
 
 
 class AccountVoucherWizardPurchase(models.TransientModel):
@@ -86,7 +86,9 @@ class AccountVoucherWizardPurchase(models.TransientModel):
     @api.constrains("amount_advance")
     def check_amount(self):
         if self.journal_currency_id.compare_amounts(self.amount_advance, 0.0) <= 0:
-            raise exceptions.ValidationError(_("Amount of advance must be positive."))
+            raise exceptions.ValidationError(
+                self.env._("Amount of advance must be positive.")
+            )
         if self.env.context.get("active_id", False):
             if (
                 self.currency_id.compare_amounts(
@@ -95,7 +97,9 @@ class AccountVoucherWizardPurchase(models.TransientModel):
                 > 0
             ):
                 raise exceptions.ValidationError(
-                    _("Amount of advance is greater than residual amount on purchase")
+                    self.env._(
+                        "Amount of advance is greater than residual amount on purchase"
+                    )
                 )
 
     @api.model
