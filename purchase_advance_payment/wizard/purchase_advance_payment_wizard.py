@@ -108,7 +108,7 @@ class AccountVoucherWizardPurchase(models.TransientModel):
         purchase_ids = self.env.context.get("active_ids", [])
         if not purchase_ids:
             return res
-        purchase_id = fields.first(purchase_ids)
+        purchase_id = purchase_ids[0]
         purchase = self.env["purchase.order"].browse(purchase_id)
         if "amount_total" in fields_list:
             res.update(
@@ -176,7 +176,7 @@ class AccountVoucherWizardPurchase(models.TransientModel):
 
         purchase_ids = self.env.context.get("active_ids", [])
         if purchase_ids:
-            purchase_id = fields.first(purchase_ids)
+            purchase_id = purchase_ids[0]
             purchase = purchase_obj.browse(purchase_id)
             payment_vals = self._prepare_payment_vals(purchase)
             payment = payment_obj.create(payment_vals)
