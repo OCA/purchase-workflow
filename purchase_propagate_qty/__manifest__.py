@@ -8,7 +8,7 @@
     "version": "14.0.1.0.3",
     "summary": "Quantity decrease on purchase line are propagated "
     "to the corresponding stock.move",
-    "author": "Numerigraphe, Eficient, Camptocamp, Odoo Community Association (OCA)",
+    "author": "Numerigraphe, Eficent, Camptocamp, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
     "category": "Purchase Management",
     "license": "AGPL-3",
