@@ -35,7 +35,7 @@ class TestPoLineOriginalDate(common.TransactionCase):
                         0,
                         {
                             "product_id": product.id,
-                            "product_uom": product.uom_id.id,
+                            "product_uom_id": product.uom_id.id,
                             "name": product.name,
                             "price_unit": 100.0,
                             "date_planned": date_planned,
