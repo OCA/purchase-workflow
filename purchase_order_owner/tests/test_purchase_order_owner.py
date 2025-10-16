@@ -9,9 +9,11 @@ from odoo.tests.common import TransactionCase
 class TestPurchaseOrderOwner(TransactionCase):
     def setUp(self):
         super().setUp()
-        self.partner_id = self.env.ref("base.res_partner_12")
-        self.product_id = self.env.ref("product.product_product_9")
-        self.uom_id = self.env.ref("uom.product_uom_unit")
+        self.partner_id = self.env["res.partner"].create({"name": "Partner 1"})
+        self.product_id = self.env["product.product"].create(
+            {"name": "Desk Combination", "type": "consu", "purchase_method": "purchase"}
+        )
+        self.uom_id = self.env["uom.uom"].create({"name": "Units"})
 
         # Owner
         self.owner_id = self.env["res.partner"].create({"name": "Owner test"})
@@ -33,7 +35,7 @@ class TestPurchaseOrderOwner(TransactionCase):
                             "name": self.product_id.name,
                             "product_id": self.product_id.id,
                             "product_qty": 1.0,
-                            "product_uom": self.uom_id.id,
+                            "product_uom_id": self.uom_id.id,
                             "price_unit": 100.0,
                             "date_planned": datetime.today(),
                         },
