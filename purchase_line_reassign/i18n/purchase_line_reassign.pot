@@ -1,0 +1,100 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_line_reassign
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_line_reassign
+#: model:ir.model.fields,field_description:purchase_line_reassign.field_purchase_order_line_reassign_wiz__allow_different_suppliers
+msgid "Allow Different Suppliers"
+msgstr ""
+
+#. module: purchase_line_reassign
+#: model:ir.model.fields,help:purchase_line_reassign.field_purchase_order_line_reassign_wiz__allow_different_suppliers
+msgid "Allow selecting orders from other suppliers."
+msgstr ""
+
+#. module: purchase_line_reassign
+#: model_terms:ir.ui.view,arch_db:purchase_line_reassign.purchase_order_line_reassign_wiz
+msgid "Apply"
+msgstr ""
+
+#. module: purchase_line_reassign
+#: model_terms:ir.ui.view,arch_db:purchase_line_reassign.purchase_order_line_reassign_wiz
+msgid "Close"
+msgstr ""
+
+#. module: purchase_line_reassign
+#: model:ir.model.fields,field_description:purchase_line_reassign.field_purchase_order_line_reassign_wiz__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: purchase_line_reassign
+#: model:ir.model.fields,field_description:purchase_line_reassign.field_purchase_order_line_reassign_wiz__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: purchase_line_reassign
+#: model:ir.model.fields,field_description:purchase_line_reassign.field_purchase_order_line_reassign_wiz__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_line_reassign
+#: model:ir.model.fields,field_description:purchase_line_reassign.field_purchase_order_line_reassign_wiz__id
+msgid "ID"
+msgstr ""
+
+#. module: purchase_line_reassign
+#: model:ir.model.fields,field_description:purchase_line_reassign.field_purchase_order_line_reassign_wiz____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: purchase_line_reassign
+#: model:ir.model.fields,field_description:purchase_line_reassign.field_purchase_order_line_reassign_wiz__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: purchase_line_reassign
+#: model:ir.model.fields,field_description:purchase_line_reassign.field_purchase_order_line_reassign_wiz__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: purchase_line_reassign
+#: model:ir.model.fields,field_description:purchase_line_reassign.field_purchase_order_line_reassign_wiz__purchase_order_id
+msgid "Move to purchase"
+msgstr ""
+
+#. module: purchase_line_reassign
+#: model_terms:ir.ui.view,arch_db:purchase_line_reassign.purchase_order_line_reassign_wiz
+msgid "Purchase Order Lines"
+msgstr ""
+
+#. module: purchase_line_reassign
+#: model:ir.actions.act_window,name:purchase_line_reassign.action_purchase_order_line_reassign_wiz
+msgid "Reassign Lines to Other Purchase"
+msgstr ""
+
+#. module: purchase_line_reassign
+#: code:addons/purchase_line_reassign/wizards/purchase_line_reassign_wiz.py:0
+#, python-format
+msgid "Selected line/s are invoiced or they have distinct vendors"
+msgstr ""
+
+#. module: purchase_line_reassign
+#: model:ir.model.fields,field_description:purchase_line_reassign.field_purchase_order_line_reassign_wiz__partner_id
+msgid "Vendor"
+msgstr ""
+
+#. module: purchase_line_reassign
+#: model:ir.model,name:purchase_line_reassign.model_purchase_order_line_reassign_wiz
+msgid "Wizard to reassign purchase order lines to other PO"
+msgstr ""
