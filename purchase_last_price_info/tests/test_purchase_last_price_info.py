@@ -38,7 +38,7 @@ class TestPurchaseLastPriceInfo(common.TransactionCase):
                 ("state", "in", ["purchase", "done"]),
             ]
         ).sorted(key=lambda line: line.order_id.date_order, reverse=True)
-        first_purchase_line = fields.first(purchase_lines)
+        first_purchase_line = purchase_lines[:1]
         self.assertEqual(
             fields.Datetime.from_string(first_purchase_line.order_id.date_order).date(),
             fields.Datetime.from_string(self.product.last_purchase_date).date(),
@@ -68,7 +68,7 @@ class TestPurchaseLastPriceInfo(common.TransactionCase):
                         0,
                         {
                             "product_id": self.product.id,
-                            "product_uom": self.product.uom_id.id,
+                            "product_uom_id": self.product.uom_id.id,
                             "price_unit": self.product.standard_price,
                             "name": self.product.name,
                             "date_planned": fields.Datetime.now(),
@@ -83,7 +83,7 @@ class TestPurchaseLastPriceInfo(common.TransactionCase):
             fields.Datetime.from_string(purchase_order.date_order).date(),
             fields.Datetime.from_string(self.product.last_purchase_date).date(),
         )
-        first_order_line = fields.first(purchase_order.order_line)
+        first_order_line = purchase_order.order_line[:1]
         self.assertEqual(first_order_line.price_unit, self.product.last_purchase_price)
         self.assertEqual(
             first_order_line.currency_id,

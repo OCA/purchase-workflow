@@ -48,13 +48,13 @@ class ProductProduct(models.Model):
     @api.depends("last_purchase_line_ids.state")
     def _compute_last_purchase_line_id(self):
         for item in self:
-            item.last_purchase_line_id = fields.first(
+            item.last_purchase_line_id = (
                 item.last_purchase_line_ids.sudo().filtered_domain(
                     [
                         ("state", "in", ["purchase", "done"]),
                         ("company_id", "in", self.env.companies.ids),
                     ]
-                )
+                )[:1]
             )
 
     @api.depends("last_purchase_line_id")
