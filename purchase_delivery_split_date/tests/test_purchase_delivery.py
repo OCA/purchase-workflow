@@ -380,3 +380,27 @@ class TestDeliverySingle(BaseCommon):
                 self.po.dest_address_id,
                 f"Picking {picking.name} partner_id must match the PO dest_address_id",
             )
+
+    def test_picking_partner_dropship(self):
+        """Ensure pickings for dropship PO have the correct partner_id."""
+        location_customer = self.env.ref("stock.stock_location_customers")
+        dropship_customer = self.env["res.partner"].create(
+            {"name": "Dropship Customer"}
+        )
+        dropship_partner = self.env["res.partner"].create({"name": "Dropship Partner"})
+        self.po.dest_address_id = dropship_customer
+        self.po.partner_id = dropship_partner
+        self.po.button_confirm()
+        # Because the module `stock_dropshipping is not a dependency
+        # We need to fake a dropshipping PO by changing the destination location
+        # On the operation type and the picking and moves.
+        self.po.picking_ids.picking_type_id.default_location_dest_id = location_customer
+        self.po.picking_ids.location_dest_id = location_customer
+        # Change the date to trigger a new picking
+        self.po.order_line[0].date_planned = self.date_later
+        for picking in self.po.picking_ids:
+            self.assertEqual(
+                picking.partner_id,
+                dropship_partner,
+                f"Picking {picking.name} partner_id must match the dropship address",
+            )
