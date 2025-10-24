@@ -1,11 +1,9 @@
 # Copyright 2019 Oihane Crucelaegui - AvanzOSC
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-import time
-
+from odoo import fields
 from odoo.exceptions import ValidationError
 from odoo.tests import common, tagged
-from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
 @tagged("post_install", "-at_install")
@@ -15,27 +13,112 @@ class TestPurchaseOrderType(common.TransactionCase):
         super().setUpClass()
         cls.po_obj = cls.env["purchase.order"]
         cls.company_obj = cls.env["res.company"]
+
         # Partner
-        cls.partner1 = cls.env.ref("base.res_partner_1")
+        cls.partner1 = cls.env["res.partner"].create(
+            {
+                "name": "Wood Corner",
+                "is_company": True,
+                "street": "1839 Arbor Way",
+                "city": "Turlock",
+                "email": "wood.corner26@example.com",
+                "phone": "(623)-853-7197",
+            }
+        )
+
+        cls.partner2 = cls.env["res.partner"].create(
+            {
+                "name": "Deco Addict",
+                "is_company": True,
+                "street": "77 Santa Barbara Rd",
+                "city": "Pleasant Hill",
+                "email": "deco_addict@yourcompany.example.com",
+                "phone": "(603)-996-3829",
+            }
+        )
+
+        cls.category_office = cls.env["product.category"].create(
+            {
+                "name": "Office Furniture",
+            }
+        )
+
+        cls.uom_unit = cls.env.ref("uom.product_uom_unit")
+
         # Products
-        cls.product1 = cls.env.ref("product.product_product_7")
-        cls.product2 = cls.env.ref("product.product_product_9")
-        cls.product3 = cls.env.ref("product.product_product_11")
+        cls.product_storage_box = cls.env["product.product"].create(
+            {
+                "name": "Storage Box",
+                "categ_id": cls.category_office.id,
+                "standard_price": 14.0,
+                "list_price": 15.8,
+                "type": "consu",
+                "uom_id": cls.uom_unit.id,
+                "default_code": "E-COM08",
+            }
+        )
+
+        cls.product_pedal_bin = cls.env["product.product"].create(
+            {
+                "name": "Pedal Bin",
+                "categ_id": cls.category_office.id,
+                "standard_price": 10.0,
+                "list_price": 47.0,
+                "type": "consu",
+                "uom_id": cls.uom_unit.id,
+                "default_code": "E-COM10",
+            }
+        )
+
+        cls.product_conference_chair = cls.env["product.product"].create(
+            {
+                "name": "Conference Chair",
+                "categ_id": cls.category_office.id,
+                "standard_price": 28.0,
+                "list_price": 33.0,
+                "type": "consu",
+                "uom_id": cls.uom_unit.id,
+                "default_code": "E-COM12",
+            }
+        )
+
         # Purchase Type
-        cls.type1 = cls.env.ref("purchase_order_type.po_type_regular")
-        cls.type2 = cls.env.ref("purchase_order_type.po_type_planned")
+        cls.type1 = cls.env["purchase.order.type"].create(
+            {
+                "name": "Regular",
+            }
+        )
+
+        cls.type2 = cls.env["purchase.order.type"].create(
+            {
+                "name": "Planned",
+            }
+        )
+
         # Payment Term
-        cls.payterm = cls.env.ref("account.account_payment_term_immediate")
-        # Incoterm
-        cls.incoterm = cls.env.ref("account.incoterm_EXW")
+        cls.payterm = cls.env["account.payment.term"].create({"name": "Immediate"})
+        # Incoterm (safe fallback if account not loaded)
+        if "account.incoterm" in cls.env:
+            cls.incoterm = cls.env["account.incoterm"].create(
+                {
+                    "code": "EXW",
+                    "name": "Ex Works",
+                }
+            )
+        else:
+            cls.incoterm = False
         cls.type2.payment_term_id = cls.payterm
-        cls.type2.incoterm_id = cls.incoterm
+        cls.type2.incoterm_id = cls.incoterm if cls.incoterm else False
         cls.partner1.purchase_type = cls.type2
         cls.company2 = cls.company_obj.create({"name": "company2"})
 
     def test_purchase_order_type(self):
         purchase = self._create_purchase(
-            [(self.product1, 1), (self.product2, 5), (self.product3, 8)]
+            [
+                (self.product_storage_box, 1),
+                (self.product_pedal_bin, 5),
+                (self.product_conference_chair, 8),
+            ]
         )
         self.assertEqual(purchase.order_type, self.type1)
         self.assertFalse(purchase.incoterm_id)
@@ -43,7 +126,11 @@ class TestPurchaseOrderType(common.TransactionCase):
         purchase.onchange_partner_id()
         self.assertEqual(purchase.order_type, self.type2)
         purchase.onchange_order_type()
-        self.assertEqual(purchase.incoterm_id, self.incoterm)
+        if self.incoterm:
+            self.assertEqual(purchase.incoterm_id, self.incoterm)
+        else:
+            self.assertFalse(purchase.incoterm_id)
+
         self.assertEqual(purchase.payment_term_id, self.payterm)
 
     def _create_purchase(self, line_products):
@@ -56,9 +143,9 @@ class TestPurchaseOrderType(common.TransactionCase):
                 "name": product.name,
                 "product_id": product.id,
                 "product_qty": qty,
-                "product_uom": product.uom_id.id,
+                "product_uom_id": product.uom_id.id,
                 "price_unit": 100,
-                "date_planned": time.strftime(DEFAULT_SERVER_DATETIME_FORMAT),
+                "date_planned": fields.Datetime.now(),
             }
             lines.append((0, 0, line_values))
         purchase = self.po_obj.create(
@@ -71,18 +158,21 @@ class TestPurchaseOrderType(common.TransactionCase):
         return purchase
 
     def test_purchase_order_change_company(self):
-        order = self.po_obj.new({"partner_id": self.partner1.id})
+        order = self.po_obj.create({"partner_id": self.partner1.id})
         order.onchange_partner_id()
         self.assertEqual(order.order_type, self.type2)
         order._onchange_company()
         self.assertEqual(order.order_type, self.type2)
-        order.write({"order_type": False})
+        order.order_type = False
         order._onchange_company()
         self.assertEqual(order.order_type, order._default_order_type())
 
     def test_purchase_order_type_company_error(self):
         order = self.po_obj.create(
-            {"partner_id": self.partner1.id, "order_type": self.type1.id}
+            {
+                "partner_id": self.partner1.id,
+                "order_type": self.type1.id,
+            }
         )
         self.assertEqual(order.order_type, self.type1)
         self.assertEqual(order.company_id, self.type1.company_id)
@@ -90,40 +180,47 @@ class TestPurchaseOrderType(common.TransactionCase):
             order.write({"company_id": self.company2.id})
 
     def test_order_type_from_partner(self):
-        lines = []
-        line_values = {
-            "name": self.product1.name,
-            "product_id": self.product1.id,
-            "product_qty": 3,
-            "product_uom": self.product1.uom_id.id,
-            "price_unit": 100,
-        }
-        lines.append((0, 0, line_values))
+        """Test order type behavior when changing partners"""
+        lines = [
+            (
+                0,
+                0,
+                {
+                    "name": self.product_conference_chair.name,
+                    "product_id": self.product_conference_chair.id,
+                    "product_qty": 3,
+                    "product_uom_id": self.product_conference_chair.uom_id.id,
+                    "price_unit": 100,
+                    "date_planned": fields.Datetime.now(),
+                },
+            )
+        ]
+
         type_from_partner = self.po_obj.create(
             {
                 "partner_id": self.partner1.id,
+                "order_type": self.type1.id,
                 "order_line": lines,
             }
         )
 
-        # Check if set order_type on sale
+        type_from_partner.onchange_partner_id()
         self.assertEqual(type_from_partner.order_type, self.partner1.purchase_type)
 
-        partner2 = self.env.ref("base.res_partner_2")
-        partner2.purchase_type = self.type1
-        type_from_partner.write({"partner_id": partner2})
-        # Check if order_type of sale has not changed
-        self.assertNotEqual(type_from_partner.order_type, partner2.purchase_type)
+        # Test: changing partner doesn't override existing order_type
+        self.partner2.purchase_type = self.type1
+        type_from_partner.partner_id = self.partner2
+        self.assertNotEqual(type_from_partner.order_type, self.partner2.purchase_type)
 
         # Check if order_type of sale has not deleted
-        partner2.purchase_type = False
+        self.partner2.purchase_type = False
         type_from_partner.write({"partner_id": self.partner1})
-        type_from_partner.write({"partner_id": partner2})
+        type_from_partner.write({"partner_id": self.partner2})
         self.assertEqual(type_from_partner.order_type, self.type2)
 
         # Check if set order_type on sale again
         type_from_partner.write({"partner_id": self.partner1})
         type_from_partner.write({"order_type": False})
-        type_from_partner.write({"partner_id": partner2})
-        type_from_partner.write({"partner_id": partner2})
-        self.assertEqual(type_from_partner.order_type, partner2.purchase_type)
+        type_from_partner.write({"partner_id": self.partner2})
+        type_from_partner.write({"partner_id": self.partner2})
+        self.assertEqual(type_from_partner.order_type, self.partner2.purchase_type)

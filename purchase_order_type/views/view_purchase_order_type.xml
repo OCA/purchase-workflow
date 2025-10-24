@@ -55,6 +55,7 @@
         </field>
     </record>
     <record id="view_purchase_order_type_search" model="ir.ui.view">
+        <field name="name">purchase.order.type.search</field>
         <field name="model">purchase.order.type</field>
         <field name="arch" type="xml">
             <search string="Purchase Order Types">
@@ -62,7 +63,7 @@
                 <field name="sequence_id" />
                 <field name="payment_term_id" />
                 <field name="incoterm_id" />
-                <group expand="0" string="Group By">
+                <group>
                     <filter
                         string="Entry Sequence"
                         name="entry_sequence"
