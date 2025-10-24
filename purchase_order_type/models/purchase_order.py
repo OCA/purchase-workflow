@@ -1,7 +1,7 @@
 # Copyright 2015 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -57,7 +57,9 @@ class PurchaseOrder(models.Model):
             and r.company_id
             and r.order_type.company_id != r.company_id
         ):
-            raise ValidationError(_("Document's company and type's company mismatch"))
+            raise ValidationError(
+                self.env._("Document's company and type's company mismatch")
+            )
 
     def _default_order_type(self):
         return self.env["purchase.order.type"].search(
