@@ -7,18 +7,32 @@ class TestPurchasePartnerIncoterm(TransactionCase):
         super().setUpClass()
         cls.partner_obj = cls.env["res.partner"]
         cls.po_model = cls.env["purchase.order"]
+        cls.incoterm_model = cls.env["account.incoterms"]
+
+        # Create dummy incoterm
+        cls.incoterm = cls.incoterm_model.create(
+            {
+                "code": "EXW",
+                "name": "EX WORKS",
+            }
+        )
+
+        # Create an address for incoterm
+        cls.incoterm_address = cls.partner_obj.create(
+            {
+                "name": "Incoterm Address",
+            }
+        )
+
         # Create a partner with incoterm details
         cls.partner = cls.partner_obj.create(
             {
                 "name": "Test Partner",
-                "purchase_incoterm_id": cls.env.ref("account.incoterm_EXW").id,
-                "purchase_incoterm_address_id": cls.partner_obj.create(
-                    {
-                        "name": "Incoterm Address",
-                    }
-                ).id,
+                "purchase_incoterm_id": cls.incoterm.id,
+                "purchase_incoterm_address_id": cls.incoterm_address.id,
             }
         )
+
         # Create a purchase order
         cls.purchase_order = cls.po_model.create(
             {

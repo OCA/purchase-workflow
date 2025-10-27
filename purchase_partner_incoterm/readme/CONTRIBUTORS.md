@@ -15,3 +15,6 @@
   - Dhara Solanki \<<dhara.solanki@initos.com>\>
 
 - Manish Kumar Bohra <manishkumarbohra@outlook.com>
+
+- [SolusiAglis](https://solusiaglis.co.id):
+  - Hudson Amadeus Leonardy \<<https://solusiaglis.co.id>\>
