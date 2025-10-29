@@ -23,40 +23,54 @@
 #
 ##############################################################################
 
-from odoo import models, fields, api, _
+from odoo import _, api, fields, models
+
 from odoo.addons import decimal_precision as dp
 
 
 class ProductSupplierinfo(models.Model):
-    _inherit = 'product.supplierinfo'
+    _inherit = "product.supplierinfo"
 
     # Columns section
     package_qty = fields.Float(
-        'Package Qty', digits=dp.get_precision('Product UoM'),
+        "Package Qty",
+        digits=dp.get_precision("Product UoM"),
         help="""The quantity of products in the supplier package."""
         """ You will always have to buy a multiple of this quantity.""",
-        default=1)
+        default=1,
+    )
     indicative_package = fields.Boolean(
-        'Indicative Package',
+        "Indicative Package",
         help="""If checked, the system will not force you to purchase"""
         """ a strict multiple of package quantity""",
-        default=False)
+        default=False,
+    )
     price_policy = fields.Selection(
-        [('uom', 'per UOM'), ('package', 'per Package')], "Price Policy",
-        default='uom', required=True)
+        [("uom", "per UOM"), ("package", "per Package")],
+        "Price Policy",
+        default="uom",
+        required=True,
+    )
     base_price = fields.Float(
-        'Price', required=False, default=0.00,
-        digits=dp.get_precision('Product Price'),
-        help="The price to purchase a product")
+        "Price",
+        required=False,
+        default=0.00,
+        digits=dp.get_precision("Product Price"),
+        help="The price to purchase a product",
+    )
     price = fields.Float(
-        "Price per Unit", compute='_compute_price',
-        required=False, store=True, readonly=True)
+        "Price per Unit",
+        compute="_compute_price",
+        required=False,
+        store=True,
+        readonly=True,
+    )
 
-    @api.depends('base_price', 'price_policy', 'package_qty')
+    @api.depends("base_price", "price_policy", "package_qty")
     @api.multi
     def _compute_price(self):
         for psi in self:
-            if psi.price_policy == 'package':
+            if psi.price_policy == "package":
                 if psi.package_qty == 0:
                     psi.package_qty = 1
                 psi.price = psi.base_price / psi.package_qty
@@ -65,30 +79,30 @@ class ProductSupplierinfo(models.Model):
 
     @api.model
     def create(self, vals):
-        if not vals.get('base_price', False):
-            if vals.get('price', False):
-                vals['base_price'] = vals['price']
-                del vals['price']
+        if not vals.get("base_price", False):
+            if vals.get("price", False):
+                vals["base_price"] = vals["price"]
+                del vals["price"]
             else:
-                vals['base_price'] = 0
-        res = super(ProductSupplierinfo, self).create(vals)
+                vals["base_price"] = 0
+        res = super().create(vals)
         return res
 
     @api.multi
     def write(self, vals):
-        if not vals.get('base_price', False):
-            if vals.get('price', False):
-                vals['base_price'] = vals['price']
-                del vals['price']
-        return super(ProductSupplierinfo, self).write(vals)
+        if not vals.get("base_price", False):
+            if vals.get("price", False):
+                vals["base_price"] = vals["price"]
+                del vals["price"]
+        return super().write(vals)
 
     # Constraints section
     @api.multi
-    @api.constrains('package_qty')
+    @api.constrains("package_qty")
     def _check_package_qty(self):
         for psi in self:
             if psi.package_qty == 0:
-                raise ValueError(_('The package quantity cannot be 0.'))
+                raise ValueError(_("The package quantity cannot be 0."))
 
     # Init section
     @api.model
@@ -97,9 +111,9 @@ class ProductSupplierinfo(models.Model):
         for psi in psi_ids:
             vals = {}
             if not psi.package_qty:
-                vals['package_qty'] = max(psi.min_qty, 1)
+                vals["package_qty"] = max(psi.min_qty, 1)
             if not psi.base_price:
-                vals['base_price'] = psi.price
+                vals["base_price"] = psi.price
             if vals:
                 psi.write(vals)
         return psi_ids.ids

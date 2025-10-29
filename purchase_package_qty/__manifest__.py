@@ -24,25 +24,25 @@
 ##############################################################################
 
 {
-    'name': 'Purchase - Package Quantity',
-    'version': '12.0.1.0.0',
-    'category': 'Purchase',
-    'author': 'GRAP, Druidoo',
-    'website': 'https://cooplalouve.fr',
-    'license': 'AGPL-3',
-    'depends': [
-        'account',
-        'product',
-        'purchase_discount',
+    "name": "Purchase - Package Quantity",
+    "version": "12.0.1.0.0",
+    "category": "Purchase",
+    "author": "GRAP, Druidoo",
+    "website": "https://github.com/OCA/purchase-workflow",
+    "license": "AGPL-3",
+    "depends": [
+        "account",
+        "product",
+        "purchase_discount",
     ],
-    'data': [
-        'views/product_supplierinfo_view.xml',
-        'views/purchase_order_view.xml',
-        'views/stock_picking_view.xml',
-        'views/account_invoice_view.xml',
-        'views/report_stockinventory.xml',
-        'views/stock_inventory_view.xml',
-        'views/report_invoice.xml',
-        'data/function.xml',
+    "data": [
+        "views/product_supplierinfo_view.xml",
+        "views/purchase_order_view.xml",
+        "views/stock_picking_view.xml",
+        "views/account_invoice_view.xml",
+        "views/report_stockinventory.xml",
+        "views/stock_inventory_view.xml",
+        "views/report_invoice.xml",
+        "data/function.xml",
     ],
 }
