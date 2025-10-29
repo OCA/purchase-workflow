@@ -23,33 +23,36 @@
 #
 ##############################################################################
 
-from odoo import api, models, fields
+from odoo import api, fields, models
+
 from odoo.addons import decimal_precision as dp
 
 
 class StockInventoryLine(models.Model):
-    _inherit = 'stock.inventory.line'
+    _inherit = "stock.inventory.line"
 
     package_qty = fields.Float(
-        'Package Qty', digits=dp.get_precision('Product UoM'),
+        "Package Qty",
+        digits=dp.get_precision("Product UoM"),
         help="""The quantity of products in the supplier package."""
         """ You will always have to buy a multiple of this quantity.""",
-        default=1)
+        default=1,
+    )
 
 
 class StockInventory(models.Model):
-    _inherit = 'stock.inventory'
+    _inherit = "stock.inventory"
 
     @api.multi
     def _get_inventory_lines_values(self):
-        vals = super(StockInventory, self)._get_inventory_lines_values()
-        product_obj = self.env['product.product']
+        vals = super()._get_inventory_lines_values()
+        product_obj = self.env["product.product"]
         new_val = []
         for val in vals:
-            product_id = val['product_id']
+            product_id = val["product_id"]
             product = product_obj.browse(product_id)
             # seller = product._select_seller(quantity=1)
             seller = product.default_seller_id
-            val['package_qty'] = seller.package_qty or 1
+            val["package_qty"] = seller.package_qty or 1
             new_val.append(val)
         return new_val
