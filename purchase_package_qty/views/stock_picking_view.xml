@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- ********************************************************************** -->
 <!--Purchase - Package Quantity Module for Odoo                             -->
 <!--Copyright (C) 2019-Today: La Louve (<https://cooplalouve.fr>)           -->
@@ -7,50 +7,66 @@
 <!--License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).      -->
 <!--@author Julien Weste                                                    -->
 <!--@author Sylvain LE GAL (https://twitter.com/legalsylvain)               -->
-
 <!--This program is free software: you can redistribute it and/or modify    -->
 <!--it under the terms of the GNU Affero General Public License as          -->
 <!--published by the Free Software Foundation, either version 3 of the      -->
 <!--License, or (at your option) any later version.                         -->
-
 <!--This program is distributed in the hope that it will be useful,         -->
 <!--but WITHOUT ANY WARRANTY; without even the implied warranty of          -->
 <!--MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the           -->
 <!--GNU Affero General Public License for more details.                     -->
-
 <!--You should have received a copy of the GNU Affero General Public License-->
 <!--along with this program.  If not, see <http://www.gnu.org/licenses/>.   -->
 <!-- ********************************************************************** -->
-
 <odoo>
     <record id="stock_picking_form_view_package" model="ir.ui.view">
         <field name="name">stock.picking.form.view.package</field>
         <field name="model">stock.picking</field>
         <field name="inherit_id" ref="stock.view_picking_form" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='move_ids_without_package']/tree/field
-                [@name='product_uom_qty']" position="before">
-                <field name="product_qty_package"
-                    attrs="{'column_invisible': [('parent.state', 'not in', ('assigned', 'done'))]}"/>
-                <field name="package_qty" readonly="True"
+            <xpath
+                expr="//field[@name='move_ids_without_package']/tree/field
+                [@name='product_uom_qty']"
+                position="before"
+            >
+                <field
+                    name="product_qty_package"
                     attrs="{'column_invisible': [('parent.state', 'not in', ('assigned', 'done'))]}"
-                    string="Pack. Qty"/>
+                />
+                <field
+                    name="package_qty"
+                    readonly="True"
+                    attrs="{'column_invisible': [('parent.state', 'not in', ('assigned', 'done'))]}"
+                    string="Pack. Qty"
+                />
             </xpath>
-            <xpath expr="//field[@name='move_ids_without_package']/tree/field
-                [@name='product_uom_qty']" position="attributes">
+            <xpath
+                expr="//field[@name='move_ids_without_package']/tree/field
+                [@name='product_uom_qty']"
+                position="attributes"
+            >
                 <attribute name="force_save">1</attribute>
             </xpath>
-            <xpath expr="//field[@name='move_ids_without_package']/tree/field
-                [@name='quantity_done']" position="before">
-                <field name="qty_done_package"
-                    attrs="{'column_invisible': [('parent.state', 'not in', ('assigned', 'done'))]}"/>
+            <xpath
+                expr="//field[@name='move_ids_without_package']/tree/field
+                [@name='quantity_done']"
+                position="before"
+            >
+                <field
+                    name="qty_done_package"
+                    attrs="{'column_invisible': [('parent.state', 'not in', ('assigned', 'done'))]}"
+                />
             </xpath>
-            <xpath expr="//field[@name='move_ids_without_package']/tree/field
-                [@name='quantity_done']" position="attributes">
-                <attribute name="attrs">{'column_invisible': [('parent.state', 'not in', ('assigned', 'done'))]}
+            <xpath
+                expr="//field[@name='move_ids_without_package']/tree/field
+                [@name='quantity_done']"
+                position="attributes"
+            >
+                <attribute
+                    name="attrs"
+                >{'column_invisible': [('parent.state', 'not in', ('assigned', 'done'))]}
                 </attribute>
             </xpath>
-
         </field>
     </record>
 </odoo>
