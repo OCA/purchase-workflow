@@ -27,19 +27,20 @@ from odoo import api, models
 
 
 class AccountInvoice(models.Model):
-    _inherit = 'account.invoice'
+    _inherit = "account.invoice"
 
-    @api.onchange('purchase_id')
+    @api.onchange("purchase_id")
     def purchase_order_change(self):
-        res = super(AccountInvoice, self).purchase_order_change()
+        res = super().purchase_order_change()
         for line in self.invoice_line_ids:
             if line.quantity == 0:
                 self.invoice_line_ids -= line
             else:
                 line.price_policy = line.purchase_line_id.price_policy
                 line.package_qty = line.purchase_line_id.package_qty
-                line.product_qty_package = line.package_qty and\
-                    line.quantity / line.package_qty or 0
+                line.product_qty_package = (
+                    line.package_qty and line.quantity / line.package_qty or 0
+                )
         return res
 
     @api.multi
@@ -50,22 +51,21 @@ class AccountInvoice(models.Model):
             if not line.account_id:
                 continue
             price_unit = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
-            if line.price_policy == 'package':
+            if line.price_policy == "package":
                 quantity = line.product_qty_package
             else:
                 quantity = line.quantity
             taxes = line.invoice_line_tax_ids.compute_all(
-                price_unit, self.currency_id, quantity, line.product_id,
-                self.partner_id)['taxes']
+                price_unit, self.currency_id, quantity, line.product_id, self.partner_id
+            )["taxes"]
             for tax in taxes:
                 val = self._prepare_tax_line_vals(line, tax)
-                key = self.env['account.tax'].browse(
-                    tax['id']).get_grouping_key(val)
+                key = self.env["account.tax"].browse(tax["id"]).get_grouping_key(val)
 
                 if key not in tax_grouped:
                     tax_grouped[key] = val
-                    tax_grouped[key]['base'] = round_curr(val['base'])
+                    tax_grouped[key]["base"] = round_curr(val["base"])
                 else:
-                    tax_grouped[key]['amount'] += val['amount']
-                    tax_grouped[key]['base'] += round_curr(val['base'])
+                    tax_grouped[key]["amount"] += val["amount"]
+                    tax_grouped[key]["base"] += round_curr(val["base"])
         return tax_grouped
