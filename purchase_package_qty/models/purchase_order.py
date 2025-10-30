@@ -23,13 +23,12 @@
 #
 ##############################################################################
 
-from odoo import api, models
+from odoo import models
 
 
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
-    @api.multi
     def _add_supplier_to_product(self):
         # we have to override this method to modify the vals
         # Do not add a contact as a supplier
@@ -40,7 +39,7 @@ class PurchaseOrder(models.Model):
         )
         for line in self.order_line:
             if (
-                partner not in line.product_id.seller_ids.mapped("name")
+                partner not in line.product_id.seller_ids.mapped("partner_id")
                 and len(line.product_id.seller_ids) <= 10
             ):
                 supplierinfo = line._get_supplierinfovals(partner)
@@ -52,7 +51,6 @@ class PurchaseOrder(models.Model):
                 except Exception:  # If no Write access rights -> just ignore
                     break
 
-    @api.multi
     def action_view_picking(self):
         res = super().action_view_picking()
         res["context"].update({"readonly_by_pass": True})

@@ -29,16 +29,15 @@ from odoo import api, fields, models
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
-    @api.depends(
-        "seller_ids",
-    )
-    @api.multi
-    def _compute_default_seller_id(self):
-        for pt in self:
-            pt.default_seller_id = pt.seller_ids and pt.seller_ids[0] or False
-
     default_seller_id = fields.Many2one(
-        string="Default Seller",
         comodel_name="product.supplierinfo",
         compute="_compute_default_seller_id",
     )
+
+    @api.depends("seller_ids")
+    def _compute_default_seller_id(self):
+        for pt in self:
+            default_seller_id = False
+            if pt.seller_ids:
+                default_seller_id = pt.seller_ids[0]
+            pt.default_seller_id = default_seller_id

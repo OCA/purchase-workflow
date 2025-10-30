@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <template id="report_inventory" inherit_id="stock.report_inventory">
-        <xpath expr="//div[hasclass('page')]/table[2]/thead/tr" position="inside">
+        <xpath expr="//div[hasclass('page')]/table/thead/tr" position="inside">
             <th class="text-right">
                 <strong>Package Qty</strong>
             </th>
         </xpath>
-        <xpath expr="//div[hasclass('page')]/table[2]/tbody/t/tr[2]" position="inside">
+        <xpath expr="//div[hasclass('page')]/table/tbody/t/tr[2]" position="inside">
             <td class="text-right">
                 <span t-field="line.package_qty" />
             </td>
