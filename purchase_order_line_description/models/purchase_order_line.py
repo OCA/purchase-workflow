@@ -11,18 +11,12 @@ class PurchaseOrderLine(models.Model):
 
     @api.onchange("product_id")
     def onchange_product_id(self):
-        res = super(PurchaseOrderLine, self).onchange_product_id()
+        res = super().onchange_product_id()
         if not self.product_id:
             return res
         translated_product = self.product_id.with_context(
             lang=self.partner_id.lang or get_lang(self.env).code
         )
-        if (
-            self.user_has_groups(
-                "purchase_order_line_description."
-                "group_use_product_description_per_po_line"
-            )
-            and translated_product.description_purchase
-        ):
+        if translated_product.description_purchase:
             self.name = translated_product.description_purchase
         return res
