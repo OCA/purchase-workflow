@@ -177,7 +177,6 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             "order_id": po.id,
             "product_id": product.id,
             "product_uom": product.uom_po_id.id or product.uom_id.id,
-            "price_unit": 0.0,
             "product_qty": qty,
             "analytic_distribution": item.line_id.analytic_distribution,
             "purchase_request_lines": [(4, item.line_id.id)],
