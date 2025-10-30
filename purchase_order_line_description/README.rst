@@ -36,20 +36,9 @@ order lines.
 .. contents::
    :local:
 
-Configuration
-=============
-
-The user has to belong to group_use_product_description_per_po_line.
-This is possible by checking the related option in the following settings:
-
-* Purchases > Configuration > Settings > Purchase Order > Order lines
-  description.
-
 Usage
 =====
 
-#. Go to **Setting > Users & Companies > Users** and check you have checked
-   the "Use only product purchase description on order lines" access right.
 #. Add or modify a purchase description to any of your products.
 #. Create a purchase order and add a purchase line with this product and check
    out that now purchase order line description only contains the description
@@ -82,6 +71,7 @@ Contributors
   * Vicent Cubells
 
 * Nikul Chaudhary <nikulchaudhary2112@gmail.com>
+* David Vidal `Moduon <https://www.moduon.team/>`
 
 Maintainers
 ~~~~~~~~~~~
