@@ -25,15 +25,15 @@
 
 {
     "name": "Purchase - Package Quantity",
-    "version": "12.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Purchase",
-    "author": "GRAP, Druidoo",
+    "author": "GRAP, Druidoo, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
     "license": "AGPL-3",
     "depends": [
         "account",
         "product",
-        "purchase_discount",
+        "purchase_stock",
     ],
     "data": [
         "views/product_supplierinfo_view.xml",
@@ -41,7 +41,6 @@
         "views/stock_picking_view.xml",
         "views/account_invoice_view.xml",
         "views/report_stockinventory.xml",
-        "views/stock_inventory_view.xml",
         "views/report_invoice.xml",
         "data/function.xml",
     ],

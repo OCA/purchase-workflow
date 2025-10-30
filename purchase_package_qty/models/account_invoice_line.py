@@ -27,17 +27,14 @@ from odoo import api, fields, models
 
 
 class AccountInvoiceLine(models.Model):
-    _inherit = "account.invoice.line"
+    _inherit = "account.move.line"
 
-    package_qty = fields.Float(
-        "Package Qty", help="""The quantity of products in the supplier package."""
-    )
+    package_qty = fields.Float(help="The quantity of products in the supplier package.")
     product_qty_package = fields.Float(
-        "Number of packages", help="""The number of packages you'll buy."""
+        "Number of packages", help="The number of packages you'll buy."
     )
     price_policy = fields.Selection(
         [("uom", "per UOM"), ("package", "per Package")],
-        "Price Policy",
         default="uom",
         required=True,
     )
@@ -56,28 +53,10 @@ class AccountInvoiceLine(models.Model):
     def onchange_package_qty(self):
         self.quantity = self.package_qty * self.product_qty_package
 
-    # pylint: disable=W8104
-    @api.one
-    @api.depends(
-        "price_unit",
-        "discount",
-        "invoice_line_tax_ids",
-        "quantity",
-        "product_id",
-        "invoice_id.partner_id",
-        "invoice_id.currency_id",
-        "invoice_id.company_id",
-        "invoice_id.date_invoice",
-        "invoice_id.date",
-        "product_qty_package",
-        "price_policy",
-    )
-    def _compute_price(self):
-        if self.price_policy == "package":
-            origin_quantiy = self.quantity
-            self.quantity = self.product_qty_package
-            res = super()._compute_price()
-            self.quantity = origin_quantiy
-            return res
-        else:
-            return super()._compute_price()
+    @api.depends("display_type", "price_policy")
+    def _compute_quantity(self):
+        res = super()._compute_quantity()
+        for line in self:
+            if line.price_policy == "package":
+                line.quantity = line.product_qty_package
+        return res

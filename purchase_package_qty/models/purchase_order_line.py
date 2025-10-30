@@ -25,39 +25,55 @@
 
 from math import ceil
 
-import openerp.addons.decimal_precision as dp
-
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
+    package_qty = fields.Float(
+        default=lambda self: self._get_package_qty(),
+        help="""The quantity of products in the supplier package.""",
+    )
+    indicative_package = fields.Boolean(
+        default=lambda self: self._get_indicative_package()
+    )
+    product_qty_package = fields.Float(
+        "Number of packages", help="""The number of packages you'll buy."""
+    )
+    product_qty = fields.Float(
+        string="Quantity",
+        digits="Product Unit of Measure",
+        required=True,
+    )
+    price_policy = fields.Selection(
+        [("uom", "per UOM"), ("package", "per Package")],
+        default="uom",
+        required=True,
+    )
+    unit_price = fields.Float(
+        string="Price Unit",
+        compute="_compute_product_prices",
+        digits="Product Price",
+    )
+    package_price = fields.Float(
+        compute="_compute_product_prices",
+        digits="Product Price",
+    )
+
+    operation_extra_id = fields.Many2one(
+        "stock.move.line",
+        string="Pack Operation Extra",
+        help="The technical field is use to specify the line"
+        + " that was generated from adding operation pack manually",
+    )
+
     # adding price_policy to depends
     @api.depends("price_policy")
     def _compute_amount(self):
         return super()._compute_amount()
 
-    def _prepare_compute_all_values(self):
-        vals = super()._prepare_compute_all_values()
-        vals.update({"product_qty": self._get_policy_qty()})
-        return vals
-
-    def _get_policy_qty(self):
-        """Inheritable method for getting the product qty after applying
-        the price policy.
-
-        :rtype: float
-        :return: Product qty after the price policy.
-        """
-        self.ensure_one()
-        product_qty = self.product_qty
-        if self.price_policy == "package":
-            product_qty = self.product_qty_package
-        return product_qty
-
-    @api.multi
     def _get_supplierinfovals(self, partner=False):
         self.ensure_one()
         if not partner:
@@ -90,9 +106,9 @@ class PurchaseOrderLine(models.Model):
     def _get_package_qty(self):
         if self.product_id and self.partner_id:
             partner = self.partner_id.parent_id or self.partner_id
-            if partner in self.product_id.seller_ids.mapped("name"):
+            if partner in self.product_id.seller_ids.mapped("partner_id"):
                 for supplier in self.product_id.seller_ids:
-                    if supplier.name == self.partner_id:
+                    if supplier.partner_id == self.partner_id:
                         return supplier.package_qty
         return 1
 
@@ -100,54 +116,12 @@ class PurchaseOrderLine(models.Model):
     def _get_indicative_package(self):
         if self.product_id and self.partner_id:
             partner = self.partner_id.parent_id or self.partner_id
-            if partner in self.product_id.seller_ids.mapped("name"):
+            if partner in self.product_id.seller_ids.mapped("partner_id"):
                 for supplier in self.product_id.seller_ids:
-                    if supplier.name == self.partner_id:
+                    if supplier.partner_id == self.partner_id:
                         return supplier.indicative_package
         return False
 
-    package_qty = fields.Float(
-        "Package Qty",
-        default=lambda self: self._get_package_qty(),
-        help="""The quantity of products in the supplier package.""",
-    )
-    indicative_package = fields.Boolean(
-        "Indicative Package", default=lambda self: self._get_indicative_package()
-    )
-    product_qty_package = fields.Float(
-        "Number of packages", help="""The number of packages you'll buy."""
-    )
-    product_qty = fields.Float(
-        string="Quantity",
-        digits=dp.get_precision("Product Unit of Measure"),
-        required=True,
-        _prefetch=False,
-    )
-    price_policy = fields.Selection(
-        [("uom", "per UOM"), ("package", "per Package")],
-        "Price Policy",
-        default="uom",
-        required=True,
-    )
-    unit_price = fields.Float(
-        string="Unit Price",
-        compute="_compute_product_prices",
-        digits=dp.get_precision("Product Price"),
-    )
-    package_price = fields.Float(
-        string="Package Price",
-        compute="_compute_product_prices",
-        digits=dp.get_precision("Product Price"),
-    )
-
-    operation_extra_id = fields.Many2one(
-        "stock.move.line",
-        string="Pack Operation Extra",
-        help="The technical field is use to specify the line"
-        + " that was generated from adding operation pack manually",
-    )
-
-    @api.multi
     @api.depends("package_qty", "price_unit")
     def _compute_product_prices(self):
         for line in self:
@@ -161,7 +135,6 @@ class PurchaseOrderLine(models.Model):
                 line.package_price = line.price_unit * line.package_qty
 
     # Constraints section
-    # TODO: Rewrite me in _contraint, if the Orm V8 allows param in message.
     @api.constrains("order_id", "product_id", "product_qty")
     def _check_purchase_qty(self):
         for pol in self:
@@ -172,7 +145,7 @@ class PurchaseOrderLine(models.Model):
             supplier_id = pol.order_id.partner_id.id
             found = False
             for psi in pol.product_id.seller_ids:
-                if psi.name.id == supplier_id:
+                if psi.partner_id.id == supplier_id:
                     package_qty = psi.package_qty
                     indicative = psi.indicative_package
                     found = True
@@ -183,7 +156,7 @@ class PurchaseOrderLine(models.Model):
             if not indicative:
                 if int(pol.product_qty / package_qty) != pol.product_qty / package_qty:
                     raise ValidationError(
-                        _(
+                        self.env._(
                             """You have to buy a multiple of the package"""
                             """ qty or change the package settings in the"""
                             """ supplierinfo of the product for the"""
@@ -191,9 +164,7 @@ class PurchaseOrderLine(models.Model):
                             """ \n - Product: %s;"""
                             """ \n - Quantity: %s;"""
                             """ \n - Unit Price: %s;"""
-                            """ \n - Package quantity: %s;"""
-                        )
-                        % (
+                            """ \n - Package quantity: %s;""",
                             pol.product_id.name,
                             pol.product_qty,
                             pol.price_unit,
@@ -201,16 +172,13 @@ class PurchaseOrderLine(models.Model):
                         )
                     )
 
-    @api.model
-    def create(self, vals):
-        res = super().create(vals)
-        res._check_purchase_qty()
+    @api.model_create_multi
+    def create(self, vals_list):
+        res = super().create(vals_list)
         return res
 
-    @api.multi
     def write(self, vals):
         res = super().write(vals)
-        self._check_purchase_qty()
         return res
 
     # Views section
@@ -219,7 +187,7 @@ class PurchaseOrderLine(models.Model):
         res = super().onchange_product_id()
         if self.product_id:
             for supplier in self.product_id.seller_ids:
-                if self.partner_id and (supplier.name == self.partner_id):
+                if self.partner_id and (supplier.partner_id == self.partner_id):
                     self.package_qty = supplier.package_qty
                     self.indicative_package = supplier.indicative_package
                     self.product_qty = supplier.package_qty
@@ -228,24 +196,22 @@ class PurchaseOrderLine(models.Model):
                     break
         return res
 
-    @api.onchange("product_qty", "product_uom")
-    def _onchange_quantity(self):
+    def _suggest_quantity(self):
         if not self.product_id:
             return
-        super()._onchange_quantity()
+        res = super()._suggest_quantity()
         seller = self.product_id._select_seller(
             partner_id=self.partner_id,
             quantity=self.product_qty,
             date=self.order_id.date_order and self.order_id.date_order.date(),
             uom_id=self.product_uom,
+            params=self._get_select_sellers_params(),
         )
         if not seller:
             return
         if seller.price_policy == "package":
             self.price_unit = seller.base_price
         res = {}
-        # Use `seller.indicative_package` instead
-        # because `self.indicative_package` is still not assigned
         if (
             not (seller.indicative_package)
             and self.package_qty > 0
@@ -253,18 +219,18 @@ class PurchaseOrderLine(models.Model):
             != self.product_qty / self.package_qty
         ):
             res["warning"] = {
-                "title": _("Warning!"),
-                "message": _(
-                    """The selected supplier only sells """ """this product by %s %s"""
-                )
-                % (self.package_qty, self.product_uom.name),
+                "title": self.env._("Warning!"),
+                "message": self.env._(
+                    """The selected supplier only sells """ """this product by %s %s""",
+                    self.package_qty,
+                    self.product_uom.name,
+                ),
             }
             self.product_qty = (
                 ceil(self.product_qty / self.package_qty) * self.package_qty
             )
         if self.package_qty:
             self.product_qty_package = self.product_qty / self.package_qty
-        self._compute_amount()
         return res
 
     @api.onchange("product_qty_package")
@@ -280,7 +246,6 @@ class PurchaseOrderLine(models.Model):
             self.package_qty = 1
         self.product_qty = self.package_qty * self.product_qty_package
 
-    @api.multi
     def _create_stock_moves(self, picking):
         res = super()._create_stock_moves(picking)
         for move in res:
@@ -288,7 +253,6 @@ class PurchaseOrderLine(models.Model):
             move.product_qty_package = move.purchase_line_id.product_qty_package
         return res
 
-    @api.multi
     def _create_or_update_picking(self):
         if self._context.get("skip_move_create", False):
             return True

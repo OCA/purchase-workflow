@@ -2,25 +2,30 @@
 <odoo>
     <template id="report_invoice_package" inherit_id="account.report_invoice_document">
         <xpath
-            expr="//t[@name='account_invoice_line_accountable']/td[3]"
-            position="replace"
+            expr="//t[@name='account_invoice_line_accountable']/td[@name='td_quantity']/span[@t-field='line.quantity']"
+            position="attributes"
         >
-            <td class="text-right">
-                <span t-if="line.price_policy == 'uom'" t-field="line.quantity" />
-                <span
-                    t-if="line.price_policy == 'uom'"
-                    t-field="line.uom_id"
-                    groups="uom.group_uom"
-                />
-                <span
-                    t-if="line.price_policy == 'package'"
-                    t-field="line.product_qty_package"
-                />
-                <span
-                    t-if="line.price_policy == 'package'"
-                    groups="uom.group_uom"
-                > pkg</span>
-            </td>
+            <attribute name="t-if">line.price_policy == 'uom'</attribute>
+        </xpath>
+        <xpath
+            expr="//t[@name='account_invoice_line_accountable']/td[@name='td_quantity']/span[@t-field='line.product_uom_id']"
+            position="attributes"
+        >
+            <attribute name="t-if">line.price_policy == 'uom'</attribute>
+        </xpath>
+        <xpath
+            expr="//t[@name='account_invoice_line_accountable']/td[@name='td_quantity']"
+            position="inside"
+        >
+            <span
+                t-if="line.price_policy == 'package'"
+                t-field="line.product_qty_package"
+                class="text-nowrap"
+            />
+            <span
+                t-if="line.price_policy == 'package'"
+                groups="uom.group_uom"
+            > pkg</span>
         </xpath>
     </template>
 </odoo>

@@ -25,43 +25,41 @@
 
 from odoo import api, fields, models
 
-import odoo.addons.decimal_precision as dp
-
 
 class StockMove(models.Model):
     _inherit = "stock.move"
 
     package_qty = fields.Float(
-        "Package Qty",
         compute="_compute_package_qty",
         help="""The quantity of products in the supplier package.""",
     )
-    indicative_package = fields.Boolean("Indicative Package")
+    indicative_package = fields.Boolean()
     product_qty_package = fields.Float(
         "Number of packages", help="""The number of packages you'll buy."""
     )
     qty_done_package = fields.Float(
         "Done (package)",
         help="""The number of packages you've received.""",
-        digits=dp.get_precision("Product Unit of Measure"),
+        digits="Product Unit of Measure",
     )
 
-    @api.multi
     @api.depends("product_id")
     def _compute_package_qty(self):
         for move in self:
+            package_qty = 0.0
             if move.product_id and move.picking_id:
                 supplier = move.product_id._select_seller(
                     partner_id=move.picking_id.partner_id, quantity=1
                 )
                 if supplier:
                     # Get the first one
-                    move.package_qty = supplier.package_qty
+                    package_qty = supplier.package_qty
+            move.package_qty = package_qty
 
     # Views section
-    @api.onchange("product_id")
-    def onchange_product_id(self):
-        res = super().onchange_product_id()
+    @api.onchange("product_id", "picking_type_id")
+    def _onchange_product_id(self):
+        res = super()._onchange_product_id()
         if self.product_id and self.product_id.seller_ids:
             supplier = self.product_id._select_seller(
                 partner_id=self.picking_id.partner_id, quantity=1
@@ -73,9 +71,9 @@ class StockMove(models.Model):
                 self.indicative_package = supplier.indicative_package
         return res
 
-    @api.onchange("product_qty")
-    def onchange_product_qty(self):
-        res = super().onchange_quantity()
+    @api.onchange("product_id", "product_qty", "product_uom")
+    def _onchange_suggest_packaging(self):
+        res = super()._onchange_suggest_packaging()
         if self.package_qty:
             self.product_qty_package = self.product_qty / self.package_qty
         return res
@@ -85,15 +83,15 @@ class StockMove(models.Model):
         if self.product_qty_package == int(self.product_qty_package):
             self.product_uom_qty = self.package_qty * self.product_qty_package
 
-    @api.onchange("quantity_done")
-    def onchange_quantity_done(self):
+    @api.onchange("quantity")
+    def onchange_quantity(self):
         if self.package_qty:
-            self.qty_done_package = self.quantity_done / self.package_qty
+            self.qty_done_package = self.quantity / self.package_qty
 
     @api.onchange("qty_done_package")
     def onchange_qty_done_package(self):
         if self.qty_done_package == int(self.qty_done_package):
-            self.quantity_done = self.package_qty * self.qty_done_package
+            self.quantity = self.package_qty * self.qty_done_package
 
     @api.onchange("product_uom_qty")
     def onchange_product_uom_qty(self):
@@ -102,9 +100,9 @@ class StockMove(models.Model):
         else:
             self.product_qty_package = 0.0
 
-    def _action_done(self):
-        res = super()._action_done()
+    def _action_done(self, cancel_backorder=False):
+        res = super()._action_done(cancel_backorder)
         for move in self:
-            if move.purchase_line_id and move.quantity_done > 0 and move.package_qty:
-                move.qty_done_package = move.quantity_done / move.package_qty
+            if move.purchase_line_id and move.quantity > 0 and move.package_qty:
+                move.qty_done_package = move.quantity / move.package_qty
         return res
