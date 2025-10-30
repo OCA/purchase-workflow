@@ -35,14 +35,10 @@
             </xpath>
             <xpath expr="//field[@name='price']" position="attributes">
                 <attribute name="string">Price per unit</attribute>
-                <attribute name="attrs">
-                    {'invisible':[('price_policy', '!=', 'package')]}
-                </attribute>
+                <attribute name="invisible">price_policy != 'package'</attribute>
             </xpath>
             <xpath expr="//label[@for='price']" position="attributes">
-                <attribute name="attrs">
-                    {'invisible':[('price_policy', '!=', 'package')]}
-                </attribute>
+                <attribute name="invisible">price_policy != 'package'</attribute>
             </xpath>
         </field>
     </record>
@@ -56,8 +52,10 @@
                 <field name="package_qty" />
                 <field name="indicative_package" />
             </field>
-            <xpath expr="//field[@name='price']" position="replace" />
-            <xpath expr="//tree" position="inside">
+            <xpath expr="//field[@name='price']" position="attributes">
+                <attribute name="column_invisible">1</attribute>
+            </xpath>
+            <xpath expr="//list" position="inside">
                 <field name="price" />
                 <field name="base_price" />
                 <field name="price_policy" />

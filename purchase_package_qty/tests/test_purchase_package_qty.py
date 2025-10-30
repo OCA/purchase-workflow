@@ -6,20 +6,19 @@
 ##############################################################################
 
 from odoo import fields
-from odoo.tests import Form
 
-from odoo.addons.account.tests.account_test_no_chart import TestAccountNoChartCommon
+from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
 
-class TestPurchasePackageQty(TestAccountNoChartCommon):
+class TestPurchasePackageQty(AccountTestInvoicingCommon):
     def setUp(self):
         super().setUp()
         self.supplierinfo_model = self.env["product.supplierinfo"]
         self.purchase_order_line_model = self.env["purchase.order.line"]
         self.partner_1 = self.env.ref("base.res_partner_1")
         self.partner_2 = self.env.ref("base.res_partner_2")
-        self.product = self.env.ref("product.product_product_4d")
-        self.Invoice = self.env["account.invoice"]
+        self.product = self.env.ref("product.product_product_4c")
+        self.AccountMove = self.env["account.move"]
         self.journal_purchase = self.env["account.journal"].search(
             [("type", "=", "purchase")], limit=1
         )
@@ -27,7 +26,7 @@ class TestPurchasePackageQty(TestAccountNoChartCommon):
         self.supplierinfo = self.supplierinfo_model.create(
             {
                 "min_qty": 0.0,
-                "name": self.partner_2.id,
+                "partner_id": self.partner_2.id,
                 "product_tmpl_id": self.product.product_tmpl_id.id,
                 "package_qty": 10,
                 "price_policy": "package",
@@ -55,94 +54,39 @@ class TestPurchasePackageQty(TestAccountNoChartCommon):
         self.po_line_1.onchange_product_qty_package()
 
     def test_001_purchase_order_partner_2_product_qty_package_2(self):
-        self.assertEqual(
-            self.po_line_1.product_qty,
-            20,
-            "Incorrect Quantity for product 6 with partner 2 and Number  of "
-            "Packages 2: "
-            "Quantity Should be 20.",
-        )
+        self.assertEqual(self.po_line_1.product_qty, 20)
 
     def test_002_purchase_order_line_subtotal(self):
-        self.assertEqual(
-            self.po_line_1.price_subtotal,
-            200.0,
-            "Incorrect Subtotal for product 6 with Price Policy is "
-            "per Package, "
-            "Number of packages are 2 and Unit Price is 100: "
-            "Subtotal should be 200.00",
-        )
+        self.assertEqual(self.po_line_1.price_subtotal, 200.0)
 
     def test_003_stock_move_package_qty(self):
         self.purchase_order.button_confirm()
         for move in self.po_line_1.move_ids:
+            self.assertEqual(move.package_qty, self.po_line_1.package_qty)
             self.assertEqual(
-                move.package_qty,
-                self.po_line_1.package_qty,
-                "Incorrect Package Qty in Stock Move, it should be %s"
-                % self.po_line_1.package_qty,
+                move.product_qty_package, self.po_line_1.product_qty_package
             )
-            self.assertEqual(
-                move.product_qty_package,
-                self.po_line_1.product_qty_package,
-                "Incorrect Number of Packages Qty in Stock Move, it should "
-                "be %s" % self.po_line_1.product_qty_package,
-            )
-            move.write({"quantity_done": move.product_uom_qty})
+            move.write({"quantity": move.product_uom_qty})
         self.purchase_order.picking_ids.button_validate()
         for move in self.po_line_1.move_ids:
-            self.assertEqual(
-                move.qty_done_package,
-                move.product_qty_package,
-                "Incorrect Done(package) Qty in Stock Move, it should "
-                "be %s" % move.product_qty_package,
-            )
+            self.assertEqual(move.qty_done_package, move.product_qty_package)
 
     def test_004_check_invoice_line_qty(self):
         self.purchase_order.button_confirm()
         self.purchase_order.picking_ids.button_validate()
-        invoice = self.Invoice.create(
+        account_move = self.AccountMove.create(
             {
-                "type": "in_invoice",
-                "partner_id": self.partner_customer_usd.id,
-                "account_id": self.account_payable.id,
+                "move_type": "in_invoice",
+                "partner_id": self.partner_2.id,
                 "journal_id": self.journal_purchase.id,
                 "currency_id": self.env.user.company_id.currency_id.id,
                 "purchase_id": self.purchase_order.id,
             }
         )
-        invoice.purchase_order_change()
-        for line in invoice.invoice_line_ids:
+        account_move._onchange_purchase_auto_complete()
+        for line in account_move.invoice_line_ids:
+            self.assertEqual(line.package_qty, line.purchase_line_id.package_qty)
             self.assertEqual(
-                line.package_qty,
-                line.purchase_line_id.package_qty,
-                "Incorrect Package Qty in Invoice Line, it should "
-                "be %s" % line.purchase_line_id.product_qty_package,
+                line.product_qty_package, line.purchase_line_id.product_qty_package
             )
-            self.assertEqual(
-                line.product_qty_package,
-                line.purchase_line_id.product_qty_package,
-                "Incorrect Number of Packages Qty in Invoice Line, it should "
-                "be %s" % line.purchase_line_id.product_qty_package,
-            )
-            self.assertEqual(
-                line.price_policy,
-                line.purchase_line_id.price_policy,
-                "Incorrect Price Policy in Invoice Line, it should "
-                "be %s" % line.purchase_line_id.price_policy,
-            )
-
-    def test_005_check_stock_inventory(self):
-        inventory_form = Form(self.env["stock.inventory"])
-        inventory_form.filter = "product"
-        inventory_form.name = "Test Stock Inventory"
-        inventory_form.product_id = self.product
-        inventory = inventory_form.save()
-        inventory.action_start()
-        for line in inventory.line_ids:
-            self.assertEqual(
-                line.package_qty,
-                self.supplierinfo.package_qty,
-                "Incorrect Package Qty in Stock Inventory Line, it should "
-                "be %s" % self.supplierinfo.package_qty,
-            )
+            self.assertEqual(line.price_policy, line.purchase_line_id.price_policy)

@@ -27,11 +27,11 @@ from odoo import api, models
 
 
 class AccountInvoice(models.Model):
-    _inherit = "account.invoice"
+    _inherit = "account.move"
 
-    @api.onchange("purchase_id")
-    def purchase_order_change(self):
-        res = super().purchase_order_change()
+    @api.onchange("purchase_vendor_bill_id", "purchase_id")
+    def _onchange_purchase_auto_complete(self):
+        res = super()._onchange_purchase_auto_complete()
         for line in self.invoice_line_ids:
             if line.quantity == 0:
                 self.invoice_line_ids -= line
@@ -42,30 +42,3 @@ class AccountInvoice(models.Model):
                     line.package_qty and line.quantity / line.package_qty or 0
                 )
         return res
-
-    @api.multi
-    def get_taxes_values(self):
-        tax_grouped = {}
-        round_curr = self.currency_id.round
-        for line in self.invoice_line_ids:
-            if not line.account_id:
-                continue
-            price_unit = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
-            if line.price_policy == "package":
-                quantity = line.product_qty_package
-            else:
-                quantity = line.quantity
-            taxes = line.invoice_line_tax_ids.compute_all(
-                price_unit, self.currency_id, quantity, line.product_id, self.partner_id
-            )["taxes"]
-            for tax in taxes:
-                val = self._prepare_tax_line_vals(line, tax)
-                key = self.env["account.tax"].browse(tax["id"]).get_grouping_key(val)
-
-                if key not in tax_grouped:
-                    tax_grouped[key] = val
-                    tax_grouped[key]["base"] = round_curr(val["base"])
-                else:
-                    tax_grouped[key]["amount"] += val["amount"]
-                    tax_grouped[key]["base"] += round_curr(val["base"])
-        return tax_grouped
