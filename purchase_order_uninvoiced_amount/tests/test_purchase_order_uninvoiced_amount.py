@@ -79,7 +79,7 @@ class TestPurchaseOrderUninvoiceAmount(TransactionCase):
         invoice_form = Form(
             self.account_move_model.with_context(
                 default_move_type="in_invoice",
-                default_purchase_id=purchase,
+                default_purchase_id=purchase.id,
                 default_partner_id=purchase.partner_id,
             )
         )
