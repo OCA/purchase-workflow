@@ -12,11 +12,11 @@
                 <field
                     name="force_received"
                     groups="purchase.group_purchase_manager"
-                    readonly="state == 'draft'"
+                    attrs="{'readonly': [('state', '==', 'draft')]}"
                     optional="hide"
                     widget="boolean_toggle"
                 />
-                <field name="state" column_invisible="1" />
+                <field name="state" invisible="1" />
             </field>
         </field>
     </record>

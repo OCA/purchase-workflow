@@ -12,13 +12,12 @@
             <field name="qty_received" position="after">
                 <field
                     name="receipt_status"
-                    invisible="state not in ('purchase', 'done')"
+                    attrs="{'invisible': [('state', 'not in', ('purchase', 'done'))]}"
                 />
                 <field
                     name="force_received"
                     groups="purchase.group_purchase_manager"
-                    invisible="state not in ('purchase', 'done')"
-                    readonly="state == 'draft'"
+                    attrs="{'invisible': [('state', 'not in', ('purchase', 'done'))], 'readonly': [('state', '==', 'draft')]}"
                 />
             </field>
         </field>
