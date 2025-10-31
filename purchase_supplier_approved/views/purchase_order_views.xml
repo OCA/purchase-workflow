@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2025 Open Source Integrators -->
+<!-- License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo>
+
+    <!-- Inherit Purchase Order Form View -->
+    <record id="view_purchase_order_form_inherit" model="ir.ui.view">
+        <field name="name">purchase.order.form.inherit.supplier.approval</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <!-- Add warning banner for unapproved suppliers -->
+            <xpath expr="//form/sheet" position="before">
+                <div
+                    class="alert alert-warning"
+                    role="alert"
+                    invisible="not has_unapproved_supplier or override_supplier_approval"
+                >
+                    <strong
+                    >Warning:</strong> This purchase order contains products from unapproved suppliers.
+                </div>
+            </xpath>
+
+            <!-- Add override fields -->
+            <field name="currency_id" position="after">
+                <field name="has_unapproved_supplier" invisible="1" />
+                <field name="override_supplier_approval" invisible="1" />
+                <field
+                    name="override_supplier_approval"
+                    invisible="not has_unapproved_supplier or state not in ('draft', 'sent')"
+                    groups="purchase_supplier_approved.group_manage_approved_suppliers"
+                />
+                <field
+                    name="override_reason"
+                    invisible="not override_supplier_approval or not has_unapproved_supplier"
+                    groups="purchase_supplier_approved.group_manage_approved_suppliers"
+                />
+            </field>
+        </field>
+    </record>
+
+    <!-- Inherit Purchase Order Tree View -->
+    <record id="view_purchase_order_tree_inherit" model="ir.ui.view">
+        <field name="name">purchase.order.tree.inherit.supplier.approval</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_view_tree" />
+        <field name="arch" type="xml">
+            <field name="state" position="before">
+                <field
+                    name="has_unapproved_supplier"
+                    string="Unapproved"
+                    widget="boolean_toggle"
+                />
+            </field>
+        </field>
+    </record>
+
+</odoo>

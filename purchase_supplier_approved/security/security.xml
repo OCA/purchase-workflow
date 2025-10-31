@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2025 Open Source Integrators -->
+<!-- License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo noupdate="1">
+
+        <!-- Security Groups -->
+        <record id="group_manage_approved_suppliers" model="res.groups">
+            <field name="name">Manage Approved Suppliers</field>
+            <field name="category_id" ref="base.module_category_purchase_management" />
+            <field
+            name="comment"
+        >Users in this group can manage approved suppliers and override purchase order validations.</field>
+            <field name="users" eval="[(4, ref('base.user_admin'))]" />
+        </record>
+
+</odoo>
