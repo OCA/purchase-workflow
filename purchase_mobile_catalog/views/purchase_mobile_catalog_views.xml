@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>   
+    <record id="purchase_order_form_add_catalog_mobile_btn" model="ir.ui.view">
+        <field name="name">purchase.order.form.add.catalog.mobile.btn</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="priority">30</field>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='products']//field[@name='order_line']" position="before">
+                <button name="action_add_from_catalog"
+                    type="object"
+                    string="Catalog"
+                    class="btn btn-secondary mt-2 d-block d-md-none"
+                    context="{'order_id': id, 'product_catalog_order_model': 'purchase.order'}"
+                    invisible="state in ('done','cancel')" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
