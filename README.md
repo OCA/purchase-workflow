@@ -25,6 +25,7 @@ addon | version | maintainers | summary
 [procurement_purchase_no_grouping](procurement_purchase_no_grouping/) | 18.0.1.0.0 |  | Procurement Purchase No Grouping
 [product_supplier_code_purchase](product_supplier_code_purchase/) | 18.0.1.0.0 |  | This module adds to the purchase order line the supplier code defined in the product.
 [product_supplierinfo_purchase_contact](product_supplierinfo_purchase_contact/) | 18.0.1.0.0 | <a href='https://github.com/victoralmau'><img src='https://github.com/victoralmau.png' width='32' height='32' style='border-radius:50%;' alt='victoralmau'/></a> | Add Purchase Contact in product supplier info
+[product_supplierinfo_update_price](product_supplierinfo_update_price/) | 18.0.1.0.0 |  | Updates the product's vendor price with the price set in a purchase order.
 [purchase_advance_payment](purchase_advance_payment/) | 18.0.1.1.0 | <a href='https://github.com/LoisRForgeFlow'><img src='https://github.com/LoisRForgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='LoisRForgeFlow'/></a> | Allow to add advance payments on purchase orders
 [purchase_all_shipments](purchase_all_shipments/) | 18.0.1.0.1 |  | Purchase All Shipments
 [purchase_allowed_product](purchase_allowed_product/) | 18.0.1.0.0 |  | This module allows to select only products that can be supplied by the vendor
