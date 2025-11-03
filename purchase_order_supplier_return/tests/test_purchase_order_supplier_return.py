@@ -1,12 +1,10 @@
 # Copyright 2023 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
-from odoo.tests.common import TransactionCase
-
-from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
+from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT, BaseCommon
 
 
-class TestPurchaseOrderSupplierReturn(TransactionCase):
+class TestPurchaseOrderSupplierReturn(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -47,8 +45,11 @@ class TestPurchaseOrderSupplierReturn(TransactionCase):
 
         # Validate the pickings related to the purchase order
         for picking in self.purchase_order.picking_ids:
-            picking.action_set_quantities_to_reservation()
+            picking.action_assign()
+            for move in picking.move_ids_without_package:
+                move.quantity = move.product_uom_qty
             picking.button_validate()
+
         self.assertTrue(
             self.purchase_order.order_line[0].move_ids._is_purchase_return()
         )
