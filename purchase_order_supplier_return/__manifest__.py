@@ -3,7 +3,7 @@
 {
     "name": "Purchase Order Supplier Return",
     "summary": """Return product to supplier and update quantiy received""",
-    "version": "16.0.1.0.0",
+    "version": "18.0.1.0.0",
     "development_status": "Beta",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
