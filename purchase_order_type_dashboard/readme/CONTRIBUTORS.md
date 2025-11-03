@@ -2,4 +2,5 @@
 - Angel Rivas \<<angel.rivas@solvos.es>\>
 - [Heliconia Solutions Pvt. Ltd.](https://www.heliconia.io)
   - Bhavesh Heliconia
-
+- [SolusiAglis](https://solusiaglis.co.id)
+  - Hudson Amadeus Leonardy

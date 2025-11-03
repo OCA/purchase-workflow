@@ -1,10 +1,8 @@
 # ?? 2021 Solvos Consultor??a Inform??tica (<http://www.solvos.es>)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-import time
-
+from odoo import fields
 from odoo.tests import tagged
-from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 from odoo.addons.base.tests.common import BaseCommon
 
@@ -15,19 +13,78 @@ class TestPurchaseOrderTypeDashboard(BaseCommon):
     def setUpClass(cls):
         super().setUpClass()
         cls.po_obj = cls.env["purchase.order"]
+
         # Partner
-        cls.partner1 = cls.env.ref("base.res_partner_1")
+        cls.partner1 = cls.env["res.partner"].create(
+            {
+                "name": "Wood Corner",
+                "is_company": True,
+                "street": "1839 Arbor Way",
+                "city": "Turlock",
+                "email": "wood.corner26@example.com",
+                "phone": "(623)-853-7197",
+            }
+        )
+
+        cls.category_office = cls.env["product.category"].create(
+            {
+                "name": "Office Furniture",
+            }
+        )
+
+        cls.uom_unit = cls.env.ref("uom.product_uom_unit")
+
         # Products
-        cls.product1 = cls.env.ref("product.product_product_7")
-        cls.product2 = cls.env.ref("product.product_product_9")
-        cls.product3 = cls.env.ref("product.product_product_11")
+        cls.product_storage_box = cls.env["product.product"].create(
+            {
+                "name": "Storage Box",
+                "categ_id": cls.category_office.id,
+                "standard_price": 14.0,
+                "list_price": 15.8,
+                "type": "consu",
+                "default_code": "E-COM08",
+            }
+        )
+
+        cls.product_pedal_bin = cls.env["product.product"].create(
+            {
+                "name": "Pedal Bin",
+                "categ_id": cls.category_office.id,
+                "standard_price": 10.0,
+                "list_price": 47.0,
+                "type": "consu",
+                "uom_id": cls.uom_unit.id,
+                "default_code": "E-COM10",
+            }
+        )
+
+        cls.product_conference_chair = cls.env["product.product"].create(
+            {
+                "name": "Conference Chair",
+                "categ_id": cls.category_office.id,
+                "standard_price": 28.0,
+                "list_price": 33.0,
+                "type": "consu",
+                "uom_id": cls.uom_unit.id,
+                "default_code": "E-COM12",
+            }
+        )
+
         # Purchase Type
-        cls.type1 = cls.env.ref("purchase_order_type.po_type_regular")
+        cls.type1 = cls.env["purchase.order.type"].create(
+            {
+                "name": "Regular",
+            }
+        )
 
     def test_purchase_order_type_dashboard(self):
         po_type1_rfq_count = self.type1.state_rfq_po_count
         purchase = self._create_purchase(
-            [(self.product1, 1), (self.product2, 5), (self.product3, 8)]
+            [
+                (self.product_storage_box, 1),
+                (self.product_pedal_bin, 5),
+                (self.product_conference_chair, 8),
+            ]
         )
         self.assertEqual(self.type1.state_rfq_po_count, po_type1_rfq_count + 1)
 
@@ -52,9 +109,9 @@ class TestPurchaseOrderTypeDashboard(BaseCommon):
                 "name": product.name,
                 "product_id": product.id,
                 "product_qty": qty,
-                "product_uom": product.uom_id.id,
+                "product_uom_id": product.uom_id.id,
                 "price_unit": 100,
-                "date_planned": time.strftime(DEFAULT_SERVER_DATETIME_FORMAT),
+                "date_planned": fields.Datetime.now(),
             }
             lines.append((0, 0, line_values))
         purchase = self.po_obj.create(
