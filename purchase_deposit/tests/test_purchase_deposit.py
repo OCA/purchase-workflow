@@ -23,6 +23,12 @@ class TestPurchaseDeposit(TransactionCase):
                 "account_type": "asset_current",
             }
         )
+        # Create partner
+        cls.partner = cls.env["res.partner"].create(
+            {
+                "name": "Test Vendor",
+            }
+        )
         # Create products:
         p1 = cls.product1 = cls.product_model.create(
             {
@@ -35,14 +41,14 @@ class TestPurchaseDeposit(TransactionCase):
 
         cls.po = cls.env["purchase.order"].create(
             {
-                "partner_id": cls.env.ref("base.res_partner_3").id,
+                "partner_id": cls.partner.id,
                 "order_line": [
                     (
                         0,
                         0,
                         {
                             "product_id": p1.id,
-                            "product_uom": p1.uom_id.id,
+                            "product_uom_id": p1.uom_id.id,
                             "name": p1.name,
                             "price_unit": 100.0,
                             "date_planned": fields.Datetime.now(),
@@ -198,4 +204,4 @@ class TestPurchaseDeposit(TransactionCase):
         self.po.invoice_ids.action_post()
         deposit_line = self.po.order_line.filtered(lambda p: p.is_deposit)
         self.assertEqual(deposit_line.price_unit, 500.0)
-        self.assertEqual(deposit_line.taxes_id.id, self.tax.id)
+        self.assertEqual(deposit_line.tax_ids.id, self.tax.id)
