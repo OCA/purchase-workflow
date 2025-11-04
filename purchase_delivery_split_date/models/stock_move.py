@@ -3,29 +3,28 @@
 
 import pytz
 
-from odoo import fields, models
-from odoo.osv import expression
-from odoo.tools import groupby
+from odoo import models
+from odoo.fields import Domain
 
 
 class StockMove(models.Model):
     _inherit = "stock.move"
 
     def _purchase_split_date_get_group_keys(self):
-        tz = self.picking_type_id.warehouse_id.partner_id.tz or self.env.user.tz
-        wh_tz = pytz.timezone(tz or "UTC")
+        tz = self.picking_type_id.warehouse_id.partner_id.tz
+        wh_tz = pytz.timezone(tz) if tz else self.env.tz
         date_planned_tz = self.date_deadline.astimezone(pytz.utc).astimezone(wh_tz)
         date = date_planned_tz.date()
         # Split date value to obtain only the attributes year, month and day
-        key = ({"date_planned": fields.Date.to_string(date)},)
+        key = (("date_planned", date),)
         return key
 
     def _search_picking_for_assignation_domain(self):
         domain = super()._search_picking_for_assignation_domain()
         if self.env.context.get("purchase_delivery_split_date"):
             key = self._purchase_split_date_get_group_keys()
-            tz = self.picking_type_id.warehouse_id.partner_id.tz or self.env.user.tz
-            domain = expression.AND(
+            tz = self.picking_type_id.warehouse_id.partner_id.tz
+            domain = Domain.AND(
                 [domain, self.picking_id._purchase_split_date_assign_domain(key, tz)]
             )
         return domain
@@ -43,12 +42,10 @@ class StockMove(models.Model):
         if not po_moves:
             return
         po_moves.date = new_deadline
-        for picking, moves_list in groupby(po_moves, lambda m: m.picking_id):
+        for picking, moves in po_moves.grouped("picking_id").items():
             if picking.printed:
                 # Do not split by date anymore
                 continue
-            # todo: if all moves on the same date
-            moves = self.browse().concat(*moves_list)
             # the picking is not valid anymore
             reserved_moves = moves.filtered(
                 lambda m: m.state in ("partially_available", "assigned")
@@ -70,7 +67,8 @@ class StockMove(models.Model):
         if self.env.context.get("purchase_delivery_split_date"):
             is_dropship = all([move._is_dropshipped() for move in self])
             if not vals.get("partner_id") or is_dropship:
-                vals["partner_id"] = fields.first(self.purchase_line_id.partner_id).id
+                partners = self.purchase_line_id.partner_id
+                vals["partner_id"] = next(iter(partners), partners).id
         return vals
 
     def _assign_picking_values(self, picking):
