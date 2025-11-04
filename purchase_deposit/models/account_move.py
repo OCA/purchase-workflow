@@ -12,6 +12,6 @@ class AccountMove(models.Model):
         for line in self.line_ids:
             if not line.purchase_line_id.is_deposit:
                 continue
-            line.purchase_line_id.taxes_id = line.tax_ids
+            line.purchase_line_id.tax_ids = line.tax_ids
             line.purchase_line_id.price_unit = line.price_unit
         return res
