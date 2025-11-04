@@ -11,6 +11,7 @@
     ],
     "data": [
         "data/container.type.csv",
+        "data/cron_data.xml",
         "views/container_type.xml",
         "views/purchase.xml",
         "views/purchase_container.xml",
