@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 {
     "name": "Purchase All Shipments",
-    "version": "18.0.1.0.1",
+    "version": "19.0.1.0.0",
     "author": "Camptocamp,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
     "category": "Purchases",
