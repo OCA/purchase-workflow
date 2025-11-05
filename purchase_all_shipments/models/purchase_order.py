@@ -36,7 +36,7 @@ class PurchaseOrder(models.Model):
         # override the context to get rid of the default filtering on picking type
         result["context"] = {}
 
-        if not picking_ids or len(picking_ids) > 1:
+        if len(picking_ids) > 1:
             result["domain"] = [("id", "in", picking_ids.ids)]
         elif len(picking_ids) == 1:
             res = self.env.ref("stock.view_picking_form", False)
@@ -47,4 +47,6 @@ class PurchaseOrder(models.Model):
                 if view != "form"
             ]
             result["res_id"] = picking_ids.id
+        else:
+            result["domain"] = [("id", "in", [])]
         return result
