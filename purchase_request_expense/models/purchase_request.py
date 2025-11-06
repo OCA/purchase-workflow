@@ -25,10 +25,7 @@ class PurchaseRequest(models.Model):
     def _compute_expense_ids(self):
         for request in self:
             expenses = request.line_ids.mapped("expense_ids")
-            request.update({
-                "expense_ids": expenses,
-                "expense_count": len(expenses)
-            })
+            request.update({"expense_ids": expenses, "expense_count": len(expenses)})
 
     def action_view_expenses(self):
         self.ensure_one()

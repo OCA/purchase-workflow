@@ -1,5 +1,5 @@
 from odoo import _, api, fields, models
-from odoo import ValidationError
+from odoo.exceptions import ValidationError
 
 
 class PurchaseRequestLine(models.Model):
@@ -31,5 +31,7 @@ class PurchaseRequestLine(models.Model):
                 and line.company_id != line.request_id.company_id
             ):
                 raise ValidationError(
-                    _("The company of the request line must match the company of the request.")
+                    _(
+                        "The company of the request line must match the company of the request."
+                    )
                 )

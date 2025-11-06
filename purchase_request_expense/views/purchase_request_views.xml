@@ -7,20 +7,20 @@
         <field name="arch" type="xml">
             <xpath expr="//header" position="inside">
                 <button
-                    name="%(action_purchase_request_line_make_expense)d"
-                    string="Create Expense"
-                    states="approved"
-                    type="action"
-                />
+          name="%(action_purchase_request_line_make_expense)d"
+          string="Create Expense"
+          states="approved"
+          type="action"
+        />
             </xpath>
             <div class="oe_button_box" position="inside">
                 <button
-                    name="action_view_expenses"
-                    type="object"
-                    class="oe_stat_button"
-                    icon="fa-money"
-                    attrs="{'invisible': [('expense_count', '=', 0)]}"
-                >
+          name="action_view_expenses"
+          type="object"
+          class="oe_stat_button"
+          icon="fa-money"
+          attrs="{'invisible': [('expense_count', '=', 0)]}"
+        >
                     <field name="expense_count" widget="statinfo" string="Expenses" />
                 </button>
             </div>

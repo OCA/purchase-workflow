@@ -8,11 +8,11 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='reference']" position="after">
                 <field
-                    name="purchase_request_line_id"
-                    attrs="{'invisible': [('purchase_request_line_id', '=', False)]}"
-                    options="{'no_create': True}"
-                    groups="purchase_request.group_purchase_request_user"
-                />
+          name="purchase_request_line_id"
+          attrs="{'invisible': [('purchase_request_line_id', '=', False)]}"
+          options="{'no_create': True}"
+          groups="purchase_request.group_purchase_request_user"
+        />
             </xpath>
         </field>
     </record>
@@ -22,16 +22,16 @@
         <field name="name">hr.expense.view.tree.inherited</field>
         <field name="model">hr.expense</field>
         <field
-            name="inherit_id"
-            ref="hr_expense.hr_expense_view_expenses_analysis_tree"
-        />
+      name="inherit_id"
+      ref="hr_expense.hr_expense_view_expenses_analysis_tree"
+    />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='reference']" position="after">
                 <field
-                    name="purchase_request_line_id"
-                    optional="show"
-                    groups="purchase_request.group_purchase_request_user"
-                />
+          name="purchase_request_line_id"
+          optional="show"
+          groups="purchase_request.group_purchase_request_user"
+        />
             </xpath>
         </field>
     </record>
@@ -47,11 +47,11 @@
             </xpath>
             <xpath expr="//group" position="inside">
                 <filter
-                    string="Purchase Request Line"
-                    name="groupby_purchase_request_line"
-                    domain="[]"
-                    context="{'group_by': 'purchase_request_line_id'}"
-                />
+          string="Purchase Request Line"
+          name="groupby_purchase_request_line"
+          domain="[]"
+          context="{'group_by': 'purchase_request_line_id'}"
+        />
             </xpath>
         </field>
     </record>
