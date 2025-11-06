@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="purchase_order_line_form2_triple_discount" model="ir.ui.view">
+        <field name="name">purchase.order.line.form2.triple.discount</field>
+        <field name="model">purchase.order.line</field>
+        <field name="inherit_id" ref="purchase_discount.purchase_order_line_form2" />
+        <field name="priority">98</field>
+        <field name="arch" type="xml">
+            <field name="discount" position="attributes">
+                <attribute name="string">Total discount</attribute>
+                <attribute name="optional">hide</attribute>
+            </field>
+            <field name="discount" position="after">
+                <field name="discount1" />
+                <field name="discount2" />
+                <field name="discount3" />
+                <field name="discounted_unit_price" readonly="1" />
+            </field>
+        </field>
+    </record>
+
+    <record id="purchase_order_line_tree_triple_discount" model="ir.ui.view">
+        <field name="name">purchase.order.line.tree.triple.discount</field>
+        <field name="model">purchase.order.line</field>
+        <field name="inherit_id" ref="purchase_discount.purchase_order_line_tree" />
+        <field name="priority">98</field>
+        <field name="arch" type="xml">
+            <field name="discount" position="attributes">
+                <attribute name="string">Total discount</attribute>
+                <attribute name="optional">hide</attribute>
+            </field>
+            <field name="discount" position="after">
+                <field name="discount1" optional="show" />
+                <field name="discount2" optional="show" />
+                <field name="discount3" optional="show" />
+                <field name="discounted_unit_price" readonly="1" optional="show" />
+            </field>
+        </field>
+    </record>
+
+    <record id="purchase_order_form_triple_discount" model="ir.ui.view">
+        <field name="name">purchase.order.form.triple.discount</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase_discount.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/list/field[@name='discount']" position="attributes">
+                <attribute name="string">Total discount</attribute>
+                <attribute name="optional">hide</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/list/field[@name='discount']" position="after">
+                <field name="discount1" optional="show" />
+                <field name="discount2" optional="show" />
+                <field name="discount3" optional="show" />
+                <field name="discounted_unit_price" readonly="1" optional="show" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

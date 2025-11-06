@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <template id="report_purchaseorder_document_triple_discount"
+            inherit_id="purchase.report_purchaseorder_document">
+
+    <!-- tighten fonts (optional) -->
+    <xpath expr="//table[contains(@class,'o_main_table')]" position="attributes">
+      <attribute name="style">font-size:11px !important; line-height:1.06 !important;</attribute>
+    </xpath>
+    <xpath expr="//table[contains(@class,'o_total_table')]" position="attributes">
+      <attribute name="style">font-size:11px !important; line-height:1.06 !important;</attribute>
+    </xpath>
+
+<!--    &lt;!&ndash; remove original single Discount header and its cell &ndash;&gt;-->
+    <xpath expr="//th[@name='th_discount']" position="replace"/>
+    <xpath expr="//td[.//span[@t-field='line.discount']]" position="replace"/>
+
+    <!-- insert three discount headers BEFORE the taxes header -->
+    <xpath expr="//th[@name='th_taxes']" position="before">
+      <th name="th_discount1" class="text-end"><strong>Sc. 1 (%)</strong></th>
+      <th name="th_discount2" class="text-end"><strong>Sc. 2 (%)</strong></th>
+      <th name="th_discount3" class="text-end"><strong>Sc. 3 (%)</strong></th>
+    </xpath>
+
+    <!-- insert three discount TDs BEFORE the original taxes TD
+         locate the taxes TD by matching its inner span with the t-out that contains 'invoice_label' -->
+    <xpath expr="//td[span[contains(@t-out,'invoice_label')]]" position="before">
+      <td name="td_discount1" class="text-end"><span t-field="line.discount1"/></td>
+      <td name="td_discount2" class="text-end"><span t-field="line.discount2"/></td>
+      <td name="td_discount3" class="text-end"><span t-field="line.discount3"/></td>
+    </xpath>
+
+  </template>
+</odoo>
