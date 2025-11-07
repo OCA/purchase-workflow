@@ -11,6 +11,7 @@ class Test(BaseCommon):
         cls.product = cls.env["product.product"].create({"name": "Test Product"})
         cls.cont_a = cls.env["purchase.container"].create({"code": "AA"})
         cls.cont_b = cls.env["purchase.container"].create({"code": "BB"})
+        cls.incoterm_id = cls.env.ref("account.incoterm_FCA")
 
     def test_container_by_purchase(self):
         # first PO
@@ -43,6 +44,9 @@ class Test(BaseCommon):
         self.cont_b._compute_purchase_order_count()
         self.assertEqual(self.cont_b.purchase_order_count, 2)
 
+        self.cont_b._compute_incoterm_id()
+        self.assertEqual(self.cont_b.displayed_incoterm_id, self.incoterm_id)
+
     def test_action_views(self):
         po = self.get_po()
         po.button_confirm()
@@ -57,6 +61,7 @@ class Test(BaseCommon):
             {
                 "partner_id": self.partner.id,
                 "date_planned": fields.Datetime.now(),
+                "incoterm_id": self.incoterm_id.id,
                 "order_line": [
                     Command.create(
                         {

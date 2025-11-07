@@ -1,3 +1,5 @@
+from datetime import date
+
 from odoo import api, fields, models
 
 
@@ -62,6 +64,102 @@ class PurchaseContainer(models.Model):
         string="Related Pickings",
     )
     picking_count = fields.Integer(string="Receipts", compute="_compute_picking_count")
+
+    incoterm_id = fields.Many2one(
+        "account.incoterms", compute="_compute_incoterm_id", store=False, readonly=True
+    )
+    manual_incoterm_id = fields.Many2one("account.incoterms")
+    displayed_incoterm_id = fields.Many2one(
+        "account.incoterms",
+        compute="_compute_displayed_incoterm_id",
+        inverse="_inverse_displayed_incoterm_id",
+        store=True,
+        tracking=True,
+    )
+
+    departure_location_id = fields.Many2one("res.partner")
+    arrival_location_id = fields.Many2one("res.partner")
+    date_eta = fields.Date(
+        string="ETA Date", help="Estimated Time Of Arrival", tracking=True
+    )
+    date_etd = fields.Date(
+        string="ETD Date", help="Estimated Time Of Departure", tracking=True
+    )
+    date_ata = fields.Date(
+        string="ATA Date", help="Actual Time Of Arrival", tracking=True
+    )
+    date_atd = fields.Date(
+        string="ATD Date", help="Actual Time Of Departure", tracking=True
+    )
+    date_ett = fields.Char(
+        string="ETT Date",
+        help="Estimated Time Of Travel",
+        compute="_compute_date_ett",
+        store=False,
+        tracking=True,
+    )
+
+    state = fields.Selection(
+        [
+            ("waiting", "Waiting"),
+            ("transit", "Transit"),
+            ("arrived", "Arrived"),
+            ("locked", "Locked"),
+        ],
+        compute="_compute_state",
+        store=True,
+        tracking=True,
+    )
+    is_locked = fields.Boolean()
+
+    def _compute_incoterm_id(self):
+        for record in self:
+            record.incoterm_id = record.purchase_order_ids.filtered(
+                lambda po: po.incoterm_id
+            )[:1].incoterm_id
+
+    @api.depends(
+        "manual_incoterm_id", "purchase_order_ids", "purchase_order_ids.incoterm_id"
+    )
+    def _compute_displayed_incoterm_id(self):
+        for record in self:
+            record.displayed_incoterm_id = (
+                record.manual_incoterm_id
+                if record.manual_incoterm_id
+                else record.incoterm_id
+            )
+
+    def _inverse_displayed_incoterm_id(self):
+        for record in self:
+            record.manual_incoterm_id = record.displayed_incoterm_id
+
+    @api.depends("date_eta", "date_etd")
+    def _compute_date_ett(self):
+        for record in self:
+            record.date_ett = 0
+            if record.date_eta and record.date_etd:
+                record.date_ett = record.date_eta - record.date_etd
+
+    @api.depends("is_locked", "date_etd", "date_atd", "picking_ids.state")
+    def _compute_state(self):
+        for record in self:
+            departure_date = record.date_atd if record.date_atd else record.date_etd
+
+            picking_states = set(record.picking_ids.mapped("state"))
+            if record.is_locked:
+                record.state = "locked"
+            elif picking_states and picking_states.issubset({"done", "cancel"}):
+                record.state = "arrived"
+            elif departure_date and departure_date <= date.today():
+                record.state = "transit"
+            else:
+                record.state = "waiting"
+
+    def button_lock(self):
+        self.is_locked = True
+
+    def button_unlock(self):
+        self.is_locked = False
 
     @api.depends("code", "purchase_order_ids")
     def _compute_name(self):
