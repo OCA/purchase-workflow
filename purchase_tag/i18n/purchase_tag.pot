@@ -44,6 +44,16 @@ msgid "Display Name"
 msgstr ""
 
 #. module: purchase_tag
+#: model_terms:ir.ui.view,arch_db:purchase_tag.view_purchase_order_filter
+msgid "Don't have a tag"
+msgstr ""
+
+#. module: purchase_tag
+#: model_terms:ir.ui.view,arch_db:purchase_tag.view_purchase_order_filter
+msgid "Have a tag"
+msgstr ""
+
+#. module: purchase_tag
 #: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag__id
 msgid "ID"
 msgstr ""
@@ -76,6 +86,11 @@ msgstr ""
 #. module: purchase_tag
 #: model:ir.model,name:purchase_tag.model_purchase_tag
 msgid "Purchase Tag"
+msgstr ""
+
+#. module: purchase_tag
+#: model_terms:ir.ui.view,arch_db:purchase_tag.view_purchase_order_filter
+msgid "Tag"
 msgstr ""
 
 #. module: purchase_tag
