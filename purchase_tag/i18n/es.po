@@ -47,6 +47,16 @@ msgid "Display Name"
 msgstr "Mostrar Nombre"
 
 #. module: purchase_tag
+#: model_terms:ir.ui.view,arch_db:purchase_tag.view_purchase_order_filter
+msgid "Don't have a tag"
+msgstr ""
+
+#. module: purchase_tag
+#: model_terms:ir.ui.view,arch_db:purchase_tag.view_purchase_order_filter
+msgid "Have a tag"
+msgstr ""
+
+#. module: purchase_tag
 #: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag__id
 msgid "ID"
 msgstr "ID (identificación)"
@@ -82,6 +92,11 @@ msgid "Purchase Tag"
 msgstr "Etiqueta de compra"
 
 #. module: purchase_tag
+#: model_terms:ir.ui.view,arch_db:purchase_tag.view_purchase_order_filter
+msgid "Tag"
+msgstr ""
+
+#. module: purchase_tag
 #: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag__name
 msgid "Tag Name"
 msgstr "Nombre de etiqueta"
@@ -99,12 +114,9 @@ msgstr "¡El nombre de etiqueta ya existe!"
 msgid "Tags"
 msgstr "Etiquetas"
 
-#. module: purchase_tag
-#. odoo-python
-#: code:addons/purchase_tag/models/purchase_tag.py:0
 #, python-format
-msgid "Tags cannot be recursive."
-msgstr "Las etiquetas no pueden ser recursivas."
+#~ msgid "Tags cannot be recursive."
+#~ msgstr "Las etiquetas no pueden ser recursivas."
 
 #~ msgid "Last Modified on"
 #~ msgstr "Última Modificación el"

@@ -47,6 +47,16 @@ msgid "Display Name"
 msgstr "Nome Exibição"
 
 #. module: purchase_tag
+#: model_terms:ir.ui.view,arch_db:purchase_tag.view_purchase_order_filter
+msgid "Don't have a tag"
+msgstr ""
+
+#. module: purchase_tag
+#: model_terms:ir.ui.view,arch_db:purchase_tag.view_purchase_order_filter
+msgid "Have a tag"
+msgstr ""
+
+#. module: purchase_tag
 #: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag__id
 msgid "ID"
 msgstr "ID"
@@ -82,6 +92,11 @@ msgid "Purchase Tag"
 msgstr "Marcador Compra"
 
 #. module: purchase_tag
+#: model_terms:ir.ui.view,arch_db:purchase_tag.view_purchase_order_filter
+msgid "Tag"
+msgstr ""
+
+#. module: purchase_tag
 #: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag__name
 msgid "Tag Name"
 msgstr "Nome do Marcador"
@@ -98,13 +113,6 @@ msgstr "Marcador já Existe!"
 #: model_terms:ir.ui.view,arch_db:purchase_tag.purchase_tag_view_form
 msgid "Tags"
 msgstr "Marcadores"
-
-#. module: purchase_tag
-#. odoo-python
-#: code:addons/purchase_tag/models/purchase_tag.py:0
-#, python-format
-msgid "Tags cannot be recursive."
-msgstr ""
 
 #~ msgid "Last Modified on"
 #~ msgstr "Última Modificação em"
