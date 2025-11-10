@@ -4,7 +4,7 @@ from datetime import datetime
 
 import pytz
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import get_lang
 
@@ -55,41 +55,35 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
 
         for line in self.env["purchase.request.line"].browse(request_line_ids):
             if line.request_id.state == "done":
-                raise UserError(_("The purchase has already been completed."))
+                raise UserError(self.env._("The purchase has already been completed."))
             if line.request_id.state not in ["approved", "in_progress"]:
                 raise UserError(
-                    _("Purchase Request %s is not approved or in progress")
-                    % line.request_id.name
+                    self.env._(
+                        "Purchase Request %(name)s is not approved or in progress",
+                        name=line.request_id.name,
+                    )
                 )
 
             if line.purchase_state == "done":
-                raise UserError(_("The purchase has already been completed."))
+                raise UserError(self.env._("The purchase has already been completed."))
 
             line_company_id = line.company_id and line.company_id.id or False
             if company_id is not False and line_company_id != company_id:
-                raise UserError(_("You have to select lines from the same company."))
+                raise UserError(
+                    self.env._("You have to select lines from the same company.")
+                )
             else:
                 company_id = line_company_id
 
             line_picking_type = line.request_id.picking_type_id or False
             if not line_picking_type:
-                raise UserError(_("You have to enter a Picking Type."))
+                raise UserError(self.env._("You have to enter a Picking Type."))
             if picking_type is not False and line_picking_type != picking_type:
                 raise UserError(
-                    _("You have to select lines from the same Picking Type.")
+                    self.env._("You have to select lines from the same Picking Type.")
                 )
             else:
                 picking_type = line_picking_type
-
-    @api.model
-    def check_group(self, request_lines):
-        if len(list(set(request_lines.mapped("request_id.group_id")))) > 1:
-            raise UserError(
-                _(
-                    "You cannot create a single purchase order from "
-                    "purchase requests that have different procurement group."
-                )
-            )
 
     @api.model
     def get_items(self, request_line_ids):
@@ -97,7 +91,6 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         items = []
         request_lines = request_line_obj.browse(request_line_ids)
         self._check_valid_request_line(request_line_ids)
-        self.check_group(request_lines)
         for line in request_lines:
             items.append([0, 0, self._prepare_item(line)])
         return items
@@ -124,9 +117,9 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         return res
 
     @api.model
-    def _prepare_purchase_order(self, picking_type, group_id, company, origin):
+    def _prepare_purchase_order(self, picking_type, company, origin):
         if not self.supplier_id:
-            raise UserError(_("Enter a supplier."))
+            raise UserError(self.env._("Enter a supplier."))
         supplier = self.supplier_id
         data = {
             "origin": origin,
@@ -137,7 +130,6 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             or False,
             "picking_type_id": picking_type.id,
             "company_id": company.id,
-            "group_id": group_id.id,
         }
         return data
 
@@ -161,14 +153,12 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
     @api.model
     def _prepare_purchase_order_line(self, po, item):
         if not item.product_id:
-            raise UserError(_("Please select a product for all lines"))
+            raise UserError(self.env._("Please select a product for all lines"))
         product = item.product_id
 
         # Keep the standard product UOM for purchase order so we should
         # convert the product quantity to this UOM
-        qty = item.product_uom_id._compute_quantity(
-            item.product_qty, product.uom_po_id or product.uom_id
-        )
+        qty = item.product_uom_id._compute_quantity(item.product_qty, product.uom_id)
         # Suggest the supplier min qty as it's done in Odoo core
         min_qty = item.line_id._get_supplier_min_qty(product, po.partner_id)
         qty = max(qty, min_qty)
@@ -176,7 +166,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         return {
             "order_id": po.id,
             "product_id": product.id,
-            "product_uom": product.uom_po_id.id or product.uom_id.id,
+            "product_uom_id": product.uom_id.id,
             "price_unit": 0.0,
             "product_qty": qty,
             "analytic_distribution": item.line_id.analytic_distribution,
@@ -206,7 +196,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             ("order_id", "=", order.id),
             ("name", "=", name),
             ("product_id", "=", item.product_id.id),
-            ("product_uom", "=", vals["product_uom"]),
+            ("product_uom_id", "=", vals["product_uom_id"]),
         ]
 
         if item.line_id.analytic_distribution:
@@ -236,13 +226,12 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         for item in self.item_ids:
             line = item.line_id
             if item.product_qty <= 0.0:
-                raise UserError(_("Enter a positive quantity."))
+                raise UserError(self.env._("Enter a positive quantity."))
             if self.purchase_order_id:
                 purchase = self.purchase_order_id
             if not purchase:
                 po_data = self._prepare_purchase_order(
                     line.request_id.picking_type_id,
-                    line.request_id.group_id,
                     line.company_id,
                     line.origin,
                 )
@@ -265,7 +254,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                 po_line = available_po_lines[0]
                 po_line.purchase_request_lines = [(4, line.id)]
                 po_line.move_dest_ids |= line.move_dest_ids
-                po_line_product_uom_qty = po_line.product_uom._compute_quantity(
+                po_line_product_uom_qty = po_line.product_uom_id._compute_quantity(
                     po_line.product_uom_qty, alloc_uom
                 )
                 wizard_product_uom_qty = wizard_uom._compute_quantity(
@@ -278,7 +267,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                 if item.keep_description:
                     po_line_data["name"] = item.name
                 po_line = po_line_obj.create(po_line_data)
-                po_line_product_uom_qty = po_line.product_uom._compute_quantity(
+                po_line_product_uom_qty = po_line.product_uom_id._compute_quantity(
                     po_line.product_uom_qty, alloc_uom
                 )
                 wizard_product_uom_qty = wizard_uom._compute_quantity(
@@ -303,7 +292,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         purchase_requests.button_in_progress()
         return {
             "domain": [("id", "in", res)],
-            "name": _("RFQ"),
+            "name": self.env._("RFQ"),
             "view_mode": "list,form",
             "res_model": "purchase.order",
             "view_id": False,
