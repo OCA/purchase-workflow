@@ -9,8 +9,9 @@ class StockRule(models.Model):
 
     @api.model
     def _prepare_purchase_request_line(self, request_id, procurement):
+        # Note: uom_po_id doesn't exist in Odoo 19, use product.uom_id
         procurement_uom_po_qty = procurement.product_uom._compute_quantity(
-            procurement.product_qty, procurement.product_id.uom_po_id
+            procurement.product_qty, procurement.product_id.uom_id
         )
         return {
             "product_id": procurement.product_id.id,
@@ -18,7 +19,7 @@ class StockRule(models.Model):
             "date_required": "date_planned" in procurement.values
             and procurement.values["date_planned"]
             or fields.Datetime.now(),
-            "product_uom_id": procurement.product_id.uom_po_id.id,
+            "product_uom_id": procurement.product_id.uom_id.id,
             "product_qty": procurement_uom_po_qty,
             "request_id": request_id.id,
             "move_dest_ids": [
@@ -30,17 +31,10 @@ class StockRule(models.Model):
 
     @api.model
     def _prepare_purchase_request(self, origin, values):
-        gpo = self.group_propagation_option
-        group_id = (
-            (gpo == "fixed" and self.group_id.id)
-            or (gpo == "propagate" and values.get("group_id") and values["group_id"].id)
-            or False
-        )
         return {
             "origin": origin,
             "company_id": values["company_id"].id,
             "picking_type_id": self.picking_type_id.id,
-            "group_id": group_id or False,
             "requested_by": self.env.context.get("uid", self.env.uid),
             "assigned_to": False,
         }
@@ -58,14 +52,6 @@ class StockRule(models.Model):
             ("picking_type_id", "=", self.picking_type_id.id),
             ("company_id", "=", values["company_id"].id),
         )
-        gpo = self.group_propagation_option
-        group_id = (
-            (gpo == "fixed" and self.group_id.id)
-            or (gpo == "propagate" and values["group_id"] and values["group_id"].id)
-            or False
-        )
-        if group_id:
-            domain += (("group_id", "=", group_id),)
         return domain
 
     def is_create_purchase_request_allowed(self, procurement):
