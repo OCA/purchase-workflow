@@ -3,7 +3,7 @@
 
 from markupsafe import Markup
 
-from odoo import _, api, models
+from odoo import api, models
 from odoo.tools import html_escape
 
 
@@ -12,25 +12,25 @@ class StockMoveLine(models.Model):
 
     @api.model
     def _purchase_request_confirm_done_message_content(self, message_data):
-        title = _(
-            "Receipt confirmation {picking_name} for your Request {request_name}"
-        ).format(
+        title = self.env._(
+            "Receipt confirmation %(picking_name)s for your Request %(request_name)s",
             picking_name=message_data["picking_name"],
             request_name=message_data["request_name"],
         )
 
-        message_body = _(
-            "The following requested items from Purchase Request {request_name} "
-            "have now been received in {location_name} "
-            "using Picking {picking_name}:"
-        ).format(
+        message_body = self.env._(
+            "The following requested items from Purchase Request %(request_name)s "
+            "have now been received in %(location_name)s "
+            "using Picking %(picking_name)s:",
             request_name=message_data["request_name"],
             location_name=message_data["location_name"],
             picking_name=message_data["picking_name"],
         )
 
         product_line = Markup(
-            "<ul><li><b>{}</b>: " + _("Transferred quantity") + " {} {}</li></ul>"
+            "<ul><li><b>{}</b>: "
+            + self.env._("Transferred quantity")
+            + " {} {}</li></ul>"
         ).format(
             html_escape(message_data["product_name"]),
             message_data["product_qty"],
@@ -41,22 +41,24 @@ class StockMoveLine(models.Model):
 
     @api.model
     def _picking_confirm_done_message_content(self, message_data):
-        title = _("Receipt confirmation for Request {name}").format(
-            name=message_data["request_name"]
+        title = self.env._(
+            "Receipt confirmation for Request %(name)s",
+            name=message_data["request_name"],
         )
 
-        message_body = _(
-            "The following requested items from Purchase Request {request_name} "
-            "requested by {requestor} "
-            "have now been received in {location_name}:"
-        ).format(
+        message_body = self.env._(
+            "The following requested items from Purchase Request %(request_name)s "
+            "requested by %(requestor)s "
+            "have now been received in %(location_name)s:",
             request_name=message_data["request_name"],
             requestor=message_data["requestor"],
             location_name=message_data["location_name"],
         )
 
         product_line = Markup(
-            "<ul><li><b>{}</b>: " + _("Transferred quantity") + " {} {}</li></ul>"
+            "<ul><li><b>{}</b>: "
+            + self.env._("Transferred quantity")
+            + " {} {}</li></ul>"
         ).format(
             html_escape(message_data["product_name"]),
             message_data["product_qty"],

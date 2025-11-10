@@ -96,11 +96,7 @@
                                             <td
                                                 class="text-center"
                                                 groups="uom.group_uom"
-                                            >
-                                                <span
-                                                    t-field="line_id.product_uom_id.category_id.name"
-                                                />
-                                            </td>
+                                            />
                                         </t>
                                         <td>
                                             <span t-field="line_id.estimated_cost" />

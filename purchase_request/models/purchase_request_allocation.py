@@ -3,7 +3,7 @@
 
 from markupsafe import Markup
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.tools import html_escape
 
 
@@ -97,19 +97,18 @@ class PurchaseRequestAllocation(models.Model):
     @api.model
     def _purchase_request_confirm_done_message_content(self, message_data):
         message = ""
-        message += _(
+        message += self.env._(
             "From last reception this quantity has been "
             "allocated to this purchase request"
         )
         message += "<ul>"
-        message += _(
+        message += self.env._(
             "<li><b>%(product_name)s</b>: "
-            "Received quantity %(product_qty)s %(product_uom)s</li>"
-        ) % {
-            "product_name": html_escape(message_data["product_name"]),
-            "product_qty": message_data["product_qty"],
-            "product_uom": message_data["product_uom"],
-        }
+            "Received quantity %(product_qty)s %(product_uom)s</li>",
+            product_name=html_escape(message_data["product_name"]),
+            product_qty=message_data["product_qty"],
+            product_uom=message_data["product_uom"],
+        )
         message += "</ul>"
         return message
 
@@ -119,7 +118,7 @@ class PurchaseRequestAllocation(models.Model):
             "po_name": po_line.order_id.name,
             "product_name": po_line.product_id.display_name,
             "product_qty": allocated_qty,
-            "product_uom": po_line.product_uom.name,
+            "product_uom": po_line.product_uom_id.name,
         }
 
     def _notify_allocation(self, allocated_qty):
