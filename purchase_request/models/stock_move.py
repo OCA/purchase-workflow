@@ -1,7 +1,7 @@
 # Copyright 2018-2019 ForgeFlow, S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 from odoo.tools import float_compare
 
@@ -46,7 +46,7 @@ class StockMove(models.Model):
                 self.env["mail.activity"].sudo().create(
                     {
                         "activity_type_id": activity_type_id,
-                        "note": _(
+                        "note": self.env._(
                             "A sale/manufacturing order that generated this "
                             "purchase request has been cancelled/deleted. "
                             "Check if an action is needed."
@@ -94,7 +94,7 @@ class StockMove(models.Model):
         )
         if self.env.cr.fetchone():
             raise ValidationError(
-                _(
+                self.env._(
                     "The company of the purchase request must match with "
                     "that of the location."
                 )

@@ -1,7 +1,7 @@
 # Copyright 2018-2019 ForgeFlow, S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 _STATES = [
@@ -25,9 +25,7 @@ class PurchaseRequestLine(models.Model):
         comodel_name="uom.uom",
         string="UoM",
         tracking=True,
-        domain="[('category_id', '=', product_uom_category_id)]",
     )
-    product_uom_category_id = fields.Many2one(related="product_id.uom_id.category_id")
     product_qty = fields.Float(
         string="Quantity", tracking=True, digits="Product Unit of Measure"
     )
@@ -37,7 +35,6 @@ class PurchaseRequestLine(models.Model):
         ondelete="cascade",
         readonly=True,
         index=True,
-        auto_join=True,
     )
     company_id = fields.Many2one(
         comodel_name="res.company",
@@ -302,8 +299,8 @@ class PurchaseRequestLine(models.Model):
         for rec in self:
             rec.purchased_qty = 0.0
             for line in rec.purchase_lines.filtered(lambda x: x.state != "cancel"):
-                if rec.product_uom_id and line.product_uom != rec.product_uom_id:
-                    rec.purchased_qty += line.product_uom._compute_quantity(
+                if rec.product_uom_id and line.product_uom_id != rec.product_uom_id:
+                    rec.purchased_qty += line.product_uom_id._compute_quantity(
                         line.product_qty, rec.product_uom_id
                     )
                 else:
@@ -314,7 +311,11 @@ class PurchaseRequestLine(models.Model):
         for rec in self:
             temp_purchase_state = False
             if rec.purchase_lines:
-                if any(po_line.state == "done" for po_line in rec.purchase_lines):
+                if any(
+                    po_line.qty_received >= po_line.product_qty
+                    and po_line.state == "purchase"
+                    for po_line in rec.purchase_lines
+                ):
                     temp_purchase_state = "done"
                 elif all(po_line.state == "cancel" for po_line in rec.purchase_lines):
                     temp_purchase_state = "cancel"
@@ -348,7 +349,8 @@ class PurchaseRequestLine(models.Model):
 
     @api.model
     def _calc_new_qty(self, request_line, po_line=None, new_pr_line=False):
-        purchase_uom = po_line.product_uom or request_line.product_id.uom_po_id
+        # In Odoo 19, uom_po_id doesn't exist, use product.uom_id
+        purchase_uom = po_line.product_uom_id or request_line.product_id.uom_id
         # TODO: Not implemented yet.
         #  Make sure we use the minimum quantity of the partner corresponding
         #  to the PO. This does not apply in case of dropshipping
@@ -369,26 +371,26 @@ class PurchaseRequestLine(models.Model):
         self.ensure_one()
         return self.request_state == "draft"
 
-    def unlink(self):
+    @api.ondelete(at_uninstall=False)
+    def _unlink_if_draft(self):
         if self.mapped("purchase_lines"):
             raise UserError(
-                _("You cannot delete a record that refers to purchase lines!")
+                self.env._("You cannot delete a record that refers to purchase lines!")
             )
         for line in self:
             if not line._can_be_deleted():
                 raise UserError(
-                    _(
+                    self.env._(
                         "You can only delete a purchase request line "
                         "if the purchase request is in draft state."
                     )
                 )
-        return super().unlink()
 
     def action_show_details(self):
         self.ensure_one()
         view = self.env.ref("purchase_request.view_purchase_request_line_details")
         return {
-            "name": _("Detailed Line"),
+            "name": self.env._("Detailed Line"),
             "type": "ir.actions.act_window",
             "view_mode": "form",
             "res_model": "purchase.request.line",
