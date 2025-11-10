@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-06-14 09:26+0000\n"
+"PO-Revision-Date: 2025-11-10 10:44+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -24,12 +24,12 @@ msgstr "40HC"
 #. module: purchase_container
 #: model:ir.model.fields,field_description:purchase_container.field_purchase_container__date_ata
 msgid "ATA Date"
-msgstr ""
+msgstr "Data ATA"
 
 #. module: purchase_container
 #: model:ir.model.fields,field_description:purchase_container.field_purchase_container__date_atd
 msgid "ATD Date"
-msgstr ""
+msgstr "Data ATD"
 
 #. module: purchase_container
 #: model:ir.model.fields,field_description:purchase_container.field_purchase_container__message_needaction
@@ -59,27 +59,27 @@ msgstr "Icona tipo attività"
 #. module: purchase_container
 #: model:ir.model.fields,help:purchase_container.field_purchase_container__date_ata
 msgid "Actual Time Of Arrival"
-msgstr ""
+msgstr "Ora di arrivo attuale"
 
 #. module: purchase_container
 #: model:ir.model.fields,help:purchase_container.field_purchase_container__date_atd
 msgid "Actual Time Of Departure"
-msgstr ""
+msgstr "Ora di partenza attuale"
 
 #. module: purchase_container
 #: model_terms:ir.ui.view,arch_db:purchase_container.purchase_container_view_form
 msgid "Arrival"
-msgstr ""
+msgstr "Arrivo"
 
 #. module: purchase_container
 #: model:ir.model.fields,field_description:purchase_container.field_purchase_container__arrival_location_id
 msgid "Arrival Location"
-msgstr ""
+msgstr "Località di arrivo"
 
 #. module: purchase_container
 #: model:ir.model.fields.selection,name:purchase_container.selection__purchase_container__state__arrived
 msgid "Arrived"
-msgstr ""
+msgstr "Arrivato"
 
 #. module: purchase_container
 #: model:ir.model.fields,field_description:purchase_container.field_purchase_container__message_attachment_count
@@ -146,12 +146,12 @@ msgstr "Creato il"
 #. module: purchase_container
 #: model_terms:ir.ui.view,arch_db:purchase_container.purchase_container_view_form
 msgid "Departure"
-msgstr ""
+msgstr "Partenza"
 
 #. module: purchase_container
 #: model:ir.model.fields,field_description:purchase_container.field_purchase_container__departure_location_id
 msgid "Departure Location"
-msgstr ""
+msgstr "Località di partenza"
 
 #. module: purchase_container
 #: model:ir.model.fields,field_description:purchase_container.field_container_type__description
@@ -167,37 +167,37 @@ msgstr "Nome visualizzato"
 #. module: purchase_container
 #: model:ir.model.fields,field_description:purchase_container.field_purchase_container__displayed_incoterm_id
 msgid "Displayed Incoterm"
-msgstr ""
+msgstr "Incoterm visualizzati"
 
 #. module: purchase_container
 #: model:ir.model.fields,field_description:purchase_container.field_purchase_container__date_eta
 msgid "ETA Date"
-msgstr ""
+msgstr "Data ETA"
 
 #. module: purchase_container
 #: model:ir.model.fields,field_description:purchase_container.field_purchase_container__date_etd
 msgid "ETD Date"
-msgstr ""
+msgstr "Data ETD"
 
 #. module: purchase_container
 #: model:ir.model.fields,field_description:purchase_container.field_purchase_container__date_ett
 msgid "ETT Date"
-msgstr ""
+msgstr "Data ETT"
 
 #. module: purchase_container
 #: model:ir.model.fields,help:purchase_container.field_purchase_container__date_eta
 msgid "Estimated Time Of Arrival"
-msgstr ""
+msgstr "Ora di arrivo stimata"
 
 #. module: purchase_container
 #: model:ir.model.fields,help:purchase_container.field_purchase_container__date_etd
 msgid "Estimated Time Of Departure"
-msgstr ""
+msgstr "Ora di partenza stimata"
 
 #. module: purchase_container
 #: model:ir.model.fields,help:purchase_container.field_purchase_container__date_ett
 msgid "Estimated Time Of Travel"
-msgstr ""
+msgstr "Tempo di viaggio stimato"
 
 #. module: purchase_container
 #: model:ir.model.fields,field_description:purchase_container.field_purchase_container__message_follower_ids
@@ -253,7 +253,7 @@ msgstr "Se selezionata, alcuni messaggi hanno un errore di consegna."
 #. module: purchase_container
 #: model:ir.model.fields,field_description:purchase_container.field_purchase_container__incoterm_id
 msgid "Incoterm"
-msgstr ""
+msgstr "Incoterm"
 
 #. module: purchase_container
 #: model:ir.model.fields,field_description:purchase_container.field_purchase_container__message_is_follower
@@ -263,7 +263,7 @@ msgstr "Segue"
 #. module: purchase_container
 #: model:ir.model.fields,field_description:purchase_container.field_purchase_container__is_locked
 msgid "Is Locked"
-msgstr ""
+msgstr "È bloccato"
 
 #. module: purchase_container
 #: model:ir.model.fields,field_description:purchase_container.field_container_type__write_uid
@@ -280,17 +280,17 @@ msgstr "Ultimo aggiornamento il"
 #. module: purchase_container
 #: model_terms:ir.ui.view,arch_db:purchase_container.purchase_container_view_form
 msgid "Lock"
-msgstr ""
+msgstr "Blocco"
 
 #. module: purchase_container
 #: model:ir.model.fields.selection,name:purchase_container.selection__purchase_container__state__locked
 msgid "Locked"
-msgstr ""
+msgstr "Bloccato"
 
 #. module: purchase_container
 #: model:ir.model.fields,field_description:purchase_container.field_purchase_container__manual_incoterm_id
 msgid "Manual Incoterm"
-msgstr ""
+msgstr "Incoterm manuale"
 
 #. module: purchase_container
 #: model:ir.model.fields,field_description:purchase_container.field_purchase_container__message_has_error
@@ -394,7 +394,7 @@ msgstr "Ricevute"
 #. module: purchase_container
 #: model:ir.actions.server,name:purchase_container.ir_cron_recompute_purchase_container_state_ir_actions_server
 msgid "Recompute purchase container state"
-msgstr ""
+msgstr "Ricalcola stato container acquisto"
 
 #. module: purchase_container
 #: model:ir.model.fields,field_description:purchase_container.field_purchase_container__picking_ids
@@ -420,7 +420,7 @@ msgstr "Agente spedizione"
 #. module: purchase_container
 #: model:ir.model.fields,field_description:purchase_container.field_purchase_container__state
 msgid "State"
-msgstr ""
+msgstr "Stato"
 
 #. module: purchase_container
 #: model:ir.model.fields,help:purchase_container.field_purchase_container__activity_state
@@ -448,7 +448,7 @@ msgstr "Trasferimenti"
 #. module: purchase_container
 #: model:ir.model.fields.selection,name:purchase_container.selection__purchase_container__state__transit
 msgid "Transit"
-msgstr ""
+msgstr "Transito"
 
 #. module: purchase_container
 #: model:ir.model.fields,field_description:purchase_container.field_purchase_container__type_id
@@ -463,7 +463,7 @@ msgstr "Tipo di attività eccezione sul record."
 #. module: purchase_container
 #: model_terms:ir.ui.view,arch_db:purchase_container.purchase_container_view_form
 msgid "Unlock"
-msgstr ""
+msgstr "Sblocca"
 
 #. module: purchase_container
 #: model:ir.model,name:purchase_container.model_container_type
@@ -484,7 +484,7 @@ msgstr "Unità di misura del volume"
 #. module: purchase_container
 #: model:ir.model.fields.selection,name:purchase_container.selection__purchase_container__state__waiting
 msgid "Waiting"
-msgstr ""
+msgstr "Attesa"
 
 #. module: purchase_container
 #: model:ir.model.fields,field_description:purchase_container.field_purchase_container__website_message_ids
