@@ -8,9 +8,11 @@
         />
         <field name="arch" type="xml">
             <field name="warehouse_ids" position="before">
+                <field name="allowed_brand_domain" invisible="1" />
                 <field
                     name="product_brand_ids"
                     widget="many2many_tags"
+                    domain="allowed_brand_domain"
                     options="{'no_open': True, 'no_create': True}"
                 />
             </field>

@@ -6,6 +6,7 @@ from odoo import api, fields, models
 class PurchaseOrderRecommendation(models.TransientModel):
     _inherit = "purchase.order.recommendation"
 
+    allowed_brand_domain = fields.Binary(compute="_compute_allowed_brand_domain")
     product_brand_ids = fields.Many2many(comodel_name="product.brand", string="Brands")
 
     def _get_products(self):
@@ -29,6 +30,21 @@ class PurchaseOrderRecommendation(models.TransientModel):
             domain += [("product_brand_id", "in", self.product_brand_ids.ids)]
         return domain
 
+    @api.depends("show_all_partner_products", "show_all_products")
+    def _compute_allowed_brand_domain(self):
+        """Restrict available brands domain"""
+        for record in self:
+            products = record._get_supplier_products()
+            # Gets all products avoiding to filter them by brand again
+            if record.show_all_products:
+                products += (
+                    record.with_context(no_brands_filter=True)
+                    .env["product.product"]
+                    .search(record._get_all_products_domain())
+                )
+            brands = products.mapped("product_brand_id")
+            record.allowed_brand_domain = [("id", "in", brands.ids)]
+
     @api.onchange(
         "order_id",
         "date_begin",
@@ -43,17 +59,3 @@ class PurchaseOrderRecommendation(models.TransientModel):
     def _generate_recommendations(self):
         """Just to add field to the onchange method"""
         return super()._generate_recommendations()
-
-    @api.onchange("show_all_partner_products", "show_all_products")
-    def _onchange_products(self):
-        """Restrict available brands domain"""
-        products = self._get_supplier_products()
-        # Gets all products avoiding to filter them by brand again
-        if self.show_all_products:
-            products += (
-                self.with_context(no_brands_filter=True)
-                .env["product.product"]
-                .search(self._get_all_products_domain())
-            )
-        brands = products.mapped("product_brand_id")
-        return {"domain": {"product_brand_ids": [("id", "in", brands.ids)]}}
