@@ -16,7 +16,7 @@ class StockMove(models.Model):
                 po_line
                 and move.state == "done"
                 and po_line.qty_received_method == "stock_moves"
-                and po_line.product_qty < 0
+                and po_line.product_qty >= 0
             ):
-                move.to_refund = True
+                move.to_refund = False
         return done_moves

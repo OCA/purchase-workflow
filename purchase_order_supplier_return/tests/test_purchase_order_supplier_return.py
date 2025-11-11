@@ -46,7 +46,7 @@ class TestPurchaseOrderSupplierReturn(BaseCommon):
         # Validate the pickings related to the purchase order
         for picking in self.purchase_order.picking_ids:
             picking.action_assign()
-            for move in picking.move_ids_without_package:
+            for move in picking.move_ids:
                 move.quantity = move.product_uom_qty
             picking.button_validate()
 
