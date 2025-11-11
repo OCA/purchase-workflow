@@ -11,7 +11,16 @@ class TestPurchaseAnalyticGlobal(BaseCommon):
     def setUpClass(cls):
         super().setUpClass()
         cls.analytic_plan = cls.env["account.analytic.plan"].create({"name": "Plan"})
-        cls.product = cls.env.ref("product.product_product_4")
+        # Create a product directly instead of using external XML ID
+        # (product.product_product_4 doesn't exist in Odoo 19)
+        cls.product = cls.env["product.product"].create(
+            {
+                "name": "Test Product",
+                "type": "consu",
+                "list_price": 100.0,
+                "standard_price": 50.0,
+            }
+        )
         cls.partner = cls.env["res.partner"].create({"name": "Test Partner"})
         vals_list = [
             {"name": "Analytic Account 1", "plan_id": cls.analytic_plan.id},
@@ -31,7 +40,6 @@ class TestPurchaseAnalyticGlobal(BaseCommon):
                 "order_id": cls.purchase_order.id,
                 "product_qty": 10,
                 "price_unit": 50,
-                "product_uom": cls.product.uom_id.id,
                 "date_planned": date.today(),
             }
             for _ in range(3)
