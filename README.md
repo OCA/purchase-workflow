@@ -60,6 +60,7 @@ addon | version | maintainers | summary
 [purchase_order_line_stock_available](purchase_order_line_stock_available/) | 18.0.1.0.0 |  | Purchase order line stock available
 [purchase_order_owner](purchase_order_owner/) | 18.0.1.0.0 |  | Purchase Order Owner
 [purchase_order_product_recommendation](purchase_order_product_recommendation/) | 18.0.1.0.0 |  | Recommend products to buy to supplier based on history
+[purchase_order_product_recommendation_brand](purchase_order_product_recommendation_brand/) | 18.0.1.0.0 |  | Allow to filter recommendations by brand
 [purchase_order_qty_change_no_recompute](purchase_order_qty_change_no_recompute/) | 18.0.1.0.0 | <a href='https://github.com/victoralmau'><img src='https://github.com/victoralmau.png' width='32' height='32' style='border-radius:50%;' alt='victoralmau'/></a> | Prevent recompute if only quantity has changed in purchase order line
 [purchase_order_secondary_unit](purchase_order_secondary_unit/) | 18.0.1.0.0 |  | Purchase product in a secondary unit
 [purchase_order_supplier_return](purchase_order_supplier_return/) | 18.0.1.0.0 |  | Return product to supplier and update quantiy received
