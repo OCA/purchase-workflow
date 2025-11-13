@@ -8,10 +8,19 @@
         />
         <field name="arch" type="xml">
             <field name="units_included" position="before">
-                <field name="secondary_uom_id" optional="show" />
+                <field
+                    name="secondary_uom_id"
+                    groups="uom.group_uom"
+                    options="{'no_create': True}"
+                    optional="show"
+                    domain="product_id and ['|', ('product_id', '=', product_id),
+                                    '&amp;', ('product_tmpl_id.product_variant_ids', 'in', [product_id]),
+                                            ('product_id', '=', False)] or [(0, '=', 1)]"
+                />
                 <field
                     name="secondary_uom_qty"
-                    attrs="{'invisible': [('secondary_uom_id', '=', False)]}"
+                    invisible="not secondary_uom_id"
+                    groups="uom.group_uom"
                     optional="show"
                 />
             </field>

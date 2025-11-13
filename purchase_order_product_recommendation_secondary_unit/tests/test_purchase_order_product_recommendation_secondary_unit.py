@@ -1,10 +1,12 @@
 # Copyright 2023 Tecnativa - Pilar Vargas
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo.tests.common import Form, TransactionCase, tagged
+from odoo.tests import Form, tagged
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
 @tagged("-at_install", "post_install")
-class TestPurchaseOrderProductRecommendationSecondaryUnit(TransactionCase):
+class TestPurchaseOrderProductRecommendationSecondaryUnit(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -21,7 +23,7 @@ class TestPurchaseOrderProductRecommendationSecondaryUnit(TransactionCase):
     def _create_product_with_secondary_unit(self):
         product = Form(self.env["product.product"])
         product.name = "Test product"
-        product.detailed_type = "product"
+        product.type = "consu"
         product.uom_id = self.env.ref("uom.product_uom_kgm")
         product.uom_po_id = self.env.ref("uom.product_uom_kgm")
         with product.secondary_uom_ids.new() as line:

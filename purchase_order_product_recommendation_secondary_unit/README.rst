@@ -67,11 +67,11 @@ Authors
 Contributors
 ------------
 
--  `Tecnativa <https://www.tecnativa.com>`__:
+- `Tecnativa <https://www.tecnativa.com>`__:
 
-   -  David Vidal
-   -  Carlos Roca
-   -  Pilar Vargas
+  - David Vidal
+  - Carlos Roca
+  - Pilar Vargas
 
 Maintainers
 -----------
