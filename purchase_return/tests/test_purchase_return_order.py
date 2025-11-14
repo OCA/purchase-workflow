@@ -287,8 +287,8 @@ class TestPurchaseReturnOrder(AccountTestInvoicingCommon):
                 "in the product line"
             )
 
-    # Test to make sure that when the date planned of a purchase return order is changed,
-    # so are the date_planned of the products.
+    # Test to make sure that when the date planned of a purchase return order is
+    # changed, so are the date_planned of the products.
     def test_07(self):
         testDate = datetime.strptime("07/28/2014 18:54:55.099", "%m/%d/%Y %H:%M:%S.%f")
         purchase_return_order = (

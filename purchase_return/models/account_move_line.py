@@ -19,7 +19,6 @@ class AccountMoveLine(models.Model):
         "Purchase Return Order",
         related="purchase_return_line_id.order_id",
         copy=False,
-        readonly=True,
     )
 
     def _copy_data_extend_business_fields(self, values):
@@ -28,12 +27,19 @@ class AccountMoveLine(models.Model):
         values["purchase_return_line_id"] = self.purchase_line_id.id
         return
 
-    def _get_computed_account(self):
-        account = super()._get_computed_account()
-        if self.purchase_return_line_id:
-            fiscal_position = self.move_id.fiscal_position_id
-            accounts = self.product_id.product_tmpl_id.get_product_accounts(
-                fiscal_pos=fiscal_position
-            )
-            return accounts["vendor_returns"]
-        return account
+    def _compute_account_id(self):
+        # pylint: disable=missing-return
+        super()._compute_account_id()
+        product_lines = self.filtered(
+            lambda line: line.display_type == "product"
+            and line.move_id.is_invoice(True)
+        )
+        for line in product_lines:
+            if line.purchase_return_line_id:
+                fiscal_position = line.move_id.fiscal_position_id
+                accounts = line.with_company(
+                    line.company_id
+                ).product_id.product_tmpl_id.get_product_accounts(
+                    fiscal_pos=fiscal_position
+                )
+                line.account_id = accounts["vendor_returns"]

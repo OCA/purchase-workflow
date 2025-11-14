@@ -30,8 +30,10 @@
     </p>
             </div>
         </field>
-        <field name="report_template" ref="report_purchase_return_order" />
-        <field name="report_name">{{(object.name or '').replace('/','_')}}</field>
+        <field
+            name="report_template_ids"
+            eval="[(4, ref('purchase_return.report_purchase_return_order'))]"
+        />
         <field name="lang">{{object.partner_id.lang}}</field>
         <field name="auto_delete" eval="True" />
     </record>

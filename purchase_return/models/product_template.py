@@ -14,7 +14,7 @@ class ProductTemplate(models.Model):
         company_dependent=True,
         string="Purchase Returns Account",
         domain=ACCOUNT_DOMAIN,
-        help="Keep this field empty to use the default value from the product category.",
+        help="Keep this field empty to use the default value from the product category",
     )
 
     def _get_product_accounts(self):

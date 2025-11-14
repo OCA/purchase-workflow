@@ -10,12 +10,13 @@
                     for="purchase_return_id"
                     string="Auto-Complete Return Order"
                     class="oe_edit_only"
-                    attrs="{'invisible': ['|', ('state','!=','draft'), ('move_type', '!=', 'in_refund')]}"
+                    invisible="state != 'draft' or move_type != 'in_refund'"
                 />
                 <field
                     name="purchase_return_id"
                     nolabel="1"
-                    attrs="{'invisible': ['|', ('state','!=','draft'), ('move_type', '!=', 'in_refund')]}"
+                    readonly="state != 'draft'"
+                    invisible="state != 'draft' or move_type != 'in_refund'"
                     class="oe_edit_only"
                     domain="[('company_id', '=', company_id), ('partner_id','child_of', [partner_id])]"
                     placeholder="Select a purchase return order"
@@ -24,21 +25,14 @@
             </field>
             <!-- Add link to purchase_line_id to account.move.line -->
             <xpath
-                expr="//field[@name='invoice_line_ids']/tree/field[@name='company_id']"
+                expr="//field[@name='invoice_line_ids']/list/field[@name='company_id']"
                 position="after"
             >
-                <field name="purchase_return_line_id" invisible="1" />
                 <field
                     name="purchase_return_order_id"
-                    attrs="{'column_invisible': [('parent.move_type', '!=', 'in_invoice')]}"
+                    column_invisible="parent.move_type != 'in_invoice'"
                     optional="hide"
                 />
-            </xpath>
-            <xpath
-                expr="//field[@name='line_ids']/tree/field[@name='company_id']"
-                position="after"
-            >
-                <field name="purchase_return_line_id" invisible="1" />
             </xpath>
         </field>
     </record>

@@ -12,7 +12,7 @@ class TestPurchaseReturnOrderLine(AccountTestInvoicingCommon):
     def setUpClass(cls):
         super().setUpClass()
         uom_unit = cls.env.ref("uom.product_uom_unit")
-        uom_hour = cls.env.ref("uom.product_uom_hour")
+        uom_dozen = cls.env.ref("uom.product_uom_dozen")
         returns_account = cls.env["account.account"].create(
             {
                 "name": "Vendor Returns",
@@ -40,8 +40,8 @@ class TestPurchaseReturnOrderLine(AccountTestInvoicingCommon):
                 "standard_price": 40.0,
                 "list_price": 90.0,
                 "type": "service",
-                "uom_id": uom_hour.id,
-                "uom_po_id": uom_hour.id,
+                "uom_id": uom_dozen.id,
+                "uom_po_id": uom_dozen.id,
                 "purchase_method": "purchase",
                 "default_code": "PRE-PAID",
                 "taxes_id": False,

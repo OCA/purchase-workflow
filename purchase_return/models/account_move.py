@@ -1,7 +1,9 @@
 # Copyright 2021 ForgeFlow, S.L. (https://www.forgeflow.com)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
-from odoo import _, api, fields, models
+from markupsafe import Markup
+
+from odoo import api, fields, models
 
 
 class AccountMove(models.Model):
@@ -10,8 +12,6 @@ class AccountMove(models.Model):
     purchase_return_id = fields.Many2one(
         "purchase.return.order",
         store=False,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
         string="Purchase Return Order",
         copy=False,
         help="Auto-complete from a past purchase return order.",
@@ -34,6 +34,7 @@ class AccountMove(models.Model):
 
     @api.onchange("purchase_return_id")
     def _onchange_purchase_return_auto_complete(self):
+        # COPY Logic from account.move._onchange_purchase_order_auto_complete
         if not self.purchase_return_id:
             return
 
@@ -41,35 +42,51 @@ class AccountMove(models.Model):
         invoice_vals = self.purchase_return_id.with_company(
             self.purchase_return_id.company_id
         )._prepare_invoice()
-        del invoice_vals["ref"]
+        has_invoice_lines = bool(
+            self.invoice_line_ids.filtered(
+                lambda x: x.display_type not in ("line_note", "line_section")
+            )
+        )
+        new_currency_id = (
+            self.currency_id if has_invoice_lines else invoice_vals.get("currency_id")
+        )
+        del invoice_vals["ref"], invoice_vals["payment_reference"]
+        del invoice_vals["company_id"]  # avoid recomputing the currency
+        if self.move_type == invoice_vals["move_type"]:
+            del invoice_vals[
+                "move_type"
+            ]  # no need to be updated if it's same value, to avoid recomputes
         self.update(invoice_vals)
+        self.currency_id = new_currency_id
 
         # Copy purchase return lines.
-        po_lines = self.purchase_return_id.order_line - self.line_ids.mapped(
+        po_lines = self.purchase_return_id.order_line - self.invoice_line_ids.mapped(
             "purchase_return_line_id"
         )
-        new_lines = self.env["account.move.line"]
-        for line in po_lines.filtered(lambda l: not l.display_type):
-            new_line = new_lines.new(line._prepare_account_move_line(self))
-            new_line.account_id = new_line._get_computed_account()
-            new_line._onchange_price_subtotal()
-            new_lines += new_line
-        new_lines._onchange_mark_recompute_taxes()
+        self._add_purchase_order_lines(po_lines)
 
         # Compute invoice_origin.
-        origins = set(self.line_ids.mapped("purchase_return_line_id.order_id.name"))
+        origins = set(
+            self.invoice_line_ids.mapped("purchase_return_line_id.order_id.name")
+        )
         self.invoice_origin = ",".join(list(origins))
 
         # Compute ref.
-        refs = self._get_invoice_reference()
+        refs = self._get_invoice_return_reference()
         self.ref = ", ".join(refs)
 
         # Compute payment_reference.
-        if len(refs) == 1:
-            self.payment_reference = refs[0]
+        if not self.payment_reference:
+            if len(refs) == 1:
+                self.payment_reference = refs[0]
+            elif len(refs) > 1:
+                self.payment_reference = refs[-1]
+
+        # Copy company_id (only changes if the id is of a child company (branch))
+        if self.company_id != self.purchase_id.company_id:
+            self.company_id = self.purchase_id.company_id
 
         self.purchase_return_id = False
-        self._onchange_currency()
         self.partner_bank_id = (
             self.bank_partner_id.bank_ids and self.bank_partner_id.bank_ids[0]
         )
@@ -81,37 +98,38 @@ class AccountMove(models.Model):
         for move in moves:
             if move.reversed_entry_id:
                 continue
-            purchase = move.line_ids.mapped("purchase_return_line_id.order_id")
-            if not purchase:
+            purchases = (
+                move.line_ids.purchase_return_line_id.order_id
+                or move.line_ids.purchase_line_id.order_id
+            )
+            if not purchases:
                 continue
-            refs = [
-                "<a href=# data-oe-model=purchase.order data-oe-id=%s>%s</a>"
-                % tuple(name_get)
-                for name_get in purchase.name_get()
-            ]
-            message = _("This vendor bill has been created from: %s") % ",".join(refs)
+            refs = [purchase._get_html_link() for purchase in purchases]
+            message = self.env._("This vendor bill has been created from: ") + Markup(
+                ","
+            ).join(refs)
             move.message_post(body=message)
         return moves
 
     def write(self, vals):
         # OVERRIDE
         old_purchases = [
-            move.mapped("line_ids.purchase_return_line_id.order_id") for move in self
+            move.mapped("line_ids.purchase_return_line_id.order_id")
+            or move.mapped("line_ids.purchase_line_id.order_id")
+            for move in self
         ]
         res = super().write(vals)
         for i, move in enumerate(self):
-            new_purchases = move.mapped("line_ids.purchase_return_line_id.order_id")
+            new_purchases = move.mapped(
+                "line_ids.purchase_return_line_id.order_id"
+            ) or move.mapped("line_ids.purchase_line_id.order_id")
             if not new_purchases:
                 continue
             diff_purchases = new_purchases - old_purchases[i]
             if diff_purchases:
-                refs = [
-                    "<a href=# data-oe-model=purchase.order data-oe-id=%s>%s</a>"
-                    % tuple(name_get)
-                    for name_get in diff_purchases.name_get()
-                ]
-                message = _("This vendor bill has been modified from: %s") % ",".join(
-                    refs
-                )
+                refs = [purchase._get_html_link() for purchase in diff_purchases]
+                message = self.env._(
+                    "This vendor bill has been modified from: "
+                ) + Markup(",").join(refs)
                 move.message_post(body=message)
         return res

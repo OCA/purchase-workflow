@@ -25,7 +25,7 @@
                 </t>
             </t>
             <div class="page">
-                <div class="oe_structure" />
+                <div class="oe_structure" id="oe_structure_start_page" />
 
                 <h2 t-if="o.state == 'draft'">Purchase Return Order #<span
                     t-field="o.name"
@@ -64,13 +64,13 @@
                             <th name="th_date_req" class="text-center">
                                 <strong>Date Req.</strong>
                             </th>
-                            <th name="th_quantity" class="text-right">
+                            <th name="th_quantity" class="text-end">
                                 <strong>Qty</strong>
                             </th>
-                            <th name="th_price_unit" class="text-right">
+                            <th name="th_price_unit" class="text-end">
                                 <strong>Unit Price</strong>
                             </th>
-                            <th name="th_amount" class="text-right">
+                            <th name="th_amount" class="text-end">
                                 <strong>Amount</strong>
                             </th>
                         </tr>
@@ -104,17 +104,17 @@
                                     <td class="text-center">
                                         <span t-field="line.date_planned" />
                                     </td>
-                                    <td class="text-right">
+                                    <td class="text-end">
                                         <span t-field="line.product_qty" />
                                         <span
                                             t-field="line.product_uom.name"
                                             groups="uom.group_uom"
                                         />
                                     </td>
-                                    <td class="text-right">
+                                    <td class="text-end">
                                         <span t-field="line.price_unit" />
                                     </td>
-                                    <td class="text-right">
+                                    <td class="text-end">
                                         <span
                                             t-field="line.price_subtotal"
                                             t-options='{"widget": "monetary", "display_currency": o.currency_id}'
@@ -137,7 +137,7 @@
                             <t
                                 t-if="current_section and (line_last or o.order_line[line_index+1].display_type == 'line_section')"
                             >
-                                <tr class="is-subtotal text-right">
+                                <tr class="is-subtotal text-end">
                                     <td colspan="99" id="subtotal">
                                         <strong class="mr16">Subtotal</strong>
                                         <span
@@ -158,7 +158,7 @@
                                 <td name="td_subtotal_label">
                                     <strong>Subtotal</strong>
                                 </td>
-                                <td class="text-right">
+                                <td class="text-end">
                                     <span
                                         t-field="o.amount_untaxed"
                                         t-options='{"widget": "monetary", "display_currency": o.currency_id}'
@@ -167,7 +167,7 @@
                             </tr>
                             <tr>
                                 <td name="td_taxes_label">Taxes</td>
-                                <td class="text-right">
+                                <td class="text-end">
                                     <span
                                         t-field="o.amount_tax"
                                         t-options='{"widget": "monetary", "display_currency": o.currency_id}'
@@ -178,7 +178,7 @@
                                 <td name="td_amount_total_label">
                                     <strong>Total</strong>
                                 </td>
-                                <td class="text-right">
+                                <td class="text-end">
                                     <span
                                         t-field="o.amount_total"
                                         t-options='{"widget": "monetary", "display_currency": o.currency_id}'
@@ -190,7 +190,7 @@
                 </div>
 
                 <p t-field="o.notes" />
-                <div class="oe_structure" />
+                <div class="oe_structure" id="oe_structure_end_page" />
             </div>
         </t>
     </template>
