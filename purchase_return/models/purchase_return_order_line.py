@@ -360,7 +360,7 @@ class PurchaseReturnOrderLine(models.Model):
         if "qty_delivered" in values:
             for line in self:
                 line._track_qty_delivered(values["qty_delivered"])
-        return super(PurchaseReturnOrderLine, self).write(values)
+        return super().write(values)
 
     def unlink(self):
         for line in self:
@@ -369,7 +369,7 @@ class PurchaseReturnOrderLine(models.Model):
                     _("Cannot delete a purchase order line which is in state '%s'.")
                     % (line.state,)
                 )
-        return super(PurchaseReturnOrderLine, self).unlink()
+        return super().unlink()
 
     @api.model
     def _get_date_planned(self, seller, po=False):

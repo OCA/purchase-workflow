@@ -18,7 +18,7 @@ class ProductTemplate(models.Model):
     )
 
     def _get_product_accounts(self):
-        accounts = super(ProductTemplate, self)._get_product_accounts()
+        accounts = super()._get_product_accounts()
         accounts["vendor_returns"] = (
             self.property_account_vendor_return_id
             or self.categ_id.property_account_vendor_return_categ_id

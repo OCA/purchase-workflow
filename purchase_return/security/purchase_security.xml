@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo noupdate="1">
-
     <record model="ir.rule" id="purchase_return_order_comp_rule">
         <field name="name">Purchase Return Order multi-company</field>
         <field name="model_id" ref="model_purchase_return_order" />

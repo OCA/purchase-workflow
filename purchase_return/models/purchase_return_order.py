@@ -357,13 +357,13 @@ class PurchaseOrderReturn(models.Model):
                 raise UserError(
                     _("In order to delete a purchase order, you must cancel it first.")
                 )
-        return super(PurchaseOrderReturn, self).unlink()
+        return super().unlink()
 
     def copy(self, default=None):
         ctx = dict(self.env.context)
         ctx.pop("default_product_id", None)
         self = self.with_context(**ctx)
-        new_po = super(PurchaseOrderReturn, self).copy(default=default)
+        new_po = super().copy(default=default)
         return new_po
 
     def _must_delete_date_planned(self, field_name):
@@ -374,9 +374,7 @@ class PurchaseOrderReturn(models.Model):
         """Override onchange to NOT to update all date_planned on PO lines when
         date_planned on PO is updated by the change of date_planned on PO lines.
         """
-        result = super(PurchaseOrderReturn, self).onchange(
-            values, field_name, field_onchange
-        )
+        result = super().onchange(values, field_name, field_onchange)
         if self._must_delete_date_planned(field_name) and "value" in result:
             already_exist = [ol[1] for ol in values.get("order_line", []) if ol[1]]
             for line in result["value"].get("order_line", []):
@@ -396,7 +394,7 @@ class PurchaseOrderReturn(models.Model):
             return self.env.ref("purchase_return.mt_return_confirmed")
         elif "state" in init_values and self.state == "done":
             return self.env.ref("purchase_return.mt_return_done")
-        return super(PurchaseOrderReturn, self)._track_subtype(init_values)
+        return super()._track_subtype(init_values)
 
     def _get_report_base_filename(self):
         self.ensure_one()

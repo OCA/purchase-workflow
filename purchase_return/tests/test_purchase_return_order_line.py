@@ -10,7 +10,7 @@ from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 class TestPurchaseReturnOrderLine(AccountTestInvoicingCommon):
     @classmethod
     def setUpClass(cls):
-        super(TestPurchaseReturnOrderLine, cls).setUpClass()
+        super().setUpClass()
         uom_unit = cls.env.ref("uom.product_uom_unit")
         uom_hour = cls.env.ref("uom.product_uom_hour")
         returns_account = cls.env["account.account"].create(

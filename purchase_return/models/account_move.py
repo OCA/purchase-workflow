@@ -34,7 +34,6 @@ class AccountMove(models.Model):
 
     @api.onchange("purchase_return_id")
     def _onchange_purchase_return_auto_complete(self):
-
         if not self.purchase_return_id:
             return
 
@@ -78,7 +77,7 @@ class AccountMove(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         # OVERRIDE
-        moves = super(AccountMove, self).create(vals_list)
+        moves = super().create(vals_list)
         for move in moves:
             if move.reversed_entry_id:
                 continue
@@ -99,7 +98,7 @@ class AccountMove(models.Model):
         old_purchases = [
             move.mapped("line_ids.purchase_return_line_id.order_id") for move in self
         ]
-        res = super(AccountMove, self).write(vals)
+        res = super().write(vals)
         for i, move in enumerate(self):
             new_purchases = move.mapped("line_ids.purchase_return_line_id.order_id")
             if not new_purchases:

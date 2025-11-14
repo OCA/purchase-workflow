@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <template id="track_po_line_template">
         <div>
             <strong>The ordered quantity has been updated.</strong>
             <ul>
                 <li><t t-esc="line.product_id.display_name" />:</li>
                 Ordered Quantity: <t t-esc="line.product_qty" /> -&gt; <t
-                    t-esc="float(product_qty)"
-                /><br />
+                t-esc="float(product_qty)"
+            /><br />
                 <t t-if='line.order_id.product_id.type in ("consu", "product")'>
                     Received Quantity: <t t-esc="line.qty_received" /><br />
                 </t>
@@ -23,10 +22,9 @@
             <ul>
                 <li><t t-esc="line.product_id.display_name" />:</li>
                 Received Quantity: <t t-esc="line.qty_received" /> -&gt; <t
-                    t-esc="float(qty_received)"
-                /><br />
+                t-esc="float(qty_received)"
+            /><br />
             </ul>
         </div>
     </template>
-
 </odoo>
