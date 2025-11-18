@@ -11,4 +11,5 @@ class AccountPayment(models.Model):
         "purchase.order",
         "Purchase",
         readonly=True,
+        index=True,
     )
