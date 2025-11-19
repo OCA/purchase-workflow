@@ -7,7 +7,7 @@ def uninstall_hook(env):
     # Unhide menu item for request for quotation and restore sequence
     env.ref("purchase.menu_purchase_rfq").write(
         {
-            "groups_id": [(5,)],
+            "group_ids": [(5,)],
             "sequence": 0,
         }
     )

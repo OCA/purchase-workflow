@@ -45,31 +45,25 @@
 
             <!-- Change context for "Send by mail" buttons" -->
             <xpath
-                expr="/form/header/button[@name='action_rfq_send']"
+                expr="/form/header/button[@name='action_rfq_send'][@invisible=&quot;state != 'draft'&quot;]"
                 position="attributes"
             >
                 <attribute name="context">{'send_rfq':False}</attribute>
-            </xpath>
-            <!-- Rename print button from  'Print RFQ' into 'Print' -->
-            <xpath
-                expr="/form/header/button[@name='print_quotation']"
-                position="attributes"
-            >
-                <attribute name="string">Print</attribute>
+                <attribute name="string">Send by Email</attribute>
             </xpath>
             <xpath
-                expr="/form/header/button[@name='print_quotation'][last()]"
+                expr="/form/header/button[@name='action_rfq_send'][@invisible=&quot;state != 'sent'&quot;]"
                 position="attributes"
             >
-                <attribute name="string">Print</attribute>
-                <attribute name="invisible">state=='draft'</attribute>
+                <attribute name="context">{'send_rfq':False}</attribute>
+                <attribute name="string">Send by Email</attribute>
             </xpath>
         </field>
     </record>
 
     <!-- hide Request for quotation menu item -->
     <record id="purchase.menu_purchase_rfq" model="ir.ui.menu">
-        <field name="groups_id" eval="[(4, ref('base.group_no_one'))]" />
+        <field name="group_ids" eval="[(4, ref('base.group_no_one'))]" />
         <field name="sequence">999</field>
     </record>
 
