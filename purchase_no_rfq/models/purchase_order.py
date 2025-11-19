@@ -17,11 +17,3 @@ class PurchaseOrder(models.Model):
             ("sent", "Sent"),
         ]
     )
-
-    def print_quotation(self):
-        # This method is intentionally overloaded to redefine its functionality.
-        # Note: We are breaking the inheritance chain here by not calling super(),
-        orders = self.filtered(lambda x: x.state == "draft")
-        orders.write({"state": "sent"})
-        report = self.env.ref("purchase.action_report_purchase_order")
-        return report.report_action(self)
