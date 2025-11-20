@@ -10,13 +10,15 @@ from odoo import fields, models
 
 
 class ResConfigSettings(models.TransientModel):
-    _inherit = 'res.config.settings'
+    _inherit = "res.config.settings"
 
     default_valid_psi = fields.Selection(
         [
-            ('first', 'Consider only the first supplier on the product'),
-            ('all', 'Consider all the suppliers registered on the product'),
-        ], 'Supplier choice', default='first',
-        default_model='computed.purchase.order',
-        config_parameter='purchase_compute_order.default_valid_psi'
+            ("first", "Consider only the first supplier on the product"),
+            ("all", "Consider all the suppliers registered on the product"),
+        ],
+        "Supplier choice",
+        default="first",
+        default_model="computed.purchase.order",
+        config_parameter="purchase_compute_order.default_valid_psi",
     )

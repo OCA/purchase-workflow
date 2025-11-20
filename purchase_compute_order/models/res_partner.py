@@ -24,24 +24,25 @@
 #
 ##############################################################################
 
-from odoo import models, fields
+from odoo import fields, models
 
 
 class ResPartner(models.Model):
-    _inherit = 'res.partner'
+    _inherit = "res.partner"
 
     # Constant Values
     _TARGET_TYPE = [
-        ('product_price_inv_eq', '€'),
-        ('time', 'days'),
-        ('weight', 'kg'),
+        ("product_price_inv_eq", "€"),
+        ("time", "days"),
+        ("weight", "kg"),
     ]
 
     # Columns Section
     purchase_target = fields.Integer()
     target_type = fields.Selection(
-        _TARGET_TYPE, required=True,
-        default='product_price_inv_eq',
+        _TARGET_TYPE,
+        required=True,
+        default="product_price_inv_eq",
         help="""This defines the amount of products you want to"""
         """ purchase. \n"""
         """The system will compute a purchase order based on the stock"""
@@ -52,25 +53,26 @@ class ResPartner(models.Model):
         """ least the number of days specified (according to current"""
         """ average consumption)\n"""
         """* Target type 'kg': computed purchase order will weight"""
-        """ at least the weight specified""")
+        """ at least the weight specified""",
+    )
     cpo_line_order_field = fields.Selection(
         [
-            ('product_code', 'Supplier Product Code'),
-            ('product_name', 'Supplier Product Name'),
-            ('product_sequence', 'Product Sequence'),
+            ("product_code", "Supplier Product Code"),
+            ("product_name", "Supplier Product Name"),
+            ("product_sequence", "Product Sequence"),
         ],
-        string='CPO Lines Order',
-        help='The field used to sort the CPO lines',
-        default='product_code',
+        string="CPO Lines Order",
+        help="The field used to sort the CPO lines",
+        default="product_code",
         required=True,
     )
 
     cpo_line_order = fields.Selection(
         [
-            ('asc', 'Ascending'),
-            ('desc', 'Descending'),
+            ("asc", "Ascending"),
+            ("desc", "Descending"),
         ],
-        string='CPO Lines Order Direction',
-        default='asc',
+        string="CPO Lines Order Direction",
+        default="asc",
         required=True,
     )

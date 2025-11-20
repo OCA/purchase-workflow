@@ -24,20 +24,20 @@
 #
 ##############################################################################
 
-from odoo import models, api, fields
+from odoo import api, fields, models
 
 
 class ProductProduct(models.Model):
-    _inherit = 'product.product'
+    _inherit = "product.product"
 
     # Private section
     @api.model
     # Later, we may want to implement other valid_psi options
     def _valid_psi(self, method):
         self.ensure_one()
-        if method == 'first':
+        if method == "first":
             return self._first_valid_psi()
-        elif method == 'all':
+        elif method == "all":
             return self._all_valid_psi()
         else:
             return False
@@ -49,8 +49,11 @@ class ProductProduct(models.Model):
         if not self.product_tmpl_id.seller_ids:
             return False
         valid_si = self.product_tmpl_id.seller_ids.filtered(
-            lambda si, t=today: ((not si.date_start or si.date_start <= t) and
-                                 (not si.date_end or si.date_end >= t)))
+            lambda si, t=today: (
+                (not si.date_start or si.date_start <= t)
+                and (not si.date_end or si.date_end >= t)
+            )
+        )
         return valid_si
 
     @api.model
