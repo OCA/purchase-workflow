@@ -6,29 +6,31 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2025-11-20 19:50+0000\n"
+"Last-Translator: Bosd <c5e2fd43-d292-4c90-9d1f-74ff3436329a@anonaddy.me>\n"
 "Language-Team: none\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: purchase_order_owner
 #: model:ir.model.fields,field_description:purchase_order_owner.field_purchase_order__owner_id
 msgid "Assign Owner"
-msgstr ""
+msgstr "Eigenaar Toewijzen"
 
 #. module: purchase_order_owner
 #: model_terms:ir.ui.view,arch_db:purchase_order_owner.purchase_order_view_search
 #: model_terms:ir.ui.view,arch_db:purchase_order_owner.view_purchase_order_filter
 msgid "Owner"
-msgstr ""
+msgstr "Eigenaar"
 
 #. module: purchase_order_owner
 #: model:ir.model,name:purchase_order_owner.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Inkooporder"
 
 #. module: purchase_order_owner
 #: model:ir.model.fields,help:purchase_order_owner.field_purchase_order__owner_id
@@ -36,3 +38,5 @@ msgid ""
 "The assigned value will be set on the corresponding field of the incoming "
 "stock picking."
 msgstr ""
+"De toegewezen waarde zal worden ingesteld op het corresponderende veld van "
+"de inkomende voorraadontvangst."
