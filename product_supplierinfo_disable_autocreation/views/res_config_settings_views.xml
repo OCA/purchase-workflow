@@ -15,19 +15,13 @@ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
             ref="purchase.res_config_settings_view_form_purchase"
         />
         <field name="arch" type="xml">
-            <xpath
-                expr="//div[has-class('o_setting_box')][.//field[@name='lock_confirmed_po']]"
-                position="after"
-            >
-                <div
-                    class="col-12 col-lg-6 o_setting_box"
-                    id="purchase_pricelist_disable_autocreate_setting"
-                >
+            <xpath expr="//div[contains(@class, 'o_setting_box')][.//field[@name='lock_confirmed_po']]" position="after">
+                <div class="col-12 col-lg-6 o_setting_box" id="purchase_pricelist_disable_autocreate_setting">
                     <div class="o_setting_left_pane">
-                        <field name="purchase_pricelist_disable_autocreate" />
+                        <field name="purchase_pricelist_disable_autocreate"/>
                     </div>
                     <div class="o_setting_right_pane">
-                        <label for="purchase_pricelist_disable_autocreate" />
+                        <label for="purchase_pricelist_disable_autocreate"/>
                         <div class="text-muted">
                             Automatically create supplier pricelists when validating purchase orders
                         </div>
