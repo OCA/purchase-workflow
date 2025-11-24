@@ -6,7 +6,7 @@
     <record id="view_purchase_order_line_tree" model="ir.ui.view">
         <field name="model">purchase.order.line</field>
         <field name="arch" type="xml">
-            <tree create="false">
+            <list create="false">
                 <field name="id" invisible="1" />
                 <field name="order_id" invisible="1" />
                 <field name="partner_id" invisible="1" />
@@ -19,15 +19,14 @@
                 <field name="price_subtotal" sum="Total" />
                 <field name="company_id" groups="base.group_multi_company" />
                 <field name="state" invisible="1" />
-            </tree>
+            </list>
         </field>
     </record>
 
     <record id="action_purchase_order_line_tree" model="ir.actions.act_window">
         <field name="name">Purchase Orderlines</field>
         <field name="res_model">purchase.order.line</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="view_id" ref="view_purchase_order_line_tree" />
         <field name="domain">[('order_id', 'in', active_ids)]</field>
     </record>

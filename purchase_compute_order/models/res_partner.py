@@ -41,7 +41,6 @@ class ResPartner(models.Model):
     purchase_target = fields.Integer()
     target_type = fields.Selection(
         _TARGET_TYPE,
-        required=True,
         default="product_price_inv_eq",
         help="""This defines the amount of products you want to"""
         """ purchase. \n"""
@@ -64,7 +63,6 @@ class ResPartner(models.Model):
         string="CPO Lines Order",
         help="The field used to sort the CPO lines",
         default="product_code",
-        required=True,
     )
 
     cpo_line_order = fields.Selection(
@@ -74,5 +72,4 @@ class ResPartner(models.Model):
         ],
         string="CPO Lines Order Direction",
         default="asc",
-        required=True,
     )

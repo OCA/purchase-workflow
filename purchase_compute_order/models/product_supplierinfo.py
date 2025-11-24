@@ -14,6 +14,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from math import ceil
 
 from odoo import fields, models
 
@@ -23,7 +24,8 @@ class ProductSupplierinfo(models.Model):
 
     # Columns Section
     shelf_life = fields.Integer(
-        string="Shelf life (days)", inverse="_inverse_shelf_life"
+        string="Shelf life (days)",
+        inverse="_inverse_shelf_life",
     )
 
     def _inverse_shelf_life(self):
@@ -37,6 +39,15 @@ class ProductSupplierinfo(models.Model):
                     ]
                 )
             )
-            lines = lines.filtered(lambda l: l.cpo_state == "draft")
+            lines = lines.filtered(lambda line: line.cpo_state == "draft")
             for line in lines:
                 line.shelf_life = psi.shelf_life
+
+    def _convert_qty(self, quantity):
+        """
+        Round the quantity by package qty (contained qty in a package)
+        """
+        self.ensure_one()
+        if self.package_qty and quantity % self.package_qty:
+            quantity = ceil(quantity / self.package_qty) * self.package_qty
+        return quantity
