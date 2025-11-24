@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,6 +14,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: product_supplierinfo_qty_multiplier
+#: model:product.product,name:product_supplierinfo_qty_multiplier.delta_ipa
 #: model:product.template,name:product_supplierinfo_qty_multiplier.delta_ipa_product_template
 msgid "Delta IPA"
 msgstr ""
@@ -34,7 +35,6 @@ msgid "Supplier Pricelist"
 msgstr ""
 
 #. module: product_supplierinfo_qty_multiplier
-#. odoo-python
 #: code:addons/product_supplierinfo_qty_multiplier/models/purchase_order_line.py:0
 #, python-format
 msgid ""
@@ -43,7 +43,12 @@ msgid ""
 msgstr ""
 
 #. module: product_supplierinfo_qty_multiplier
-#. odoo-python
+#: model:product.product,uom_name:product_supplierinfo_qty_multiplier.delta_ipa
+#: model:product.template,uom_name:product_supplierinfo_qty_multiplier.delta_ipa_product_template
+msgid "Units"
+msgstr ""
+
+#. module: product_supplierinfo_qty_multiplier
 #: code:addons/product_supplierinfo_qty_multiplier/models/purchase_order_line.py:0
 #, python-format
 msgid "Warning"
