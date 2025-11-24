@@ -26,22 +26,21 @@
 
 {
     "name": "Computed Purchase Order",
-    "version": "12.0.1.0.2",
+    "version": "18.0.1.0.1",
     "category": "Purchase",
-    "author": "GRAP, Druidoo",
+    "author": "GRAP, Druidoo, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
     "license": "AGPL-3",
     "depends": [
         "purchase",
         "product_average_consumption",
         "purchase_package_qty",
-        "purchase_discount",
+        "stock",
     ],
     "data": [
         "security/purchase_compute_order_security.xml",
         "security/ir.model.access.csv",
         "data/ir_sequence.xml",
-        "wizard/update_product_wizard_view.xml",
         "views/computed_purchase_order_view.xml",
         "views/computed_purchase_order_line_view.xml",
         "views/res_config_view.xml",
