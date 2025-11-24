@@ -6,4 +6,4 @@
 (If you can't find that column, you can activate it by clicking the
 three dots at the corner of the table and enabling it).
 
-![](../static/description/product_product_form.png)
+![product_form](../static/description/product_product_form.png)

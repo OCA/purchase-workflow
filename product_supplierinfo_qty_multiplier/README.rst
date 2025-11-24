@@ -47,9 +47,9 @@ Configuration
 (If you can't find that column, you can activate it by clicking the
 three dots at the corner of the table and enabling it).
 
-|image1|
+|product_form|
 
-.. |image1| image:: https://raw.githubusercontent.com/OCA/purchase-workflow/18.0/product_supplierinfo_qty_multiplier/static/description/product_product_form.png
+.. |product_form| image:: https://raw.githubusercontent.com/OCA/purchase-workflow/18.0/product_supplierinfo_qty_multiplier/static/description/product_product_form.png
 
 Usage
 =====
@@ -62,9 +62,9 @@ Usage
 -  If you set 9.0 in the quantity field, the quantity will be rounded up
    to 12.0
 
-|image1|
+|purchase_order_form|
 
-.. |image1| image:: https://raw.githubusercontent.com/OCA/purchase-workflow/18.0/product_supplierinfo_qty_multiplier/static/description/purchase_order_form.png
+.. |purchase_order_form| image:: https://raw.githubusercontent.com/OCA/purchase-workflow/18.0/product_supplierinfo_qty_multiplier/static/description/purchase_order_form.png
 
 Bug Tracker
 ===========

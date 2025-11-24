@@ -6,4 +6,4 @@
 - If you set 9.0 in the quantity field, the quantity will be rounded up
   to 12.0
 
-![](../static/description/purchase_order_form.png)
+![purchase_order_form](../static/description/purchase_order_form.png)
