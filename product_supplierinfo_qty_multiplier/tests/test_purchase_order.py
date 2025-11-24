@@ -17,7 +17,7 @@ class TestPurchaseOrder(common.TransactionCase):
                         0,
                         False,
                         {
-                            "partner_id": cls.partner.id,
+                            "name": cls.partner.id,
                             "min_qty": 1,
                             "multiplier_qty": 2,
                             "price": 100,
@@ -27,7 +27,7 @@ class TestPurchaseOrder(common.TransactionCase):
                         0,
                         False,
                         {
-                            "partner_id": cls.partner.id,
+                            "name": cls.partner.id,
                             "min_qty": 100,
                             "multiplier_qty": 2,
                             "price": 95,

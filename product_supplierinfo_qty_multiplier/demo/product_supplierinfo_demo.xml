@@ -3,7 +3,7 @@
 <odoo>
 
     <record id="supplierinfo_delta_ipa" model="product.supplierinfo">
-        <field name="partner_id" ref="supplier" />
+        <field name="name" ref="supplier" />
         <field
             name="product_tmpl_id"
             model="product.template"
