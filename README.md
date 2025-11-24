@@ -25,6 +25,7 @@ addon | version | maintainers | summary
 [procurement_purchase_sale_no_grouping](procurement_purchase_sale_no_grouping/) | 15.0.1.0.0 |  | Procurement Purchase Service No Grouping
 [product_form_purchase_link](product_form_purchase_link/) | 15.0.1.1.0 | <a href='https://github.com/rousseldenis'><img src='https://github.com/rousseldenis.png' width='32' height='32' style='border-radius:50%;' alt='rousseldenis'/></a> | Add an option to display the purchases lines from product
 [product_supplier_code_purchase](product_supplier_code_purchase/) | 15.0.1.0.0 |  | This module adds to the purchase order line the supplier code defined in the product.
+[product_supplierinfo_qty_multiplier](product_supplierinfo_qty_multiplier/) | 15.0.1.0.0 | <a href='https://github.com/victoralmau'><img src='https://github.com/victoralmau.png' width='32' height='32' style='border-radius:50%;' alt='victoralmau'/></a> <a href='https://github.com/legalsylvain'><img src='https://github.com/legalsylvain.png' width='32' height='32' style='border-radius:50%;' alt='legalsylvain'/></a> | Product supplierinfo qty multiplier
 [purchase_advance_payment](purchase_advance_payment/) | 15.0.1.0.1 |  | Allow to add advance payments on purchase orders
 [purchase_allowed_product](purchase_allowed_product/) | 15.0.2.0.0 |  | This module allows to select only products that can be supplied by the vendor
 [purchase_analytic_global](purchase_analytic_global/) | 15.0.1.0.1 |  | Purchase - Analytic Account Global
