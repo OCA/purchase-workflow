@@ -12,24 +12,22 @@
                 <header>
                     <button
                         name="make_order"
-                        states="draft"
+                        invisible="state != 'draft'"
                         string="Make Purchase Order"
                         type="object"
                         class="oe_highlight"
                     />
                     <button
-                        name="%(action_view_update_products)d"
+                        name="open_update_products"
                         string="Update Products"
-                        type="action"
+                        type="object"
                         class="oe_highlight"
-                        attrs="{'invisible':
-                            [('products_updated','=',False)]}"
+                        invisible="not products_updated"
                     />
                     <field
                         name="state"
                         widget="statusbar"
                         statusbar_visible="draft,done,canceled"
-                        statusbar_colors='{"canceled":"red","done":"blue"}'
                         readonly="1"
                     />
                 </header>
@@ -49,11 +47,13 @@
                     <group>
                         <group>
                             <field name="partner_id" />
-                            <field name="purchase_order_id" states="done" />
+                            <field
+                                name="purchase_order_id"
+                                invisible="state != 'done'"
+                            />
                         </group>
                         <group>
                             <field name="incoming_date" />
-                            <field name="products_updated" invisible="1" />
                             <field
                                 name="company_id"
                                 groups="base.group_multi_company"
@@ -61,17 +61,16 @@
                         </group>
                     </group>
                     <group>
-                        <group string="Get Products" states="draft">
+                        <group string="Get Products" invisible="state != 'draft'">
                             <field name="compute_pending_quantity" />
                             <button
                                 name="compute_active_product_stock"
                                 type="object"
                                 string="Get products and stocks"
-                                help="Fetch all active products sold by
+                                title="Fetch all active products sold by
                                 selected supplier and calculate the available
                                 quantities. It ignores inactive or not
                                 purchasable products."
-                                states="draft"
                             />
                         </group>
                         <group string="Compute Order">
@@ -80,27 +79,25 @@
                               <field
                                 name="purchase_target"
                                 class="oe_inline"
-                                attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                readonly="state != 'draft'"
                             />
                                 &amp;nbsp;
                               <field
                                 name="target_type"
                                 class="oe_inline"
-                                attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                readonly="state != 'draft'"
                             />
                               <br />
                               <button
                                 name="compute_purchase_quantities"
                                 type="object"
                                 string="Compute Purchase Quantities"
-                                help="Compute the optimal purchase quantities
+                                invisible="state != 'draft'"
+                                title="Compute the optimal purchase quantities
                                 of selected products according to the
                                 objective."
-                                states="draft"
                             />
                           </div>
-                            <field name="line_order_field" invisible="1" />
-                            <field name="line_order" invisible="1" />
                         </group>
                     </group>
                     <group string="Result">
@@ -121,44 +118,53 @@
                                 string="Sort lines"
                                 groups="base.group_no_one"
                             />
-                            <field name="line_ids" options="{'reload_on_button': true}">
-                                <tree
+                            <field
+                                name="line_ids"
+                                readonly="state != 'draft'"
+                                options="{'reload_on_button': true}"
+                            >
+                                <list
                                     decoration-warning="state == 'updated'"
                                     decoration-info="state == 'new'"
                                     editable="bottom"
                                 >
-                                    <field name="product_code_inv" readonly="1" />
+                                    <field
+                                        name="product_code"
+                                        string="Supplier Product Code"
+                                    />
                                     <field name="product_id" readonly="1" />
-                                    <field name="qty_available" readonly="1" />
-                                    <field name="incoming_qty" readonly="1" />
+                                    <field name="qty_available" string="On hand" />
+                                    <field name="incoming_qty" string="Incoming" />
                                     <field
                                         name="displayed_average_consumption"
+                                        string="Avg. Consumption"
                                         readonly="1"
                                     />
-                                    <field name="uom_id" readonly="1" />
-                                    <field name="stock_duration" readonly="1" />
-                                    <field name="cpo_state" invisible="1" />
+                                    <field
+                                        name="uom_id"
+                                        string="UoM"
+                                        groups="uom.group_uom"
+                                    />
+                                    <field name="stock_duration" />
                                     <field
                                         name="purchase_qty_package"
-                                        attrs="{'readonly':
-                                        [('cpo_state', '!=', 'draft')]}"
+                                        readonly="cpo_state != 'draft'"
                                     />
-                                    <field name="package_qty_inv" readonly="1" />
+                                    <field name="package_qty" readonly="1" />
                                     <field name="purchase_qty" readonly="1" />
-                                    <field name="product_price_inv" readonly="1" />
-                                    <field name="discount_inv" readonly="1" />
+                                    <field name="product_price" readonly="1" />
+                                    <field name="discount" readonly="1" />
                                     <field name="price_policy" readonly="1" />
-                                    <field name="shelf_life" />
+                                    <field name="shelf_life" readonly="1" />
                                     <field name="virtual_duration" readonly="1" />
                                     <field name="subtotal" readonly="1" />
-                                    <field name="state" readonly="1" />
-                                    <field name="psi_id" invisible="1" />
+                                    <field name="state" widget="badge" readonly="1" />
                                     <button
                                         name="unlink_psi"
-                                        states="up_to_date,updated"
+                                        invisible="state not in ('up_to_date', 'updated') or cpo_state != 'draft'"
                                         type="object"
                                         icon="fa-close"
-                                        help="If you click this button,
+                                        title="If you click this button,
                                         it means you don't want to buy this
                                         product to this supplier anymore.
                                         The supplier will thus be removed from
@@ -166,51 +172,23 @@
                                     />
                                     <button
                                         name="create_psi"
-                                        states="new"
+                                        invisible="state != 'new' or cpo_state != 'draft'"
                                         type="object"
                                         icon="fa-plus-square"
-                                        help="If you click this button,
+                                        title="If you click this button,
                                         it means you want to buy this product
                                         to this supplier regularly.
                                         The supplier will thus be added to
                                         the product form."
                                     />
-                                </tree>
-                                <form string="Computed purchase order lines">
-                                    <group>
-                                        <group>
-                                            <field name="product_code_inv" />
-                                            <field name="product_id" />
-                                            <field name="qty_available" />
-                                            <field name="incoming_qty" />
-                                            <label
-                                                for="displayed_average_consumption"
-                                            />
-                                            <div class="oe_inline">
-                                                <field
-                                                    name="displayed_average_consumption"
-                                                />
-                                                <field name="uom_id" />
-                                            </div>
-                                        </group>
-                                        <group>
-                                            <field name="stock_duration" />
-                                            <field name="purchase_qty_package" />
-                                            <field name="package_qty_inv" />
-                                            <label for="purchase_qty" />
-                                            <div class="oe_inline">
-                                                <field name="purchase_qty" />
-                                                <field name="uom_po_id" />
-                                            </div>
-                                            <field name="product_price_inv" />
-                                            <field name="discount_inv" />
-                                            <field name="price_policy" />
-                                            <field name="virtual_duration" />
-                                            <field name="subtotal" />
-                                            <field name="state" />
-                                        </group>
-                                    </group>
-                                </form>
+                                    <button
+                                        name="update_psi"
+                                        invisible="state != 'updated'"
+                                        type="object"
+                                        icon="fa-upload"
+                                        title="Save the changes."
+                                    />
+                                </list>
                             </field>
                         </page>
                     </notebook>
@@ -223,7 +201,7 @@
         <field name="name">computed.purchase.order.tree</field>
         <field name="model">computed.purchase.order</field>
         <field name="arch" type="xml">
-            <tree
+            <list
                 decoration-danger="state == 'canceled'"
                 decoration-info="state == 'draft'"
             >
@@ -232,7 +210,7 @@
                 <field name="incoming_date" />
                 <field name="company_id" groups="base.group_multi_company" />
                 <field name="state" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -264,12 +242,57 @@
         </field>
     </record>
 
+    <record id="view_computed_purchase_order_form_update_products" model="ir.ui.view">
+        <field name="name">computed.purchase.order.form</field>
+        <field name="model">computed.purchase.order</field>
+        <field name="priority" eval="999" />
+        <field name="arch" type="xml">
+            <form name="Update Products">
+                <field name="line_updated_ids" readonly="state != 'draft'">
+                    <list
+                        string="Computed purchase order lines"
+                        editable="bottom"
+                        create="0"
+                        delete="0"
+                        decoration-warning="state == 'updated'"
+                        decoration-info="state == 'new'"
+                    >
+                        <field name="product_id" readonly="1" />
+                        <field
+                            name="product_code"
+                            string="Supplier Product Code"
+                            readonly="cpo_state != 'draft'"
+                        />
+                        <field
+                            name="product_name"
+                            string="Supplier Product Name"
+                            readonly="cpo_state != 'draft'"
+                        />
+                        <field name="product_price" readonly="cpo_state != 'draft'" />
+                        <field name="price_policy" readonly="cpo_state != 'draft'" />
+                    </list>
+                </field>
+                <footer>
+                    <button string="Apply" type="object" name="btn_update_products" />
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_view_update_products" model="ir.actions.act_window">
+        <field name="name">Update Products</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">computed.purchase.order</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_computed_purchase_order_form_update_products" />
+        <field name="target">new</field>
+    </record>
     <record id="action_view_computed_purchase_order_tree" model="ir.actions.act_window">
         <field name="name">Computed Purchase Order</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">computed.purchase.order</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
             Click to begin a computed purchase order.

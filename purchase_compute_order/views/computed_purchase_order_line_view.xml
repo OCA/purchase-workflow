@@ -1,43 +1,49 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="view_computed_purchase_order_line_tree" model="ir.ui.view">
-        <field name="name">computed.purchase.order.line.tree</field>
+        <field name="name">computed.purchase.order.line.list</field>
         <field name="model">computed.purchase.order.line</field>
         <field name="arch" type="xml">
-            <tree
+            <list
                 string="Computed purchase order lines"
-                colors="brown:state == 'updated';blue:state == 'new'"
                 editable="bottom"
                 create="0"
-                edit="0"
                 delete="0"
+                decoration-warning="state == 'updated'"
+                decoration-info="state == 'new'"
             >
-                <field name="computed_purchase_order_id" />
-                <field name="product_code_inv" />
-                <field name="product_id" />
+                <field name="computed_purchase_order_id" readonly="1" />
+                <field
+                    name="product_code"
+                    string="Supplier Product Code"
+                    readonly="cpo_state != 'draft'"
+                />
+                <field name="product_id" readonly="cpo_state != 'draft'" />
                 <field name="qty_available" />
                 <field name="incoming_qty" />
-                <field name="displayed_average_consumption" />
+                <field
+                    name="displayed_average_consumption"
+                    string="Average Consumption"
+                    readonly="cpo_state != 'draft'"
+                />
                 <field name="uom_id" />
                 <field name="stock_duration" />
-                <field name="cpo_state" invisible="1" />
-                <field name="purchase_qty_package" />
-                <field name="package_qty_inv" />
-                <field name="purchase_qty" />
-                <field name="product_price_inv" />
-                <field name="discount_inv" />
-                <field name="price_policy" />
-                <field name="shelf_life" />
+                <field name="purchase_qty_package" readonly="cpo_state != 'draft'" />
+                <field name="package_qty" />
+                <field name="purchase_qty" readonly="cpo_state != 'draft'" />
+                <field name="product_price" readonly="cpo_state != 'draft'" />
+                <field name="discount" readonly="cpo_state != 'draft'" />
+                <field name="price_policy" readonly="cpo_state != 'draft'" />
+                <field name="shelf_life" readonly="1" />
                 <field name="virtual_duration" />
                 <field name="subtotal" />
                 <field name="state" />
-                <field name="psi_id" invisible="1" />
                 <button
                     name="unlink_psi"
-                    states="up_to_date,updated"
+                    invisible="state not in ('up_to_date', 'updated')"
                     type="object"
                     icon="fa-close"
-                    help="If you click this button,
+                    title="If you click this button,
                             it means you don't want to buy this
                             product to this supplier anymore.
                             The supplier will thus be removed from
@@ -45,16 +51,83 @@
                 />
                 <button
                     name="create_psi"
-                    states="new"
+                    invisible="state != 'new'"
                     type="object"
                     icon="fa-plus-square"
-                    help="If you click this button,
+                    title="If you click this button,
                             it means you want to buy this product
                             to this supplier regularly.
                             The supplier will thus be added to
                             the product form."
                 />
-            </tree>
+                <button
+                    name="update_psi"
+                    invisible="state != 'updated'"
+                    type="object"
+                    icon="fa-upload"
+                    title="Save the changes."
+                />
+            </list>
+        </field>
+    </record>
+
+    <record id="view_computed_purchase_order_line_form" model="ir.ui.view">
+        <field name="name">computed.purchase.order.line.form</field>
+        <field name="model">computed.purchase.order.line</field>
+        <field name="arch" type="xml">
+            <form string="Computed purchase order lines" create="false">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="product_id" readonly="1" />
+                            <field
+                                name="product_code"
+                                readonly="cpo_state != 'draft'"
+                            />
+                            <field
+                                name="price_policy"
+                                readonly="cpo_state != 'draft'"
+                            />
+                            <field name="shelf_life" readonly="1" />
+                            <field name="qty_available" />
+                            <field name="incoming_qty" />
+                            <field name="outgoing_qty" />
+                            <field name="stock_duration" />
+                            <field name="virtual_duration" />
+                            <field name="displayed_average_consumption" readonly="1" />
+                        </group>
+                        <group>
+                            <field
+                                name="psi_id"
+                                string="Vendor Pricelist"
+                                readonly="1"
+                            />
+                            <field
+                                name="purchase_qty_package"
+                                readonly="cpo_state != 'draft'"
+                            />
+                            <field name="package_qty" />
+                            <field
+                                name="purchase_qty"
+                                readonly="cpo_state != 'draft'"
+                            />
+                            <field name="uom_po_id" />
+                            <field
+                                name="product_price"
+                                readonly="cpo_state != 'draft'"
+                            />
+                            <field name="discount" readonly="cpo_state != 'draft'" />
+                            <field name="subtotal" />
+                            <field
+                                name="state"
+                                widget="badge"
+                                decoration-warning="state == 'updated'"
+                                decoration-info="state == 'new'"
+                            />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
         </field>
     </record>
 
@@ -96,8 +169,7 @@
         <field name="name">Computed Purchase Order Line</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">computed.purchase.order.line</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">tree</field>
+        <field name="view_mode">list</field>
         <field name="view_id" ref="view_computed_purchase_order_line_tree" />
     </record>
 </odoo>

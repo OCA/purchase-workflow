@@ -9,12 +9,24 @@
                 <label for="purchase_target" />
                 <div name="purchase_target">
                     <field name="purchase_target" class="oe_inline" />
-                    <field name="target_type" class="oe_inline" />
+                    <field
+                        name="target_type"
+                        class="oe_inline"
+                        required="supplier_rank > 0"
+                    />
                 </div>
                 <label for="cpo_line_order_field" />
                 <div name="cpo_line_order_field">
-                    <field name="cpo_line_order_field" class="oe_inline" />
-                    <field name="cpo_line_order" class="oe_inline" />
+                    <field
+                        name="cpo_line_order_field"
+                        class="oe_inline"
+                        required="supplier_rank > 0"
+                    />
+                    <field
+                        name="cpo_line_order"
+                        class="oe_inline"
+                        required="supplier_rank > 0"
+                    />
                 </div>
             </group>
         </field>
