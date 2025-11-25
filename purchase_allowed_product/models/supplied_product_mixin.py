@@ -14,8 +14,7 @@ class SuppliedProductMixin(models.AbstractModel):
         compute="_compute_partner_id_supplied_product",
         store=True,
         readonly=False,
-        help="If checked, only the products provided by this supplier "
-        "will be shown.",
+        help="If checked, only the products provided by this supplier will be shown.",
     )
 
     @api.depends("partner_id")
