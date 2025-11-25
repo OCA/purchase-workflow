@@ -33,7 +33,7 @@ class TestProductSupplierCodePurchase(TransactionCase):
                         0,
                         {
                             "product_id": self.product.id,
-                            "product_uom": self.product.uom_id.id,
+                            "product_uom_id": self.product.uom_id.id,
                             "price_unit": self.product.standard_price,
                             "name": self.product.name,
                             "date_planned": fields.Datetime.now(),
@@ -60,7 +60,7 @@ class TestProductSupplierCodePurchase(TransactionCase):
                         0,
                         {
                             "product_id": new_product.id,
-                            "product_uom": new_product.uom_id.id,
+                            "product_uom_id": new_product.uom_id.id,
                             "price_unit": new_product.standard_price,
                             "name": new_product.name,
                             "date_planned": fields.Datetime.now(),
