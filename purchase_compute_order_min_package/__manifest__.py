@@ -16,17 +16,17 @@
 ##############################################################################
 
 {
-    'name': 'Computed Purchase Order by Min. Nb of Package',
-    'version': '12.0.1.0.1',
-    'description': 'Computed Purchase Order by Min. Nb of Package',
-    'category': 'Purchase',
-    'author': 'Trobz',
-    'website': 'http://www.trobz.com',
-    'license': 'AGPL-3',
-    'depends': [
-        'purchase_compute_order',
+    "name": "Computed Purchase Order by Min. Nb of Package",
+    "version": "12.0.1.0.1",
+    "description": "Computed Purchase Order by Min. Nb of Package",
+    "category": "Purchase",
+    "author": "Trobz",
+    "website": "https://github.com/OCA/purchase-workflow",
+    "license": "AGPL-3",
+    "depends": [
+        "purchase_compute_order",
     ],
-    'data': [
-        'views/product_supplierinfo_view.xml',
+    "data": [
+        "views/product_supplierinfo_view.xml",
     ],
 }
