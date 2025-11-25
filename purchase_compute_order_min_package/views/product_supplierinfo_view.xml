@@ -1,14 +1,16 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="product_supplierinfo_form_view_package_inherit" model="ir.ui.view">
         <field name="name">product.supplierinfo.form.view.inherit</field>
         <field name="model">product.supplierinfo</field>
-        <field name="inherit_id"
-               ref="purchase_package_qty.product_supplierinfo_form_view_package" />
+        <field
+            name="inherit_id"
+            ref="purchase_package_qty.product_supplierinfo_form_view_package"
+        />
         <field name="arch" type="xml">
             <field name="package_qty" position="before">
-                <field name="min_nb_of_package"/>
-                <field name="max_nb_of_package"/>
+                <field name="min_nb_of_package" />
+                <field name="max_nb_of_package" />
             </field>
         </field>
     </record>
@@ -16,12 +18,14 @@
     <record id="product_supplierinfo_tree_view_package_inherit" model="ir.ui.view">
         <field name="name">product.supplierinfo.tree.view.inherit</field>
         <field name="model">product.supplierinfo</field>
-        <field name="inherit_id"
-               ref="purchase_package_qty.product_supplierinfo_tree_view_package" />
+        <field
+            name="inherit_id"
+            ref="purchase_package_qty.product_supplierinfo_tree_view_package"
+        />
         <field name="arch" type="xml">
             <field name="package_qty" position="before">
-                <field name="min_nb_of_package"/>
-                <field name="max_nb_of_package"/>
+                <field name="min_nb_of_package" />
+                <field name="max_nb_of_package" />
             </field>
         </field>
     </record>
