@@ -10,13 +10,16 @@ class PurchaseOrder(models.Model):
 
     @api.onchange("partner_id", "company_id")
     def onchange_partner_id(self):
-        use_purchase_note = (
+        res = super().onchange_partner_id()
+        use_purchase_note = str2bool(
             self.env["ir.config_parameter"]
             .sudo()
             .get_param("purchase.use_purchase_note")
         )
         if self.partner_id and not is_html_empty(self.partner_id.purchase_note):
             self.note = self.partner_id.purchase_note
-        elif use_purchase_note and str2bool(use_purchase_note):
+        elif use_purchase_note:
             self.note = self.company_id.purchase_note
-        return super().onchange_partner_id()
+        else:
+            self.note = False
+        return res
