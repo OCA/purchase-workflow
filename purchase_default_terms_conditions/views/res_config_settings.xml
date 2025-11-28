@@ -18,10 +18,7 @@
                     company_dependent="1"
                     help="Add your terms &amp; conditions at the bottom of bills/orders/quotations"
                 >
-                    <field
-                        name="use_purchase_note"
-                        string="Default Terms &amp; Conditions"
-                    />
+                    <field name="use_purchase_note" />
                     <div class="content-group" invisible="not use_purchase_note">
                         <div class="mt16">
                             <div>

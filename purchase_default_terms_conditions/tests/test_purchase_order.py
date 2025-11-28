@@ -12,7 +12,6 @@ class TestPurchase(BaseCommon):
     def setUpClass(cls):
         super().setUpClass()
         uom_unit = cls.env.ref("uom.product_uom_unit")
-        cls.env.ref("uom.product_uom_hour")
         cls.product_order = cls.env["product.product"].create(
             {
                 "name": "Zed+ Antivirus",
@@ -20,7 +19,6 @@ class TestPurchase(BaseCommon):
                 "list_price": 280.0,
                 "type": "consu",
                 "uom_id": uom_unit.id,
-                "uom_po_id": uom_unit.id,
                 "purchase_method": "purchase",
                 "default_code": "PROD_ORDER",
                 "taxes_id": False,
@@ -59,7 +57,7 @@ class TestPurchase(BaseCommon):
                 purchase_form.order_type = order_type
 
             self.assertEqual(
-                purchase_form.notes.strip(),
+                purchase_form.note.strip(),
                 self.partner_a.purchase_note,
                 "Notes should be set from partner's purchase note",
             )
@@ -88,6 +86,6 @@ class TestPurchase(BaseCommon):
 
             self.assertIn(
                 company_note,
-                purchase_form.notes,
+                purchase_form.note,
                 "Notes should contain company purchase note when partner note is empty",
             )
