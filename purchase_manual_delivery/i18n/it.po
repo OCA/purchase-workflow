@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-08-20 17:27+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"PO-Revision-Date: 2025-11-28 14:20+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -128,7 +128,7 @@ msgstr "Raggruppa per"
 #. module: purchase_manual_delivery
 #: model_terms:ir.actions.act_window,help:purchase_manual_delivery.action_order_line_delivery_tree
 msgid "Here is a list of each purchase order line to be received."
-msgstr "Ecco un elenco di ogni linea di ordine di acquisto da ricevere."
+msgstr "Ecco un elenco di ogni riga di ordine di acquisto da ricevere."
 
 #. module: purchase_manual_delivery
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard__id
@@ -140,7 +140,7 @@ msgstr "ID"
 #: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.res_config_settings_view_form
 msgid "If active, Receipt of purchase orders should be manual created."
 msgstr ""
-"Se selezionata, la ricevuta degli ordini di acquisto deve essere creata "
+"Se selezionato, la ricezione degli ordini di acquisto deve essere creata "
 "manualmente."
 
 #. module: purchase_manual_delivery
@@ -198,7 +198,7 @@ msgstr "Da ricevere in attesa"
 #. module: purchase_manual_delivery
 #: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.view_create_stock_picking
 msgid "Picking Scheduled Date"
-msgstr "Data prelievo pianificato"
+msgstr "Data pianificata prelievo"
 
 #. module: purchase_manual_delivery
 #. odoo-python
@@ -414,7 +414,7 @@ msgid ""
 "You can not receive more than the remaining quantity. If you need to do so, "
 "please edit the purchase order first."
 msgstr ""
-"Non è possibile ricever più della quantità rimanente. Se è necessario, "
+"Non è possibile ricevere più della quantità rimanente. Se è necessario, "
 "modificare prima l'ordine di acquisto."
 
 #~ msgid "Deliveries on purchase orders should be created manually."
