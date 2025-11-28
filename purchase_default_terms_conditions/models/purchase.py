@@ -16,7 +16,7 @@ class PurchaseOrder(models.Model):
             .get_param("purchase.use_purchase_note")
         )
         if self.partner_id and not is_html_empty(self.partner_id.purchase_note):
-            self.notes = self.partner_id.purchase_note
+            self.note = self.partner_id.purchase_note
         elif use_purchase_note and str2bool(use_purchase_note):
-            self.notes = self.company_id.purchase_note
+            self.note = self.company_id.purchase_note
         return super().onchange_partner_id()
