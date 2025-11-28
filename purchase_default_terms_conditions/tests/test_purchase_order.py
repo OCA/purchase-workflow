@@ -89,3 +89,20 @@ class TestPurchase(BaseCommon):
                 purchase_form.note,
                 "Notes should contain company purchase note when partner note is empty",
             )
+
+    def test_onchange_no_partner_note_and_setting_disabled(self):
+        """Test note is cleared when partner has no note and setting is off."""
+        self.env["ir.config_parameter"].sudo().set_param(
+            "purchase.use_purchase_note", "false"
+        )
+        partner_b = self.env["res.partner"].create({"name": "Partner B"})
+
+        with Form(self.env["purchase.order"]) as po_form:
+            po_form.partner_id = self.partner_a
+            self.assertEqual(po_form.note.strip(), self.partner_a.purchase_note)
+
+            # Change to a partner without a note
+            po_form.partner_id = partner_b
+
+            # The note should be cleared
+            self.assertFalse(po_form.note)
