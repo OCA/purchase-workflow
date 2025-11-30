@@ -37,12 +37,20 @@ class StockMove(models.Model):
         distinct_fields += ["created_purchase_request_line_id"]
         return distinct_fields
 
-    def _action_cancel(self):
+    def _action_cancel_create_mail_activity(self):
         """Create an activity on the request for the cancelled procurement move"""
         for move in self:
             if move.created_purchase_request_line_id:
                 activity_type_id = self.env.ref("mail.mail_activity_data_todo").id
                 pr_line = move.created_purchase_request_line_id
+                if pr_line.product_id.responsible_id:
+                    activity_user = pr_line.product_id.responsible_id
+                elif pr_line.request_id.assigned_to:
+                    activity_user = pr_line.request_id.assigned_to
+                elif move.picking_id.user_id:
+                    activity_user = move.picking_id.user_id
+                else:
+                    activity_user = self.env.user
                 self.env["mail.activity"].sudo().create(
                     {
                         "activity_type_id": activity_type_id,
@@ -51,15 +59,16 @@ class StockMove(models.Model):
                             "purchase request has been cancelled/deleted. "
                             "Check if an action is needed."
                         ),
-                        "user_id": (
-                            pr_line.product_id.responsible_id.id or self.env.user.id
-                        ),
+                        "user_id": activity_user.id,
                         "res_id": pr_line.request_id.id,
                         "res_model_id": self.env.ref(
                             "purchase_request.model_purchase_request"
                         ).id,
                     }
                 )
+
+    def _action_cancel(self):
+        self._action_cancel_create_mail_activity()
         return super()._action_cancel()
 
     @api.depends("purchase_request_allocation_ids")

@@ -229,9 +229,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         res = []
         purchase_obj = self.env["purchase.order"]
         po_line_obj = self.env["purchase.order.line"]
-        pr_line_obj = self.env["purchase.request.line"]
         purchase = False
-
         for item in self.item_ids:
             line = item.line_id
             if item.product_qty <= 0.0:
@@ -285,17 +283,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                 )
                 all_qty = min(po_line_product_uom_qty, wizard_product_uom_qty)
                 self.create_allocation(po_line, line, all_qty, alloc_uom)
-            # TODO: Check propagate_uom compatibility:
-            new_qty = pr_line_obj._calc_new_qty(
-                line, po_line=po_line, new_pr_line=new_pr_line
-            )
-            # The quantity update triggers a compute method that alters the
-            # unit price (which is what we want, to honor graduate pricing)
-            # but also the scheduled date which is what we don't want.
-            date_required = item.line_id.date_required
-            # we enforce to save the datetime value in the current tz of the user
-            date_planned = self._get_date_with_user_tz(date_required)
-            po_line.write({"product_qty": new_qty, "date_planned": date_planned})
+            self._post_process_po_line(item, po_line, new_pr_line)
             res.append(purchase.id)
 
         purchase_requests = self.item_ids.mapped("request_id")
@@ -309,6 +297,28 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             "context": False,
             "type": "ir.actions.act_window",
         }
+
+    def _post_process_po_line(self, item, po_line, new_pr_line):
+        self.ensure_one()
+        line = item.line_id
+        user_tz = pytz.timezone(self.env.user.tz or "UTC")
+        # TODO: Check propagate_uom compatibility:
+        new_qty = self.env["purchase.request.line"]._calc_new_qty(
+            line, po_line=po_line, new_pr_line=new_pr_line
+        )
+        po_line.product_qty = new_qty
+        # The quantity update triggers a compute method that alters the
+        # unit price (which is what we want, to honor graduate pricing)
+        # but also the scheduled date which is what we don't want.
+        date_required = line.date_required
+        # we enforce to save the datetime value in the current tz of the user
+        po_line.date_planned = (
+            user_tz.localize(
+                datetime(date_required.year, date_required.month, date_required.day)
+            )
+            .astimezone(pytz.utc)
+            .replace(tzinfo=None)
+        )
 
 
 class PurchaseRequestLineMakePurchaseOrderItem(models.TransientModel):
