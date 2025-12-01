@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <template
         id="report_purchasequotation_document"
         inherit_id="purchase.report_purchasequotation_document"
@@ -11,14 +10,18 @@
                 <div class="col-4">
                     <table class="table table-sm">
                         <tr t-if="o.display_total_weight_in_report">
-                            <td><strong>Total Weight</strong></td>
+                            <td>
+                                <strong>Total Weight</strong>
+                            </td>
                             <td class="text-right">
                                 <span t-field="o.total_weight" />
                                 <span t-field="o.total_weight_uom_id" />
                             </td>
                         </tr>
                         <tr t-if="o.display_total_volume_in_report">
-                            <td><strong>Total Volume</strong></td>
+                            <td>
+                                <strong>Total Volume</strong>
+                            </td>
                             <td class="text-right">
                                 <span t-field="o.total_volume" />
                                 <span t-field="o.total_volume_uom_id" />
@@ -68,14 +71,18 @@
                 <div class="col-4">
                     <table class="table table-sm">
                         <tr t-if="o.display_total_weight_in_report">
-                            <td><strong>Total Weight</strong></td>
+                            <td>
+                                <strong>Total Weight</strong>
+                            </td>
                             <td class="text-right">
                                 <span t-field="o.total_weight" />
                                 <span t-field="o.total_weight_uom_id" />
                             </td>
                         </tr>
                         <tr t-if="o.display_total_volume_in_report">
-                            <td><strong>Total Volume</strong></td>
+                            <td>
+                                <strong>Total Volume</strong>
+                            </td>
                             <td class="text-right">
                                 <span t-field="o.total_volume" />
                                 <span t-field="o.total_volume_uom_id" />
@@ -114,5 +121,4 @@
             </td>
         </xpath>
     </template>
-
 </odoo>
