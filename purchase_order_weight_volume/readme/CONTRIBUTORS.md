@@ -2,3 +2,5 @@
   - Ilyas \<<irazor147@gmail.com>\>
 - [Binhex](https://binhex.cloud/):
   - Deriman Alonso
+- [Camptocamp](https://www.camptocamp.com):
+  - Julien Coux \<<julien.coux@camptocamp.com>\>

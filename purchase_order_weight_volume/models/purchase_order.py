@@ -62,10 +62,10 @@ class PurchaseOrder(models.Model):
     @api.depends("company_id")
     def _compute_display_order(self):
         for purchase in self:
-            self.display_order_weight_in_po = (
+            purchase.display_order_weight_in_po = (
                 purchase.company_id.display_order_weight_in_po
             )
-            self.display_order_volume_in_po = (
+            purchase.display_order_volume_in_po = (
                 purchase.company_id.display_order_volume_in_po
             )
 
