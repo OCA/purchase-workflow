@@ -46,17 +46,17 @@ class SaleOrderLine(models.Model):
             "company_id": self.company_id.id,
         }
 
-    def _prepare_procurement_values(self, group_id=False):
+    def _prepare_procurement_values(self):
         """Inject in the procurement values the preferred vendor if any, and create
         supplierinfo record for it if it doesn't exist.
         """
-        res = super()._prepare_procurement_values(group_id=group_id)
+        res = super()._prepare_procurement_values()
         if self.vendor_id:
             product = self.product_id
             suppinfo = product.with_company(self.company_id.id)._select_seller(
                 partner_id=self.vendor_id,
                 quantity=self.product_uom_qty,
-                uom_id=self.product_uom,
+                uom_id=self.product_uom_id,
             )
             if not suppinfo:
                 # By default user with group_sale_salesman group can not creates
