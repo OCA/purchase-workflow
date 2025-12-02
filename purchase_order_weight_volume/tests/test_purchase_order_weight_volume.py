@@ -43,21 +43,20 @@ class TestPurchaseOrderWeightVolume(TransactionCase):
 
     @classmethod
     def _prepare_partner(cls):
-        cls.partner1 = cls.env.ref("base.res_partner_12")
+        cls.partner1 = cls.env["res.partner"].create({"name": "Azure Interior"})
 
     @classmethod
     def _prepare_product(cls):
-        cls.product1 = cls.env.ref("product.product_product_6")
-        cls.product1.write(
+        cls.product1 = cls.env["product.product"].create(
             {
+                "name": "Large Cabinet",
                 "weight": 5,
                 "volume": 50,
             }
         )
-
-        cls.product2 = cls.env.ref("product.product_product_7")
-        cls.product2.write(
+        cls.product2 = cls.env["product.product"].create(
             {
+                "name": "Storage Box",
                 "weight": 0.5,
                 "volume": 15,
             }
@@ -121,7 +120,7 @@ class TestPurchaseOrderWeightVolume(TransactionCase):
                 "name": product.name,
                 "product_id": product.id,
                 "product_qty": qty,
-                "product_uom": product.uom_id.id,
+                "product_uom_id": product.uom_id.id,
                 "price_unit": 100,
                 "date_planned": time.strftime(DEFAULT_SERVER_DATETIME_FORMAT),
             }
