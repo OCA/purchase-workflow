@@ -132,5 +132,5 @@ class PurchaseOrderLine(models.Model):
                     lambda s: s.state not in ("cancel", "done")
                     and s.product_id == line.product_id
                 )
-                moves.write({"price_unit": line._get_discounted_price_unit()})
+                moves.write({"price_unit": line._get_stock_move_price_unit()})
         return res
