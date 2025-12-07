@@ -4,10 +4,12 @@
 
 
 from odoo.tests import Form
+from odoo.tests.common import tagged
 
 from odoo.addons.base.tests.common import BaseCommon
 
 
+@tagged("post_install", "-at_install")
 class TestPurchaseAllowedProduct(BaseCommon):
     @classmethod
     def setUpClass(cls):
