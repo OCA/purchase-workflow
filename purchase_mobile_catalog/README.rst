@@ -36,6 +36,16 @@ lines.
 .. contents::
    :local:
 
+Installation
+============
+
+
+
+Configuration
+=============
+
+
+
 Usage
 =====
 
