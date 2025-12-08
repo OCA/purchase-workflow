@@ -36,11 +36,6 @@ lines.
 .. contents::
    :local:
 
-Configuration
-=============
-
-No configuration needed
-
 Usage
 =====
 
