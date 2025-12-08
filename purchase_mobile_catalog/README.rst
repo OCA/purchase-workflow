@@ -36,11 +36,6 @@ lines.
 .. contents::
    :local:
 
-Installation
-============
-
-To use this module, you need to install "purchase" addons.
-
 Configuration
 =============
 
