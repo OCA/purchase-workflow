@@ -67,8 +67,18 @@ class StockMove(models.Model):
 
     def _get_new_picking_values(self):
         vals = super()._get_new_picking_values()
-        if self.env.context.get("purchase_delivery_split_date") and not vals.get(
-            "partner_id"
-        ):
-            vals["partner_id"] = fields.first(self.purchase_line_id.partner_id).id
+        if self.env.context.get("purchase_delivery_split_date"):
+            is_dropship = all([move._is_dropshipped() for move in self])
+            if not vals.get("partner_id") or is_dropship:
+                vals["partner_id"] = fields.first(self.purchase_line_id.partner_id).id
+        return vals
+
+    def _assign_picking_values(self, picking):
+        vals = super()._assign_picking_values(picking)
+        # The core function will remove the partner from the picking if it is
+        # different than the one on the moves (Destination Address).
+        # For dropshipping the partner on the pick is the contact !
+        if self.env.context.get("purchase_delivery_split_date"):
+            if "partner_id" in vals.keys():
+                vals.pop("partner_id")
         return vals
