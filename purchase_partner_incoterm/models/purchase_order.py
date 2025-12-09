@@ -20,3 +20,23 @@ class PurchaseOrder(models.Model):
             self.partner_id.commercial_partner_id.purchase_incoterm_address_id
         )
         return res
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get("partner_id"):
+                partner = (
+                    self.env["res.partner"]
+                    .browse(vals["partner_id"])
+                    .commercial_partner_id
+                )
+                if "incoterm_id" not in vals and partner.purchase_incoterm_id:
+                    vals["incoterm_id"] = partner.purchase_incoterm_id.id
+                if (
+                    "incoterm_address_id" not in vals
+                    and partner.purchase_incoterm_address_id
+                ):
+                    vals["incoterm_address_id"] = (
+                        partner.purchase_incoterm_address_id.id
+                    )
+        return super().create(vals_list)
