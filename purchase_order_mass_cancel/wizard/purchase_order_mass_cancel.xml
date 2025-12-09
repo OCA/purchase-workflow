@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- add picking to batch  -->
+    <record id="purchase_order_mass_cancel_form" model="ir.ui.view">
+        <field name="name">purchase.order.mass.cancel.form</field>
+        <field name="model">purchase.order.mass.cancel</field>
+        <field name="arch" type="xml">
+            <form string="Mass Cancel">
+                Do you want to cancel all these purchase orders?
+                <footer>
+                    <button
+                        name="confirm_cancel"
+                        type="object"
+                        string="Confirm"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="purchase_order_mass_cancel_action" model="ir.actions.act_window">
+        <field name="name">Mass Cancel</field>
+        <field name="res_model">purchase.order.mass.cancel</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="purchase.model_purchase_order" />
+        <field name="binding_view_types">list</field>
+    </record>
+
+</odoo>
