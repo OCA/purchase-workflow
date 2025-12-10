@@ -10,7 +10,7 @@ from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 class TestPoAmountBlock(TransactionCase):
     def setUp(self):
-        super(TestPoAmountBlock, self).setUp()
+        super().setUp()
         self.users_obj = self.env["res.users"]
         self.po_obj = self.env["purchase.order"]
         self.po_block_obj = self.env["purchase.approval.block.reason"]
