@@ -35,7 +35,7 @@ class StockWarehouse(models.Model):
                 limit=1,
             )
         return {
-            "name": "%s: Subcontracting service rule" % self.name,
+            "name": f"{self.name}: Subcontracting service rule",
             "company_id": self.company_id.id,
             "action": "buy",
             "picking_type_id": picking_type.id,
@@ -54,6 +54,6 @@ class StockWarehouse(models.Model):
     @api.model
     @api.returns("self", lambda value: value.id)
     def create(self, vals):
-        res = super(StockWarehouse, self).create(vals)
+        res = super().create(vals)
         res._set_subcontracting_service_proc_rule()
         return res

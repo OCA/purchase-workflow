@@ -17,13 +17,13 @@ Subcontracted service
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/purchase-workflow/tree/15.0/subcontracted_service
+    :target: https://github.com/OCA/purchase-workflow/tree/18.0/subcontracted_service
     :alt: OCA/purchase-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/purchase-workflow-15-0/purchase-workflow-15-0-subcontracted_service
+    :target: https://translation.odoo-community.org/projects/purchase-workflow-18-0/purchase-workflow-18-0-subcontracted_service
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&target_branch=15.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -31,16 +31,17 @@ Subcontracted service
 This module allows a user to indicate that a service is subcontracted.
 It provides the ability to create purchases from procurement processes.
 
-This is a base module, by itself it does not provide any function to the end user.
-Upon installation of specific modules for sale / manufacturing, some new behaviors
-can be achieved, examples:
+This is a base module, by itself it does not provide any function to the
+end user. Upon installation of specific modules for sale /
+manufacturing, some new behaviors can be achieved, examples:
 
-* Add a service to a kit Bill of Materials, use the kit in a sales order. On
-  confirmation, an additional PO for the service is going to be created.
-* Add subcontracted services to BOMs. When a manufacturing order is created a
-  PO is triggered for the service to be subcontracted.
-* Add subcontracted services to sales order. When the SO is confirmed, it
-  creates a PO for the service.
+- Add a service to a kit Bill of Materials, use the kit in a sales
+  order. On confirmation, an additional PO for the service is going to
+  be created.
+- Add subcontracted services to BOMs. When a manufacturing order is
+  created a PO is triggered for the service to be subcontracted.
+- Add subcontracted services to sales order. When the SO is confirmed,
+  it creates a PO for the service.
 
 **Table of contents**
 
@@ -52,13 +53,14 @@ Configuration
 
 To configure this module, you need to:
 
-#. Configure your service product with the flag *Subcontracted Service*
+1. Configure your service product with the flag *Subcontracted Service*
    in the product form if this product should trigger a procurement.
-#. Add the supplier information in your product form in the *Purchase* tab.
-#. Additionally and despite a predefined rule is created in each warehouse,
-   you can configure the 'Subcontracting_service procurement rule' for each
-   warehouse through 'Inventory / Configuration / Warehouse Management /
-   Warehouse'.
+2. Add the supplier information in your product form in the *Purchase*
+   tab.
+3. Additionally and despite a predefined rule is created in each
+   warehouse, you can configure the 'Subcontracting_service procurement
+   rule' for each warehouse through 'Inventory / Configuration /
+   Warehouse Management / Warehouse'.
 
 Bug Tracker
 ===========
@@ -66,7 +68,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/purchase-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20subcontracted_service%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20subcontracted_service%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -74,21 +76,21 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Camptocamp
 * ForgeFlow
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Damien Crier <damien.crier@camptocamp.com>
-* Jordi Ballester Alomar <jordi.ballester@forgeflow.com>
-* Lois Rilo <lois.rilo@forgeflow.com>
-* Rubén Bravo <rubenred18@gmail.com>
+- Damien Crier <damien.crier@camptocamp.com>
+- Jordi Ballester Alomar <jordi.ballester@forgeflow.com>
+- Lois Rilo <lois.rilo@forgeflow.com>
+- Rubén Bravo <rubenred18@gmail.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -108,6 +110,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-LoisRForgeFlow| 
 
-This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/15.0/subcontracted_service>`_ project on GitHub.
+This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/18.0/subcontracted_service>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

@@ -9,7 +9,7 @@ from odoo.tests.common import TransactionCase
 
 class TestSubcontractedService(TransactionCase):
     def setUp(self):
-        super(TestSubcontractedService, self).setUp()
+        super().setUp()
         self.procurement_group_obj = self.env["procurement.group"]
         self.obj_warehouse = self.env["stock.warehouse"]
 
