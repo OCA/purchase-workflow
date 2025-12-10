@@ -400,15 +400,26 @@ it creates a PO for the service.</li>
 <div class="section" id="configuration">
 <h1><a class="toc-backref" href="#toc-entry-1">Configuration</a></h1>
 <p>To configure this module, you need to:</p>
-<ol class="arabic simple">
-<li>Configure your service product with the flag <em>Subcontracted Service</em>
-in the product form if this product should trigger a procurement.</li>
-<li>Add the supplier information in your product form in the <em>Purchase</em>
-tab.</li>
-<li>Additionally and despite a predefined rule is created in each
-warehouse, you can configure the ‘Subcontracting_service procurement
-rule’ for each warehouse through ‘Inventory / Configuration /
-Warehouse Management / Warehouse’.</li>
+<ol class="arabic">
+<li><p class="first">Configure your service product with the flag <em>Subcontracted Service</em>
+in the product form if this product should trigger a procurement. The
+product must be purchasable, ensure <em>Purchase</em> is checked.</p>
+</li>
+<li><p class="first">Add the supplier information in your product form in the <em>Purchase</em>
+tab.</p>
+</li>
+<li><p class="first">Additionally and despite a predefined rule is created in each
+warehouse, you can configure the “Subcontracting Service Procurement
+Rule” for each warehouse through:</p>
+<ul class="simple">
+<li>Inventory</li>
+<li>Configuration</li>
+<li>Warehouse Management</li>
+<li>Warehouse</li>
+</ul>
+<p>You must be a member of the technical group <em>Manage Push and Pull
+inventory flows</em> (<tt class="docutils literal">stock.group_adv_location</tt>)</p>
+</li>
 </ol>
 </div>
 <div class="section" id="bug-tracker">

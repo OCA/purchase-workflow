@@ -8,6 +8,40 @@ from odoo.tests.common import TransactionCase
 
 
 class TestSubcontractedService(TransactionCase):
+    def _get_common_procurement_values(self):
+        return {
+            "warehouse_id": self.test_wh,
+            "company_id": self.test_wh.company_id,
+            "date_planned": fields.Date.today(),
+            "group_id": self.test_wh.subcontracting_service_proc_rule_id.group_id,
+        }
+
+    def _run_common_procurement(self, product, qty, values):
+        self.procurement_group_obj.run(
+            [
+                self.procurement_group_obj.Procurement(
+                    product,
+                    qty,
+                    product.uom_id,
+                    self.test_wh.lot_stock_id,
+                    "test",
+                    "test",
+                    self.test_wh.company_id,
+                    values,
+                ),
+            ]
+        )
+
+    def _assert_procurement_purchase_line(self, po_line, product, qty):
+        self.assertEqual(len(po_line), 1)
+        self.assertEqual(po_line.product_qty, qty)
+        self.assertEqual(po_line.product_uom, product.uom_id)
+        self.assertEqual(
+            po_line.order_id.group_id,
+            self.test_wh.subcontracting_service_proc_rule_id.group_id,
+        )
+        self.assertEqual(po_line.company_id, self.test_wh.company_id)
+
     def setUp(self):
         super().setUp()
         self.procurement_group_obj = self.env["procurement.group"]
@@ -44,7 +78,7 @@ class TestSubcontractedService(TransactionCase):
             [("customer_rank", ">", 0)], limit=1
         )
 
-    def test_wh_stock_rule(self):
+    def test_01_wh_stock_rule(self):
         """Tests if the procurement rule for subcontracting services is
         assigned properly to the warehouse."""
         wh = self.test_wh
@@ -56,77 +90,41 @@ class TestSubcontractedService(TransactionCase):
         picking_wh = wh.subcontracting_service_proc_rule_id.picking_type_id.warehouse_id
         self.assertEqual(picking_wh, wh, "Rule wrongly configured.")
 
-    def test_subcontracted_service_procurement(self):
+    def test_02_subcontracted_service_procurement(self):
         """Test if the subcontracting service procurement rule is correctly
         assigned when creating a procurement for a subcontracted service
         product."""
-        values = {
-            "warehouse_id": self.test_wh,
-            "company_id": self.test_wh.company_id,
-            "date_planned": fields.Date.today(),
-            "group_id": self.test_wh.subcontracting_service_proc_rule_id.group_id,
-        }
+        self.assertTrue(self.pdt_service.purchase_ok, "Product must be purchasable.")
         self.pdt_service.property_subcontracted_service = True
-        self.procurement_group_obj.run(
-            [
-                self.procurement_group_obj.Procurement(
-                    self.pdt_service,
-                    1,
-                    self.pdt_service.uom_id,
-                    self.test_wh.lot_stock_id,
-                    "test",
-                    "test",
-                    self.test_wh.company_id,
-                    values,
-                ),
-            ]
-        )
+        values = self._get_common_procurement_values()
+        self._run_common_procurement(self.pdt_service, 1, values)
         po_line = self.env["purchase.order.line"].search(
             [("product_id", "=", self.pdt_service.id)], limit=1
         )
-        self.assertEqual(len(po_line), 1)
-        self.assertEqual(po_line.product_qty, 1)
-        self.assertEqual(po_line.product_uom, self.pdt_service.uom_id)
-        self.assertEqual(
-            po_line.order_id.group_id,
-            self.test_wh.subcontracting_service_proc_rule_id.group_id,
-        )
-        self.assertEqual(po_line.company_id, self.test_wh.company_id)
+        self._assert_procurement_purchase_line(po_line, self.pdt_service, 1)
 
-    def test_subcontracted_service_procurement2(self):
+    def test_03_subcontracted_service_procurement_no_routes(self):
         """Test if the subcontracting service procurement rule is correctly
         assigned when creating a procurement for a subcontracted service
-        product."""
-        values = {
-            "warehouse_id": self.test_wh,
-            "company_id": self.test_wh.company_id,
-            "date_planned": fields.Date.today(),
-            "group_id": self.test_wh.subcontracting_service_proc_rule_id.group_id,
-        }
+        product without routes."""
+        self.assertTrue(self.pdt_service.purchase_ok, "Product must be purchasable.")
         self.pdt_service.property_subcontracted_service = True
         self.pdt_service.route_ids = False
-        self.procurement_group_obj.run(
-            [
-                self.procurement_group_obj.Procurement(
-                    self.pdt_service,
-                    1,
-                    self.pdt_service.uom_id,
-                    self.test_wh.lot_stock_id,
-                    "test",
-                    "test",
-                    self.test_wh.company_id,
-                    values,
-                ),
-            ]
-        )
+        values = self._get_common_procurement_values()
+        self._run_common_procurement(self.pdt_service, 1, values)
         po_line = self.env["purchase.order.line"].search(
             [("product_id", "=", self.pdt_service.id)], limit=1
         )
-        self.assertEqual(len(po_line), 1)
-        self.assertEqual(po_line.product_qty, 1)
-        self.assertEqual(po_line.product_uom, self.pdt_service.uom_id)
-        self.assertEqual(
-            po_line.order_id.group_id,
-            self.test_wh.subcontracting_service_proc_rule_id.group_id,
+        self._assert_procurement_purchase_line(po_line, self.pdt_service, 1)
+
+    def test_04_subcontracted_service_purchase_not_ok(self):
+        """Test that no procurement is created when the product is not
+        purchasable even if it is a subcontracted service."""
+        self.pdt_service.property_subcontracted_service = True
+        self.pdt_service.purchase_ok = False
+        values = self._get_common_procurement_values()
+        self._run_common_procurement(self.pdt_service, 1, values)
+        po_line = self.env["purchase.order.line"].search(
+            [("product_id", "=", self.pdt_service.id)], limit=1
         )
-        self.assertEqual(po_line.company_id, self.test_wh.company_id)
+        self.assertEqual(len(po_line), 0)
