@@ -4,47 +4,50 @@
 
 import time
 
-from odoo.tests.common import TransactionCase
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
+from odoo.addons.base.tests.common import BaseCommon
 
-class TestPoAmountBlock(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.users_obj = self.env["res.users"]
-        self.po_obj = self.env["purchase.order"]
-        self.po_block_obj = self.env["purchase.approval.block.reason"]
+
+class TestPoAmountBlock(BaseCommon):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.users_obj = cls.env["res.users"]
+        cls.po_obj = cls.env["purchase.order"]
+        cls.po_block_obj = cls.env["purchase.approval.block.reason"]
         # company
-        self.company1 = self.env.ref("base.main_company")
+        cls.company1 = cls.env.ref("base.main_company")
         # groups
-        self.group_purchase_user = self.env.ref("purchase.group_purchase_user")
-        self.group_purchase_manager = self.env.ref("purchase.group_purchase_manager")
+        cls.group_purchase_user = cls.env.ref("purchase.group_purchase_user")
+        cls.group_purchase_manager = cls.env.ref("purchase.group_purchase_manager")
         # Partner
-        self.partner1 = self.env["res.partner"].create(
+        cls.partner1 = cls.env["res.partner"].create(
             {
                 "name": "Partner",
             }
         )
         # Products
-        self.product1 = self.env["product.product"].create({"name": "Product 1"})
-        self.product2 = self.env["product.product"].create({"name": "Product 2"})
-        self.product3 = self.env["product.product"].create({"name": "Product 3"})
+        cls.product1 = cls.env["product.product"].create({"name": "Product 1"})
+        cls.product2 = cls.env["product.product"].create({"name": "Product 2"})
+        cls.product3 = cls.env["product.product"].create({"name": "Product 3"})
         # Create users
-        self.user1_id = self._create_user(
+        cls.user1_id = cls._create_user(
             "user_1",
-            [self.group_purchase_user],
-            self.company1,
+            [cls.group_purchase_user],
+            cls.company1,
         )
-        self.user2_id = self._create_user(
+        cls.user2_id = cls._create_user(
             "user_2",
-            [self.group_purchase_manager],
-            self.company1,
+            [cls.group_purchase_manager],
+            cls.company1,
         )
 
-    def _create_user(self, login, groups, company):
+    @classmethod
+    def _create_user(cls, login, groups, company):
         """Create a user."""
         group_ids = [group.id for group in groups]
-        user = self.users_obj.with_context(no_reset_password=True).create(
+        user = cls.users_obj.with_context(no_reset_password=True).create(
             {
                 "name": "Purchase User",
                 "login": login,
@@ -57,7 +60,8 @@ class TestPoAmountBlock(TransactionCase):
         )
         return user.id
 
-    def _create_purchase(self, line_products):
+    @classmethod
+    def _create_purchase(cls, line_products):
         """Create a purchase order.
         ``line_products`` is a list of tuple [(product, qty)]
         """
@@ -72,12 +76,12 @@ class TestPoAmountBlock(TransactionCase):
                 "date_planned": time.strftime(DEFAULT_SERVER_DATETIME_FORMAT),
             }
             lines.append((0, 0, line_values))
-        purchase = self.po_obj.create(
+        purchase = cls.po_obj.create(
             {
-                "partner_id": self.partner1.id,
-                "approval_block_id": self.po_block_obj.id,
+                "partner_id": cls.partner1.id,
+                "approval_block_id": cls.po_block_obj.id,
                 "order_line": lines,
-                "company_id": self.company1.id,
+                "company_id": cls.company1.id,
             }
         )
         return purchase
