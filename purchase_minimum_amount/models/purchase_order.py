@@ -41,15 +41,15 @@ class PurchaseOrderLine(models.Model):
 
     @api.model_create_multi
     def create(self, mvals):
-        records = super(PurchaseOrderLine, self).create(mvals)
+        records = super().create(mvals)
         fields = self._check_minimum_amount_fields()
-        for vals, res in zip(mvals, records):
+        for vals, res in zip(mvals, records, strict=False):
             if any(field in vals for field in fields):
                 res.order_id._check_minimum_amount()
         return records
 
     def write(self, vals):
-        res = super(PurchaseOrderLine, self).write(vals)
+        res = super().write(vals)
         fields = self._check_minimum_amount_fields()
         for rec in self:
             if any(field in vals for field in fields):
