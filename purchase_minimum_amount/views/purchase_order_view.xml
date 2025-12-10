@@ -18,8 +18,8 @@
                 position="attributes"
             >
                 <attribute
-                    name="attrs"
-                >{'invisible': ['|',('approval_block_id', '=', False),('state', 'not in', ['draft', 'sent', 'to approve'])]}</attribute>
+                    name="invisible"
+                >(not approval_block_id or state not in ['draft', 'sent', 'to approve'])</attribute>
             </xpath>
         </field>
     </record>
