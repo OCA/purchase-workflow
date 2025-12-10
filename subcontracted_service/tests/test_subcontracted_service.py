@@ -25,7 +25,7 @@ class TestSubcontractedService(TransactionCase):
                     0,
                     0,
                     {
-                        "name": self.supplier.id,
+                        "partner_id": self.supplier.id,
                         "price": 100.0,
                     },
                 )

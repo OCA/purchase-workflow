@@ -7,7 +7,7 @@
 {
     "name": "Subcontracted service",
     "summary": "Subcontracted service",
-    "version": "15.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Purchase",
     "website": "https://github.com/OCA/purchase-workflow",
     "author": "Camptocamp, ForgeFlow, Odoo Community Association (OCA)",
@@ -17,7 +17,6 @@
     "installable": True,
     "depends": [
         "purchase_stock",
-        "stock_procurement_group_hook",
     ],
     "data": [
         "views/product_template.xml",
