@@ -17,7 +17,7 @@ class TestDelay(TransactionCase):
 
     def test_set_delay_from_form(self):
         form = Form(self.env["product.supplierinfo"])
-        form.name = self.supplier
+        form.partner_id = self.supplier
         # test compute method
         form.transport_delay = 5
         self.assertEqual(form.delay, 5)
@@ -27,7 +27,7 @@ class TestDelay(TransactionCase):
 
     def test_set_delay_from_create(self):
         record = self.env["product.supplierinfo"].create(
-            {"name": self.supplier.id, "transport_delay": 5, "supplier_delay": 5}
+            {"partner_id": self.supplier.id, "transport_delay": 5, "supplier_delay": 5}
         )
         # test compute method
         self.assertEqual(record.transport_delay, 5)
@@ -45,7 +45,7 @@ class TestDelay(TransactionCase):
     def test_set_delay_from_create_with_delay(self):
         record = self.env["product.supplierinfo"].create(
             {
-                "name": self.supplier.id,
+                "partner_id": self.supplier.id,
                 "transport_delay": 5,
                 "supplier_delay": 5,
                 "delay": 12,

@@ -23,7 +23,7 @@ class TestPurchaseOrderDelay(TransactionCase):
                         0,
                         0,
                         {
-                            "name": cls.vendor.id,
+                            "partner_id": cls.vendor.id,
                             "min_qty": 1,
                             "price": 10,
                             "supplier_delay": 6,
