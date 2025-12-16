@@ -40,6 +40,12 @@ class PurchaseOrder(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         for values in vals_list:
+            # If no order_type is provided, try to get it from partner
+            if not values.get("order_type") and values.get("partner_id"):
+                partner = self.env["res.partner"].browse(values["partner_id"])
+                if partner.purchase_type:
+                    values["order_type"] = partner.purchase_type.id
+
             if values.get("name", "/") == "/" and values.get("order_type"):
                 purchase_type = self.env["purchase.order.type"].browse(
                     values["order_type"]
