@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-07-22 06:54+0000\n"
-"PO-Revision-Date: 2023-06-10 12:10+0000\n"
+"PO-Revision-Date: 2025-12-16 12:42+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: purchase_request_to_rfq
 #: code:addons/purchase_request_to_rfq/models/purchase_order.py:24
@@ -175,7 +175,7 @@ msgstr ""
 #. module: purchase_request_to_rfq
 #: model:ir.model,name:purchase_request_to_rfq.model_stock_picking
 msgid "Picking List"
-msgstr "Lista Picking"
+msgstr "Lista prelievo"
 
 #. module: purchase_request_to_rfq
 #: field:purchase.request.line.make.purchase.order.item,product_id:0
