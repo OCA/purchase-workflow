@@ -4,14 +4,11 @@
         <field name="name">res.partner.purchase_type.form</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="priority">99</field>
         <field name="arch" type="xml">
-            <page name="sales_purchases" position="inside">
-                <field name="supplier_rank" invisible="1" />
-                <group colspan="2" col="2" invisible="supplier_rank == 0">
-                    <separator string="Purchase Order Type" colspan="2" />
-                    <field name="purchase_type" />
-                </group>
-            </page>
+            <group name="purchase" position="inside">
+                <field name="purchase_type" />
+            </group>
         </field>
     </record>
 </odoo>
