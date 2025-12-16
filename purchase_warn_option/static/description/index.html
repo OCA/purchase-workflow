@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -370,7 +369,7 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:37fde3f6af32026973ea02a550fad260f0738a51d8ffab62d63ff1fe08b38b3c
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Alpha" src="https://img.shields.io/badge/maturity-Alpha-red.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/lgpl-3.0-standalone.html"><img alt="License: LGPL-3" src="https://img.shields.io/badge/licence-LGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/purchase-workflow/tree/15.0/purchase_warn_option"><img alt="OCA/purchase-workflow" src="https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/purchase-workflow-15-0/purchase-workflow-15-0-purchase_warn_option"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&amp;target_branch=15.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Alpha" src="https://img.shields.io/badge/maturity-Alpha-red.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/lgpl-3.0-standalone.html"><img alt="License: LGPL-3" src="https://img.shields.io/badge/licence-LGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/purchase-workflow/tree/18.0/purchase_warn_option"><img alt="OCA/purchase-workflow" src="https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/purchase-workflow-18-0/purchase-workflow-18-0-purchase_warn_option"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&amp;target_branch=18.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
 <p>This module extends the functionality of Supplier and Product blocking
 messages to support more consistency between messages and to allow you
 to set a blocking message quickly.</p>
@@ -409,9 +408,11 @@ used when blocking suppliers or products in purchase models.</p>
 <h1><a class="toc-backref" href="#toc-entry-2">Usage</a></h1>
 <p>To use this module, you need to:</p>
 <ul class="simple">
-<li>Go to a Supplier</li>
+<li>Go to Purchase App &gt; Configuration Menu &gt; Settings</li>
+<li>Under <em>Orders</em> check <strong>Warnings</strong> checkbox</li>
+<li>Go to Orders &gt; Vendors &gt; Internal Notes Tab</li>
 <li>Select Warn Options under <em>Warning on the Purchase Order</em></li>
-<li>Go to a Product</li>
+<li>Go to a Product &gt; Purchase Tab</li>
 <li>Select Warn Options under <em>Warning when Purchasing this Product</em></li>
 </ul>
 </div>
@@ -420,7 +421,7 @@ used when blocking suppliers or products in purchase models.</p>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/purchase-workflow/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_warn_option%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_warn_option%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -435,6 +436,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <h2><a class="toc-backref" href="#toc-entry-6">Contributors</a></h2>
 <ul class="simple">
 <li>Eduardo de Miguel (<a class="reference external" href="https://www.moduon.team/">Moduon</a>)</li>
+<li>Sabrina Rodriguez (<a class="reference external" href="https://www.moduon.team/">Moduon</a>)</li>
 </ul>
 </div>
 <div class="section" id="maintainers">
@@ -448,7 +450,7 @@ mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
 <p>Current <a class="reference external" href="https://odoo-community.org/page/maintainer-role">maintainers</a>:</p>
 <p><a class="reference external image-reference" href="https://github.com/Shide"><img alt="Shide" src="https://github.com/Shide.png?size=40px" /></a> <a class="reference external image-reference" href="https://github.com/rafaelbn"><img alt="rafaelbn" src="https://github.com/rafaelbn.png?size=40px" /></a></p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/purchase-workflow/tree/15.0/purchase_warn_option">OCA/purchase-workflow</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/purchase-workflow/tree/18.0/purchase_warn_option">OCA/purchase-workflow</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>

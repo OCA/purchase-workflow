@@ -4,7 +4,7 @@
 {
     "name": "Purchase Warn Option",
     "summary": "Add Options to Purchase Warn Messages",
-    "version": "15.0.1.0.0",
+    "version": "18.0.1.0.0",
     "development_status": "Alpha",
     "category": "Inventory/Purchase",
     "website": "https://github.com/OCA/purchase-workflow",

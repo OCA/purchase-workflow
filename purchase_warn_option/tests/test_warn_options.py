@@ -1,7 +1,6 @@
 # Copyright 2024 Moduon Team S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 
-from odoo.tests import Form
 from odoo.tests.common import TransactionCase
 
 
@@ -50,20 +49,30 @@ class TestWarnOptions(TransactionCase):
 
     def test_partner_warn_options(self):
         """Test Warn Options on Partner Form"""
-        with Form(self.partner) as partner_f:
-            partner_f.purchase_warn = "warning"
-            partner_f.purchase_warn_option = self.partner_purchase_warn_warning
-            self.assertEqual(partner_f.purchase_warn_msg, "warning")
-            partner_f.purchase_warn = "block"
-            partner_f.purchase_warn_option = self.partner_purchase_warn_blocking
-            self.assertEqual(partner_f.purchase_warn_msg, "block")
+        partner_f = self.env["res.partner"].new(
+            {
+                "purchase_warn": "warning",
+                "purchase_warn_option": self.partner_purchase_warn_warning.id,
+            }
+        )
+        partner_f._onchange_purchase_warn_option()
+        self.assertEqual(partner_f.purchase_warn_msg, "warning")
+        partner_f.purchase_warn = "block"
+        partner_f.purchase_warn_option = self.partner_purchase_warn_blocking.id
+        partner_f._onchange_purchase_warn_option()
+        self.assertEqual(partner_f.purchase_warn_msg, "block")
 
     def test_product_warn_options(self):
         """Test Warn Options on Product Form"""
-        with Form(self.product) as product_f:
-            product_f.purchase_line_warn = "warning"
-            product_f.purchase_line_warn_option = self.product_purchase_warn_warning
-            self.assertEqual(product_f.purchase_line_warn_msg, "warning")
-            product_f.purchase_line_warn = "block"
-            product_f.purchase_line_warn_option = self.product_purchase_warn_blocking
-            self.assertEqual(product_f.purchase_line_warn_msg, "block")
+        product_f = self.env["product.template"].new(
+            {
+                "purchase_line_warn": "warning",
+                "purchase_line_warn_option": self.product_purchase_warn_warning.id,
+            }
+        )
+        product_f._onchange_purchase_line_warn_option()
+        self.assertEqual(product_f.purchase_line_warn_msg, "warning")
+        product_f.purchase_line_warn = "block"
+        product_f.purchase_line_warn_option = self.product_purchase_warn_blocking.id
+        product_f._onchange_purchase_line_warn_option()
+        self.assertEqual(product_f.purchase_line_warn_msg, "block")

@@ -10,9 +10,9 @@
             <xpath expr="//field[@name='purchase_warn_msg']" position="before">
                 <field
                     name="purchase_warn_option"
-                    domain="[('allowed_warning_type', '=', purchase_warn), ('allowed_warning_usage', 'in', ('all', 'partner_purchase_warn'))]"
+                    domain="['|', ('allowed_warning_type', '=', False), ('allowed_warning_type', '=', purchase_warn), ('allowed_warning_usage', 'in', ('all', 'partner_purchase_warn'))]"
                     context="{'default_allowed_warning_usage': 'partner_purchase_warn', 'default_allowed_warning_type': purchase_warn}"
-                    attrs="{'invisible':[('purchase_warn', 'in', (False, 'no-message'))]}"
+                    invisible="purchase_warn in (False, 'no-message')"
                     placeholder="Select a warning option"
                     nolabel="1"
                     colspan="2"

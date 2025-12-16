@@ -17,13 +17,13 @@ Purchase Warn Option
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/purchase-workflow/tree/15.0/purchase_warn_option
+    :target: https://github.com/OCA/purchase-workflow/tree/18.0/purchase_warn_option
     :alt: OCA/purchase-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/purchase-workflow-15-0/purchase-workflow-15-0-purchase_warn_option
+    :target: https://translation.odoo-community.org/projects/purchase-workflow-18-0/purchase-workflow-18-0-purchase_warn_option
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&target_branch=15.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -50,19 +50,21 @@ used when blocking suppliers or products in purchase models.
 
 If you need this module for those reasons, these might interest you too:
 
--  sale_warn_option
--  account_warn_option
--  stock_warn_option
+- sale_warn_option
+- account_warn_option
+- stock_warn_option
 
 Usage
 =====
 
 To use this module, you need to:
 
--  Go to a Supplier
--  Select Warn Options under *Warning on the Purchase Order*
--  Go to a Product
--  Select Warn Options under *Warning when Purchasing this Product*
+- Go to Purchase App > Configuration Menu > Settings
+- Under *Orders* check **Warnings** checkbox
+- Go to Orders > Vendors > Internal Notes Tab
+- Select Warn Options under *Warning on the Purchase Order*
+- Go to a Product > Purchase Tab
+- Select Warn Options under *Warning when Purchasing this Product*
 
 Bug Tracker
 ===========
@@ -70,7 +72,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/purchase-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_warn_option%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_warn_option%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -85,7 +87,8 @@ Authors
 Contributors
 ------------
 
--  Eduardo de Miguel (`Moduon <https://www.moduon.team/>`__)
+- Eduardo de Miguel (`Moduon <https://www.moduon.team/>`__)
+- Sabrina Rodriguez (`Moduon <https://www.moduon.team/>`__)
 
 Maintainers
 -----------
@@ -111,6 +114,6 @@ Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-Shide| |maintainer-rafaelbn| 
 
-This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/15.0/purchase_warn_option>`_ project on GitHub.
+This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/18.0/purchase_warn_option>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
