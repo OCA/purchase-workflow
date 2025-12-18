@@ -26,7 +26,7 @@ addon | version | maintainers | summary
 [procurement_purchase_requisition_generation_dropshipping](procurement_purchase_requisition_generation_dropshipping/) | 17.0.1.0.0 | <a href='https://github.com/carlos-lopez-tecnativa'><img src='https://github.com/carlos-lopez-tecnativa.png' width='32' height='32' style='border-radius:50%;' alt='carlos-lopez-tecnativa'/></a> | Procurement purchase requisition dropshipping
 [procurement_purchase_sale_no_grouping](procurement_purchase_sale_no_grouping/) | 17.0.1.0.0 |  | Procurement Purchase Service No Grouping
 [product_supplier_code_purchase](product_supplier_code_purchase/) | 17.0.1.0.0 |  | This module adds to the purchase order line the supplier code defined in the product.
-[product_supplierinfo_disable_autocreation](product_supplierinfo_disable_autocreation/) | 17.0.1.0.0 |  | Add option to disable automatic creation of pricelists for suppliers
+[product_supplierinfo_disable_autocreation](product_supplierinfo_disable_autocreation/) | 17.0.1.0.1 |  | Add option to disable automatic creation of pricelists for suppliers
 [purchase_advance_payment](purchase_advance_payment/) | 17.0.1.5.1 | <a href='https://github.com/LoisRForgeFlow'><img src='https://github.com/LoisRForgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='LoisRForgeFlow'/></a> | Allow to add advance payments on purchase orders
 [purchase_all_shipments](purchase_all_shipments/) | 17.0.1.0.0 |  | Purchase All Shipments
 [purchase_allowed_product](purchase_allowed_product/) | 17.0.1.0.0 |  | This module allows to select only products that can be supplied by the vendor
