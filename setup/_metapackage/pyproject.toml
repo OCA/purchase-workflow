@@ -1,8 +1,9 @@
 [project]
 name = "odoo-addons-oca-purchase-workflow"
-version = "19.0.20251219.0"
+version = "19.0.20251219.1"
 dependencies = [
     "odoo-addon-purchase_order_owner==19.0.*",
+    "odoo-addon-purchase_order_type==19.0.*",
     "odoo-addon-purchase_order_weight_volume==19.0.*",
 ]
 classifiers=[
