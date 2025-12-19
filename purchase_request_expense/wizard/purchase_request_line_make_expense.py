@@ -54,7 +54,6 @@ class PurchaseRequestLineMakeExpense(models.TransientModel):
     @api.model
     def _check_valid_request_line(self, request_line_ids):
         picking_type = False
-        company_id = False
 
         for line in self.env["purchase.request.line"].browse(request_line_ids):
             if line.request_id.state == "done":
@@ -66,12 +65,6 @@ class PurchaseRequestLineMakeExpense(models.TransientModel):
 
             if line.purchase_state == "done":
                 raise UserError(_("The purchase has already been completed."))
-
-            line_company_id = line.company_id and line.company_id.id or False
-            if company_id is not False and line_company_id != company_id:
-                raise UserError(_("You have to select lines from the same company."))
-            else:
-                company_id = line_company_id
 
             line_picking_type = line.request_id.picking_type_id or False
             if not line_picking_type:
@@ -85,7 +78,7 @@ class PurchaseRequestLineMakeExpense(models.TransientModel):
 
     @api.model
     def check_group(self, request_lines):
-        if len(list(set(request_lines.mapped("request_id.group_id")))) > 1:
+        if len(set(request_lines.mapped("request_id.group_id"))) > 1:
             raise UserError(
                 _(
                     "You cannot create a single purchase order from "
@@ -113,10 +106,10 @@ class PurchaseRequestLineMakeExpense(models.TransientModel):
     @api.model
     def default_get(self, fields):
         res = super().default_get(fields)
-        active_model = self._context.get("active_model", False)
+        active_model = self.env.context.get("active_model", False)
         request_line_ids = []
         if active_model == "purchase.request.line":
-            request_line_ids += self._context.get("active_ids", [])
+            request_line_ids += self.env.context.get("active_ids", [])
         elif active_model == "purchase.request":
             request_ids = self.env.context.get("active_ids", False)
             request_line_ids += (
@@ -136,11 +129,6 @@ class PurchaseRequestLineMakeExpense(models.TransientModel):
                 % item.name
             )
 
-        # Check if the product is an advance product
-        advance_product = self.env.ref(
-            "hr_expense_advance_clearing.product_emp_advance", raise_if_not_found=False
-        )
-
         vals = {
             "name": item.name,
             "employee_id": self.employee_id.id,
@@ -157,30 +145,6 @@ class PurchaseRequestLineMakeExpense(models.TransientModel):
             else False,
         }
 
-        # Only add advance-related fields if the module is installed
-        if self._has_expense_advance_clearing():
-            advance_product = self.env.ref(
-                "hr_expense_advance_clearing.product_emp_advance",
-                raise_if_not_found=False,
-            )
-            if advance_product and item.product_id.id == advance_product.id:
-                vals["advance"] = True
-                if advance_product.property_account_expense_id:
-                    vals["account_id"] = advance_product.property_account_expense_id.id
-                else:
-                    category_account = (
-                        advance_product.categ_id.property_account_expense_categ_id
-                    )
-                    if category_account:
-                        vals["account_id"] = category_account.id
-                    else:
-                        raise UserError(
-                            _(
-                                "No expense account found for advance product. "
-                                "Please configure it first."
-                            )
-                        )
-
         return vals
 
     def make_expense(self):
@@ -189,25 +153,15 @@ class PurchaseRequestLineMakeExpense(models.TransientModel):
         if not self.item_ids:
             raise UserError(_("You must select at least one expense line."))
 
-        # Validate all items have products before proceeding
-        for item in self.item_ids:
-            if not item.product_id:
-                raise UserError(
-                    _(
-                        "Product is required for all expense lines. "
-                        "Please select a product for '%s'"
-                    )
-                    % item.name
-                )
-
         expense_obj = self.env["hr.expense"]
-        expenses = self.env["hr.expense"]
+        expense_vals_list = []
 
+        # Validate and prepare vals
         for item in self.item_ids:
             if not item.product_qty:
                 raise UserError(
                     _("Quantity must be greater than 0 for product %s")
-                    % item.product_id.name
+                    % item.product_id.display_name
                 )
 
             if not item.product_id:
@@ -215,10 +169,11 @@ class PurchaseRequestLineMakeExpense(models.TransientModel):
                     _("Product is required for line with description: %s") % item.name
                 )
 
-            # Create expense
-            expense_vals = self._prepare_expense(item)
-            expense = expense_obj.create(expense_vals)
-            expenses += expense
+            # collect vals
+            expense_vals_list.append(self._prepare_expense(item))
+
+        # Create all expenses at once
+        expenses = expense_obj.create(expense_vals_list)
 
         # Show the created expenses
         action = {
@@ -244,6 +199,25 @@ class PurchaseRequestLineMakeExpense(models.TransientModel):
 class PurchaseRequestLineMakeExpenseItem(models.TransientModel):
     _name = "purchase.request.line.make.expense.item"
     _description = "Purchase Request Line Make Expense Item"
+
+    name = fields.Char(
+        string="Description",
+        required=True,
+        compute="_compute_from_product_id",
+        store=True,
+        readonly=False,
+    )
+    product_qty = fields.Float(
+        string="Quantity to purchase", digits="Product Unit of Measure"
+    )
+    product_uom_id = fields.Many2one(
+        comodel_name="uom.uom",
+        string="UoM",
+        compute="_compute_from_product_id",
+        store=True,
+        readonly=False,
+    )
+    estimated_cost = fields.Float(string="Estimated Cost")
 
     wiz_id = fields.Many2one(
         comodel_name="purchase.request.line.make.expense",
@@ -278,43 +252,23 @@ class PurchaseRequestLineMakeExpenseItem(models.TransientModel):
         readonly=False,
     )
 
-    @api.onchange("line_id")
-    def _onchange_line_id(self):
-        if self.line_id:
-            # Get advance product for filtering
-            advance_product = self.env.ref(
-                "hr_expense_advance_clearing.product_emp_advance",
-                raise_if_not_found=False,
-            )
+    @api.depends("line_id", "line_id.product_id")
+    def _compute_product_id(self):
+        for record in self:
+            if record.line_id and record.line_id.product_id:
+                record.product_id = record.line_id.product_id
+            elif not record.product_id:
+                record.product_id = False
 
-            if self.line_id.product_id and self.line_id.product_id.id != (
-                advance_product.id if advance_product else False
-            ):
-                self.product_id = self.line_id.product_id
+    @api.depends("product_id")
+    def _compute_from_product_id(self):
+        for rec in self:
+            if rec.product_id:
+                name = rec.product_id.name
+                if rec.product_id.description_purchase:
+                    name += "\n" + rec.product_id.description_purchase
+                rec.name = name
+                rec.product_uom_id = rec.product_id.uom_id
             else:
-                # Try to find a default expense product
-                product = self.env["product.product"].search(
-                    [
-                        ("can_be_expensed", "=", True),
-                        ("type", "=", "service"),
-                    ],
-                    limit=1,
-                )
-                if product:
-                    self.product_id = product.id
-
-    name = fields.Char(string="Description", required=True)
-    product_qty = fields.Float(
-        string="Quantity to purchase", digits="Product Unit of Measure"
-    )
-    product_uom_id = fields.Many2one(comodel_name="uom.uom", string="UoM")
-    estimated_cost = fields.Float(string="Estimated Cost")
-
-    @api.onchange("product_id")
-    def onchange_product_id(self):
-        if self.product_id:
-            name = self.product_id.name
-            if self.product_id.description_purchase:
-                name += "\n" + self.product_id.description_purchase
-            self.product_uom_id = self.product_id.uom_id.id
-            self.name = name
+                rec.name = False
+                rec.product_uom_id = False
