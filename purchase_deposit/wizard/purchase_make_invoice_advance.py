@@ -56,7 +56,9 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
     def _compute_deposit_account_id(self):
         product = self.purchase_deposit_product_id
         self.deposit_account_id = product.property_account_expense_id
-        self.deposit_taxes_id = product.supplier_taxes_id
+        self.deposit_taxes_id = product.supplier_taxes_id.filtered(
+            lambda tx: tx.company_id == self.env.company
+        )
 
     def _prepare_deposit_val(self, order, po_line, amount):
         ir_property_obj = self.env["ir.property"]
