@@ -12,10 +12,10 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-24 07:53+0000\n"
-"PO-Revision-Date: 2026-01-02 22:18+0000\n"
+"PO-Revision-Date: 2026-01-02 22:26+0000\n"
 "Last-Translator: MJD <maximilian@si-gmbh.de>\n"
-"Language-Team: German (http://www.transifex.com/oca/OCA-purchase-"
-"workflow-10-0/language/de/)\n"
+"Language-Team: German (http://www.transifex.com/oca/"
+"OCA-purchase-workflow-10-0/language/de/)\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1346,12 +1346,12 @@ msgstr ""
 #. odoo-python
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
 msgid "The purchase has already been completed."
-msgstr ""
+msgstr "Die Bestellung ist bereits abgeschlossen."
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__qty_to_buy
 msgid "There is some pending qty to buy"
-msgstr ""
+msgstr "Eine ausstehende Menge ist noch zu beschaffen"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
@@ -1361,9 +1361,8 @@ msgstr "Zu genehmigen"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__to_approve_allowed
-#, fuzzy
 msgid "To Approve Allowed"
-msgstr "Zu genehmigen"
+msgstr "Genehmigen erlaubt"
 
 #. module: purchase_request
 #: model:ir.model.fields.selection,name:purchase_request.selection__purchase_request__state__to_approve
@@ -1373,25 +1372,25 @@ msgstr "Zu genehmigen"
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__estimated_cost
 msgid "Total Estimated Cost"
-msgstr ""
+msgstr "Geschätzte Gesamtkosten"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_line_details
 msgid "Tracking"
-msgstr ""
+msgstr "Nachverfolgung"
 
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/models/stock_move_line.py:0
 msgid "Transferred quantity"
-msgstr ""
+msgstr "Transferierte Menge"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__activity_exception_decoration
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
+msgstr "Art der aufgezeichneten Ausnahmeaktivität."
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
@@ -1406,7 +1405,7 @@ msgstr "Nicht zugewiesene Anfrage"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Uncancelled"
-msgstr ""
+msgstr "Nicht storniert"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
@@ -1424,20 +1423,19 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_search_sub
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_tree_sub
 msgid "Vendor"
-msgstr ""
+msgstr "Hersteller"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__website_message_ids
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__website_message_ids
-#, fuzzy
 msgid "Website Messages"
-msgstr "Ungelesene Meldungen"
+msgstr "Website-Mitteilungen"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__website_message_ids
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "Website-Kommunikationsverlauf"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line_make_purchase_order__sync_data_planned
@@ -1445,6 +1443,9 @@ msgid ""
 "When checked, PO lines on the selected purchase order are only reused if the "
 "scheduled date matches as well."
 msgstr ""
+"Wenn diese Option aktiviert ist, werden die Bestellpositionen der "
+"ausgewählten Bestellung nur dann wiederverwendet, wenn auch das geplante "
+"Datum übereinstimmt."
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__wiz_id
@@ -1458,6 +1459,8 @@ msgid ""
 "You can only delete a purchase request line if the purchase request is in "
 "draft state."
 msgstr ""
+"Sie können eine Bestellanforderungsposition nur löschen, wenn sich die "
+"Bestellanforderung im Entwurfsstatus befindet."
 
 #. module: purchase_request
 #. odoo-python
@@ -1465,6 +1468,8 @@ msgstr ""
 msgid ""
 "You can't request an approval for a purchase request which is empty. (%s)"
 msgstr ""
+"Sie können keine Genehmigung für eine leere Bestellanforderung beantragen. "
+"(%s)"
 
 #. module: purchase_request
 #. odoo-python
@@ -1473,18 +1478,21 @@ msgid ""
 "You cannot create a single purchase order from purchase requests that have "
 "different procurement group."
 msgstr ""
+"Sie können nicht nur eine Bestellung aus Bestellanforderungen von "
+"unterschiedlichen Beschaffungsgruppen erstellen."
 
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/models/purchase_request.py:0
 msgid "You cannot delete a purchase request which is not draft."
-msgstr ""
+msgstr "Sie können keine Bestellanforderung löschen, die kein Entwurf ist."
 
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/models/purchase_request_line.py:0
 msgid "You cannot delete a record that refers to purchase lines!"
 msgstr ""
+"Sie können keinen Datensatz löschen, der sich auf Bestellpositionen bezieht!"
 
 #. module: purchase_request
 #. odoo-python
