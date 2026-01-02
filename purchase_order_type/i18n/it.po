@@ -140,7 +140,6 @@ msgstr "Ordine di acquisto"
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_res_partner__purchase_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_res_users__purchase_type
-#: model_terms:ir.ui.view,arch_db:purchase_order_type.res_partner_purchase_type_form_view
 msgid "Purchase Order Type"
 msgstr "Tipo Ordine Acquisto"
 
