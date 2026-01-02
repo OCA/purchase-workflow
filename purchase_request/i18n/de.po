@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-24 07:53+0000\n"
-"PO-Revision-Date: 2026-01-02 22:26+0000\n"
+"PO-Revision-Date: 2026-01-02 22:51+0000\n"
 "Last-Translator: MJD <maximilian@si-gmbh.de>\n"
 "Language-Team: German (http://www.transifex.com/oca/"
 "OCA-purchase-workflow-10-0/language/de/)\n"
@@ -1498,19 +1498,19 @@ msgstr ""
 #. odoo-python
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
 msgid "You have to enter a Picking Type."
-msgstr ""
+msgstr "Sie müssen eine Kommissionierart angeben."
 
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
 msgid "You have to select lines from the same Picking Type."
-msgstr ""
+msgstr "Sie müssen Positionen aus demselben Kommissioniertyp auswählen."
 
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
 msgid "You have to select lines from the same company."
-msgstr ""
+msgstr "Sie müssen Zeilen aus demselben Unternehmen auswählen."
 
 #, fuzzy
 #~ msgid "Purchase Request %s is not approved"
