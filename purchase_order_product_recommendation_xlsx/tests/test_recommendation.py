@@ -21,8 +21,13 @@ class RecommendationCase(test_recommendation.RecommendationCase):
     def test_export_wizard(self):
         """Recommendations are OK."""
         wizard = self.wizard()
-        report_xlsx = self.env.ref(
+        report = self.env.ref(
             "purchase_order_product_recommendation_xlsx.recommendation_xlsx"
-        )._render(wizard.ids)
+        )
+        report_xlsx = report._render_xlsx(
+            report.report_name,
+            wizard.ids,
+            data=None,
+        )
         self.assertGreaterEqual(len(report_xlsx[0]), 1)
         self.assertEqual(report_xlsx[1], "xlsx")

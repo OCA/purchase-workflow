@@ -64,11 +64,11 @@ class RecommendationXlsx(models.AbstractModel):
         for line in book.line_ids:
             if line.currency_id.position == "after":
                 monetary_format = workbook.add_format(
-                    {"num_format": "0.00 %s" % line.currency_id.symbol}
+                    {"num_format": f"0.00 {line.currency_id.symbol}"}
                 )
             else:
                 monetary_format = workbook.add_format(
-                    {"num_format": "%s 0.00" % line.currency_id.symbol}
+                    {"num_format": f"0.00 {line.currency_id.symbol}"}
                 )
             sheet.write(next_row, 0, line.product_id.display_name)
             next_col = 1
