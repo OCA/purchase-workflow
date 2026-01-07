@@ -13,6 +13,12 @@ class Test(BaseCommon):
         cls.cont_b = cls.env["purchase.container"].create({"code": "BB"})
         cls.incoterm_id = cls.env.ref("account.incoterm_FCA")
 
+    def _validate_picking(self, picking):
+        """Helper to validate picking by setting quantities and validating."""
+        for move in picking.move_ids:
+            move.quantity_done = move.product_uom_qty
+        picking.button_validate()
+
     def test_container_by_purchase(self):
         # first PO
         po = self.get_po()
@@ -21,12 +27,12 @@ class Test(BaseCommon):
         pick01.container_id = self.cont_a.id
         self.assertIn(self.cont_a, po.container_ids)
         self.assertEqual(self.cont_a.purchase_order_count, 1)
-        pick01.button_validate()
+        self._validate_picking(pick01)
         # this update triggers a new picking
         po.order_line[0].product_qty = 7
         pick02 = po.picking_ids.filtered(lambda x: x.state != "done")
         pick02.container_id = self.cont_b.id
-        pick02.button_validate()
+        self._validate_picking(pick02)
         self.assertEqual(pick02.state, "done")
         self.assertIn(self.cont_b, po.container_ids)
         self.assertEqual(self.cont_b.purchase_order_count, 1)
@@ -35,7 +41,7 @@ class Test(BaseCommon):
         po2.button_confirm()
         pick11 = po2.picking_ids
         pick11.container_id = self.cont_b.id
-        pick11.button_validate()
+        self._validate_picking(pick11)
         self.assertIn(self.cont_b, po2.container_ids)
         self.assertEqual(pick11.state, "done")
         self.assertEqual(len(self.cont_b.purchase_order_ids), 2)
