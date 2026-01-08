@@ -5,7 +5,7 @@
 
 {
     "name": "Purchase Delivery Split Date",
-    "version": "18.0.2.0.2",
+    "version": "18.0.2.0.3",
     "summary": "Allows Purchase Order you confirm to generate one Incoming "
     "Shipment for each expected date indicated in the Purchase Order Lines",
     "author": (
