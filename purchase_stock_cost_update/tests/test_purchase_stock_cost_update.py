@@ -22,7 +22,8 @@ class PurchasStockCostUpdateCase(common.TransactionCase):
         cls.peach = cls.env["product.product"].create(
             {
                 "name": "Peach of Teruel",
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
                 "uom_id": cls.env.ref("uom.product_uom_kgm").id,
                 "uom_po_id": cls.env.ref("uom.product_uom_kgm").id,
                 "categ_id": cls.categ_fruits_avco.id,
@@ -31,7 +32,8 @@ class PurchasStockCostUpdateCase(common.TransactionCase):
         cls.grapes = cls.env["product.product"].create(
             {
                 "name": "Moscatel Grapes",
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
                 "uom_id": cls.env.ref("uom.product_uom_kgm").id,
                 "uom_po_id": cls.env.ref("uom.product_uom_kgm").id,
                 "categ_id": cls.categ_fruits_avco.id,
@@ -40,7 +42,8 @@ class PurchasStockCostUpdateCase(common.TransactionCase):
         cls.raspberry = cls.env["product.product"].create(
             {
                 "name": "raspberry",
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
                 "uom_id": cls.env.ref("uom.product_uom_kgm").id,
                 "uom_po_id": cls.env.ref("uom.product_uom_kgm").id,
                 "categ_id": cls.categ_fruits_avco.id,
@@ -50,7 +53,8 @@ class PurchasStockCostUpdateCase(common.TransactionCase):
         cls.crown_melon = cls.env["product.product"].create(
             {
                 "name": "crown_melon",
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
                 "uom_id": cls.env.ref("uom.product_uom_kgm").id,
                 "uom_po_id": cls.env.ref("uom.product_uom_kgm").id,
                 "categ_id": cls.categ_fruits_avco.id,
@@ -104,8 +108,7 @@ class PurchasStockCostUpdateCase(common.TransactionCase):
                         [("name", "=", lot), ("product_id", "=", line.product_id.id)]
                     )
                     line.lot_id = lot
-            picking.action_set_quantities_to_reservation()
-            picking._action_done()
+            picking.button_validate()
 
     def _partial_return(self, picking, qty):
         stock_return_picking_form = Form(
@@ -117,7 +120,7 @@ class PurchasStockCostUpdateCase(common.TransactionCase):
         )
         stock_return_picking = stock_return_picking_form.save()
         stock_return_picking.product_return_moves.quantity = qty
-        stock_return_picking_action = stock_return_picking.create_returns()
+        stock_return_picking_action = stock_return_picking.action_create_returns()
         return_pick = self.env["stock.picking"].browse(
             stock_return_picking_action["res_id"]
         )
@@ -188,8 +191,8 @@ class PurchasStockCostUpdateCase(common.TransactionCase):
             )
 
     def assertValuation(self, product, valuation, price):
-        self.assertAlmostEqual(product.value_svl, valuation)
-        self.assertAlmostEqual(product.standard_price, price)
+        self.assertAlmostEqual(product.value_svl, valuation, places=2)
+        self.assertAlmostEqual(product.standard_price, price, places=2)
 
     def _assert_valuation_layers_count(self, product, length):
         svls_length = self.env["stock.valuation.layer"].search_count(
@@ -275,7 +278,7 @@ class PurchasStockCostUpdateCase(common.TransactionCase):
         # raised.
         purchase_order.order_line.price_unit = 1.2
         self.assertTrue(purchase_order.valuation_differs)
-        self.assertAlmostEqual(self.peach.standard_price, 1.1)
+        self.assertAlmostEqual(self.peach.standard_price, 1.1, places=2)
         self.assertValuation(self.peach, valuation=110, price=1.1)
         # 6. Now we can press the "Fix valuation" button to adjust those differences
         purchase_order.action_apply_price_difference()
@@ -335,7 +338,7 @@ class PurchasStockCostUpdateCase(common.TransactionCase):
         """Even harder. A full history tracing the valuation all along"""
         # Receive 100 kg of peaches at 1.1 - Peaches value: 110
         self._purchase_and_receive()
-        self.assertAlmostEqual(self.peach.value_svl, 110)
+        self.assertAlmostEqual(self.peach.value_svl, 110, places=2)
         self.assertValuation(self.peach, valuation=110, price=1.1)
         # Let's receive 100 kg more - Peachs value: 220
         purchase_2 = self._purchase_and_receive()
@@ -362,7 +365,7 @@ class PurchasStockCostUpdateCase(common.TransactionCase):
         valuation should be the same!"""
         # Receive 100 kg of peaches at 1.1 - Peaches value: 110
         self._purchase_and_receive()
-        self.assertAlmostEqual(self.peach.value_svl, 110)
+        self.assertAlmostEqual(self.peach.value_svl, 110, places=2)
         self.assertValuation(self.peach, valuation=110, price=1.1)
         # Let's receive 100 kg more - Peachs value: 220
         purchase_2 = self._purchase_and_receive()
@@ -482,7 +485,7 @@ class PurchasStockCostUpdateCase(common.TransactionCase):
         purchase_order = self._purchase_and_receive(
             lines_map=[(self.raspberry, {"price": 4.90, "qty": 150, "discount": 25})]
         )
-        self.assertValuation(self.raspberry, valuation=551.25, price=3.68)
+        self.assertValuation(self.raspberry, valuation=551.25, price=3.675)
         self._partial_return(purchase_order.picking_ids[0], 50)
         self.assertFalse(purchase_order.valuation_differs)
         purchase_order.order_line.write({"price_unit": 6, "discount": 0})

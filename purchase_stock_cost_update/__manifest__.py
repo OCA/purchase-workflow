@@ -3,7 +3,7 @@
 {
     "name": "Update costs from purchase",
     "summary": "Allows to update valuation layers once the purchase is received",
-    "version": "16.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Purchase Management",
     "author": "Moduon, Odoo Community Association (OCA)",
     "maintainers": ["chienandalu", "rafaelbn"],

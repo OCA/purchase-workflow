@@ -43,7 +43,7 @@ class PurchaseOrder(models.Model):
 
     def action_apply_price_difference(self):
         self.ensure_one()
-        if not self.valuation_differs or not self.user_has_groups(
+        if not self.valuation_differs or not self.env.user.has_group(
             "purchase.group_purchase_manager"
         ):
             return
@@ -184,7 +184,7 @@ class PurchaseOrderLine(models.Model):
                 if layer.value > 0:
                     layer.remaining_value += value
                     layer_remaining_qty = layer.remaining_qty + sum(
-                        move.returned_move_ids.mapped("quantity_done")
+                        move.returned_move_ids.mapped("quantity")
                     )
                     new_layer_value = (new_layer_unit_cost * layer_remaining_qty) + (
                         layer.unit_cost * (layer.quantity - layer_remaining_qty)

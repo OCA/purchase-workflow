@@ -4,10 +4,9 @@
         <field name="inherit_id" ref="purchase.purchase_order_form" />
         <field name="arch" type="xml">
             <sheet position="before">
-                <field name="valuation_differs" invisible="1" />
                 <div
                     class="alert alert-warning"
-                    attrs="{'invisible': [('valuation_differs', '=', False)]}"
+                    invisible="not valuation_differs"
                     role="alert"
                 >
                     <i class="fa fa-warning" /> There are lines (marked in yellow) which
@@ -16,7 +15,7 @@
                     name="action_apply_price_difference"
                     type="object"
                     groups="purchase.group_purchase_manager"
-                    attrs="{'invisible': [('valuation_differs', '=', False)]}"
+                    invisible="not valuation_differs"
                     class="btn btn-warning rounded-3 me-2"
                     string="Fix valuation"
                     confirm="This will make unreversible changes to the valuation layers related to the affected products"
@@ -33,10 +32,7 @@
                 </div>
                 </div>
             </sheet>
-            <xpath expr="//field[@name='order_line']//tree" position="inside">
-                <field name="valuation_differs" invisible="1" />
-            </xpath>
-            <xpath expr="//field[@name='order_line']//tree" position="attributes">
+            <xpath expr="//field[@name='order_line']//list" position="attributes">
                 <attribute name="decoration-warning">valuation_differs</attribute>
             </xpath>
         </field>
