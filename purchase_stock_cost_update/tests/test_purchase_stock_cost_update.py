@@ -158,7 +158,9 @@ class PurchasStockCostUpdateCase(common.TransactionCase):
         footer = [sum(layers.mapped(f)) if f in totals else "" for f in header]
         rows = [list(layer.values()) for layer in layers_values]
         table = [header, *rows]
-        widths = [max(len(str(item)) + 3 for item in col) for col in zip(*table)]
+        widths = [
+            max(len(str(item)) + 3 for item in col) for col in zip(*table, strict=False)
+        ]
         separator = ["─" * w for w in widths]
         table.insert(1, separator)
         table.append(separator)
@@ -171,14 +173,18 @@ class PurchasStockCostUpdateCase(common.TransactionCase):
                 f"\033[0m {title}\033[0m"
             )
         header = "".join(
-            str(item).rjust(width) for item, width in zip(table[0], widths)
+            str(item).rjust(width)
+            for item, width in zip(table[0], widths, strict=False)
         )
         # Print in bold
         _logger.info("".join(separator))
         _logger.info(f"\033[1m{header}\033[0m")
         for row in table[1:]:
             _logger.info(
-                "".join(str(item).rjust(width) for item, width in zip(row, widths))
+                "".join(
+                    str(item).rjust(width)
+                    for item, width in zip(row, widths, strict=False)
+                )
             )
 
     def assertValuation(self, product, valuation, price):
