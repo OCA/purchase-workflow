@@ -12,15 +12,11 @@
         <field name="arch" type="xml">
             <field name="invoice_status" position="before">
                 <field
-                    name="receipt_status"
-                    invisible="state not in ('purchase', 'done')"
-                />
-                <field
                     name="force_received"
                     widget="boolean_toggle"
                     groups="purchase.group_purchase_manager"
-                    invisible="state not in ('purchase', 'done')"
-                    readonly="state != 'done'"
+                    invisible="state != 'purchase'"
+                    readonly="not locked"
                 />
             </field>
         </field>
@@ -37,21 +33,6 @@
                     decoration-info="receipt_status == 'partial'"
                     decoration-success="receipt_status == 'full'"
                     decoration-muted="receipt_status == 'pending'"
-                />
-            </field>
-        </field>
-    </record>
-    <record id="purchase_order_view_tree" model="ir.ui.view">
-        <field name="name">received_status.purchase.order.tree</field>
-        <field name="model">purchase.order</field>
-        <field name="inherit_id" ref="purchase.purchase_order_view_tree" />
-        <field name="arch" type="xml">
-            <field name="invoice_status" position="before">
-                <field
-                    name="receipt_status"
-                    widget="badge"
-                    decoration-info="receipt_status == 'partial'"
-                    decoration-success="receipt_status == 'full'"
                 />
             </field>
         </field>
@@ -74,7 +55,7 @@
                 />
                 <separator />
             </filter>
-            <group expand="0" position="inside">
+            <group position="inside">
                 <filter
                     string="Receipt Status"
                     name="receipt_status_groupby"

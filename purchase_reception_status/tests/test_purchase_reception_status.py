@@ -38,7 +38,7 @@ class TestPurchaseReceptionStatus(TransactionCase):
                 "product_id": self.product_1.id,
                 "name": self.product_1.name,
                 "product_qty": 10.0,
-                "product_uom": self.product_1.uom_po_id.id,
+                "product_uom_id": self.product_1.uom_id.id,
                 "price_unit": 100.0,
                 "date_planned": fields.Date.today(),
             }
@@ -47,7 +47,7 @@ class TestPurchaseReceptionStatus(TransactionCase):
         self.assertEqual(po.receipt_status, "pending")
         pol.qty_received = 5.0
         self.assertEqual(po.receipt_status, "partial")
-        po.button_done()
+        po.button_lock()
         po.force_received = True
         self.assertEqual(po.receipt_status, "full")
 
@@ -63,7 +63,7 @@ class TestPurchaseReceptionStatus(TransactionCase):
                 "product_id": self.product_1.id,
                 "name": self.product_1.name,
                 "product_qty": 10.0,
-                "product_uom": self.product_1.uom_po_id.id,
+                "product_uom_id": self.product_1.uom_id.id,
                 "price_unit": 100.0,
                 "date_planned": fields.Date.today(),
             }
@@ -82,7 +82,7 @@ class TestPurchaseReceptionStatus(TransactionCase):
                 "product_id": self.product_1.id,
                 "name": self.product_1.name,
                 "product_qty": 10.0,
-                "product_uom": self.product_1.uom_po_id.id,
+                "product_uom_id": self.product_1.uom_id.id,
                 "price_unit": 100.0,
                 "date_planned": fields.Date.today(),
             }
