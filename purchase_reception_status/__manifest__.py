@@ -4,14 +4,14 @@
 
 {
     "name": "Purchase Reception Status",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "category": "Purchases",
     "license": "AGPL-3",
     "summary": "Add reception status on purchase orders (OCA logic)",
     "author": "Akretion,Odoo Community Association (OCA)",
     "maintainers": ["alexis-via"],
     "website": "https://github.com/OCA/purchase-workflow",
-    "depends": ["purchase"],
+    "depends": ["purchase_stock"],
     "data": ["views/purchase_order.xml"],
     "installable": True,
 }
