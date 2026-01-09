@@ -27,13 +27,17 @@ class PurchaseOrder(models.Model):
     )
 
     @api.depends(
-        "state", "force_received", "order_line.qty_received", "order_line.product_qty"
+        "state",
+        "force_received",
+        "locked",
+        "order_line.qty_received",
+        "order_line.product_qty",
     )
     def _compute_oca_receipt_status(self):
-        prec = self.env["decimal.precision"].precision_get("Product Unit of Measure")
+        prec = self.env["decimal.precision"].precision_get("Product Unit")
         for order in self:
             status = "pending"
-            if order.state in ("purchase", "done"):
+            if order.state == "purchase" or order.locked:
                 if order.force_received:
                     status = "full"
                 elif all(
