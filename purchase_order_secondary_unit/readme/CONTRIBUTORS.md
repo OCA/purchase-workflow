@@ -4,3 +4,5 @@
 - Nikul Chaudhary \<<nikulchaudhary2112@gmail.com>\>
 - Pimolnat Suntian \<<pimolnats@ecosoft.co.th>\>
 - Miguel Ángel Gómez \<<miguel.gomez@braintec.com>\>
+- [Quartile](https://www.quartile.co):
+  - Yoshi Tashiro
