@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="product_supplierinfo_form_view" model="ir.ui.view">
+        <field name="name">product.supplierinfo.form.view</field>
+        <field name="model">product.supplierinfo</field>
+        <field name="inherit_id" ref="product.product_supplierinfo_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='discount']" position="after">
+                <field
+                    name="secondary_uom_id"
+                    groups="uom.group_uom"
+                    options="{'no_create': True}"
+                />
+                <label for="secondary_uom_price" groups="uom.group_uom" />
+                <div class="o_row" groups="uom.group_uom">
+                    <field
+                        name="secondary_uom_price"
+                        class="oe_inline"
+                        invisible="not secondary_uom_id"
+                    />
+                    <field
+                        name="currency_id"
+                        groups="base.group_multi_currency"
+                        options="{'no_open': True}"
+                        invisible="not secondary_uom_id"
+                    />
+                </div>
+            </xpath>
+        </field>
+    </record>
+    <record id="product_supplierinfo_tree_view" model="ir.ui.view">
+        <field name="name">product.supplierinfo.list.view</field>
+        <field name="model">product.supplierinfo</field>
+        <field name="inherit_id" ref="product.product_supplierinfo_tree_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='price']" position="after">
+                <field
+                    name="secondary_uom_id"
+                    groups="uom.group_uom"
+                    optional="hide"
+                    options="{'no_create': True}"
+                />
+                <field
+                    name="secondary_uom_price"
+                    groups="uom.group_uom"
+                    optional="hide"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -3,6 +3,15 @@
 from odoo import api, fields, models
 
 
+class PurchaseOrder(models.Model):
+    _inherit = "purchase.order"
+
+    def _prepare_supplier_info(self, partner, line, price, currency):
+        vals = super()._prepare_supplier_info(partner, line, price, currency)
+        vals["secondary_uom_id"] = line.secondary_uom_id.id
+        return vals
+
+
 class PurchaseOrderLine(models.Model):
     _inherit = ["purchase.order.line", "product.secondary.unit.mixin"]
     _name = "purchase.order.line"
@@ -25,11 +34,33 @@ class PurchaseOrderLine(models.Model):
     product_packaging_id = fields.Many2one(
         compute="_compute_product_packaging_id", store=True, precompute=True
     )
+    secondary_uom_price = fields.Float(
+        string="Secondary Price",
+        digits="Product Price",
+        aggregator="avg",
+        compute="_compute_secondary_uom_price",
+        inverse="_inverse_secondary_uom_price",
+        store=True,
+    )
 
     @api.depends("secondary_uom_qty", "secondary_uom_id")
     def _compute_product_qty(self):
         self._compute_helper_target_field_qty()
         return super()._compute_product_qty()
+
+    @api.depends("price_unit", "secondary_uom_id", "secondary_uom_id.factor")
+    def _compute_secondary_uom_price(self):
+        for rec in self:
+            if rec.secondary_uom_id:
+                rec.secondary_uom_price = rec.price_unit * rec.secondary_uom_id.factor
+            else:
+                rec.secondary_uom_price = 0.0
+
+    @api.onchange("secondary_uom_price")
+    def _inverse_secondary_uom_price(self):
+        for rec in self:
+            if rec.secondary_uom_id:
+                rec.price_unit = rec.secondary_uom_price / rec.secondary_uom_id.factor
 
     @api.onchange("product_uom")
     def onchange_product_uom_for_secondary(self):
