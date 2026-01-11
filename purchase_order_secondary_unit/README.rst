@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 =============================
 Purchase Order Secondary Unit
 =============================
@@ -17,7 +13,7 @@ Purchase Order Secondary Unit
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github
@@ -35,10 +31,24 @@ Purchase Order Secondary Unit
 This module extends the functionality of purchase orders to allow buy
 products in secondary unit of distinct category.
 
+Users can enter quantities and prices in secondary units on purchase
+order lines. Vendor pricelist records are also extended to support
+secondary unit pricing.
+
+Purchase reports and the Purchase Order portal are adjusted to display
+quantities and prices in secondary units based on company configuration.
+
 **Table of contents**
 
 .. contents::
    :local:
+
+Configuration
+=============
+
+For configuration of displaying secondary unit information in purchase
+reports and the Purchase Order portal, see the guidelines provided in
+product_secondary_unit.
 
 Usage
 =====
@@ -51,6 +61,24 @@ To use this module you need to:
 4. Go to *Purchase > Quotation > Create*.
 5. Change secondary qty and secondary uom in line, and quantity
    (product_qty) will be changed (according to the conversion factor).
+
+**Vendor Pricelist Integration**
+
+-  When adding a vendor to a product's pricelist (via *Purchase tab >
+   Vendors*), the secondary unit of measure is automatically defaulted
+   from the product variant's purchase secondary UOM, or from the
+   product template if not set on the variant.
+-  When a new vendor pricelist record is created from purchase order
+   confirmation, the secondary UOM from the purchase order line is
+   automatically stored in the vendor pricelist entry.
+
+Known issues / Roadmap
+======================
+
+Updating existing vendor pricelist records from purchase order
+confirmation does not currently support secondary UOM or secondary UOM
+pricing. This is not included in the current scope and may be considered
+in future improvements.
 
 Bug Tracker
 ===========
@@ -73,14 +101,17 @@ Authors
 Contributors
 ------------
 
-- `Tecnativa <https://www.tecnativa.com>`__:
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  - Sergio Teruel
-  - Ernesto Tejeda
+   -  Sergio Teruel
+   -  Ernesto Tejeda
 
-- Nikul Chaudhary <nikulchaudhary2112@gmail.com>
-- Pimolnat Suntian <pimolnats@ecosoft.co.th>
-- Miguel Ángel Gómez <miguel.gomez@braintec.com>
+-  Nikul Chaudhary <nikulchaudhary2112@gmail.com>
+-  Pimolnat Suntian <pimolnats@ecosoft.co.th>
+-  Miguel Ángel Gómez <miguel.gomez@braintec.com>
+-  `Quartile <https://www.quartile.co>`__:
+
+   -  Yoshi Tashiro
 
 Maintainers
 -----------
