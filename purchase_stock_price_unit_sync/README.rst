@@ -42,6 +42,12 @@ Can be used with product_cost_price_avco_sync.
 .. contents::
    :local:
 
+Known issues / Roadmap
+======================
+
+-  Remove ``unit_cost`` calculation for stock valuation layer from stock
+   moves because this model has been replaced by ``stock.move``.
+
 Bug Tracker
 ===========
 

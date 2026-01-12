@@ -30,6 +30,20 @@ class TestProductCostPriceAvcoSync(BaseCommon):
                 "standard_price": 1,
             }
         )
+        cls.product_2 = cls.env["product.product"].create(
+            {
+                "name": "Product for test 2",
+                "is_storable": True,
+                "tracking": "serial",
+            }
+        )
+        cls.product_3 = cls.env["product.product"].create(
+            {
+                "name": "Product for test 3",
+                "is_storable": True,
+                "tracking": "serial",
+            }
+        )
 
         cls.order = cls.env["purchase.order"].create(
             {
@@ -40,9 +54,19 @@ class TestProductCostPriceAvcoSync(BaseCommon):
                             "name": "Test line",
                             "product_qty": 10.0,
                             "product_id": cls.product.id,
-                            "product_uom": cls.product.uom_id.id,
+                            "product_uom_id": cls.product.uom_id.id,
                             "date_planned": fields.Date.today(),
                             "price_unit": 8.0,
+                        },
+                    ),
+                    Command.create(
+                        {
+                            "name": "Test line with kit product",
+                            "product_qty": 5.0,
+                            "product_id": cls.product_2.id,
+                            "product_uom_id": cls.product_2.uom_id.id,
+                            "date_planned": fields.Date.today(),
+                            "price_unit": 15.0,
                         },
                     ),
                 ],
@@ -61,7 +85,23 @@ class TestProductCostPriceAvcoSync(BaseCommon):
         move.quantity = move.product_uom_qty
         move.picked = True
         picking._action_done()
-        svl = move.sudo().stock_valuation_layer_ids[:1]
-        self.assertAlmostEqual(svl.unit_cost, 8.0, 2)
         self.order.order_line[:1].price_unit = 6.0
-        self.assertAlmostEqual(svl.unit_cost, 6.0, 2)
+        self.order.order_line[1].price_unit = 12.0
+        self.assertAlmostEqual(move.price_unit, 6.0, 2)
+
+    def test_sync_without_move_done(self):
+        self.order = self.order.with_user(self.env.user)
+        self.order.button_confirm()
+        move = self.order.picking_ids.move_ids[:1]
+        self.order.order_line[:1].price_unit = 7.0
+        self.assertEqual(move.price_unit, 7.0, 2)
+        picking = self.order.picking_ids
+        move.quantity = move.product_uom_qty
+        move.picked = True
+        picking._action_done()
+        self.order.order_line[:1].with_context(skip_update_price_unit=True).write(
+            {"price_unit": 10, "discount": 1}
+        )
+        self.assertEqual(move.price_unit, 7.0, 2)
+        self.order.order_line[:1].write({"discount": 1})
+        self.assertNotEqual(move.price_unit, 7.0, 2)
