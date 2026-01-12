@@ -12,7 +12,6 @@ class PurchaseOrderLine(models.Model):
         res = super().write(vals)
         if (
             ("price_unit" in vals or "discount" in vals)
-            and not self.env.context.get("skip_stock_price_unit_sync")
             # This context is present when the purchase_discount hack is being made
             and not self.env.context.get("skip_update_price_unit")
         ):
@@ -20,7 +19,7 @@ class PurchaseOrderLine(models.Model):
         return res
 
     def stock_price_unit_sync(self):
-        for line in self.filtered(lambda rec: rec.state in ["purchase", "done"]):
+        for line in self.filtered(lambda rec: rec.state == "purchase"):
             # When the affected product is a kit we do nothing, which is the
             # default behavior on the standard: the move is exploded into moves
             # for the components and those get the default price_unit for the
@@ -36,20 +35,3 @@ class PurchaseOrderLine(models.Model):
             moves = line.move_ids.filtered(lambda m: m.state == "done")
             if moves:
                 moves.write({"price_unit": line._get_stock_move_price_unit()})
-                # Apply sudo() to avoid access errors with users
-                # without Inventory > Admin permissions.
-                svls = (
-                    moves.sudo()
-                    .mapped("stock_valuation_layer_ids")
-                    .filtered(
-                        # Filter children SVLs (like landed cost)
-                        lambda x: not x.stock_valuation_layer_id
-                    )
-                )
-                svls.write(
-                    {
-                        "unit_cost": line.with_context(
-                            skip_stock_price_unit_sync=True
-                        )._get_stock_move_price_unit(),
-                    }
-                )
