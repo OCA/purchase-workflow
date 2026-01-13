@@ -56,6 +56,7 @@ Authors
 -------
 
 * Akretion
+* Kencove
 
 Contributors
 ------------

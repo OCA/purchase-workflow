@@ -5,20 +5,11 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button
-                        name="button_lock"
-                        type="object"
-                        string="Lock"
-                        attrs="{'invisible': [('state', '=', 'locked')]}"
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="in_progress,pos_confirmed,on_water,arrival_notice,released,delivered,received,processed"
                     />
-                    <button
-                        name="button_unlock"
-                        type="object"
-                        string="Unlock"
-                        attrs="{'invisible': [('state', '!=', 'locked')]}"
-                        groups="purchase.group_purchase_manager"
-                    />
-                    <field name="state" widget="statusbar" />
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
@@ -62,83 +53,130 @@
                             />
                         </button>
                     </div>
+                    <widget
+                        name="web_ribbon"
+                        title="Locked"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('is_locked', '=', False)]}"
+                    />
                     <div class="oe_title">
-                        Container
+                        <label for="name" string="Container" />
                         <h1>
-                        <field name="name" />
-                    </h1>
+                            <field name="name" />
+                        </h1>
                     </div>
                     <group>
-                        <group name="references">
+                        <group name="container_info" string="Container Information">
                             <field name="code" placeholder="Container Reference" />
+                            <field name="seal_number" />
+                            <field name="type_id" />
                             <field name="bill_of_lading_ref" />
+                        </group>
+                        <group name="shipping_info" string="Shipping">
                             <field name="shipping_agent_id" />
+                            <field name="drayage_company_id" />
                             <field name="displayed_incoterm_id" />
                             <field name="incoterm_id" invisible="1" />
-                        </group>
-                        <group name="metrics">
-                            <field name="type_id" />
-                            <field name="package_qty" />
-                            <label for="weight" />
-                            <div class="o_row" name="weight">
-                                <field name="weight" />
-                                <field
-                                    name="weight_uom_id"
-                                    options="{'no_open': True, 'no_create': True}"
-                                />
-                            </div>
-                            <label for="volume" />
-                            <div class="o_row" name="volume">
-                                <field name="volume" string="Volume" />
-                                <field
-                                    name="volume_uom_id"
-                                    options="{'no_open': True, 'no_create': True}"
-                                />
-                            </div>
-                        </group>
-                        <group name="financials">
-                            <label for="cost" />
-                            <div class="o_row" name="container_cost">
-                                <field name="cost" />
-                                <field
-                                    name="cost_currency_id"
-                                    options="{'no_open': True, 'no_create': True}"
-                                />
-                            </div>
+                            <field name="warehouse_id" />
                         </group>
                     </group>
-                    <group>
-                        <group string="Departure">
-                            <field name="departure_location_id" />
-                            <field name="date_etd" />
-                            <field name="date_atd" />
-                        </group>
-                        <group string="Arrival">
-                            <field name="arrival_location_id" />
-                            <field name="date_eta" />
-                            <field name="date_ata" />
-                            <field name="date_ett" />
-                        </group>
-                    </group>
-                    <group>
-                        <separator string="Receipts" colspan="4" />
-                        <field
-                            name="picking_ids"
-                            colspan="4"
-                            nolabel="1"
-                            widget="many2many"
-                            context="{'search_default_draft': 1, 'search_default_waiting': 1, 'search_default_available': 1}"
-                        />
-                    </group>
-                    <group>
-                        <separator string="Purchase Orders" colspan="4" />
-                        <field
-                            name="purchase_order_ids"
-                            colspan="4"
-                            nolabel="1"
-                            attrs="{'readonly': [('picking_ids', '!=', False)]}"
-                        />
-                    </group>
+                    <notebook>
+                        <page name="dates" string="Dates &amp; Locations">
+                            <group>
+                                <group string="Departure">
+                                    <field name="departure_location_id" />
+                                    <field name="date_etd" />
+                                    <field name="date_atd" />
+                                </group>
+                                <group string="Port Arrival">
+                                    <field name="arrival_location_id" />
+                                    <field name="date_eta" />
+                                    <field name="date_ata" />
+                                    <field name="date_ett" />
+                                </group>
+                            </group>
+                            <group>
+                                <group string="Warehouse Delivery">
+                                    <field name="date_warehouse_eta" />
+                                    <field name="date_delivered" />
+                                    <field name="date_received" />
+                                </group>
+                            </group>
+                        </page>
+                        <page name="financials" string="Costs">
+                            <group>
+                                <group name="costs">
+                                    <label for="cost" />
+                                    <div class="o_row" name="container_cost">
+                                        <field name="cost" />
+                                        <field
+                                            name="cost_currency_id"
+                                            options="{'no_open': True, 'no_create': True}"
+                                        />
+                                    </div>
+                                    <field name="per_diem_fees" />
+                                    <field name="per_diem_reason" />
+                                </group>
+                                <group name="metrics" string="Metrics">
+                                    <field name="package_qty" />
+                                    <label for="weight" />
+                                    <div class="o_row" name="weight">
+                                        <field name="weight" />
+                                        <field
+                                            name="weight_uom_id"
+                                            options="{'no_open': True, 'no_create': True}"
+                                        />
+                                    </div>
+                                    <label for="volume" />
+                                    <div class="o_row" name="volume">
+                                        <field name="volume" string="Volume" />
+                                        <field
+                                            name="volume_uom_id"
+                                            options="{'no_open': True, 'no_create': True}"
+                                        />
+                                    </div>
+                                </group>
+                            </group>
+                        </page>
+                        <page name="purchase_orders" string="Purchase Orders">
+                            <field
+                                name="purchase_order_ids"
+                                nolabel="1"
+                                attrs="{'readonly': [('is_locked', '=', True)]}"
+                            >
+                                <tree>
+                                    <field name="name" />
+                                    <field name="partner_id" />
+                                    <field name="date_order" />
+                                    <field name="amount_total" />
+                                    <field name="state" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page name="receipts" string="Receipts">
+                            <field
+                                name="picking_ids"
+                                nolabel="1"
+                                widget="many2many"
+                                context="{'search_default_draft': 1, 'search_default_waiting': 1, 'search_default_available': 1}"
+                            >
+                                <tree>
+                                    <field name="name" />
+                                    <field name="partner_id" />
+                                    <field name="scheduled_date" />
+                                    <field name="state" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page name="notes" string="Notes">
+                            <field
+                                name="notes"
+                                nolabel="1"
+                                placeholder="Internal notes..."
+                            />
+                        </page>
+                    </notebook>
+                    <field name="is_locked" invisible="1" />
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids" />
@@ -154,13 +192,23 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="code" />
+                <field name="seal_number" optional="hide" />
                 <field name="type_id" />
                 <field name="bill_of_lading_ref" />
                 <field name="shipping_agent_id" />
-                <field name="picking_ids" widget="many2many_tags" />
+                <field name="drayage_company_id" optional="hide" />
+                <field name="warehouse_id" />
+                <field name="date_etd" optional="hide" />
+                <field name="date_eta" />
+                <field name="date_warehouse_eta" />
                 <field name="purchase_order_ids" widget="many2many_tags" />
-                <field name="displayed_incoterm_id" />
-                <field name="state" />
+                <field
+                    name="state"
+                    widget="badge"
+                    decoration-info="state == 'in_progress'"
+                    decoration-warning="state in ('customs_hold', 'on_hold')"
+                    decoration-success="state in ('received', 'processed')"
+                />
             </tree>
         </field>
     </record>
@@ -170,15 +218,84 @@
         <field name="arch" type="xml">
             <search>
                 <field name="code" />
+                <field name="seal_number" />
                 <field name="picking_ids" />
                 <field name="purchase_order_ids" />
                 <field name="bill_of_lading_ref" />
+                <field name="warehouse_id" />
+                <separator />
+                <filter
+                    name="in_progress"
+                    string="In Progress"
+                    domain="[('state', '=', 'in_progress')]"
+                />
+                <filter
+                    name="on_water"
+                    string="On the Water"
+                    domain="[('state', '=', 'on_water')]"
+                />
+                <filter
+                    name="arrival_notice"
+                    string="Arrival Notice"
+                    domain="[('state', '=', 'arrival_notice')]"
+                />
+                <filter
+                    name="customs_hold"
+                    string="Customs Hold"
+                    domain="[('state', '=', 'customs_hold')]"
+                />
+                <filter
+                    name="delivered"
+                    string="Delivered"
+                    domain="[('state', '=', 'delivered')]"
+                />
+                <filter
+                    name="received"
+                    string="Received"
+                    domain="[('state', '=', 'received')]"
+                />
+                <filter
+                    name="on_hold"
+                    string="On Hold"
+                    domain="[('state', '=', 'on_hold')]"
+                />
+                <separator />
                 <group expand="0" name="group_by" string="Group By">
                     <filter
-                        name="shipping_agent_id"
-                        string="Shipping Agent"
+                        name="group_state"
+                        string="State"
+                        domain="[]"
+                        context="{'group_by' : 'state'}"
+                    />
+                    <filter
+                        name="group_warehouse"
+                        string="Warehouse"
+                        domain="[]"
+                        context="{'group_by' : 'warehouse_id'}"
+                    />
+                    <filter
+                        name="group_shipping_agent"
+                        string="Freight Forwarder"
                         domain="[]"
                         context="{'group_by' : 'shipping_agent_id'}"
+                    />
+                    <filter
+                        name="group_drayage"
+                        string="Drayage Company"
+                        domain="[]"
+                        context="{'group_by' : 'drayage_company_id'}"
+                    />
+                    <filter
+                        name="group_type"
+                        string="Container Type"
+                        domain="[]"
+                        context="{'group_by' : 'type_id'}"
+                    />
+                    <filter
+                        name="group_eta"
+                        string="Port ETA"
+                        domain="[]"
+                        context="{'group_by' : 'date_eta'}"
                     />
                 </group>
             </search>
@@ -189,6 +306,7 @@
         <field name="name">Containers</field>
         <field name="res_model">purchase.container</field>
         <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_group_state': 1}</field>
     </record>
 
     <menuitem

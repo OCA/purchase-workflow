@@ -19,13 +19,31 @@ class PurchaseContainer(models.Model):
         copy=False,
     )
     bill_of_lading_ref = fields.Char("Bill Of Lading No.", copy=False)
+    seal_number = fields.Char("Seal #", copy=False, help="Container seal number")
     shipping_agent_id = fields.Many2one(
-        comodel_name="res.partner", string="Shipping Agent"
+        comodel_name="res.partner",
+        string="Freight Forwarder",
+        help="Freight forwarding company (e.g., RL Swearer)",
+    )
+    drayage_company_id = fields.Many2one(
+        comodel_name="res.partner",
+        string="Drayage Company",
+        help="Local drayage/trucking company for final delivery",
     )
     type_id = fields.Many2one(comodel_name="container.type")
     package_qty = fields.Integer(copy=False)
-    cost = fields.Float(digits="Product Price", copy=False)
+    cost = fields.Float(digits="Product Price", copy=False, string="Ocean Freight Cost")
     cost_currency_id = fields.Many2one("res.currency", "Cost Currency", copy=False)
+    per_diem_fees = fields.Float(
+        digits="Product Price",
+        copy=False,
+        string="Per Diem / Add'l Fees",
+        help="Per diem and additional fees",
+    )
+    per_diem_reason = fields.Text(
+        "Fee Reason", help="Reason for per diem or additional fees"
+    )
+    notes = fields.Text(help="Internal notes about this container")
     volume = fields.Float(digits="Volume", copy=False)
     volume_uom_id = fields.Many2one(
         "uom.uom",
@@ -77,19 +95,43 @@ class PurchaseContainer(models.Model):
         tracking=True,
     )
 
-    departure_location_id = fields.Many2one("res.partner")
-    arrival_location_id = fields.Many2one("res.partner")
+    departure_location_id = fields.Many2one(
+        "res.partner", string="Port of Lading", help="Origin port"
+    )
+    arrival_location_id = fields.Many2one(
+        "res.partner", string="Port of Discharge", help="Destination port"
+    )
+    warehouse_id = fields.Many2one(
+        "stock.warehouse",
+        string="Destination Warehouse",
+        help="Final destination warehouse (PA, ID, GA)",
+    )
     date_eta = fields.Date(
-        string="ETA Date", help="Estimated Time Of Arrival", tracking=True
+        string="Port ETA", help="Estimated Time Of Arrival at Port", tracking=True
     )
     date_etd = fields.Date(
         string="ETD Date", help="Estimated Time Of Departure", tracking=True
     )
+    date_warehouse_eta = fields.Date(
+        string="Warehouse ETA",
+        help="Estimated Time Of Arrival at final warehouse",
+        tracking=True,
+    )
     date_ata = fields.Date(
-        string="ATA Date", help="Actual Time Of Arrival", tracking=True
+        string="ATA Date", help="Actual Time Of Arrival at Port", tracking=True
     )
     date_atd = fields.Date(
         string="ATD Date", help="Actual Time Of Departure", tracking=True
+    )
+    date_delivered = fields.Date(
+        string="Delivered Date",
+        help="Date container was delivered to warehouse",
+        tracking=True,
+    )
+    date_received = fields.Date(
+        string="Received Date",
+        help="Date inventory was received into system",
+        tracking=True,
     )
     date_ett = fields.Char(
         string="ETT Date",
@@ -101,14 +143,24 @@ class PurchaseContainer(models.Model):
 
     state = fields.Selection(
         [
-            ("waiting", "Waiting"),
-            ("transit", "Transit"),
-            ("arrived", "Arrived"),
-            ("locked", "Locked"),
+            ("in_progress", "In Progress"),
+            ("pos_confirmed", "POs Confirmed"),
+            ("freight_notified", "Freight Forwarder Notified"),
+            ("on_water", "On the Water"),
+            ("arrival_notice", "Arrival Notice"),
+            ("drayage_confirmed", "Drayage Confirmed"),
+            ("awaiting_gate_out", "Awaiting Gate Out"),
+            ("customs_hold", "Customs Hold"),
+            ("released", "Released for Delivery"),
+            ("delivered", "Delivered"),
+            ("received", "Received"),
+            ("on_hold", "On Hold"),
+            ("ready_to_process", "Ready to Process"),
+            ("processed", "Processed"),
         ],
-        compute="_compute_state",
-        store=True,
+        default="in_progress",
         tracking=True,
+        copy=False,
     )
     is_locked = fields.Boolean()
 
@@ -140,26 +192,29 @@ class PurchaseContainer(models.Model):
             if record.date_eta and record.date_etd:
                 record.date_ett = record.date_eta - record.date_etd
 
-    @api.depends("is_locked", "date_etd", "date_atd", "picking_ids.state")
-    def _compute_state(self):
-        for record in self:
-            departure_date = record.date_atd if record.date_atd else record.date_etd
-
-            picking_states = set(record.picking_ids.mapped("state"))
-            if record.is_locked:
-                record.state = "locked"
-            elif picking_states and picking_states.issubset({"done", "cancel"}):
-                record.state = "arrived"
-            elif departure_date and departure_date <= date.today():
-                record.state = "transit"
-            else:
-                record.state = "waiting"
-
     def button_lock(self):
+        """Lock the container to prevent further changes."""
         self.is_locked = True
 
     def button_unlock(self):
+        """Unlock the container to allow changes."""
         self.is_locked = False
+
+    def action_set_on_water(self):
+        """Mark container as on the water (departed)."""
+        self.write({"state": "on_water", "date_atd": date.today()})
+
+    def action_set_arrival_notice(self):
+        """Mark container as having arrival notice."""
+        self.write({"state": "arrival_notice"})
+
+    def action_set_delivered(self):
+        """Mark container as delivered to warehouse."""
+        self.write({"state": "delivered", "date_delivered": date.today()})
+
+    def action_set_received(self):
+        """Mark container as received into inventory."""
+        self.write({"state": "received", "date_received": date.today()})
 
     @api.depends("code", "purchase_order_ids")
     def _compute_name(self):
