@@ -8,7 +8,14 @@ class Test(BaseCommon):
     def setUpClass(cls):
         super().setUpClass()
         cls.partner = cls.env["res.partner"].create({"name": "Test Supplier"})
-        cls.product = cls.env["product.product"].create({"name": "Test Product"})
+        # Create product template first with base_unit_count for Kencove requirement
+        product_tmpl = cls.env["product.template"].create(
+            {
+                "name": "Test Product",
+                "base_unit_count": 1,
+            }
+        )
+        cls.product = product_tmpl.product_variant_id
         cls.cont_a = cls.env["purchase.container"].create({"code": "AA"})
         cls.cont_b = cls.env["purchase.container"].create({"code": "BB"})
         cls.incoterm_id = cls.env.ref("account.incoterm_FCA")
