@@ -8,14 +8,16 @@ class Test(BaseCommon):
     def setUpClass(cls):
         super().setUpClass()
         cls.partner = cls.env["res.partner"].create({"name": "Test Supplier"})
-        # Create product template first with base_unit_count for Kencove requirement
+        # Create product template first, then get product variant
         product_tmpl = cls.env["product.template"].create(
             {
                 "name": "Test Product",
-                "base_unit_count": 1,
             }
         )
         cls.product = product_tmpl.product_variant_id
+        # Set base_unit_count if the field exists (Kencove custom module)
+        if "base_unit_count" in cls.env["product.template"]._fields:
+            product_tmpl.base_unit_count = 1
         cls.cont_a = cls.env["purchase.container"].create({"code": "AA"})
         cls.cont_b = cls.env["purchase.container"].create({"code": "BB"})
         cls.incoterm_id = cls.env.ref("account.incoterm_FCA")
