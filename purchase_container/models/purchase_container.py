@@ -25,6 +25,10 @@ class PurchaseContainer(models.Model):
         string="Freight Forwarder",
         help="Freight forwarding company (e.g., RL Swearer)",
     )
+    freight_forwarder_ref = fields.Char(
+        help="Freight forwarder booking/reference number (e.g., RL Swearer ID: B00064516)",
+        tracking=True,
+    )
     drayage_company_id = fields.Many2one(
         comodel_name="res.partner",
         string="Drayage Company",
@@ -34,11 +38,15 @@ class PurchaseContainer(models.Model):
     package_qty = fields.Integer(copy=False)
     cost = fields.Float(digits="Product Price", copy=False, string="Ocean Freight Cost")
     cost_currency_id = fields.Many2one("res.currency", "Cost Currency", copy=False)
+    has_additional_fees = fields.Boolean(
+        string="Has Add'l Fees",
+        help="Check if there are per diem or additional fees to note",
+    )
     per_diem_fees = fields.Float(
         digits="Product Price",
         copy=False,
         string="Per Diem / Add'l Fees",
-        help="Per diem and additional fees",
+        help="Per diem and additional fees amount",
     )
     per_diem_reason = fields.Text(
         "Fee Reason", help="Reason for per diem or additional fees"
@@ -163,6 +171,62 @@ class PurchaseContainer(models.Model):
         copy=False,
     )
     is_locked = fields.Boolean()
+
+    # Document tracking
+    document_ids = fields.One2many(
+        "container.document",
+        "container_id",
+        string="Documents",
+    )
+    document_count = fields.Integer(compute="_compute_document_count")
+    documents_complete = fields.Boolean(
+        string="Docs Complete",
+        compute="_compute_documents_complete",
+        store=True,
+        help="All required documents have been approved",
+    )
+
+    # Container line items
+    line_ids = fields.One2many(
+        "container.line",
+        "container_id",
+        string="Container Lines",
+    )
+    line_count = fields.Integer(string="Lines", compute="_compute_line_count")
+
+    # Shipment tracking
+    carrier_id = fields.Many2one(
+        "res.partner",
+        string="Shipping Carrier",
+        help="Ocean carrier / shipping line (e.g., Maersk, MSC, COSCO)",
+    )
+    vessel_name = fields.Char(help="Name of the vessel/ship")
+    voyage_number = fields.Char(help="Voyage or trip number")
+    tracking_number = fields.Char(
+        help="Carrier tracking number or booking reference",
+        tracking=True,
+    )
+    tracking_url = fields.Char(
+        compute="_compute_tracking_url",
+        help="URL to track shipment on carrier website",
+    )
+    last_tracking_update = fields.Datetime(
+        help="When tracking information was last updated",
+    )
+    tracking_status = fields.Char(help="Latest status from carrier tracking")
+
+    # Landed cost integration
+    landed_cost_ids = fields.Many2many(
+        "stock.landed.cost",
+        string="Landed Costs",
+        help="Landed cost records associated with this container",
+    )
+    landed_cost_count = fields.Integer(compute="_compute_landed_cost_count")
+    total_landed_cost = fields.Monetary(
+        compute="_compute_total_landed_cost",
+        currency_field="cost_currency_id",
+        help="Total landed costs applied to this container",
+    )
 
     def _compute_incoterm_id(self):
         for record in self:
@@ -318,3 +382,157 @@ class PurchaseContainer(models.Model):
         action["domain"] = [("id", "in", self.picking_ids.ids)]
         action["context"] = {"create": False}
         return action
+
+    # Document tracking methods
+    def _compute_document_count(self):
+        for record in self:
+            record.document_count = len(record.document_ids)
+
+    @api.depends("document_ids.state", "document_ids.required")
+    def _compute_documents_complete(self):
+        for record in self:
+            required_docs = record.document_ids.filtered(lambda d: d.required)
+            record.documents_complete = (
+                all(doc.state == "approved" for doc in required_docs)
+                if required_docs
+                else True
+            )
+
+    def action_view_documents(self):
+        self.ensure_one()
+        return {
+            "name": "Container Documents",
+            "type": "ir.actions.act_window",
+            "res_model": "container.document",
+            "view_mode": "list,form",
+            "domain": [("container_id", "=", self.id)],
+            "context": {"default_container_id": self.id},
+        }
+
+    def action_create_required_documents(self):
+        """Create document records for all required document types."""
+        self.ensure_one()
+        required_types = self.env["container.document.type"].search(
+            [("required", "=", True)]
+        )
+        existing_types = self.document_ids.mapped("document_type_id")
+        for doc_type in required_types - existing_types:
+            self.env["container.document"].create(
+                {
+                    "container_id": self.id,
+                    "document_type_id": doc_type.id,
+                }
+            )
+        return True
+
+    # Container line methods
+    def _compute_line_count(self):
+        for record in self:
+            record.line_count = len(record.line_ids)
+
+    def action_view_lines(self):
+        self.ensure_one()
+        return {
+            "name": "Container Lines",
+            "type": "ir.actions.act_window",
+            "res_model": "container.line",
+            "view_mode": "list,form",
+            "domain": [("container_id", "=", self.id)],
+            "context": {"default_container_id": self.id},
+        }
+
+    # Shipment tracking methods
+    def _compute_tracking_url(self):
+        """Generate tracking URL based on carrier.
+
+        This can be extended to support different carrier tracking portals.
+        """
+        for record in self:
+            url = False
+            if record.tracking_number and record.carrier_id:
+                carrier_name = (record.carrier_id.name or "").lower()
+                tracking = record.tracking_number
+                url = record._get_tracking_url_for_carrier(carrier_name, tracking)
+            record.tracking_url = url
+
+    def _get_tracking_url_for_carrier(self, carrier_name, tracking):
+        """Get tracking URL for a specific carrier.
+
+        Can be extended to add more carriers.
+        """
+        base_urls = {
+            "maersk": "https://www.maersk.com/tracking/",
+            "msc": "https://www.msc.com/track-a-shipment?agencyPath=msc&trackingNumber=",
+            "cosco": "https://elines.coscoshipping.com/ebusiness/cargoTracking?trackNo=",
+            "hapag": (
+                "https://www.hapag-lloyd.com/en/online-business/track/"
+                "track-by-container-solution.html?container="
+            ),
+            "one": (
+                "https://ecomm.one-line.com/one-ecom/manage-shipment/"
+                "cargo-tracking?trakNoParam="
+            ),
+            "evergreen": (
+                "https://www.shipmentlink.com/tvs2/jsp/"
+                "TVS2_ContainerTracking.jsp?cntr="
+            ),
+        }
+        for key, url in base_urls.items():
+            if key in carrier_name:
+                return url + tracking
+        # Generic tracking via searates
+        return "https://www.searates.com/container/tracking/?number=" + tracking
+
+    def action_open_tracking(self):
+        """Open tracking URL in browser."""
+        self.ensure_one()
+        if self.tracking_url:
+            return {
+                "type": "ir.actions.act_url",
+                "url": self.tracking_url,
+                "target": "new",
+            }
+        return False
+
+    # Landed cost methods
+    def _compute_landed_cost_count(self):
+        for record in self:
+            record.landed_cost_count = len(record.landed_cost_ids)
+
+    def _compute_total_landed_cost(self):
+        for record in self:
+            record.total_landed_cost = sum(
+                lc.amount_total
+                for lc in record.landed_cost_ids.filtered(lambda l: l.state == "done")
+            )
+
+    def action_view_landed_costs(self):
+        self.ensure_one()
+        action = self.env["ir.actions.actions"]._for_xml_id(
+            "stock_landed_costs.action_stock_landed_cost"
+        )
+        action["domain"] = [("id", "in", self.landed_cost_ids.ids)]
+        action["context"] = {"default_container_id": self.id}
+        return action
+
+    def action_create_landed_cost(self):
+        """Create a new landed cost record for this container."""
+        self.ensure_one()
+        if not self.picking_ids:
+            return False
+        # Get done pickings for landed cost
+        done_pickings = self.picking_ids.filtered(lambda p: p.state == "done")
+        if not done_pickings:
+            return False
+        landed_cost = self.env["stock.landed.cost"].create(
+            {
+                "picking_ids": [(6, 0, done_pickings.ids)],
+            }
+        )
+        self.landed_cost_ids = [(4, landed_cost.id)]
+        return {
+            "type": "ir.actions.act_window",
+            "res_model": "stock.landed.cost",
+            "view_mode": "form",
+            "res_id": landed_cost.id,
+        }

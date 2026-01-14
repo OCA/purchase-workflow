@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo noupdate="1">
+    <!-- Common shipping document types -->
+    <record id="document_type_commercial_invoice" model="container.document.type">
+        <field name="name">Commercial Invoice</field>
+        <field name="sequence">10</field>
+        <field name="required">True</field>
+        <field
+            name="description"
+        >Commercial invoice for customs clearance showing value and description of goods.</field>
+    </record>
+
+    <record id="document_type_packing_list" model="container.document.type">
+        <field name="name">Packing List</field>
+        <field name="sequence">20</field>
+        <field name="required">True</field>
+        <field
+            name="description"
+        >Detailed list of contents, cartons, weights, and dimensions.</field>
+    </record>
+
+    <record id="document_type_bill_of_lading" model="container.document.type">
+        <field name="name">Bill of Lading (B/L)</field>
+        <field name="sequence">30</field>
+        <field name="required">True</field>
+        <field
+            name="description"
+        >Original bill of lading from carrier - document of title for cargo.</field>
+    </record>
+
+    <record id="document_type_certificate_origin" model="container.document.type">
+        <field name="name">Certificate of Origin</field>
+        <field name="sequence">40</field>
+        <field name="required">False</field>
+        <field
+            name="description"
+        >Document certifying country of origin for preferential duty rates.</field>
+    </record>
+
+    <record id="document_type_customs_entry" model="container.document.type">
+        <field name="name">Customs Entry</field>
+        <field name="sequence">50</field>
+        <field name="required">False</field>
+        <field
+            name="description"
+        >Customs entry documentation and duty payment confirmation.</field>
+    </record>
+
+    <record id="document_type_insurance_certificate" model="container.document.type">
+        <field name="name">Insurance Certificate</field>
+        <field name="sequence">60</field>
+        <field name="required">False</field>
+        <field name="description">Marine cargo insurance certificate.</field>
+    </record>
+
+    <record id="document_type_isf" model="container.document.type">
+        <field name="name">ISF (10+2)</field>
+        <field name="sequence">70</field>
+        <field name="required">False</field>
+        <field
+            name="description"
+        >Importer Security Filing for US-bound shipments.</field>
+    </record>
+
+    <record id="document_type_arrival_notice" model="container.document.type">
+        <field name="name">Arrival Notice</field>
+        <field name="sequence">80</field>
+        <field name="required">False</field>
+        <field
+            name="description"
+        >Notification from carrier of vessel arrival at port.</field>
+    </record>
+
+    <record id="document_type_delivery_order" model="container.document.type">
+        <field name="name">Delivery Order</field>
+        <field name="sequence">90</field>
+        <field name="required">False</field>
+        <field
+            name="description"
+        >Order authorizing release of cargo from terminal.</field>
+    </record>
+
+    <record id="document_type_inspection_report" model="container.document.type">
+        <field name="name">Inspection Report</field>
+        <field name="sequence">100</field>
+        <field name="required">False</field>
+        <field
+            name="description"
+        >Pre-shipment or upon arrival inspection report.</field>
+    </record>
+</odoo>

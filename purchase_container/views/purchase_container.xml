@@ -52,6 +52,40 @@
                                 string="Transfers"
                             />
                         </button>
+                        <button
+                            name="action_view_documents"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-file-text-o"
+                        >
+                            <field
+                                name="document_count"
+                                widget="statinfo"
+                                string="Documents"
+                            />
+                        </button>
+                        <button
+                            name="action_view_lines"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-list"
+                            attrs="{'invisible': [('line_count', '=', 0)]}"
+                        >
+                            <field name="line_count" widget="statinfo" string="Lines" />
+                        </button>
+                        <button
+                            name="action_view_landed_costs"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-usd"
+                            attrs="{'invisible': [('landed_cost_count', '=', 0)]}"
+                        >
+                            <field
+                                name="landed_cost_count"
+                                widget="statinfo"
+                                string="Landed Costs"
+                            />
+                        </button>
                     </div>
                     <widget
                         name="web_ribbon"
@@ -74,6 +108,10 @@
                         </group>
                         <group name="shipping_info" string="Shipping">
                             <field name="shipping_agent_id" />
+                            <field
+                                name="freight_forwarder_ref"
+                                placeholder="e.g., B00064516"
+                            />
                             <field name="drayage_company_id" />
                             <field name="displayed_incoterm_id" />
                             <field name="incoterm_id" invisible="1" />
@@ -105,7 +143,7 @@
                         </page>
                         <page name="financials" string="Costs">
                             <group>
-                                <group name="costs">
+                                <group name="costs" string="Ocean Freight">
                                     <label for="cost" />
                                     <div class="o_row" name="container_cost">
                                         <field name="cost" />
@@ -114,9 +152,32 @@
                                             options="{'no_open': True, 'no_create': True}"
                                         />
                                     </div>
-                                    <field name="per_diem_fees" />
-                                    <field name="per_diem_reason" />
+                                    <field name="has_additional_fees" />
+                                    <field
+                                        name="per_diem_fees"
+                                        attrs="{'invisible': [('has_additional_fees', '=', False)]}"
+                                    />
+                                    <field
+                                        name="per_diem_reason"
+                                        attrs="{'invisible': [('has_additional_fees', '=', False)]}"
+                                    />
                                 </group>
+                                <group name="landed_costs" string="Landed Costs">
+                                    <field name="total_landed_cost" />
+                                    <field
+                                        name="landed_cost_ids"
+                                        widget="many2many_tags"
+                                    />
+                                    <button
+                                        name="action_create_landed_cost"
+                                        type="object"
+                                        string="Create Landed Cost"
+                                        class="btn-secondary"
+                                        attrs="{'invisible': [('picking_count', '=', 0)]}"
+                                    />
+                                </group>
+                            </group>
+                            <group>
                                 <group name="metrics" string="Metrics">
                                     <field name="package_qty" />
                                     <label for="weight" />
@@ -168,6 +229,109 @@
                                 </tree>
                             </field>
                         </page>
+                        <page name="tracking" string="Shipment Tracking">
+                            <group>
+                                <group string="Carrier Information">
+                                    <field name="carrier_id" />
+                                    <field name="vessel_name" />
+                                    <field name="voyage_number" />
+                                </group>
+                                <group string="Tracking">
+                                    <field name="tracking_number" />
+                                    <field name="tracking_url" widget="url" />
+                                    <button
+                                        name="action_open_tracking"
+                                        type="object"
+                                        string="Open Tracking"
+                                        icon="fa-external-link"
+                                        class="oe_link"
+                                        attrs="{'invisible': [('tracking_url', '=', False)]}"
+                                    />
+                                </group>
+                            </group>
+                            <group>
+                                <group string="Status">
+                                    <field name="tracking_status" />
+                                    <field name="last_tracking_update" />
+                                </group>
+                            </group>
+                        </page>
+                        <page name="lines" string="Container Lines">
+                            <field
+                                name="line_ids"
+                                nolabel="1"
+                                context="{'default_container_id': id}"
+                            >
+                                <tree editable="bottom">
+                                    <field name="sequence" widget="handle" />
+                                    <field name="product_id" />
+                                    <field name="quantity" />
+                                    <field
+                                        name="product_uom_id"
+                                        options="{'no_open': True, 'no_create': True}"
+                                    />
+                                    <field
+                                        name="product_uom_category_id"
+                                        invisible="1"
+                                    />
+                                    <field name="carton_qty" optional="show" />
+                                    <field name="units_per_carton" optional="show" />
+                                    <field
+                                        name="weight"
+                                        optional="hide"
+                                        sum="Total Weight"
+                                    />
+                                    <field
+                                        name="volume"
+                                        optional="hide"
+                                        sum="Total Volume"
+                                    />
+                                    <field name="purchase_order_id" optional="hide" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page name="documents" string="Documents">
+                            <div
+                                class="alert alert-warning"
+                                role="alert"
+                                attrs="{'invisible': [('documents_complete', '=', True)]}"
+                            >
+                                <strong
+                                >Warning:</strong> Some required documents are missing or not yet approved.
+                            </div>
+                            <button
+                                name="action_create_required_documents"
+                                type="object"
+                                string="Create Required Documents"
+                                class="btn-secondary mb-3"
+                            />
+                            <field
+                                name="document_ids"
+                                nolabel="1"
+                                context="{'default_container_id': id}"
+                            >
+                                <tree
+                                    decoration-danger="state == 'rejected'"
+                                    decoration-warning="state == 'missing' and required"
+                                    decoration-success="state == 'approved'"
+                                >
+                                    <field name="document_type_id" />
+                                    <field name="required" />
+                                    <field name="reference" />
+                                    <field name="attachment_id" />
+                                    <field name="date_received" />
+                                    <field
+                                        name="state"
+                                        widget="badge"
+                                        decoration-danger="state == 'rejected'"
+                                        decoration-warning="state == 'missing'"
+                                        decoration-info="state == 'pending'"
+                                        decoration-success="state == 'approved'"
+                                    />
+                                </tree>
+                            </field>
+                            <field name="documents_complete" invisible="1" />
+                        </page>
                         <page name="notes" string="Notes">
                             <field
                                 name="notes"
@@ -190,11 +354,15 @@
     <record id="purchase_container_view_list" model="ir.ui.view">
         <field name="model">purchase.container</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree decoration-danger="documents_complete == False">
                 <field name="code" />
+                <field name="freight_forwarder_ref" optional="show" />
                 <field name="seal_number" optional="hide" />
                 <field name="type_id" />
-                <field name="bill_of_lading_ref" />
+                <field name="bill_of_lading_ref" optional="hide" />
+                <field name="carrier_id" optional="hide" />
+                <field name="vessel_name" optional="hide" />
+                <field name="tracking_number" optional="hide" />
                 <field name="shipping_agent_id" />
                 <field name="drayage_company_id" optional="hide" />
                 <field name="warehouse_id" />
@@ -202,6 +370,7 @@
                 <field name="date_eta" />
                 <field name="date_warehouse_eta" />
                 <field name="purchase_order_ids" widget="many2many_tags" />
+                <field name="documents_complete" optional="hide" widget="boolean" />
                 <field
                     name="state"
                     widget="badge"
@@ -218,11 +387,15 @@
         <field name="arch" type="xml">
             <search>
                 <field name="code" />
+                <field name="freight_forwarder_ref" />
                 <field name="seal_number" />
+                <field name="tracking_number" />
+                <field name="vessel_name" />
                 <field name="picking_ids" />
                 <field name="purchase_order_ids" />
                 <field name="bill_of_lading_ref" />
                 <field name="warehouse_id" />
+                <field name="carrier_id" />
                 <separator />
                 <filter
                     name="in_progress"
@@ -258,6 +431,12 @@
                     name="on_hold"
                     string="On Hold"
                     domain="[('state', '=', 'on_hold')]"
+                />
+                <separator />
+                <filter
+                    name="missing_documents"
+                    string="Missing Documents"
+                    domain="[('documents_complete', '=', False)]"
                 />
                 <separator />
                 <group expand="0" name="group_by" string="Group By">

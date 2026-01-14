@@ -1,0 +1,201 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo>
+    <!-- Container Document Type Views -->
+    <record id="container_document_type_view_form" model="ir.ui.view">
+        <field name="model">container.document.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="sequence" />
+                            <field name="required" />
+                            <field name="active" />
+                        </group>
+                        <group>
+                            <field name="description" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="container_document_type_view_list" model="ir.ui.view">
+        <field name="model">container.document.type</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle" />
+                <field name="name" />
+                <field name="required" />
+                <field name="active" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="container_document_type_action" model="ir.actions.act_window">
+        <field name="name">Document Types</field>
+        <field name="res_model">container.document.type</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Container Document Views -->
+    <record id="container_document_view_form" model="ir.ui.view">
+        <field name="model">container.document</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                        name="action_approve"
+                        type="object"
+                        string="Approve"
+                        class="oe_highlight"
+                        attrs="{'invisible': [('state', '!=', 'pending')]}"
+                    />
+                    <button
+                        name="action_reject"
+                        type="object"
+                        string="Reject"
+                        attrs="{'invisible': [('state', '!=', 'pending')]}"
+                    />
+                    <button
+                        name="action_reset"
+                        type="object"
+                        string="Reset to Pending"
+                        attrs="{'invisible': [('state', 'not in', ['approved', 'rejected'])]}"
+                    />
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="missing,pending,approved"
+                    />
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="container_id" />
+                            <field name="document_type_id" />
+                            <field name="required" />
+                            <field name="reference" />
+                        </group>
+                        <group>
+                            <field name="attachment_id" />
+                            <field
+                                name="filename"
+                                attrs="{'invisible': [('attachment_id', '=', False)]}"
+                            />
+                            <field name="date_received" />
+                            <field name="date_approved" />
+                        </group>
+                    </group>
+                    <group>
+                        <field name="notes" />
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="container_document_view_list" model="ir.ui.view">
+        <field name="model">container.document</field>
+        <field name="arch" type="xml">
+            <tree
+                decoration-danger="state == 'rejected'"
+                decoration-warning="state == 'missing' and required"
+                decoration-success="state == 'approved'"
+            >
+                <field name="container_id" />
+                <field name="document_type_id" />
+                <field name="required" />
+                <field name="reference" />
+                <field name="filename" />
+                <field name="date_received" />
+                <field
+                    name="state"
+                    widget="badge"
+                    decoration-danger="state == 'rejected'"
+                    decoration-warning="state == 'missing'"
+                    decoration-info="state == 'pending'"
+                    decoration-success="state == 'approved'"
+                />
+            </tree>
+        </field>
+    </record>
+
+    <record id="container_document_view_search" model="ir.ui.view">
+        <field name="model">container.document</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="container_id" />
+                <field name="document_type_id" />
+                <field name="reference" />
+                <separator />
+                <filter
+                    name="missing"
+                    string="Missing"
+                    domain="[('state', '=', 'missing')]"
+                />
+                <filter
+                    name="pending"
+                    string="Pending Review"
+                    domain="[('state', '=', 'pending')]"
+                />
+                <filter
+                    name="approved"
+                    string="Approved"
+                    domain="[('state', '=', 'approved')]"
+                />
+                <filter
+                    name="rejected"
+                    string="Rejected"
+                    domain="[('state', '=', 'rejected')]"
+                />
+                <separator />
+                <filter
+                    name="required"
+                    string="Required Only"
+                    domain="[('required', '=', True)]"
+                />
+                <separator />
+                <group expand="0" name="group_by" string="Group By">
+                    <filter
+                        name="group_container"
+                        string="Container"
+                        context="{'group_by': 'container_id'}"
+                    />
+                    <filter
+                        name="group_type"
+                        string="Document Type"
+                        context="{'group_by': 'document_type_id'}"
+                    />
+                    <filter
+                        name="group_state"
+                        string="State"
+                        context="{'group_by': 'state'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="container_document_action" model="ir.actions.act_window">
+        <field name="name">Container Documents</field>
+        <field name="res_model">container.document</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_group_container': 1}</field>
+    </record>
+
+    <!-- Menu items -->
+    <menuitem
+        id="menu_container_document_type"
+        parent="purchase.menu_purchase_config"
+        action="container_document_type_action"
+        sequence="50"
+    />
+</odoo>

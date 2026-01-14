@@ -4,3 +4,8 @@ access_container_type,container.type,model_container_type,purchase.group_purchas
 access_purchase_container_manager,purchase.container,model_purchase_container,purchase.group_purchase_manager,1,1,1,1
 access_purchase_container_readonly,purchase.container,model_purchase_container,account.group_account_readonly,1,0,0,0
 access_purchase_container_invoice,purchase.container,model_purchase_container,account.group_account_invoice,1,1,0,0
+access_container_document_type,container.document.type,model_container_document_type,purchase.group_purchase_user,1,1,1,1
+access_container_document,container.document,model_container_document,purchase.group_purchase_user,1,1,1,1
+access_container_document_readonly,container.document,model_container_document,account.group_account_readonly,1,0,0,0
+access_container_line,container.line,model_container_line,purchase.group_purchase_user,1,1,1,1
+access_container_line_readonly,container.line,model_container_line,account.group_account_readonly,1,0,0,0

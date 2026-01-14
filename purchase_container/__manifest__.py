@@ -1,7 +1,7 @@
 {
     "name": "Purchase Container",
     "summary": """Add containers to purchase orders and stock pickings.""",
-    "version": "16.0.1.1.0",
+    "version": "16.0.1.2.0",
     "license": "AGPL-3",
     "maintainers": ["nayatec"],
     "author": "Akretion, Kencove, Odoo Community Association (OCA)",
@@ -9,14 +9,18 @@
     "depends": [
         "purchase_stock",
         "stock",
+        "stock_landed_costs",
     ],
     "data": [
+        "security/ir.model.access.csv",
         "data/container.type.csv",
+        "data/container_document_type.xml",
         "data/cron_data.xml",
+        "views/container_document.xml",
+        "views/container_line.xml",
         "views/container_type.xml",
         "views/purchase.xml",
         "views/purchase_container.xml",
         "views/stock_picking.xml",
-        "security/ir.model.access.csv",
     ],
 }
