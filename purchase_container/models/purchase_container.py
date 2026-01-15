@@ -215,6 +215,49 @@ class PurchaseContainer(models.Model):
     )
     tracking_status = fields.Char(help="Latest status from carrier tracking")
 
+    # Invoice tracking for landed cost readiness
+    freight_invoice_id = fields.Many2one(
+        "account.move",
+        string="Freight Invoice",
+        domain=[("move_type", "=", "in_invoice")],
+        help="Vendor bill from freight forwarder (e.g., RL Swearer)",
+        tracking=True,
+    )
+    freight_invoice_state = fields.Selection(
+        related="freight_invoice_id.state",
+        string="Freight Invoice Status",
+    )
+    drayage_invoice_id = fields.Many2one(
+        "account.move",
+        string="Drayage Invoice",
+        domain=[("move_type", "=", "in_invoice")],
+        help="Vendor bill from drayage/trucking company",
+        tracking=True,
+    )
+    drayage_invoice_state = fields.Selection(
+        related="drayage_invoice_id.state",
+        string="Drayage Invoice Status",
+    )
+    ready_for_landed_cost = fields.Boolean(
+        compute="_compute_ready_for_landed_cost",
+        store=True,
+        help="True when both freight and drayage invoices are received/posted",
+    )
+
+    # Cost breakdown lines
+    cost_line_ids = fields.One2many(
+        "container.cost.line",
+        "container_id",
+        string="Cost Breakdown",
+        help="Detailed breakdown of all costs",
+    )
+    total_cost = fields.Monetary(
+        compute="_compute_total_cost",
+        currency_field="cost_currency_id",
+        store=True,
+        help="Total of all cost lines",
+    )
+
     # Landed cost integration
     landed_cost_ids = fields.Many2many(
         "stock.landed.cost",
@@ -227,6 +270,20 @@ class PurchaseContainer(models.Model):
         currency_field="cost_currency_id",
         help="Total landed costs applied to this container",
     )
+
+    @api.depends("freight_invoice_id.state", "drayage_invoice_id.state")
+    def _compute_ready_for_landed_cost(self):
+        """Container is ready for landed cost when both invoices are posted."""
+        for record in self:
+            freight_ok = record.freight_invoice_id.state == "posted"
+            drayage_ok = record.drayage_invoice_id.state == "posted"
+            record.ready_for_landed_cost = freight_ok and drayage_ok
+
+    @api.depends("cost_line_ids.amount")
+    def _compute_total_cost(self):
+        """Sum all cost breakdown lines."""
+        for record in self:
+            record.total_cost = sum(record.cost_line_ids.mapped("amount"))
 
     def _compute_incoterm_id(self):
         for record in self:

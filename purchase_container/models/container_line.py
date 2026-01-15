@@ -25,6 +25,12 @@ class ContainerLine(models.Model):
     product_tmpl_id = fields.Many2one(
         related="product_id.product_tmpl_id", string="Product Template", store=True
     )
+    hs_code = fields.Char(
+        related="product_tmpl_id.hs_code",
+        string="HTS Code",
+        store=True,
+        help="Harmonized Tariff Schedule code for customs classification",
+    )
     description = fields.Text()
     quantity = fields.Float(
         digits="Product Unit of Measure",

@@ -9,3 +9,6 @@ access_container_document,container.document,model_container_document,purchase.g
 access_container_document_readonly,container.document,model_container_document,account.group_account_readonly,1,0,0,0
 access_container_line,container.line,model_container_line,purchase.group_purchase_user,1,1,1,1
 access_container_line_readonly,container.line,model_container_line,account.group_account_readonly,1,0,0,0
+access_container_cost_line,container.cost.line,model_container_cost_line,purchase.group_purchase_user,1,1,1,1
+access_container_cost_line_readonly,container.cost.line,model_container_cost_line,account.group_account_readonly,1,0,0,0
+access_container_cost_line_invoice,container.cost.line,model_container_cost_line,account.group_account_invoice,1,1,1,0

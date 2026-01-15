@@ -143,7 +143,66 @@
                         </page>
                         <page name="financials" string="Costs">
                             <group>
-                                <group name="costs" string="Ocean Freight">
+                                <group
+                                    name="invoice_tracking"
+                                    string="Invoice Tracking"
+                                >
+                                    <field
+                                        name="freight_invoice_id"
+                                        options="{'no_create': True}"
+                                        context="{'default_partner_id': shipping_agent_id, 'default_move_type': 'in_invoice'}"
+                                    />
+                                    <field name="freight_invoice_state" />
+                                    <field
+                                        name="drayage_invoice_id"
+                                        options="{'no_create': True}"
+                                        context="{'default_partner_id': drayage_company_id, 'default_move_type': 'in_invoice'}"
+                                    />
+                                    <field name="drayage_invoice_state" />
+                                    <field
+                                        name="ready_for_landed_cost"
+                                        widget="boolean_toggle"
+                                    />
+                                </group>
+                                <group name="landed_costs" string="Landed Costs">
+                                    <field name="total_cost" />
+                                    <field name="total_landed_cost" />
+                                    <field
+                                        name="landed_cost_ids"
+                                        widget="many2many_tags"
+                                    />
+                                    <button
+                                        name="action_create_landed_cost"
+                                        type="object"
+                                        string="Create Landed Cost"
+                                        class="btn-secondary"
+                                        attrs="{'invisible': ['|', ('picking_count', '=', 0), ('ready_for_landed_cost', '=', False)]}"
+                                    />
+                                </group>
+                            </group>
+                            <separator string="Cost Breakdown" />
+                            <field
+                                name="cost_line_ids"
+                                nolabel="1"
+                                context="{'default_container_id': id}"
+                            >
+                                <tree editable="bottom">
+                                    <field name="sequence" widget="handle" />
+                                    <field name="cost_type" />
+                                    <field name="name" />
+                                    <field name="partner_id" optional="show" />
+                                    <field name="invoice_id" optional="show" />
+                                    <field name="date" optional="hide" />
+                                    <field name="amount" sum="Total" />
+                                    <field
+                                        name="currency_id"
+                                        options="{'no_open': True, 'no_create': True}"
+                                    />
+                                    <field name="notes" optional="hide" />
+                                </tree>
+                            </field>
+                            <group>
+                                <group name="legacy_costs" string="Legacy Cost Fields">
                                     <label for="cost" />
                                     <div class="o_row" name="container_cost">
                                         <field name="cost" />
@@ -162,22 +221,6 @@
                                         attrs="{'invisible': [('has_additional_fees', '=', False)]}"
                                     />
                                 </group>
-                                <group name="landed_costs" string="Landed Costs">
-                                    <field name="total_landed_cost" />
-                                    <field
-                                        name="landed_cost_ids"
-                                        widget="many2many_tags"
-                                    />
-                                    <button
-                                        name="action_create_landed_cost"
-                                        type="object"
-                                        string="Create Landed Cost"
-                                        class="btn-secondary"
-                                        attrs="{'invisible': [('picking_count', '=', 0)]}"
-                                    />
-                                </group>
-                            </group>
-                            <group>
                                 <group name="metrics" string="Metrics">
                                     <field name="package_qty" />
                                     <label for="weight" />
@@ -265,6 +308,7 @@
                                 <tree editable="bottom">
                                     <field name="sequence" widget="handle" />
                                     <field name="product_id" />
+                                    <field name="hs_code" optional="show" />
                                     <field name="quantity" />
                                     <field
                                         name="product_uom_id"
@@ -370,6 +414,8 @@
                 <field name="date_eta" />
                 <field name="date_warehouse_eta" />
                 <field name="purchase_order_ids" widget="many2many_tags" />
+                <field name="total_cost" optional="hide" sum="Total" />
+                <field name="ready_for_landed_cost" optional="show" widget="boolean" />
                 <field name="documents_complete" optional="hide" widget="boolean" />
                 <field
                     name="state"
@@ -437,6 +483,16 @@
                     name="missing_documents"
                     string="Missing Documents"
                     domain="[('documents_complete', '=', False)]"
+                />
+                <filter
+                    name="ready_for_landed_cost"
+                    string="Ready for Landed Cost"
+                    domain="[('ready_for_landed_cost', '=', True)]"
+                />
+                <filter
+                    name="awaiting_invoices"
+                    string="Awaiting Invoices"
+                    domain="[('ready_for_landed_cost', '=', False), ('state', 'in', ['delivered', 'received'])]"
                 />
                 <separator />
                 <group expand="0" name="group_by" string="Group By">

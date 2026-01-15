@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo>
+    <record id="container_cost_line_view_form" model="ir.ui.view">
+        <field name="model">container.cost.line</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group string="Cost Information">
+                            <field name="container_id" />
+                            <field name="cost_type" />
+                            <field name="name" />
+                            <field name="date" />
+                        </group>
+                        <group string="Amount">
+                            <label for="amount" />
+                            <div class="o_row">
+                                <field name="amount" />
+                                <field
+                                    name="currency_id"
+                                    options="{'no_open': True, 'no_create': True}"
+                                />
+                            </div>
+                            <field name="partner_id" />
+                            <field name="invoice_id" />
+                            <field name="invoice_line_id" />
+                        </group>
+                    </group>
+                    <group>
+                        <field name="notes" placeholder="Additional notes..." />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="container_cost_line_view_list" model="ir.ui.view">
+        <field name="model">container.cost.line</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="sequence" widget="handle" />
+                <field name="container_id" />
+                <field name="cost_type" />
+                <field name="name" />
+                <field name="partner_id" optional="show" />
+                <field name="invoice_id" optional="show" />
+                <field name="date" optional="hide" />
+                <field name="amount" sum="Total" />
+                <field
+                    name="currency_id"
+                    options="{'no_open': True, 'no_create': True}"
+                />
+            </tree>
+        </field>
+    </record>
+
+    <record id="container_cost_line_view_search" model="ir.ui.view">
+        <field name="model">container.cost.line</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="container_id" />
+                <field name="name" />
+                <field name="partner_id" />
+                <field name="invoice_id" />
+                <separator />
+                <filter
+                    name="ocean_freight"
+                    string="Ocean Freight"
+                    domain="[('cost_type', '=', 'ocean_freight')]"
+                />
+                <filter
+                    name="drayage"
+                    string="Drayage"
+                    domain="[('cost_type', '=', 'drayage')]"
+                />
+                <filter
+                    name="tariffs"
+                    string="Tariffs / Duties"
+                    domain="[('cost_type', '=', 'tariff')]"
+                />
+                <filter
+                    name="customs"
+                    string="Customs Hold"
+                    domain="[('cost_type', '=', 'customs_hold')]"
+                />
+                <filter
+                    name="per_diem"
+                    string="Per Diem"
+                    domain="[('cost_type', '=', 'per_diem')]"
+                />
+                <separator />
+                <group expand="0" name="group_by" string="Group By">
+                    <filter
+                        name="group_container"
+                        string="Container"
+                        domain="[]"
+                        context="{'group_by' : 'container_id'}"
+                    />
+                    <filter
+                        name="group_type"
+                        string="Cost Type"
+                        domain="[]"
+                        context="{'group_by' : 'cost_type'}"
+                    />
+                    <filter
+                        name="group_partner"
+                        string="Vendor"
+                        domain="[]"
+                        context="{'group_by' : 'partner_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="container_cost_line_action" model="ir.actions.act_window">
+        <field name="name">Container Costs</field>
+        <field name="res_model">container.cost.line</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_group_container': 1}</field>
+    </record>
+</odoo>
