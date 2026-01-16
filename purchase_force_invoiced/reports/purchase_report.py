@@ -15,10 +15,7 @@ class PurchaseReport(models.Model):
         """Put quantity to be billed as 0 if it has been forced."""
         select_sql = super()._select()
         old = "case when t.purchase_method = 'purchase'"
-        new = (
-            "case when po.force_invoiced then 0.0 "
-            "when t.purchase_method = 'purchase'"
-        )
+        new = "case when po.force_invoiced then 0.0 when t.purchase_method = 'purchase'"
         code = select_sql.code.replace(old, new)
         if "force_invoiced" not in code:
             _logger.error(
