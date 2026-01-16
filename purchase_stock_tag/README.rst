@@ -45,7 +45,7 @@ Cross-dock, ...).
 
 We'll use purchase tags (that will be put on purchase order lines) in
 order to identify those flows coming from the configuration on route
-levels.
+levels. s
 
 Configuration
 =============

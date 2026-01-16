@@ -33,13 +33,14 @@ class PurchaseOrderLine(models.Model):
             values,
             po,
         )
+        tag_ids = values.get("purchase_tag_ids", self.env["purchase.tag"].browse())
         if "route_ids" in values:
-            tag_ids = values.get("route_ids").purchase_tag_ids
-            if tag_ids:
-                if res.get("tag_ids"):
-                    res["tag_ids"].update(
-                        [Command.link(tag_id.id) for tag_id in tag_ids]
-                    )
-                else:
-                    res["tag_ids"] = [Command.link(tag_id.id) for tag_id in tag_ids]
+            route_tag_ids = values.get("route_ids").purchase_tag_ids
+            if route_tag_ids:
+                tag_ids |= route_tag_ids
+        if tag_ids:
+            if res.get("tag_ids"):
+                res["tag_ids"].update([Command.link(tag_id.id) for tag_id in tag_ids])
+            else:
+                res["tag_ids"] = [Command.link(tag_id.id) for tag_id in tag_ids]
         return res
