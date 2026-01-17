@@ -14,28 +14,39 @@
                 <div
                     class="alert alert-warning"
                     role="alert"
-                    invisible="not has_unapproved_supplier or override_supplier_approval"
+                    invisible="not has_unapproved_supplier"
                 >
                     <strong
                     >Warning:</strong> This purchase order contains products from unapproved suppliers.
+                </div>
+                <div
+                    class="alert alert-info"
+                    role="alert"
+                    invisible="not has_unapproved_supplier or not override_supplier_approval"
+                    groups="purchase_supplier_approved.group_manage_approved_suppliers"
+                >
+                    <strong
+                    >Note:</strong> Supplier approval validation has been overridden for this purchase order.
                 </div>
             </xpath>
 
             <!-- Add override fields -->
             <field name="currency_id" position="after">
                 <field name="has_unapproved_supplier" invisible="1" />
+                <field name="can_manage_approved_suppliers" invisible="1" />
                 <field name="override_supplier_approval" invisible="1" />
                 <field
                     name="override_supplier_approval"
                     invisible="not has_unapproved_supplier or state not in ('draft', 'sent')"
-                    groups="purchase_supplier_approved.group_manage_approved_suppliers"
+                    readonly="not can_manage_approved_suppliers"
                 />
                 <field
                     name="override_reason"
                     invisible="not override_supplier_approval or not has_unapproved_supplier"
-                    groups="purchase_supplier_approved.group_manage_approved_suppliers"
+                    readonly="not can_manage_approved_suppliers"
                 />
             </field>
+
         </field>
     </record>
 
@@ -52,6 +63,49 @@
                     widget="boolean_toggle"
                 />
             </field>
+        </field>
+    </record>
+
+    <!-- Inherit Purchase Order Line Tree View for highlighting -->
+    <record id="view_purchase_order_line_tree_inherit" model="ir.ui.view">
+        <field name="name">purchase.order.line.tree.inherit.supplier.approval</field>
+        <field name="model">purchase.order.line</field>
+        <field name="inherit_id" ref="purchase.purchase_order_line_tree" />
+        <field name="arch" type="xml">
+            <tree position="attributes">
+                <attribute
+                    name="decoration-danger"
+                >has_unapproved_supplier == True</attribute>
+            </tree>
+            <field name="product_id" position="after">
+                <field
+                    name="has_unapproved_supplier"
+                    optional="hide"
+                    widget="boolean_toggle"
+                />
+            </field>
+        </field>
+    </record>
+
+    <!-- Inherit Purchase Order Form View for line highlighting -->
+    <record id="view_purchase_order_form_line_inherit" model="ir.ui.view">
+        <field name="name">purchase.order.form.line.inherit.supplier.approval</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/tree" position="attributes">
+                <attribute name="decoration-danger">has_unapproved_supplier</attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/tree/field[@name='product_id']"
+                position="after"
+            >
+                <field
+                    name="has_unapproved_supplier"
+                    optional="hide"
+                    widget="boolean_toggle"
+                />
+            </xpath>
         </field>
     </record>
 

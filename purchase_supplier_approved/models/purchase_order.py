@@ -9,16 +9,20 @@ class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
     override_supplier_approval = fields.Boolean(
+        copy=False,
         help="Check this to override supplier approval validation",
-        groups="purchase_supplier_approved.group_manage_approved_suppliers",
     )
     override_reason = fields.Text(
+        copy=False,
         help="Reason for overriding supplier approval validation",
-        groups="purchase_supplier_approved.group_manage_approved_suppliers",
     )
     has_unapproved_supplier = fields.Boolean(
         compute="_compute_has_unapproved_supplier",
         help="Technical field to track if PO has unapproved suppliers",
+    )
+    can_manage_approved_suppliers = fields.Boolean(
+        compute="_compute_can_manage_approved_suppliers",
+        help="Technical field to check if current user can manage approved suppliers",
     )
 
     @api.depends("order_line.has_unapproved_supplier")
@@ -28,6 +32,12 @@ class PurchaseOrder(models.Model):
                 line.has_unapproved_supplier for line in order.order_line
             )
 
+    def _compute_can_manage_approved_suppliers(self):
+        group_name = "purchase_supplier_approved.group_manage_approved_suppliers"
+        can_manage_approved_suppliers = self.env.user.has_group(group_name)
+        for order in self:
+            order.can_manage_approved_suppliers = can_manage_approved_suppliers
+
     @api.constrains("override_supplier_approval", "override_reason")
     def _check_override_reason(self):
         for order in self:
@@ -35,6 +45,19 @@ class PurchaseOrder(models.Model):
                 raise ValidationError(
                     _("Override reason is required when overriding supplier approval.")
                 )
+
+    def write(self, vals):
+        # Additional security check for override fields
+        if vals.get("override_supplier_approval") or vals.get("override_reason"):
+            group_name = "purchase_supplier_approved.group_manage_approved_suppliers"
+            if not self.env.user.has_group(group_name):
+                raise ValidationError(
+                    _(
+                        "Only users with 'Manage Approved Suppliers' permission "
+                        "can modify override settings."
+                    )
+                )
+        return super().write(vals)
 
     def button_confirm(self):
         """Override to add supplier approval validation"""
