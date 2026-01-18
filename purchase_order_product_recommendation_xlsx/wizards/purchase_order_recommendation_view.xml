@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="purchase_order_recommendation_view_form" model="ir.ui.view">
+        <field name="model">purchase.order.recommendation</field>
+        <field
+            name="inherit_id"
+            ref="purchase_order_product_recommendation.purchase_order_recommendation_view_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='price_unit']" position="attributes">
+                <attribute name="force_save">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='units_available']" position="attributes">
+                <attribute name="force_save">1</attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='units_virtual_available']"
+                position="attributes"
+            >
+                <attribute name="force_save">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='units_received']" position="attributes">
+                <attribute name="force_save">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='units_delivered']" position="attributes">
+                <attribute name="force_save">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='units_avg_delivered']" position="attributes">
+                <attribute name="force_save">1</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_accept']" position="after">
+                <button
+                    name="export_xlsx"
+                    string="Export"
+                    type="object"
+                    class="btn-primary"
+                    icon="fa-file-excel-o"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
