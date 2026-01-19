@@ -62,7 +62,6 @@ class TestPurchaseForceInvoiced(BaseCommon):
                 "name": self.service_1.name,
                 "product_id": self.service_1.id,
                 "product_qty": 1,
-                "product_uom": self.service_1.uom_po_id.id,
                 "price_unit": 500.0,
                 "date_planned": fields.Date.today(),
                 "order_id": po.id,
@@ -73,7 +72,6 @@ class TestPurchaseForceInvoiced(BaseCommon):
                 "name": self.service_2.name,
                 "product_id": self.service_2.id,
                 "product_qty": 2,
-                "product_uom": self.service_2.uom_po_id.id,
                 "price_unit": 500.0,
                 "date_planned": fields.Date.today(),
                 "order_id": po.id,
@@ -108,11 +106,14 @@ class TestPurchaseForceInvoiced(BaseCommon):
         )
 
         # We set the force invoiced.
-        po.button_done()
+        po.button_lock()
         po.force_invoiced = True
         self.assertEqual(
             po.invoice_status, "invoiced", "The invoice status should be Invoiced"
         )
+        invoice_before_create = po.invoice_count
+        po.action_create_invoice()
+        self.assertEqual(invoice_before_create, po.invoice_count)
         self.assertFalse(pol2.qty_to_invoice)
         self.env.invalidate_all()  # Drop cache to force a refresh of the SQL report
         self.assertFalse(self.env["purchase.report"].browse(pol2.id).qty_to_be_billed)

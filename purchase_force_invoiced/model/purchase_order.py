@@ -23,3 +23,8 @@ class PurchaseOrder(models.Model):
         ):
             order.invoice_status = "invoiced"
         return res
+
+    def action_create_invoice(self, attachment_ids=False):
+        if self.force_invoiced:
+            return {"type": "ir.actions.act_window_close"}
+        return super().action_create_invoice(attachment_ids=attachment_ids)
