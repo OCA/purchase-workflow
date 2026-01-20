@@ -85,3 +85,12 @@ class PurchaseOrderLine(models.Model):
         if self.secondary_uom_id:
             self.secondary_uom_qty = 1.0
         return res
+
+    def _prepare_account_move_line(self, move=False):
+        # Set secondary UoM values only when account_move_secondary_unit is installed
+        # (i.e., the fields exist on account.move.line).
+        res = super()._prepare_account_move_line(move)
+        aml_fields = self.env["account.move.line"]._fields
+        if "secondary_uom_id" in aml_fields and self.secondary_uom_id:
+            res["secondary_uom_id"] = self.secondary_uom_id.id
+        return res
