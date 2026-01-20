@@ -21,6 +21,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
+[product_supplier_code_purchase](product_supplier_code_purchase/) | 19.0.1.0.0 |  | This module adds to the purchase order line the supplier code defined in the product.
 [purchase_allowed_product](purchase_allowed_product/) | 19.0.1.0.0 |  | This module allows to select only products that can be supplied by the vendor
 [purchase_order_owner](purchase_order_owner/) | 19.0.1.0.0 |  | Purchase Order Owner
 [purchase_order_type](purchase_order_type/) | 19.0.1.0.0 |  | Purchase Order Type
