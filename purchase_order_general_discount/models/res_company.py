@@ -1,6 +1,6 @@
 # Copyright 2019 Tecnativa - David Vidal
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 
 class ResCompany(models.Model):
@@ -19,14 +19,14 @@ class ResCompany(models.Model):
         """Extensible method to add possible discounts. We offer in advance
         the posibility of using purchase_triple_discount so no bridge
         module is needed"""
-        discount_fields = [("discount", _("Discount"))]
+        discount_fields = [("discount", self.env._("Discount"))]
         purchase_line_fields = self.env["purchase.order.line"]._fields.keys()
         if "discount2" in purchase_line_fields:
             discount_fields += [
-                ("discount2", _("Discount 2")),
+                ("discount2", self.env._("Discount 2")),
             ]
         if "discount3" in purchase_line_fields:
             discount_fields += [
-                ("discount3", _("Discount 3")),
+                ("discount3", self.env._("Discount 3")),
             ]
         return discount_fields

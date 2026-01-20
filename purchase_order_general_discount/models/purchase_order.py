@@ -12,13 +12,10 @@ class PurchaseOrder(models.Model):
         string="Gen. Disc. (%)",
     )
 
-    _sql_constraints = [
-        (
-            "general_discount_limit",
-            "CHECK (general_discount <= 100.0)",
-            "Discount must be lower than 100%.",
-        ),
-    ]
+    _general_discount_limit = models.Constraint(
+        "CHECK (general_discount <= 100.0)",
+        "Discount must be lower than 100%.",
+    )
 
     @api.onchange("partner_id")
     def onchange_partner_id(self):
