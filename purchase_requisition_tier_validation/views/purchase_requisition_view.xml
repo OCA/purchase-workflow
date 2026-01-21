@@ -13,13 +13,13 @@
                 <filter
                     name="needs_review"
                     string="Needs my Review"
-                    domain="[('reviewer_ids', 'in', uid), ('state', 'not in', ['ongoing', 'in_progress', 'done', 'cancel'])]"
+                    domain="[('reviewer_ids', 'in', uid), ('state', '=', 'draft')]"
                     help="My Purchase Agreements to review"
                 />
                 <filter
                     name="tier_validated"
                     string="Validated"
-                    domain="[('validated', '=', True)]"
+                    domain="[('validation_status', '=', 'validated'), ('state', '=', 'draft')]"
                     help="Purchase Agreements validated and ready to be confirmed"
                 />
             </filter>

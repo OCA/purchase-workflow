@@ -8,6 +8,6 @@ class PurchaseRequisition(models.Model):
     _name = "purchase.requisition"
     _inherit = ["purchase.requisition", "tier.validation"]
     _state_from = ["draft"]
-    _state_to = ["ongoing", "in_progress"]
+    _state_to = ["confirmed"]
 
     _tier_validation_manual_config = False
