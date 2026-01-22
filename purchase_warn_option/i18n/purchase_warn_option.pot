@@ -1,0 +1,67 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_warn_option
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_warn_option
+#: model:ir.model.fields.selection,name:purchase_warn_option.selection__warn_option__allowed_warning_usage__partner_purchase_warn
+msgid "(Partner) Warning on the Purchase Order"
+msgstr ""
+
+#. module: purchase_warn_option
+#: model:ir.model.fields.selection,name:purchase_warn_option.selection__warn_option__allowed_warning_usage__product_purchase_warn
+msgid "(Product) Warning when Purchasing this Product"
+msgstr ""
+
+#. module: purchase_warn_option
+#: model:ir.model.fields,field_description:purchase_warn_option.field_warn_option__allowed_warning_usage
+msgid "Allowed Warning Usage"
+msgstr ""
+
+#. module: purchase_warn_option
+#: model:ir.model.fields,help:purchase_warn_option.field_warn_option__allowed_warning_usage
+msgid "Allows to choose where the message can be selected"
+msgstr ""
+
+#. module: purchase_warn_option
+#: model:ir.model,name:purchase_warn_option.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: purchase_warn_option
+#: model:ir.model,name:purchase_warn_option.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: purchase_warn_option
+#: model:ir.model.fields,field_description:purchase_warn_option.field_product_product__purchase_line_warn_option
+#: model:ir.model.fields,field_description:purchase_warn_option.field_product_template__purchase_line_warn_option
+msgid "Purchase Line Warn Option"
+msgstr ""
+
+#. module: purchase_warn_option
+#: model:ir.model.fields,field_description:purchase_warn_option.field_res_partner__purchase_warn_option
+#: model:ir.model.fields,field_description:purchase_warn_option.field_res_users__purchase_warn_option
+msgid "Purchase Warn Option"
+msgstr ""
+
+#. module: purchase_warn_option
+#: model_terms:ir.ui.view,arch_db:purchase_warn_option.purchase_warn_option_partner_form
+#: model_terms:ir.ui.view,arch_db:purchase_warn_option.purchase_warn_option_product_form
+msgid "Select a warning option"
+msgstr ""
+
+#. module: purchase_warn_option
+#: model:ir.model,name:purchase_warn_option.model_warn_option
+msgid "Warn Option"
+msgstr ""
