@@ -3,3 +3,7 @@
 - Laurent Mignon \<<laurent.mignon@acsone.eu>\>
 - Moaad Bourhim \<<moaad.bourhim@gmail.com>\>
 - Rolando Duarte \<<rolando@vauxoo.com>\>
+- Elliott Bristow \<<elliott@glo.systems>\>
+
+- [Komit](https://komit-consulting.com):
+  - Quoc Pham Ngoc \<<quoc-pn@komit-consulting.com>\>

@@ -12,22 +12,13 @@
         />
         <field name="arch" type="xml">
             <xpath expr="//block[@name='purchase_setting_container']" position="inside">
-                <div class="col-12 col-lg-6 o_setting_box">
-                    <div class="o_setting_left_pane">
-                        <field name="purchase_approve_active" />
-                    </div>
-                    <div class="o_setting_right_pane">
-                        <label for="purchase_approve_active" />
-                        <span
-                            class="fa fa-lg fa-building-o"
-                            title="Values set here are company-specific."
-                            groups="base.group_multi_company"
-                        />
-                        <div class="text-muted">
-                            Adds an extra state in purchase orders previous to 'Purchase Order' state.
-                        </div>
-                    </div>
-                </div>
+                <setting
+                    id="purchase_approve_active"
+                    company_dependent="1"
+                    help="Require second approval for purchase orders as company policy (otherwise it can be set per supplier)"
+                >
+                    <field name="purchase_approve_active" />
+                </setting>
             </xpath>
         </field>
     </record>
