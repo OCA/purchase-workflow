@@ -9,13 +9,15 @@ class TestPurchaseOrder(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.supplier = cls.env.ref("base.res_partner_1")
+        cls.supplier = cls.env["res.partner"].create(
+            {"name": "Test Supplier", "is_company": True}
+        )
         vals = {
             "name": "PO TEST",
             "partner_id": cls.supplier.id,
         }
         cls.purchase_order = cls.env["purchase.order"].create(vals)
-        product = cls.env.ref("product.product_product_4")
+        product = cls.env["product.product"].create({"name": "Test Product"})
         cls.env["purchase.order.line"].create(
             {
                 "order_id": cls.purchase_order.id,
@@ -23,7 +25,7 @@ class TestPurchaseOrder(TransactionCase):
                 "date_planned": fields.Datetime.now(),
                 "name": "Test",
                 "product_qty": 10.0,
-                "product_uom": product.uom_id.id,
+                "product_uom_id": product.uom_id.id,
                 "price_unit": 100.0,
             }
         )
