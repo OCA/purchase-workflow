@@ -6,63 +6,65 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-01-26 17:44+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: purchase_warn_option
 #: model:ir.model.fields.selection,name:purchase_warn_option.selection__warn_option__allowed_warning_usage__partner_purchase_warn
 msgid "(Partner) Warning on the Purchase Order"
-msgstr ""
+msgstr "(Partner) Avviso nell'ordine acquisto"
 
 #. module: purchase_warn_option
 #: model:ir.model.fields.selection,name:purchase_warn_option.selection__warn_option__allowed_warning_usage__product_purchase_warn
 msgid "(Product) Warning when Purchasing this Product"
-msgstr ""
+msgstr "(Prodotto) Avviso quando si acquista questo prodotto"
 
 #. module: purchase_warn_option
 #: model:ir.model.fields,field_description:purchase_warn_option.field_warn_option__allowed_warning_usage
 msgid "Allowed Warning Usage"
-msgstr ""
+msgstr "Utilizzo avviso consentito"
 
 #. module: purchase_warn_option
 #: model:ir.model.fields,help:purchase_warn_option.field_warn_option__allowed_warning_usage
 msgid "Allows to choose where the message can be selected"
-msgstr ""
+msgstr "Consente di scegliere dove può essere selezionato il messaggio"
 
 #. module: purchase_warn_option
 #: model:ir.model,name:purchase_warn_option.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contatto"
 
 #. module: purchase_warn_option
 #: model:ir.model,name:purchase_warn_option.model_product_template
 msgid "Product"
-msgstr ""
+msgstr "Prodotto"
 
 #. module: purchase_warn_option
 #: model:ir.model.fields,field_description:purchase_warn_option.field_product_product__purchase_line_warn_option
 #: model:ir.model.fields,field_description:purchase_warn_option.field_product_template__purchase_line_warn_option
 msgid "Purchase Line Warn Option"
-msgstr ""
+msgstr "Opzione avviso riga acquisto"
 
 #. module: purchase_warn_option
 #: model:ir.model.fields,field_description:purchase_warn_option.field_res_partner__purchase_warn_option
 #: model:ir.model.fields,field_description:purchase_warn_option.field_res_users__purchase_warn_option
 msgid "Purchase Warn Option"
-msgstr ""
+msgstr "Opzione avviso acquisto"
 
 #. module: purchase_warn_option
 #: model_terms:ir.ui.view,arch_db:purchase_warn_option.purchase_warn_option_partner_form
 #: model_terms:ir.ui.view,arch_db:purchase_warn_option.purchase_warn_option_product_form
 msgid "Select a warning option"
-msgstr ""
+msgstr "Selezionare una opzione avviso"
 
 #. module: purchase_warn_option
 #: model:ir.model,name:purchase_warn_option.model_warn_option
 msgid "Warn Option"
-msgstr ""
+msgstr "Opzione avviso"
