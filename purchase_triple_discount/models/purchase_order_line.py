@@ -8,7 +8,7 @@ class PurchaseOrderLine(models.Model):
     _name = "purchase.order.line"
     _inherit = ["purchase.triple.discount.mixin", "purchase.order.line"]
 
-    @api.depends("product_qty", "product_uom", "company_id")
+    @api.depends("product_qty", "product_uom_id", "company_id")
     def _compute_price_unit_and_date_planned_and_name(self):
         res = super()._compute_price_unit_and_date_planned_and_name()
         self._compute_discounts()
@@ -25,7 +25,7 @@ class PurchaseOrderLine(models.Model):
                 date=line.order_id.date_order
                 and line.order_id.date_order.date()
                 or fields.Date.context_today(line),
-                uom_id=line.product_uom,
+                uom_id=line.product_uom_id,
                 params=params,
             )
             if not seller:
@@ -50,21 +50,23 @@ class PurchaseOrderLine(models.Model):
 
     @api.model
     def _prepare_purchase_order_line(
-        self, product_id, product_qty, product_uom, company_id, supplier, po
+        self, product_id, product_qty, product_uom_id, company_id, partner, po
     ):
         res = super()._prepare_purchase_order_line(
-            product_id, product_qty, product_uom, company_id, supplier, po
+            product_id, product_qty, product_uom_id, company_id, partner, po
         )
         today = fields.Date.today()
-        partner = supplier.partner_id
-        uom_po_qty = product_uom._compute_quantity(
-            product_qty, product_id.uom_po_id, rounding_method="HALF-UP"
+        uom_po_qty = product_uom_id._compute_quantity(
+            product_qty, product_id.uom_id, rounding_method="HALF-UP"
+        )
+        actual_partner = (
+            partner.partner_id if hasattr(partner, "partner_id") else partner
         )
         seller = product_id.with_company(company_id)._select_seller(
-            partner_id=partner,
+            partner_id=actual_partner,
             quantity=uom_po_qty,
             date=po.date_order and max(po.date_order.date(), today) or today,
-            uom_id=product_id.uom_po_id,
+            uom_id=product_id.uom_id,
         )
         res.update(
             dict(

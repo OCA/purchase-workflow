@@ -50,23 +50,23 @@ be calculated over discount 1 and discount 3 over the result of discount
 
 Unit price: 600.00 ->
 
-   - Disc. 1 = 50% -> Amount = 300.00
-   - Disc. 2 = 50% -> Amount = 150.00
-   - Disc. 3 = 50% -> Amount = 75.00
+   -  Disc. 1 = 50% -> Amount = 300.00
+   -  Disc. 2 = 50% -> Amount = 150.00
+   -  Disc. 3 = 50% -> Amount = 75.00
 
 You can also use negative values to charge instead of discount:
 
 Unit price: 600.00 ->
 
-   - Disc. 1 = 50% -> Amount = 300.00
-   - Disc. 2 = -5% -> Amount = 315.00
+   -  Disc. 1 = 50% -> Amount = 300.00
+   -  Disc. 2 = -5% -> Amount = 315.00
 
-- When the purchase order is validated, the discounts will be added to
-  the corresponding vendor pricelist.
-- Vendor pricelists can be edited as well with their corresponding new
-  second and third discounts.
-- A default second or third discount can be set in every vendor *Sale &
-  Purchases* tab.
+-  When the purchase order is validated, the discounts will be added to
+   the corresponding vendor pricelist.
+-  Vendor pricelists can be edited as well with their corresponding new
+   second and third discounts.
+-  A default second or third discount can be set in every vendor *Sale &
+   Purchases* tab.
 
 Bug Tracker
 ===========
@@ -90,16 +90,20 @@ Authors
 Contributors
 ------------
 
-- `Tecnativa <https://www.tecnativa.com>`__:
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-     - David Vidal
-     - Pedro M. Baeza
+      -  David Vidal
+      -  Pedro M. Baeza
 
-- Sylvain LE GAL (https://twitter.com/legalsylvain)
+-  Sylvain LE GAL (https://twitter.com/legalsylvain)
 
-- `ForgeFlow S.L. <https://www.forgeflow.com>`__:
+-  `ForgeFlow S.L. <https://www.forgeflow.com>`__:
 
-  - Christopher Ormaza <chris.ormaza@forgeflow.com>
+   -  Christopher Ormaza <chris.ormaza@forgeflow.com>
+
+-  `Studio73 S.L. <https://www.studio73.es>`__:
+
+   -  Vicent Castells <vicent@studio73.es>
 
 Maintainers
 -----------
