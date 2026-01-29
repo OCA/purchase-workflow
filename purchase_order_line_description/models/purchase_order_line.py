@@ -2,21 +2,14 @@
 # Copyright 2017 Tecnativa - vicent.cubells@tecnativa.com
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from odoo import api, models
+from odoo import models
 
 
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
-    @api.onchange("product_id")
-    def onchange_product_id(self):
-        res = super().onchange_product_id()
-        if not self.product_id:
-            return res
-        # TODO Use odoo.tools.misc.get_lang in v13+
-        translated_product = self.product_id.with_context(
-            lang=self.partner_id.lang or self.env.lang
-        )
-        if translated_product.description_purchase:
-            self.name = translated_product.description_purchase
-        return res
+    def _get_product_purchase_description(self, product_lang):
+        name = super()._get_product_purchase_description(product_lang)
+        if product_lang.description_purchase:
+            name = product_lang.description_purchase
+        return name

@@ -3,10 +3,12 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import fields
-from odoo.tests import common
+from odoo.tests import Form
+
+from odoo.addons.base.tests.common import SavepointCaseWithUserDemo
 
 
-class TestPurchaseOrderLineDescription(common.SavepointCase):
+class TestPurchaseOrderLineDescription(SavepointCaseWithUserDemo):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -53,19 +55,19 @@ class TestPurchaseOrderLineDescription(common.SavepointCase):
     def test_onchange_product_id(self):
         self.assertEqual(self.product.name, self.order.order_line[0].name)
         # Test onchange product
-        self.order.order_line[0].sudo(self.test_user).onchange_product_id()
+        self.order.order_line[0].sudo().onchange_product_id()
         self.assertEqual(
             self.product.description_purchase, self.order.order_line[0].name
         )
 
     def test_translated_description(self):
         """PO description rendered in supplier lang."""
-        self.env["res.lang"].load_lang("es_ES")
+        self.env["res.lang"]._activate_lang("es_ES")
         self.order.partner_id.lang = "es_ES"
         self.product.with_context(
             lang="es_ES"
         ).description_purchase = "descripción para compras"
-        with common.Form(self.order.sudo(self.test_user)) as order:
+        with Form(self.order.sudo()) as order:
             with order.order_line.new() as line:
                 line.product_id = self.product
                 self.assertEqual(line.name, "descripción para compras")

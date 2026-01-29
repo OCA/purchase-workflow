@@ -73,6 +73,8 @@ Contributors
 - Nikul Chaudhary <nikulchaudhary2112@gmail.com>
 - David Vidal Moduon
   <`https://www.moduon.team/\\> <https://www.moduon.team/\>>`__
+- Andrii Kompaniiets Moduon
+  <`https://www.moduon.team/\\> <https://www.moduon.team/\>>`__
 
 Maintainers
 -----------
