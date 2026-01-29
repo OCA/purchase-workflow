@@ -1,0 +1,5 @@
+- Alex Comba \<alex.comba@agilebg.com\>
+- [Tecnativa](https://www.tecnativa.com):
+  - Vicent Cubells
+- Nikul Chaudhary \<nikulchaudhary2112@gmail.com\>
+- David Vidal Moduon \<https://www.moduon.team/\>
