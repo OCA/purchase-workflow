@@ -3,3 +3,4 @@
   - Vicent Cubells
 - Nikul Chaudhary \<nikulchaudhary2112@gmail.com\>
 - David Vidal Moduon \<https://www.moduon.team/\>
+- Andrii Kompaniiets Moduon \<https://www.moduon.team/\>
