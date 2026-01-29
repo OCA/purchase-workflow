@@ -2,8 +2,8 @@
 # Copyright 2017 Tecnativa - vicent.cubells@tecnativa.com
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo.tests import common
 from odoo import fields
+from odoo.tests import common
 
 
 class TestPurchaseOrderLineDescription(common.SavepointCase):
@@ -55,7 +55,8 @@ class TestPurchaseOrderLineDescription(common.SavepointCase):
         # Test onchange product
         self.order.order_line[0].sudo(self.test_user).onchange_product_id()
         self.assertEqual(
-            self.product.description_purchase, self.order.order_line[0].name)
+            self.product.description_purchase, self.order.order_line[0].name
+        )
 
     def test_translated_description(self):
         """PO description rendered in supplier lang."""
