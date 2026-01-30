@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ===================================
 Product supplierinfo qty multiplier
 ===================================
@@ -17,7 +13,7 @@ Product supplierinfo qty multiplier
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github
@@ -48,6 +44,10 @@ Configuration
 - Go to the 'Purchase' tab and edit a vendor pricelist line to set
   'Multiplier Qty' to 6.0
 
+To allow skipping this multiplier on specific purchase orders, the field
+'Bypass vendor pricelist Qty. Multiplier' is available on the purchase
+order.
+
 (If you can't find that column, you can activate it by clicking the
 three dots at the corner of the table and enabling it).
 
@@ -62,9 +62,10 @@ Usage
 - Assign it to the partner where the multiplier quantity was previously
   set.
 - Add a product line with the previously edited product.
-- Quantity is set to 6.0.
+- Quantity is set to 6.0 by default (based on the vendor multiplier).
 - If you set 9.0 in the quantity field, the quantity will be rounded up
-  to 12.0
+  to 12.0 unless the 'Bypass vendor pricelist Qty. Multiplier' flag is
+  enabled on the purchase order.
 
 |purchase_order_form|
 
@@ -98,6 +99,9 @@ Contributors
   - Pedro M. Baeza
 
 - Sylvain LE GAL (https://twitter.com/legalsylvain)
+- [Binhex] (https://binhex.cloud):
+
+  - Ariel Barreiros
 
 Maintainers
 -----------
