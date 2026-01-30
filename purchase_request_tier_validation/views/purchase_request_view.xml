@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!-- Copyright 2019-2020 ForgeFlow S.L.
-     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
     <record id="view_purchase_request_form_inherit_tier" model="ir.ui.view">
         <field name="name">purchase.request.tier.validation.form</field>
@@ -35,7 +33,7 @@
         <field name="inherit_id" ref="purchase_request.view_purchase_request_search" />
         <field name="arch" type="xml">
             <search position="inside">
-                <group expand="0" string="Need actions">
+                <group>
                     <filter
                         name="needs_review"
                         string="Needs my Review"
