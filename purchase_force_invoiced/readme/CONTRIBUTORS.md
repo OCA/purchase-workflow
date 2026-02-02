@@ -1,0 +1,5 @@
+- Jordi Ballester \<<jordi.ballester@forgeflow.com>\>
+- Rattapong Chokmasermkul \<<rattapongc@ecosoft.co.th>\>
+- Bert Van Groenendael \<<bert.vangroenendael@dynapps.eu>\>
+- Stefan Rijnhart \<<stefan@opener.amsterdam>\>
+- Arantxa Gandia \<<arantxa@studio73.es>\>
