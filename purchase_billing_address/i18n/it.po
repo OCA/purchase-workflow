@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-02-04 08:12+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: purchase_billing_address
 #: model:ir.model.fields,help:purchase_billing_address.field_res_partner__type
@@ -23,39 +25,48 @@ msgid ""
 "- Delivery Address: Preferred address for all deliveries. Selected by default when you deliver an order that belongs to this company.\n"
 "- Other: Other address for the company (e.g. subsidiary, ...)"
 msgstr ""
+"- Contatto: utilizzarlo per organizzare i dettagli dei contatti dei "
+"dipendenti di una data azienda (es. CEO, CFO, ...).\n"
+"- Indirizzo fattura: indirizzo preferito per tutte le fatture. Selezionato "
+"in modo predefinito quando si fattura un ordine che appartiene a questa "
+"azienda.\n"
+"- Indirizzo consegna : indirizzo preferito per tutte le consegne. "
+"Selezionato in modo predefinito quando si consegna un ordine che appartiene "
+"a questa azienda.\n"
+"- Altro: altri indirizzi per l'azienda (es. filiali, ...)"
 
 #. module: purchase_billing_address
 #: model:ir.model.fields,field_description:purchase_billing_address.field_res_partner__type
 #: model:ir.model.fields,field_description:purchase_billing_address.field_res_users__type
 msgid "Address Type"
-msgstr ""
+msgstr "Tipo indirizzo"
 
 #. module: purchase_billing_address
 #: model:ir.model.fields,field_description:purchase_billing_address.field_purchase_order__available_partner_invoice_ids
 msgid "Allowed invoice addresses"
-msgstr ""
+msgstr "Indirizzi fattura consentiti"
 
 #. module: purchase_billing_address
 #: model:ir.model,name:purchase_billing_address.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contatto"
 
 #. module: purchase_billing_address
 #: model:ir.model.fields,field_description:purchase_billing_address.field_purchase_order__partner_invoice_id
 msgid "Invoice address"
-msgstr ""
+msgstr "Indirizzo di fatturazione"
 
 #. module: purchase_billing_address
 #: model:ir.model.fields,help:purchase_billing_address.field_purchase_order__partner_invoice_id
 msgid "Invoice address for this purchase order"
-msgstr ""
+msgstr "Indirizzo di fatturazione per questo ordine di acquisto"
 
 #. module: purchase_billing_address
 #: model:ir.model,name:purchase_billing_address.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Ordine di acquisto"
 
 #. module: purchase_billing_address
 #: model:ir.model.fields.selection,name:purchase_billing_address.selection__res_partner__type__purchase_invoice
 msgid "Purchase invoice address"
-msgstr ""
+msgstr "Indirizzo fattura acquisto"
