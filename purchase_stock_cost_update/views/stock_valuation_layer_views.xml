@@ -1,0 +1,20 @@
+<odoo>
+    <record id="stock_valuation_layer_form" model="ir.ui.view">
+        <field name="model">stock.valuation.layer</field>
+        <field name="inherit_id" ref="stock_account.stock_valuation_layer_form" />
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Update history" invisible="not cost_update_history">
+                    <field name="cost_update_history" readonly="1" />
+                </page>
+            </notebook>
+            <field name="account_move_id" position="after">
+                <field
+                    name="purchase_line_id"
+                    invisible="not purchase_line_id"
+                    readonly="1"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
