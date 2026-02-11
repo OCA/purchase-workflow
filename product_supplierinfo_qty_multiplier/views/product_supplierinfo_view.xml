@@ -8,7 +8,7 @@
             <label for="price" position="before">
                 <div class="o_row">
                     <field name="multiplier_qty" />
-                    <field name="product_uom" groups="uom.group_uom" />
+                    <field name="product_uom_id" groups="uom.group_uom" />
                 </div>
             </label>
         </field>

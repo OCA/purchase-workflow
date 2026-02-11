@@ -4,7 +4,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from math import ceil
 
-from odoo import _, api, models
+from odoo import api, models
 
 
 class PurchaseOrderLine(models.Model):
@@ -18,7 +18,7 @@ class PurchaseOrderLine(models.Model):
             partner_id=self.partner_id,
             quantity=self.product_qty,
             date=self.order_id.date_order and self.order_id.date_order.date(),
-            uom_id=self.product_uom,
+            uom_id=self.product_uom_id,
             params={"order_id": self.order_id},
         )
         qty = self.product_qty
@@ -26,19 +26,15 @@ class PurchaseOrderLine(models.Model):
             # Change Ordered Quantity
             self.product_qty = ceil(qty / seller.multiplier_qty) * seller.multiplier_qty
             self.env.user.notify_warning(
-                title=_("Warning"),
-                message=_(
+                title=self.env._("Warning"),
+                message=self.env._(
                     "The selected supplier only sells this product"
                     " by %(multiplier_qty)s %(uom_name)s.\n"
                     "The quantity has been automatically changed"
-                    " to %(new_product_qty)s %(uom_name)s."
-                )
-                % (
-                    {
-                        "multiplier_qty": seller.multiplier_qty,
-                        "uom_name": seller.product_uom.name,
-                        "new_product_qty": self.product_qty,
-                    }
+                    " to %(new_product_qty)s %(uom_name)s.",
+                    multiplier_qty=seller.multiplier_qty,
+                    uom_name=seller.product_uom_id.name,
+                    new_product_qty=self.product_qty,
                 ),
             )
         return
