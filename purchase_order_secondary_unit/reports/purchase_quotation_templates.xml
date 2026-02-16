@@ -4,57 +4,18 @@
         id="report_purchasequotation_document"
         inherit_id="purchase.report_purchasequotation_document"
     >
-        <!-- Header: Second Qty column (hidden when hide_secondary_uom_column() is True) -->
+        <!-- Header data -->
         <th name="th_quantity" position="before">
-            <th
-                name="secondary_unit"
-                class="text-end"
-                t-if="not o.company_id.hide_secondary_uom_column(o)"
-            >
+            <th name="secondary_unit" class="text-end">
                 <strong>Second Qty</strong>
             </th>
         </th>
-        <!-- Content: Second Qty cell (hidden when hide_secondary_uom_column is True) -->
+        <!-- Content data -->
         <xpath expr="//span[@t-field='order_line.product_qty']/.." position="before">
-            <td
-                id="secondary_unit"
-                class="text-end"
-                t-if="not o.company_id.hide_secondary_uom_column(o)"
-            >
+            <td id="secondary_unit" class="text-end">
                 <span t-field="order_line.secondary_uom_qty" />
                 <span t-field="order_line.secondary_uom_id" />
             </td>
-        </xpath>
-        <!-- Quantity: hide primary when secondary is prioritized -->
-        <xpath expr="//span[@t-field='order_line.product_qty']" position="attributes">
-            <attribute
-                name="t-if"
-            >order_line.get_secondary_uom_display_mode() != 'secondary'</attribute>
-        </xpath>
-        <xpath expr="//span[@t-field='order_line.product_uom']" position="attributes">
-            <attribute
-                name="t-if"
-            >order_line.get_secondary_uom_display_mode() != 'secondary'</attribute>
-        </xpath>
-        <!-- Quantity: add secondary qty ('secondary' mode) -->
-        <xpath expr="//span[@t-field='order_line.product_uom']" position="after">
-            <t t-if="order_line.get_secondary_uom_display_mode() == 'secondary'">
-                <span t-field="order_line.secondary_uom_qty" />
-                <span t-field="order_line.secondary_uom_id.name" />
-            </t>
-        </xpath>
-        <!-- Quantity: add secondary qty ('both' mode) -->
-        <xpath expr="//span[@t-field='order_line.product_qty']/.." position="inside">
-            <t t-if="order_line.get_secondary_uom_display_mode() == 'both'">
-                <br />
-                <span class="text-muted">
-                    (<span t-field="order_line.secondary_uom_qty" />
-                    <span
-                    t-field="order_line.secondary_uom_id.name"
-                    groups="uom.group_uom"
-                />)
-                </span>
-            </t>
         </xpath>
     </template>
 </odoo>
