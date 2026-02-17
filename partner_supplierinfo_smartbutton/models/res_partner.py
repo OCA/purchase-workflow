@@ -10,10 +10,10 @@ class ResPartner(models.Model):
     product_supplied_count = fields.Integer(compute="_compute_product_supplied_count")
 
     def _compute_product_supplied_count(self):
-        data = self.env["product.supplierinfo"].read_group(
-            [("partner_id", "in", self.ids)], ["partner_id"], ["partner_id"]
+        data = self.env["product.supplierinfo"]._read_group(
+            [("partner_id", "in", self.ids)], ["partner_id"], ["__count"]
         )
-        mapping = {d["partner_id"][0]: d["partner_id_count"] for d in data}
+        mapping = {partner.id: count for partner, count in data}
         for item in self:
             item.product_supplied_count = mapping.get(item.id, 0)
 
