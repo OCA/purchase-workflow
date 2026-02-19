@@ -12,6 +12,7 @@
     "data": [
         "views/res_config_settings_view.xml",
         "views/sale_order_view.xml",
+        "report/sale_report_views.xml",
     ],
     "maintainers": ["victoralmau"],
 }
