@@ -36,11 +36,19 @@ class ProductTemplate(models.Model):
         string="Last Purchase Currency",
     )
     show_last_purchase_price_currency = fields.Boolean(
-        related="product_variant_ids.show_last_purchase_price_currency",
+        string="Show Last Purchase Price Currency",
+        related="show_last_purchase_price_currency_rate",
+    )
+    show_last_purchase_price_currency_rate = fields.Boolean(
+        related="product_variant_ids.show_last_purchase_price_currency_rate",
     )
     last_purchase_price_currency = fields.Float(
-        string="Last currency purchase price",
-        related="product_variant_ids.last_purchase_price_currency",
+        string="Last Purchase Price Currency",
+        related="last_purchase_price_currency_rate",
+    )
+    last_purchase_price_currency_rate = fields.Float(
+        string="Last Purchase Currency Rate",
+        related="product_variant_ids.last_purchase_price_currency_rate",
         digits=0,
     )
 
