@@ -1,0 +1,2 @@
+- Phuc (Kieu Hoang) \<<phuckh@trobz.com>\>
+- [CHEF PIXEL](https://chef-pixel.fr) \<<hello@chef-pixel.fr>\>
