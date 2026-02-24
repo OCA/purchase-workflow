@@ -1,9 +1,9 @@
 # Copyright 2022 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
 from datetime import datetime
 
-from odoo import fields, models
+from odoo_test_helper import FakeModelLoader
+
 from odoo.tests.common import TransactionCase
 
 
@@ -11,6 +11,7 @@ class TestPurchaseReceiptExpectation(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+
         cls.po_partner = cls.env["res.partner"].create({"name": "Partner"})
         cls.po_product = cls.env["product.product"].create({"name": "Product"})
         cls.po_vals = {
@@ -30,6 +31,19 @@ class TestPurchaseReceiptExpectation(TransactionCase):
                 )
             ],
         }
+
+    def setUp(self):
+        super().setUp()
+        self.loader = FakeModelLoader(self.env, self.__module__)
+        self.loader.backup_registry()
+
+        from .models import PurchaseOrderMockUp
+
+        self.loader.update_registry((PurchaseOrderMockUp,))
+
+    def tearDown(self):
+        self.loader.restore_registry()
+        super().tearDown()
 
     def test_00_automatic_receipt(self):
         """Tests normal workflow when `receipt_expectation == "automatic"`
@@ -65,28 +79,6 @@ class TestPurchaseReceiptExpectation(TransactionCase):
             - A picking should be created for succeeding order
             - NotImplementedError must be raised when confirming failing order
         """
-
-        class PurchaseOrderMockUp(models.Model):
-            _inherit = "purchase.order"  # pylint: disable=R8180
-
-            receipt_expectation = fields.Selection(
-                selection_add=[
-                    ("succeeding", "Succeeding"),
-                    ("failing", "Failing"),
-                ],
-                ondelete={
-                    "succeeding": "set default",
-                    "failing": "set default",
-                },
-            )
-
-            def _create_picking_for_succeeding_receipt_expectation(self):
-                """Standard picking creation workflow"""
-                orders = self.with_context(skip_custom_receipt_expectation=1)
-                return orders._create_picking()
-
-        PurchaseOrderMockUp._build_model(self.registry, self.cr)
-        self.registry.setup_models(self.cr)
 
         succeeding_order = self.env["purchase.order"].create(
             dict(self.po_vals, receipt_expectation="succeeding")
