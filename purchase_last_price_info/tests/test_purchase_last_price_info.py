@@ -66,7 +66,7 @@ class TestPurchaseLastPriceInfo(common.TransactionCase):
             first_purchase_line.currency_id, self.product.last_purchase_currency_id
         )
         self.assertEqual(self.product.last_purchase_currency_id, self.currency)
-        self.assertEqual(self.product.last_purchase_price_currency, 1.0)
+        self.assertEqual(self.product.last_purchase_price_currency_rate, 1.0)
 
     def test_purchase_last_price_info_new_order(self):
         purchase_order1 = self.purchase_model.create(
@@ -152,7 +152,7 @@ class TestPurchaseLastPriceInfo(common.TransactionCase):
             self.product1.last_purchase_currency_id,
         )
         self.assertEqual(self.product1.last_purchase_currency_id, self.currency_extra)
-        self.assertEqual(self.product1.last_purchase_price_currency, 2.0)
+        self.assertEqual(self.product1.last_purchase_price_currency_rate, 2.0)
         self.assertEqual(self.partner, self.product1.last_purchase_supplier_id)
         purchase_order2.button_cancel()
         self.assertEqual(purchase_order2.state, "cancel")

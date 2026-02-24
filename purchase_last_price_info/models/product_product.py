@@ -36,11 +36,19 @@ class ProductProduct(models.Model):
         string="Last Purchase Currency",
     )
     show_last_purchase_price_currency = fields.Boolean(
-        compute="_compute_show_last_purchase_price_currency",
+        string="Show Last Purchase Price Currency",
+        related="show_last_purchase_price_currency_rate",
+    )
+    show_last_purchase_price_currency_rate = fields.Boolean(
+        compute="_compute_show_last_purchase_price_currency_rate",
     )
     last_purchase_price_currency = fields.Float(
-        string="Last currency purchase price",
-        compute="_compute_last_purchase_price_currency",
+        string="Last Purchase Price Currency",
+        related="last_purchase_price_currency_rate",
+    )
+    last_purchase_price_currency_rate = fields.Float(
+        string="Last Purchase Currency Rate",
+        compute="_compute_last_purchase_price_currency_rate",
         digits=0,
     )
 
@@ -68,10 +76,10 @@ class ProductProduct(models.Model):
             item.last_purchase_currency_id = item.last_purchase_line_id.currency_id
 
     @api.depends("last_purchase_line_id", "last_purchase_currency_id")
-    def _compute_show_last_purchase_price_currency(self):
+    def _compute_show_last_purchase_price_currency_rate(self):
         for item in self:
             last_line = item.last_purchase_line_id
-            item.show_last_purchase_price_currency = (
+            item.show_last_purchase_price_currency_rate = (
                 last_line
                 and item.last_purchase_currency_id
                 and item.last_purchase_currency_id != last_line.company_id.currency_id
@@ -79,18 +87,18 @@ class ProductProduct(models.Model):
 
     @api.depends(
         "last_purchase_line_id",
-        "show_last_purchase_price_currency",
+        "show_last_purchase_price_currency_rate",
         "last_purchase_currency_id",
         "last_purchase_date",
     )
-    def _compute_last_purchase_price_currency(self):
+    def _compute_last_purchase_price_currency_rate(self):
         for item in self:
-            if item.show_last_purchase_price_currency:
+            if item.show_last_purchase_price_currency_rate:
                 rates = item.last_purchase_currency_id._get_rates(
                     item.last_purchase_line_id.company_id, item.last_purchase_date
                 )
-                item.last_purchase_price_currency = rates.get(
+                item.last_purchase_price_currency_rate = rates.get(
                     item.last_purchase_currency_id.id
                 )
             else:
-                item.last_purchase_price_currency = 1
+                item.last_purchase_price_currency_rate = 1

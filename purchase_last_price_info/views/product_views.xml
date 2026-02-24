@@ -14,16 +14,19 @@
                     <field name="last_purchase_supplier_id" />
                     <field name="last_purchase_date" />
                     <field name="last_purchase_price" />
-                    <field name="show_last_purchase_price_currency" invisible="1" />
+                    <field
+                        name="show_last_purchase_price_currency_rate"
+                        invisible="1"
+                    />
                     <field
                         name="last_purchase_currency_id"
                         groups="base.group_multi_currency"
-                        invisible="not show_last_purchase_price_currency"
+                        invisible="not show_last_purchase_price_currency_rate"
                     />
                     <field
-                        name="last_purchase_price_currency"
+                        name="last_purchase_price_currency_rate"
                         groups="base.group_multi_currency"
-                        invisible="not show_last_purchase_price_currency"
+                        invisible="not show_last_purchase_price_currency_rate"
                     />
                 </group>
             </field>
@@ -43,16 +46,19 @@
                     <field name="last_purchase_supplier_id" />
                     <field name="last_purchase_date" />
                     <field name="last_purchase_price" />
-                    <field name="show_last_purchase_price_currency" invisible="1" />
+                    <field
+                        name="show_last_purchase_price_currency_rate"
+                        invisible="1"
+                    />
                     <field
                         name="last_purchase_currency_id"
                         groups="base.group_multi_currency"
-                        invisible="not show_last_purchase_price_currency"
+                        invisible="not show_last_purchase_price_currency_rate"
                     />
                     <field
-                        name="last_purchase_price_currency"
+                        name="last_purchase_price_currency_rate"
                         groups="base.group_multi_currency"
-                        invisible="not show_last_purchase_price_currency"
+                        invisible="not show_last_purchase_price_currency_rate"
                     />
                 </group>
             </field>
