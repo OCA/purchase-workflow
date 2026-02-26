@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 =============================
 Purchase Order Secondary Unit
 =============================
@@ -17,7 +13,7 @@ Purchase Order Secondary Unit
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github
@@ -68,13 +64,13 @@ To use this module you need to:
 
 **Vendor Pricelist Integration**
 
-- When adding a vendor to a product's pricelist (via *Purchase tab >
-  Vendors*), the secondary unit of measure is automatically defaulted
-  from the product variant's purchase secondary UOM, or from the product
-  template if not set on the variant.
-- When a new vendor pricelist record is created from purchase order
-  confirmation, the secondary UOM from the purchase order line is
-  automatically stored in the vendor pricelist entry.
+-  When adding a vendor to a product's pricelist (via *Purchase tab >
+   Vendors*), the secondary unit of measure is automatically defaulted
+   from the product variant's purchase secondary UOM, or from the
+   product template if not set on the variant.
+-  When a new vendor pricelist record is created from purchase order
+   confirmation, the secondary UOM from the purchase order line is
+   automatically stored in the vendor pricelist entry.
 
 Known issues / Roadmap
 ======================
@@ -105,17 +101,17 @@ Authors
 Contributors
 ------------
 
-- `Tecnativa <https://www.tecnativa.com>`__:
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  - Sergio Teruel
-  - Ernesto Tejeda
+   -  Sergio Teruel
+   -  Ernesto Tejeda
 
-- Nikul Chaudhary <nikulchaudhary2112@gmail.com>
-- Pimolnat Suntian <pimolnats@ecosoft.co.th>
-- Miguel Ángel Gómez <miguel.gomez@braintec.com>
-- `Quartile <https://www.quartile.co>`__:
+-  Nikul Chaudhary <nikulchaudhary2112@gmail.com>
+-  Pimolnat Suntian <pimolnats@ecosoft.co.th>
+-  Miguel Ángel Gómez <miguel.gomez@braintec.com>
+-  `Quartile <https://www.quartile.co>`__:
 
-  - Yoshi Tashiro
+   -  Yoshi Tashiro
 
 Maintainers
 -----------
