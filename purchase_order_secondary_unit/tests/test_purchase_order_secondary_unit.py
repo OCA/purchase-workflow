@@ -21,7 +21,7 @@ class TestPurchaseOrderSecondaryUnit(TestPurchaseSecondaryUnitCommon):
                         "name": cls.product.name,
                         "product_id": cls.product.id,
                         "product_qty": 1,
-                        "product_uom": cls.product.uom_id.id,
+                        "product_uom_id": cls.product.uom_id.id,
                         "price_unit": 1000.00,
                         "date_planned": fields.Datetime.now(),
                     },
@@ -42,7 +42,7 @@ class TestPurchaseOrderSecondaryUnit(TestPurchaseSecondaryUnitCommon):
             # Test onchange product uom
             line.secondary_uom_qty = 3500.0
             self.assertEqual(line.product_qty, 2450.0)
-            line.product_uom = self.product_uom_gram
+            line.product_uom_id = self.product_uom_gram
             self.assertEqual(line.product_qty, 2450000.0)
             self.assertEqual(line.secondary_uom_qty, 3500.0)
 
@@ -70,7 +70,6 @@ class TestPurchaseOrderSecondaryUnit(TestPurchaseSecondaryUnitCommon):
             {
                 "name": "New Product",
                 "uom_id": self.product_uom_kg.id,
-                "uom_po_id": self.product_uom_kg.id,
             }
         )
         secondary_unit = self.env["product.secondary.unit"].create(
@@ -89,7 +88,7 @@ class TestPurchaseOrderSecondaryUnit(TestPurchaseSecondaryUnitCommon):
                         {
                             "product_id": new_product.id,
                             "product_qty": 10,
-                            "product_uom": new_product.uom_id.id,
+                            "product_uom_id": new_product.uom_id.id,
                             "price_unit": 50.0,
                             "secondary_uom_id": secondary_unit.id,
                             "secondary_uom_qty": 2.0,

@@ -17,9 +17,9 @@ class PurchaseOrderLine(models.Model):
     _name = "purchase.order.line"
     _secondary_unit_fields = {
         "qty_field": "product_qty",
-        "uom_field": "product_uom",
+        "uom_field": "product_uom_id",
     }
-    _product_uom_field = "uom_po_id"
+    _product_uom_field = "uom_id"
 
     product_qty = fields.Float(
         store=True,
@@ -27,12 +27,6 @@ class PurchaseOrderLine(models.Model):
         compute="_compute_product_qty",
         copy=True,
         precompute=True,
-    )
-    product_packaging_qty = fields.Float(
-        compute="_compute_product_packaging_qty", store=True, precompute=True
-    )
-    product_packaging_id = fields.Many2one(
-        compute="_compute_product_packaging_id", store=True, precompute=True
     )
     secondary_uom_price = fields.Float(
         string="Secondary Price",
@@ -43,10 +37,9 @@ class PurchaseOrderLine(models.Model):
         store=True,
     )
 
-    @api.depends("secondary_uom_qty", "secondary_uom_id")
+    @api.depends("secondary_uom_qty", "secondary_uom_id", "product_uom_id")
     def _compute_product_qty(self):
         self._compute_helper_target_field_qty()
-        return super()._compute_product_qty()
 
     @api.depends("price_unit", "secondary_uom_id", "secondary_uom_id.factor")
     def _compute_secondary_uom_price(self):
@@ -61,10 +54,6 @@ class PurchaseOrderLine(models.Model):
         for rec in self:
             if rec.secondary_uom_id:
                 rec.price_unit = rec.secondary_uom_price / rec.secondary_uom_id.factor
-
-    @api.onchange("product_uom")
-    def onchange_product_uom_for_secondary(self):
-        self._onchange_helper_product_uom_for_secondary()
 
     @api.onchange("product_id")
     def onchange_product_id(self):

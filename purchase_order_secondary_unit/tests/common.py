@@ -10,7 +10,7 @@ class TestPurchaseSecondaryUnitCommon(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env.user.groups_id = [Command.link(cls.env.ref("uom.group_uom").id)]
+        cls.env.user.group_ids = [Command.link(cls.env.ref("uom.group_uom").id)]
         cls.product_uom_kg = cls.env.ref("uom.product_uom_kgm")
         cls.product_uom_gram = cls.env.ref("uom.product_uom_gram")
         cls.product_uom_unit = cls.env.ref("uom.product_uom_unit")
@@ -18,7 +18,6 @@ class TestPurchaseSecondaryUnitCommon(BaseCommon):
             {
                 "name": "Test Product",
                 "uom_id": cls.product_uom_kg.id,
-                "uom_po_id": cls.product_uom_kg.id,
             }
         )
         cls.secondary_unit = cls.env["product.secondary.unit"].create(

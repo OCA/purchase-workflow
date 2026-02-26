@@ -7,14 +7,14 @@
         <field name="model">product.template</field>
         <field name="inherit_id" ref="product.product_template_form_view" />
         <field name="arch" type="xml">
-            <field name="uom_po_id" position="after">
+            <group name="bill" position="inside">
                 <t groups="uom.group_uom">
                     <field
                         name="purchase_secondary_uom_id"
                         options="{'no_create': True}"
                     />
                 </t>
-            </field>
+            </group>
         </field>
     </record>
 </odoo>
