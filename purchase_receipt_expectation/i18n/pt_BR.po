@@ -23,12 +23,8 @@ msgstr ""
 #: model:ir.model.fields,help:purchase_receipt_expectation.field_purchase_order__receipt_expectation
 msgid ""
 "Defines how reception pickings are managed when the order is approved.\n"
-"Default value is 'automatic', which means the picking will be created following the standard Odoo workflow."
-msgstr ""
-
-#. module: purchase_receipt_expectation
-#: model:ir.model.fields.selection,name:purchase_receipt_expectation.selection__purchase_order__receipt_expectation__failing
-msgid "Failing"
+"Default value is 'automatic', which means the picking will be created "
+"following the standard Odoo workflow."
 msgstr ""
 
 #. module: purchase_receipt_expectation
@@ -39,9 +35,4 @@ msgstr ""
 #. module: purchase_receipt_expectation
 #: model:ir.model.fields,field_description:purchase_receipt_expectation.field_purchase_order__receipt_expectation
 msgid "Receipt Expectation"
-msgstr ""
-
-#. module: purchase_receipt_expectation
-#: model:ir.model.fields.selection,name:purchase_receipt_expectation.selection__purchase_order__receipt_expectation__succeeding
-msgid "Succeeding"
 msgstr ""

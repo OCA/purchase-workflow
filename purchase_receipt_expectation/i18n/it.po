@@ -25,17 +25,13 @@ msgstr "Automatico"
 #: model:ir.model.fields,help:purchase_receipt_expectation.field_purchase_order__receipt_expectation
 msgid ""
 "Defines how reception pickings are managed when the order is approved.\n"
-"Default value is 'automatic', which means the picking will be created following the standard Odoo workflow."
+"Default value is 'automatic', which means the picking will be created "
+"following the standard Odoo workflow."
 msgstr ""
 "Definisce come vengono gestiti i prelievi in ricezione quando l'ordine viene "
 "approvato. \n"
 "Il valore predefinito è \"automatico\", il che significa che il prelievo "
 "verrà creato seguendo il flusso di lavoro standard di Odoo."
-
-#. module: purchase_receipt_expectation
-#: model:ir.model.fields.selection,name:purchase_receipt_expectation.selection__purchase_order__receipt_expectation__failing
-msgid "Failing"
-msgstr "Fallito"
 
 #. module: purchase_receipt_expectation
 #: model:ir.model,name:purchase_receipt_expectation.model_purchase_order
@@ -47,7 +43,8 @@ msgstr "Ordine di acquisto"
 msgid "Receipt Expectation"
 msgstr "Attesa ricevuta"
 
-#. module: purchase_receipt_expectation
-#: model:ir.model.fields.selection,name:purchase_receipt_expectation.selection__purchase_order__receipt_expectation__succeeding
-msgid "Succeeding"
-msgstr "Successo"
+#~ msgid "Failing"
+#~ msgstr "Fallito"
+
+#~ msgid "Succeeding"
+#~ msgstr "Successo"
