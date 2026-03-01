@@ -4,11 +4,12 @@
 from odoo import api, models
 
 
-class PurchaseOrderLine(models.Model):
+class StockRule(models.Model):
     _inherit = "stock.rule"
 
     @api.model
     def _get_procurements_to_merge_groupby(self, procurement):
-        groupby = super()._get_procurements_to_merge_groupby(procurement)
-        res = *groupby, procurement.values.get("date_planned").date()
-        return res
+        return (
+            procurement.values.get("date_planned").date(),
+            super()._get_procurements_to_merge_groupby(procurement),
+        )
