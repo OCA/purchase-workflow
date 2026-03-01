@@ -5,7 +5,7 @@
     "name": "Purchase Date Planned Manual",
     "summary": "This module makes the system to always respect the planned "
     "(or scheduled) date in PO lines.",
-    "version": "16.0.1.0.1",
+    "version": "18.0.1.0.0",
     "development_status": "Mature",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "maintainers": ["LoisRForgeFlow"],
