@@ -11,7 +11,7 @@
                 <field name="predicted_arrival_late" invisible="1" />
                 <button
                     title="Arriving late"
-                    attrs="{'invisible': [('predicted_arrival_late', '=', False)]}"
+                    invisible="not predicted_arrival_late"
                     name="action_delayed_line"
                     type="object"
                     icon="fa-exclamation-triangle"
