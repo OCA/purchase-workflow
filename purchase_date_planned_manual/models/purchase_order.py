@@ -47,7 +47,7 @@ class PurchaseOrderLine(models.Model):
         if self.date_planned:
             return self.date_planned
         else:
-            return super(PurchaseOrderLine, self)._get_date_planned(seller, po)
+            return super()._get_date_planned(seller, po)
 
     def action_delayed_line(self):
         raise UserError(
