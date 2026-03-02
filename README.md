@@ -92,7 +92,7 @@ addon | version | maintainers | summary
 [purchase_triple_discount](purchase_triple_discount/) | 17.0.1.0.0 |  | Manage triple discount on purchase order lines
 [purchase_v12_control_menu](purchase_v12_control_menu/) | 17.0.1.0.0 |  | Purchase Control Menu from v12
 [purchase_warn_message](purchase_warn_message/) | 17.0.1.0.0 |  | Add a popup warning on purchase to ensure warning is populated
-[sale_purchase_force_vendor](sale_purchase_force_vendor/) | 17.0.1.0.1 | <a href='https://github.com/victoralmau'><img src='https://github.com/victoralmau.png' width='32' height='32' style='border-radius:50%;' alt='victoralmau'/></a> | Sale Purchase Force Vendor
+[sale_purchase_force_vendor](sale_purchase_force_vendor/) | 17.0.1.0.2 | <a href='https://github.com/victoralmau'><img src='https://github.com/victoralmau.png' width='32' height='32' style='border-radius:50%;' alt='victoralmau'/></a> | Sale Purchase Force Vendor
 [supplier_calendar](supplier_calendar/) | 17.0.1.0.0 | <a href='https://github.com/LoisRForgeFlow'><img src='https://github.com/LoisRForgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='LoisRForgeFlow'/></a> | Supplier Calendar
 
 [//]: # (end addons)
