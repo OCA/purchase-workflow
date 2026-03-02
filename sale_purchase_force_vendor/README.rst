@@ -51,9 +51,9 @@ To configure this module, you need to:
 5. Go to *Sale -> Products -> Products*.
 6. Create a new product with the following options:
 
-   - [Puchase tab] \`Vendors\`: Set different vendors (Vendor A + Vendor
-     B).
-   - [Iventory tab] \`Routes\`: Buy and MTO
+   -  [Puchase tab] \`Vendors\`: Set different vendors (Vendor A +
+      Vendor B).
+   -  [Iventory tab] \`Routes\`: Buy and MTO
 
 Usage
 =====
@@ -61,8 +61,8 @@ Usage
 1. Go to *Sale -> Orders -> Quotations* and create a new Quotation.
 2. Create a new line with the following options:
 
-   - \`Route\`: MTO.
-   - \`Vendor\`: Vendor B.
+   -  \`Route\`: MTO.
+   -  \`Vendor\`: Vendor B.
 
 3. Confirm sale order.
 4. A new purchase order will have been created to Vendor B.
@@ -91,10 +91,10 @@ Authors
 Contributors
 ------------
 
-- `Tecnativa <https://www.tecnativa.com>`__:
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  - Víctor Martínez
-  - Pedro M. Baeza
+   -  Víctor Martínez
+   -  Pedro M. Baeza
 
 Maintainers
 -----------
