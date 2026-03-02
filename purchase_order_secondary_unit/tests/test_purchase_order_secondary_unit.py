@@ -19,6 +19,7 @@ class TestPurchaseOrderSecondaryUnit(TransactionCase):
         product_form.name = "Test"
         product_form.uom_id = cls.product_uom_kg
         product_form.uom_po_id = cls.product_uom_kg
+        product_form.default_code = "123456"
         cls.product = product_form.save()
         # Set a secondary unit on the template of the previously created product
         with Form(cls.product.product_tmpl_id) as template_form:
