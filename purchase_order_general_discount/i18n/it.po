@@ -17,15 +17,6 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: purchase_order_general_discount
-#: model_terms:ir.ui.view,arch_db:purchase_order_general_discount.res_config_settings_view_form_purchase
-msgid ""
-"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
-"specific.\" groups=\"base.group_multi_company\"/>"
-msgstr ""
-"<span class=\"fa fa-lg fa-building-o\" title=\"I valori impostati qui sono "
-"specifici per azienda.\" groups=\"base.group_multi_company\"/>"
-
-#. module: purchase_order_general_discount
 #: model:ir.model,name:purchase_order_general_discount.model_res_company
 msgid "Companies"
 msgstr "Aziende"
@@ -110,6 +101,18 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:purchase_order_general_discount.purchase_order_form
 msgid "Update general discounts"
 msgstr "Aggiorna sconti generali"
+
+#. module: purchase_order_general_discount
+#: model_terms:ir.ui.view,arch_db:purchase_order_general_discount.res_config_settings_view_form_purchase
+msgid "Values set here are company-specific."
+msgstr ""
+
+#~ msgid ""
+#~ "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are "
+#~ "company-specific.\" groups=\"base.group_multi_company\"/>"
+#~ msgstr ""
+#~ "<span class=\"fa fa-lg fa-building-o\" title=\"I valori impostati qui "
+#~ "sono specifici per azienda.\" groups=\"base.group_multi_company\"/>"
 
 #~ msgid "Config Settings"
 #~ msgstr "Impostazioni configurazione"
