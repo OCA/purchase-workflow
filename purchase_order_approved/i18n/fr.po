@@ -22,13 +22,6 @@ msgstr ""
 #. module: purchase_order_approved
 #: model_terms:ir.ui.view,arch_db:purchase_order_approved.view_purchase_configuration
 msgid ""
-"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
-"specific.\" groups=\"base.group_multi_company\"/>"
-msgstr ""
-
-#. module: purchase_order_approved
-#: model_terms:ir.ui.view,arch_db:purchase_order_approved.view_purchase_configuration
-msgid ""
 "Adds an extra state in purchase orders previous to 'Purchase Order' state."
 msgstr ""
 "Ajoute un état aux bons de commande qui se situe avant l'état 'Bon de "
@@ -77,12 +70,6 @@ msgid "Companies"
 msgstr "Sociétés"
 
 #. module: purchase_order_approved
-#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__company_id
-#, fuzzy
-msgid "Company"
-msgstr "Sociétés"
-
-#. module: purchase_order_approved
 #: model:ir.model,name:purchase_order_approved.model_res_partner
 msgid "Contact"
 msgstr ""
@@ -93,43 +80,9 @@ msgid "Convert to Purchase Order"
 msgstr "Convertir en bon de commande"
 
 #. module: purchase_order_approved
-#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__currency_id
-msgid "Currency"
-msgstr "Devise"
-
-#. module: purchase_order_approved
-#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__picking_type_id
-msgid "Deliver To"
-msgstr "Délivrer à"
-
-#. module: purchase_order_approved
-#: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__date_order
-msgid ""
-"Depicts the date within which the Quotation should be confirmed and "
-"converted into a purchase order."
-msgstr ""
-"Représente la date pour laquelle le devis doit être confirmé et converti en "
-"bon de commande."
-
-#. module: purchase_order_approved
-#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__dest_address_id
-msgid "Dropship Address"
-msgstr "Adresse de livraison directe"
-
-#. module: purchase_order_approved
 #: model:ir.model.fields.selection,name:purchase_order_approved.selection__res_partner__purchase_requires_second_approval__never
 msgid "Never"
 msgstr "Jamais"
-
-#. module: purchase_order_approved
-#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__date_order
-msgid "Order Deadline"
-msgstr "Date limite de commande"
-
-#. module: purchase_order_approved
-#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__order_line
-msgid "Order Lines"
-msgstr "Lignes de commande"
 
 #. module: purchase_order_approved
 #: model:ir.model,name:purchase_order_approved.model_res_config_settings
@@ -148,29 +101,6 @@ msgid "Purchase Requires Second Approval"
 msgstr "L'achat requiert une seconde approbation"
 
 #. module: purchase_order_approved
-#: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__dest_address_id
-msgid ""
-"Put an address if you want to deliver directly from the vendor to the "
-"customer. Otherwise, keep empty to deliver to your own company."
-msgstr ""
-"Indiquez un adresse si vous souhaitez une livraison directe du vendeur au "
-"client. Sinon laissez vide pour une livraison à votre société."
-
-#. module: purchase_order_approved
-#: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__origin
-msgid ""
-"Reference of the document that generated this purchase order request (e.g. a "
-"sales order)"
-msgstr ""
-"Référence du document à l'origine de la demande de ce bon de commande (i.e. "
-"commande client)"
-
-#. module: purchase_order_approved
-#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__origin
-msgid "Source Document"
-msgstr "Document source"
-
-#. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_res_config_settings__purchase_approve_active
 msgid "State 'Approved' in Purchase Orders"
 msgstr "Etat 'Approuvé' dans les bons de commande"
@@ -181,26 +111,68 @@ msgid "Status"
 msgstr "Statut"
 
 #. module: purchase_order_approved
-#: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__picking_type_id
-msgid "This will determine operation type of incoming shipment"
-msgstr "Cela déterminera le type d'opération de la réception"
-
-#. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_res_company__purchase_approve_active
 msgid "Use State 'Approved' in Purchase Orders"
 msgstr "Utiliser l'état 'Approuvé' dans les bons de commande"
 
 #. module: purchase_order_approved
-#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__partner_id
-msgid "Vendor"
-msgstr "Vendeur"
-
-#. module: purchase_order_approved
-#: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__partner_id
-msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
+#: model_terms:ir.ui.view,arch_db:purchase_order_approved.view_purchase_configuration
+msgid "Values set here are company-specific."
 msgstr ""
-"Vous pouvez trouver un vendeur par son nom, son TIN, son courriel ou sa "
-"référence interne."
+
+#, fuzzy
+#~ msgid "Company"
+#~ msgstr "Sociétés"
+
+#~ msgid "Currency"
+#~ msgstr "Devise"
+
+#~ msgid "Deliver To"
+#~ msgstr "Délivrer à"
+
+#~ msgid ""
+#~ "Depicts the date within which the Quotation should be confirmed and "
+#~ "converted into a purchase order."
+#~ msgstr ""
+#~ "Représente la date pour laquelle le devis doit être confirmé et converti "
+#~ "en bon de commande."
+
+#~ msgid "Dropship Address"
+#~ msgstr "Adresse de livraison directe"
+
+#~ msgid "Order Deadline"
+#~ msgstr "Date limite de commande"
+
+#~ msgid "Order Lines"
+#~ msgstr "Lignes de commande"
+
+#~ msgid ""
+#~ "Put an address if you want to deliver directly from the vendor to the "
+#~ "customer. Otherwise, keep empty to deliver to your own company."
+#~ msgstr ""
+#~ "Indiquez un adresse si vous souhaitez une livraison directe du vendeur au "
+#~ "client. Sinon laissez vide pour une livraison à votre société."
+
+#~ msgid ""
+#~ "Reference of the document that generated this purchase order request "
+#~ "(e.g. a sales order)"
+#~ msgstr ""
+#~ "Référence du document à l'origine de la demande de ce bon de commande "
+#~ "(i.e. commande client)"
+
+#~ msgid "Source Document"
+#~ msgstr "Document source"
+
+#~ msgid "This will determine operation type of incoming shipment"
+#~ msgstr "Cela déterminera le type d'opération de la réception"
+
+#~ msgid "Vendor"
+#~ msgstr "Vendeur"
+
+#~ msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
+#~ msgstr ""
+#~ "Vous pouvez trouver un vendeur par son nom, son TIN, son courriel ou sa "
+#~ "référence interne."
 
 #~ msgid "Config Settings"
 #~ msgstr "Configuration"
