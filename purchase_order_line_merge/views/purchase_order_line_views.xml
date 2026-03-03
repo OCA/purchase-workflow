@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="purchase_order_line_tree_merge" model="ir.ui.view">
+        <field name="name">purchase.order.line.list.merge</field>
+        <field name="model">purchase.order.line</field>
+        <field
+            name="inherit_id"
+            ref="purchase_order_line_menu.purchase_order_line_tree"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='qty_invoiced']" position="attributes">
+                <attribute name="optional">show</attribute>
+            </xpath>
+            <xpath expr="//field[@name='qty_received']" position="attributes">
+                <attribute name="optional">show</attribute>
+            </xpath>
+            <xpath expr="//field[@name='invoice_lines']" position="attributes">
+                <attribute name="column_invisible">True</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

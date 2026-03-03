@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="purchase_order_line_merge_form" model="ir.ui.view">
+        <field name="name">purchase.order.line.merge.form</field>
+        <field name="model">purchase.order.line.merge</field>
+        <field name="arch" type="xml">
+            <form string="Merge Purchase Order Lines">
+                <group>
+                    <group>
+                        <field name="partner_id" />
+                    </group>
+                    <group>
+                        <field name="date_order" />
+                    </group>
+                </group>
+                <field name="line_ids">
+                    <list editable="bottom">
+                        <field
+                            name="source_line_id"
+                            column_invisible="True"
+                            force_save="1"
+                        />
+                        <field name="order_id" string="Source PO" />
+                        <field name="product_id" />
+                        <field name="original_qty" force_save="1" />
+                        <field name="qty_invoiced" string="Invoiced" />
+                        <field name="qty_received" string="Received" />
+                        <field name="quantity" force_save="1" />
+                        <field name="product_uom" string="UoM" />
+                        <field name="price_unit" force_save="1" />
+                        <field name="taxes_id" widget="many2many_tags" />
+                        <field name="price_subtotal" />
+                    </list>
+                </field>
+                <footer>
+                    <button
+                        name="action_merge"
+                        string="Merge Lines"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button special="cancel" string="Cancel" class="btn-secondary" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_purchase_order_line_merge" model="ir.actions.act_window">
+        <field name="name">Merge into Purchase Order</field>
+        <field name="res_model">purchase.order.line.merge</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="purchase.model_purchase_order_line" />
+        <field name="binding_view_types">list</field>
+    </record>
+</odoo>
