@@ -4,13 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0+e\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-08 10:12+0000\n"
-"PO-Revision-Date: 2024-10-08 10:12+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -21,14 +18,14 @@ msgstr ""
 #: code:addons/purchase_advance_payment_line/models/account_payment_line.py:0
 #, python-format
 msgid "Amount of advance is greater than residual amount on purchase"
-msgstr "Le montant de l'acompte est supérieur au montant résiduel de l'achat"
+msgstr ""
 
 #. module: purchase_advance_payment_line
 #. odoo-python
 #: code:addons/purchase_advance_payment_line/models/account_payment_line.py:0
 #, python-format
 msgid "Amount of advance must be positive."
-msgstr "Le montant de l'acompte doit être positif."
+msgstr ""
 
 #. module: purchase_advance_payment_line
 #. odoo-python
@@ -36,29 +33,29 @@ msgstr "Le montant de l'acompte doit être positif."
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment_line.purchase_order_form
 #, python-format
 msgid "Create Payment Line"
-msgstr "Créer une ligne de paiement"
+msgstr ""
 
 #. module: purchase_advance_payment_line
 #: model:ir.model.fields,field_description:purchase_advance_payment_line.field_purchase_order__ongoing_account_payment_line_count
 msgid "Ongoing Payment Line Count"
-msgstr "Nombre de lignes de paiement en cours"
+msgstr ""
 
 #. module: purchase_advance_payment_line
 #: model:ir.model.fields,field_description:purchase_advance_payment_line.field_purchase_order__ongoing_account_payment_line_ids
 msgid "Ongoing Payment Lines"
-msgstr "Lignes de paiement en cours"
+msgstr ""
 
 #. module: purchase_advance_payment_line
 #. odoo-python
 #: code:addons/purchase_advance_payment_line/models/purchase_order.py:0
 #, python-format
 msgid "Payment Line"
-msgstr "Line de paiement"
+msgstr ""
 
 #. module: purchase_advance_payment_line
 #: model:ir.model.fields,field_description:purchase_advance_payment_line.field_purchase_order__account_payment_line_count
 msgid "Payment Line Count"
-msgstr "Nombre de lignes de paiement"
+msgstr ""
 
 #. module: purchase_advance_payment_line
 #. odoo-python
@@ -67,18 +64,18 @@ msgstr "Nombre de lignes de paiement"
 #: model:ir.model.fields,field_description:purchase_advance_payment_line.field_purchase_order__account_payment_line_ids
 #, python-format
 msgid "Payment Lines"
-msgstr "Lignes de paiement"
+msgstr ""
 
 #. module: purchase_advance_payment_line
 #: model:ir.model.fields,field_description:purchase_advance_payment_line.field_account_payment_line__payment_mode_id
 msgid "Payment Mode"
-msgstr "Mode de paiement"
+msgstr ""
 
 #. module: purchase_advance_payment_line
 #: model:ir.model,name:purchase_advance_payment_line.model_purchase_order
 #: model:ir.model.fields,field_description:purchase_advance_payment_line.field_account_payment_line__purchase_id
 msgid "Purchase Order"
-msgstr "Bon de commande fournisseur"
+msgstr ""
 
 #. module: purchase_advance_payment_line
 #: model:ir.model.fields,field_description:purchase_advance_payment_line.field_account_payment_line__purchase_amount_residual
@@ -88,7 +85,7 @@ msgstr ""
 #. module: purchase_advance_payment_line
 #: model:ir.model.fields,field_description:purchase_advance_payment_line.field_purchase_order__payment_order_ok
 msgid "Selectable in Payment Orders"
-msgstr "Sélectionnable dans les Ordres de paiement"
+msgstr ""
 
 #. module: purchase_advance_payment_line
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment_line.purchase_order_form
@@ -96,5 +93,3 @@ msgid ""
 "The payment line is added to the first Draft Payment Order with the same "
 "Payment Mode. If none are found, a new one is created."
 msgstr ""
-"La ligne de paiement est ajoutée au premier ordre de paiement en brouillon "
-"avec le même mode de paiement. Si aucun n'est trouvé, un nouveau est créé."
