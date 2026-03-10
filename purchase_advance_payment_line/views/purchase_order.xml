@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase_advance_payment.purchase_order_form" />
+        <field name="arch" type="xml">
+            <!-- Hide the "Pay purchase advanced" button -->
+            <button
+                name="%(purchase_advance_payment.action_view_account_voucher_wizard)d"
+                position="attributes"
+            >
+                <attribute name="invisible">1</attribute>
+            </button>
+
+            <!-- Add "Create Payment Line" button -->
+            <button name="button_draft" position="after">
+                <field name="payment_order_ok" invisible="1" />
+                <button
+                    name="action_create_account_payment_line"
+                    invisible="not payment_order_ok or not amount_residual"
+                    type="object"
+                    string="Create Payment Line"
+                    help="The payment line is added to the first Draft Payment Order with the same Payment Mode. If none are found, a new one is created."
+                />
+            </button>
+
+            <!-- Add "Ongoing Payment Lines" smart button -->
+            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <button
+                    name="action_view_ongoing_payment_lines"
+                    invisible="ongoing_account_payment_line_count == 0"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-bank"
+                >
+                    <field
+                        name="ongoing_account_payment_line_count"
+                        widget="statinfo"
+                    />
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>
