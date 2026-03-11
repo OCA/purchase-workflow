@@ -12,10 +12,6 @@ class AccountPaymentLine(models.Model):
         string="Purchase Order",
         check_company=True,
     )
-    purchase_amount_residual = fields.Float(
-        related="purchase_id.amount_residual",
-        store=True,
-    )
     payment_mode_id = fields.Many2one(
         related="order_id.payment_mode_id",
         store=True,
@@ -61,7 +57,7 @@ class AccountPaymentLine(models.Model):
                 vals["order_id"] = order.id
         return super().create(vals_list)
 
-    @api.constrains("currency_id", "amount_currency", "purchase_amount_residual")
+    @api.constrains("amount_currency")
     def _check_amount(self):
         for pline in self.filtered("purchase_id"):
             if pline.currency_id.compare_amounts(pline.amount_currency, 0.0) <= 0:
@@ -70,7 +66,7 @@ class AccountPaymentLine(models.Model):
                 )
             if (
                 pline.currency_id.compare_amounts(
-                    pline.amount_currency, pline.purchase_amount_residual
+                    pline.amount_currency, pline.purchase_id.amount_residual
                 )
                 > 0
             ):
