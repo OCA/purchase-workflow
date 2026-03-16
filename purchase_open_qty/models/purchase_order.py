@@ -2,8 +2,9 @@
 #   (http://www.forgeflow.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, fields, models
-from odoo.tools import float_is_zero
+from odoo import api, fields, models
+from odoo.orm.fields import Domain
+from odoo.tools import OrderedSet, float_is_zero
 
 
 class PurchaseOrder(models.Model):
@@ -26,27 +27,27 @@ class PurchaseOrder(models.Model):
 
     @api.model
     def _search_pending_qty_to_receive(self, operator, value):
-        if operator != "=" or not isinstance(value, bool):
-            raise ValueError(_("Unsupported search operator"))
+        if operator not in ("in", "not in") or value != OrderedSet([True]):
+            return NotImplemented
         po_line_obj = self.env["purchase.order.line"]
         po_lines = po_line_obj.search([("qty_to_receive", ">", 0.0)])
         orders = po_lines.mapped("order_id")
         if value:
-            return [("id", "in", orders.ids)]
+            return Domain("id", "in", orders.ids)
         else:
-            return [("id", "not in", orders.ids)]
+            return Domain("id", "not in", orders.ids)
 
     @api.model
     def _search_pending_qty_to_invoice(self, operator, value):
-        if operator != "=" or not isinstance(value, bool):
-            raise ValueError(_("Unsupported search operator"))
+        if operator not in ("in", "not in") or value != OrderedSet([True]):
+            return NotImplemented
         po_line_obj = self.env["purchase.order.line"]
         po_lines = po_line_obj.search([("qty_to_invoice", ">", 0.0)])
         orders = po_lines.mapped("order_id")
         if value:
-            return [("id", "in", orders.ids)]
+            return Domain("id", "in", orders.ids)
         else:
-            return [("id", "not in", orders.ids)]
+            return Domain("id", "not in", orders.ids)
 
     qty_to_invoice = fields.Float(
         compute="_compute_qty_to_invoice",

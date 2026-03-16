@@ -5,6 +5,7 @@
 - Juany Davila \<<juany.davila@forgeflow.com>\>
 - [Tecnativa](https://www.tecnativa.com):
   - Carlos Roca
-- `Trobz <https://trobz.com>`_:
-
-    * Son Ho <sonhd@trobz.com>
+- [Trobz](https://trobz.com):
+  - Son Ho <sonhd@trobz.com>
+- [Glo Networks](https://glo.systems):
+  - Elliott Bristow <elliott@glo.systems>
