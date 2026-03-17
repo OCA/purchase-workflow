@@ -4,19 +4,27 @@
 import time
 
 from odoo.exceptions import UserError
-from odoo.tests import common
+from odoo.tests import common, tagged
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
+@tagged("post_install", "-at_install")
 class TestPurchaseOrderNoZeroPrice(common.TransactionCase):
     def setUp(self):
         super().setUp()
 
         self.PurchaseOrder = self.env["purchase.order"]
         # Partner
-        self.partner1 = self.env.ref("base.res_partner_1")
+        self.partner1 = self.env["res.partner"].create({"name": "Test Partner"})
         # Products
-        self.product1 = self.env.ref("product.product_product_7")
+        self.product1 = self.env["product.product"].create(
+            {
+                "name": "Test Product",
+                "type": "consu",
+                "is_storable": True,
+                "standard_price": 10.0,
+            }
+        )
 
         self.purchase_order1 = self.PurchaseOrder.create(
             {
@@ -29,7 +37,7 @@ class TestPurchaseOrderNoZeroPrice(common.TransactionCase):
                             "name": self.product1.name,
                             "product_id": self.product1.id,
                             "product_qty": 50,
-                            "product_uom": self.product1.uom_id.id,
+                            "product_uom_id": self.product1.uom_id.id,
                             "price_unit": 10.0,
                             "date_planned": time.strftime(
                                 DEFAULT_SERVER_DATETIME_FORMAT
