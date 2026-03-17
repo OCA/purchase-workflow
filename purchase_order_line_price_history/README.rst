@@ -93,6 +93,7 @@ Contributors
   - Víctor Martínez
 
 - Dhiren Joshi <d.joshi.serpentcs@gmail.com>
+- Elliott Bristow <elliott@glo.systems>
 
 Maintainers
 -----------

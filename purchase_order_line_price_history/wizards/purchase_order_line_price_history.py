@@ -24,7 +24,7 @@ class PurchaseOrderLinePriceHistory(models.TransientModel):
     partner_id = fields.Many2one(
         comodel_name="res.partner",
         string="Supplier",
-        default=_default_partner_id,
+        default=lambda self: self._default_partner_id(),
     )
     line_ids = fields.One2many(
         comodel_name="purchase.order.line.price.history.line",
@@ -85,7 +85,7 @@ class PurchaseOrderLinePriceHistoryLine(models.TransientModel):
         related="purchase_order_line_id.order_id.date_order",
     )
     product_qty = fields.Float(related="purchase_order_line_id.product_qty")
-    product_uom = fields.Many2one(related="purchase_order_line_id.product_uom")
+    product_uom = fields.Many2one(related="purchase_order_line_id.product_uom_id")
     price_unit = fields.Float(related="purchase_order_line_id.price_unit")
 
     def _prepare_purchase_order_line_vals(self):
