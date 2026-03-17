@@ -3,25 +3,17 @@
 # Copyright 2023 Tecnativa - Pedro M. Baeza
 # Copyright 2024 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
-
-from odoo.tests import Form, common, new_test_user
+from odoo import Command
+from odoo.tests import Form, new_test_user
 from odoo.tests.common import users
 
+from odoo.addons.base.tests.common import BaseCommon
 
-class TestPurchaseOrderSecurity(common.TransactionCase):
+
+class TestPurchaseOrderSecurity(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env = cls.env(
-            context=dict(
-                cls.env.context,
-                mail_create_nolog=True,
-                mail_create_nosubscribe=True,
-                mail_notrack=True,
-                no_reset_password=True,
-                tracking_disable=True,
-            )
-        )
         # Teams
         cls.team1 = cls.env["purchase.team"].create({"name": "Team1"})
         cls.team2 = cls.env["purchase.team"].create({"name": "Team2"})
@@ -67,6 +59,34 @@ class TestPurchaseOrderSecurity(common.TransactionCase):
         cls.user_without_groups = new_test_user(cls.env, login="without_groups")
         # Partner for the POs
         cls.partner_po = cls.env["res.partner"].create({"name": "PO Partner"})
+        cls.partner_po_with_po_user = cls.env["res.partner"].create(
+            {
+                "name": "PO Partner (with purchase_user_id)",
+                "purchase_user_id": cls.user_po_manager.id,
+            }
+        )
+        # Product
+        cls.product = cls.env["product.product"].create(
+            {
+                "name": "Test product",
+                "seller_ids": [
+                    Command.create(
+                        {
+                            "partner_id": cls.partner_po_with_po_user.id,
+                            "min_qty": 1,
+                            "sequence": 10,
+                        }
+                    ),
+                    Command.create(
+                        {
+                            "partner_id": cls.partner_po.id,
+                            "min_qty": 2,
+                            "sequence": 20,
+                        }
+                    ),
+                ],
+            }
+        )
         # Purchase Order
         cls.orders = cls.env["purchase.order"].create(
             (
@@ -375,3 +395,19 @@ class TestPurchaseOrderSecurity(common.TransactionCase):
         self._check_permission(self.user_without_groups, False, True)
         self._check_permission(self.user_without_groups, self.team1, True)
         self._check_permission(self.user_without_groups, self.team2, True)
+
+    @users("group_purchase_own_orders")
+    def test_product_supplierinfo_access_01(self):
+        order_form = Form(self.env["purchase.order"])
+        with order_form.order_line.new() as line_form:
+            line_form.product_id = self.product
+        self.assertTrue(line_form.product_id)
+        self.assertEqual(line_form.product_qty, 2)
+
+    @users("po_manager")
+    def test_product_supplierinfo_access_02(self):
+        order_form = Form(self.env["purchase.order"])
+        with order_form.order_line.new() as line_form:
+            line_form.product_id = self.product
+        self.assertTrue(line_form.product_id)
+        self.assertEqual(line_form.product_qty, 1)
