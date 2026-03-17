@@ -1,5 +1,4 @@
 <odoo>
-
     <record id="purchase_order_form" model="ir.ui.view">
         <field
             name="name"
@@ -13,5 +12,4 @@
             </xpath>
         </field>
     </record>
-
 </odoo>
