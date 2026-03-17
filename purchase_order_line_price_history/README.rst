@@ -1,3 +1,7 @@
+.. image:: https://odoo-community.org/readme-banner-image
+   :target: https://odoo-community.org/get-involved?utm_source=readme
+   :alt: Odoo Community Association
+
 =================================
 Purchase order line price history
 =================================
@@ -13,24 +17,24 @@ Purchase order line price history
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/purchase-workflow/tree/15.0/purchase_order_line_price_history
+    :target: https://github.com/OCA/purchase-workflow/tree/19.0/purchase_order_line_price_history
     :alt: OCA/purchase-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/purchase-workflow-15-0/purchase-workflow-15-0-purchase_order_line_price_history
+    :target: https://translation.odoo-community.org/projects/purchase-workflow-19-0/purchase-workflow-19-0-purchase_order_line_price_history
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&target_branch=15.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&target_branch=19.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module extends the functionality of Purchase to allow you to see the price
-history of a product from a purchase order line and set one of these
-old prices in the purchase order line.
+This module extends the functionality of Purchase to allow you to see
+the price history of a product from a purchase order line and set one of
+these old prices in the purchase order line.
 
 **Table of contents**
 
@@ -42,24 +46,24 @@ Usage
 
 To use this module, you need to:
 
-#. Go to *Purchase -> Orders -> Requests for Quotation* and select
-   a Requests for Quotation or create a new one.
-#. Click on the new clock button in one of the order lines.
-#. A pop-up will open and you will see the *price history* for the product of
-   the order line and for the supplier of the selected or created
-   Requests for Quotation.
-#. You can select another supplier or leave it empty to see the
-   price history for all suppliers.
-#. You can also set the price of one of the price history lines to the
-   order line. To do that, you have to open the price history line desired and
-   click the smart button named *Set price*.
+1. Go to *Purchase -> Orders -> Requests for Quotation* and select a
+   Requests for Quotation or create a new one.
+2. Click on the new clock button in one of the order lines.
+3. A pop-up will open and you will see the *price history* for the
+   product of the order line and for the supplier of the selected or
+   created Requests for Quotation.
+4. You can select another supplier or leave it empty to see the price
+   history for all suppliers.
+5. You can also set the price of one of the price history lines to the
+   order line. To do that, you have to open the price history line
+   desired and click the smart button named *Set price*.
 
 Known issues / Roadmap
 ======================
 
-* The number of entries of prices history in the wizard should be configurable,
-  currently it is limited to 20.
-* In the purchase order line, the new button with clock icon will not be
+- The number of entries of prices history in the wizard should be
+  configurable, currently it is limited to 20.
+- In the purchase order line, the new button with clock icon will not be
   activated until the line is saved.
 
 Bug Tracker
@@ -68,7 +72,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/purchase-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_order_line_price_history%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_order_line_price_history%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -76,22 +80,22 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Tecnativa
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Tecnativa <https://www.tecnativa.com>`_:
+- `Tecnativa <https://www.tecnativa.com>`__:
 
-  * Ernesto Tejeda
-  * Víctor Martínez
+  - Ernesto Tejeda
+  - Víctor Martínez
 
-* Dhiren Joshi <d.joshi.serpentcs@gmail.com>
+- Dhiren Joshi <d.joshi.serpentcs@gmail.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -103,6 +107,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/15.0/purchase_order_line_price_history>`_ project on GitHub.
+This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/19.0/purchase_order_line_price_history>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
