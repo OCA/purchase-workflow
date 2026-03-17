@@ -4,8 +4,7 @@
 from datetime import timedelta
 
 from odoo import Command, fields
-from odoo.tests import TransactionCase, tagged
-from odoo.tests.common import Form
+from odoo.tests import Form, TransactionCase, tagged
 
 
 @tagged("post_install", "-at_install")
@@ -32,7 +31,7 @@ class TestPurchaseDateApprove(TransactionCase):
             .create(
                 {
                     "name": "Product Test",
-                    "detailed_type": "consu",
+                    "type": "consu",
                     "standard_price": 100.0,
                 }
             )
