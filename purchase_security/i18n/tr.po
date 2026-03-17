@@ -122,6 +122,11 @@ msgid "Sequence"
 msgstr "Sıra"
 
 #. module: purchase_security
+#: model:ir.model,name:purchase_security.model_product_supplierinfo
+msgid "Supplier Pricelist"
+msgstr ""
+
+#. module: purchase_security
 #: model:ir.model.fields,field_description:purchase_security.field_purchase_order__team_id
 msgid "Team"
 msgstr "Ekip"
