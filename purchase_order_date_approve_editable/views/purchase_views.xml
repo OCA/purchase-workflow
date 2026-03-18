@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="purchase.purchase_order_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='date_approve']" position="attributes">
-                <attribute name="readonly">state == 'done'</attribute>
+                <attribute name="readonly">locked</attribute>
                 <attribute name="required">state == 'purchase'</attribute>
             </xpath>
         </field>

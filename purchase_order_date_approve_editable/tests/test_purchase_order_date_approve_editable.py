@@ -87,6 +87,7 @@ class TestPurchaseDateApprove(TransactionCase):
             }
         )
         purchase_order.button_confirm()
+        purchase_order.locked = False
 
         test_date = fields.Datetime.now().replace(microsecond=0) - timedelta(hours=5)
 
@@ -114,8 +115,8 @@ class TestPurchaseDateApprove(TransactionCase):
         )
         purchase_order.button_confirm()
 
-        purchase_order.button_done()
-        self.assertEqual(purchase_order.state, "done")
+        purchase_order.button_lock()
+        self.assertTrue(purchase_order.locked)
 
         with self.assertRaises(AssertionError):
             with Form(purchase_order) as po_form:
