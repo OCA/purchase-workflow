@@ -2,33 +2,82 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import fields
-from odoo.tests import Form
-from odoo.tests.common import TransactionCase
+from odoo.tests import Form, tagged
+
+from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
 
-class TestPurchaseOrderLineUninvoicedAmount(TransactionCase):
+@tagged("post_install", "-at_install")
+class TestPurchaseOrderLineUninvoiceAmount(AccountTestInvoicingCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        if not cls.company_data.get("default_journal_purchase"):
+            cls.company_data["default_account_payable"] = cls.env[
+                "account.account"
+            ].create(
+                {
+                    "name": "Payable",
+                    "code": "PAY",
+                    "account_type": "liability_payable",
+                }
+            )
+            cls.company_data["default_account_expense"] = cls.env[
+                "account.account"
+            ].create(
+                {
+                    "name": "Expense",
+                    "code": "EXP",
+                    "account_type": "expense",
+                }
+            )
+            cls.company_data["default_account_receivable"] = cls.env[
+                "account.account"
+            ].create(
+                {
+                    "name": "Receivable",
+                    "code": "REC",
+                    "account_type": "asset_receivable",
+                }
+            )
+            cls.company_data["default_journal_purchase"] = cls.env[
+                "account.journal"
+            ].create(
+                {
+                    "name": "Purchase Journal",
+                    "type": "purchase",
+                    "code": "PJ",
+                    "default_account_id": cls.company_data[
+                        "default_account_expense"
+                    ].id,
+                }
+            )
         cls.purchase_order_model = cls.env["purchase.order"]
         cls.purchase_order_line_model = cls.env["purchase.order.line"]
         cls.account_move_model = cls.env["account.move"]
         cls.res_partner_model = cls.env["res.partner"]
         cls.product_product_model = cls.env["product.product"]
         cls.product_category_model = cls.env["product.category"]
-        cls.company = cls.env.ref("base.main_company")
+        cls.company = cls.company_data["company"]
         cls.partner = cls.res_partner_model.create(
-            {"name": "Partner 1", "supplier_rank": 1, "is_company": True}
+            {
+                "name": "Partner 1",
+                "property_account_receivable_id": cls.company_data[
+                    "default_account_receivable"
+                ].id,
+                "property_account_payable_id": cls.company_data[
+                    "default_account_payable"
+                ].id,
+                "supplier_rank": 1,
+                "is_company": True,
+            }
         )
         cls.product_categ = cls.product_category_model.create({"name": "Test category"})
-        cls.uom_categ = cls.env["uom.category"].create({"name": "Category 1"})
         cls.uom1 = cls.env["uom.uom"].create(
             {
                 "name": "UOM 1",
-                "category_id": cls.uom_categ.id,
-                "factor": 1,
+                "relative_factor": 1,
                 "active": True,
-                "uom_type": "reference",
             }
         )
         # Products
@@ -67,7 +116,7 @@ class TestPurchaseOrderLineUninvoicedAmount(TransactionCase):
                     "name": line_data["product"].name,
                     "product_id": line_data["product"].id,
                     "product_qty": line_data["qty"],
-                    "product_uom": line_data["product"].uom_po_id.id,
+                    "product_uom_id": line_data["product"].uom_id.id,
                     "price_unit": line_data["price"],
                     "date_planned": fields.Date.today(),
                     "order_id": purchase.id,

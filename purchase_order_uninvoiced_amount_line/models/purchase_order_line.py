@@ -12,7 +12,7 @@ class PurchaseOrderLine(models.Model):
         "qty_invoiced",
         "qty_received",
         "product_id",
-        "product_uom",
+        "product_uom_id",
         "price_unit",
         "price_subtotal",
     )
