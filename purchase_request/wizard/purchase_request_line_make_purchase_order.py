@@ -252,7 +252,6 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             if available_po_lines and not item.keep_description:
                 new_pr_line = False
                 po_line = available_po_lines[0]
-                po_line.purchase_request_lines = [(4, line.id)]
                 po_line.move_dest_ids |= line.move_dest_ids
                 po_line_product_uom_qty = po_line.product_uom_id._compute_quantity(
                     po_line.product_uom_qty, alloc_uom
@@ -286,6 +285,9 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             # we enforce to save the datetime value in the current tz of the user
             date_planned = self._get_date_with_user_tz(date_required)
             po_line.write({"product_qty": new_qty, "date_planned": date_planned})
+            # Now link the PR line to the PO line (if not already linked)
+            if line.id not in po_line.purchase_request_lines.ids:
+                po_line.purchase_request_lines = [(4, line.id)]
             res.append(purchase.id)
 
         purchase_requests = self.item_ids.mapped("request_id")
