@@ -32,8 +32,8 @@ msgstr ""
 #. odoo-python
 #: code:addons/purchase_request/models/purchase_request_allocation.py:0
 msgid ""
-"<li><b>%(product_name)s</b>: Received quantity %(product_qty)s "
-"%(product_uom)s</li>"
+"<li><b>%(product_name)s</b>: Received quantity %(product_qty)s %"
+"(product_uom)s</li>"
 msgstr ""
 
 #. module: purchase_request
@@ -261,11 +261,6 @@ msgid "Cancelled Quantity"
 msgstr "Ποσότητα"
 
 #. module: purchase_request
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__product_uom_category_id
-msgid "Category"
-msgstr ""
-
-#. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_product_product__purchase_request
 #: model:ir.model.fields,help:purchase_request.field_product_template__purchase_request
 msgid ""
@@ -284,13 +279,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__company_id
 msgid "Company"
 msgstr "Εταιρεία"
-
-#. module: purchase_request
-#: model:ir.model.fields,help:purchase_request.field_purchase_request_line__product_uom_category_id
-msgid ""
-"Conversion between Units of Measure can only occur if they belong to the "
-"same category. The conversion will be made based on the ratios."
-msgstr ""
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__keep_description
@@ -360,11 +348,18 @@ msgid "Detailed Line"
 msgstr ""
 
 #. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_product_template__display_name
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_order_line__display_name
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__display_name
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__display_name
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__display_name
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order__display_name
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__display_name
+#: model:ir.model.fields,field_description:purchase_request.field_stock_move__display_name
+#: model:ir.model.fields,field_description:purchase_request.field_stock_move_line__display_name
+#: model:ir.model.fields,field_description:purchase_request.field_stock_rule__display_name
+#: model:ir.model.fields,field_description:purchase_request.field_stock_warehouse_orderpoint__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -445,14 +440,8 @@ msgid ""
 msgstr ""
 
 #. module: purchase_request
-#: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_search_sub
-msgid "Group By"
-msgstr ""
-
-#. module: purchase_request
-#: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
-msgid "Group By..."
+msgid "Future Activities"
 msgstr ""
 
 #. module: purchase_request
@@ -467,11 +456,18 @@ msgid "Hide cancelled lines"
 msgstr ""
 
 #. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_product_template__id
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_order__id
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_order_line__id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order__id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__id
+#: model:ir.model.fields,field_description:purchase_request.field_stock_move__id
+#: model:ir.model.fields,field_description:purchase_request.field_stock_move_line__id
+#: model:ir.model.fields,field_description:purchase_request.field_stock_rule__id
+#: model:ir.model.fields,field_description:purchase_request.field_stock_warehouse_orderpoint__id
 msgid "ID"
 msgstr "Κωδικός"
 
@@ -513,6 +509,7 @@ msgstr ""
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__is_editable
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__is_editable
 msgid "Is Editable"
 msgstr ""
 
@@ -525,11 +522,6 @@ msgstr ""
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__is_name_editable
 msgid "Is Name Editable"
-msgstr ""
-
-#. module: purchase_request
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__is_editable
-msgid "Is editable"
 msgstr ""
 
 #. module: purchase_request
@@ -554,6 +546,11 @@ msgstr "Τελευταία ενημέρωση από"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__write_date
 msgid "Last Updated on"
 msgstr "Τελευταία ενημέρωση στις"
+
+#. module: purchase_request
+#: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
+msgid "Late Activities"
+msgstr ""
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
@@ -720,11 +717,6 @@ msgid "Preferred supplier"
 msgstr ""
 
 #. module: purchase_request
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request__group_id
-msgid "Procurement Group"
-msgstr ""
-
-#. module: purchase_request
 #: model:ir.model,name:purchase_request.model_product_template
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__product_id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__product_id
@@ -808,6 +800,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__request_id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__request_id
 #: model:ir.module.category,name:purchase_request.module_category_purchase_request
+#: model:res.groups.privilege,name:purchase_request.res_groups_privilege_purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
@@ -817,13 +810,13 @@ msgstr ""
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/models/purchase_order.py:0
-msgid "Purchase Request %s has already been completed"
+msgid "Purchase Request %(name)s has already been completed"
 msgstr ""
 
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
-msgid "Purchase Request %s is not approved or in progress"
+msgid "Purchase Request %(name)s is not approved or in progress"
 msgstr ""
 
 #. module: purchase_request
@@ -1014,13 +1007,13 @@ msgstr ""
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/models/stock_move_line.py:0
-msgid "Receipt confirmation for Request {name}"
+msgid "Receipt confirmation %(picking_name)s for your Request %(request_name)s"
 msgstr ""
 
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/models/stock_move_line.py:0
-msgid "Receipt confirmation {picking_name} for your Request {request_name}"
+msgid "Receipt confirmation for Request %(name)s"
 msgstr ""
 
 #. module: purchase_request
@@ -1164,7 +1157,7 @@ msgstr ""
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/models/purchase_order.py:0
-msgid "Service confirmation for Request {request_name}"
+msgid "Service confirmation for Request %(request_name)s"
 msgstr ""
 
 #. module: purchase_request
@@ -1263,24 +1256,24 @@ msgstr ""
 #. odoo-python
 #: code:addons/purchase_request/models/stock_move_line.py:0
 msgid ""
-"The following requested items from Purchase Request {request_name} have now "
-"been received in {location_name} using Picking {picking_name}:"
+"The following requested items from Purchase Request %(request_name)s have "
+"now been received in %(location_name)s using Picking %(picking_name)s:"
 msgstr ""
 
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/models/stock_move_line.py:0
 msgid ""
-"The following requested items from Purchase Request {request_name} requested "
-"by {requestor} have now been received in {location_name}:"
+"The following requested items from Purchase Request %(request_name)s "
+"requested by %(requestor)s have now been received in %(location_name)s:"
 msgstr ""
 
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/models/purchase_order.py:0
 msgid ""
-"The following requested services from Purchase Request {request_name} "
-"requested by {requestor} have now been received:"
+"The following requested services from Purchase Request %(request_name)s "
+"requested by %(requestor)s have now been received:"
 msgstr ""
 
 #. module: purchase_request
@@ -1308,6 +1301,11 @@ msgstr ""
 #. module: purchase_request
 #: model:ir.model.fields.selection,name:purchase_request.selection__purchase_request__state__to_approve
 msgid "To be approved"
+msgstr ""
+
+#. module: purchase_request
+#: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
+msgid "Today Activities"
 msgstr ""
 
 #. module: purchase_request
@@ -1403,15 +1401,8 @@ msgstr ""
 #. odoo-python
 #: code:addons/purchase_request/models/purchase_request.py:0
 msgid ""
-"You can't request an approval for a purchase request which is empty. (%s)"
-msgstr ""
-
-#. module: purchase_request
-#. odoo-python
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
-msgid ""
-"You cannot create a single purchase order from purchase requests that have "
-"different procurement group."
+"You can't request an approval for a purchase request which is empty. (%"
+"(name)s)"
 msgstr ""
 
 #. module: purchase_request
