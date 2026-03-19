@@ -359,11 +359,12 @@ class PurchaseRequestLine(models.Model):
             supplierinfo_min_qty = self._get_supplier_min_qty(
                 po_line.product_id, po_line.order_id.partner_id
             )
-
-        rl_qty = 0.0
-        # Recompute quantity by adding existing running procurements.
-        for rl in po_line.purchase_request_lines:
-            rl_qty += rl.product_uom_id._compute_quantity(rl.product_qty, purchase_uom)
+        # At this point, the current request_line is already linked to the po_line
+        unique_rls = po_line.purchase_request_lines.exists()
+        rl_qty = sum(
+            rl.product_uom_id._compute_quantity(rl.product_qty, purchase_uom)
+            for rl in unique_rls
+        )
         qty = max(rl_qty, supplierinfo_min_qty)
         return qty
 
