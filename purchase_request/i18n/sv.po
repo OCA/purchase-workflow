@@ -34,11 +34,11 @@ msgstr ""
 #. odoo-python
 #: code:addons/purchase_request/models/purchase_request_allocation.py:0
 msgid ""
-"<li><b>%(product_name)s</b>: Received quantity %(product_qty)s "
-"%(product_uom)s</li>"
+"<li><b>%(product_name)s</b>: Received quantity %(product_qty)s %"
+"(product_uom)s</li>"
 msgstr ""
-"<li><b>%(product_name)s</b>: Mottagen kvantitet %(product_qty)s "
-"%(product_uom)s</li>"
+"<li><b>%(product_name)s</b>: Mottagen kvantitet %(product_qty)s %"
+"(product_uom)s</li>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
@@ -282,11 +282,6 @@ msgid "Cancelled Quantity"
 msgstr "Avbruten kvantitet"
 
 #. module: purchase_request
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__product_uom_category_id
-msgid "Category"
-msgstr "Kategori"
-
-#. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_product_product__purchase_request
 #: model:ir.model.fields,help:purchase_request.field_product_template__purchase_request
 msgid ""
@@ -307,15 +302,6 @@ msgstr "Klicka för att starta en ny process för inköpsbegäran."
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__company_id
 msgid "Company"
 msgstr "Bolag"
-
-#. module: purchase_request
-#: model:ir.model.fields,help:purchase_request.field_purchase_request_line__product_uom_category_id
-msgid ""
-"Conversion between Units of Measure can only occur if they belong to the "
-"same category. The conversion will be made based on the ratios."
-msgstr ""
-"Omvandling mellan måttenheter kan endast ske om de tillhör samma kategori. "
-"Omvandlingen görs baserat på förhållandena."
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__keep_description
@@ -384,11 +370,18 @@ msgid "Detailed Line"
 msgstr "Detaljerad linje"
 
 #. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_product_template__display_name
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_order_line__display_name
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__display_name
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__display_name
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__display_name
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order__display_name
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__display_name
+#: model:ir.model.fields,field_description:purchase_request.field_stock_move__display_name
+#: model:ir.model.fields,field_description:purchase_request.field_stock_move_line__display_name
+#: model:ir.model.fields,field_description:purchase_request.field_stock_rule__display_name
+#: model:ir.model.fields,field_description:purchase_request.field_stock_warehouse_orderpoint__display_name
 msgid "Display Name"
 msgstr "Visa namn"
 
@@ -470,15 +463,9 @@ msgstr ""
 "Från förra mottagningen har denna kvantitet tilldelats denna inköpsbegäran"
 
 #. module: purchase_request
-#: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_search_sub
-msgid "Group By"
-msgstr "Gruppera efter"
-
-#. module: purchase_request
-#: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
-msgid "Group By..."
-msgstr "Gruppera efter..."
+msgid "Future Activities"
+msgstr ""
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__has_message
@@ -492,11 +479,18 @@ msgid "Hide cancelled lines"
 msgstr "Dölj avbrutna rader"
 
 #. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_product_template__id
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_order__id
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_order_line__id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order__id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__id
+#: model:ir.model.fields,field_description:purchase_request.field_stock_move__id
+#: model:ir.model.fields,field_description:purchase_request.field_stock_move_line__id
+#: model:ir.model.fields,field_description:purchase_request.field_stock_rule__id
+#: model:ir.model.fields,field_description:purchase_request.field_stock_warehouse_orderpoint__id
 msgid "ID"
 msgstr "ID"
 
@@ -538,6 +532,7 @@ msgstr ""
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__is_editable
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__is_editable
 msgid "Is Editable"
 msgstr "Är redigerbar"
 
@@ -551,11 +546,6 @@ msgstr "Är följare"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__is_name_editable
 msgid "Is Name Editable"
 msgstr "Är namnet redigerbart"
-
-#. module: purchase_request
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__is_editable
-msgid "Is editable"
-msgstr ""
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order__item_ids
@@ -579,6 +569,11 @@ msgstr "Senast uppdaterad av"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__write_date
 msgid "Last Updated on"
 msgstr "Senast uppdaterad"
+
+#. module: purchase_request
+#: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
+msgid "Late Activities"
+msgstr ""
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
@@ -742,11 +737,6 @@ msgid "Preferred supplier"
 msgstr "Rekommenderad leverantör"
 
 #. module: purchase_request
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request__group_id
-msgid "Procurement Group"
-msgstr "Upphandlingsgruppen"
-
-#. module: purchase_request
 #: model:ir.model,name:purchase_request.model_product_template
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__product_id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__product_id
@@ -830,6 +820,7 @@ msgstr "Inköpsorder"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__request_id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__request_id
 #: model:ir.module.category,name:purchase_request.module_category_purchase_request
+#: model:res.groups.privilege,name:purchase_request.res_groups_privilege_purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
@@ -839,13 +830,13 @@ msgstr "Inköpförfrågan"
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/models/purchase_order.py:0
-msgid "Purchase Request %s has already been completed"
-msgstr "Inköpsförfrågan %s har redan slutförts"
+msgid "Purchase Request %(name)s has already been completed"
+msgstr ""
 
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
-msgid "Purchase Request %s is not approved or in progress"
+msgid "Purchase Request %(name)s is not approved or in progress"
 msgstr ""
 
 #. module: purchase_request
@@ -1038,13 +1029,14 @@ msgstr "RFQ/PO Antal"
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/models/stock_move_line.py:0
-msgid "Receipt confirmation for Request {name}"
+msgid "Receipt confirmation %(picking_name)s for your Request %(request_name)s"
 msgstr ""
+"Mottagningsbekräftelse %(picking_name)s för din förfrågan %(request_name)s"
 
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/models/stock_move_line.py:0
-msgid "Receipt confirmation {picking_name} for your Request {request_name}"
+msgid "Receipt confirmation for Request %(name)s"
 msgstr ""
 
 #. module: purchase_request
@@ -1187,7 +1179,7 @@ msgstr "Beställningsorder för service Line"
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/models/purchase_order.py:0
-msgid "Service confirmation for Request {request_name}"
+msgid "Service confirmation for Request %(request_name)s"
 msgstr ""
 
 #. module: purchase_request
@@ -1295,25 +1287,31 @@ msgstr ""
 #. odoo-python
 #: code:addons/purchase_request/models/stock_move_line.py:0
 msgid ""
-"The following requested items from Purchase Request {request_name} have now "
-"been received in {location_name} using Picking {picking_name}:"
+"The following requested items from Purchase Request %(request_name)s have "
+"now been received in %(location_name)s using Picking %(picking_name)s:"
 msgstr ""
+"Följande begärda artiklar från inköpsbegäran %(request_name)s har nu "
+"mottagits i %(location_name)s med hjälp av plockning %(picking_name)s:"
 
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/models/stock_move_line.py:0
 msgid ""
-"The following requested items from Purchase Request {request_name} requested "
-"by {requestor} have now been received in {location_name}:"
+"The following requested items from Purchase Request %(request_name)s "
+"requested by %(requestor)s have now been received in %(location_name)s:"
 msgstr ""
+"Följande begärda artiklar från inköpsbegäran %(request_name)s begärd av %"
+"(requestor)s har nu mottagits i %(location_name)s:"
 
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/models/purchase_order.py:0
 msgid ""
-"The following requested services from Purchase Request {request_name} "
-"requested by {requestor} have now been received:"
+"The following requested services from Purchase Request %(request_name)s "
+"requested by %(requestor)s have now been received:"
 msgstr ""
+"Följande begärda tjänster från inköpsorder %(request_name)s begärd av %"
+"(requestor)s har nu mottagits:"
 
 #. module: purchase_request
 #. odoo-python
@@ -1341,6 +1339,11 @@ msgstr "Att godkänna Tillåtet"
 #: model:ir.model.fields.selection,name:purchase_request.selection__purchase_request__state__to_approve
 msgid "To be approved"
 msgstr "Ska godkännas"
+
+#. module: purchase_request
+#: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
+msgid "Today Activities"
+msgstr ""
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__estimated_cost
@@ -1437,18 +1440,9 @@ msgstr ""
 #. odoo-python
 #: code:addons/purchase_request/models/purchase_request.py:0
 msgid ""
-"You can't request an approval for a purchase request which is empty. (%s)"
-msgstr "Du kan inte begära ett godkännande för en inköpsorder som är tom (%s)"
-
-#. module: purchase_request
-#. odoo-python
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
-msgid ""
-"You cannot create a single purchase order from purchase requests that have "
-"different procurement group."
+"You can't request an approval for a purchase request which is empty. (%"
+"(name)s)"
 msgstr ""
-"Du kan inte skapa en enda inköpsorder från inköpsorder som har olika "
-"inköpsgrupper."
 
 #. module: purchase_request
 #. odoo-python
@@ -1480,6 +1474,40 @@ msgstr "Du måste välja rader från samma Plocktyp."
 msgid "You have to select lines from the same company."
 msgstr "Du måste välja linjer från samma bolag."
 
+#~ msgid "Category"
+#~ msgstr "Kategori"
+
+#~ msgid ""
+#~ "Conversion between Units of Measure can only occur if they belong to the "
+#~ "same category. The conversion will be made based on the ratios."
+#~ msgstr ""
+#~ "Omvandling mellan måttenheter kan endast ske om de tillhör samma "
+#~ "kategori. Omvandlingen görs baserat på förhållandena."
+
+#~ msgid "Group By"
+#~ msgstr "Gruppera efter"
+
+#~ msgid "Group By..."
+#~ msgstr "Gruppera efter..."
+
+#~ msgid "Procurement Group"
+#~ msgstr "Upphandlingsgruppen"
+
+#~ msgid "Purchase Request %s has already been completed"
+#~ msgstr "Inköpsförfrågan %s har redan slutförts"
+
+#~ msgid ""
+#~ "You can't request an approval for a purchase request which is empty. (%s)"
+#~ msgstr ""
+#~ "Du kan inte begära ett godkännande för en inköpsorder som är tom (%s)"
+
+#~ msgid ""
+#~ "You cannot create a single purchase order from purchase requests that "
+#~ "have different procurement group."
+#~ msgstr ""
+#~ "Du kan inte skapa en enda inköpsorder från inköpsorder som har olika "
+#~ "inköpsgrupper."
+
 #~ msgid "SMS Delivery error"
 #~ msgstr "Fel vid leverans av SMS"
 
@@ -1487,40 +1515,14 @@ msgstr "Du måste välja linjer från samma bolag."
 #~ msgstr "Inköpsförfrågan %s är inte godkänd"
 
 #~ msgid ""
-#~ "<li><b>%(product_name)s</b>: Transferred quantity %(product_qty)s "
-#~ "%(product_uom)s</li>"
+#~ "<li><b>%(product_name)s</b>: Transferred quantity %(product_qty)s %"
+#~ "(product_uom)s</li>"
 #~ msgstr ""
-#~ "<li><b>%(product_name)s</b>: Överförd mängd %(product_qty)s "
-#~ "%(product_uom)s</li>"
-
-#~ msgid ""
-#~ "Receipt confirmation %(picking_name)s for your Request %(request_name)s"
-#~ msgstr ""
-#~ "Mottagningsbekräftelse %(picking_name)s för din förfrågan %(request_name)s"
+#~ "<li><b>%(product_name)s</b>: Överförd mängd %(product_qty)s %"
+#~ "(product_uom)s</li>"
 
 #~ msgid "Service confirmation for Request %s"
 #~ msgstr "Servicebekräftelse för begäran %s"
-
-#~ msgid ""
-#~ "The following requested items from Purchase Request %(request_name)s have "
-#~ "now been received in %(location_name)s using Picking %(picking_name)s:"
-#~ msgstr ""
-#~ "Följande begärda artiklar från inköpsbegäran %(request_name)s har nu "
-#~ "mottagits i %(location_name)s med hjälp av plockning %(picking_name)s:"
-
-#~ msgid ""
-#~ "The following requested items from Purchase Request %(request_name)s "
-#~ "requested by %(requestor)s have now been received in %(location_name)s:"
-#~ msgstr ""
-#~ "Följande begärda artiklar från inköpsbegäran %(request_name)s begärd av "
-#~ "%(requestor)s har nu mottagits i %(location_name)s:"
-
-#~ msgid ""
-#~ "The following requested services from Purchase Request %(request_name)s "
-#~ "requested by %(requestor)s have now been received:"
-#~ msgstr ""
-#~ "Följande begärda tjänster från inköpsorder %(request_name)s begärd av "
-#~ "%(requestor)s har nu mottagits:"
 
 #~ msgid "Analytic Distribution Search"
 #~ msgstr "Objekt distributionssökning"
