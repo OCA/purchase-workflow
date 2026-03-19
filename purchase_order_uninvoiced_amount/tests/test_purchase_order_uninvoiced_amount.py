@@ -6,14 +6,53 @@
 from odoo import fields
 from odoo.tests import Form
 
-from odoo.addons.base.tests.common import BaseCommon
+from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
 
-class TestPurchaseOrderUninvoiceAmount(BaseCommon):
+class TestPurchaseOrderUninvoiceAmount(AccountTestInvoicingCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        # Environmet
+        if not cls.company_data.get("default_journal_purchase"):
+            cls.company_data["default_account_payable"] = cls.env[
+                "account.account"
+            ].create(
+                {
+                    "name": "Payable",
+                    "code": "PAY",
+                    "account_type": "liability_payable",
+                }
+            )
+            cls.company_data["default_account_expense"] = cls.env[
+                "account.account"
+            ].create(
+                {
+                    "name": "Expense",
+                    "code": "EXP",
+                    "account_type": "expense",
+                }
+            )
+            cls.company_data["default_account_receivable"] = cls.env[
+                "account.account"
+            ].create(
+                {
+                    "name": "Receivable",
+                    "code": "REC",
+                    "account_type": "asset_receivable",
+                }
+            )
+            cls.company_data["default_journal_purchase"] = cls.env[
+                "account.journal"
+            ].create(
+                {
+                    "name": "Purchase Journal",
+                    "type": "purchase",
+                    "code": "PJ",
+                    "default_account_id": cls.company_data[
+                        "default_account_expense"
+                    ].id,
+                }
+            )
         cls.purchase_order_model = cls.env["purchase.order"]
         cls.purchase_order_line_model = cls.env["purchase.order.line"]
         cls.account_move_model = cls.env["account.move"]
@@ -24,18 +63,25 @@ class TestPurchaseOrderUninvoiceAmount(BaseCommon):
         cls.company = cls.env.ref("base.main_company")
         # Partner
         cls.partner = cls.res_partner_model.create(
-            {"name": "Partner 1", "supplier_rank": 1, "is_company": True}
+            {
+                "name": "Partner 1",
+                "supplier_rank": 1,
+                "is_company": True,
+                "property_account_receivable_id": cls.company_data[
+                    "default_account_receivable"
+                ].id,
+                "property_account_payable_id": cls.company_data[
+                    "default_account_payable"
+                ].id,
+            }
         )
         # Category
         cls.product_categ = cls.product_category_model.create({"name": "Test category"})
-        cls.uom_categ = cls.env["uom.category"].create({"name": "Category 1"})
         cls.uom1 = cls.env["uom.uom"].create(
             {
                 "name": "UOM 1",
-                "category_id": cls.uom_categ.id,
-                "factor": 1,
+                "relative_factor": 1,
                 "active": True,
-                "uom_type": "reference",
             }
         )
         # Products
@@ -63,7 +109,7 @@ class TestPurchaseOrderUninvoiceAmount(BaseCommon):
                 "name": self.product_1.name,
                 "product_id": self.product_1.id,
                 "product_qty": product_qty,
-                "product_uom": self.product_1.uom_po_id.id,
+                "product_uom_id": self.product_1.uom_id.id,
                 "price_unit": 100.0,
                 "date_planned": fields.Date.today(),
                 "order_id": purchase.id,
@@ -78,7 +124,8 @@ class TestPurchaseOrderUninvoiceAmount(BaseCommon):
         invoice_form = Form(
             self.account_move_model.with_context(
                 default_move_type="in_invoice",
-                default_purchase_id=purchase,
+                default_journal_id=self.company_data["default_journal_purchase"].id,
+                default_purchase_id=purchase.id,
                 default_partner_id=purchase.partner_id.id,
             )
         )

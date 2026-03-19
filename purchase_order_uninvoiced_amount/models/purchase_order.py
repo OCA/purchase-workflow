@@ -15,7 +15,7 @@ class PurchaseOrder(models.Model):
         "order_line.qty_invoiced",
         "order_line.qty_received",
         "order_line.product_id",
-        "order_line.product_uom",
+        "order_line.product_uom_id",
         "order_line.price_unit",
     )
     def _compute_amount_uninvoiced(self):
