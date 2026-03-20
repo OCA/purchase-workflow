@@ -25,6 +25,7 @@ addon | version | maintainers | summary
 [product_supplier_code_purchase](product_supplier_code_purchase/) | 19.0.1.0.0 |  | This module adds to the purchase order line the supplier code defined in the product.
 [purchase_allowed_product](purchase_allowed_product/) | 19.0.1.0.0 |  | This module allows to select only products that can be supplied by the vendor
 [purchase_force_invoiced](purchase_force_invoiced/) | 19.0.1.0.0 |  | Allows to force the billing status of the purchase order to "Invoiced"
+[purchase_no_rfq](purchase_no_rfq/) | 19.0.1.0.0 | <a href='https://github.com/legalsylvain'><img src='https://github.com/legalsylvain.png' width='32' height='32' style='border-radius:50%;' alt='legalsylvain'/></a> | Purchase Order - No Request For Quotation
 [purchase_order_approved](purchase_order_approved/) | 19.0.1.0.0 |  | Add a new state 'Approved' in purchase orders.
 [purchase_order_general_discount](purchase_order_general_discount/) | 19.0.1.0.0 |  | General discount per purchase order
 [purchase_order_owner](purchase_order_owner/) | 19.0.1.0.0 |  | Purchase Order Owner
