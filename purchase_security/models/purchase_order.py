@@ -27,7 +27,7 @@ class PurchaseOrder(models.Model):
         is_user_id_editable = self.env.user.has_group(
             "purchase.group_purchase_manager"
         ) or not self.env.user.has_group("purchase_security.group_purchase_own_orders")
-        self.write({"is_user_id_editable": is_user_id_editable})
+        self.is_user_id_editable = is_user_id_editable
 
     @api.depends("user_id")
     def _compute_team_id(self):
