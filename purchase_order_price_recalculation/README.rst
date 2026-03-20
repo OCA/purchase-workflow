@@ -82,6 +82,10 @@ Contributors
   - Víctor Martínez
   - Pedro M. Baeza
 
+- `Komit <https://komit-consulting.com>`__:
+
+  - Cai Hoang Huynh
+
 Maintainers
 -----------
 

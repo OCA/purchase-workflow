@@ -11,7 +11,7 @@
                     string=" Update lines info"
                     icon="fa-refresh"
                     confirm="This will update all the line prices based on the vendor currently set. Do you want to continue?"
-                    attrs="{'invisible': [('state', 'not in', ['draft', 'sent'])]}"
+                    invisible="state not in ['draft', 'sent']"
                 />
             </button>
         </field>
