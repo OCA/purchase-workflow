@@ -1,0 +1,73 @@
+# Copyright 2015 Alex Comba - Agile Business Group
+# Copyright 2017 Tecnativa - vicent.cubells@tecnativa.com
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
+from odoo import fields
+from odoo.tests import Form
+
+from odoo.addons.base.tests.common import SavepointCaseWithUserDemo
+
+
+class TestPurchaseOrderLineDescription(SavepointCaseWithUserDemo):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        partner = cls.env["res.partner"].create(
+            {
+                "name": "Test partner",
+            }
+        )
+        cls.product = cls.env["product.product"].create(
+            {
+                "name": "Product",
+                "standard_price": 10,
+                "description_purchase": "description for purchase",
+            }
+        )
+        res_users_purchase_user = cls.env.ref("purchase.group_purchase_user")
+        cls.test_user = cls.env["res.users"].create(
+            {
+                "name": "test",
+                "login": "test",
+                "groups_id": [(6, 0, [res_users_purchase_user.id])],
+            }
+        )
+        cls.order = cls.env["purchase.order"].create(
+            {
+                "partner_id": partner.id,
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": cls.product.id,
+                            "name": cls.product.name,
+                            "price_unit": 79.80,
+                            "product_qty": 15.0,
+                            "product_uom": cls.env.ref("uom.product_uom_unit").id,
+                            "date_planned": fields.Date.today(),
+                        },
+                    )
+                ],
+            }
+        )
+
+    def test_onchange_product_id(self):
+        self.assertEqual(self.product.name, self.order.order_line[0].name)
+        # Test onchange product
+        self.order.order_line[0].sudo().onchange_product_id()
+        self.assertEqual(
+            self.product.description_purchase, self.order.order_line[0].name
+        )
+
+    def test_translated_description(self):
+        """PO description rendered in supplier lang."""
+        self.env["res.lang"]._activate_lang("es_ES")
+        self.order.partner_id.lang = "es_ES"
+        self.product.with_context(
+            lang="es_ES"
+        ).description_purchase = "descripción para compras"
+        with Form(self.order.sudo()) as order:
+            with order.order_line.new() as line:
+                line.product_id = self.product
+                self.assertEqual(line.name, "descripción para compras")
