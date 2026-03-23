@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_purchase_order_filter" model="ir.ui.view">
+        <field name="name">request.quotation.select</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_filter" />
+        <field name="arch" type="xml">
+            <field name="origin" position="after">
+                <field name="shipping_schedule_note" />
+            </field>
+            <filter name="late_rfqs" position="after">
+                <separator />
+                <filter name="date_etd" string="ETD" date="date_etd" />
+                <filter name="date_eta" string="ETA" date="date_eta" />
+            </filter>
+            <xpath expr="//group/filter[@name='order_date']" position="after">
+                <filter
+                    string="ETD"
+                    name="date_etd"
+                    domain="[]"
+                    context="{'group_by': 'date_etd'}"
+                />
+                <filter
+                    string="ETA"
+                    name="date_eta"
+                    domain="[]"
+                    context="{'group_by': 'date_eta'}"
+                />
+            </xpath>
+        </field>
+    </record>
+    <record id="purchase_order_view_search" model="ir.ui.view">
+        <field name="name">purchase.order.select</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_view_search" />
+        <field name="arch" type="xml">
+            <field name="product_id" position="after">
+                <field name="shipping_schedule_note" />
+            </field>
+            <filter name="order_date" position="after">
+                <separator />
+                <filter name="date_etd" string="ETD" date="date_etd" />
+                <filter name="date_eta" string="ETA" date="date_eta" />
+            </filter>
+            <xpath expr="//group/filter[@name='order_date']" position="after">
+                <filter
+                    string="ETD"
+                    name="date_etd"
+                    domain="[]"
+                    context="{'group_by': 'date_etd'}"
+                />
+                <filter
+                    string="ETA"
+                    name="date_eta"
+                    domain="[]"
+                    context="{'group_by': 'date_eta'}"
+                />
+            </xpath>
+        </field>
+    </record>
+    <record id="purchase_order_kpis_tree" model="ir.ui.view">
+        <field name="name">purchase.order.kpis.tree</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_kpis_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date_order']" position="after">
+                <field name="date_etd" optional="hide" />
+                <field name="date_eta" optional="hide" />
+                <field name="shipping_schedule_note" optional="hide" />
+            </xpath>
+        </field>
+    </record>
+    <record id="purchase_order_view_tree" model="ir.ui.view">
+        <field name="name">purchase.order.list</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_view_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date_planned']" position="after">
+                <field name="date_etd" optional="show" />
+                <field name="date_eta" optional="show" />
+                <field name="shipping_schedule_note" optional="show" />
+            </xpath>
+        </field>
+    </record>
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="name">purchase.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//page[@name='purchase_delivery_invoice']/group/group"
+                position="inside"
+            >
+                <field name="date_etd" />
+                <field name="date_eta" />
+                <field name="shipping_schedule_note" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

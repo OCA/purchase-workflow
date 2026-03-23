@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit</field>
+        <field name="model">res.config.settings</field>
+        <field
+            name="inherit_id"
+            ref="purchase.res_config_settings_view_form_purchase"
+        />
+        <field name="arch" type="xml">
+            <setting id="auto_receipt_reminder" position="after">
+                <setting
+                    id="hide_expected_arrival_when_eta"
+                    company_dependent="1"
+                    string="Hide Expected Arrival in Purchase Orders Reports"
+                    help="Hide the expected arrival date in purchase orders reports when the ETA is set."
+                >
+                    <field name="hide_expected_arrival_when_eta" />
+                </setting>
+            </setting>
+        </field>
+    </record>
+</odoo>

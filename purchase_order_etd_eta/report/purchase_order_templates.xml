@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="purchase_etd_eta_info">
+        <div id="etd_eta_info" class="row mb-4">
+            <div t-if="o.date_etd" class="col-2">
+                <strong>ETD:</strong>
+                <p t-field="o.date_etd" class="m-0" />
+            </div>
+            <div t-if="o.date_eta" class="col-2">
+                <strong>ETA:</strong>
+                <p t-field="o.date_eta" class="m-0" />
+            </div>
+            <div t-if="o.shipping_schedule_note" class="col-8">
+                <strong>Shipping Schedule Note:</strong>
+                <p
+                    t-field="o.shipping_schedule_note"
+                    class="m-0"
+                    style="white-space: pre"
+                />
+            </div>
+        </div>
+    </template>
+    <template
+        id="report_purchaseorder_document"
+        inherit_id="purchase.report_purchaseorder_document"
+    >
+        <xpath expr="//div[@t-if='o.date_planned']" position="attributes">
+            <attribute name="t-if">o.display_expected_arrival()</attribute>
+        </xpath>
+        <xpath expr="//div[@id='informations']" position="after">
+            <t t-call="purchase_order_etd_eta.purchase_etd_eta_info" />
+        </xpath>
+    </template>
+</odoo>

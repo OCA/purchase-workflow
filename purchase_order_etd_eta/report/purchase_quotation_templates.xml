@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="report_purchasequotation_document"
+        inherit_id="purchase.report_purchasequotation_document"
+    >
+        <xpath expr="//t[@t-set='layout_document_title']" position="after">
+            <t t-call="purchase_order_etd_eta.purchase_etd_eta_info" />
+        </xpath>
+    </template>
+</odoo>
