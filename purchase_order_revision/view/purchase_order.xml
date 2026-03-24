@@ -17,18 +17,18 @@
             <xpath expr="//header" position='inside'>
                 <button
                     name="create_revision"
-                    states="cancel,sent"
+                    invisible="state not in ('cancel', 'sent')"
                     string="New Revision"
                     type="object"
                 />
             </xpath>
-            <xpath expr="//button[@name='action_create_invoice']" position="after">
+            <xpath expr="//button[@name='action_view_invoice']" position="after">
                 <button
                     name="action_view_revisions"
                     type="object"
                     class="oe_stat_button"
                     icon="fa-file-archive-o"
-                    attrs="{'invisible': ['|', ('has_old_revisions', '=', False),('revision_count', '=', 0)]}"
+                    invisible="not has_old_revisions or revision_count == 0"
                 >
                     <field
                         name="revision_count"
@@ -36,12 +36,17 @@
                         string="Prev. revisions"
                     />
                 </button>
+                <button
+                    name="action_back_to_current"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-reply"
+                    string="Current Revision"
+                    invisible="not current_revision_id"
+                />
             </xpath>
             <field name="partner_ref" position="after">
-                <field
-                    name="current_revision_id"
-                    attrs="{'invisible': [('current_revision_id', '=', False)]}"
-                />
+                <field name="current_revision_id" invisible="not current_revision_id" />
                 <field name="has_old_revisions" invisible="1" />
             </field>
         </field>

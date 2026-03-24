@@ -80,6 +80,9 @@ Contributors
 - Diogo Cordeiro <dcordeiro@opensourceintegrators.com>
 - Benedito Monteiro <bmonteiro@opensourceintegrators.com>
 - Daniel Reis <dreis@opensourceintegrators.com>
+- `Heliconia Solutions Pvt. Ltd. <https://www.heliconia.io>`__
+
+  - Bhavesh Heliconia
 
 Maintainers
 -----------
