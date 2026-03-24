@@ -1,7 +1,7 @@
 # Copyright 2022-2024 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.tests import Form
+from odoo import Command
 
 from odoo.addons.base.tests.common import BaseCommon
 
@@ -39,10 +39,25 @@ class TestSalePurchaseForceVendorBase(BaseCommon):
         cls.sol_b = order_lines.filtered(lambda x: x.product_id == cls.product_b)
 
     def _create_sale_order(self):
-        order_form = Form(self.env["sale.order"])
-        order_form.partner_id = self.partner
-        for product in [self.product_a, self.product_b]:
-            with order_form.order_line.new() as line_form:
-                line_form.product_id = product
-                line_form.vendor_id = self.vendor_b
-        return order_form.save()
+        order = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "order_line": [
+                    Command.create(
+                        {
+                            "product_id": self.product_a.id,
+                            "route_id": self.mto.id,
+                            "vendor_id": self.vendor_b.id,
+                        }
+                    ),
+                    Command.create(
+                        {
+                            "product_id": self.product_b.id,
+                            "route_id": self.mto.id,
+                            "vendor_id": self.vendor_b.id,
+                        }
+                    ),
+                ],
+            }
+        )
+        return order
