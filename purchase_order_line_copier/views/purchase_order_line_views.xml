@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="purchase_order_line_copy" model="ir.ui.view">
+        <field name="name">purchase.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//notebook/page[@name='products']/field[@name='order_line']/list/field[@name='price_subtotal']"
+                position="after"
+            >
+                <button
+                    name="purchase_order_line_copy"
+                    type="object"
+                    icon="fa-copy"
+                    string=""
+                    title="Duplicate Line"
+                    column_invisible="parent.state == 'purchase'"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="purchase_order_form_copy_button" model="ir.ui.view">
+        <field name="name">purchase.order.form.copy.button</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button
+                    name="action_open_copy_lines_wizard"
+                    type="object"
+                    string="Copy PO Lines"
+                    class="btn-primary"
+                    icon="fa-copy"
+                    invisible="state == 'purchase'"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

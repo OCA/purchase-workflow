@@ -1,0 +1,88 @@
+<odoo>
+    <record id="purchase_order_line_tree_wizard" model="ir.ui.view">
+        <field name="name">purchase.order.line.tree.copy.wizard</field>
+        <field name="model">copy.purchase.line.wizard.line</field>
+        <field name="arch" type="xml">
+            <list string="Purchase Order Lines">
+                <field name="selected" />
+                <field name="line_id" invisible="1" force_save="1" />
+                <field name="product_id" />
+                <field name="name" />
+                <field name="product_qty" />
+                <field name="product_uom_id" />
+                <field name="price_unit" />
+                <field name="tax_ids" widget="many2many_tags" />
+                <field name="price_subtotal" />
+            </list>
+        </field>
+    </record>
+
+    <record id="view_copy_purchase_line_wizard" model="ir.ui.view">
+        <field name="name">copy.purchase.line.wizard.form</field>
+        <field name="model">copy.purchase.line.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Copy Purchase Lines">
+                <group>
+                    <field name="order_id" readonly="1" />
+                    <field name="select_all" widget="boolean_toggle" />
+                </group>
+                <notebook>
+                    <page string="Lines to Copy">
+                        <field
+                            name="line_ids"
+                            nolabel="1"
+                            context="{'list_view_ref': 'purchase_order_line_copier.purchase_order_line_tree_wizard'}"
+                            options="{'no_create': True, 'no_create_edit': True, 'no_quick_create': True, 'no_open': True}"
+                            mode="list"
+                        >
+                            <list
+                                string="Lines to Copy"
+                                editable="bottom"
+                                delete="false"
+                                create="false"
+                                no_create="1"
+                                class="o_list_view"
+                            >
+                                <field
+                                    name="selected"
+                                    force_save="1"
+                                    widget="boolean_toggle"
+                                />
+                                <field
+                                    name="line_id"
+                                    column_invisible="1"
+                                    force_save="1"
+                                />
+                                <field name="product_id" />
+                                <field name="name" />
+                                <field name="product_qty" />
+                                <field name="product_uom_id" />
+                                <field name="price_unit" />
+                                <field
+                                    name="tax_ids"
+                                    widget="many2many_tags"
+                                    optional="hide"
+                                />
+                                <field name="price_subtotal" optional="hide" />
+                                <field
+                                    name="analytic_distribution"
+                                    widget="analytic_distribution"
+                                />
+                            </list>
+                        </field>
+                    </page>
+                </notebook>
+                <footer>
+                    <button
+                        string="Copy"
+                        type="object"
+                        name="action_copy_lines"
+                        class="btn-primary"
+                        invisible="line_ids.selected == False"
+                    />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

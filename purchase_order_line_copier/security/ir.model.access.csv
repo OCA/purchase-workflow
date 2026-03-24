@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_copy_purchase_line_wizard,access_copy_purchase_line_wizard,model_copy_purchase_line_wizard,purchase.group_purchase_user,1,1,1,1
+access_copy_purchase_line_wizard_line,access_copy_purchase_line_wizard_line,model_copy_purchase_line_wizard_line,purchase.group_purchase_user,1,1,1,1

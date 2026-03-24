@@ -1,0 +1,18 @@
+<odoo>
+    <record id="action_copy_multiple_lines" model="ir.actions.server">
+        <field name="name">Copy PO Lines</field>
+        <field name="model_id" ref="purchase.model_purchase_order_line" />
+        <field name="binding_model_id" ref="purchase.model_purchase_order_line" />
+        <field name="state">code</field>
+        <field name="code">
+            action = {
+                'name': 'Copy Purchase Lines',
+                'type': 'ir.actions.act_window',
+                'res_model': 'copy.purchase.line.wizard',
+                'view_mode': 'form',
+                'target': 'new',
+                'context': {'default_line_ids': env.context.get('active_ids')}
+            }
+        </field>
+    </record>
+</odoo>
