@@ -3,3 +3,5 @@
 - Bert Van Groenendael \<<bert.vangroenendael@dynapps.eu>\>
 - Stefan Rijnhart \<<stefan@opener.amsterdam>\>
 - Arantxa Gandia \<<arantxa@studio73.es>\>
+- [NuoBiT](https://www.nuobit.com):
+  - Deniz Gallo  <dgallo@nuobit.com>
