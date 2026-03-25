@@ -19,7 +19,7 @@ class PurchaseOrder(models.Model):
     def _get_invoiced(self):
         res = super()._get_invoiced()
         for order in self.filtered(
-            lambda po: po.force_invoiced and po.invoice_status == "to invoice"
+            lambda po: po.force_invoiced and po.invoice_status in ("to invoice", "no")
         ):
             order.invoice_status = "invoiced"
         return res
