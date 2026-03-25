@@ -2,3 +2,5 @@
 - Rattapong Chokmasermkul \<<rattapongc@ecosoft.co.th>\>
 - Bert Van Groenendael \<<bert.vangroenendael@dynapps.eu>\>
 - Stefan Rijnhart \<<stefan@opener.amsterdam>\>
+- [NuoBiT](https://www.nuobit.com):
+  - Deniz Gallo  <dgallo@nuobit.com>
