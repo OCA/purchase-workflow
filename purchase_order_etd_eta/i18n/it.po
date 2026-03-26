@@ -6,28 +6,30 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-03-26 13:45+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: purchase_order_etd_eta
 #: model_terms:ir.ui.view,arch_db:purchase_order_etd_eta.purchase_etd_eta_info
 msgid "<strong>ETA:</strong>"
-msgstr ""
+msgstr "<strong>ETA:</strong>"
 
 #. module: purchase_order_etd_eta
 #: model_terms:ir.ui.view,arch_db:purchase_order_etd_eta.purchase_etd_eta_info
 msgid "<strong>ETD:</strong>"
-msgstr ""
+msgstr "<strong>ETD:</strong>"
 
 #. module: purchase_order_etd_eta
 #: model_terms:ir.ui.view,arch_db:purchase_order_etd_eta.purchase_etd_eta_info
 msgid "<strong>Shipping Schedule Note:</strong>"
-msgstr ""
+msgstr "<strong>Nota sul programma di spedizione:</strong>"
 
 #. module: purchase_order_etd_eta
 #: model:ir.model.fields,help:purchase_order_etd_eta.field_purchase_order__shipping_schedule_note
@@ -36,46 +38,51 @@ msgid ""
 "when ETD or ETA cannot be expressed as a specific date (for example: ASAP, "
 "TBD, etc.)."
 msgstr ""
+"Ulteriori istruzioni o chiarimenti relativi alla pianificazione della "
+"spedizione. Utilizzare questo campo quando la data di partenza prevista "
+"(ETD) o la data di arrivo prevista (ETA) non possono essere espresse come "
+"una data specifica (ad esempio: il prima possibile, da definire, ecc.)."
 
 #. module: purchase_order_etd_eta
 #: model:ir.model,name:purchase_order_etd_eta.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Aziende"
 
 #. module: purchase_order_etd_eta
 #: model:ir.model.fields,field_description:purchase_order_etd_eta.field_purchase_order__date_eta
 #: model_terms:ir.ui.view,arch_db:purchase_order_etd_eta.purchase_order_view_search
 #: model_terms:ir.ui.view,arch_db:purchase_order_etd_eta.view_purchase_order_filter
 msgid "ETA"
-msgstr ""
+msgstr "ETA"
 
 #. module: purchase_order_etd_eta
 #: model:ir.model.fields,field_description:purchase_order_etd_eta.field_purchase_order__date_etd
 #: model_terms:ir.ui.view,arch_db:purchase_order_etd_eta.purchase_order_view_search
 #: model_terms:ir.ui.view,arch_db:purchase_order_etd_eta.view_purchase_order_filter
 msgid "ETD"
-msgstr ""
+msgstr "ETD"
 
 #. module: purchase_order_etd_eta
 #: model:ir.model.fields,help:purchase_order_etd_eta.field_purchase_order__date_eta
 msgid "Estimated Time of Arrival"
-msgstr ""
+msgstr "Ora di arrivo stimata"
 
 #. module: purchase_order_etd_eta
 #: model:ir.model.fields,help:purchase_order_etd_eta.field_purchase_order__date_etd
 msgid "Estimated Time of Departure"
-msgstr ""
+msgstr "Ora di partenza stimata"
 
 #. module: purchase_order_etd_eta
 #: model:ir.model.fields,field_description:purchase_order_etd_eta.field_res_company__hide_expected_arrival_when_eta
 #: model:ir.model.fields,field_description:purchase_order_etd_eta.field_res_config_settings__hide_expected_arrival_when_eta
 msgid "Hide Expected Arrival When Eta"
-msgstr ""
+msgstr "Nascondi l'arrivo previsto quando ETA"
 
 #. module: purchase_order_etd_eta
 #: model_terms:ir.ui.view,arch_db:purchase_order_etd_eta.res_config_settings_view_form
 msgid "Hide Expected Arrival in Purchase Orders Reports"
 msgstr ""
+"Nascondi la data di arrivo prevista nei resoconti degli ordini di acquisto"
 
 #. module: purchase_order_etd_eta
 #: model_terms:ir.ui.view,arch_db:purchase_order_etd_eta.res_config_settings_view_form
@@ -83,18 +90,20 @@ msgid ""
 "Hide the expected arrival date in purchase orders reports when the ETA is "
 "set."
 msgstr ""
+"Nascondi la data di arrivo prevista nei resoconti degli ordini di acquisto "
+"quando è impostata la data di arrivo prevista."
 
 #. module: purchase_order_etd_eta
 #: model:ir.model,name:purchase_order_etd_eta.model_res_config_settings
 msgid "Procurement purchase grouping settings"
-msgstr ""
+msgstr "Impostazioni raggruppamento approvvigionamento acquisti"
 
 #. module: purchase_order_etd_eta
 #: model:ir.model,name:purchase_order_etd_eta.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Ordine di acquisto"
 
 #. module: purchase_order_etd_eta
 #: model:ir.model.fields,field_description:purchase_order_etd_eta.field_purchase_order__shipping_schedule_note
 msgid "Shipping Schedule Note"
-msgstr ""
+msgstr "Nota programma spedizione"
