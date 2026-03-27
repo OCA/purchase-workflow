@@ -31,7 +31,7 @@ class PurchaseOrderLine(models.Model):
         """
         if values.get("grouping") == "line":
             self = self.filtered(
-                lambda x: x.order_id.group_id == values.get("group_id")
+                lambda x: x.order_id.reference_ids == values.get("group_id")
             )
         return super()._find_candidate(
             product_id,

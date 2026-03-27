@@ -11,3 +11,4 @@
 - [Pesol](https://www.pesol.es):
   - Jonathan Oscategui Taza \<<info@pesol.es>\>
 - `Heliconia Solutions Pvt. Ltd. <https://www.heliconia.io>`_
+- Arantxa Gandia \<<arantxa@studio73.es>\>
