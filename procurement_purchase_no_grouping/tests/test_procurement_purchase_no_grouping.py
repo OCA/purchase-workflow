@@ -44,8 +44,7 @@ class TestProcurementPurchaseNoGrouping(BaseCommon):
         return product
 
     def _run_procurement(self, product):
-        procurement_group_obj = self.env["procurement.group"]
-        procurement = procurement_group_obj.Procurement(
+        procurement = self.env["stock.rule"].Procurement(
             product,
             1,
             product.uom_id,
@@ -55,7 +54,7 @@ class TestProcurementPurchaseNoGrouping(BaseCommon):
             self.env.company,
             self.values,
         )
-        rule = procurement_group_obj._get_rule(
+        rule = self.env["stock.rule"]._get_rule(
             procurement.product_id, procurement.location_id, procurement.values
         )
         self.stock_rule._run_buy([(procurement, rule)])
