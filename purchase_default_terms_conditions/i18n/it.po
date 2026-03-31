@@ -1,0 +1,78 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_default_terms_conditions
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-03-05 14:35+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: purchase_default_terms_conditions
+#: model_terms:ir.ui.view,arch_db:purchase_default_terms_conditions.res_config_settings_view_form_purchase
+msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" aria-label=\"Values set here are company-specific.\" groups="
+"\"base.group_multi_company\" role=\"img\"/>"
+msgstr ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"I valori impostati qui sono "
+"specifici per azienda.\" aria-label=\"I valori impostati qui sono specifici "
+"per azienda.\" groups=\"base.group_multi_company\" role=\"img\"/>"
+
+#. module: purchase_default_terms_conditions
+#: model:ir.model,name:purchase_default_terms_conditions.model_res_company
+msgid "Companies"
+msgstr "Aziende"
+
+#. module: purchase_default_terms_conditions
+#: model:ir.model,name:purchase_default_terms_conditions.model_res_partner
+msgid "Contact"
+msgstr "Contatto"
+
+#. module: purchase_default_terms_conditions
+#: model_terms:ir.ui.view,arch_db:purchase_default_terms_conditions.res_config_settings_view_form_purchase
+msgid "Insert your terms & conditions here..."
+msgstr "Inserire qui termini e condizioni..."
+
+#. module: purchase_default_terms_conditions
+#: model:ir.model,name:purchase_default_terms_conditions.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr "Impostazioni raggruppamento approvvigionamento acquisti"
+
+#. module: purchase_default_terms_conditions
+#: model:ir.model.fields,field_description:purchase_default_terms_conditions.field_res_company__purchase_note
+#: model:ir.model.fields,field_description:purchase_default_terms_conditions.field_res_partner__purchase_note
+#: model:ir.model.fields,field_description:purchase_default_terms_conditions.field_res_users__purchase_note
+msgid "Purchase Default Terms and Conditions"
+msgstr "Termini e condizioni acquisto predefiniti"
+
+#. module: purchase_default_terms_conditions
+#: model:ir.model,name:purchase_default_terms_conditions.model_purchase_order
+msgid "Purchase Order"
+msgstr "Ordine di acquisto"
+
+#. module: purchase_default_terms_conditions
+#: model:ir.model.fields,field_description:purchase_default_terms_conditions.field_res_config_settings__purchase_note
+msgid "Purchase Terms & Conditions"
+msgstr "Termini e condizioni di acquisto"
+
+#. module: purchase_default_terms_conditions
+#: model_terms:ir.ui.view,arch_db:purchase_default_terms_conditions.res_config_settings_view_form_purchase
+msgid "Show standard terms &amp; conditions on orders"
+msgstr "Visualizza termini e condizioni predefinite negli ordini"
+
+#. module: purchase_default_terms_conditions
+#: model:ir.model.fields,field_description:purchase_default_terms_conditions.field_res_config_settings__use_purchase_note
+msgid "Use Purchase Default Terms & Conditions"
+msgstr "Usa termini e condizioni acquisto predefiniti"
+
+#~ msgid "Config Settings"
+#~ msgstr "Impostazioni configurazione"
