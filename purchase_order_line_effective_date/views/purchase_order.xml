@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright (C) 2026  Renato Lima - Akretion
+     License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html -->
+<odoo>
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="name">purchase.order.tree</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//list/field[@name='date_planned']" position="after">
+                <field name="effective_date" optional="hide" />
+                <field name="last_effective_date" optional="hide" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
