@@ -10,7 +10,7 @@
                     name="analytic_distribution"
                     widget="analytic_distribution"
                     groups="analytic.group_analytic_accounting"
-                    options="{'product_field': 'product_id', 'business_domain': 'purchase_order'}"
+                   options="{'business_domain': 'purchase_order'}"
                 />
             </xpath>
         </field>
