@@ -1,0 +1,2 @@
+To see field "Effective date" and "Last Effective date" you can install
+*purchase_order_line_menu*
