@@ -29,7 +29,7 @@ class TestReassign(TransactionCase):
                             "product_qty": 2,
                             "price_unit": 150.00,
                             "date_planned": datetime.now(),
-                            "product_uom": self.env.ref("uom.product_uom_unit").id,
+                            "product_uom_id": self.env.ref("uom.product_uom_unit").id,
                         },
                     )
                 ],
