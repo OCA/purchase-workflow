@@ -21,21 +21,6 @@ msgstr ""
 "X-Generator: Weblate 3.8\n"
 
 #. module: purchase_order_approved
-#: model_terms:ir.ui.view,arch_db:purchase_order_approved.view_purchase_configuration
-msgid ""
-"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
-"specific.\" groups=\"base.group_multi_company\"/>"
-msgstr ""
-"<span class=\"fa fa-lg fa-building-o\" title=\"此处设置的值特定于公司。\" "
-"groups=\"base.group_multi_company\"/>"
-
-#. module: purchase_order_approved
-#: model_terms:ir.ui.view,arch_db:purchase_order_approved.view_purchase_configuration
-msgid ""
-"Adds an extra state in purchase orders previous to 'Purchase Order' state."
-msgstr "在“采购订单”状态之前的采购订单中添加额外状态。"
-
-#. module: purchase_order_approved
 #: model:ir.model.fields,help:purchase_order_approved.field_res_company__purchase_approve_active
 #: model:ir.model.fields,help:purchase_order_approved.field_res_config_settings__purchase_approve_active
 msgid ""
@@ -75,11 +60,6 @@ msgid "Companies"
 msgstr "公司"
 
 #. module: purchase_order_approved
-#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__company_id
-msgid "Company"
-msgstr "公司"
-
-#. module: purchase_order_approved
 #: model:ir.model,name:purchase_order_approved.model_res_partner
 msgid "Contact"
 msgstr ""
@@ -90,41 +70,25 @@ msgid "Convert to Purchase Order"
 msgstr "转换为采购订单"
 
 #. module: purchase_order_approved
-#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__currency_id
-msgid "Currency"
-msgstr "货币"
-
-#. module: purchase_order_approved
-#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__picking_type_id
-msgid "Deliver To"
-msgstr "交货到"
-
-#. module: purchase_order_approved
-#: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__date_order
-msgid ""
-"Depicts the date within which the Quotation should be confirmed and "
-"converted into a purchase order."
+#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_company__display_name
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_partner__display_name
+msgid "Display Name"
 msgstr ""
 
 #. module: purchase_order_approved
-#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__dest_address_id
-msgid "Dropship Address"
+#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__id
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_company__id
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_config_settings__id
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_partner__id
+msgid "ID"
 msgstr ""
 
 #. module: purchase_order_approved
 #: model:ir.model.fields.selection,name:purchase_order_approved.selection__res_partner__purchase_requires_second_approval__never
 msgid "Never"
 msgstr ""
-
-#. module: purchase_order_approved
-#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__date_order
-msgid "Order Deadline"
-msgstr ""
-
-#. module: purchase_order_approved
-#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__order_line
-msgid "Order Lines"
-msgstr "订单行"
 
 #. module: purchase_order_approved
 #: model:ir.model,name:purchase_order_approved.model_res_config_settings
@@ -143,30 +107,11 @@ msgid "Purchase Requires Second Approval"
 msgstr ""
 
 #. module: purchase_order_approved
-#: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__dest_address_id
+#: model_terms:ir.ui.view,arch_db:purchase_order_approved.view_purchase_configuration
 msgid ""
-"Put an address if you want to deliver directly from the vendor to the "
-"customer. Otherwise, keep empty to deliver to your own company."
+"Require second approval for purchase orders as company policy (otherwise it "
+"can be set per supplier)"
 msgstr ""
-"如果你想直接从供应商发货给客户，就填写一个地址。否则，留空把货物运到你的公司"
-"仓库。"
-
-#. module: purchase_order_approved
-#: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__origin
-msgid ""
-"Reference of the document that generated this purchase order request (e.g. a "
-"sales order)"
-msgstr "生成此采购订单请求的文档参考（例如销售订单）"
-
-#. module: purchase_order_approved
-#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__origin
-msgid "Source Document"
-msgstr "源文档"
-
-#. module: purchase_order_approved
-#: model:ir.model.fields,field_description:purchase_order_approved.field_res_config_settings__purchase_approve_active
-msgid "State 'Approved' in Purchase Orders"
-msgstr "采购订单中的“批准”状态"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__state
@@ -174,24 +119,64 @@ msgid "Status"
 msgstr "状态"
 
 #. module: purchase_order_approved
-#: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__picking_type_id
-msgid "This will determine operation type of incoming shipment"
-msgstr "这将决定进货的操作类型"
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_config_settings__purchase_approve_active
+msgid "Use 'Approved' Stage"
+msgstr ""
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_res_company__purchase_approve_active
 msgid "Use State 'Approved' in Purchase Orders"
 msgstr "在采购订单中使用“已批准”状态"
 
-#. module: purchase_order_approved
-#: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__partner_id
-msgid "Vendor"
-msgstr "供应商"
+#~ msgid ""
+#~ "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are "
+#~ "company-specific.\" groups=\"base.group_multi_company\"/>"
+#~ msgstr ""
+#~ "<span class=\"fa fa-lg fa-building-o\" title=\"此处设置的值特定于公司。\" "
+#~ "groups=\"base.group_multi_company\"/>"
 
-#. module: purchase_order_approved
-#: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__partner_id
-msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
-msgstr "您可以通过名称，TIN，电子邮件或内部参考找到供应商。"
+#~ msgid ""
+#~ "Adds an extra state in purchase orders previous to 'Purchase Order' state."
+#~ msgstr "在“采购订单”状态之前的采购订单中添加额外状态。"
+
+#~ msgid "Company"
+#~ msgstr "公司"
+
+#~ msgid "Currency"
+#~ msgstr "货币"
+
+#~ msgid "Deliver To"
+#~ msgstr "交货到"
+
+#~ msgid "Order Lines"
+#~ msgstr "订单行"
+
+#~ msgid ""
+#~ "Put an address if you want to deliver directly from the vendor to the "
+#~ "customer. Otherwise, keep empty to deliver to your own company."
+#~ msgstr ""
+#~ "如果你想直接从供应商发货给客户，就填写一个地址。否则，留空把货物运到你的公"
+#~ "司仓库。"
+
+#~ msgid ""
+#~ "Reference of the document that generated this purchase order request "
+#~ "(e.g. a sales order)"
+#~ msgstr "生成此采购订单请求的文档参考（例如销售订单）"
+
+#~ msgid "Source Document"
+#~ msgstr "源文档"
+
+#~ msgid "State 'Approved' in Purchase Orders"
+#~ msgstr "采购订单中的“批准”状态"
+
+#~ msgid "This will determine operation type of incoming shipment"
+#~ msgstr "这将决定进货的操作类型"
+
+#~ msgid "Vendor"
+#~ msgstr "供应商"
+
+#~ msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
+#~ msgstr "您可以通过名称，TIN，电子邮件或内部参考找到供应商。"
 
 #~ msgid "Config Settings"
 #~ msgstr "配置设置"
