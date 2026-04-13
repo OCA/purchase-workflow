@@ -50,11 +50,6 @@ msgid "Companies"
 msgstr ""
 
 #. module: purchase_order_approved
-#: model:ir.model,name:purchase_order_approved.model_res_config_settings
-msgid "Config Settings"
-msgstr ""
-
-#. module: purchase_order_approved
 #: model:ir.model,name:purchase_order_approved.model_res_partner
 msgid "Contact"
 msgstr ""
@@ -83,6 +78,11 @@ msgstr ""
 #. module: purchase_order_approved
 #: model:ir.model.fields.selection,name:purchase_order_approved.selection__res_partner__purchase_requires_second_approval__never
 msgid "Never"
+msgstr ""
+
+#. module: purchase_order_approved
+#: model:ir.model,name:purchase_order_approved.model_res_config_settings
+msgid "Procurement purchase grouping settings"
 msgstr ""
 
 #. module: purchase_order_approved
