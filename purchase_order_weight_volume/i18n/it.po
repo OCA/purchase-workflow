@@ -46,6 +46,14 @@ msgid "Companies"
 msgstr "Aziende"
 
 #. module: purchase_order_weight_volume
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order_line__display_name
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_company__display_name
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_config_settings__display_name
+msgid "Display Name"
+msgstr "Nome da visualizzare"
+
+#. module: purchase_order_weight_volume
 #: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__display_order_volume_in_po
 #: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_company__display_order_volume_in_po
 #: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_config_settings__display_order_volume_in_po
@@ -68,6 +76,14 @@ msgstr "Mostra volume nella stampa"
 #: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__display_total_weight_in_report
 msgid "Display Weight in Report"
 msgstr "Mostra peso nella stampa"
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__id
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order_line__id
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_company__id
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_config_settings__id
+msgid "ID"
+msgstr "ID"
 
 #. module: purchase_order_weight_volume
 #: model:ir.model,name:purchase_order_weight_volume.model_res_config_settings
@@ -122,12 +138,6 @@ msgstr "Peso"
 
 #~ msgid "Weight Uom Name"
 #~ msgstr "Nome udm peso"
-
-#~ msgid "Display Name"
-#~ msgstr "Nome da visualizzare"
-
-#~ msgid "ID"
-#~ msgstr "ID"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Ultima modifica il"
