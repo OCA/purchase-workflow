@@ -1,8 +1,9 @@
 [project]
 name = "odoo-addons-oca-purchase-workflow"
-version = "19.0.20260331.0"
+version = "19.0.20260413.0"
 dependencies = [
     "odoo-addon-partner_supplierinfo_smartbutton==19.0.*",
+    "odoo-addon-procurement_purchase_no_grouping==19.0.*",
     "odoo-addon-product_supplier_code_purchase==19.0.*",
     "odoo-addon-purchase_allowed_product==19.0.*",
     "odoo-addon-purchase_default_terms_conditions==19.0.*",
