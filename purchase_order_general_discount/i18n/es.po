@@ -23,11 +23,6 @@ msgid "Companies"
 msgstr "Compañías"
 
 #. module: purchase_order_general_discount
-#: model:ir.model,name:purchase_order_general_discount.model_res_config_settings
-msgid "Config Settings"
-msgstr ""
-
-#. module: purchase_order_general_discount
 #: model:ir.model,name:purchase_order_general_discount.model_res_partner
 msgid "Contact"
 msgstr "Contacto"
@@ -75,6 +70,11 @@ msgstr "Desc. Gen. (%)"
 #: model:ir.model.fields,field_description:purchase_order_general_discount.field_res_partner__id
 msgid "ID"
 msgstr ""
+
+#. module: purchase_order_general_discount
+#: model:ir.model,name:purchase_order_general_discount.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr "Configuración de la agrupación de adquisición de compras"
 
 #. module: purchase_order_general_discount
 #: model:ir.model.fields,field_description:purchase_order_general_discount.field_res_company__purchase_general_discount_field
@@ -128,9 +128,6 @@ msgstr ""
 #~ "<span class=\"fa fa-lg fa-building-o\" title=\"Los valores establecidos "
 #~ "aquí son específicos para cada compañía.\" "
 #~ "groups=\"base.group_multi_company\"/>"
-
-#~ msgid "Procurement purchase grouping settings"
-#~ msgstr "Configuración de la agrupación de adquisición de compras"
 
 #~ msgid "Field"
 #~ msgstr "Campo"
