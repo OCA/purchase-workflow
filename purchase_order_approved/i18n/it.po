@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-10 05:30+0000\n"
-"PO-Revision-Date: 2024-08-20 09:58+0000\n"
+"PO-Revision-Date: 2026-04-14 12:45+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,help:purchase_order_approved.field_res_company__purchase_approve_active
@@ -77,7 +77,7 @@ msgstr "Converti in ordine di acquisto"
 #: model:ir.model.fields,field_description:purchase_order_approved.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:purchase_order_approved.field_res_partner__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__id
@@ -85,7 +85,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_order_approved.field_res_config_settings__id
 #: model:ir.model.fields,field_description:purchase_order_approved.field_res_partner__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields.selection,name:purchase_order_approved.selection__res_partner__purchase_requires_second_approval__never
@@ -114,6 +114,8 @@ msgid ""
 "Require second approval for purchase orders as company policy (otherwise it "
 "can be set per supplier)"
 msgstr ""
+"Richiede una seconda approvazione per gli ordini di acquisto come da "
+"politica aziendale (altrimenti può essere impostata per fornitore)"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__state
@@ -123,7 +125,7 @@ msgstr "Stato"
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_res_config_settings__purchase_approve_active
 msgid "Use 'Approved' Stage"
-msgstr ""
+msgstr "Utilizza fase 'Approvato'"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_res_company__purchase_approve_active
