@@ -12,6 +12,13 @@ class PurchaseOrder(models.Model):
     def button_release(self):
         return super().button_approve()
 
+    def _approval_allowed(self):
+        # Skip first approval if PO is already approved
+        res = super()._approval_allowed()
+        if self.state == "approved":
+            return True
+        return res
+
     def button_approve(self, force=False):
         two_steps_purchase_approval_ids = []
         for rec in self:
