@@ -5,12 +5,20 @@ import time
 
 from odoo.exceptions import UserError
 from odoo.tests import common
-from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
+from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT, frozendict
+
+from ..models.purchase_order_line import ENABLE_TESTING_CONTEXT_KEY
 
 
 class TestPurchaseOrderNoZeroPrice(common.TransactionCase):
     def setUp(self):
         super(TestPurchaseOrderNoZeroPrice, self).setUp()
+        self.env.context = frozendict(
+            self.env.context,
+            **{
+                ENABLE_TESTING_CONTEXT_KEY: True,
+            }
+        )
 
         self.PurchaseOrder = self.env["purchase.order"]
         # Partner
