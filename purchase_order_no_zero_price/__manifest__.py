@@ -12,6 +12,6 @@
     "category": "Purchase",
     "data": [],
     "installable": True,
-    "maintainer": ["dreispt"],
+    "maintainers": ["dreispt"],
     "development_status": "Beta",
 }
