@@ -79,6 +79,7 @@
                                     string="Qty"
                                     widget="numeric_step"
                                 />
+                                <field name="product_uom_id" groups="uom.group_uom" />
                             </list>
                         </field>
                     </group>

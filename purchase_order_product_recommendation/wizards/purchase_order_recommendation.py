@@ -305,7 +305,7 @@ class PurchaseOrderRecommendation(models.TransientModel):
             # Use a new in-memory line otherwise
             po_line = po_lines.new(wiz_line._prepare_new_po_line(sequence))
             po_line.onchange_product_id()
-            po_line.product_qty = wiz_line.units_included
+            po_line.update(wiz_line._prepare_update_po_line())
             po_lines |= po_line
         self.order_id.order_line |= po_lines
 
@@ -366,6 +366,7 @@ class PurchaseOrderRecommendationLine(models.TransientModel):
         comodel_name="purchase.order.line",
     )
     is_modified = fields.Boolean()
+    product_uom_id = fields.Many2one("uom.uom", related="product_id.uom_po_id")
 
     @api.onchange("units_included")
     def _onchange_units_included(self):
