@@ -366,6 +366,7 @@ class PurchaseOrderRecommendationLine(models.TransientModel):
         comodel_name="purchase.order.line",
     )
     is_modified = fields.Boolean()
+    product_uom_id = fields.Many2one("uom.uom", related="product_id.uom_po_id")
 
     @api.onchange("units_included")
     def _onchange_units_included(self):
