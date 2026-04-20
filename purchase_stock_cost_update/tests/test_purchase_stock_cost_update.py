@@ -9,7 +9,7 @@ from odoo.tests import Form, common
 _logger = logging.getLogger(__name__)
 
 
-class PurchasStockCostUpdateCase(common.TransactionCase):
+class PurchasStockCostUpdateCase(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -100,12 +100,21 @@ class PurchasStockCostUpdateCase(common.TransactionCase):
                 tracked_lines.lot_name = lot
             else:
                 for line in tracked_lines:
-                    lot = self.env["stock.lot"].search(
+                    lot = self.env["stock.production.lot"].search(
                         [("name", "=", lot), ("product_id", "=", line.product_id.id)]
                     )
                     line.lot_id = lot
-            picking.action_set_quantities_to_reservation()
-            picking._action_done()
+            picking.action_assign()
+            transfer_wizard_action = picking.button_validate()
+            self.assertEqual(
+                transfer_wizard_action.get("res_model"), "stock.immediate.transfer"
+            )
+            transfer_wizar = Form(
+                self.env[transfer_wizard_action["res_model"]].with_context(
+                    transfer_wizard_action["context"]
+                )
+            ).save()
+            transfer_wizar.process()
 
     def _partial_return(self, picking, qty):
         stock_return_picking_form = Form(
@@ -145,7 +154,6 @@ class PurchasStockCostUpdateCase(common.TransactionCase):
             "value",
             "quantity",
             "unit_cost",
-            "reference",
             "remaining_value",
             "remaining_qty",
         ]
@@ -154,6 +162,12 @@ class PurchasStockCostUpdateCase(common.TransactionCase):
         layers_values = layers.read(fields)
         if not layers_values:
             return
+        for layer_values in layers_values:
+            layer_values["reference"] = (
+                self.env["stock.valuation.layer"]
+                .browse(layer_values["id"])
+                .stock_move_id.reference
+            )
         header = list(layers_values[0].keys())
         footer = [sum(layers.mapped(f)) if f in totals else "" for f in header]
         rows = [list(layer.values()) for layer in layers_values]
@@ -207,8 +221,8 @@ class PurchasStockCostUpdateCase(common.TransactionCase):
         """Regular Odoo behavior
         1. We'll confirm the purchase order with an initial unit price
         2. Then we receive the goods which will value those entries.
-        3. And later the cost/value will be fixed from the vendor bill
-        Expected result: the valuation is adjusted once the vendor bill is posted.
+        3. Later the cost/value will not be fixed from the vendor bill
+        Expected result: the valuation is not adjusted.
         """
         purchase_order = self._purchase_and_receive()
         # 5. The purchase team sets the price at last and the price difference flags are
@@ -217,17 +231,16 @@ class PurchasStockCostUpdateCase(common.TransactionCase):
         self.assertTrue(purchase_order.valuation_differs)
         self.assertValuation(self.peach, valuation=110, price=1.1)
         self._log_svls(self.peach, title="1. Initial valuation after reception")
-        # 6. The order is invoiced right on and the prices are then fixed
+        # 6. The order is invoiced right on and the prices stay the same
         purchase_order.action_create_invoice()
         purchase_order.invoice_ids.invoice_date = Date.today()
         purchase_order.invoice_ids._post()
-        self.assertValuation(self.peach, valuation=120, price=1.2)
-        self._log_svls(self.peach, title="2. Price unit changed in invoice")
+        self.assertValuation(self.peach, valuation=110, price=1.1)
+        self._log_svls(self.peach, title="2. Price unit has not changed in invoice")
 
     def test_02_update_reception_cost_from_the_purchase_line(self):
         """The main goal for this module is to be able to update the product cost
-        as soon as possible, as we might not be able to have a vendor bill up until
-        way after the reception. So in this case:
+        as soon as possible. So in this case:
             1. We'll confirm the purchase order with an initial unit price
             2. Then we receive the goods which will value those entries.
             3. We'll be able to fix the product valuation before the vendor bill is
@@ -261,7 +274,7 @@ class PurchasStockCostUpdateCase(common.TransactionCase):
          3. We'll be able to fix the product valuation before the vendor bill is
             issued.
          4. Once the vendor bill is issued the purchase team adds a new price
-            difference that which adjust the product value as well when the bill
+            difference that will not adjust the product value when the bill
             is posted.
         """
         purchase_order = self._purchase_and_receive()
@@ -274,12 +287,14 @@ class PurchasStockCostUpdateCase(common.TransactionCase):
         # 6. Now we can press the "Fix valuation" button to adjust those differences
         purchase_order.action_apply_price_difference()
         self.assertValuation(self.peach, valuation=120, price=1.2)
-        # 7. The order is invoiced and later the value is fixed again
+        # 7. The order is invoiced and later the value stays the same
         purchase_order.action_create_invoice()
-        purchase_order.invoice_ids.invoice_date = Date.today()
-        purchase_order.invoice_ids.invoice_line_ids.price_unit = 1.3
+        with Form(purchase_order.invoice_ids) as invoice_form:
+            invoice_form.invoice_date = Date.today()
+            with invoice_form.invoice_line_ids.edit(0) as line:
+                line.price_unit = 1.3
         purchase_order.invoice_ids._post()
-        self.assertValuation(self.peach, valuation=130, price=1.3)
+        self.assertValuation(self.peach, valuation=120, price=1.2)
 
     def test_04a_update_reception_cost_with_returns_from_the_invoice(self):
         """Let's do it harder. Now we'll do some extra pickings that will add new
@@ -295,12 +310,14 @@ class PurchasStockCostUpdateCase(common.TransactionCase):
         self.assertFalse(purchase_order.valuation_differs)
         purchase_order.order_line.price_unit = 1
         self.assertTrue(purchase_order.valuation_differs)
-        # 7. The order is invoiced later and we change the price once again
+        # 7. The order is invoiced later and the price stays the same
         purchase_order.action_create_invoice()
-        purchase_order.invoice_ids.invoice_date = Date.today()
-        purchase_order.invoice_ids.invoice_line_ids.price_unit = 1.3
+        with Form(purchase_order.invoice_ids) as invoice_form:
+            invoice_form.invoice_date = Date.today()
+            with invoice_form.invoice_line_ids.edit(0) as line:
+                line.price_unit = 1.3
         purchase_order.invoice_ids._post()
-        self.assertValuation(self.peach, valuation=182, price=1.3)
+        self.assertValuation(self.peach, valuation=154, price=1.1)
 
     def test_04b_update_reception_cost_from_the_purchase_line(self):
         """Let's do it harder. Now we'll do some extra pickings that will add new
@@ -312,18 +329,20 @@ class PurchasStockCostUpdateCase(common.TransactionCase):
         self.assertValuation(self.peach, valuation=165, price=1.1)
         # 5. The purchase team sets the price at last and the price difference flags are
         # raised.
-        self._partial_return(purchase_order.picking_ids[0], 10)
+        self._partial_return(purchase_order.picking_ids.sorted("id")[0], 10)
         self.assertFalse(purchase_order.valuation_differs)
         # Now let's decrease the value. The valuation should change accordingly
         purchase_order.order_line.price_unit = 1
         purchase_order.action_apply_price_difference()
         self.assertValuation(self.peach, valuation=140, price=1)
-        # 7. The order is invoiced later and we change the price once again
+        # 7. The order is invoiced later and the price stays the same
         purchase_order.action_create_invoice()
-        purchase_order.invoice_ids.invoice_date = Date.today()
-        purchase_order.invoice_ids.invoice_line_ids.price_unit = 1.3
+        with Form(purchase_order.invoice_ids) as invoice_form:
+            invoice_form.invoice_date = Date.today()
+            with invoice_form.invoice_line_ids.edit(0) as line:
+                line.price_unit = 1.3
         purchase_order.invoice_ids._post()
-        self.assertValuation(self.peach, valuation=182, price=1.3)
+        self.assertValuation(self.peach, valuation=140, price=1)
 
     def test_05_full_history(self):
         """Even harder. A full history tracing the valuation all along"""
@@ -352,7 +371,7 @@ class PurchasStockCostUpdateCase(common.TransactionCase):
         self.assertValuation(self.peach, valuation=299, price=1.57)
 
     def test_06_full_history_fix_in_invoicing(self):
-        """The same as the former case, but we fix it in the invoice. The resulting
+        """The same as the former case, but we also check after the invoice. The resulting
         valuation should be the same!"""
         # Receive 100 kg of peaches at 1.1 - Peaches value: 110
         self._purchase_and_receive()
@@ -368,7 +387,7 @@ class PurchasStockCostUpdateCase(common.TransactionCase):
         purchase_2.action_create_invoice()
         purchase_2.invoice_ids.invoice_date = Date.today()
         purchase_2.invoice_ids._post()
-        self.assertValuation(self.peach, valuation=299, price=1.57)
+        self.assertValuation(self.peach, valuation=209, price=1.1)
 
     def _test_multiple_receptions_lots_and_delivers(self, uom=None):
         if not uom:
@@ -425,19 +444,19 @@ class PurchasStockCostUpdateCase(common.TransactionCase):
     def test_07_test_multiple_receptions_lots_and_delivers_fix_from_invoice(
         self, uom=None
     ):
-        """Odoo standard valuation fix"""
+        """Odoo standard valuation does not change valuation in the invoice"""
         purchase_order_1, _po2 = self._test_multiple_receptions_lots_and_delivers(
             uom=uom
         )
         purchase_order_1.action_create_invoice()
         purchase_order_1.invoice_ids.invoice_date = Date.today()
         purchase_order_1.invoice_ids._post()
-        self.assertValuation(self.raspberry, valuation=240, price=12.63)
+        self.assertValuation(self.raspberry, valuation=285, price=15)
 
     def test_08_test_multiple_receptions_lots_and_delivers_fix_from_purchase(
         self, uom=None
     ):
-        """Odoo standard valuation fix"""
+        """Change valuation from purchase for multiple lots"""
         purchase_order_1, _po2 = self._test_multiple_receptions_lots_and_delivers(
             uom=uom
         )

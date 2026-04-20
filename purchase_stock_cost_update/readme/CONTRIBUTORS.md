@@ -1,1 +1,3 @@
 - David Vidal ([Moduon](https://www.moduon.team/))
+- [PyTech](https://www.pytech.it):
+  - Simone Rubino \<<simone.rubino@pytech.it>\>

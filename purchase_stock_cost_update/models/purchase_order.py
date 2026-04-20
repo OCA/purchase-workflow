@@ -62,9 +62,9 @@ class PurchaseOrderLine(models.Model):
 
     def _get_valued_in_moves(self):
         self.ensure_one()
-        return self._get_po_line_moves().filtered(
-            lambda m: m.state == "done" and m.product_qty != 0
-        )
+        return self.move_ids.filtered(
+            lambda m: m.product_id == self.product_id
+        ).filtered(lambda m: m.state == "done" and m.product_qty != 0)
 
     @api.depends("price_subtotal", "qty_invoiced")
     def _compute_valuation_differs(self):
@@ -122,7 +122,6 @@ class PurchaseOrderLine(models.Model):
             "remaining_qty": 0,
             "remaining_value": 0,
             "value": price_diff,
-            "price_diff_value": price_diff,
             "stock_valuation_layer_id": corrected_layer.id,
             "description": _("Price difference layer created from %(line)s")
             % {"line": self.display_name},
@@ -155,7 +154,9 @@ class PurchaseOrderLine(models.Model):
         """Fix valuation from the purchase price"""
         self.ensure_one()
         # Invalidate cache for the svl values of the product
-        self.product_id.invalidate_recordset(["value_svl", "quantity_svl"])
+        self.product_id.invalidate_cache(
+            ["value_svl", "quantity_svl"], self.product_id.ids
+        )
         (
             price_unit,
             svl_qty,

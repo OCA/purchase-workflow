@@ -23,7 +23,7 @@
                     />
                     <button
                         class="btn btn-info rounded-3"
-                        data-bs-toggle="collapse"
+                        data-toggle="collapse"
                         href="#collapse_price_diff_details"
                     ><i class="fa fa-info-circle" role="img" /> Details</button>
                     <div class="collapse mt-2" id="collapse_price_diff_details">

@@ -11,5 +11,3 @@ In order to test the module:
   *Fix valuation* shows up in the header.
 - When you click that button, every disaligned valuation will be fixed. If you go to the
   *Valuation* report you'll see the adjustment layer.
-- After this, when you invoice the purchase you won't be able to edit the price anymore.
-- You can anyway add an additional valuation when you post the new invoice prices.
