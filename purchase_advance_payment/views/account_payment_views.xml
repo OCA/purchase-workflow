@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_account_payment_form" model="ir.ui.view">
+        <field name="name">account.payment.form - purchase_advance_payment</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form" />
+        <field name="arch" type="xml">
+            <field name="memo" position="after">
+                <field
+                    name="purchase_id"
+                    string="Purchase Order"
+                    invisible="not purchase_id"
+                    readonly="1"
+                />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_account_payment_search" model="ir.ui.view">
+        <field name="name">account.payment.search</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_search" />
+        <field name="arch" type="xml">
+            <filter name="outbound_filter" position="after">
+                <separator />
+                <filter
+                    string="Vendor Advance Payments"
+                    name="vendor_adv_payment_filter"
+                    domain="[('purchase_id', '!=', False)]"
+                />
+                <separator />
+            </filter>
+            <filter name="reconciled" position="after">
+                <filter
+                    string="Not Reconciled"
+                    name="reconciled"
+                    domain="[('is_reconciled', '=', False)]"
+                />
+            </filter>
+        </field>
+    </record>
+
+    <record id="view_account_supplier_payment_tree" model="ir.ui.view">
+        <field name="name">account.payment.tree</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_supplier_payment_tree" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field
+                    name="is_sent"
+                    string="Payment Sent?"
+                    widget="boolean_toggle"
+                    column_invisible="not context.get('show_payment_sent')"
+                />
+                <field
+                    name="purchase_id"
+                    column_invisible="not context.get('show_payment_sent')"
+                    optional="show"
+                />
+            </field>
+        </field>
+    </record>
+
+    <record id="action_account_advance_payments_payable" model="ir.actions.act_window">
+        <field name="name">Advance Payments</field>
+        <field name="res_model">account.payment</field>
+        <field name="view_mode">list,kanban,form,graph</field>
+        <field name="context">{
+            'default_payment_type': 'outbound',
+            'default_partner_type': 'supplier',
+            'search_default_vendor_adv_payment_filter': 1,
+            'default_move_journal_types': ('bank', 'cash'),
+            'show_payment_sent': 1,
+        }</field>
+        <field name="view_id" ref="view_account_supplier_payment_tree" />
+    </record>
+
+    <menuitem
+        id="menu_account_advance_payments_payable"
+        action="action_account_advance_payments_payable"
+        parent="account.menu_finance_payables"
+        sequence="22"
+    />
+</odoo>
