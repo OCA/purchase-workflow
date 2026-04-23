@@ -12,7 +12,6 @@ class TestStockRule(BaseCommon):
     def setUpClass(cls):
         super().setUpClass()
         cls.supplierinfo_obj = cls.env["product.supplierinfo"]
-        cls.partner = cls.env["res.partner"].create({"name": "Mr. Odoo"})
         cls.partner2 = cls.env["res.partner"].create({"name": "Mrs. Odoo 2"})
         cls.product1 = cls.env["product.product"].create(
             {
