@@ -21,10 +21,9 @@ class PurchaseOrder(models.Model):
         Raise a warning if all orders are in the 'done' or 'cancel' state.
         Otherwise, proceed with the wizard for valid orders.
         """
-        restricted_states = ["done", "cancel"]
         invalid_orders, valid_orders = (
-            self.filtered(lambda po: po.state in restricted_states),
-            self.filtered(lambda po: po.state not in restricted_states),
+            self.filtered(lambda po: po.state == "cancel" or po.locked),
+            self.filtered(lambda po: po.state != "cancel" and not po.locked),
         )
         if not valid_orders:
             raise ValidationError(

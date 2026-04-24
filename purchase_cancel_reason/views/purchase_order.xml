@@ -11,7 +11,7 @@
             <xpath expr="//button[@name='button_cancel']" position="before">
                 <button
                     name="%(action_purchase_order_cancel)d"
-                    invisible="state not in ('draft', 'to approve', 'sent', 'purchase')"
+                    invisible="state not in ('draft', 'to approve', 'sent', 'purchase') or locked"
                     string="Cancel"
                     type="action"
                     groups="base.group_user"

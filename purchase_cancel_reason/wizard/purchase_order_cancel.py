@@ -17,14 +17,14 @@ class PurchaseOrderCancel(models.TransientModel):
     def confirm_cancel(self):
         self.ensure_one()
         act_close = {"type": "ir.actions.act_window_close"}
-        purchase_ids = self._context.get("active_ids")
-        active_model = self._context.get("active_model")
+        purchase_ids = self.env.context.get("active_ids")
+        active_model = self.env.context.get("active_model")
         if purchase_ids is None or active_model != "purchase.order":
             return act_close
         purchase = (
             self.env["purchase.order"]
             .browse(purchase_ids)
-            .filtered(lambda po: po.state not in ["done", "cancel"])
+            .filtered(lambda po: po.state != "cancel" and not po.locked)
         )
         if purchase:
             purchase.cancel_reason_id = self.reason_id.id
