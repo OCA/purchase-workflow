@@ -12,10 +12,6 @@ class ProductProduct(models.Model):
     last_purchase_line_ids = fields.One2many(
         comodel_name="purchase.order.line",
         inverse_name="product_id",
-        domain=lambda self: [
-            ("state", "in", ["purchase", "done"]),
-            ("company_id", "in", self.env.companies.ids),
-        ],
         string="Last Purchase Order Lines",
     )
     last_purchase_line_id = fields.Many2one(
@@ -48,10 +44,18 @@ class ProductProduct(models.Model):
         digits=0,
     )
 
-    @api.depends("last_purchase_line_ids")
+    @api.depends_context("company")
+    @api.depends("last_purchase_line_ids.state")
     def _compute_last_purchase_line_id(self):
         for item in self:
-            item.last_purchase_line_id = fields.first(item.last_purchase_line_ids)
+            item.last_purchase_line_id = fields.first(
+                item.last_purchase_line_ids.sudo().filtered_domain(
+                    [
+                        ("state", "in", ["purchase", "done"]),
+                        ("company_id", "in", self.env.companies.ids),
+                    ]
+                )
+            )
 
     @api.depends("last_purchase_line_id")
     def _compute_last_purchase_line_id_info(self):
