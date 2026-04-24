@@ -81,8 +81,21 @@ class PurchaseOrder(models.Model):
                     advance_amount += line_amount
             # Consider payments in related invoices.
             invoice_paid_amount = 0.0
-            for inv in order.invoice_ids:
-                invoice_paid_amount += inv.amount_total - inv.amount_residual
+            for inv in order.invoice_ids.filtered(lambda m: m.state == "posted"):
+                inv_paid = inv.amount_total - inv.amount_residual
+                invoice_orders = inv.invoice_line_ids.purchase_line_id.order_id
+                if invoice_orders == order:
+                    # Preserve the full payment for single-order bills, including
+                    # tax rounding differences and lines without a purchase order.
+                    invoice_paid_amount += inv_paid
+                    continue
+                po_lines = inv.invoice_line_ids.filtered(
+                    lambda line, order=order: line.purchase_line_id.order_id == order
+                )
+                po_total = sum(po_lines.mapped("price_total"))
+                if not inv.currency_id.is_zero(inv.amount_total):
+                    proportion = po_total / inv.amount_total
+                    invoice_paid_amount += inv_paid * proportion
             amount_residual = order.amount_total - advance_amount - invoice_paid_amount
             payment_state = "not_paid"
             if mls or not order.currency_id.is_zero(invoice_paid_amount):

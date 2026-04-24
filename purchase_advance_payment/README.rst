@@ -42,10 +42,10 @@ Usage
 
 To use this module, you need to:
 
-- Go to a purchase order.
-- Click on "Pay Purchase Advance".
-- Select the Journal and specify the amount of the advanced payment.
-- "Make Advance Payment".
+-  Go to a purchase order.
+-  Click on "Pay Purchase Advance".
+-  Select the Journal and specify the amount of the advanced payment.
+-  "Make Advance Payment".
 
 When generating the invoice, the system displays the advanced payments,
 select those you want to add to the invoice.
@@ -71,13 +71,13 @@ Authors
 Contributors
 ------------
 
-- Mateu Griful <mateu.griful@forgeflow.com>
+-  Mateu Griful <mateu.griful@forgeflow.com>
 
-- Lois Rilo <lois.rilo@forgeflow.com>
+-  Lois Rilo <lois.rilo@forgeflow.com>
 
-- `Trobz <https://trobz.com>`__:
+-  `Trobz <https://trobz.com>`__:
 
-     - Son Ho <sonhd@trobz.com>
+      -  Son Ho <sonhd@trobz.com>
 
 Other credits
 -------------
