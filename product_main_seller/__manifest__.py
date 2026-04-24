@@ -5,7 +5,7 @@
 {
     "name": "Product Main Vendor",
     "summary": "Main Vendor for a product",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "category": "Purchase",
     "author": "GRAP,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",

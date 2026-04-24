@@ -9,16 +9,13 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="model">product.template</field>
         <field name="inherit_id" ref="product.product_template_search_view" />
         <field name="arch" type="xml">
-            <field name="categ_id" position="after">
-                <field name="main_seller_id" />
-            </field>
-            <filter name="categ_id" position="after">
+            <xpath expr="//filter[last()]" position="after">
                 <filter
                     string="Main Vendor"
                     name="main_seller_id"
                     context="{'group_by':'main_seller_id'}"
                 />
-            </filter>
+            </xpath>
         </field>
     </record>
 
