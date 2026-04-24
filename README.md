@@ -37,6 +37,7 @@ addon | version | maintainers | summary
 [purchase_order_type](purchase_order_type/) | 19.0.1.0.0 |  | Purchase Order Type
 [purchase_order_weight_volume](purchase_order_weight_volume/) | 19.0.1.0.0 | <a href='https://github.com/ilyasProgrammer'><img src='https://github.com/ilyasProgrammer.png' width='32' height='32' style='border-radius:50%;' alt='ilyasProgrammer'/></a> | Display purchase order weight and volume
 [purchase_partner_incoterm](purchase_partner_incoterm/) | 19.0.1.0.0 | <a href='https://github.com/TDu'><img src='https://github.com/TDu.png' width='32' height='32' style='border-radius:50%;' alt='TDu'/></a> <a href='https://github.com/bealdav'><img src='https://github.com/bealdav.png' width='32' height='32' style='border-radius:50%;' alt='bealdav'/></a> | Add a an incoterm field for supplier and use it on purchase order
+[purchase_reception_status](purchase_reception_status/) | 19.0.1.0.0 | <a href='https://github.com/alexis-via'><img src='https://github.com/alexis-via.png' width='32' height='32' style='border-radius:50%;' alt='alexis-via'/></a> | Add reception status on purchase orders (OCA logic)
 [purchase_request](purchase_request/) | 19.0.1.0.1 |  | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
 [purchase_stock_price_unit_sync](purchase_stock_price_unit_sync/) | 19.0.1.0.0 |  | Update cost price in stock moves already done
 [purchase_tag](purchase_tag/) | 19.0.1.0.0 |  | Allows to add multiple tags to purchase orders
