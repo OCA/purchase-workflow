@@ -19,11 +19,7 @@ class ProductTemplate(models.Model):
     @api.depends("variant_seller_ids.sequence", "variant_seller_ids.partner_id.active")
     def _compute_main_seller_id(self):
         for template in self:
-            if template.variant_seller_ids:
-                template.main_seller_id = fields.first(
-                    template.variant_seller_ids.filtered(
-                        lambda seller: seller.partner_id.active
-                    )
-                ).partner_id
-            else:
-                template.main_seller_id = False
+            seller = template.variant_seller_ids.filtered(
+                lambda rec: rec.partner_id.active
+            )[:1]
+            template.main_seller_id = seller.partner_id if seller else False
