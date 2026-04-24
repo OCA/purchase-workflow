@@ -1,0 +1,45 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_order_price_recalculation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-03-23 13:24+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
+
+#. module: purchase_order_price_recalculation
+#: model:ir.model,name:purchase_order_price_recalculation.model_purchase_order
+msgid "Purchase Order"
+msgstr "Ordine di acquisto"
+
+#. module: purchase_order_price_recalculation
+#: model_terms:ir.ui.view,arch_db:purchase_order_price_recalculation.purchase_order_form
+msgid ""
+"This will update all the line prices based on the vendor currently set. Do "
+"you want to continue?"
+msgstr ""
+"Questo aggiornerà i prezzi di tutte le righe sulla base del fornitore "
+"impostato in questo momento. Vuoi continuare?"
+
+#. module: purchase_order_price_recalculation
+#: model_terms:ir.ui.view,arch_db:purchase_order_price_recalculation.purchase_order_form
+msgid "Update lines info"
+msgstr "Aggiorna info righe"
+
+#~ msgid "Display Name"
+#~ msgstr "Nome visualizzato"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
