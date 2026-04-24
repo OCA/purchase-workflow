@@ -1,7 +1,7 @@
 # Copyright 2013 Guewen Baconnier, Camptocamp SA
 # Copyright 2017 Okia SPRL
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from odoo import _, fields, models
+from odoo import fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -28,15 +28,15 @@ class PurchaseOrder(models.Model):
         )
         if not valid_orders:
             raise ValidationError(
-                _(
+                self.env._(
                     "You cannot cancel any of the selected orders as "
-                    "they are all in 'Done' or 'Canceled' state:\n%s"
+                    "they are all in 'Done' or 'Canceled' state:\n%s",
+                    "\n".join(invalid_orders.mapped("name")),
                 )
-                % "\n".join(invalid_orders.mapped("name"))
             )
         return {
             "type": "ir.actions.act_window",
-            "name": _("Reason for Cancellation"),
+            "name": self.env._("Reason for Cancellation"),
             "res_model": "purchase.order.cancel",
             "view_mode": "form",
             "target": "new",
