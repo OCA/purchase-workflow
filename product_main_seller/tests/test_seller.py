@@ -3,20 +3,56 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import Command
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase, tagged
 
 
+@tagged("post_install", "-at_install")
 class TestSeller(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.product_workplace = cls.env.ref("product.product_product_24")
-        cls.product_acoustic = cls.env.ref("product.product_product_25")
-        cls.product_with_var_chair = cls.env.ref("product.product_product_11")
-        cls.product_without_seller_desk = cls.env.ref("product.product_product_3")
+        Product = cls.env["product.product"]
+        Partner = cls.env["res.partner"]
 
-        cls.partner_woodcorner = cls.env.ref("base.res_partner_1")
-        cls.partner_azure = cls.env.ref("base.res_partner_12")
+        cls.partner_woodcorner = Partner.create({"name": "Woodcorner"})
+        cls.partner_azure = Partner.create({"name": "Azure Interior"})
+
+        cls.product_workplace = Product.create(
+            {"name": "Workplace", "default_code": "WORKPLACE"}
+        )
+        cls.product_acoustic = Product.create(
+            {"name": "Acoustic Bloc Screens", "default_code": "ACOUSTIC"}
+        )
+        cls.product_with_var_chair = Product.create(
+            {"name": "Chair (variant)", "default_code": "VAR_CHAIR"}
+        )
+        cls.product_without_seller_desk = Product.create(
+            {"name": "Desk (no seller)", "default_code": "NOSELLERDESK"}
+        )
+
+        sellerInfo = cls.env["product.supplierinfo"]
+        sellerInfo.create(
+            {
+                "partner_id": cls.partner_woodcorner.id,
+                "product_tmpl_id": cls.product_acoustic.product_tmpl_id.id,
+                "sequence": 1,
+            }
+        )
+        for variant in cls.product_with_var_chair.product_tmpl_id.product_variant_ids:
+            sellerInfo.create(
+                {
+                    "partner_id": cls.partner_woodcorner.id,
+                    "product_id": variant.id,
+                    "sequence": 1,
+                }
+            )
+        sellerInfo.create(
+            {
+                "partner_id": cls.partner_woodcorner.id,
+                "product_tmpl_id": cls.product_workplace.product_tmpl_id.id,
+                "sequence": 1,
+            }
+        )
 
     def test_01_computed_main_vendor(self):
         self.assertEqual(
