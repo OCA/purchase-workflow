@@ -1,7 +1,7 @@
 # Copyright 2013 Guewen Baconnier, Camptocamp SA
 # Copyright 2017 Okia SPRL
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from odoo import fields
+from odoo import Command, fields
 from odoo.exceptions import ValidationError
 
 from odoo.addons.base.tests.common import BaseCommon
@@ -21,13 +21,6 @@ class TestPurchaseCancelReason(BaseCommon):
         cls.reason = cls.CancelReason.create({"name": "Test Cancellation"})
         cls.reason_2 = cls.CancelReason.create({"name": "Another Reason"})
 
-        # Create test partner
-        cls.partner = cls.env["res.partner"].create(
-            {
-                "name": "Test Supplier",
-            }
-        )
-
         # Create test product
         cls.product = cls.env["product.product"].create(
             {
@@ -41,14 +34,12 @@ class TestPurchaseCancelReason(BaseCommon):
                 "partner_id": cls.partner.id,
                 "date_planned": fields.Datetime.now(),
                 "order_line": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "name": "Test Line",
                             "product_id": cls.product.id,
                             "product_qty": 1.0,
-                            "product_uom": cls.product.uom_po_id.id,
+                            "product_uom_id": cls.product.uom_id.id,
                             "price_unit": 100.00,
                             "date_planned": fields.Datetime.now(),
                         },
@@ -64,8 +55,8 @@ class TestPurchaseCancelReason(BaseCommon):
         cls.po_purchase = cls.purchase_order.copy()
         cls.po_purchase.write({"state": "purchase"})
 
-        cls.po_done = cls.purchase_order.copy()
-        cls.po_done.write({"state": "done"})
+        cls.po_locked = cls.purchase_order.copy()
+        cls.po_locked.write({"state": "purchase", "locked": True})
 
         cls.po_cancel = cls.purchase_order.copy()
         cls.po_cancel.write({"state": "cancel"})
@@ -104,10 +95,10 @@ class TestPurchaseCancelReason(BaseCommon):
                 f"Cancel reason should be set for order {order.name}",
             )
 
-    def test_cancel_done_order(self):
-        """Test cancellation of completed purchase order"""
+    def test_cancel_locked_order(self):
+        """Test cancellation of locked purchase order"""
         with self.assertRaises(ValidationError):
-            self.po_done.action_open_cancel_wizard()
+            self.po_locked.action_open_cancel_wizard()
 
     def test_reason_update(self):
         """Test updating cancel reason"""
