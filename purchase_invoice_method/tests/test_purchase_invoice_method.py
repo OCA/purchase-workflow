@@ -2,26 +2,19 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo.tests import Form
-from odoo.tests.common import TransactionCase
+
+from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
 
-class TestPurchaseInvoiceMethod(TransactionCase):
+class TestPurchaseInvoiceMethod(AccountTestInvoicingCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
 
-        cls.vendor = cls.env["res.partner"].create(
+        cls.vendor = cls.partner_a
+        cls.product = cls.product_a
+        cls.product.write(
             {
-                "name": "Supplier",
-                "email": "supplier.serv@supercompany.com",
-            }
-        )
-
-        cls.product = cls.env["product.product"].create(
-            {
-                "name": "Product",
-                "standard_price": 200.0,
-                "list_price": 180.0,
                 "type": "service",
                 "purchase_method": "receive",
             }
