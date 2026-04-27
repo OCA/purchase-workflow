@@ -24,7 +24,7 @@ class ImportLandedCostPickingsWizard(models.TransientModel):
     def default_get(self, fields_list):
         res = super().default_get(fields_list)
         if "possible_picking_ids" in fields_list:
-            expenses = self.env["purchase.cost.distribution.expense"].search([])
+            expenses = self.env["purchase.cost.distribution.expense"].search([])  # pylint: disable=no-search-all
             pickings = expenses.mapped("distribution.cost_lines.picking_id")
             res["possible_picking_ids"] = [(6, 0, pickings.ids)]
         return res

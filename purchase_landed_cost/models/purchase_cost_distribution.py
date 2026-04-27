@@ -5,7 +5,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3
 
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools.misc import formatLang
 
@@ -92,41 +92,40 @@ class PurchaseCostDistribution(models.Model):
         required=True,
         readonly=True,
         index=True,
-        states={"draft": [("readonly", False)]},
         default=fields.Date.context_today,
     )
     total_uom_qty = fields.Float(
-        compute=_compute_total_uom_qty,
+        compute="_compute_total_uom_qty",
         readonly=True,
         digits="Product UoS",
         string="Total quantity",
     )
     total_weight = fields.Float(
-        compute=_compute_total_weight,
+        compute="_compute_total_weight",
         string="Total gross weight",
         readonly=True,
         digits="Stock Weight",
     )
     total_volume = fields.Float(
-        compute=_compute_total_volume, string="Total volume", readonly=True
+        compute="_compute_total_volume", string="Total volume", readonly=True
     )
     total_purchase = fields.Float(
-        compute=_compute_total_purchase,
+        compute="_compute_total_purchase",
         digits="Account",
         string="Total purchase",
     )
     total_price_unit = fields.Float(
-        compute=_compute_total_price_unit,
+        compute="_compute_total_price_unit",
         string="Total price unit",
         digits="Product Price",
     )
     amount_total = fields.Float(
-        compute=_compute_amount_total,
+        compute="_compute_amount_total",
         digits="Account",
         string="Total",
     )
     total_expense = fields.Float(
-        compute=_compute_total_expense,
+        compute="_compute_total_expense",
         digits="Account",
         string="Total expenses",
     )
@@ -140,14 +139,16 @@ class PurchaseCostDistribution(models.Model):
         comodel_name="purchase.cost.distribution.expense",
         inverse_name="distribution",
         string="Expenses",
-        default=_expense_lines_default,
+        default=lambda self: self._expense_lines_default(),
     )
 
-    def unlink(self):
+    @api.ondelete(at_uninstall=False)
+    def _unlink_if_draft_or_calculated(self):
         for record in self:
             if record.state not in ("draft", "calculated"):
-                raise UserError(_("You can't delete a confirmed cost distribution"))
-        return super().unlink()
+                raise UserError(
+                    self.env._("You can't delete a confirmed cost distribution")
+                )
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -168,7 +169,7 @@ class PurchaseCostDistribution(models.Model):
                 lines = self.mapped("expense_lines.affected_lines").ids
                 if any(i in lines for i in to_check):
                     raise UserError(
-                        _(
+                        self.env._(
                             "You can't delete a cost line if it's an "
                             "affected line of any expense line."
                         )
@@ -214,15 +215,16 @@ class PurchaseCostDistribution(models.Model):
             multiplier = 1
             divisor = len(expense_line.affected_lines) or len(distribution.cost_lines)
         else:
-            raise UserError(_("No valid distribution type."))
+            raise UserError(self.env._("No valid distribution type."))
         if divisor:
             expense_amount = expense_line.expense_amount * multiplier / divisor
         else:
             raise UserError(
-                _(
-                    "The cost for the line '%s' can't be "
+                self.env._(
+                    "The cost for the line '%(name)s' can't be "
                     "distributed because the calculation method "
-                    "doesn't provide valid data" % expense_line.type.name
+                    "doesn't provide valid data",
+                    name=expense_line.type.name,
                 )
             )
         return {
@@ -235,10 +237,14 @@ class PurchaseCostDistribution(models.Model):
         for distribution in self:
             # Check expense lines for amount 0
             if any([not x.expense_amount for x in distribution.expense_lines]):
-                raise UserError(_("Please enter an amount for all the expenses"))
+                raise UserError(
+                    self.env._("Please enter an amount for all the expenses")
+                )
             # Check if exist lines in distribution
             if not distribution.cost_lines:
-                raise UserError(_("There is no picking lines in the distribution"))
+                raise UserError(
+                    self.env._("There is no picking lines in the distribution")
+                )
             # Calculating expense line
             for cost_line in distribution.cost_lines:
                 cost_line.expense_lines.unlink()
@@ -334,7 +340,10 @@ class PurchaseCostDistributionLine(models.Model):
     )
     def _compute_name(self):
         for dist_line in self:
-            dist_line.name = f"{dist_line.distribution.name}: {dist_line.picking_id.name} / {dist_line.product_id.display_name}"
+            dist_line.name = (
+                f"{dist_line.distribution.name}: {dist_line.picking_id.name} / "
+                f"{dist_line.product_id.display_name}"
+            )
 
     @api.depends("move_id", "move_id.product_id")
     def _compute_product_id(self):
@@ -437,19 +446,19 @@ class PurchaseCostDistributionLine(models.Model):
         compute="_compute_standard_price_new",
     )
     total_amount = fields.Float(
-        compute=_compute_total_amount,
+        compute="_compute_total_amount",
         string="Amount line",
         digits="Account",
     )
     total_weight = fields.Float(
-        compute=_compute_total_weight,
+        compute="_compute_total_weight",
         string="Line weight",
         store=True,
         digits="Stock Weight",
         help="The line gross weight in Kg.",
     )
     total_volume = fields.Float(
-        compute=_compute_total_volume,
+        compute="_compute_total_volume",
         string="Line volume",
         store=True,
         help="The line volume in m3.",

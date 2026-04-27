@@ -9,21 +9,15 @@ from odoo import fields
 from odoo.exceptions import UserError
 from odoo.tests import common, tagged
 
+from odoo.addons.account.tests.common import AccountTestInvoicingCommon
+
 
 @tagged("post_install", "-at_install")
 class TestPurchaseLandedCost(common.TransactionCase):
     @classmethod
+    @AccountTestInvoicingCommon.setup_chart_template("generic_coa")
     def setUpClass(cls):
         super().setUpClass()
-        if not cls.env.company.chart_template_id:
-            # Load a CoA if there's none in current company
-            coa = cls.env.ref("l10n_generic_coa.configurable_chart_template", False)
-            if not coa:
-                # Load the first available CoA
-                coa = cls.env["account.chart.template"].search(
-                    [("visible", "=", True)], limit=1
-                )
-            coa.try_loading(company=cls.env.company, install_demo=False)
         expense_type_obj = cls.env["purchase.expense.type"]
         cls.type_amount = expense_type_obj.create(
             {
@@ -51,12 +45,12 @@ class TestPurchaseLandedCost(common.TransactionCase):
         cls.product_category = cls.env["product.category"].create(
             {
                 "name": "Landed Cost",
-                "property_valuation": "manual_periodic",
+                "property_valuation": "periodic",
                 "property_cost_method": "average",
             }
         )
         cls.product = cls.env["product.product"].create(
-            {"name": "Product", "type": "product", "categ_id": cls.product_category.id}
+            {"name": "Product", "type": "consu", "categ_id": cls.product_category.id}
         )
         cls.supplier = cls.env["res.partner"].create({"name": "Supplier"})
         cls.purchase_order = cls.env["purchase.order"].create(
@@ -70,7 +64,7 @@ class TestPurchaseLandedCost(common.TransactionCase):
                             "product_id": cls.product.id,
                             "product_qty": 5.0,
                             "name": cls.product.name,
-                            "product_uom": cls.product.uom_id.id,
+                            "product_uom_id": cls.product.uom_id.id,
                             "price_unit": 3.0,
                             "date_planned": fields.Date.today(),
                         },
@@ -80,11 +74,6 @@ class TestPurchaseLandedCost(common.TransactionCase):
         )
         cls.purchase_order.button_confirm()
         cls.picking = cls.purchase_order.picking_ids
-        cls.env["stock.immediate.transfer"].create(
-            {"pick_ids": [(4, cls.picking.id)]}
-        ).process()
-        cls.picking.action_confirm()
-        cls.picking.move_ids.write({"quantity_done": 5.0})
         cls.picking.button_validate()
         account = cls.env["account.account"].create(
             {"name": "Account", "code": "CODE", "account_type": "expense"}
@@ -157,9 +146,6 @@ class TestPurchaseLandedCost(common.TransactionCase):
         order2.order_line.price_unit = 2
         order2.button_confirm()
         picking2 = order2.picking_ids
-        self.env["stock.immediate.transfer"].create(
-            {"pick_ids": [(4, picking2.id)]}
-        ).process()
         picking2.button_validate()
         wiz = (
             self.env["picking.import.wizard"]
@@ -190,9 +176,6 @@ class TestPurchaseLandedCost(common.TransactionCase):
         order3.order_line.price_unit = 1
         order3.button_confirm()
         picking3 = order3.picking_ids
-        self.env["stock.immediate.transfer"].create(
-            {"pick_ids": [(6, 0, (picking2 + picking3).ids)]}
-        ).process()
         (picking2 + picking3).button_validate()
         wiz = (
             self.env["picking.import.wizard"]

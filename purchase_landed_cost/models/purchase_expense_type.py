@@ -9,7 +9,7 @@ class PurchaseExpenseType(models.Model):
     _name = "purchase.expense.type"
     _description = "Purchase cost type"
 
-    name = fields.Char(required=True, translate=True, index=True)
+    name = fields.Char(required=True, translate=True, index="trigram")
     company_id = fields.Many2one(
         comodel_name="res.company",
         string="Company",

@@ -7,7 +7,7 @@
             <notebook position="inside">
                 <page
                     string="Landed costs"
-                    attrs="{'invisible': [('move_type', 'not in', ('in_invoice', 'in_refund'))]}"
+                    invisible="move_type not in ('in_invoice', 'in_refund')"
                     groups='purchase.group_purchase_user'
                 >
                     <button
