@@ -147,7 +147,7 @@ class PurchaseCostDistribution(models.Model):
         for record in self:
             if record.state not in ("draft", "calculated"):
                 raise UserError(_("You can't delete a confirmed cost distribution"))
-        return super(PurchaseCostDistribution, self).unlink()
+        return super().unlink()
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -156,7 +156,7 @@ class PurchaseCostDistribution(models.Model):
                 vals["name"] = self.env["ir.sequence"].next_by_code(
                     "purchase.cost.distribution"
                 )
-        return super(PurchaseCostDistribution, self).create(vals_list)
+        return super().create(vals_list)
 
     def write(self, vals):
         for command in vals.get("cost_lines", []):
@@ -173,7 +173,7 @@ class PurchaseCostDistribution(models.Model):
                             "affected line of any expense line."
                         )
                     )
-        return super(PurchaseCostDistribution, self).write(vals)
+        return super().write(vals)
 
     @api.model
     def _prepare_expense_line(self, expense_line, cost_line):
@@ -334,11 +334,7 @@ class PurchaseCostDistributionLine(models.Model):
     )
     def _compute_name(self):
         for dist_line in self:
-            dist_line.name = "{}: {} / {}".format(
-                dist_line.distribution.name,
-                dist_line.picking_id.name,
-                dist_line.product_id.display_name,
-            )
+            dist_line.name = f"{dist_line.distribution.name}: {dist_line.picking_id.name} / {dist_line.product_id.display_name}"
 
     @api.depends("move_id", "move_id.product_id")
     def _compute_product_id(self):

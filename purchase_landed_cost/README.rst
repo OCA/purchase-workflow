@@ -1,3 +1,7 @@
+.. image:: https://odoo-community.org/readme-banner-image
+   :target: https://odoo-community.org/get-involved?utm_source=readme
+   :alt: Odoo Community Association
+
 ==========================================
 Purchase landed costs - Alternative option
 ==========================================
@@ -13,36 +17,38 @@ Purchase landed costs - Alternative option
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/purchase-workflow/tree/16.0/purchase_landed_cost
+    :target: https://github.com/OCA/purchase-workflow/tree/19.0/purchase_landed_cost
     :alt: OCA/purchase-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/purchase-workflow-16-0/purchase-workflow-16-0-purchase_landed_cost
+    :target: https://translation.odoo-community.org/projects/purchase-workflow-19-0/purchase-workflow-19-0-purchase_landed_cost
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&target_branch=19.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module manages your purchase expenses
-==========================================
+------------------------------------------
 
-The functionality of this module is to provide a way to manage your purchase
-costs more easily than the official module (*stock_landed_cost*) and allow to
-distribute them with a lot of methods.
+The functionality of this module is to provide a way to manage your
+purchase costs more easily than the official module
+(*stock_landed_cost*) and allow to distribute them with a lot of
+methods.
 
 **Main features:**
 
-* Possibility to assign landed cost afterwards in a separate screen.
-* Management of expense types with preconfigured calculation methods.
-* Distribution of costs based on weight, volume, product price, etc.
-* Types marked as default are automatically added to each new purchase
+- Possibility to assign landed cost afterwards in a separate screen.
+- Management of expense types with preconfigured calculation methods.
+- Distribution of costs based on weight, volume, product price, etc.
+- Types marked as default are automatically added to each new purchase
   distribution.
-* Management orders shopping expenses associated with one or more entry slips.
+- Management orders shopping expenses associated with one or more entry
+  slips.
 
 **Table of contents**
 
@@ -52,9 +58,9 @@ distribute them with a lot of methods.
 Known issues / Roadmap
 ======================
 
-* Ability to add expenses in multi currency.
-* Purchase distribution report.
-* Upgrade cost price of products based on the costs.
+- Ability to add expenses in multi currency.
+- Purchase distribution report.
+- Upgrade cost price of products based on the costs.
 
 Bug Tracker
 ===========
@@ -62,7 +68,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/purchase-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_landed_cost%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_landed_cost%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -70,26 +76,26 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * AvanzOSC
 * Tecnativa
 * Joaquín Gutierrez
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Joaquín Gutierrez <joaquing.pedrosa@gmail.com>
-* Santi Argüeso <santi@comunitea.com>
-* `Tecnativa <https://www.tecnativa.com>`_:
+- Joaquín Gutierrez <joaquing.pedrosa@gmail.com>
+- Santi Argüeso <santi@comunitea.com>
+- `Tecnativa <https://www.tecnativa.com>`__:
 
-  * Pedro M. Baeza
-  * Vicent Cubells
-  * Ernesto Tejeda
-  * Carolina Fernandez
+  - Pedro M. Baeza
+  - Vicent Cubells
+  - Ernesto Tejeda
+  - Carolina Fernandez
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -101,6 +107,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/16.0/purchase_landed_cost>`_ project on GitHub.
+This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/19.0/purchase_landed_cost>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

@@ -6,10 +6,7 @@
 {
     "name": "Purchase landed costs - Alternative option",
     "version": "16.0.1.0.2",
-    "author": "AvanzOSC,"
-    "Tecnativa,"
-    "Joaquín Gutierrez,"
-    "Odoo Community Association (OCA)",
+    "author": "AvanzOSC,Tecnativa,Joaquín Gutierrez,Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": "Purchase Management",
     "website": "https://github.com/OCA/purchase-workflow",

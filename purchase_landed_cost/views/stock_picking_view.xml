@@ -11,8 +11,7 @@
                     icon="fa-credit-card"
                     type="object"
                     string="Landed costs"
-                >
-                </button>
+                />
             </div>
         </field>
     </record>

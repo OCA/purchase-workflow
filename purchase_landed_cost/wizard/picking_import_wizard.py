@@ -8,7 +8,7 @@ class PickingImportWizard(models.TransientModel):
     @api.model
     def default_get(self, field_list):
         """Get pickings previously imported."""
-        res = super(PickingImportWizard, self).default_get(field_list)
+        res = super().default_get(field_list)
         if self.env.context.get("active_id") and "prev_pickings" in field_list:
             distribution = self.env["purchase.cost.distribution"].browse(
                 self.env.context["active_id"]

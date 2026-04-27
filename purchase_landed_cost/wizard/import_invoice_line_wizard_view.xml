@@ -16,11 +16,11 @@
                 </group>
                 <footer>
                     <button
-                        string="Import"
-                        name="action_import_invoice_line"
-                        type="object"
-                        class="oe_highlight"
-                    />
+                    string="Import"
+                    name="action_import_invoice_line"
+                    type="object"
+                    class="oe_highlight"
+                />
                     or
                     <button string="Cancel" class="oe_link" special="cancel" />
                 </footer>
