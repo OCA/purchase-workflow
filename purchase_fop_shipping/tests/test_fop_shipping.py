@@ -19,8 +19,9 @@ class TestPurchaseOrder(TransactionCase):
 
         cls.product_1 = cls.Product.create({"name": "Product", "type": "consu"})
 
-        cls.partner_3 = cls.env.ref("base.res_partner_3")
-        cls.partner_3.fop_shipping = 250
+        cls.partner_3 = cls.env["res.partner"].create(
+            {"name": "Test Partner", "fop_shipping": 250}
+        )
 
     def test_fop_shipping_reached1(self):
         po = self.Purchase.create({"partner_id": self.partner_3.id})
@@ -31,7 +32,7 @@ class TestPurchaseOrder(TransactionCase):
                 "date_planned": fields.Datetime.now(),
                 "name": "Test",
                 "product_qty": 1.0,
-                "product_uom": self.product_1.uom_id.id,
+                "product_uom_id": self.product_1.uom_id.id,
                 "price_unit": 100.0,
             }
         )
@@ -58,7 +59,7 @@ class TestPurchaseOrder(TransactionCase):
                 "date_planned": fields.Datetime.now(),
                 "name": "Test",
                 "product_qty": 10,
-                "product_uom": self.product_1.uom_id.id,
+                "product_uom_id": self.product_1.uom_id.id,
                 "price_unit": 45,
             }
         )
@@ -76,7 +77,7 @@ class TestPurchaseOrder(TransactionCase):
                 "date_planned": fields.Datetime.now(),
                 "name": "Test",
                 "product_qty": 1.0,
-                "product_uom": self.product_1.uom_id.id,
+                "product_uom_id": self.product_1.uom_id.id,
                 "price_unit": -100.0,
             }
         )

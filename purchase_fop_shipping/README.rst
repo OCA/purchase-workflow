@@ -21,9 +21,13 @@ Usage
 
 #. Go to ...
 
-.. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
-   :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/142/10.0
+.. image:: https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github
+    :target: https://github.com/OCA/purchase-workflow/tree/19.0/purchase_fop_shipping
+    :alt: OCA/purchase-workflow
+
+.. image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&target_branch=19.0
+    :alt: Try me on Runboat
 
 .. repo_id is available in https://github.com/OCA/maintainer-tools/blob/master/tools/repos_with_ids.txt
 .. branch is "8.0" for example
