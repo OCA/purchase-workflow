@@ -3,7 +3,7 @@
 
 {
     "name": "Purchase Invoice Status Line",
-    "version": "18.0.2.0.1",
+    "version": "19.0.1.0.0",
     "category": "Purchases",
     "license": "AGPL-3",
     "summary": "Add invoice status on purchase order lines",
@@ -17,6 +17,7 @@
     "post_init_hook": "post_init_hook",
     "data": [
         "views/purchase_order_line_views.xml",
+        "views/purchase_order_views.xml",
     ],
     "installable": True,
 }

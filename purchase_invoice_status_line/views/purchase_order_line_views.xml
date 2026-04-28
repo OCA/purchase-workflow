@@ -5,9 +5,8 @@
         <field name="model">purchase.order.line</field>
         <field name="inherit_id" ref="purchase.purchase_order_line_tree" />
         <field name="arch" type="xml">
-            <field name="product_uom" position="after">
+            <field name="product_uom_id" position="after">
                 <field name="state" column_invisible="1" />
-                <field name="purchase_method" optional="hide" />
                 <field name="invoice_status" />
                 <field
                     name="force_invoiced"
