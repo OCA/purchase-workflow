@@ -3,7 +3,7 @@
 
 from markupsafe import Markup, escape
 
-from odoo import _, api, models
+from odoo import api, models
 
 
 class Picking(models.Model):
@@ -13,24 +13,27 @@ class Picking(models.Model):
     def _purchase_order_picking_confirm_message_content(self, picking, purchase_dict):
         if not purchase_dict:
             purchase_dict = {}
-        title = _("Receipt confirmation {}").format(picking.name)
-        message = f"<h3>{title}</h3>"
-        message += _(
-            "The following items have now been received in Incoming Shipment {}:"
-        ).format(picking.name)
+        title = self.env._("Receipt confirmation %s", picking.name)
+        message = "<h3>%s</h3>" % title
+
+        message += self.env._(
+            "The following items have now been received in Incoming Shipment %s",
+            picking.name,
+        )
+
         message += "<ul>"
         for purchase_line_id in purchase_dict.values():
             display_name = purchase_line_id["purchase_line"].product_id.display_name
             product_qty = purchase_line_id["stock_move"].product_qty
             uom = purchase_line_id["stock_move"].product_uom.name
-            message += _(
+
+            message += self.env._(
                 "<li><b>%(display_name)s</b>: Received quantity "
-                "%(product_qty)s %(uom)s</li>"
-            ) % {
-                "display_name": escape(display_name),
-                "product_qty": product_qty,
-                "uom": escape(uom),
-            }
+                "%(product_qty)s %(uom)s</li>",
+                display_name=escape(display_name),
+                product_qty=product_qty,
+                uom=escape(uom),
+            )
         message += "</ul>"
         return Markup(message)
 
