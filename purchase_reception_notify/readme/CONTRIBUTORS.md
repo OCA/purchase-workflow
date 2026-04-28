@@ -1,3 +1,4 @@
 - Aaron Henriquez \<<ahenriquez@forgeflow.com>\>
 - Jordi Ballester \<<jordi.ballester@forgeflow.com>\>
-- `Heliconia Solutions Pvt. Ltd. <https://www.heliconia.io>`_
+- [Heliconia Solutions Pvt. Ltd.](https://www.heliconia.io)
+  - Bhavesh Heliconia

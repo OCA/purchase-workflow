@@ -1,48 +1,49 @@
 from odoo.fields import Datetime
-from odoo.tests.common import TransactionCase
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestPurchaseReceptionNotify(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.purchase_order_model = self.env["purchase.order"]
-        self.purchase_order_line_model = self.env["purchase.order.line"]
-        self.partner_model = self.env["res.partner"]
-        self.product_model = self.env["product.product"]
-        self.uom_model = self.env["uom.uom"]
-        self.stock_picking_model = self.env["stock.picking"]
+class TestPurchaseReceptionNotify(BaseCommon):
+    @classmethod
+    def default_env_context(cls):
+        return {}
 
-        # Partners
-        self.partner = self.partner_model.sudo().create({"name": "Partner 1"})
-
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.purchase_order_model = cls.env["purchase.order"]
+        cls.purchase_order_line_model = cls.env["purchase.order.line"]
+        cls.product_model = cls.env["product.product"]
+        cls.uom_model = cls.env["uom.uom"]
+        cls.stock_picking_model = cls.env["stock.picking"]
         # UOM
-        self.uom_unit = self.env.ref("uom.product_uom_unit")
+        cls.uom_unit = cls.env.ref("uom.product_uom_unit")
 
         # Product
-        self.product = self.product_model.sudo().create(
+        cls.product = cls.product_model.sudo().create(
             {
                 "name": "Product Test",
-                "uom_id": self.uom_unit.id,
+                "uom_id": cls.uom_unit.id,
                 "purchase_method": "purchase",
             }
         )
 
         # Purchase Order
-        self.purchase_order = self.purchase_order_model.create(
-            {"partner_id": self.partner.id}
+        cls.purchase_order = cls.purchase_order_model.create(
+            {"partner_id": cls.partner.id}
         )
-        self.purchase_order_line = self.purchase_order_line_model.sudo().create(
+        cls.purchase_order_line = cls.purchase_order_line_model.sudo().create(
             {
                 "date_planned": Datetime.now(),
                 "name": "PO01",
-                "order_id": self.purchase_order.id,
-                "product_id": self.product.id,
-                "product_uom": self.uom_unit.id,
+                "order_id": cls.purchase_order.id,
+                "product_id": cls.product.id,
+                "product_uom_id": cls.uom_unit.id,
                 "price_unit": 1.0,
                 "product_qty": 5.0,
             }
         )
-        self.purchase_order.button_confirm()
+        cls.purchase_order.button_confirm()
 
     def test_action_done_message_post(self):
         """Test that the _action_done method posts the correct message."""

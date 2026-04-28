@@ -14,28 +14,29 @@ class Picking(models.Model):
         if not purchase_dict:
             purchase_dict = {}
         title = self.env._("Receipt confirmation %s", picking.name)
-        message = "<h3>%s</h3>" % title
-
-        message += self.env._(
-            "The following items have now been received in Incoming Shipment %s",
-            picking.name,
+        message = Markup("<h3>%s</h3>") % escape(title)
+        message += escape(
+            self.env._(
+                "The following items have now been received in Incoming Shipment %s",
+                picking.name,
+            )
         )
-
-        message += "<ul>"
+        message += Markup("<ul>")
         for purchase_line_id in purchase_dict.values():
             display_name = purchase_line_id["purchase_line"].product_id.display_name
             product_qty = purchase_line_id["stock_move"].product_qty
             uom = purchase_line_id["stock_move"].product_uom.name
-
-            message += self.env._(
-                "<li><b>%(display_name)s</b>: Received quantity "
-                "%(product_qty)s %(uom)s</li>",
-                display_name=escape(display_name),
+            received_text = self.env._(
+                "Received quantity %(product_qty)s %(uom)s",
                 product_qty=product_qty,
-                uom=escape(uom),
+                uom=uom,
             )
-        message += "</ul>"
-        return Markup(message)
+            message += Markup("<li><b>%s</b>: %s</li>") % (
+                escape(display_name),
+                escape(received_text),
+            )
+        message += Markup("</ul>")
+        return message
 
     def _action_done(self):
         res = super()._action_done()
