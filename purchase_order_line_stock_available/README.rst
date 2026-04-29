@@ -80,6 +80,9 @@ Contributors
   - Víctor Martínez
 
 - Sudhir Arya <sudhir@erpharbor.com>
+- `Heliconia Solutions Pvt. Ltd. <https://www.heliconia.io>`__
+
+  - Bhavesh Heliconia
 
 Maintainers
 -----------

@@ -3,6 +3,8 @@
 
 from datetime import date
 
+from odoo import Command
+
 from odoo.addons.base.tests.common import BaseCommon
 
 
@@ -21,12 +23,10 @@ class TestPurchase(BaseCommon):
             {
                 "partner_id": cls.partner.id,
                 "order_line": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": cls.product.id,
-                            "product_uom": cls.product.uom_id.id,
+                            "product_uom_id": cls.product.uom_id.id,
                             "name": cls.product.name,
                             "price_unit": cls.product.standard_price,
                             "date_planned": date.today(),
@@ -43,7 +43,6 @@ class TestPurchase(BaseCommon):
     def _create_stock_move(cls, qty):
         stock_move = cls.env["stock.move"].create(
             {
-                "name": cls.product.display_name,
                 "location_id": cls.location_suppliers.id,
                 "location_dest_id": cls.location_stock.id,
                 "product_id": cls.product.id,
