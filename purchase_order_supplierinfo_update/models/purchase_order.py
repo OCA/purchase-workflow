@@ -45,7 +45,7 @@ class PurchaseOrderLine(models.Model):
                     partner_id=line.partner_id,
                     quantity=line.product_qty,
                     date=line.order_id.date_order and line.order_id.date_order.date(),
-                    uom_id=line.product_uom,
+                    uom_id=line.product_uom_id,
                     params=params,
                 )
                 if seller:
@@ -63,9 +63,9 @@ class PurchaseOrderLine(models.Model):
                 self.date_order or fields.Date.today(),
             )
         # convert according to the UoM if necessary
-        if self.product_uom and self.product_uom != seller.product_uom:
-            new_seller_price = self.product_uom._compute_price(
-                new_seller_price, seller.product_uom
+        if self.product_uom_id and self.product_uom_id != seller.product_uom_id:
+            new_seller_price = self.product_uom_id._compute_price(
+                new_seller_price, seller.product_uom_id
             )
         # Set price
         if new_seller_price != seller.price:
