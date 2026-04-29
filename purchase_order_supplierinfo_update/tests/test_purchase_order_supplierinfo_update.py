@@ -4,7 +4,7 @@
 from dateutil.relativedelta import relativedelta
 
 from odoo import fields
-from odoo.models import Command
+from odoo.fields import Command
 from odoo.tests import Form
 
 from odoo.addons.base.tests.common import BaseCommon
@@ -44,7 +44,7 @@ class TestPurchaseOrderSupplierinfoUpdate(BaseCommon):
             po_line_form.product_id = self.product
             self.assertEqual(po_line_form.price_unit, 100)
             po_line_form.price_unit = 150
-            po_line_form.taxes_id.clear()
+            po_line_form.tax_ids.clear()
         purchase_order = po_form.save()
         purchase_order.button_confirm()
         self.assertEqual(self.supplierinfo.price, 150)
@@ -55,7 +55,7 @@ class TestPurchaseOrderSupplierinfoUpdate(BaseCommon):
             po_line_form.product_id = self.product
             self.assertEqual(po_line_form.price_unit, 150)
             po_line_form.price_unit = 200
-            po_line_form.taxes_id.clear()
+            po_line_form.tax_ids.clear()
         purchase_order = po_form.save()
         purchase_order.button_confirm()
         self.assertEqual(self.supplierinfo.price, 200)
@@ -68,7 +68,7 @@ class TestPurchaseOrderSupplierinfoUpdate(BaseCommon):
         po_form_1.date_order = now - relativedelta(days=1)
         with po_form_1.order_line.new() as po_line_form:
             po_line_form.product_id = self.product
-            po_line_form.taxes_id.clear()
+            po_line_form.tax_ids.clear()
         purchase_order_1 = po_form_1.save()
         purchase_order_1.button_confirm()
         # Create second purchase
@@ -77,7 +77,7 @@ class TestPurchaseOrderSupplierinfoUpdate(BaseCommon):
         with po_form_2.order_line.new() as po_line_form:
             po_line_form.product_id = self.product
             po_line_form.price_unit = 200
-            po_line_form.taxes_id.clear()
+            po_line_form.tax_ids.clear()
         purchase_order_2 = po_form_2.save()
         purchase_order_2.button_confirm()
         # Change price in second purchase
@@ -98,7 +98,7 @@ class TestPurchaseOrderSupplierinfoUpdate(BaseCommon):
         po_form_1.partner_id = self.supplier
         with po_form_1.order_line.new() as po_line_form:
             po_line_form.product_id = self.product
-            po_line_form.taxes_id.clear()
+            po_line_form.tax_ids.clear()
         purchase_order_1 = po_form_1.save()
         purchase_order_1.button_confirm()
         # Create second purchase
@@ -107,7 +107,7 @@ class TestPurchaseOrderSupplierinfoUpdate(BaseCommon):
         with po_form_2.order_line.new() as po_line_form:
             po_line_form.product_id = self.product
             po_line_form.price_unit = 200
-            po_line_form.taxes_id.clear()
+            po_line_form.tax_ids.clear()
         purchase_order_2 = po_form_2.save()
         purchase_order_2.button_confirm()
         # Create a new line in the first purchase (that is already confirmed)
@@ -120,7 +120,7 @@ class TestPurchaseOrderSupplierinfoUpdate(BaseCommon):
                     Command.create(
                         {
                             "product_id": self.product_2.id,
-                            "product_uom": self.product_2.uom_po_id.id,
+                            "product_uom_id": self.product_2.uom_id.id,
                             "price_unit": 20.00,
                             "discount": 10.00,
                         }
