@@ -41,6 +41,7 @@ addon | version | maintainers | summary
 [purchase_request](purchase_request/) | 19.0.1.0.1 |  | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
 [purchase_stock_price_unit_sync](purchase_stock_price_unit_sync/) | 19.0.1.0.0 |  | Update cost price in stock moves already done
 [purchase_tag](purchase_tag/) | 19.0.1.0.0 |  | Allows to add multiple tags to purchase orders
+[sale_purchase_force_vendor](sale_purchase_force_vendor/) | 19.0.1.0.0 | <a href='https://github.com/victoralmau'><img src='https://github.com/victoralmau.png' width='32' height='32' style='border-radius:50%;' alt='victoralmau'/></a> | Sale Purchase Force Vendor
 
 [//]: # (end addons)
 
