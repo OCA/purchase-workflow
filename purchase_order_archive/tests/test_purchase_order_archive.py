@@ -6,64 +6,70 @@
 # Copyright 2017 Tecnativa
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from datetime import datetime
-
+from odoo import Command
 from odoo.exceptions import UserError
-from odoo.tests.common import TransactionCase
+
+from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
 
-class TestPurchaseOrderArchive(TransactionCase):
+class TestPurchaseOrderArchive(AccountTestInvoicingCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.purchase_order_obj = cls.env["purchase.order"]
-        product_id = cls.env.ref("product.product_product_9")
-        vals = {
-            "partner_id": cls.env.ref("base.res_partner_1").id,
+        cls.product = cls.product_a
+        cls.partner = cls.partner_a
+        cls.po_vals = {
+            "partner_id": cls.partner.id,
             "order_line": [
-                (
-                    0,
-                    0,
+                Command.create(
                     {
-                        "name": product_id.name,
-                        "product_id": product_id.id,
+                        "name": cls.product.name,
+                        "product_id": cls.product.id,
                         "product_qty": 1.0,
-                        "product_uom": cls.env.ref("uom.product_uom_unit").id,
+                        "product_uom_id": cls.product.uom_id.id,
                         "price_unit": 121.0,
-                        "date_planned": datetime.today(),
-                    },
+                    }
                 )
             ],
         }
-        cls.po_draft = cls.env["purchase.order"].create(vals)
-        cls.po_sent = cls.env["purchase.order"].create(vals)
+        cls.po_draft = cls.env["purchase.order"].create(cls.po_vals)
+        cls.po_sent = cls.env["purchase.order"].create(cls.po_vals)
         cls.po_sent.write({"state": "sent"})
-        cls.po_to_approve = cls.env["purchase.order"].create(vals)
+        cls.po_to_approve = cls.env["purchase.order"].create(cls.po_vals)
         cls.po_to_approve.write({"state": "to approve"})
-        cls.po_purchase = cls.env["purchase.order"].create(vals)
+        cls.po_purchase = cls.env["purchase.order"].create(cls.po_vals)
         cls.po_purchase.button_confirm()
-        cls.po_done = cls.env["purchase.order"].create(vals)
+        cls.po_done = cls.env["purchase.order"].create(cls.po_vals)
         cls.po_done.button_confirm()
-        cls.po_done.button_done()
-        cls.po_cancel = cls.env["purchase.order"].create(vals)
+        cls.po_done.button_lock()
+        cls.po_cancel = cls.env["purchase.order"].create(cls.po_vals)
         cls.po_cancel.button_cancel()
 
     def test_archive(self):
-        with self.assertRaises(UserError):
-            self.po_draft.toggle_active()
-        with self.assertRaises(UserError):
-            self.po_sent.toggle_active()
-        with self.assertRaises(UserError):
-            self.po_to_approve.toggle_active()
-        with self.assertRaises(UserError):
-            self.po_purchase.toggle_active()
-        self.po_done.toggle_active()
-        self.assertEqual(self.po_done.active, False)
-        self.po_cancel.toggle_active()
-        self.assertEqual(self.po_cancel.active, False)
+        with self.assertRaisesRegex(
+            UserError, "Only 'Locked' or 'Canceled' orders can be archived"
+        ):
+            self.po_draft.action_archive()
+        with self.assertRaisesRegex(
+            UserError, "Only 'Locked' or 'Canceled' orders can be archived"
+        ):
+            self.po_sent.action_archive()
+        with self.assertRaisesRegex(
+            UserError, "Only 'Locked' or 'Canceled' orders can be archived"
+        ):
+            self.po_to_approve.action_archive()
+        with self.assertRaisesRegex(
+            UserError, "Only 'Locked' or 'Canceled' orders can be archived"
+        ):
+            self.po_purchase.action_archive()
+        self.po_done.action_archive()
+        self.assertFalse(self.po_done.active)
+        self.po_cancel.action_archive()
+        self.assertFalse(self.po_cancel.active)
 
     def test_check_state_constraint(self):
         """Test that archived orders cannot have their state changed"""
-        self.po_done.toggle_active()
-        with self.assertRaises(UserError):
+        self.po_done.action_archive()
+        self.assertFalse(self.po_done.active)
+        with self.assertRaisesRegex(UserError, "This record is currently archived"):
             self.po_done.state = "purchase"

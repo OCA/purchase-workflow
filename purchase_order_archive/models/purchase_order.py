@@ -10,14 +10,14 @@ class PurchaseOrder(models.Model):
 
     active = fields.Boolean(default=True)
 
-    def toggle_active(self):
-        if self.filtered(lambda po: po.state not in ["done", "cancel"] and po.active):
+    def action_archive(self):
+        if self.filtered(lambda po: po.state != "cancel" and not po.locked):
             raise UserError(
                 self.env._("Only 'Locked' or 'Canceled' orders can be archived")
             )
-        return super().toggle_active()
+        return super().action_archive()
 
-    @api.constrains("state")
+    @api.constrains("state", "locked")
     def _check_state(self):
         for rec in self:
             if not rec.active:
