@@ -1,51 +1,47 @@
-from odoo import fields
-from odoo.tests.common import TransactionCase
+from odoo import Command, fields
+from odoo.tests import new_test_user
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestPurchaseRepresentative(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.user_test = self.env["res.users"].create(
-            {
-                "email": "testuser@testuser.com",
-                "name": "Test User",
-                "login": "test_user",
-                "password": "test_user",
-            }
-        )
-        self.partner = self.env["res.partner"].create(
-            {
-                "name": "Partner Test",
-                "supplier_rank": 1,
-            }
+class TestPurchaseRepresentative(BaseCommon):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.user_test = new_test_user(
+            cls.env,
+            login="test_user",
+            groups="purchase.group_purchase_user",
+            name="Test User",
+            email="testuser@testuser.com",
         )
 
-        self.product = self.env["product.product"].create(
+        cls.product = cls.env["product.product"].create(
             {
                 "name": "Product Test",
                 "is_storable": True,
                 "route_ids": [
-                    (6, 0, [self.env.ref("purchase_stock.route_warehouse0_buy").id])
+                    Command.set([cls.env.ref("purchase_stock.route_warehouse0_buy").id])
                 ],
                 "standard_price": 50.0,
             }
         )
 
-        self.env["product.supplierinfo"].create(
+        cls.env["product.supplierinfo"].create(
             {
-                "partner_id": self.partner.id,
-                "product_tmpl_id": self.product.product_tmpl_id.id,
+                "partner_id": cls.partner.id,
+                "product_tmpl_id": cls.product.product_tmpl_id.id,
                 "min_qty": 1.0,
                 "price": 45.0,
             }
         )
 
-        self.location = self.env.ref("stock.stock_location_stock")
-        self.picking_type = self.env.ref("stock.picking_type_in")
+        cls.location = cls.env.ref("stock.stock_location_stock")
+        cls.picking_type = cls.env.ref("stock.picking_type_in")
 
     def test_create_procurement(self):
         """Test that the user_id field is filled automatically"""
-        procurement = self.env["procurement.group"].Procurement(
+        procurement = self.env["stock.rule"].Procurement(
             self.product,
             10,
             self.product.uom_id,
@@ -60,9 +56,10 @@ class TestPurchaseRepresentative(TransactionCase):
                 "procure_method": "make_to_order",
             },
         )
-        self.env["stock.rule"].with_user(self.user_test)._run_buy(
-            [(procurement, self.env["stock.rule"].search([], limit=1))]
-        )
+        rule = self.env["stock.rule"].search([("action", "=", "buy")], limit=1)
+        if not rule:
+            rule = self.env["stock.rule"].search([], limit=1)
+        self.env["stock.rule"].with_user(self.user_test)._run_buy([(procurement, rule)])
 
         purchase_orders = self.env["purchase.order"].search(
             [("origin", "=", "Test Origin")]
