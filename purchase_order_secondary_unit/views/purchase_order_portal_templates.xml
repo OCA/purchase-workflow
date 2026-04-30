@@ -26,18 +26,12 @@
             expr="//table[@id='purchase_order_table']//thead//th[normalize-space()='Quantity']"
             position="before"
         >
-            <th
-                class="text-end"
-                t-if="not order.company_id.hide_secondary_uom_column(order)"
-            >
+            <th class="text-end">
                 <strong>Second Qty</strong>
             </th>
         </xpath>
         <xpath expr="//td[@id='product_name']" position="after">
-            <td
-                class="text-end"
-                t-if="not order.company_id.hide_secondary_uom_column(order)"
-            >
+            <td class="text-end">
                 <span t-field="line.secondary_uom_qty" />
                 <span t-field="line.secondary_uom_id.name" groups="uom.group_uom" />
             </td>
