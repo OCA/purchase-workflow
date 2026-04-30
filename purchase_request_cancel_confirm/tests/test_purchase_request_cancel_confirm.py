@@ -1,10 +1,12 @@
 # Copyright 2020 Ecosoft Co., Ltd. (http://ecosoft.co.th)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 from odoo import SUPERUSER_ID
-from odoo.tests import Form, TransactionCase
+from odoo.tests import Form
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestPurchaseRequestCancelConfirm(TransactionCase):
+class TestPurchaseRequestCancelConfirm(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -13,6 +15,12 @@ class TestPurchaseRequestCancelConfirm(TransactionCase):
             "purchase.request.cancel_confirm_disable", "False"
         )
         cls.purchase_request_line_obj = cls.env["purchase.request.line"]
+        cls.product = cls.env["product.product"].create(
+            {
+                "name": "Test Product",
+                "is_storable": True,
+            }
+        )
         vals = {
             "picking_type_id": cls.env.ref("stock.picking_type_in").id,
             "requested_by": SUPERUSER_ID,
@@ -20,7 +28,7 @@ class TestPurchaseRequestCancelConfirm(TransactionCase):
         cls.purchase_request = cls.purchase_request_obj.create(vals)
         vals = {
             "request_id": cls.purchase_request.id,
-            "product_id": cls.env.ref("product.product_product_13").id,
+            "product_id": cls.product.id,
             "product_uom_id": cls.env.ref("uom.product_uom_unit").id,
             "product_qty": 5.0,
         }
