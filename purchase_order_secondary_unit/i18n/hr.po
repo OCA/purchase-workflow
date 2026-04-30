@@ -18,7 +18,6 @@ msgstr ""
 "X-Generator: Weblate 5.10.4\n"
 
 #. module: purchase_order_secondary_unit
-#: model_terms:ir.ui.view,arch_db:purchase_order_secondary_unit.purchase_order_portal_content_secondary_uom
 #: model_terms:ir.ui.view,arch_db:purchase_order_secondary_unit.report_purchaseorder_document
 #: model_terms:ir.ui.view,arch_db:purchase_order_secondary_unit.report_purchasequotation_document
 msgid "<strong>Second Qty</strong>"
