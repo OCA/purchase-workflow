@@ -1,12 +1,9 @@
 # Copyright 2021 ProThai Technology Co.,Ltd. (http://prothaitechnology.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-import time
-
-from odoo import SUPERUSER_ID
+from odoo import SUPERUSER_ID, fields
 from odoo.exceptions import ValidationError
 from odoo.tests import tagged
-from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 from odoo.addons.base.tests.common import BaseCommon
 
@@ -18,20 +15,53 @@ class TestPurchaseRequestType(BaseCommon):
         super().setUpClass()
         cls.pr_obj = cls.env["purchase.request"]
         cls.company_obj = cls.env["res.company"]
+        cls.type_obj = cls.env["purchase.request.type"]
         # Products
-        cls.product1 = cls.env.ref("product.product_product_7")
-        cls.product2 = cls.env.ref("product.product_product_9")
-        cls.product3 = cls.env.ref("product.product_product_11")
-        # Purchase Request Type
-        cls.type1 = cls.env.ref("purchase_request_type.pr_type_regular")
-        cls.type2 = cls.env.ref("purchase_request_type.pr_type_reduce_step")
+        cls.product1 = cls.env["product.product"].create(
+            {
+                "name": "Product 1",
+                "is_storable": True,
+            }
+        )
+        cls.product2 = cls.env["product.product"].create(
+            {
+                "name": "Product 2",
+                "is_storable": True,
+            }
+        )
+        cls.product3 = cls.env["product.product"].create(
+            {
+                "name": "Product 3",
+                "is_storable": True,
+            }
+        )
         # Picking Type
         cls.picking_type = cls.env.ref("stock.picking_type_in")
         cls.picking_type2 = cls.env.ref("stock.picking_type_internal")
 
-        # Add company in purchase type
-        cls.type2.company_id = cls.picking_type.company_id
-        cls.type2.picking_type_id = cls.picking_type
+        cls.sequence1 = cls.env["ir.sequence"].create(
+            {
+                "name": "Sequence 1",
+                "code": "purchase.request.type.1",
+                "prefix": "PR1/",
+                "padding": 5,
+            }
+        )
+        cls.type1 = cls.type_obj.create(
+            {
+                "name": "Regular",
+                "sequence_id": cls.sequence1.id,
+                "picking_type_id": cls.picking_type2.id,
+            }
+        )
+        cls.type2 = cls.type_obj.create(
+            {
+                "name": "Reduce Step",
+                "reduce_step": True,
+                "picking_type_id": cls.picking_type.id,
+                "company_id": cls.picking_type.company_id.id,
+            }
+        )
         cls.company2 = cls.company_obj.create({"name": "company2"})
 
     def test_purchase_request_type(self):
@@ -39,6 +69,7 @@ class TestPurchaseRequestType(BaseCommon):
             [(self.product1, 1), (self.product2, 5), (self.product3, 8)]
         )
         self.assertEqual(purchase_request.request_type, self.type1)
+        self.assertTrue(purchase_request.name.startswith("PR1/"))
         purchase_request.onchange_request_type()
         self.assertEqual(purchase_request.picking_type_id, self.picking_type2)
 
@@ -54,7 +85,7 @@ class TestPurchaseRequestType(BaseCommon):
                 "product_qty": qty,
                 "product_uom_id": product.uom_id.id,
                 "estimated_cost": 100,
-                "date_required": time.strftime(DEFAULT_SERVER_DATETIME_FORMAT),
+                "date_required": fields.Date.context_today(self.env.user),
             }
             lines.append((0, 0, line_values))
         purchase_request = self.pr_obj.create(
@@ -67,14 +98,30 @@ class TestPurchaseRequestType(BaseCommon):
         return purchase_request
 
     def test_purchase_request_change_company(self):
-        request = self.pr_obj.new({"requested_by": SUPERUSER_ID})
+        request = self.pr_obj.create(
+            {
+                "requested_by": SUPERUSER_ID,
+                "request_type": self.type1.id,
+                "picking_type_id": self.picking_type2.id,
+            }
+        )
         self.assertEqual(request.request_type, self.type1)
         request._onchange_company()
         self.assertFalse(request.request_type)
 
     def test_compute_purchase_request_type(self):
-        request1 = self.pr_obj.new({"request_type": self.type1.id})
-        request2 = self.pr_obj.new({"request_type": self.type2.id})
+        request1 = self.pr_obj.create(
+            {
+                "request_type": self.type1.id,
+                "picking_type_id": self.picking_type2.id,
+            }
+        )
+        request2 = self.pr_obj.create(
+            {
+                "request_type": self.type2.id,
+                "picking_type_id": self.picking_type.id,
+            }
+        )
         self.assertFalse(request1.reduce_step)
         self.assertEqual(request2.reduce_step, self.type2.reduce_step)
 
