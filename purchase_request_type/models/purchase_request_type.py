@@ -41,7 +41,6 @@ class PurchaseRequestType(models.Model):
     sequence = fields.Integer(default=10)
     company_id = fields.Many2one(
         comodel_name="res.company",
-        string="Company",
         default=lambda self: self.env.company,
     )
     reduce_step = fields.Boolean(default=False)
