@@ -16,7 +16,6 @@ class PurchaseRequest(models.Model):
 
     department_id = fields.Many2one(
         comodel_name="hr.department",
-        string="Department",
         default=lambda self: self._get_my_department(),
     )
 
