@@ -22,7 +22,7 @@ class PurchaseOrderLine(models.Model):
     ):
         # For new PO lines we set the product packaging if present in
         # the procurement values.
-        vals = super()._prepare_purchase_order_line_from_procurement(
+        res = super()._prepare_purchase_order_line_from_procurement(
             product_id,
             product_qty,
             product_uom,
@@ -33,6 +33,10 @@ class PurchaseOrderLine(models.Model):
             values,
             po,
         )
-        if values.get("product_packaging_id"):
-            vals["product_packaging_id"] = values.get("product_packaging_id").id
-        return vals
+        packaging_uom = values.get("packaging_uom_id")
+        if packaging_uom:
+            res["product_uom_id"] = packaging_uom.id
+            res["product_qty"] = product_uom._compute_quantity(
+                product_qty, packaging_uom
+            )
+        return res
