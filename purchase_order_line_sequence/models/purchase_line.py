@@ -12,7 +12,7 @@ class PurchaseOrderLine(models.Model):
 
     sequence = fields.Integer(
         "Hidden Sequence",
-        help="Gives the sequence of the line when " "displaying the purchase order.",
+        help="Gives the sequence of the line when displaying the purchase order.",
         default=9999,
     )
 
