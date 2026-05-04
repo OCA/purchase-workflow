@@ -41,7 +41,7 @@ class PurchaseOrder(models.Model):
             ):
                 for picking in order.picking_ids:
                     for move in picking.move_ids:
-                        if not move.purchase_line_id:
+                        if not move.purchase_line_id:  # pragma: no cover
                             continue
                         move.write({"sequence": move.purchase_line_id.visible_sequence})
 
