@@ -9,10 +9,7 @@
     "Invoice lines and Stock Moves",
     "version": "18.0.1.0.0",
     "category": "Purchase Management",
-    "author": "Camptocamp, "
-    "ForgeFlow, "
-    "Serpent CS, "
-    "Odoo Community Association (OCA)",
+    "author": "Camptocamp, ForgeFlow, Serpent CS, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
     "depends": [
         "purchase_stock",
