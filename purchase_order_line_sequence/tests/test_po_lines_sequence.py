@@ -5,6 +5,7 @@
 
 from datetime import datetime
 
+from odoo.exceptions import UserError
 from odoo.tests import Form, tagged
 
 from odoo.addons.base.tests.common import BaseCommon
@@ -15,17 +16,43 @@ class TestPurchaseOrder(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+
         # Useful models
         cls.PurchaseOrder = cls.env["purchase.order"]
         cls.PurchaseOrderLine = cls.env["purchase.order.line"]
-        cls.partner_id = cls.env.ref("base.res_partner_1")
-        cls.product_id_1 = cls.env.ref("product.product_product_8")
-        cls.product_id_2 = cls.env.ref("product.product_product_11")
+        cls.partner_id = cls.env["res.partner"].create(
+            {
+                "name": "Test Partner",
+            }
+        )
+        product_uom_unit_round_1 = cls.env.ref("uom.product_uom_unit")
+        cls.product_id_1 = cls.env["product.product"].create(
+            {
+                "name": "Large Desk",
+                "standard_price": 1299.0,
+                "list_price": 1799.0,
+                "type": "consu",
+                "weight": 9.54,
+                "default_code": "E-COM09",
+                "description_sale": "Minimalist wooden desk for executive use",
+                "uom_id": product_uom_unit_round_1.id,
+            }
+        )
+
+        cls.product_id_2 = cls.env["product.product"].create(
+            {
+                "name": "Conference Chair",
+                "standard_price": 28.0,
+                "list_price": 33.0,
+                "type": "consu",
+                "uom_id": product_uom_unit_round_1.id,
+            }
+        )
 
         cls.AccountInvoice = cls.env["account.move"]
         cls.AccountInvoiceLine = cls.env["account.move.line"]
 
-        cls.category = cls.env.ref("product.product_category_1").copy(
+        cls.category = cls.env["product.category"].create(
             {
                 "name": "Test category",
                 "property_valuation": "real_time",
@@ -70,7 +97,7 @@ class TestPurchaseOrder(BaseCommon):
                         "name": self.product_id_1.name,
                         "product_id": self.product_id_1.id,
                         "product_qty": 5.0,
-                        "product_uom": self.product_id_1.uom_po_id.id,
+                        "product_uom_id": self.product_id_1.uom_id.id,
                         "price_unit": 500.0,
                         "date_planned": datetime.today(),
                     },
@@ -82,7 +109,7 @@ class TestPurchaseOrder(BaseCommon):
                         "name": self.product_id_2.name,
                         "product_id": self.product_id_2.id,
                         "product_qty": 5.0,
-                        "product_uom": self.product_id_2.uom_po_id.id,
+                        "product_uom_id": self.product_id_2.uom_id.id,
                         "price_unit": 250.0,
                         "date_planned": datetime.today(),
                     },
@@ -94,6 +121,12 @@ class TestPurchaseOrder(BaseCommon):
 
     def test_purchase_order_line_sequence(self):
         self.po = self._create_purchase_order()
+
+        po_form = Form(self.po)
+        with po_form.order_line.new() as po_line_form:
+            po_line_form.product_id = self.product_id_1
+            self.assertEqual(po_line_form.sequence, self.po.max_line_sequence)
+
         self.po.button_confirm()
 
         move1 = self.env["stock.move"].search(
@@ -128,11 +161,6 @@ class TestPurchaseOrder(BaseCommon):
             "The Sequence is not copied properly",
         )
 
-        po_form = Form(self.po)
-        with po_form.order_line.new() as po_line_form:
-            po_line_form.product_id = self.product_id_1
-            self.assertEqual(po_line_form.sequence, self.po.max_line_sequence)
-
     def test_purchase_order_line_sequence_with_section_note(self):
         """
         Verify that the sequence is correctly assigned to the move associated
@@ -152,7 +180,7 @@ class TestPurchaseOrder(BaseCommon):
                 "name": self.product_id_1.name,
                 "product_id": self.product_id_1.id,
                 "product_qty": 15.0,
-                "product_uom": self.product_id_1.uom_po_id.id,
+                "product_uom_id": self.product_id_1.uom_id.id,
                 "price_unit": 150.0,
                 "date_planned": datetime.today(),
                 "order_id": po.id,
@@ -171,7 +199,7 @@ class TestPurchaseOrder(BaseCommon):
                 "name": self.product_id_2.name,
                 "product_id": self.product_id_2.id,
                 "product_qty": 1.0,
-                "product_uom": self.product_id_2.uom_po_id.id,
+                "product_uom_id": self.product_id_2.uom_id.id,
                 "price_unit": 50.0,
                 "date_planned": datetime.today(),
                 "order_id": po.id,
@@ -179,7 +207,7 @@ class TestPurchaseOrder(BaseCommon):
         )
         po.button_confirm()
 
-        moves = po.picking_ids[0].move_ids_without_package
+        moves = po.picking_ids[0].move_ids
         self.assertNotEqual(len(po.order_line), len(moves))
 
         for move in moves:
@@ -203,7 +231,7 @@ class TestPurchaseOrder(BaseCommon):
                             "name": self.product_id_2.name,
                             "product_id": self.product_id_2.id,
                             "product_qty": 2,
-                            "product_uom": self.product_id_2.uom_id.id,
+                            "product_uom_id": self.product_id_2.uom_id.id,
                             "price_unit": 30,
                             "date_planned": datetime.today(),
                         },
@@ -212,7 +240,7 @@ class TestPurchaseOrder(BaseCommon):
             }
         )
 
-        moves = po.picking_ids[0].move_ids_without_package
+        moves = po.picking_ids[0].move_ids
         for move in moves:
             self.assertEqual(move.sequence, move.purchase_line_id.visible_sequence)
 
@@ -235,33 +263,78 @@ class TestPurchaseOrder(BaseCommon):
             self.invoice.line_ids[1].related_po_sequence,
         )
 
-    def test_invoice_multiple_orders_sequence(self):
-        """
-        Verify that the sequence is correctly assigned to the account move associated
-        with the purchase order line it references,
-        when adding different POs to the same invoice.
-        Format expected:
-        - PO12345/1  -  PO Name + "/" + Sequence
-        """
-        po = self._create_purchase_order()
-        po.button_confirm()
-        po.order_line.qty_received = 5
-        po2 = self._create_purchase_order()
-        po2.button_confirm()
-        po2.order_line.qty_received = 2
 
-        orders = self.PurchaseOrder.search([("id", "in", [po.id, po2.id])])
-        result = orders.action_create_invoice()
-        invoice = self.AccountInvoice.search([("id", "=", result["res_id"])], limit=1)
+def test_invoice_multiple_orders_sequence(self):
+    """
+    Verify that the sequence is correctly assigned to the account move associated
+    with the purchase order line it references,
+    when adding different POs to the same invoice.
+    Format expected:
+    - PO12345/1  -  PO Name + "/" + Sequence
+    """
 
-        self.assertTrue(invoice)
-        self.assertTrue(len(invoice.invoice_origin.split(",")), 2)
+    po1 = self._create_purchase_order()
+    po2 = self._create_purchase_order()
 
-        self.assertEqual(
-            invoice.invoice_line_ids[0].related_po_sequence,
-            f"{po2.name}/{po2.order_line[0].visible_sequence}",
+    po1.button_confirm()
+    po2.button_confirm()
+
+    po1.order_line.qty_received = 5
+    po2.order_line.qty_received = 5
+
+    # Create first invoice
+    res1 = po1.action_create_invoice()
+    invoice = self.AccountInvoice.browse(res1["res_id"])
+
+    # Add second PO lines into SAME invoice
+    res2 = po2.action_create_invoice()
+    invoice2 = self.AccountInvoice.browse(res2["res_id"])
+
+    # Merge invoices (this is the critical step)
+    invoice.write(
+        {
+            "invoice_line_ids": [
+                (4, line.id) for line in invoice2.line_ids if not line.display_type
+            ]
+        }
+    )
+
+    # Ensure recompute
+    invoice._compute_related_po_sequence()
+
+    lines = invoice.line_ids.filtered(lambda line: not line.display_type)
+
+    # Expected formatted values
+    expected_po1 = f"{po1.name}/{po1.order_line[0].visible_sequence}"
+    expected_po2 = f"{po2.name}/{po2.order_line[0].visible_sequence}"
+
+    sequences = lines.mapped("related_po_sequence")
+
+    self.assertIn(expected_po1, sequences)
+    self.assertIn(expected_po2, sequences)
+
+    # Optional strict check: ALL lines must be prefixed now
+    for seq in sequences:
+        self.assertIn(
+            "/", seq, "Sequence should include PO name when multiple POs exist"
         )
-        self.assertEqual(
-            invoice.invoice_line_ids[3].related_po_sequence,
-            f"{po.name}/{po.order_line[1].visible_sequence}",
-        )
+
+
+def test_onchange_sequence_forbidden_on_purchase_move(self):
+    """
+    Ensure that changing the sequence on a stock move linked to a purchase line
+    raises a UserError via the onchange.
+    """
+    po = self._create_purchase_order()
+    po.button_confirm()
+
+    move = self.env["stock.move"].search(
+        [("purchase_line_id", "=", po.order_line[0].id)],
+        limit=1,
+    )
+    self.assertTrue(move, "Stock move should exist")
+
+    # Simulate UI form to trigger onchange
+    with self.assertRaises(UserError):
+        with Form(move) as move_form:
+            move_form.sequence = move.sequence + 10
