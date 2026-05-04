@@ -6,7 +6,7 @@ from odoo.addons.base.tests.common import BaseCommon
 
 
 class TestPurchasePartnerSelectableOption(BaseCommon):
-    def test_sale_order(self):
+    def test_purchase_order(self):
         result = self.env["purchase.order"].get_view(
             view_id=self.env.ref("purchase.purchase_order_form").id,
             view_type="form",
