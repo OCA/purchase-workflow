@@ -3,7 +3,7 @@
 
 {
     "name": "Purchase Uninvoiced Amount Force Invoiced Line",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "category": "Purchases",
     "license": "AGPL-3",
     "summary": "Glue module between uninvoiced amount line and force invoiced line",

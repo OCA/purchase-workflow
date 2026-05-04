@@ -1,18 +1,21 @@
 # Copyright 2025 ForgeFlow S.L. (https://www.forgeflow.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
-
+from odoo import Command
 from odoo.tests import Form
-from odoo.tests.common import TransactionCase
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestPurchaseUninvoicedAmountForceInvoicedLine(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.partner = self.env.ref("base.res_partner_1")
-        self.product_1 = self.env.ref("product.product_product_8")
-        self.product_2 = self.env.ref("product.product_product_11")
-        self.product_1.purchase_method = "receive"
-        self.product_2.purchase_method = "purchase"
+class TestPurchaseUninvoicedAmountForceInvoicedLine(BaseCommon):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.product_1 = cls.env["product.product"].create(
+            {"name": "Product 1", "type": "consu", "purchase_method": "receive"}
+        )
+        cls.product_2 = cls.env["product.product"].create(
+            {"name": "Product 2", "type": "consu", "purchase_method": "purchase"}
+        )
 
     def _create_purchase_order(self, lines_data):
         purchase_form = Form(self.env["purchase.order"])
@@ -57,9 +60,7 @@ class TestPurchaseUninvoicedAmountForceInvoicedLine(TransactionCase):
                 "purchase_id": purchase.id,
                 "invoice_date": "2025-01-01",
                 "invoice_line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": line.product_id.id,
                             "quantity": 5,
@@ -126,9 +127,7 @@ class TestPurchaseUninvoicedAmountForceInvoicedLine(TransactionCase):
                 "purchase_id": purchase.id,
                 "invoice_date": "2025-01-02",
                 "invoice_line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": line.product_id.id,
                             "quantity": 3,
@@ -150,9 +149,7 @@ class TestPurchaseUninvoicedAmountForceInvoicedLine(TransactionCase):
                 "purchase_id": purchase.id,
                 "invoice_date": "2025-01-03",
                 "invoice_line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": line.product_id.id,
                             "quantity": 7,
