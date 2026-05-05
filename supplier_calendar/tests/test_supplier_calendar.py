@@ -2,52 +2,58 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 from datetime import datetime
 
-from odoo import fields
+from odoo import Command, fields
 from odoo.tests import tagged
-from odoo.tests.common import TransactionCase
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
 @tagged("post_install", "-at_install")
-class TestStockWarehouseCalendar(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.move_obj = self.env["stock.move"]
-        self.company = self.env.ref("base.main_company")
-        self.company_partner = self.env.ref("base.main_partner")
-        self.calendar = self.env.ref("resource.resource_calendar_std")
-        self.supplier_info = self.env["product.supplierinfo"]
-        self.PurchaseOrder = self.env["purchase.order"]
-        self.PurchaseOrderLine = self.env["purchase.order.line"]
-        self.stock_location = self.env.ref("stock.stock_location_stock")
-        self.customer_location = self.env.ref("stock.stock_location_customers")
-        self.picking_type_out = self.env.ref("stock.picking_type_out")
-        self.route_buy = self.env.ref("purchase_stock.route_warehouse0_buy").id
+class TestStockWarehouseCalendar(BaseCommon):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.move_obj = cls.env["stock.move"]
+        cls.company = cls.env.ref("base.main_company")
+        cls.company_partner = cls.env.ref("base.main_partner")
+        cls.calendar = cls.env.ref("resource.resource_calendar_std")
+        cls.supplier_info = cls.env["product.supplierinfo"]
+        cls.PurchaseOrder = cls.env["purchase.order"]
+        cls.PurchaseOrderLine = cls.env["purchase.order.line"]
+        cls.stock_location = cls.env.ref("stock.stock_location_stock")
+        cls.customer_location = cls.env.ref("stock.stock_location_customers")
+        cls.picking_type_out = cls.env.ref("stock.picking_type_out")
+        cls.route_buy = cls.env.ref("purchase_stock.route_warehouse0_buy").id
 
         # Create product
-        self.product = self.env["product.product"].create(
+        cls.product = cls.env["product.product"].create(
             {
                 "name": "test product",
                 "default_code": "PRD",
                 "is_storable": True,
                 "route_ids": [
-                    (4, self.ref("stock.route_warehouse0_mto")),
-                    (4, self.ref("purchase_stock.route_warehouse0_buy")),
+                    Command.set(
+                        [
+                            cls.env.ref("stock.route_warehouse0_mto").id,
+                            cls.env.ref("purchase_stock.route_warehouse0_buy").id,
+                        ]
+                    )
                 ],
             }
         )
 
         # Partner and Supplierinfo
-        self.company_partner.write(
+        cls.company_partner.write(
             {
                 "delay_calendar_type": "supplier_calendar",
-                "factory_calendar_id": self.calendar.id,
+                "factory_calendar_id": cls.calendar.id,
             }
         )
-        self.seller_01 = self.supplier_info.create(
+        cls.seller_01 = cls.supplier_info.create(
             {
-                "partner_id": self.company_partner.id,
-                "product_id": self.product.id,
-                "product_tmpl_id": self.product.product_tmpl_id.id,
+                "partner_id": cls.company_partner.id,
+                "product_id": cls.product.id,
+                "product_tmpl_id": cls.product.product_tmpl_id.id,
                 "delay": 3,
             }
         )
@@ -65,7 +71,7 @@ class TestStockWarehouseCalendar(TransactionCase):
 
         customer_move = self.env["stock.move"].create(
             {
-                "name": "move out",
+                "description_picking": "move out",
                 "location_id": self.stock_location.id,
                 "location_dest_id": self.customer_location.id,
                 "product_id": self.product.id,
@@ -92,9 +98,7 @@ class TestStockWarehouseCalendar(TransactionCase):
         self.calendar.write(
             {
                 "global_leave_ids": [
-                    (
-                        0,
-                        False,
+                    Command.create(
                         {
                             "name": "Test",
                             "date_from": "2097-01-14",  # Monday

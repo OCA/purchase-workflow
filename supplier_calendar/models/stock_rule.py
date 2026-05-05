@@ -16,7 +16,7 @@ class StockRule(models.Model):
         partner = values["supplier"].partner_id
         procurement_date_planned = min(dates)
         schedule_date = procurement_date_planned - relativedelta(
-            days=company_id.po_lead
+            days=company_id.days_to_purchase
         )
         delay = -1 * values["supplier"].delay
         purchase_date = partner.supplier_plan_days(schedule_date, delay)
