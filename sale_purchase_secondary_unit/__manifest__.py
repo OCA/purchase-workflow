@@ -4,7 +4,7 @@
 {
     "name": "Sale Purchase Secondary Unit",
     "summary": "Propagate sale secondary uom to purchase orders",
-    "version": "15.0.1.0.4",
+    "version": "18.0.1.0.0",
     "development_status": "Beta",
     "category": "stock",
     "website": "https://github.com/OCA/purchase-workflow",
@@ -12,7 +12,7 @@
     "license": "AGPL-3",
     "installable": True,
     "depends": [
-        "purchase_stock",
+        "sale_purchase_stock",
         "purchase_order_secondary_unit",
         "sale_stock_secondary_unit",
     ],

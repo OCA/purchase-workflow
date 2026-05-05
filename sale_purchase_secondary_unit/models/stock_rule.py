@@ -34,9 +34,7 @@ class StockRule(models.Model):
             moves_dest = line.move_dest_ids + values.get(
                 "move_dest_ids", self.env["stock.move"]
             )
-            moves = self.env["stock.move"].browse(
-                list(moves_dest._rollup_move_dests(set()))
-            )
+            moves = self.env["stock.move"].browse(list(moves_dest._rollup_move_dests()))
             cancelled_so_lines = self.env.context.get("cancelled_so_lines", [])
             sale_lines = moves.mapped("sale_line_id").filtered(
                 lambda ln: ln.id not in cancelled_so_lines

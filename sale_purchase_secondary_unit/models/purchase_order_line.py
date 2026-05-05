@@ -20,7 +20,9 @@ class PurchaseOrderLine(models.Model):
         values,
     ):
         secondary_uom_id = values.get("secondary_uom_id", False)
-        po_lines = self.filtered(lambda x: x.secondary_uom_id.id == secondary_uom_id)
+        po_lines = self.filtered(
+            lambda x, sec_uom_id=secondary_uom_id: x.secondary_uom_id.id == sec_uom_id
+        )
         return super(PurchaseOrderLine, po_lines)._find_candidate(
             product_id,
             product_qty,
@@ -34,10 +36,27 @@ class PurchaseOrderLine(models.Model):
 
     @api.model
     def _prepare_purchase_order_line_from_procurement(
-        self, product_id, product_qty, product_uom, company_id, values, po
+        self,
+        product_id,
+        product_qty,
+        product_uom,
+        location_dest_id,
+        name,
+        origin,
+        company_id,
+        values,
+        po,
     ):
         res = super()._prepare_purchase_order_line_from_procurement(
-            product_id, product_qty, product_uom, company_id, values, po
+            product_id,
+            product_qty,
+            product_uom,
+            location_dest_id,
+            name,
+            origin,
+            company_id,
+            values,
+            po,
         )
         res["secondary_uom_id"] = values.get("secondary_uom_id", False)
         return res

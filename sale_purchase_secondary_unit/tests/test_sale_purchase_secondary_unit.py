@@ -26,7 +26,8 @@ class TestPurchaseStockSecondaryUnit(TransactionCase):
         cls.supplier = cls.env["res.partner"].create({"name": "test - supplier"})
         with Form(cls.env["product.product"]) as product_form:
             product_form.name = "Test"
-            product_form.detailed_type = "product"
+            product_form.type = "consu"
+            product_form.is_storable = True
             with product_form.secondary_uom_ids.new() as secondary_uom:
                 secondary_uom.name = "box"
                 secondary_uom.uom_id = cls.product_uom_unit
@@ -34,7 +35,7 @@ class TestPurchaseStockSecondaryUnit(TransactionCase):
         cls.product = product_form.save()
         cls.supplierinfo = cls.env["product.supplierinfo"].create(
             {
-                "name": cls.supplier.id,
+                "partner_id": cls.supplier.id,
                 "product_id": cls.product.id,
                 "product_tmpl_id": cls.product.product_tmpl_id.id,
             }
