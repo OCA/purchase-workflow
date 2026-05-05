@@ -15,7 +15,7 @@ class StockRule(models.Model):
         """
         return (
             procurement.values.get("secondary_uom_id"),
-            super(StockRule, self)._get_procurements_to_merge_groupby(procurement),
+            super()._get_procurements_to_merge_groupby(procurement),
         )
 
     @api.model
