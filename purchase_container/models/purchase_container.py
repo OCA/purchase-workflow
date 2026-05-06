@@ -30,9 +30,6 @@ class PurchaseContainer(models.Model):
     volume_uom_id = fields.Many2one(
         "uom.uom",
         string="Volume Units of Measure",
-        domain=lambda self: [
-            ("category_id", "=", self.env.ref("uom.product_uom_categ_vol").id)
-        ],
         default=lambda self: self.env[
             "product.template"
         ]._get_volume_uom_id_from_ir_config_parameter(),
@@ -41,9 +38,6 @@ class PurchaseContainer(models.Model):
     weight_uom_id = fields.Many2one(
         "uom.uom",
         string="Weight Units of Measure",
-        domain=lambda self: [
-            ("category_id", "=", self.env.ref("uom.product_uom_categ_kgm").id)
-        ],
         help="Weight Unit of Measure",
         default=lambda self: self.env[
             "product.template"

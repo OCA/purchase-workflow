@@ -169,7 +169,7 @@
                 <field name="picking_ids" />
                 <field name="purchase_order_ids" />
                 <field name="bill_of_lading_ref" />
-                <group expand="0" name="group_by" string="Group By">
+                <group>
                     <filter
                         name="shipping_agent_id"
                         string="Shipping Agent"

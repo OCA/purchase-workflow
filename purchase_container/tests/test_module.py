@@ -7,7 +7,6 @@ class Test(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.partner = cls.env["res.partner"].create({"name": "Test Supplier"})
         cls.product = cls.env["product.product"].create({"name": "Test Product"})
         cls.cont_a = cls.env["purchase.container"].create({"code": "AA"})
         cls.cont_b = cls.env["purchase.container"].create({"code": "BB"})
@@ -68,7 +67,7 @@ class Test(BaseCommon):
                             "name": "Test Line",
                             "product_id": self.product.id,
                             "product_qty": 4.0,
-                            "product_uom": self.product.uom_po_id.id,
+                            "product_uom_id": self.product.uom_id.id,
                             "price_unit": 1,
                             "date_planned": fields.Datetime.now(),
                         },

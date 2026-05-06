@@ -7,7 +7,7 @@
             <xpath expr="//group[@name='invoice_info']" position="after">
                 <group>
                     <field name="state" />
-                    <field name="container_ids" colspan="4" readonly="state != 'draft'">
+                    <field name="container_ids" readonly="state != 'draft'">
                         <list edit="0">
                             <field name="name" />
                             <field name="type_id" />
