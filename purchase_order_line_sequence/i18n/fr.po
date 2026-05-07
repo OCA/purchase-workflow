@@ -1,0 +1,67 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_order_reorder_lines
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-07-10 13:13+0000\n"
+"PO-Revision-Date: 2020-08-28 17:00+0000\n"
+"Last-Translator: Sandie FAVRE <sandie.favre@grap.coop>\n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.10\n"
+
+#. module: purchase_order_line_sequence
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_sequence.report_purchase_order_sequence_qweb
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_sequence.report_purchase_quote_sequence_qweb
+msgid "<strong>Sequence</strong>"
+msgstr "Séquence"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_purchase_order_line__sequence2
+msgid "Displays the sequence of the line in the purchase order."
+msgstr "Affiche la séquence de la ligne dans l'ordre d'achat."
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,help:purchase_order_line_sequence.field_purchase_order_line__sequence
+msgid "Gives the sequence of the line when displaying the purchase order."
+msgstr "Donne la séquence de la ligne lors de l'affichage du bon de commande."
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order_line__sequence
+msgid "Hidden Sequence"
+msgstr "Séquence masquée"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model,name:purchase_order_line_sequence.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Ligne de facture"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order__max_line_sequence
+msgid "Max sequence in lines"
+msgstr ""
+
+#. module: purchase_order_line_sequence
+#: model:ir.model,name:purchase_order_line_sequence.model_purchase_order
+msgid "Purchase Order"
+msgstr "Bon de commande"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model,name:purchase_order_line_sequence.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Ligne de bon de commande"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order_line__sequence2
+msgid "Sequence"
+msgstr "Séquence"
+
+#~ msgid "Purchase Order Line Make Invoice"
+#~ msgstr "Créer la facture des lignes de commande d'achat"
