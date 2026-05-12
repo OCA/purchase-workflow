@@ -29,7 +29,7 @@ class TestPurchaseOrderLineDescription(SavepointCaseWithUserDemo):
             {
                 "name": "test",
                 "login": "test",
-                "groups_id": [(6, 0, [res_users_purchase_user.id])],
+                "group_ids": [(6, 0, [res_users_purchase_user.id])],
             }
         )
         cls.order = cls.env["purchase.order"].create(
@@ -44,7 +44,7 @@ class TestPurchaseOrderLineDescription(SavepointCaseWithUserDemo):
                             "name": cls.product.name,
                             "price_unit": 79.80,
                             "product_qty": 15.0,
-                            "product_uom": cls.env.ref("uom.product_uom_unit").id,
+                            "product_uom_id": cls.env.ref("uom.product_uom_unit").id,
                             "date_planned": fields.Date.today(),
                         },
                     )
