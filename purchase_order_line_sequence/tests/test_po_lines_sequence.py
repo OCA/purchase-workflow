@@ -128,10 +128,10 @@ class TestPurchaseOrder(BaseCommon):
             "The Sequence is not copied properly",
         )
 
-        po_form = Form(self.po)
+        po_form = Form(self.po2)
         with po_form.order_line.new() as po_line_form:
             po_line_form.product_id = self.product_id_1
-            self.assertEqual(po_line_form.sequence, self.po.max_line_sequence)
+            self.assertEqual(po_line_form.sequence, self.po2.max_line_sequence)
 
     def test_purchase_order_line_sequence_with_section_note(self):
         """
