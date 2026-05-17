@@ -104,6 +104,11 @@ class PurchaseOrderLine(models.Model):
             ("remaining_qty", ">=", base_qty),
             ("currency_id", "=", self.order_id.currency_id.id),
             ("order_id.state", "=", "open"),
+            (
+                "company_id",
+                "in",
+                [False, self.order_id.company_id.id],
+            ),
         ]
         if self.order_id.partner_id:
             filters.append(("partner_id", "=", self.order_id.partner_id.id))
