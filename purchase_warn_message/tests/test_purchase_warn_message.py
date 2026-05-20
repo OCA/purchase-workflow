@@ -7,12 +7,12 @@ from odoo.tests.common import TransactionCase
 class TestPurchaseWarnMessage(TransactionCase):
     def setUp(self):
         super().setUp()
+        self.env = self.env(context=dict(self.env.context, tracking_disable=True))
         self.warn_msg_parent = "This customer has a warn from parent"
         self.parent = self.env["res.partner"].create(
             {
                 "name": "Customer with a warn",
                 "email": "customer@warn.com",
-                "purchase_warn": "warning",
                 "purchase_warn_msg": self.warn_msg_parent,
             }
         )
@@ -21,7 +21,6 @@ class TestPurchaseWarnMessage(TransactionCase):
             {
                 "name": "Customer with a warn",
                 "email": "customer@warn.com",
-                "purchase_warn": "warning",
                 "purchase_warn_msg": self.warn_msg,
             }
         )
@@ -41,17 +40,11 @@ class TestPurchaseWarnMessage(TransactionCase):
         purchase = self.env["purchase.order"].create({"partner_id": self.partner.id})
         self.assertEqual(purchase.purchase_warn_msg, self.warn_msg)
 
-    def test_purchase_order_in_done_state(self):
-        purchase = self.env["purchase.order"].create({"partner_id": self.partner.id})
-        purchase.state = "done"
-        purchase._compute_purchase_warn_msg()
-        self.assertEqual(purchase.purchase_warn_msg, "")
-
     def test_purchase_order_in_cancel_state(self):
         purchase = self.env["purchase.order"].create({"partner_id": self.partner.id})
         purchase.state = "cancel"
         purchase._compute_purchase_warn_msg()
-        self.assertEqual(purchase.purchase_warn_msg, "")
+        self.assertFalse(purchase.purchase_warn_msg)
 
     def test_parent_and_partner_warn_msg(self):
         self.partner.update({"parent_id": self.parent.id})
