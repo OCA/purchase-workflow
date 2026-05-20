@@ -5,7 +5,7 @@
 {
     "name": "Purchase Order Line Note",
     "summary": "Note on purchase order line",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Purchase",
     "website": "https://github.com/OCA/purchase-workflow",
     "author": "Akretion, Odoo Community Association (OCA)",

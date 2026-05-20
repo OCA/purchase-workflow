@@ -1,1 +1,1 @@
-- Kévin Roche \<kevin.roche@akretion.com\>
+- Kévin Roche \<<kevin.roche@akretion.com>\>

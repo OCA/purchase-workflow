@@ -28,7 +28,7 @@ Purchase Order Line Note
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module add the field note on the purchase order line
+This module adds the field ``note`` on the purchase order line
 
 **Table of contents**
 
