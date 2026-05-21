@@ -155,7 +155,7 @@ msgid "Type of purchase order"
 msgstr ""
 
 #~ msgid "Last Modified on"
-#~ msgstr "Sidst ??ndret den"
+#~ msgstr "Sidst ændret den"
 
 #~ msgid "Partner"
 #~ msgstr "Partner"

@@ -32,13 +32,13 @@ msgstr "Arkiverad"
 #. module: purchase_order_type
 #: model_terms:ir.actions.act_window,help:purchase_order_type.action_purchase_order_type_view
 msgid "Click to set a new type for purchase order."
-msgstr "Klicka h??r f??r att ange en ny typ av ink??psorder."
+msgstr "Klicka här för att ange en ny typ av inköpsorder."
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__company_id
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
 msgid "Company"
-msgstr "F??retag"
+msgstr "Företag"
 
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_res_partner
@@ -69,7 +69,7 @@ msgstr "Visa namn"
 #. odoo-python
 #: code:addons/purchase_order_type/models/purchase_order.py:0
 msgid "Document's company and type's company mismatch"
-msgstr "Dokumentets f??retag och typens f??retag st??mmer inte ??verens"
+msgstr "Dokumentets företag och typens företag stämmer inte överens"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__sequence_id
@@ -121,21 +121,21 @@ msgstr "Betalningsvillkor"
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_purchase_order
 msgid "Purchase Order"
-msgstr "Ink??psorder"
+msgstr "Inköpsorder"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_res_partner__purchase_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_res_users__purchase_type
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.res_partner_purchase_type_form_view
 msgid "Purchase Order Type"
-msgstr "Typ av ink??psorder"
+msgstr "Typ av inköpsorder"
 
 #. module: purchase_order_type
 #: model:ir.actions.act_window,name:purchase_order_type.action_purchase_order_type_view
 #: model:ir.ui.menu,name:purchase_order_type.menu_purchase_order_type
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
 msgid "Purchase Order Types"
-msgstr "Typer av ink??psorder"
+msgstr "Typer av inköpsorder"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__sequence
@@ -153,10 +153,10 @@ msgstr "Typ"
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_purchase_order_type
 msgid "Type of purchase order"
-msgstr "Typ av ink??psorder"
+msgstr "Typ av inköpsorder"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Senast redigerad"
 
 #~ msgid "Partner"
-#~ msgstr "F??retag"
+#~ msgstr "Företag"

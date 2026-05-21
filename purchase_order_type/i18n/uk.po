@@ -48,12 +48,12 @@ msgstr ""
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__create_uid
 msgid "Created by"
-msgstr "??????????????"
+msgstr "Створив"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__create_date
 msgid "Created on"
-msgstr "???????? ??????????????????"
+msgstr "Дата створення"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__description
@@ -63,7 +63,7 @@ msgstr ""
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__display_name
 msgid "Display Name"
-msgstr "?????????? ?????? ????????????????????????"
+msgstr "Назва для відображення"
 
 #. module: purchase_order_type
 #. odoo-python
@@ -96,12 +96,12 @@ msgstr ""
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__write_uid
 msgid "Last Updated by"
-msgstr "???????????????? ????????????"
+msgstr "Востаннє оновив"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__write_date
 msgid "Last Updated on"
-msgstr "?????????????? ??????????????????"
+msgstr "Останнє оновлення"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__name
@@ -148,7 +148,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_filter
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_form
 msgid "Type"
-msgstr "??????"
+msgstr "Тип"
 
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_purchase_order_type
