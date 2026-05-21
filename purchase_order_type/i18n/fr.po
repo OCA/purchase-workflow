@@ -29,7 +29,7 @@ msgstr "Actif"
 #. module: purchase_order_type
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_form
 msgid "Archived"
-msgstr "Archiv??"
+msgstr "Archivé"
 
 #. module: purchase_order_type
 #: model_terms:ir.actions.act_window,help:purchase_order_type.action_purchase_order_type_view
@@ -41,7 +41,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__company_id
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
 msgid "Company"
-msgstr "Soci??t??"
+msgstr "Société"
 
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_res_partner
@@ -51,12 +51,12 @@ msgstr "Contact"
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__create_uid
 msgid "Created by"
-msgstr "Cr???? par"
+msgstr "Créé par"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__create_date
 msgid "Created on"
-msgstr "Cr???? le"
+msgstr "Créé le"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__description
@@ -66,19 +66,19 @@ msgstr "Description"
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__display_name
 msgid "Display Name"
-msgstr "Nom affich??"
+msgstr "Nom affiché"
 
 #. module: purchase_order_type
 #. odoo-python
 #: code:addons/purchase_order_type/models/purchase_order.py:0
 msgid "Document's company and type's company mismatch"
-msgstr "Inad??quation entre la soci??t?? du document et la soci??t?? du type"
+msgstr "Inadéquation entre la société du document et la société du type"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__sequence_id
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
 msgid "Entry Sequence"
-msgstr "S??quence d'entr??e"
+msgstr "Séquence d'entrée"
 
 #. module: purchase_order_type
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
@@ -99,12 +99,12 @@ msgstr "Incoterme"
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__write_uid
 msgid "Last Updated by"
-msgstr "Derni??re modification par"
+msgstr "Dernière modification par"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__write_date
 msgid "Last Updated on"
-msgstr "Derni??re modification le"
+msgstr "Dernière modification le"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__name
@@ -143,7 +143,7 @@ msgstr "Types de Commandes d'Achat"
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__sequence
 msgid "Sequence"
-msgstr "S??quence"
+msgstr "Séquence"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order__order_type
@@ -159,7 +159,7 @@ msgid "Type of purchase order"
 msgstr "Type de commande"
 
 #~ msgid "Last Modified on"
-#~ msgstr "Derni??re modification le"
+#~ msgstr "Dernière modification le"
 
 #~ msgid "Partner"
 #~ msgstr "Partenaire"

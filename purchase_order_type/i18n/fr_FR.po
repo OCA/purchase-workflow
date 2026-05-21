@@ -32,7 +32,7 @@ msgstr ""
 #. module: purchase_order_type
 #: model_terms:ir.actions.act_window,help:purchase_order_type.action_purchase_order_type_view
 msgid "Click to set a new type for purchase order."
-msgstr "Cliquez pour d??finir un nouveau type de bon de commande."
+msgstr "Cliquez pour définir un nouveau type de bon de commande."
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__company_id
@@ -48,7 +48,7 @@ msgstr "Contact"
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__create_uid
 msgid "Created by"
-msgstr "Cr???? par"
+msgstr "Créé par"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__create_date

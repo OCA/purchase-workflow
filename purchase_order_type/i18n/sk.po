@@ -21,7 +21,7 @@ msgstr ""
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__active
 msgid "Active"
-msgstr "Akt??vne"
+msgstr "Aktívne"
 
 #. module: purchase_order_type
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_form
@@ -52,7 +52,7 @@ msgstr "Vytvoril"
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__create_date
 msgid "Created on"
-msgstr "Vytvoren??"
+msgstr "Vytvoreného"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__description
@@ -62,7 +62,7 @@ msgstr ""
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__display_name
 msgid "Display Name"
-msgstr "Zobrazi?? meno"
+msgstr "Zobraziť meno"
 
 #. module: purchase_order_type
 #. odoo-python
@@ -100,7 +100,7 @@ msgstr "Naposledy upravoval"
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__write_date
 msgid "Last Updated on"
-msgstr "Naposledy upravovan??"
+msgstr "Naposledy upravovaný"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__name
@@ -155,7 +155,7 @@ msgid "Type of purchase order"
 msgstr ""
 
 #~ msgid "Last Modified on"
-#~ msgstr "Posledn?? modifik??cia"
+#~ msgstr "Posledná modifikácia"
 
 #~ msgid "Partner"
 #~ msgstr "Partner"

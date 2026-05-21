@@ -64,7 +64,7 @@ msgstr ""
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__display_name
 msgid "Display Name"
-msgstr "Wy??wietlana nazwa "
+msgstr "Wyświetlana nazwa "
 
 #. module: purchase_order_type
 #. odoo-python

@@ -171,7 +171,7 @@ msgid "Type of purchase order"
 msgstr "Bestellauftrag"
 
 #~ msgid "Last Modified on"
-#~ msgstr "Zuletzt ge??ndert am"
+#~ msgstr "Zuletzt geändert am"
 
 #~ msgid "Partner"
 #~ msgstr "Partner"

@@ -21,7 +21,7 @@ msgstr ""
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__active
 msgid "Active"
-msgstr "Aktivn??"
+msgstr "Aktivní"
 
 #. module: purchase_order_type
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_form
@@ -47,12 +47,12 @@ msgstr ""
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__create_uid
 msgid "Created by"
-msgstr "Vytvo??il(a)"
+msgstr "Vytvořil(a)"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__create_date
 msgid "Created on"
-msgstr "Vytvo??eno"
+msgstr "Vytvořeno"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__description
@@ -62,7 +62,7 @@ msgstr ""
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__display_name
 msgid "Display Name"
-msgstr "Zobrazovan?? n??zev"
+msgstr "Zobrazovaný název"
 
 #. module: purchase_order_type
 #. odoo-python
@@ -105,7 +105,7 @@ msgstr "Naposled upraveno"
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__name
 msgid "Name"
-msgstr "N??zev"
+msgstr "Název"
 
 #. module: purchase_order_type
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
@@ -158,4 +158,4 @@ msgstr ""
 #~ msgstr "Naposled upraveno"
 
 #~ msgid "Partner"
-#~ msgstr "Spole??n??k"
+#~ msgstr "Společník"

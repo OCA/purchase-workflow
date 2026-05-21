@@ -95,12 +95,12 @@ msgstr ""
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__write_uid
 msgid "Last Updated by"
-msgstr "Darrera actualitzaci?? per"
+msgstr "Darrera actualització per"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__write_date
 msgid "Last Updated on"
-msgstr "Darrera actualitzaci?? el"
+msgstr "Darrera actualització el"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__name
@@ -155,4 +155,4 @@ msgid "Type of purchase order"
 msgstr ""
 
 #~ msgid "Last Modified on"
-#~ msgstr "Darrera modificaci?? en"
+#~ msgstr "Darrera modificació en"

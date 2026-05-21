@@ -47,12 +47,12 @@ msgstr ""
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__create_uid
 msgid "Created by"
-msgstr "Cr???? par"
+msgstr "Créé par"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__create_date
 msgid "Created on"
-msgstr "Cr???? le"
+msgstr "Créé le"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__description
@@ -62,7 +62,7 @@ msgstr ""
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__display_name
 msgid "Display Name"
-msgstr "Nom affich??"
+msgstr "Nom affiché"
 
 #. module: purchase_order_type
 #. odoo-python
@@ -95,12 +95,12 @@ msgstr ""
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__write_uid
 msgid "Last Updated by"
-msgstr "Modifi?? par"
+msgstr "Modifié par"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__write_date
 msgid "Last Updated on"
-msgstr "Modifi?? le"
+msgstr "Modifié le"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__name
@@ -155,7 +155,7 @@ msgid "Type of purchase order"
 msgstr ""
 
 #~ msgid "Last Modified on"
-#~ msgstr "Derni??re modification le"
+#~ msgstr "Dernière modification le"
 
 #~ msgid "Partner"
 #~ msgstr "Partenaire"

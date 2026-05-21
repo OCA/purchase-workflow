@@ -84,7 +84,7 @@ msgstr ""
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__id
 msgid "ID"
-msgstr "ID (identificaci??n)"
+msgstr "ID (identificación)"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__incoterm_id
@@ -95,12 +95,12 @@ msgstr ""
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__write_uid
 msgid "Last Updated by"
-msgstr "??ltima actualizaci??n de"
+msgstr "Última actualización de"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__write_date
 msgid "Last Updated on"
-msgstr "??ltima actualizaci??n en"
+msgstr "Última actualización en"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__name
@@ -155,7 +155,7 @@ msgid "Type of purchase order"
 msgstr ""
 
 #~ msgid "Last Modified on"
-#~ msgstr "??ltima modificaci??n en"
+#~ msgstr "Última modificación en"
 
 #~ msgid "Partner"
 #~ msgstr "Empresa"

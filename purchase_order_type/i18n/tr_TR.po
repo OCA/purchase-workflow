@@ -47,12 +47,12 @@ msgstr ""
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__create_uid
 msgid "Created by"
-msgstr "Olu??turan"
+msgstr "Oluşturan"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__create_date
 msgid "Created on"
-msgstr "Olu??turulma tarihi"
+msgstr "Oluşturulma tarihi"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__description
@@ -62,7 +62,7 @@ msgstr ""
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__display_name
 msgid "Display Name"
-msgstr "G??r??nen ad"
+msgstr "Görünen ad"
 
 #. module: purchase_order_type
 #. odoo-python
@@ -95,12 +95,12 @@ msgstr ""
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__write_uid
 msgid "Last Updated by"
-msgstr "En son g??ncelleyen "
+msgstr "En son güncelleyen "
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__write_date
 msgid "Last Updated on"
-msgstr "En son g??ncelleme tarihi"
+msgstr "En son güncelleme tarihi"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__name
@@ -155,10 +155,10 @@ msgid "Type of purchase order"
 msgstr ""
 
 #~ msgid "Last Modified on"
-#~ msgstr "En son g??ncelleme tarihi"
+#~ msgstr "En son güncelleme tarihi"
 
 #~ msgid "Create Invoice"
-#~ msgstr "Fatura olu??tur"
+#~ msgstr "Fatura oluştur"
 
 #~ msgid "Partner"
 #~ msgstr "Ortak"

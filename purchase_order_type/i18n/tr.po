@@ -47,12 +47,12 @@ msgstr ""
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__create_uid
 msgid "Created by"
-msgstr "Olu??turan"
+msgstr "Oluşturan"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__create_date
 msgid "Created on"
-msgstr "Olu??turuldu"
+msgstr "Oluşturuldu"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__description
@@ -62,7 +62,7 @@ msgstr ""
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__display_name
 msgid "Display Name"
-msgstr "G??r??nen ??sim"
+msgstr "Görünen İsim"
 
 #. module: purchase_order_type
 #. odoo-python
@@ -95,17 +95,17 @@ msgstr ""
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__write_uid
 msgid "Last Updated by"
-msgstr "Son g??ncelleyen"
+msgstr "Son güncelleyen"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__write_date
 msgid "Last Updated on"
-msgstr "Son g??ncelleme"
+msgstr "Son güncelleme"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__name
 msgid "Name"
-msgstr "Ad??"
+msgstr "Adó"
 
 #. module: purchase_order_type
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
@@ -155,7 +155,7 @@ msgid "Type of purchase order"
 msgstr ""
 
 #~ msgid "Last Modified on"
-#~ msgstr "Son de??i??iklik"
+#~ msgstr "Son değişiklik"
 
 #~ msgid "Partner"
-#~ msgstr "???? Orta????"
+#~ msgstr "İş Ortağı"

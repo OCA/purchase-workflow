@@ -187,10 +187,10 @@ msgid "Type of purchase order"
 msgstr "Nabavni nalog"
 
 #~ msgid "Last Modified on"
-#~ msgstr "Zadnji?? spremenjeno"
+#~ msgstr "Zadnjič spremenjeno"
 
 #~ msgid "Create Invoice"
-#~ msgstr "Ustvari ra??un"
+#~ msgstr "Ustvari račun"
 
 #~ msgid "Partner"
 #~ msgstr "Partner"
