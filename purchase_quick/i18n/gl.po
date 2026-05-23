@@ -6,28 +6,30 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-05-23 18:46+0000\n"
+"Last-Translator: Pablo Castelo <pablocv@gmx.es>\n"
 "Language-Team: none\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: purchase_quick
 #: model_terms:ir.ui.view,arch_db:purchase_quick.view_purchase_form
 msgid "Add"
-msgstr ""
+msgstr "Engadir"
 
 #. module: purchase_quick
 #: model_terms:ir.ui.view,arch_db:purchase_quick.product_search_form_view
 msgid "Filter products supplied by the supplier of the current parent object"
-msgstr ""
+msgstr "Filtrar os produtos fornecidos polo provedor do obxecto pai actual"
 
 #. module: purchase_quick
 #: model_terms:ir.ui.view,arch_db:purchase_quick.product_search_form_view
 msgid "For current supplier"
-msgstr ""
+msgstr "Para o provedor actual"
 
 #. module: purchase_quick
 #: code:addons/purchase_quick/models/purchase_order.py:0
@@ -36,49 +38,51 @@ msgid ""
 "Must have only 1 line per product for mass addition, but there are "
 "{nr_lines}s lines for the product %(product)s"
 msgstr ""
+"Só debe haber 1 liña por produto para a adición en masa, pero hai {nr_lines}"
+"s liñas para o produto %(product)s"
 
 #. module: purchase_quick
 #: model_terms:ir.ui.view,arch_db:purchase_quick.product_tree_view4purchase
 msgid "Open"
-msgstr ""
+msgstr "Abrir"
 
 #. module: purchase_quick
 #: model:ir.model.fields,field_description:purchase_quick.field_product_product__po_line_ids
 msgid "Po Line"
-msgstr ""
+msgstr "Liña Po"
 
 #. module: purchase_quick
 #: model:ir.model,name:purchase_quick.model_product_product
 msgid "Product"
-msgstr ""
+msgstr "Produto"
 
 #. module: purchase_quick
 #: code:addons/purchase_quick/models/purchase_order.py:0
 #, python-format
 msgid "Product Variants"
-msgstr ""
+msgstr "Variantes de Produtos"
 
 #. module: purchase_quick
 #: model:ir.model,name:purchase_quick.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Orde de Compra"
 
 #. module: purchase_quick
 #: model:ir.model.fields,field_description:purchase_quick.field_product_product__seller_price
 msgid "Seller Price"
-msgstr ""
+msgstr "Prezo Vendedor"
 
 #. module: purchase_quick
 #: model:ir.model.fields,help:purchase_quick.field_product_product__po_line_ids
 msgid "Technical: used to compute quantities to purchase."
-msgstr ""
+msgstr "Técnico: utilizado para calcular as cantidades para comprar."
 
 #. module: purchase_quick
 #: model_terms:ir.ui.view,arch_db:purchase_quick.product_tree_view4purchase
 msgid "UoM"
-msgstr ""
+msgstr "UdM"
 
 #. module: purchase_quick
 #: model:ir.model.fields,field_description:purchase_quick.field_product_product__variant_specific_seller_ids
 msgid "Variant Specific Seller"
-msgstr ""
+msgstr "Vendedor Específico de Variantes"
