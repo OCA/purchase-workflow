@@ -6,37 +6,39 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-05-23 18:46+0000\n"
+"Last-Translator: Pablo Castelo <pablocv@gmx.es>\n"
 "Language-Team: none\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: stock_move_purchase_price_update
 #: model:ir.model.fields,field_description:stock_move_purchase_price_update.field_stock_move__is_purchase_price_editable
 #: model:ir.model.fields,field_description:stock_move_purchase_price_update.field_stock_move_line__is_purchase_price_editable
 msgid "Is Purchase Price Editable"
-msgstr ""
+msgstr "Prezo de compra é editable"
 
 #. module: stock_move_purchase_price_update
 #: model:ir.model,name:stock_move_purchase_price_update.model_stock_move_line
 msgid "Product Moves (Stock Move Line)"
-msgstr ""
+msgstr "Movementos de Produto (Stock Move Line)"
 
 #. module: stock_move_purchase_price_update
 #: model:ir.model.fields,field_description:stock_move_purchase_price_update.field_stock_move_line__purchase_line_id
 msgid "Purchase Line"
-msgstr ""
+msgstr "Liña de compra"
 
 #. module: stock_move_purchase_price_update
 #: model:ir.model.fields,field_description:stock_move_purchase_price_update.field_stock_move__purchase_price_unit
 #: model:ir.model.fields,field_description:stock_move_purchase_price_update.field_stock_move_line__purchase_price_unit
 msgid "Purchase price"
-msgstr ""
+msgstr "Prezo compra"
 
 #. module: stock_move_purchase_price_update
 #: model:ir.model,name:stock_move_purchase_price_update.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Movemento de existencias"
