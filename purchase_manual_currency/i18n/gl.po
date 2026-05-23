@@ -6,51 +6,53 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-05-23 18:46+0000\n"
+"Last-Translator: Pablo Castelo <pablocv@gmx.es>\n"
 "Language-Team: none\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: purchase_manual_currency
 #: code:addons/purchase_manual_currency/models/purchase.py:0
 #, python-format
 msgid "%(company_currency_name)s per 1 %(rate_currency_name)s"
-msgstr ""
+msgstr "%(company_currency_name)s por 1 %(rate_currency_name)s"
 
 #. module: purchase_manual_currency
 #: code:addons/purchase_manual_currency/models/purchase.py:0
 #, python-format
 msgid "%(rate_currency_name)s per 1 %(company_currency_name)s"
-msgstr ""
+msgstr "%(rate_currency_name)s por 1 %(company_currency_name)s"
 
 #. module: purchase_manual_currency
 #: model_terms:ir.ui.view,arch_db:purchase_manual_currency.purchase_order_form
 msgid "<i title=\"Update Currency\" class=\"fa fa-fw fa-refresh\"/>"
-msgstr ""
+msgstr "<i title=\"Update Currency\" class=\"fa fa-fw fa-refresh\"/>"
 
 #. module: purchase_manual_currency
 #: model_terms:ir.ui.view,arch_db:purchase_manual_currency.res_config_settings_view_form_purchase
 msgid "Bill Manual Currency"
-msgstr ""
+msgstr "Divisa Factura Manual"
 
 #. module: purchase_manual_currency
 #: model:ir.model,name:purchase_manual_currency.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Compañías"
 
 #. module: purchase_manual_currency
 #: model:ir.model.fields,field_description:purchase_manual_currency.field_purchase_order__company_currency_id
 #: model:ir.model.fields,field_description:purchase_manual_currency.field_purchase_order_line__company_currency_id
 msgid "Company Currency"
-msgstr ""
+msgstr "Divisa da Compañía"
 
 #. module: purchase_manual_currency
 #: model:ir.model.fields,field_description:purchase_manual_currency.field_purchase_order__currency_diff
 msgid "Currency Diff"
-msgstr ""
+msgstr "Dif de Divisa"
 
 #. module: purchase_manual_currency
 #: code:addons/purchase_manual_currency/models/purchase.py:0
@@ -59,59 +61,61 @@ msgid ""
 "In invoice cannot have a mixture of different manual currency rates in "
 "purchases."
 msgstr ""
+"Na factura non pode haber unha mestura de diferentes tipos de divisas "
+"manuais nas compras."
 
 #. module: purchase_manual_currency
 #: code:addons/purchase_manual_currency/models/purchase.py:0
 #, python-format
 msgid "In invoice cannot have a mixture of different manual currency."
-msgstr ""
+msgstr "Na factura non pode haber unha mestura de diferentes divisas manuais."
 
 #. module: purchase_manual_currency
 #: model:ir.model.fields,field_description:purchase_manual_currency.field_purchase_order__is_manual
 msgid "Is Manual"
-msgstr ""
+msgstr "É Manual"
 
 #. module: purchase_manual_currency
 #: model:ir.model.fields,field_description:purchase_manual_currency.field_purchase_order__manual_currency
 msgid "Manual Currency"
-msgstr ""
+msgstr "Divisa Manual"
 
 #. module: purchase_manual_currency
 #: model:ir.model.fields,field_description:purchase_manual_currency.field_res_company__manual_currency_po_inv
 #: model:ir.model.fields,field_description:purchase_manual_currency.field_res_config_settings__manual_currency_po_inv
 msgid "Manual Currency Purchase - Invoice"
-msgstr ""
+msgstr "Compra de Divisas Manual - Factura"
 
 #. module: purchase_manual_currency
 #: model:ir.model.fields,field_description:purchase_manual_currency.field_purchase_order__manual_currency_rate
 msgid "Manual Currency Rate"
-msgstr ""
+msgstr "Tipo de Divisa Manual"
 
 #. module: purchase_manual_currency
 #: model_terms:ir.ui.view,arch_db:purchase_manual_currency.purchase_order_form
 msgid "Opened"
-msgstr ""
+msgstr "Aberto"
 
 #. module: purchase_manual_currency
 #: model:ir.model,name:purchase_manual_currency.model_res_config_settings
 msgid "Procurement purchase grouping settings"
-msgstr ""
+msgstr "Configuración da agrupación de adquisición de compras"
 
 #. module: purchase_manual_currency
 #: model:ir.model,name:purchase_manual_currency.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Orde de Compra"
 
 #. module: purchase_manual_currency
 #: model:ir.model,name:purchase_manual_currency.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Liña de Orde de Compra"
 
 #. module: purchase_manual_currency
 #: code:addons/purchase_manual_currency/models/purchase.py:0
 #, python-format
 msgid "Rate currency can refresh state draft only."
-msgstr ""
+msgstr "O tipo de divisa só pode actualizarse en estado de borrador."
 
 #. module: purchase_manual_currency
 #: model:ir.model.fields,help:purchase_manual_currency.field_purchase_order__manual_currency_rate
@@ -119,28 +123,31 @@ msgid ""
 "Set new currency rate to apply on the invoice\n"
 ".This rate will be taken in order to convert amounts between the currency on the purchase order and last currency"
 msgstr ""
+"Establecer o novo tipo de cambio que se aplicará á factura\n"
+"Este tipo de cambio utilizarase para converter os importes entre a divisa da "
+"orde de compra e a última divisa"
 
 #. module: purchase_manual_currency
 #: model:ir.model.fields,field_description:purchase_manual_currency.field_purchase_order_line__subtotal_company_currency
 msgid "Subtotal (Company Currency)"
-msgstr ""
+msgstr "Subtotal (Divisa da Compañía)"
 
 #. module: purchase_manual_currency
 #: model:ir.model.fields,field_description:purchase_manual_currency.field_purchase_order__total_company_currency
 msgid "Total Company Currency"
-msgstr ""
+msgstr "Total Divisa da Compañía"
 
 #. module: purchase_manual_currency
 #: model:ir.model.fields,field_description:purchase_manual_currency.field_purchase_order__type_currency
 msgid "Type Currency"
-msgstr ""
+msgstr "Tipo Divisa"
 
 #. module: purchase_manual_currency
 #: model:ir.model.fields.selection,name:purchase_manual_currency.selection__res_company__manual_currency_po_inv__currency_inv
 msgid "Use currency invoice"
-msgstr ""
+msgstr "Utilizar a factura de divisas"
 
 #. module: purchase_manual_currency
 #: model:ir.model.fields.selection,name:purchase_manual_currency.selection__res_company__manual_currency_po_inv__currency_po
 msgid "Use currency purchase"
-msgstr ""
+msgstr "Utilizar a compra de divisa"
