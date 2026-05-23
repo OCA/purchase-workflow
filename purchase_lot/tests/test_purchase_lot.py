@@ -1,18 +1,23 @@
 # Copyright (C) 2022 Akretion (<http://www.akretion.com>).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.tests.common import TransactionCase
+from odoo import Command
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestPurchaseLot(TransactionCase):
+class TestPurchaseLot(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.partner_id = cls.env.ref("base.res_partner_1")
         cls.customer_loc = cls.env.ref("stock.stock_location_customers")
         cls.warehouse = cls.env.ref("stock.warehouse0")
-        large_cabinet = cls.env.ref("product.product_product_6")
-        cls.large_cabinet = large_cabinet.copy()
+        cls.large_cabinet = cls.env["product.product"].create(
+            {
+                "name": "Test Product Lot",
+                "type": "consu",
+            }
+        )
         buy_route = cls.env.ref("purchase_stock.route_warehouse0_buy")
         mto_route = cls.env.ref("stock.route_warehouse0_mto")
         mto_route.write({"active": True})
@@ -28,7 +33,7 @@ class TestPurchaseLot(TransactionCase):
             {
                 "product_tmpl_id": cls.large_cabinet.product_tmpl_id.id,
                 "product_id": cls.large_cabinet.id,
-                "partner_id": cls.partner_id.id,
+                "partner_id": cls.partner.id,
             }
         )
         cls.out_picking_type = cls.env.ref("stock.picking_type_out")
@@ -48,7 +53,7 @@ class TestPurchaseLot(TransactionCase):
         )
 
     def test_purchase_lot(self):
-        group = self.env["procurement.group"].create({"name": "My test delivery"})
+        group = self.env["stock.reference"].create({"name": "My test delivery"})
         vals_list = [
             {
                 "product_id": self.large_cabinet.id,
@@ -56,12 +61,12 @@ class TestPurchaseLot(TransactionCase):
                 "location_dest_id": self.customer_loc.id,
                 "product_uom_qty": 1,
                 "product_uom": self.large_cabinet.uom_id.id,
-                "name": "test",
+                "description_picking": "test",
                 "procure_method": "make_to_order",
                 "warehouse_id": self.warehouse.id,
                 "restrict_lot_id": self.lot1.id,
                 "picking_type_id": self.out_picking_type.id,
-                "group_id": group.id,
+                "reference_ids": [(4, group.id)],
             },
             {
                 "product_id": self.large_cabinet.id,
@@ -69,12 +74,12 @@ class TestPurchaseLot(TransactionCase):
                 "location_dest_id": self.customer_loc.id,
                 "product_uom_qty": 1,
                 "product_uom": self.large_cabinet.uom_id.id,
-                "name": "test",
+                "description_picking": "test",
                 "procure_method": "make_to_order",
                 "warehouse_id": self.warehouse.id,
                 "restrict_lot_id": self.lot2.id,
                 "picking_type_id": self.out_picking_type.id,
-                "group_id": group.id,
+                "reference_ids": [(4, group.id)],
             },
         ]
         moves = self.env["stock.move"].create(vals_list)
@@ -94,11 +99,9 @@ class TestPurchaseLot(TransactionCase):
     def test_purchase_lot_stock_propagation(self):
         purchase = self.env["purchase.order"].create(
             {
-                "partner_id": self.partner_id.id,
+                "partner_id": self.partner.id,
                 "order_line": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": self.large_cabinet.id,
                             "product_qty": 1.0,
@@ -110,5 +113,5 @@ class TestPurchaseLot(TransactionCase):
         )
         purchase.button_confirm()
         picking = purchase.picking_ids[:1]
-        move = picking.move_ids_without_package[:1]
+        move = picking.move_ids[:1]
         self.assertEqual(self.lot1, move.restrict_lot_id)
