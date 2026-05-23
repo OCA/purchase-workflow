@@ -6,96 +6,98 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-05-23 18:46+0000\n"
+"Last-Translator: Pablo Castelo <pablocv@gmx.es>\n"
 "Language-Team: none\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: purchase_line_reassign
 #: model:ir.model.fields,field_description:purchase_line_reassign.field_purchase_order_line_reassign_wiz__allow_different_suppliers
 msgid "Allow Different Suppliers"
-msgstr ""
+msgstr "Permitir provedores diferentes"
 
 #. module: purchase_line_reassign
 #: model:ir.model.fields,help:purchase_line_reassign.field_purchase_order_line_reassign_wiz__allow_different_suppliers
 msgid "Allow selecting orders from other suppliers."
-msgstr ""
+msgstr "Permitir seleccionar pedidos doutros provedores"
 
 #. module: purchase_line_reassign
 #: model_terms:ir.ui.view,arch_db:purchase_line_reassign.purchase_order_line_reassign_wiz
 msgid "Apply"
-msgstr ""
+msgstr "Aplicar"
 
 #. module: purchase_line_reassign
 #: model_terms:ir.ui.view,arch_db:purchase_line_reassign.purchase_order_line_reassign_wiz
 msgid "Close"
-msgstr ""
+msgstr "Pechar"
 
 #. module: purchase_line_reassign
 #: model:ir.model.fields,field_description:purchase_line_reassign.field_purchase_order_line_reassign_wiz__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: purchase_line_reassign
 #: model:ir.model.fields,field_description:purchase_line_reassign.field_purchase_order_line_reassign_wiz__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creado o"
 
 #. module: purchase_line_reassign
 #: model:ir.model.fields,field_description:purchase_line_reassign.field_purchase_order_line_reassign_wiz__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome a mostrar"
 
 #. module: purchase_line_reassign
 #: model:ir.model.fields,field_description:purchase_line_reassign.field_purchase_order_line_reassign_wiz__id
 msgid "ID"
-msgstr ""
+msgstr "ID (identificación)"
 
 #. module: purchase_line_reassign
 #: model:ir.model.fields,field_description:purchase_line_reassign.field_purchase_order_line_reassign_wiz____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificación o"
 
 #. module: purchase_line_reassign
 #: model:ir.model.fields,field_description:purchase_line_reassign.field_purchase_order_line_reassign_wiz__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Última modificación por"
 
 #. module: purchase_line_reassign
 #: model:ir.model.fields,field_description:purchase_line_reassign.field_purchase_order_line_reassign_wiz__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última actualización o"
 
 #. module: purchase_line_reassign
 #: model:ir.model.fields,field_description:purchase_line_reassign.field_purchase_order_line_reassign_wiz__purchase_order_id
 msgid "Move to purchase"
-msgstr ""
+msgstr "Mover a pedido de compra"
 
 #. module: purchase_line_reassign
 #: model_terms:ir.ui.view,arch_db:purchase_line_reassign.purchase_order_line_reassign_wiz
 msgid "Purchase Order Lines"
-msgstr ""
+msgstr "Lineas pedido de compra"
 
 #. module: purchase_line_reassign
 #: model:ir.actions.act_window,name:purchase_line_reassign.action_purchase_order_line_reassign_wiz
 msgid "Reassign Lines to Other Purchase"
-msgstr ""
+msgstr "Asignar lineas a outro pedido de compra"
 
 #. module: purchase_line_reassign
 #: code:addons/purchase_line_reassign/wizards/purchase_line_reassign_wiz.py:0
 #, python-format
 msgid "Selected line/s are invoiced or they have distinct vendors"
-msgstr ""
+msgstr "Seleccionadas linea/s facturadas ou teñen distintos provedores"
 
 #. module: purchase_line_reassign
 #: model:ir.model.fields,field_description:purchase_line_reassign.field_purchase_order_line_reassign_wiz__partner_id
 msgid "Vendor"
-msgstr ""
+msgstr "Provedor"
 
 #. module: purchase_line_reassign
 #: model:ir.model,name:purchase_line_reassign.model_purchase_order_line_reassign_wiz
 msgid "Wizard to reassign purchase order lines to other PO"
-msgstr ""
+msgstr "Asistente para reasingnar lineas de ordenes de compra a outra orde"
