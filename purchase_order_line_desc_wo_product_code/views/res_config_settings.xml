@@ -1,0 +1,23 @@
+<odoo>
+    <record id="res_config_settings_view_form_purchase_hide_code" model="ir.ui.view">
+        <field
+            name="name"
+        >res.config.settings.view.form.inherit.purchase (in purchase_order_line_desc_wo_product_code)</field>
+        <field name="model">res.config.settings</field>
+        <field
+            name="inherit_id"
+            ref="purchase.res_config_settings_view_form_purchase"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//block[@name='purchase_setting_container']" position="inside">
+                <setting
+                    id="hide_product_code_setting"
+                    string="Hide product code"
+                    help="Hide the internal product reference in the purchase order descriptions."
+                >
+                    <field name="hide_product_code" />
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>
