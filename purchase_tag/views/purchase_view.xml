@@ -49,4 +49,58 @@
             </field>
         </field>
     </record>
+
+    <record id="view_purchase_order_kanban" model="ir.ui.view">
+        <field name="name">purchase.order.kanban</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_kanban" />
+        <field name="arch" type="xml">
+            <field name="currency_id" position="after">
+                <field name="tag_ids" />
+            </field>
+            <xpath expr="//t[@t-name='card']/footer" position="attributes">
+                <attribute name="class" add="mt-2" separator=" " />
+            </xpath>
+            <xpath expr="//footer/field[@name='state']/.." position="after">
+                <div class="mt-3">
+                    <field
+                        name="tag_ids"
+                        widget="many2many_tags"
+                        options="{'color_field': 'color', 'no_create_edit': True}"
+                    />
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_purchase_order_filter" model="ir.ui.view">
+        <field name="name">purchase.order.search</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_filter" />
+        <field name="arch" type="xml">
+            <field name="name" position="inside">
+                <field name="tag_ids" select="multi" />
+            </field>
+            <filter name="order_date" position="before">
+                <filter
+                    name="filter_have_tag"
+                    string="Have a tag"
+                    domain="[('tag_ids','!=',False)]"
+                />
+                <filter
+                    name="filter_dont_have_tag"
+                    string="Don't have a tag"
+                    domain="[('tag_ids','=',False)]"
+                />
+                <separator />
+            </filter>
+            <xpath expr="//search/group/filter[@name='order_date']" position="after">
+                <filter
+                    string="Tag"
+                    name="group_by_tag"
+                    context="{'group_by': 'tag_ids'}"
+                />
+            </xpath>
+        </field>
+    </record>
 </odoo>
