@@ -30,6 +30,7 @@ class TestPurchasePartnerIncoterm(TransactionCase):
                 "name": "Test Partner",
                 "purchase_incoterm_id": cls.incoterm.id,
                 "purchase_incoterm_address_id": cls.incoterm_address.id,
+                "purchase_incoterm_location": "Test Location",
             }
         )
 
@@ -50,4 +51,8 @@ class TestPurchasePartnerIncoterm(TransactionCase):
         self.assertEqual(
             self.purchase_order.incoterm_address_id,
             self.partner.purchase_incoterm_address_id,
+        )
+        self.assertEqual(
+            self.purchase_order.incoterm_location,
+            self.partner.purchase_incoterm_location,
         )

@@ -19,4 +19,7 @@ class PurchaseOrder(models.Model):
         self.incoterm_address_id = (
             self.partner_id.commercial_partner_id.purchase_incoterm_address_id
         )
+        self.incoterm_location = (
+            self.partner_id.commercial_partner_id.purchase_incoterm_location
+        )
         return res
