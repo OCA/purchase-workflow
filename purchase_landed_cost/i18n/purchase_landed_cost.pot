@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -199,6 +199,8 @@ msgid ""
 msgstr ""
 
 #. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_account_move__display_name
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_account_move_line__display_name
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_import_invoice_line_wizard__display_name
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_import_landed_cost_pickings_wizard__display_name
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_picking_import_wizard__display_name
@@ -207,6 +209,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__display_name
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_expense__display_name
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_expense_type__display_name
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_stock_picking__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -293,11 +297,8 @@ msgid "Gross weight"
 msgstr ""
 
 #. module: purchase_landed_cost
-#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_expense_search
-msgid "Group By"
-msgstr ""
-
-#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_account_move__id
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_account_move_line__id
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_import_invoice_line_wizard__id
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_import_landed_cost_pickings_wizard__id
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_picking_import_wizard__id
@@ -306,6 +307,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__id
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_expense__id
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_expense_type__id
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_order__id
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_stock_picking__id
 msgid "ID"
 msgstr ""
 
@@ -391,23 +394,10 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_account_bank_statement_line__expense_line_ids
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_account_move__expense_line_ids
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_account_move_line__expense_line_ids
-#: model:ir.model.fields,field_description:purchase_landed_cost.field_account_payment__expense_line_ids
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_order_form
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_move_form
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_picking_form
 msgid "Landed costs"
-msgstr ""
-
-#. module: purchase_landed_cost
-#: model:ir.model.fields,field_description:purchase_landed_cost.field_import_invoice_line_wizard____last_update
-#: model:ir.model.fields,field_description:purchase_landed_cost.field_import_landed_cost_pickings_wizard____last_update
-#: model:ir.model.fields,field_description:purchase_landed_cost.field_picking_import_wizard____last_update
-#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution____last_update
-#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_expense____last_update
-#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line____last_update
-#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_expense____last_update
-#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_expense_type____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: purchase_landed_cost
@@ -458,7 +448,6 @@ msgstr ""
 #. module: purchase_landed_cost
 #. odoo-python
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:0
-#, python-format
 msgid "No valid distribution type."
 msgstr ""
 
@@ -497,7 +486,6 @@ msgstr ""
 #. module: purchase_landed_cost
 #. odoo-python
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:0
-#, python-format
 msgid "Please enter an amount for all the expenses"
 msgstr ""
 
@@ -669,10 +657,9 @@ msgstr ""
 #. module: purchase_landed_cost
 #. odoo-python
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:0
-#, python-format
 msgid ""
-"The cost for the line '%s' can't be distributed because the calculation "
-"method doesn't provide valid data"
+"The cost for the line '%(name)s' can't be distributed because the "
+"calculation method doesn't provide valid data"
 msgstr ""
 
 #. module: purchase_landed_cost
@@ -698,7 +685,6 @@ msgstr ""
 #. module: purchase_landed_cost
 #. odoo-python
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:0
-#, python-format
 msgid "There is no picking lines in the distribution"
 msgstr ""
 
@@ -803,14 +789,12 @@ msgstr ""
 #. module: purchase_landed_cost
 #. odoo-python
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:0
-#, python-format
 msgid "You can't delete a confirmed cost distribution"
 msgstr ""
 
 #. module: purchase_landed_cost
 #. odoo-python
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:0
-#, python-format
 msgid ""
 "You can't delete a cost line if it's an affected line of any expense line."
 msgstr ""
