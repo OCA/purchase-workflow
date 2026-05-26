@@ -215,3 +215,36 @@ class TestPurchaseOrder(common.TransactionCase):
         # change partner of the PO line
         with self.assertRaises(ValidationError):
             po.write({"partner_id": self.partner_2})
+
+    def test_get_eligible_bo_lines_domain_company_filter(self):
+        """Domain must include company_id to prevent cross-company leakage."""
+        blanket_order = self.create_blanket_order_01()
+        blanket_order.sudo().action_confirm()
+        po = self.purchase_order_obj.create(
+            {
+                "partner_id": self.partner.id,
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": self.product.name,
+                            "product_id": self.product.id,
+                            "product_qty": 5.0,
+                            "product_uom": self.product.uom_po_id.id,
+                            "date_planned": date.today(),
+                            "price_unit": 10.0,
+                        },
+                    )
+                ],
+            }
+        )
+        po_line = po.order_line[0]
+        domain = po_line._get_eligible_bo_lines_domain(5.0)
+        self.assertIn(
+            ("company_id", "in", [False, po.company_id.id]),
+            domain,
+        )
+        # Ensure other expected filters are still present
+        self.assertIn(("product_id", "=", self.product.id), domain)
+        self.assertIn(("order_id.state", "=", "open"), domain)
