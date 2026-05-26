@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="model">res.config.settings</field>
+        <field
+            name="inherit_id"
+            ref="purchase.res_config_settings_view_form_purchase"
+        />
+        <field name="arch" type="xml">
+            <block name="invoicing_settings_container" position="inside">
+                <setting
+                    id="auto_bill_on_receipt"
+                    company_dependent="1"
+                    help="Automatically create and post a Vendor Bill when a purchase receipt is validated, and a Credit Note when a purchase return is validated. Can be overridden per vendor."
+                >
+                    <field name="auto_bill_on_receipt" />
+                </setting>
+            </block>
+        </field>
+    </record>
+</odoo>
