@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-01-28 16:11+0000\n"
+"PO-Revision-Date: 2026-05-26 07:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -75,7 +75,7 @@ msgstr "Quantità"
 #. module: purchase_order_secondary_unit
 #: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_purchase_order_line__secondary_uom_id
 msgid "Second unit"
-msgstr "Unità secondaria"
+msgstr "Seconda unità"
 
 #. module: purchase_order_secondary_unit
 #: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_product_supplierinfo__secondary_uom_price
