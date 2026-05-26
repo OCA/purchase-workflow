@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_partner_form" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="purchase.view_partner_property_form" />
+        <field name="arch" type="xml">
+            <group name="purchase" position="inside">
+                <field name="commercial_partner_id" invisible="1" />
+                <field
+                    name="auto_bill_on_receipt"
+                    invisible="commercial_partner_id != id"
+                />
+            </group>
+        </field>
+    </record>
+</odoo>
