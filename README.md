@@ -29,6 +29,7 @@ addon | version | maintainers | summary
 [purchase_default_terms_conditions](purchase_default_terms_conditions/) | 19.0.1.0.0 |  | This module allows purchase default terms & conditions
 [purchase_delivery_split_date](purchase_delivery_split_date/) | 19.0.1.0.0 |  | Allows Purchase Order you confirm to generate one Incoming Shipment for each expected date indicated in the Purchase Order Lines
 [purchase_force_invoiced](purchase_force_invoiced/) | 19.0.1.0.0 |  | Allows to force the billing status of the purchase order to "Invoiced"
+[purchase_landed_cost](purchase_landed_cost/) | 19.0.1.0.0 |  | Purchase cost distribution
 [purchase_line_reassign](purchase_line_reassign/) | 19.0.1.0.0 |  | Purchase Line Reassign
 [purchase_no_rfq](purchase_no_rfq/) | 19.0.1.0.0 | <a href='https://github.com/legalsylvain'><img src='https://github.com/legalsylvain.png' width='32' height='32' style='border-radius:50%;' alt='legalsylvain'/></a> | Purchase Order - No Request For Quotation
 [purchase_order_approved](purchase_order_approved/) | 19.0.1.0.0 |  | Add a new state 'Approved' in purchase orders.
