@@ -53,7 +53,7 @@ msgstr "Haga clic para establecer un nuevo tipo de orden de compra."
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__company_id
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
 msgid "Company"
-msgstr "Compan??a"
+msgstr "Compañía"
 
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_res_partner
@@ -73,7 +73,7 @@ msgstr "Creado en"
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__description
 msgid "Description"
-msgstr "Descripci??n"
+msgstr "Descripción"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__display_name
@@ -85,8 +85,8 @@ msgstr "Nombre mostrado"
 #: code:addons/purchase_order_type/models/purchase_order.py:0
 msgid "Document's company and type's company mismatch"
 msgstr ""
-"Falta de correspondencia entre el documento de la compa????a y el tipo de "
-"compa????a"
+"Falta de correspondencia entre el documento de la compañía y el tipo de "
+"compañía"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__sequence_id
@@ -108,17 +108,17 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__incoterm_id
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
 msgid "Incoterm"
-msgstr "Incot??rmino"
+msgstr "Incotérmino"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__write_uid
 msgid "Last Updated by"
-msgstr "??ltima actualizaci??n por"
+msgstr "Última actualización por"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__write_date
 msgid "Last Updated on"
-msgstr "??ltima actualizaci??n el"
+msgstr "Última actualización el"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__name
@@ -133,7 +133,7 @@ msgstr "Plazo de pago"
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__payment_term_id
 msgid "Payment Terms"
-msgstr "T??rminos del Pago"
+msgstr "Términos del Pago"
 
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_purchase_order
@@ -152,7 +152,7 @@ msgstr "Tipo de Orden de Compra"
 #: model:ir.ui.menu,name:purchase_order_type.menu_purchase_order_type
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
 msgid "Purchase Order Types"
-msgstr "Tipos de ??rdenes de Compra"
+msgstr "Tipos de Órdenes de Compra"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__sequence
@@ -173,7 +173,7 @@ msgid "Type of purchase order"
 msgstr "Tipo de Orden de Compra"
 
 #~ msgid "Last Modified on"
-#~ msgstr "??ltima modificaci??n el"
+#~ msgstr "Última modificación el"
 
 #~ msgid "Create Invoice"
 #~ msgstr "Crear factura"
