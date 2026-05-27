@@ -42,11 +42,23 @@ msgid "Created on"
 msgstr "Creato il"
 
 #. module: purchase_tag
+#: model:ir.model.fields,field_description:purchase_tag.field_purchase_order__display_name
 #: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag__display_name
 msgid "Display Name"
 msgstr "Nome visualizzato"
 
 #. module: purchase_tag
+#: model_terms:ir.ui.view,arch_db:purchase_tag.view_purchase_order_filter
+msgid "Don't have a tag"
+msgstr ""
+
+#. module: purchase_tag
+#: model_terms:ir.ui.view,arch_db:purchase_tag.view_purchase_order_filter
+msgid "Have a tag"
+msgstr ""
+
+#. module: purchase_tag
+#: model:ir.model.fields,field_description:purchase_tag.field_purchase_order__id
 #: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag__id
 msgid "ID"
 msgstr "ID"
@@ -82,6 +94,11 @@ msgid "Purchase Tag"
 msgstr "Etichetta acquisti"
 
 #. module: purchase_tag
+#: model_terms:ir.ui.view,arch_db:purchase_tag.view_purchase_order_filter
+msgid "Tag"
+msgstr ""
+
+#. module: purchase_tag
 #: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag__name
 msgid "Tag Name"
 msgstr "Nome etichetta"
@@ -99,12 +116,9 @@ msgstr "Il nome etichetta esiste già!"
 msgid "Tags"
 msgstr "Etichette"
 
-#. module: purchase_tag
-#. odoo-python
-#: code:addons/purchase_tag/models/purchase_tag.py:0
 #, python-format
-msgid "Tags cannot be recursive."
-msgstr "Le etichette non possono essere ricorsive."
+#~ msgid "Tags cannot be recursive."
+#~ msgstr "Le etichette non possono essere ricorsive."
 
 #~ msgid "Last Modified on"
 #~ msgstr "Ultima modifica il"
