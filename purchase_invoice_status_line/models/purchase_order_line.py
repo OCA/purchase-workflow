@@ -27,6 +27,25 @@ class PurchaseOrderLine(models.Model):
         "even if some quantities are not fully invoiced. ",
     )
 
+    purchase_method = fields.Selection(
+        selection=[
+            ("purchase", "On ordered"),
+            ("receive", "On received"),
+        ],
+        string="Control Policy",
+        compute="_compute_purchase_method",
+        store=True,
+    )
+
+    @api.depends("product_id", "qty_to_invoice")
+    def _compute_purchase_method(self):
+        # qty_to_invoice is a dependency on purpose: changing the policy on the
+        # product does not recompute existing lines, so this snapshot is
+        # refreshed whenever invoicing is recomputed (the moment the policy is
+        # actually applied), keeping it in sync with the billing status.
+        for line in self:
+            line.purchase_method = line.product_id.purchase_method
+
     @api.depends("qty_invoiced", "qty_to_invoice", "product_qty", "force_invoiced")
     def _compute_invoice_status(self):
         precision = self.env["decimal.precision"].precision_get(
