@@ -27,7 +27,7 @@ class PurchaseOrderLine(models.Model):
         "even if some quantities are not fully invoiced. ",
     )
 
-    @api.depends("qty_invoiced", "product_qty", "force_invoiced")
+    @api.depends("qty_invoiced", "qty_to_invoice", "product_qty", "force_invoiced")
     def _compute_invoice_status(self):
         precision = self.env["decimal.precision"].precision_get(
             "Product Unit of Measure"
