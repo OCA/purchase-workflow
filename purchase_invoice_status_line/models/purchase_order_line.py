@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
-from odoo.tools import float_is_zero
+from odoo.tools import float_compare
 
 
 class PurchaseOrderLine(models.Model):
@@ -61,10 +61,9 @@ class PurchaseOrderLine(models.Model):
             if line.force_invoiced:
                 line.invoice_status = "invoiced"
                 continue
-            if float_is_zero(line.qty_to_invoice, precision_digits=precision):
-                if line.qty_invoiced >= line.product_qty:
-                    line.invoice_status = "invoiced"
-                else:
-                    line.invoice_status = "no"
-            else:
+            if float_compare(line.qty_to_invoice, 0, precision_digits=precision) > 0:
                 line.invoice_status = "to invoice"
+            elif line.qty_invoiced >= line.product_qty:
+                line.invoice_status = "invoiced"
+            else:
+                line.invoice_status = "no"
