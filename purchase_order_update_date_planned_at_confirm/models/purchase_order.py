@@ -2,25 +2,28 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from collections import defaultdict
-from contextlib import contextmanager
 
-from odoo import _, models
+from odoo import _, api, fields, models
 
 
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
-    @contextmanager
-    def _change_date_order_to_compute_date_planned(self):
-        # Don't recompute records values
-        with self.env.protecting(self._fields, self):
-            purchase_order_dates = {}
-            for purchase in self:
-                purchase_order_dates[purchase.id] = purchase.date_order
-                purchase.date_order = purchase.date_approve
-            yield
-            for purchase in self:
-                purchase.date_order = purchase_order_dates[purchase.id]
+    current_date_planned = fields.Datetime(
+        compute="_compute_current_date_planned",
+    )
+
+    @api.depends("order_line.current_date_planned")
+    def _compute_current_date_planned(self):
+        """date_planned = the earliest date_planned across all order lines."""
+        for order in self:
+            dates_list = order.order_line.filtered(
+                lambda x: not x.display_type and x.current_date_planned
+            ).mapped("current_date_planned")
+            if dates_list:
+                order.current_date_planned = min(dates_list)
+            else:
+                order.current_date_planned = False
 
     def _update_date_planned_at_confirm(self):
         """
@@ -33,8 +36,7 @@ class PurchaseOrder(models.Model):
             purchases_and_dates = defaultdict()
             for purchase in purchases:
                 purchases_and_dates[purchase.id] = purchase.date_planned
-            with self._change_date_order_to_compute_date_planned():
-                self.order_line._compute_price_unit_and_date_planned_and_name()
+            self.order_line._update_date_planned_at_confirm()
             for purchase in self:
                 if purchase.date_planned != purchases_and_dates[purchase.id]:
                     initial_date = self.env["ir.qweb.field.datetime"].value_to_html(
@@ -51,7 +53,26 @@ class PurchaseOrder(models.Model):
                     )
                     purchase.message_post(body=body)
 
+    def _get_purchase_order_date_confirm_wizard(self):
+        self.ensure_one()
+        return {
+            "name": _("Purchase Order Date Update Confirmation"),
+            "type": "ir.actions.act_window",
+            "res_model": "purchase.update.date.confirmation",
+            "target": "new",
+            "views": [[False, "form"]],
+            "context": {
+                "default_purchase_order_id": self.id,
+            },
+        }
+
     def button_confirm(self):
         res = super().button_confirm()
+        for order in self:
+            if (
+                order.company_id.purchase_update_date_planned_at_confirm
+                and not self.env.context.get("purchase_order_update_date")
+            ):
+                return self._get_purchase_order_date_confirm_wizard()
         self._update_date_planned_at_confirm()
         return res

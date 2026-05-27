@@ -14,5 +14,9 @@
         "base_partition",
         "purchase",
     ],
-    "data": ["views/res_config_settings.xml"],
+    "data": [
+        "security/security.xml",
+        "wizards/purchase_update_date_confirmation.xml",
+        "views/res_config_settings.xml",
+    ],
 }

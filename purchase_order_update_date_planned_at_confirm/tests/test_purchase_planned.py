@@ -22,6 +22,11 @@ class TestPurchaseOrderUpdate(BaseCommon):
                 "name": "Product 1",
             }
         )
+        cls.product_2 = cls.env["product.product"].create(
+            {
+                "name": "Product 2",
+            }
+        )
         cls.env["product.supplierinfo"].create(
             {
                 "partner_id": cls.supplier.id,
@@ -50,7 +55,12 @@ class TestPurchaseOrderUpdate(BaseCommon):
         )
 
         with freeze_time("2026-02-13"):
-            self.po.button_confirm()
+            result = self.po.button_confirm()
+            self.assertIn(result["res_model"], "purchase.update.date.confirmation")
+            wizard = self.env["purchase.update.date.confirmation"].create(
+                {"purchase_order_id": self.po.id}
+            )
+            wizard.doit()
         self.assertEqual(
             fields.Datetime.from_string("2026-02-23"), self.po.date_planned
         )
@@ -75,7 +85,33 @@ class TestPurchaseOrderUpdate(BaseCommon):
         )
 
         with freeze_time("2026-02-13"):
-            self.po.button_confirm()
+            result = self.po.button_confirm()
+            self.assertTrue(result)
         self.assertEqual(
             fields.Datetime.from_string("2026-02-20"), self.po.date_planned
+        )
+
+    def test_confirm_po_no_seller(self):
+        self.env.company.purchase_update_date_planned_at_confirm = True
+        with freeze_time("2026-02-10"):
+            self.po = self.env["purchase.order"].create(
+                {
+                    "partner_id": self.supplier.id,
+                    "order_line": [
+                        Command.create(
+                            {
+                                "product_id": self.product_2.id,
+                            }
+                        )
+                    ],
+                }
+            )
+        self.assertEqual(
+            fields.Datetime.from_string("2026-02-10"), self.po.date_planned
+        )
+
+        with freeze_time("2026-02-13"):
+            self.po.button_confirm()
+        self.assertEqual(
+            fields.Datetime.from_string("2026-02-10"), self.po.date_planned
         )

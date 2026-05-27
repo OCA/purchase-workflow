@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 ACSONE SA/NV
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.model.access" id="access_purchase_order_date_confirmation">
+        <field name="name">Access Purchase Order Date Confirmation</field>
+        <field name="model_id" ref="model_purchase_update_date_confirmation" />
+        <field name="group_id" ref="purchase.group_purchase_user" />
+        <field name="perm_read">1</field>
+        <field name="perm_create">1</field>
+        <field name="perm_write">1</field>
+        <field name="perm_unlink">1</field>
+    </record>
+</odoo>
