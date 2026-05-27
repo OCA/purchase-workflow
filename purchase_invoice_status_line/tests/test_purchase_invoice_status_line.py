@@ -93,3 +93,20 @@ class TestPurchaseInvoiceStatusLine(common.TransactionCase):
         self.assertFalse(line2.force_invoiced, "L2 should be un-forced by PO")
         self.assertEqual(line1.invoice_status, "to invoice")
         self.assertEqual(line2.invoice_status, "to invoice")
+
+    def test_purchase_method_snapshot(self):
+        po = self._create_purchase_order(self.product_received, 10)
+        line = po.order_line[0]
+        self.assertEqual(line.purchase_method, "receive")
+        self.product_received.write({"purchase_method": "purchase"})
+        self.assertEqual(
+            line.purchase_method,
+            "receive",
+            "Changing the product policy must not recompute existing lines",
+        )
+        line.write({"product_qty": 12})
+        self.assertEqual(
+            line.purchase_method,
+            "purchase",
+            "A change that recomputes invoicing must refresh the snapshot",
+        )
