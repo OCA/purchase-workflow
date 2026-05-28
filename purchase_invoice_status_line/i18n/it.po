@@ -22,6 +22,11 @@ msgid "Billing Status"
 msgstr "Stato fatturazione"
 
 #. module: purchase_invoice_status_line
+#: model:ir.model.fields,field_description:purchase_invoice_status_line.field_purchase_order_line__purchase_method
+msgid "Control Policy"
+msgstr ""
+
+#. module: purchase_invoice_status_line
 #: model:ir.model.fields,field_description:purchase_invoice_status_line.field_purchase_order__force_invoiced
 #: model:ir.model.fields,field_description:purchase_invoice_status_line.field_purchase_order_line__force_invoiced
 msgid "Force Invoiced"
@@ -55,6 +60,16 @@ msgstr ""
 #: model:ir.model.fields.selection,name:purchase_invoice_status_line.selection__purchase_order_line__invoice_status__no
 msgid "Nothing to Bill"
 msgstr "Niente da fatturare"
+
+#. module: purchase_invoice_status_line
+#: model:ir.model.fields.selection,name:purchase_invoice_status_line.selection__purchase_order_line__purchase_method__purchase
+msgid "On ordered"
+msgstr ""
+
+#. module: purchase_invoice_status_line
+#: model:ir.model.fields.selection,name:purchase_invoice_status_line.selection__purchase_order_line__purchase_method__receive
+msgid "On received"
+msgstr ""
 
 #. module: purchase_invoice_status_line
 #: model:ir.model,name:purchase_invoice_status_line.model_purchase_order
