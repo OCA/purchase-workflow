@@ -36,6 +36,12 @@ msgid "Default Purchase Incoterm Address"
 msgstr ""
 
 #. module: purchase_partner_incoterm
+#: model:ir.model.fields,field_description:purchase_partner_incoterm.field_res_partner__purchase_incoterm_location
+#: model:ir.model.fields,field_description:purchase_partner_incoterm.field_res_users__purchase_incoterm_location
+msgid "Default Purchase Incoterm Location"
+msgstr ""
+
+#. module: purchase_partner_incoterm
 #: model:ir.model.fields,field_description:purchase_partner_incoterm.field_purchase_order__display_name
 #: model:ir.model.fields,field_description:purchase_partner_incoterm.field_res_partner__display_name
 msgid "Display Name"
