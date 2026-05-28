@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
-from odoo.tools import float_is_zero
+from odoo.tools import float_compare
 
 
 class PurchaseOrderLine(models.Model):
@@ -27,7 +27,26 @@ class PurchaseOrderLine(models.Model):
         "even if some quantities are not fully invoiced. ",
     )
 
-    @api.depends("qty_invoiced", "product_qty", "force_invoiced")
+    purchase_method = fields.Selection(
+        selection=[
+            ("purchase", "On ordered"),
+            ("receive", "On received"),
+        ],
+        string="Control Policy",
+        compute="_compute_purchase_method",
+        store=True,
+    )
+
+    @api.depends("product_id", "qty_to_invoice")
+    def _compute_purchase_method(self):
+        # qty_to_invoice is a dependency on purpose: changing the policy on the
+        # product does not recompute existing lines, so this snapshot is
+        # refreshed whenever invoicing is recomputed (the moment the policy is
+        # actually applied), keeping it in sync with the billing status.
+        for line in self:
+            line.purchase_method = line.product_id.purchase_method
+
+    @api.depends("qty_invoiced", "qty_to_invoice", "product_qty", "force_invoiced")
     def _compute_invoice_status(self):
         precision = self.env["decimal.precision"].precision_get(
             "Product Unit of Measure"
@@ -42,10 +61,9 @@ class PurchaseOrderLine(models.Model):
             if line.force_invoiced:
                 line.invoice_status = "invoiced"
                 continue
-            if float_is_zero(line.qty_to_invoice, precision_digits=precision):
-                if line.qty_invoiced >= line.product_qty:
-                    line.invoice_status = "invoiced"
-                else:
-                    line.invoice_status = "no"
-            else:
+            if float_compare(line.qty_to_invoice, 0, precision_digits=precision) > 0:
                 line.invoice_status = "to invoice"
+            elif line.qty_invoiced >= line.product_qty:
+                line.invoice_status = "invoiced"
+            else:
+                line.invoice_status = "no"

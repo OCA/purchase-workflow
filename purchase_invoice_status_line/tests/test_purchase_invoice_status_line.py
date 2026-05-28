@@ -1,6 +1,7 @@
 # Copyright 2025 ForgeFlow (http://www.forgeflow.com/)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+from odoo import fields
 from odoo.tests import common
 
 
@@ -93,3 +94,40 @@ class TestPurchaseInvoiceStatusLine(common.TransactionCase):
         self.assertFalse(line2.force_invoiced, "L2 should be un-forced by PO")
         self.assertEqual(line1.invoice_status, "to invoice")
         self.assertEqual(line2.invoice_status, "to invoice")
+
+    def test_purchase_method_snapshot(self):
+        po = self._create_purchase_order(self.product_received, 10)
+        line = po.order_line[0]
+        self.assertEqual(line.purchase_method, "receive")
+        self.product_received.write({"purchase_method": "purchase"})
+        self.assertEqual(
+            line.purchase_method,
+            "receive",
+            "Changing the product policy must not recompute existing lines",
+        )
+        line.write({"product_qty": 12})
+        self.assertEqual(
+            line.purchase_method,
+            "purchase",
+            "A change that recomputes invoicing must refresh the snapshot",
+        )
+
+    def test_invoice_status_over_billed(self):
+        po = self._create_purchase_order(self.product_order, 4)
+        line = po.order_line[0]
+        self.assertEqual(line.invoice_status, "to invoice")
+        po.action_create_invoice()
+        bill = po.invoice_ids
+        inv_line = bill.invoice_line_ids.filtered(
+            lambda line: line.product_id == self.product_order
+        )
+        inv_line.write({"quantity": 6})
+        bill.write({"invoice_date": fields.Date.today()})
+        bill.action_post()
+        self.assertEqual(line.qty_invoiced, 6)
+        self.assertLess(line.qty_to_invoice, 0)
+        self.assertEqual(
+            line.invoice_status,
+            "invoiced",
+            "An over-billed line must not show Waiting Bills",
+        )
