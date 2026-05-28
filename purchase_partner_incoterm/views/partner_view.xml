@@ -8,6 +8,7 @@
             <group name="purchase" position="inside">
                 <field name="purchase_incoterm_id" readonly="parent_id" />
                 <field name="purchase_incoterm_address_id" readonly="parent_id" />
+                <field name="purchase_incoterm_location" readonly="parent_id" />
             </group>
         </field>
     </record>

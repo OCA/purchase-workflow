@@ -16,10 +16,14 @@ class ResPartner(models.Model):
         ondelete="restrict",
         string="Default Purchase Incoterm Address",
     )
+    purchase_incoterm_location = fields.Char(
+        string="Default Purchase Incoterm Location",
+    )
 
     @api.model
     def _commercial_fields(self):
         return super()._commercial_fields() + [
             "purchase_incoterm_address_id",
             "purchase_incoterm_id",
+            "purchase_incoterm_location",
         ]
