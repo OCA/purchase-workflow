@@ -63,7 +63,7 @@ msgstr ""
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__display_name
 msgid "Display Name"
-msgstr "Nume Afi??at"
+msgstr "Nume Afișat"
 
 #. module: purchase_order_type
 #. odoo-python
@@ -96,7 +96,7 @@ msgstr ""
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__write_uid
 msgid "Last Updated by"
-msgstr "Ultima actualizare f??cut?? de"
+msgstr "Ultima actualizare făcută de"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__write_date
@@ -121,7 +121,7 @@ msgstr ""
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_purchase_order
 msgid "Purchase Order"
-msgstr "Comand?? achizi??ie"
+msgstr "Comandă achiziție"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_res_partner__purchase_type
@@ -154,10 +154,10 @@ msgstr ""
 #: model:ir.model,name:purchase_order_type.model_purchase_order_type
 #, fuzzy
 msgid "Type of purchase order"
-msgstr "Comand?? achizi??ie"
+msgstr "Comandă achiziție"
 
 #~ msgid "Last Modified on"
-#~ msgstr "Ultima actualizare ??n"
+#~ msgstr "Ultima actualizare în"
 
 #~ msgid "Partner"
 #~ msgstr "Partener"

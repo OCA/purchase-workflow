@@ -100,7 +100,7 @@ msgstr "Ultima actualizacion por"
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__write_date
 msgid "Last Updated on"
-msgstr "Ultima actualizaci??n realizada"
+msgstr "Ultima actualización realizada"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__name
@@ -158,4 +158,4 @@ msgstr ""
 #~ msgstr "Ultima modificacion realizada"
 
 #~ msgid "Partner"
-#~ msgstr "Compa??ero"
+#~ msgstr "Compañero"
