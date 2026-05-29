@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-09-17 13:37+0000\n"
+"PO-Revision-Date: 2026-05-29 13:19+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: purchase_invoice_status_line
 #: model:ir.model.fields,field_description:purchase_invoice_status_line.field_purchase_order_line__invoice_status
@@ -24,7 +24,7 @@ msgstr "Stato fatturazione"
 #. module: purchase_invoice_status_line
 #: model:ir.model.fields,field_description:purchase_invoice_status_line.field_purchase_order_line__purchase_method
 msgid "Control Policy"
-msgstr ""
+msgstr "Politica di controllo"
 
 #. module: purchase_invoice_status_line
 #: model:ir.model.fields,field_description:purchase_invoice_status_line.field_purchase_order__force_invoiced
@@ -64,12 +64,12 @@ msgstr "Niente da fatturare"
 #. module: purchase_invoice_status_line
 #: model:ir.model.fields.selection,name:purchase_invoice_status_line.selection__purchase_order_line__purchase_method__purchase
 msgid "On ordered"
-msgstr ""
+msgstr "Sull'ordinato"
 
 #. module: purchase_invoice_status_line
 #: model:ir.model.fields.selection,name:purchase_invoice_status_line.selection__purchase_order_line__purchase_method__receive
 msgid "On received"
-msgstr ""
+msgstr "Sul ricevuto"
 
 #. module: purchase_invoice_status_line
 #: model:ir.model,name:purchase_invoice_status_line.model_purchase_order
