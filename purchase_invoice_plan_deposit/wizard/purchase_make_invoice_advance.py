@@ -41,4 +41,4 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
                     PurchaseAdvancePaymentInv,
                     self.with_context(invoice_plan_id=plan_advance.id),
                 ).create_invoices()
-        return super(PurchaseAdvancePaymentInv, self).create_invoices()
+        return super().create_invoices()
