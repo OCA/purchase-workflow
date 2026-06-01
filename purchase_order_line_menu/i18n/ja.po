@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-05-29 04:46+0000\n"
+"PO-Revision-Date: 2026-06-01 04:44+0000\n"
 "Last-Translator: SanamiK <koshita.sanami@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ja\n"
@@ -19,104 +19,124 @@ msgstr ""
 #. module: purchase_order_line_menu
 #: model:ir.model.fields,field_description:purchase_order_line_menu.field_purchase_order_line__invoice_status
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+#, fuzzy
 msgid "Billing Status"
 msgstr "請求ステータス"
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+#, fuzzy
 msgid "Cancelled"
 msgstr "キャンセル済"
 
 #. module: purchase_order_line_menu
 #: model:ir.model.fields,help:purchase_order_line_menu.field_purchase_order_line__date_order
+#, fuzzy
 msgid ""
 "Depicts the date within which the Quotation should be confirmed and "
 "converted into a purchase order."
-msgstr "見積りを確認して販売オーダに更新しないといけない期日を表示します。"
+msgstr "見積を確認して購買オーダにすべき期日を示します。"
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+#, fuzzy
 msgid "Fully Billed"
 msgstr "完全請求済"
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+#, fuzzy
 msgid "Locked"
 msgstr "ロック済"
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+#, fuzzy
 msgid "Nothing to Bill"
 msgstr "請求対象なし"
 
 #. module: purchase_order_line_menu
 #: model:ir.model.fields,field_description:purchase_order_line_menu.field_purchase_order_line__date_order
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+#, fuzzy
 msgid "Order Date"
-msgstr ""
+msgstr "オーダ日"
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.view_purchase_order_line_pivot
+#, fuzzy
 msgid "Order Lines"
-msgstr "??????????????????"
+msgstr "オーダ明細"
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+#, fuzzy
 msgid "Order date"
-msgstr "???????????????"
+msgstr "オーダ日"
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+#, fuzzy
 msgid "Planned date"
-msgstr "???????????????"
+msgstr "予定日"
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_tree
+#, fuzzy
 msgid "Price Subtotal"
-msgstr "??????"
+msgstr "小計"
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_tree
+#, fuzzy
 msgid "Price Tax"
-msgstr "???"
+msgstr "税額"
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_tree
+#, fuzzy
 msgid "Price Total"
-msgstr "??????"
+msgstr "合計"
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+#, fuzzy
 msgid "Purchase Order"
-msgstr "???????????????"
+msgstr "購買オーダ"
 
 #. module: purchase_order_line_menu
 #: model:ir.model,name:purchase_order_line_menu.model_purchase_order_line
+#, fuzzy
 msgid "Purchase Order Line"
-msgstr "????????????????????????"
+msgstr "購買オーダ明細"
 
 #. module: purchase_order_line_menu
 #: model:ir.actions.act_window,name:purchase_order_line_menu.action_purchase_orders_lines
 #: model:ir.ui.menu,name:purchase_order_line_menu.purchase_order_line_menu
+#, fuzzy
 msgid "Purchase Order Lines"
-msgstr "????????????????????????"
+msgstr "購買オーダ明細"
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+#, fuzzy
 msgid "RFQ"
-msgstr "????????????"
+msgstr "見積依頼"
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+#, fuzzy
 msgid "RFQ Sent"
-msgstr "?????????????????????"
+msgstr "見積依頼送付済"
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+#, fuzzy
 msgid "To Approve"
-msgstr "?????????"
+msgstr "承認待ち"
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+#, fuzzy
 msgid "Waiting Bills"
-msgstr "???????????????"
+msgstr "請求書待ち"
