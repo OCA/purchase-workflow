@@ -1,6 +1,6 @@
 [project]
 name = "odoo-addons-oca-purchase-workflow"
-version = "18.0.20260529.0"
+version = "18.0.20260602.0"
 dependencies = [
     "odoo-addon-partner_supplierinfo_smartbutton==18.0.*",
     "odoo-addon-procurement_purchase_no_grouping==18.0.*",
@@ -44,6 +44,7 @@ dependencies = [
     "odoo-addon-purchase_order_date_approve_editable==18.0.*",
     "odoo-addon-purchase_order_etd_eta==18.0.*",
     "odoo-addon-purchase_order_general_discount==18.0.*",
+    "odoo-addon-purchase_order_internal_note==18.0.*",
     "odoo-addon-purchase_order_line_description==18.0.*",
     "odoo-addon-purchase_order_line_effective_date==18.0.*",
     "odoo-addon-purchase_order_line_menu==18.0.*",
