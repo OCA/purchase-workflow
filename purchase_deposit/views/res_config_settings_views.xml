@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form_purchase" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.purchase</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="25" />
+        <field
+            name="inherit_id"
+            ref="purchase.res_config_settings_view_form_purchase"
+        />
+        <field name="arch" type="xml">
+            <setting id="three_way_matching" position="after">
+                <setting
+                    id="purchase_deposit_product"
+                    string="Deposit Payments"
+                    help="Product used for deposit payments"
+                >
+                    <field name="purchase_deposit_product_id" />
+                </setting>
+            </setting>
+        </field>
+    </record>
+</odoo>
