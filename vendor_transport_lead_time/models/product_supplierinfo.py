@@ -9,7 +9,11 @@ class ProductSupplierinfo(models.Model):
     _inherit = "product.supplierinfo"
 
     delay = fields.Integer(
-        compute="_compute_delay", inverse="_inverse_delay", store=True, required=False
+        compute="_compute_delay",
+        inverse="_inverse_delay",
+        store=True,
+        required=False,
+        default=False,
     )
     supplier_delay = fields.Integer(
         string="Supplier Lead Time",
@@ -38,12 +42,14 @@ class ProductSupplierinfo(models.Model):
         for seller in self:
             if seller.supplier_delay < 0:
                 raise ValidationError(
-                    self.env._("You can't set a delay inferior to the transport delay.")
+                    self.env._(
+                        "You can't set a delay inferior to the transport delay",
+                    )
                 )
 
     @api.model
-    def _setup_fields(self):  # pylint: disable=W8110
+    def _post_model_setup__(self):
         # "remove" the default lambda on "delay" field (from 'product' module)
         # to not let Odoo put a value in this field when 'create' is called
         self._fields["delay"].default = False
-        super()._setup_fields()
+        return super()._post_model_setup__()

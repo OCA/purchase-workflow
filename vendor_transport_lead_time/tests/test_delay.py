@@ -13,9 +13,21 @@ class TestDelay(BaseCommon):
     def setUpClass(cls):
         super().setUpClass()
         cls.supplier = cls.env["res.partner"].create({"name": "supplier test"})
+        cls.uom_units = cls.env.ref("uom.product_uom_unit")
+        cls.product_tmpl = cls.env["product.template"].create(
+            {
+                "name": "Test Product",
+                "type": "consu",
+                "uom_id": cls.uom_units.id,
+            }
+        )
 
     def test_set_delay_from_form(self):
-        form = Form(self.env["product.supplierinfo"])
+        form = Form(
+            self.env["product.supplierinfo"].with_context(
+                default_product_tmpl_id=self.product_tmpl.id
+            )
+        )
         form.partner_id = self.supplier
         # test compute method
         form.transport_delay = 5
@@ -26,7 +38,12 @@ class TestDelay(BaseCommon):
 
     def test_set_delay_from_create(self):
         record = self.env["product.supplierinfo"].create(
-            {"partner_id": self.supplier.id, "transport_delay": 5, "supplier_delay": 5}
+            {
+                "product_tmpl_id": self.product_tmpl.id,
+                "partner_id": self.supplier.id,
+                "transport_delay": 5,
+                "supplier_delay": 5,
+            }
         )
         # test compute method
         self.assertEqual(record.transport_delay, 5)
@@ -44,6 +61,7 @@ class TestDelay(BaseCommon):
     def test_set_delay_from_create_with_delay(self):
         record = self.env["product.supplierinfo"].create(
             {
+                "product_tmpl_id": self.product_tmpl.id,
                 "partner_id": self.supplier.id,
                 "transport_delay": 5,
                 "supplier_delay": 5,

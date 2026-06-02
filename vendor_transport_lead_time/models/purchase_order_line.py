@@ -42,7 +42,7 @@ class PurchaseOrderLine(models.Model):
             partner_id=self.partner_id,
             quantity=self.product_qty,
             date=date_order,
-            uom_id=self.product_uom,
+            uom_id=self.product_uom_id,
             params=params,
         )
         if not seller:
