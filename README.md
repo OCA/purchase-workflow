@@ -53,7 +53,7 @@ addon | version | maintainers | summary
 [purchase_merge](purchase_merge/) | 17.0.1.0.0 |  | Wizard to merge purchase with required conditions
 [purchase_no_rfq](purchase_no_rfq/) | 17.0.1.1.0 | <a href='https://github.com/legalsylvain'><img src='https://github.com/legalsylvain.png' width='32' height='32' style='border-radius:50%;' alt='legalsylvain'/></a> | Purchase Order - No Request For Quotation
 [purchase_open_qty](purchase_open_qty/) | 17.0.2.0.1 |  | Allows to identify the purchase orders that have quantities pending to invoice or to receive.
-[purchase_order_approved](purchase_order_approved/) | 17.0.1.0.0 |  | Add a new state 'Approved' in purchase orders.
+[purchase_order_approved](purchase_order_approved/) | 17.0.1.0.1 |  | Add a new state 'Approved' in purchase orders.
 [purchase_order_archive](purchase_order_archive/) | 17.0.1.0.0 |  | Archive Purchase Orders
 [purchase_order_date_approve_editable](purchase_order_date_approve_editable/) | 17.0.1.0.0 |  | Allows editing the Approval Date on Purchase Orders
 [purchase_order_general_discount](purchase_order_general_discount/) | 17.0.1.0.0 |  | General discount per purchase order
