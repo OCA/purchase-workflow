@@ -33,7 +33,7 @@ addon | version | maintainers | summary
 [purchase_landed_cost](purchase_landed_cost/) | 19.0.1.0.0 |  | Purchase cost distribution
 [purchase_line_reassign](purchase_line_reassign/) | 19.0.1.0.0 |  | Purchase Line Reassign
 [purchase_no_rfq](purchase_no_rfq/) | 19.0.1.0.0 | <a href='https://github.com/legalsylvain'><img src='https://github.com/legalsylvain.png' width='32' height='32' style='border-radius:50%;' alt='legalsylvain'/></a> | Purchase Order - No Request For Quotation
-[purchase_order_approved](purchase_order_approved/) | 19.0.1.0.0 |  | Add a new state 'Approved' in purchase orders.
+[purchase_order_approved](purchase_order_approved/) | 19.0.1.0.1 |  | Add a new state 'Approved' in purchase orders.
 [purchase_order_general_discount](purchase_order_general_discount/) | 19.0.1.0.0 |  | General discount per purchase order
 [purchase_order_line_description](purchase_order_line_description/) | 19.0.1.0.0 |  | Purchase order line description
 [purchase_order_line_menu](purchase_order_line_menu/) | 19.0.1.0.0 |  | Adds Purchase Order Lines Menu
