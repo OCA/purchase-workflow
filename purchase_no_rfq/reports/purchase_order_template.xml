@@ -9,9 +9,9 @@
             expr="//t[@t-if=&quot;o.state in ['draft', 'sent', 'to approve']&quot;]"
             position="replace"
         >
-            <h2 t-if="o.state in ['draft', 'sent', 'to approve']">Purchase Order #<span
+            <t t-if="o.state in ['draft', 'sent', 'to approve']">Purchase Order #<span
                 t-field="o.name"
-            /></h2>
+            /></t>
         </xpath>
     </template>
 </odoo>
