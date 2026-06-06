@@ -7,42 +7,40 @@ from odoo import api, fields, models
 class PurchaseAdvancePaymentInv(models.TransientModel):
     _inherit = "purchase.advance.payment.inv"
 
-    account_analytic_id = fields.Many2one(
-        comodel_name="account.analytic.account",
-        string="Analytic Account",
+    analytic_distribution = fields.Json()
+    analytic_precision = fields.Integer(
+        store=False,
+        default=lambda self: self.env["decimal.precision"].precision_get(
+            "Percentage Analytic"
+        ),
     )
-    analytic_tag_ids = fields.Many2many(
-        comodel_name="account.analytic.tag",
-        string="Analytic Tags",
+    company_id = fields.Many2one(
+        comodel_name="res.company",
+        default=lambda self: self.env.company,
     )
 
     @api.model
     def default_get(self, field_list):
-        """Default analytic account, tags if there is 1 value in order line"""
         res = super().default_get(field_list)
-        active_id = self._context.get("active_id")
-        order = self.env["purchase.order"].browse(active_id)
-        order_line = order.order_line
-        account_analytics = order_line.mapped("account_analytic_id")
-        analytic_tags = order_line.mapped("analytic_tag_ids")
+        active_ids = self.env.context.get("active_ids", [])
+        purchases = self.env["purchase.order"].browse(active_ids)
+
         val_default = {}
-        val_default["account_analytic_id"] = (
-            account_analytics.id if len(account_analytics) == 1 else False
-        )
-        val_default["analytic_tag_ids"] = (
-            analytic_tags.ids
-            if analytic_tags == order_line[0].analytic_tag_ids
-            else False
-        )
+        if purchases:
+            val_default["company_id"] = purchases.company_id.id
+            analytic_account_ids = set()
+            for analytics in purchases.order_line.mapped("analytic_distribution"):
+                if analytics:
+                    analytic_account_ids.update(int(aa) for aa in analytics.keys())
+            if len(analytic_account_ids) == 1:
+                val_default["analytic_distribution"] = {
+                    str(list(analytic_account_ids)[0]): 100
+                }
         res.update(val_default)
         return res
 
     def _prepare_advance_purchase_line(self, order, product, tax_ids, amount):
         res = super()._prepare_advance_purchase_line(order, product, tax_ids, amount)
-        res.update(
-            {
-                "account_analytic_id": self.account_analytic_id.id,
-                "analytic_tag_ids": [(6, 0, self.analytic_tag_ids.ids)],
-            }
-        )
+        if self.analytic_distribution:
+            res["analytic_distribution"] = self.analytic_distribution
         return res
