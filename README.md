@@ -32,7 +32,7 @@ addon | version | maintainers | summary
 [product_supplierinfo_update_price](product_supplierinfo_update_price/) | 18.0.1.0.0 |  | Updates the product's vendor price with the price set in a purchase order.
 [purchase_advance_payment](purchase_advance_payment/) | 18.0.1.2.0 | <a href='https://github.com/LoisRForgeFlow'><img src='https://github.com/LoisRForgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='LoisRForgeFlow'/></a> | Allow to add advance payments on purchase orders
 [purchase_all_shipments](purchase_all_shipments/) | 18.0.1.0.1 |  | Purchase All Shipments
-[purchase_allowed_product](purchase_allowed_product/) | 18.0.1.0.0 |  | This module allows to select only products that can be supplied by the vendor
+[purchase_allowed_product](purchase_allowed_product/) | 18.0.1.0.1 |  | This module allows to select only products that can be supplied by the vendor
 [purchase_analytic_global](purchase_analytic_global/) | 18.0.1.0.0 |  | Purchase - Analytic Account Global
 [purchase_blanket_order](purchase_blanket_order/) | 18.0.1.0.1 |  | Purchase Blanket Orders
 [purchase_cancel_reason](purchase_cancel_reason/) | 18.0.1.0.0 |  | Purchase Cancel Reason
