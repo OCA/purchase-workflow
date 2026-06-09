@@ -1,9 +1,10 @@
 from odoo.tests import tagged
-from odoo.tests.common import TransactionCase
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
 @tagged("post_install", "-at_install")
-class TestPurchasePricelistDisable(TransactionCase):
+class TestPurchasePricelistDisable(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -53,7 +54,7 @@ class TestPurchasePricelistDisable(TransactionCase):
                 "product_qty": 1.0,
                 "price_unit": 100.0,
                 "name": "Test Line",
-                "product_uom": cls.product.uom_id.id,
+                "product_uom_id": cls.product.uom_id.id,
             }
         )
 
@@ -69,7 +70,7 @@ class TestPurchasePricelistDisable(TransactionCase):
                 "product_qty": 1.0,
                 "price_unit": 100.0,
                 "name": "Test Line",
-                "product_uom": cls.product.uom_id.id,
+                "product_uom_id": cls.product.uom_id.id,
             }
         )
 
@@ -87,7 +88,7 @@ class TestPurchasePricelistDisable(TransactionCase):
                     "product_qty": 1.0,
                     "price_unit": 100.0,
                     "name": "Test Line 1",
-                    "product_uom": cls.product.uom_id.id,
+                    "product_uom_id": cls.product.uom_id.id,
                 },
                 {
                     "order_id": cls.po_multi1.id,
@@ -95,7 +96,7 @@ class TestPurchasePricelistDisable(TransactionCase):
                     "product_qty": 2.0,
                     "price_unit": 150.0,
                     "name": "Test Line 2",
-                    "product_uom": cls.product2.uom_id.id,
+                    "product_uom_id": cls.product2.uom_id.id,
                 },
             ]
         )
@@ -113,7 +114,7 @@ class TestPurchasePricelistDisable(TransactionCase):
                     "product_qty": 1.0,
                     "price_unit": 100.0,
                     "name": "Test Line 1",
-                    "product_uom": cls.product.uom_id.id,
+                    "product_uom_id": cls.product.uom_id.id,
                 },
                 {
                     "order_id": cls.po_multi2.id,
@@ -121,7 +122,7 @@ class TestPurchasePricelistDisable(TransactionCase):
                     "product_qty": 2.0,
                     "price_unit": 150.0,
                     "name": "Test Line 2",
-                    "product_uom": cls.product2.uom_id.id,
+                    "product_uom_id": cls.product2.uom_id.id,
                 },
             ]
         )
