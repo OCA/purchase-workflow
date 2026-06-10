@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ============================
 Purchase Order Line Sequence
 ============================
@@ -17,7 +13,7 @@ Purchase Order Line Sequence
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github
@@ -32,21 +28,18 @@ Purchase Order Line Sequence
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-The sequence in PO line is propagated to the Stock moves. The sequence
-number appears in the PO form view and in the report.
+Adds a visible line-number sequence to purchase orders. The sequence
+number appears in the PO form view, in the purchase order/quotation
+reports, and is propagated to the related vendor bill lines.
+
+When ``stock_picking_line_sequence`` is also installed, the glue module
+``purchase_stock_line_sequence`` is auto-installed and propagates this
+sequence to the related stock moves as well.
 
 **Table of contents**
 
 .. contents::
    :local:
-
-Usage
-=====
-
-This module depends on the following module(s) :
-
-- stock_picking_line_sequence
-  (https://github.com/OCA/stock-logistics-workflow/)
 
 Known issues / Roadmap
 ======================
