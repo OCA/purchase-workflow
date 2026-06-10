@@ -3,10 +3,12 @@
 
 from odoo import fields
 from odoo.exceptions import UserError
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests import Form
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestPurchaseWorkAcceptanceEvaluation(TransactionCase):
+class TestPurchaseWorkAcceptanceEvaluation(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -41,10 +43,10 @@ class TestPurchaseWorkAcceptanceEvaluation(TransactionCase):
         # User need to fill in 2nd and 3rd criteria
         with self.assertRaises(UserError) as e:
             work_acceptance.button_accept()
+        names = ", ".join([eval_resuls[1].case_id.name, eval_resuls[2].case_id.name])
         self.assertEqual(
             e.exception.args[0],
-            "Please evaluate - %s"
-            % ", ".join([eval_resuls[1].case_id.name, eval_resuls[2].case_id.name]),
+            f"Please evaluate - {names}",
         )
         # Set score and accept again
         eval_resuls[1].score_id = eval_resuls[1].case_id.score_ids[0]
@@ -52,7 +54,7 @@ class TestPurchaseWorkAcceptanceEvaluation(TransactionCase):
         work_acceptance.button_accept()
         self.assertEqual(work_acceptance.state, "accept")
 
-    def test_02_wa_evaluation_score_name_get(self):
+    def test_02_wa_evaluation_score_display_name(self):
         with Form(self.WorkAcceptance) as f:
             f.partner_id = self.res_partner
             f.responsible_id = self.employee
@@ -62,9 +64,5 @@ class TestPurchaseWorkAcceptanceEvaluation(TransactionCase):
 
         work_acceptance = f.save()
         score_resuls = work_acceptance.mapped("evaluation_result_ids.case_id.score_ids")
-        name = f"{score_resuls[0].name} ({score_resuls[0].score})"
-        res = score_resuls[0].name_get()
-        self.assertEqual(len(res), 1)
-        rec_id, name_get = res[0]
-        self.assertEqual(score_resuls[0].id, rec_id)
-        self.assertIn(name, name_get)
+        expected = f"{score_resuls[0].name} ({score_resuls[0].score})"
+        self.assertEqual(score_resuls[0].display_name, expected)

@@ -57,4 +57,4 @@ class WorkAcceptanceEvaluationReport(models.Model):
 
     @property
     def _table_query(self):
-        return "%s %s" % (self._select(), self._from())
+        return f"{self._select()} {self._from()}"

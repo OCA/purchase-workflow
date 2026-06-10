@@ -27,16 +27,16 @@ class WorkAcceptance(models.Model):
 
     def _check_evaluation(self):
         self.ensure_one()
-        if self.user_has_groups(
+        if self.env.user.has_group(
             "purchase_work_acceptance_evaluation.group_enable_eval_on_wa"
         ):
             missing_results = self.evaluation_result_ids.filtered(
-                lambda l: l.case_id.state_required == self.state and not l.score_id
+                lambda r: r.case_id.state_required == self.state and not r.score_id
             )
             if missing_results:
                 cases = missing_results.mapped("case_id")
                 raise UserError(
-                    _("Please evaluate - %s") % ", ".join(cases.mapped("name"))
+                    _("Please evaluate - %s", ", ".join(cases.mapped("name")))
                 )
 
 

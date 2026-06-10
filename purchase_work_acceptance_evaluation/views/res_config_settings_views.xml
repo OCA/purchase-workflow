@@ -10,21 +10,12 @@
         />
         <field name="arch" type="xml">
             <xpath
-                expr="//div[@name='purchase_work_acceptance_setting_container']"
+                expr="//block[@name='purchase_work_acceptance_setting_container']"
                 position="inside"
             >
-                <div class="col-12 col-lg-6 o_setting_box" name="purchase_eval">
-                    <div class="o_setting_left_pane">
-                        <field name="group_enable_eval_on_wa" />
-                    </div>
-                    <div class="o_setting_right_pane">
-                        <label for="group_enable_eval_on_wa" />
-                        <div
-                            class="content-group"
-                            attrs="{'invisible': [('group_enable_eval_on_wa' ,'=', False)]}"
-                        />
-                    </div>
-                </div>
+                <setting id="enable_eval_on_wa" name="purchase_eval">
+                    <field name="group_enable_eval_on_wa" class="o_light_label" />
+                </setting>
             </xpath>
         </field>
     </record>

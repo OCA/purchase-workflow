@@ -1,7 +1,7 @@
 # Copyright 2020 Ecosoft Co., Ltd. (http://ecosoft.co.th)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class WorkAcceptanceEvaluation(models.Model):
@@ -41,6 +41,7 @@ class WorkAcceptanceEvaluationScore(models.Model):
     )
     score = fields.Integer()
 
-    def name_get(self):
-        result = [(rec.id, f"{rec.name} ({rec.score})") for rec in self]
-        return result
+    @api.depends("name", "score")
+    def _compute_display_name(self):
+        for rec in self:
+            rec.display_name = f"{rec.name} ({rec.score})"
