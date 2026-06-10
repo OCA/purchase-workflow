@@ -9,22 +9,16 @@ class WorkAcceptance(models.Model):
     _inherit = "work.acceptance"
 
     late_days = fields.Integer(
-        readonly=True,
-        states={"draft": [("readonly", False)]},
         tracking=True,
         help="Late day(s) from Received Date - Due Date",
     )
     fines_rate = fields.Monetary(
         default=lambda self: self.env.company.wa_fines_rate,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
         tracking=True,
         help="Default fines per day. Can be overwritten",
     )
     fines_late = fields.Monetary(
         string="Fines Amount",
-        readonly=True,
-        states={"draft": [("readonly", False)]},
         tracking=True,
         help="Computed amount. Can be overwritten",
     )
@@ -66,7 +60,7 @@ class WorkAcceptance(models.Model):
         result = {
             "name": _("Fines Invoice/Refund"),
             "type": "ir.actions.act_window",
-            "view_mode": "tree,kanban,form",
+            "view_mode": "list,kanban,form",
             "res_model": "account.move",
         }
         if len(move_ids) > 1:
@@ -112,7 +106,7 @@ class WorkAcceptance(models.Model):
     def _prepare_late_wa_move_line(self, name=False):
         return {
             "name": name or _("Work Acceptance Late Delivery Fines %s") % (self.name),
-            "account_id": self.env.company.wa_fines_late_account_id,
+            "account_id": self.env.company.wa_fines_late_account_id.id,
             "price_unit": self.fines_late,
         }
 

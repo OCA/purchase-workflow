@@ -65,4 +65,3 @@ class AccountMove(models.Model):
             )
             self.update(move_dict)
             MoveLine.new(move_line_dict)
-        self._onchange_currency()

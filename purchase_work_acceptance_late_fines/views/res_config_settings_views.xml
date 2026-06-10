@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="res_config_settings_view_form_purchase" model="ir.ui.view">
         <field name="name">res.config.settings.view.form.inherit.purchase</field>
@@ -9,45 +10,34 @@
         />
         <field name="arch" type="xml">
             <xpath
-                expr="//div[@name='purchase_work_acceptance_setting_container']"
+                expr="//block[@name='purchase_work_acceptance_setting_container']"
                 position="inside"
             >
-                <div class="col-12 col-lg-6 o_setting_box">
-                    <div class="o_setting_left_pane">
-                        <field name="group_enable_fines_on_wa" />
-                    </div>
-                    <div class="o_setting_right_pane">
-                        <label for="group_enable_fines_on_wa" />
-                        <div
-                            class="content-group"
-                            attrs="{'invisible': [('group_enable_fines_on_wa' ,'=', False)]}"
-                        >
-                            <div class="row mt16">
-                                <label
-                                    for="wa_fines_late_account_id"
-                                    class="col-lg-4 o_light_label"
-                                />
+                <setting id="enable_fines_on_wa">
+                    <field name="group_enable_fines_on_wa" class="o_light_label" />
+                    <div class="content-group" invisible="not group_enable_fines_on_wa">
+                        <div class="row mt16">
+                            <label
+                                for="wa_fines_late_account_id"
+                                class="col-lg-4 o_light_label"
+                            />
+                            <field
+                                name="wa_fines_late_account_id"
+                                required="group_enable_fines_on_wa"
+                            />
+                        </div>
+                        <div class="row mt16">
+                            <label for="wa_fines_rate" class="col-lg-4 o_light_label" />
+                            <div>
                                 <field
-                                    name="wa_fines_late_account_id"
-                                    attrs="{'required':[('group_enable_fines_on_wa','!=', False)]}"
-                                />
-                            </div>
-                            <div class="row mt16">
-                                <label
-                                    for="wa_fines_rate"
-                                    class="col-lg-4 o_light_label"
-                                />
-                                <div>
-                                    <field
-                                    name="wa_fines_rate"
-                                    class="oe_inline"
-                                    attrs="{'required':[('group_enable_fines_on_wa','!=', False)]}"
-                                /> per day
-                                </div>
+                                name="wa_fines_rate"
+                                class="oe_inline"
+                                required="group_enable_fines_on_wa"
+                            /> per day
                             </div>
                         </div>
                     </div>
-                </div>
+                </setting>
             </xpath>
         </field>
     </record>

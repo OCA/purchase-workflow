@@ -4,13 +4,16 @@ from dateutil.relativedelta import relativedelta
 
 from odoo import fields
 from odoo.exceptions import UserError
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests import Form
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestWorkAcceptanceLateFine(TransactionCase):
+class TestWorkAcceptanceLateFine(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.setup_main_company(currency_code="EUR")
         account_obj = cls.env["account.account"]
         cls.service_product = cls.env.ref("product.product_product_1")
         cls.product_product = cls.env.ref("product.product_product_6")
@@ -19,18 +22,12 @@ class TestWorkAcceptanceLateFine(TransactionCase):
         cls.currency_eur = cls.env.ref("base.EUR")
         cls.currency_usd = cls.env.ref("base.USD")
         cls.main_company = cls.env.ref("base.main_company")
-        cls.env.cr.execute(
-            """UPDATE res_company SET currency_id = %s
-            WHERE id = %s""",
-            (cls.main_company.id, cls.currency_eur.id),
-        )
         cls.date_now = fields.Datetime.now()
         cls.account_receivable = account_obj.create(
             {
-                "code": "cust_acc",
+                "code": "CUSTACC",
                 "name": "customer account",
-                "user_type_id": cls.env.ref("account.data_account_type_receivable").id,
-                "reconcile": True,
+                "account_type": "expense",
             }
         )
         cls.not_late = cls.date_now + relativedelta(days=2)
@@ -45,6 +42,13 @@ class TestWorkAcceptanceLateFine(TransactionCase):
             c.group_enable_fines_on_wa = True
             c.wa_fines_rate = 100.0
             c.wa_fines_late_account_id = self.account_receivable
+        config.create(
+            {
+                "group_enable_fines_on_wa": True,
+                "wa_fines_rate": 100.0,
+                "wa_fines_late_account_id": self.account_receivable.id,
+            }
+        ).execute()
 
     def _create_wa(self, due_date, currency=False, product_qty=False):
         work_acceptance = self.env["work.acceptance"].create(

@@ -30,14 +30,14 @@
                     string="Create Fines"
                     type="action"
                     class="oe_highlight"
-                    attrs="{'invisible': ['|', '|', ('state', '!=', 'accept'), ('fines_late', '=', 0.0), ('fines_invoice_ids', '!=', [])]}"
+                    invisible="state != 'accept' or not fines_late or fines_invoice_ids"
                     groups="account.group_account_invoice"
                 />
                 <button
                     name="%(purchase_work_acceptance_late_fines.action_wa_create_fines)d"
                     string="Create Fines"
                     type="action"
-                    attrs="{'invisible': ['|', '|', ('state', '!=', 'accept'), ('fines_late', '=', 0.0), ('fines_invoice_ids', '=', [])]}"
+                    invisible="state != 'accept' or not fines_late or not fines_invoice_ids"
                     groups="account.group_account_invoice"
                 />
             </xpath>
@@ -48,7 +48,7 @@
                         name="action_view_invoice"
                         class="oe_stat_button"
                         icon="fa-pencil-square-o"
-                        attrs="{'invisible': [('fines_invoice_ids', '=', [])]}"
+                        invisible="not fines_invoice_ids"
                         context="{'default_partner_id': partner_id}"
                     >
                         <field
@@ -73,7 +73,7 @@
                                 <field name="late_days" class="oe_inline" />
                                 <t
                                     class="text-muted"
-                                    attrs="{'invisible': [('state', '!=', 'draft')]}"
+                                    invisible="state != 'draft'"
                                 > (Approximately)</t>
                             </div>
                             <label for="fines_rate" />
