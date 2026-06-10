@@ -5,9 +5,11 @@ from odoo.tests import common
 
 
 class TestPurchaseWorkAcceptanceTierValidation(common.TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.tier_definition = self.env["tier.definition"]
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
+        cls.tier_definition = cls.env["tier.definition"]
 
     def test_get_tier_validation_model_names(self):
         self.assertIn(
