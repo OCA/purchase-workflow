@@ -5,15 +5,13 @@
 
 {
     "name": "Purchase Order Line Sequence",
-    "summary": "Adds sequence to PO lines and propagates it to"
-    "Invoice lines and Stock Moves",
+    "summary": "Adds sequence to PO lines and propagates it to Invoice lines",
     "version": "19.0.1.0.0",
     "category": "Purchase Management",
     "author": "Camptocamp, ForgeFlow, Serpent CS, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
     "depends": [
-        "purchase_stock",
-        "stock_picking_line_sequence",
+        "purchase",
     ],
     "data": [
         "views/purchase_view.xml",

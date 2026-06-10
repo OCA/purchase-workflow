@@ -32,21 +32,18 @@ Purchase Order Line Sequence
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-The sequence in PO line is propagated to the Stock moves. The sequence
-number appears in the PO form view and in the report.
+Adds a visible line-number sequence to purchase orders. The sequence
+number appears in the PO form view, in the purchase order/quotation
+reports, and is propagated to the related vendor bill lines.
+
+When ``stock_picking_line_sequence`` is also installed, the glue module
+``purchase_stock_line_sequence`` is auto-installed and propagates this
+sequence to the related stock moves as well.
 
 **Table of contents**
 
 .. contents::
    :local:
-
-Usage
-=====
-
-This module depends on the following module(s) :
-
-- stock_picking_line_sequence
-  (https://github.com/OCA/stock-logistics-workflow/)
 
 Known issues / Roadmap
 ======================
