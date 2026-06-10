@@ -5,13 +5,13 @@
         inherit_id="purchase.report_purchasequotation_document"
     >
         <xpath expr="//table/thead/tr/th[1]" position="before">
-            <th>
+            <th name="th_line_number">
                 <strong>Line Number</strong>
             </th>
         </xpath>
         <!--complicated expr to be compatible with other modules-->
         <xpath expr="//table/tbody//span[1]/.." position="before">
-            <td>
+            <td name="td_line_number">
                 <span t-field="order_line.visible_sequence" />
             </td>
         </xpath>
