@@ -17,19 +17,19 @@ Purchase Work Acceptance Tier Validation
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/purchase-workflow/tree/15.0/purchase_work_acceptance_tier_validation
+    :target: https://github.com/OCA/purchase-workflow/tree/18.0/purchase_work_acceptance_tier_validation
     :alt: OCA/purchase-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/purchase-workflow-15-0/purchase-workflow-15-0-purchase_work_acceptance_tier_validation
+    :target: https://translation.odoo-community.org/projects/purchase-workflow-18-0/purchase-workflow-18-0-purchase_work_acceptance_tier_validation
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&target_branch=15.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module extends the functionality of Work Acceptance to support a tier
-validation process.
+This module extends the functionality of Work Acceptance to support a
+tier validation process.
 
 .. IMPORTANT::
    This is an alpha version, the data model and design can change at any time without warning.
@@ -45,33 +45,34 @@ Installation
 ============
 
 This module depends on ``base_tier_validation``. You can find it at
-`OCA/server-ux <https://github.com/OCA/server-ux>`_
+`OCA/server-ux <https://github.com/OCA/server-ux>`__
 
 Configuration
 =============
 
 To configure this module, you need to:
 
-#. Go to *Settings > Technical > Tier Validations > Tier Definition*.
-#. Create as many tiers as you want for Work Accptance model.
+1. Go to *Settings > Technical > Tier Validations > Tier Definition*.
+2. Create as many tiers as you want for Work Accptance model.
 
 Usage
 =====
 
 To use this module, you need to:
 
-#. Create a Work Acceptance triggering at least one "Tier Definition".
-#. Click on *Request Validation* button.
-#. Under the tab *Reviews* have a look to pending reviews and their statuses.
-#. Once all reviews are validated click on *Accept*.
+1. Create a Work Acceptance triggering at least one "Tier Definition".
+2. Click on *Request Validation* button.
+3. Under the tab *Reviews* have a look to pending reviews and their
+   statuses.
+4. Once all reviews are validated click on *Accept*.
 
 Additional features:
 
-* You can filter the WAs requesting your review through the filter *Needs my
-  Review*.
-* User with rights to confirm the WA (validate all tiers that would
-  be generated) can directly do the operation, this is, there is no need for
-  her/him to request a validation.
+- You can filter the WAs requesting your review through the filter
+  *Needs my Review*.
+- User with rights to confirm the WA (validate all tiers that would be
+  generated) can directly do the operation, this is, there is no need
+  for her/him to request a validation.
 
 Bug Tracker
 ===========
@@ -79,7 +80,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/purchase-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_work_acceptance_tier_validation%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_work_acceptance_tier_validation%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -87,17 +88,17 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Ecosoft
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Kitti U. <kittiu@ecosoft.co.th>
+- Kitti U. <kittiu@ecosoft.co.th>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -117,6 +118,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-kittiu| 
 
-This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/15.0/purchase_work_acceptance_tier_validation>`_ project on GitHub.
+This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/18.0/purchase_work_acceptance_tier_validation>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
