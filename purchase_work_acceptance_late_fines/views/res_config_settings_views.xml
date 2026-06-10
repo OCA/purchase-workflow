@@ -39,10 +39,10 @@
                                 />
                                 <div>
                                     <field
-                                        name="wa_fines_rate"
-                                        class="oe_inline"
-                                        attrs="{'required':[('group_enable_fines_on_wa','!=', False)]}"
-                                    /> per day
+                                    name="wa_fines_rate"
+                                    class="oe_inline"
+                                    attrs="{'required':[('group_enable_fines_on_wa','!=', False)]}"
+                                /> per day
                                 </div>
                             </div>
                         </div>

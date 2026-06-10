@@ -36,5 +36,4 @@
         />
         <field name="binding_view_types">list</field>
     </record>
-
 </odoo>

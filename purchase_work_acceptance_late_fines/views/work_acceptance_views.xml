@@ -79,9 +79,9 @@
                             <label for="fines_rate" />
                             <div>
                                     <field
-                                    name="fines_rate"
-                                    class="oe_inline"
-                                /> per day
+                                name="fines_rate"
+                                class="oe_inline"
+                            /> per day
                                 </div>
                             <field name="fines_late" />
                         </group>
