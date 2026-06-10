@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-24 07:53+0000\n"
-"PO-Revision-Date: 2026-01-21 19:50+0000\n"
-"Last-Translator: \"Rodrigo A. Madureira\" <rodrigomadu85@gmail.com>\n"
+"PO-Revision-Date: 2026-06-10 12:08+0000\n"
+"Last-Translator: Wesley Oliveira <wesleygabrieldeoliveira@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-"
 "purchase-workflow-10-0/language/pt_BR/)\n"
 "Language: pt_BR\n"
@@ -512,7 +512,6 @@ msgstr ""
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_search_sub
-#, fuzzy
 msgid "Group By"
 msgstr "Grupo por..."
 
@@ -663,7 +662,7 @@ msgstr "Mensagens"
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_stock_warehouse_orderpoint
 msgid "Minimum Inventory Rule"
-msgstr "Regra Mínima de Inventário"
+msgstr "Regra de Estoque Mínimo"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__my_activity_date_deadline
@@ -744,7 +743,6 @@ msgstr "Quantidade em Aberto"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_search_sub
-#, fuzzy
 msgid "Order Reference"
 msgstr "Referência da requisição:"
 
@@ -762,7 +760,6 @@ msgstr ""
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__description
-#, fuzzy
 msgid "PR Description"
 msgstr "Descrição"
 
@@ -817,7 +814,7 @@ msgstr "Produto"
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_stock_move_line
 msgid "Product Moves (Stock Move Line)"
-msgstr "Movimentos do Produto (Linha de Movimentação do Estoque)"
+msgstr "Movimentos do produto (Linha do Movimento do Estoque)"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
@@ -855,7 +852,7 @@ msgstr "Pedido de Compra"
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr "Linha do Pedido de Compra"
+msgstr "Linha de Encomenda"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__purchase_lines
@@ -933,7 +930,7 @@ msgstr "Linha de solicitação de compra"
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_request_line_make_purchase_order
 msgid "Purchase Request Line Make Purchase Order"
-msgstr "Linha de Solicitação de Compra Criar Ordem de Compra"
+msgstr "Linha de Requisição de Compra Fazer Pedido de Compra"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_request_line_make_purchase_order_item
@@ -1131,7 +1128,6 @@ msgstr "Rejeitado"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
-#, fuzzy
 msgid "Request"
 msgstr "Data da requisição"
 
@@ -1154,7 +1150,7 @@ msgstr "Referência da requisição:"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Request approval"
-msgstr "Aprovação da requisição"
+msgstr "Solicitar Aprovação"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
@@ -1202,7 +1198,6 @@ msgstr ""
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__requested_product_uom_qty
-#, fuzzy
 msgid "Requested Quantity"
 msgstr "Requisitado por"
 
@@ -1215,7 +1210,6 @@ msgstr "Requisitado por"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
-#, fuzzy
 msgid "Requested for Quotation"
 msgstr "Estado da requisição"
 
@@ -1232,7 +1226,6 @@ msgstr ""
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_search_sub
-#, fuzzy
 msgid "Search Purchase Order Line"
 msgstr "Procurar requisições de compra"
 
@@ -1244,7 +1237,6 @@ msgstr "Procurar requisições de compra"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_allocation__purchase_line_id
-#, fuzzy
 msgid "Service Purchase Order Line"
 msgstr "Procurar requisições de compra"
 
@@ -1317,7 +1309,7 @@ msgstr ""
 #: model:ir.model,name:purchase_request.model_stock_move
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__stock_move_id
 msgid "Stock Move"
-msgstr "Movimentação de estoque"
+msgstr "Movimentação do Estoque"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__move_count
@@ -1403,7 +1395,6 @@ msgstr "Para aprovação"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__to_approve_allowed
-#, fuzzy
 msgid "To Approve Allowed"
 msgstr "Para aprovação"
 
@@ -1465,7 +1456,6 @@ msgstr ""
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__website_message_ids
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__website_message_ids
-#, fuzzy
 msgid "Website Messages"
 msgstr "Mensagens não lidas"
 
