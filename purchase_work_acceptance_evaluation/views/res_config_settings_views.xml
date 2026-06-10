@@ -22,8 +22,7 @@
                         <div
                             class="content-group"
                             attrs="{'invisible': [('group_enable_eval_on_wa' ,'=', False)]}"
-                        >
-                        </div>
+                        />
                     </div>
                 </div>
             </xpath>

@@ -1,5 +1,4 @@
 <odoo>
-
     <record id="group_enable_eval_on_wa" model="res.groups">
         <field name="name">Enable Evaluation on Work Acceptance</field>
         <field name="category_id" ref="base.module_category_hidden" />
@@ -12,5 +11,4 @@
             name="domain_force"
         >['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
     </record>
-
 </odoo>

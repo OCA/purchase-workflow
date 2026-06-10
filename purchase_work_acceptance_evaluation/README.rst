@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ===================================
 Purchase Work Acceptance Evaluation
 ===================================
@@ -17,25 +13,27 @@ Purchase Work Acceptance Evaluation
 .. |badge1| image:: https://img.shields.io/badge/maturity-Alpha-red.png
     :target: https://odoo-community.org/page/development-status
     :alt: Alpha
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/purchase-workflow/tree/16.0/purchase_work_acceptance_evaluation
+    :target: https://github.com/OCA/purchase-workflow/tree/18.0/purchase_work_acceptance_evaluation
     :alt: OCA/purchase-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/purchase-workflow-16-0/purchase-workflow-16-0-purchase_work_acceptance_evaluation
+    :target: https://translation.odoo-community.org/projects/purchase-workflow-18-0/purchase-workflow-18-0-purchase_work_acceptance_evaluation
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module extend Purchase Work Acceptance by adding the ability to evaluate quality of work.
-User can also add as many evaluation criteria as he/she wanted in configuration menu.
+This module extend Purchase Work Acceptance by adding the ability to
+evaluate quality of work. User can also add as many evaluation criteria
+as he/she wanted in configuration menu.
 
-In addition, user can see all evaluation from Work Acceptance Evaluation Report.
+In addition, user can see all evaluation from Work Acceptance Evaluation
+Report.
 
 .. IMPORTANT::
    This is an alpha version, the data model and design can change at any time without warning.
@@ -52,15 +50,17 @@ Configuration
 
 To configure this module, you need to enable wa evaluation:
 
-* Go to Purchase > Configuration > Settings > Enable `Enable Evaluation on Work Acceptance` in `Work Acceptance`
+- Go to Purchase > Configuration > Settings > Enable Enable Evaluation
+  on Work Acceptance in Work Acceptance
 
 Usage
 =====
 
 **Usual process of Purchasing with Work Acceptance Evaluation**
 
-#. Create a new Work Acceptance (either directly or from purchase order)
-#. On Evaluation tab, each evaluation criteria will be editble based on its Settings.
+1. Create a new Work Acceptance (either directly or from purchase order)
+2. On Evaluation tab, each evaluation criteria will be editble based on
+   its Settings.
 
 Bug Tracker
 ===========
@@ -68,7 +68,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/purchase-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_work_acceptance_evaluation%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_work_acceptance_evaluation%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -76,25 +76,26 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Ecosoft
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Ecosoft <http://ecosoft.co.th>`__:
+- `Ecosoft <http://ecosoft.co.th>`__:
 
-  * Kitti U. <kittiu@ecosoft.co.th>
-  * Tharathip C. <tharathipc@ecosoft.co.th>
-  * Saran Lim. <saranl@ecosoft.co.th>
+  - Kitti U. <kittiu@ecosoft.co.th>
+  - Tharathip C. <tharathipc@ecosoft.co.th>
+  - Saran Lim. <saranl@ecosoft.co.th>
 
-* `ProThai <http://prothaitechnology.com>`__:
+- `ProThai <http://prothaitechnology.com>`__:
 
-  * Prapassorn Sornkaew <prapassorn.s@prothaitechnology.com> <Migration to version 14.0>
+  - Prapassorn Sornkaew <prapassorn.s@prothaitechnology.com> <Migration
+    to version 14.0>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -114,6 +115,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-kittiu| 
 
-This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/16.0/purchase_work_acceptance_evaluation>`_ project on GitHub.
+This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/18.0/purchase_work_acceptance_evaluation>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

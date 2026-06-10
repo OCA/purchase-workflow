@@ -42,5 +42,5 @@ class WorkAcceptanceEvaluationScore(models.Model):
     score = fields.Integer()
 
     def name_get(self):
-        result = [(rec.id, "{} ({})".format(rec.name, rec.score)) for rec in self]
+        result = [(rec.id, f"{rec.name} ({rec.score})") for rec in self]
         return result

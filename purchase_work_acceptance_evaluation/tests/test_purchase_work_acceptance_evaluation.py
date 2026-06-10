@@ -62,7 +62,7 @@ class TestPurchaseWorkAcceptanceEvaluation(TransactionCase):
 
         work_acceptance = f.save()
         score_resuls = work_acceptance.mapped("evaluation_result_ids.case_id.score_ids")
-        name = "{} ({})".format(score_resuls[0].name, score_resuls[0].score)
+        name = f"{score_resuls[0].name} ({score_resuls[0].score})"
         res = score_resuls[0].name_get()
         self.assertEqual(len(res), 1)
         rec_id, name_get = res[0]
