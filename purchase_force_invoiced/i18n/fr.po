@@ -6,20 +6,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-11-02 12:36+0000\n"
-"Last-Translator: Alexis de Lattre <alexis@via.ecp.fr>\n"
+"PO-Revision-Date: 2026-06-11 14:09+0000\n"
+"Last-Translator: Yann Papouin <ypa@decgroupe.com>\n"
 "Language-Team: none\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: purchase_force_invoiced
 #: model:ir.model.fields,field_description:purchase_force_invoiced.field_purchase_order__force_invoiced
 msgid "Force Invoiced"
-msgstr "Forcer le statut à 'Entièrement facturé'"
+msgstr "Forcer « Facturé »"
 
 #. module: purchase_force_invoiced
 #: model:ir.model.fields,help:purchase_force_invoiced.field_purchase_order__force_invoiced
@@ -27,6 +27,9 @@ msgid ""
 "If true, the order is marked forced only when all lines are fully invoiced "
 "and at least one line was manually forced."
 msgstr ""
+"Si cette condition est remplie, la commande n'est marquée comme « forcée » "
+"que lorsque toutes les lignes ont été entièrement facturées et qu'au moins "
+"une ligne a été forcée manuellement."
 
 #. module: purchase_force_invoiced
 #: model:ir.model,name:purchase_force_invoiced.model_purchase_order
@@ -36,7 +39,7 @@ msgstr "Commande fournisseur"
 #. module: purchase_force_invoiced
 #: model:ir.model,name:purchase_force_invoiced.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Ligne d'achat"
 
 #. module: purchase_force_invoiced
 #: model:ir.model,name:purchase_force_invoiced.model_purchase_report
@@ -46,7 +49,7 @@ msgstr "Rapport d'achat"
 #. module: purchase_force_invoiced
 #: model:res.groups,name:purchase_force_invoiced.group_force_invoiced
 msgid "Set purchase orders to 'Force Invoiced'"
-msgstr ""
+msgstr "Définir les commandes d'achats sur « Facturation forcée »"
 
 #~ msgid ""
 #~ "When you set this field, the purchase order will be considered as fully "
