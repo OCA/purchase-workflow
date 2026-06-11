@@ -1,0 +1,125 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_order_line_menu
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2026-06-01 06:27+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
+"Language-Team: none\n"
+"Language: sl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,field_description:purchase_order_line_menu.field_purchase_order_line__invoice_status
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "Billing Status"
+msgstr "Status obračuna"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "Cancelled"
+msgstr "Preklicano"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,help:purchase_order_line_menu.field_purchase_order_line__date_order
+msgid ""
+"Depicts the date within which the Quotation should be confirmed and "
+"converted into a purchase order."
+msgstr ""
+"Prikazuje datum, do katerega je treba ponudbo potrditi in pretvoriti v "
+"nabavni nalog."
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "Fully Billed"
+msgstr "Polno zaračunano"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "Locked"
+msgstr "Zaklenjeno"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "Nothing to Bill"
+msgstr "Nič za obračun"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,field_description:purchase_order_line_menu.field_purchase_order_line__date_order
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "Order Date"
+msgstr "Datum naročila"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.view_purchase_order_line_pivot
+msgid "Order Lines"
+msgstr "Postavke naloga"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "Order date"
+msgstr "Datum naročila"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "Planned date"
+msgstr "Načrtovani datum"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_tree
+msgid "Price Subtotal"
+msgstr "Subtotal"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_tree
+msgid "Price Tax"
+msgstr "Znesek davka"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_tree
+msgid "Price Total"
+msgstr "Znesek skupaj"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "Purchase Order"
+msgstr "Nabavni nalog"
+
+#. module: purchase_order_line_menu
+#: model:ir.model,name:purchase_order_line_menu.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Nabavna postavka"
+
+#. module: purchase_order_line_menu
+#: model:ir.actions.act_window,name:purchase_order_line_menu.action_purchase_orders_lines
+#: model:ir.ui.menu,name:purchase_order_line_menu.purchase_order_line_menu
+msgid "Purchase Order Lines"
+msgstr "Postavke nabavnega naloga"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "RFQ"
+msgstr "Povpraševanje po ponudbi"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "RFQ Sent"
+msgstr "Povpraševanje poslano"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "To Approve"
+msgstr "Za odobritev"
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
+msgid "Waiting Bills"
+msgstr "Računi na čakanju"

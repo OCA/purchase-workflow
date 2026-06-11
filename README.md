@@ -32,7 +32,7 @@ addon | version | maintainers | summary
 [product_supplierinfo_update_price](product_supplierinfo_update_price/) | 18.0.1.0.0 |  | Updates the product's vendor price with the price set in a purchase order.
 [purchase_advance_payment](purchase_advance_payment/) | 18.0.1.2.0 | <a href='https://github.com/LoisRForgeFlow'><img src='https://github.com/LoisRForgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='LoisRForgeFlow'/></a> | Allow to add advance payments on purchase orders
 [purchase_all_shipments](purchase_all_shipments/) | 18.0.1.0.1 |  | Purchase All Shipments
-[purchase_allowed_product](purchase_allowed_product/) | 18.0.1.0.0 |  | This module allows to select only products that can be supplied by the vendor
+[purchase_allowed_product](purchase_allowed_product/) | 18.0.1.0.1 |  | This module allows to select only products that can be supplied by the vendor
 [purchase_analytic_global](purchase_analytic_global/) | 18.0.1.0.0 |  | Purchase - Analytic Account Global
 [purchase_blanket_order](purchase_blanket_order/) | 18.0.1.0.1 |  | Purchase Blanket Orders
 [purchase_cancel_reason](purchase_cancel_reason/) | 18.0.1.0.0 |  | Purchase Cancel Reason
@@ -55,20 +55,21 @@ addon | version | maintainers | summary
 [purchase_lot](purchase_lot/) | 18.0.1.0.1 | <a href='https://github.com/florian-dacosta'><img src='https://github.com/florian-dacosta.png' width='32' height='32' style='border-radius:50%;' alt='florian-dacosta'/></a> | Purchase Lot
 [purchase_manual_currency](purchase_manual_currency/) | 18.0.1.0.0 |  | Allows to manual currency of Purchase
 [purchase_manual_delivery](purchase_manual_delivery/) | 18.0.1.0.0 |  | Prevents pickings to be auto generated upon Purchase Order confirmation and adds the ability to manually generate them as the supplier confirms the different purchase order lines.
-[purchase_no_rfq](purchase_no_rfq/) | 18.0.1.0.1 | <a href='https://github.com/legalsylvain'><img src='https://github.com/legalsylvain.png' width='32' height='32' style='border-radius:50%;' alt='legalsylvain'/></a> | Purchase Order - No Request For Quotation
+[purchase_no_rfq](purchase_no_rfq/) | 18.0.1.0.2 | <a href='https://github.com/legalsylvain'><img src='https://github.com/legalsylvain.png' width='32' height='32' style='border-radius:50%;' alt='legalsylvain'/></a> | Purchase Order - No Request For Quotation
 [purchase_open_qty](purchase_open_qty/) | 18.0.1.0.1 |  | Allows to identify the purchase orders that have quantities pending to invoice or to receive.
 [purchase_order_approval_block](purchase_order_approval_block/) | 18.0.1.0.0 |  | Purchase Order Approval Block
-[purchase_order_approved](purchase_order_approved/) | 18.0.1.0.0 |  | Add a new state 'Approved' in purchase orders.
+[purchase_order_approved](purchase_order_approved/) | 18.0.1.0.2 |  | Add a new state 'Approved' in purchase orders.
 [purchase_order_archive](purchase_order_archive/) | 18.0.1.0.0 |  | Archive Purchase Orders
 [purchase_order_date_approve_editable](purchase_order_date_approve_editable/) | 18.0.1.0.0 |  | Allows editing the Approval Date on Purchase Orders
 [purchase_order_etd_eta](purchase_order_etd_eta/) | 18.0.1.0.0 | <a href='https://github.com/yostashiro'><img src='https://github.com/yostashiro.png' width='32' height='32' style='border-radius:50%;' alt='yostashiro'/></a> <a href='https://github.com/aungkokolin1997'><img src='https://github.com/aungkokolin1997.png' width='32' height='32' style='border-radius:50%;' alt='aungkokolin1997'/></a> | Add Estimated Time of Departure/Arrival fields to Purchase Orders
 [purchase_order_general_discount](purchase_order_general_discount/) | 18.0.1.0.0 |  | General discount per purchase order
+[purchase_order_internal_note](purchase_order_internal_note/) | 18.0.1.0.0 |  | Adds new field Internal Note to the purchase order. It will not be included in the report.
 [purchase_order_line_description](purchase_order_line_description/) | 18.0.1.0.0 |  | Purchase order line description
 [purchase_order_line_effective_date](purchase_order_line_effective_date/) | 18.0.0.1.0 | <a href='https://github.com/renatonlima'><img src='https://github.com/renatonlima.png' width='32' height='32' style='border-radius:50%;' alt='renatonlima'/></a> | Calculated effective dates in Purchase Order Lines
 [purchase_order_line_menu](purchase_order_line_menu/) | 18.0.1.0.2 |  | Adds Purchase Order Lines Menu
 [purchase_order_line_note](purchase_order_line_note/) | 18.0.1.0.0 | <a href='https://github.com/Kev-Roche'><img src='https://github.com/Kev-Roche.png' width='32' height='32' style='border-radius:50%;' alt='Kev-Roche'/></a> | Note on purchase order line
 [purchase_order_line_original_date](purchase_order_line_original_date/) | 18.0.1.0.0 | <a href='https://github.com/LoisRForgeFlow'><img src='https://github.com/LoisRForgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='LoisRForgeFlow'/></a> | adds the Original Expected Arrival to PO lines.
-[purchase_order_line_sequence](purchase_order_line_sequence/) | 18.0.1.0.1 |  | Adds sequence to PO lines and propagates it toInvoice lines and Stock Moves
+[purchase_order_line_sequence](purchase_order_line_sequence/) | 18.0.2.0.0 |  | Adds sequence to PO lines and propagates it to Invoice lines
 [purchase_order_line_stock_available](purchase_order_line_stock_available/) | 18.0.1.0.0 |  | Purchase order line stock available
 [purchase_order_owner](purchase_order_owner/) | 18.0.1.0.0 |  | Purchase Order Owner
 [purchase_order_price_recalculation](purchase_order_price_recalculation/) | 18.0.1.0.0 | <a href='https://github.com/victoralmau'><img src='https://github.com/victoralmau.png' width='32' height='32' style='border-radius:50%;' alt='victoralmau'/></a> | Price recalculation in purchases orders
@@ -103,6 +104,7 @@ addon | version | maintainers | summary
 [purchase_sale_link_by_origin](purchase_sale_link_by_origin/) | 18.0.1.0.0 |  | Link PO/SO by the PO's Origin in addition to the default behavior that only links them by their lines
 [purchase_security](purchase_security/) | 18.0.1.1.2 | <a href='https://github.com/pilarvargas-tecnativa'><img src='https://github.com/pilarvargas-tecnativa.png' width='32' height='32' style='border-radius:50%;' alt='pilarvargas-tecnativa'/></a> | See only your purchase orders
 [purchase_stock_cost_update](purchase_stock_cost_update/) | 18.0.1.0.0 | <a href='https://github.com/chienandalu'><img src='https://github.com/chienandalu.png' width='32' height='32' style='border-radius:50%;' alt='chienandalu'/></a> <a href='https://github.com/rafaelbn'><img src='https://github.com/rafaelbn.png' width='32' height='32' style='border-radius:50%;' alt='rafaelbn'/></a> | Allows to update valuation layers once the purchase is received
+[purchase_stock_line_sequence](purchase_stock_line_sequence/) | 18.0.2.0.0 |  | Propagates the purchase order line sequence to stock moves
 [purchase_stock_manual_currency](purchase_stock_manual_currency/) | 18.0.1.0.0 |  | Extends manual currency from purchase to stock moves
 [purchase_stock_packaging](purchase_stock_packaging/) | 18.0.1.0.0 | <a href='https://github.com/rousseldenis'><img src='https://github.com/rousseldenis.png' width='32' height='32' style='border-radius:50%;' alt='rousseldenis'/></a> | Allows to transmit the product packaging from the procurement values to the generated purchase order line
 [purchase_stock_price_unit_sync](purchase_stock_price_unit_sync/) | 18.0.1.0.0 |  | Update cost price in stock moves already done

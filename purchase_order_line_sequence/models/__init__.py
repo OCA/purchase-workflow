@@ -3,4 +3,3 @@
 from . import purchase
 from . import purchase_line
 from . import account_move_line
-from . import stock_move

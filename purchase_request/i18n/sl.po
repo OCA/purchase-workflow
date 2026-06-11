@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-24 07:53+0000\n"
-"PO-Revision-Date: 2026-02-01 08:09+0000\n"
+"PO-Revision-Date: 2026-06-07 17:14+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-purchase-workflow-"
 "10-0/language/sl/)\n"
@@ -524,7 +524,7 @@ msgstr "Ikona za prikaz izjem pri aktivnostih."
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__message_needaction
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr "Kadar je označeno, pomeni, da nova sporočila zahtevajo vašo pozornost."
+msgstr "Če označeno pomeni, da nova sporočila zahtevajo vašo pozornost."
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__message_has_error
@@ -579,7 +579,7 @@ msgstr "Postavke"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order__write_uid
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__write_uid
 msgid "Last Updated by"
-msgstr "Zadnjič posodobil"
+msgstr "Zadnji posodobil"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__write_date

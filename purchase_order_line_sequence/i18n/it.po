@@ -56,16 +56,6 @@ msgid "Max sequence in lines"
 msgstr "Sequenza massima nelle righe"
 
 #. module: purchase_order_line_sequence
-#. odoo-python
-#: code:addons/purchase_order_line_sequence/models/stock_move.py:0
-msgid ""
-"Not allowed to change the sequence of moves from the picking, you can do it "
-"from the PO."
-msgstr ""
-"Non abilitato alla modifica della sequenza dei movimenti dal prelievo, lo si "
-"può fare dal OA."
-
-#. module: purchase_order_line_sequence
 #: model:ir.model.fields,field_description:purchase_order_line_sequence.field_account_move_line__related_po_sequence
 msgid "PO Line Number"
 msgstr "Numero riga OA"
@@ -80,7 +70,12 @@ msgstr "Ordine di acquisto"
 msgid "Purchase Order Line"
 msgstr "Riga ordine di acquisto"
 
-#. module: purchase_order_line_sequence
-#: model:ir.model,name:purchase_order_line_sequence.model_stock_move
-msgid "Stock Move"
-msgstr "Movimento di magazzino"
+#~ msgid ""
+#~ "Not allowed to change the sequence of moves from the picking, you can do "
+#~ "it from the PO."
+#~ msgstr ""
+#~ "Non abilitato alla modifica della sequenza dei movimenti dal prelievo, lo "
+#~ "si può fare dal OA."
+
+#~ msgid "Stock Move"
+#~ msgstr "Movimento di magazzino"
