@@ -80,6 +80,20 @@ class PurchaseOrder(models.Model):
         """If there is deposit installment, and no invoice is_deposit yet.
         Give user a warning.
         """
+        if (
+            self.use_invoice_plan
+            and self.env.context.get("advance_deduct_option")
+            and not self.env.context.get("invoice_plan_id")
+        ):
+            return (
+                self.env["purchase.make.planned.invoice"]
+                .with_context(
+                    advance_deduct_option=self.env.context.get("advance_deduct_option"),
+                )
+                .create({})
+                .create_invoices_by_plan()
+            )
+
         if self.filtered("need_advance"):
             raise UserError(
                 self.env._(
