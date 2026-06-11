@@ -25,12 +25,9 @@ class PurchaseOrder(models.Model):
         return res
 
     def action_create_invoice(self, attachment_ids=False):
-        orders_to_invoice = self.env["purchase.order"]
-        for order in self:
-            if not order.force_invoiced:
-                orders_to_invoice |= order
-        if not orders_to_invoice:
+        orders = self.filtered(lambda po: not po.force_invoiced)
+        if not orders:
             return {"type": "ir.actions.act_window_close"}
-        return super(PurchaseOrder, orders_to_invoice).action_create_invoice(
+        return super(PurchaseOrder, orders).action_create_invoice(
             attachment_ids=attachment_ids
         )
