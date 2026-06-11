@@ -69,7 +69,7 @@ addon | version | maintainers | summary
 [purchase_order_line_menu](purchase_order_line_menu/) | 18.0.1.0.2 |  | Adds Purchase Order Lines Menu
 [purchase_order_line_note](purchase_order_line_note/) | 18.0.1.0.0 | <a href='https://github.com/Kev-Roche'><img src='https://github.com/Kev-Roche.png' width='32' height='32' style='border-radius:50%;' alt='Kev-Roche'/></a> | Note on purchase order line
 [purchase_order_line_original_date](purchase_order_line_original_date/) | 18.0.1.0.0 | <a href='https://github.com/LoisRForgeFlow'><img src='https://github.com/LoisRForgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='LoisRForgeFlow'/></a> | adds the Original Expected Arrival to PO lines.
-[purchase_order_line_sequence](purchase_order_line_sequence/) | 18.0.1.0.1 |  | Adds sequence to PO lines and propagates it toInvoice lines and Stock Moves
+[purchase_order_line_sequence](purchase_order_line_sequence/) | 18.0.2.0.0 |  | Adds sequence to PO lines and propagates it to Invoice lines
 [purchase_order_line_stock_available](purchase_order_line_stock_available/) | 18.0.1.0.0 |  | Purchase order line stock available
 [purchase_order_owner](purchase_order_owner/) | 18.0.1.0.0 |  | Purchase Order Owner
 [purchase_order_price_recalculation](purchase_order_price_recalculation/) | 18.0.1.0.0 | <a href='https://github.com/victoralmau'><img src='https://github.com/victoralmau.png' width='32' height='32' style='border-radius:50%;' alt='victoralmau'/></a> | Price recalculation in purchases orders
@@ -104,6 +104,7 @@ addon | version | maintainers | summary
 [purchase_sale_link_by_origin](purchase_sale_link_by_origin/) | 18.0.1.0.0 |  | Link PO/SO by the PO's Origin in addition to the default behavior that only links them by their lines
 [purchase_security](purchase_security/) | 18.0.1.1.2 | <a href='https://github.com/pilarvargas-tecnativa'><img src='https://github.com/pilarvargas-tecnativa.png' width='32' height='32' style='border-radius:50%;' alt='pilarvargas-tecnativa'/></a> | See only your purchase orders
 [purchase_stock_cost_update](purchase_stock_cost_update/) | 18.0.1.0.0 | <a href='https://github.com/chienandalu'><img src='https://github.com/chienandalu.png' width='32' height='32' style='border-radius:50%;' alt='chienandalu'/></a> <a href='https://github.com/rafaelbn'><img src='https://github.com/rafaelbn.png' width='32' height='32' style='border-radius:50%;' alt='rafaelbn'/></a> | Allows to update valuation layers once the purchase is received
+[purchase_stock_line_sequence](purchase_stock_line_sequence/) | 18.0.2.0.0 |  | Propagates the purchase order line sequence to stock moves
 [purchase_stock_manual_currency](purchase_stock_manual_currency/) | 18.0.1.0.0 |  | Extends manual currency from purchase to stock moves
 [purchase_stock_packaging](purchase_stock_packaging/) | 18.0.1.0.0 | <a href='https://github.com/rousseldenis'><img src='https://github.com/rousseldenis.png' width='32' height='32' style='border-radius:50%;' alt='rousseldenis'/></a> | Allows to transmit the product packaging from the procurement values to the generated purchase order line
 [purchase_stock_price_unit_sync](purchase_stock_price_unit_sync/) | 18.0.1.0.0 |  | Update cost price in stock moves already done
