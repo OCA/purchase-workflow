@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-10 05:30+0000\n"
-"PO-Revision-Date: 2023-05-02 15:34+0000\n"
-"Last-Translator: Hughes Damry <hughes@damry.org>\n"
+"PO-Revision-Date: 2026-06-11 14:09+0000\n"
+"Last-Translator: Yann Papouin <ypa@decgroupe.com>\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: purchase_order_approved
 #: model_terms:ir.ui.view,arch_db:purchase_order_approved.view_purchase_configuration
@@ -25,6 +25,8 @@ msgid ""
 "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
 "specific.\" groups=\"base.group_multi_company\"/>"
 msgstr ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Les valeurs définies ici sont "
+"propres à l'entreprise.\" groups=\"base.group_multi_company\"/>"
 
 #. module: purchase_order_approved
 #: model_terms:ir.ui.view,arch_db:purchase_order_approved.view_purchase_configuration
@@ -48,7 +50,7 @@ msgstr ""
 "avoir confirmé et approuvé un bon de commande, il passe dans l'état "
 "'Approuvé'. Dans cet état, les réceptions ne sont pas créées et il est "
 "toujours possible de le remettre en brouillon. La création des réceptions "
-"peut dse faire en faisant passer le bon de commande à l'état 'Bon de "
+"peut se faire en faisant passer le bon de commande à l'état 'Bon de "
 "Commande'."
 
 #. module: purchase_order_approved
@@ -78,14 +80,13 @@ msgstr "Sociétés"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__company_id
-#, fuzzy
 msgid "Company"
-msgstr "Sociétés"
+msgstr "Société"
 
 #. module: purchase_order_approved
 #: model:ir.model,name:purchase_order_approved.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contact"
 
 #. module: purchase_order_approved
 #: model_terms:ir.ui.view,arch_db:purchase_order_approved.purchase_order_form
@@ -100,7 +101,7 @@ msgstr "Devise"
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__picking_type_id
 msgid "Deliver To"
-msgstr "Délivrer à"
+msgstr "Livrer à"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__date_order
@@ -134,7 +135,7 @@ msgstr "Lignes de commande"
 #. module: purchase_order_approved
 #: model:ir.model,name:purchase_order_approved.model_res_config_settings
 msgid "Procurement purchase grouping settings"
-msgstr ""
+msgstr "Paramètres de regroupement des approvisionnements d'achat"
 
 #. module: purchase_order_approved
 #: model:ir.model,name:purchase_order_approved.model_purchase_order
