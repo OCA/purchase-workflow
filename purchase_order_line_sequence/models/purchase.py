@@ -26,37 +26,6 @@ class PurchaseOrder(models.Model):
         string="Max sequence in lines", compute="_compute_max_line_sequence"
     )
 
-    def _create_picking(self):
-        res = super()._create_picking()
-        self._update_moves_sequence()
-        return res
-
-    def _update_moves_sequence(self):
-        for order in self:
-            if any(
-                [
-                    ptype == "consu"
-                    for ptype in order.order_line.mapped("product_id.type")
-                ]
-            ):
-                for picking in order.picking_ids:
-                    for move in picking.move_ids:
-                        if not move.purchase_line_id:
-                            continue
-                        move.write({"sequence": move.purchase_line_id.visible_sequence})
-
-    @api.model_create_multi
-    def create(self, vals_list):
-        res = super().create(vals_list)
-        self._update_moves_sequence()
-        return res
-
-    def write(self, line_values):
-        res = super().write(line_values)
-        if "order_line" in line_values:
-            self._update_moves_sequence()
-        return res
-
     @api.model
     def get_view(self, view_id=None, view_type="form", **options):
         """Append the default sequence.

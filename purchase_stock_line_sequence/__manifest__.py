@@ -4,9 +4,9 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
-    "name": "Purchase Order Line Sequence",
-    "summary": "Adds sequence to PO lines and propagates it to Invoice lines",
-    "version": "18.0.1.0.1",
+    "name": "Purchase Stock Line Sequence",
+    "summary": "Propagates the purchase order line sequence to stock moves",
+    "version": "18.0.1.0.0",
     "category": "Purchase Management",
     "author": "Camptocamp, "
     "ForgeFlow, "
@@ -14,16 +14,10 @@
     "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
     "depends": [
-        "purchase",
-    ],
-    "data": [
-        "views/purchase_view.xml",
-        "views/report_purchaseorder.xml",
-        "views/report_purchasequotation.xml",
-        "views/account_move_view.xml",
-        "views/report_invoice.xml",
+        "purchase_order_line_sequence",
+        "stock_picking_line_sequence",
     ],
     "installable": True,
-    "auto_install": False,
+    "auto_install": True,
     "license": "AGPL-3",
 }
