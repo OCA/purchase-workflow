@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-24 07:53+0000\n"
-"PO-Revision-Date: 2026-06-13 07:01+0000\n"
+"PO-Revision-Date: 2026-06-13 07:19+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-purchase-workflow-"
 "10-0/language/sl/)\n"
@@ -389,7 +389,7 @@ msgstr "Opis"
 #. odoo-python
 #: code:addons/purchase_request/models/purchase_request_line.py:0
 msgid "Detailed Line"
-msgstr ""
+msgstr "Podrobna postavka"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__display_name
@@ -415,7 +415,7 @@ msgstr "Opravljeno"
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__move_dest_ids
 msgid "Downstream Moves"
-msgstr ""
+msgstr "Nadaljnji premiki"
 
 #. module: purchase_request
 #: model:ir.model.fields.selection,name:purchase_request.selection__purchase_request__state__draft
@@ -446,6 +446,8 @@ msgstr "Ocena stroškov"
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__estimated_cost
 msgid "Estimated cost of Purchase Request Line, not propagated to PO."
 msgstr ""
+"Ocenjeni strošek postavke nabavnega zahtevka, ki se ne prenese v nabavni "
+"nalog."
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_line_make_purchase_order
@@ -476,6 +478,7 @@ msgstr "Font awesome ikona, npr. fa-tasks"
 msgid ""
 "From last reception this quantity has been allocated to this purchase request"
 msgstr ""
+"Od zadnjega prejema je bila ta količina dodeljena temu nabavnemu zahtevku"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_search_sub
@@ -497,7 +500,7 @@ msgstr "Vsebuje sporočilo"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_search_sub
 msgid "Hide cancelled lines"
-msgstr ""
+msgstr "Skrij preklicane postavke"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__id
@@ -560,7 +563,7 @@ msgstr "Je sledilec"
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__is_name_editable
 msgid "Is Name Editable"
-msgstr ""
+msgstr "Ime je mogoče urejati"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__is_editable
@@ -598,12 +601,12 @@ msgstr "Postavke"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_form2_sub
 msgid "Manual Invoices"
-msgstr ""
+msgstr "Ročna faktura"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order__sync_data_planned
 msgid "Match existing PO lines by Scheduled Date"
-msgstr ""
+msgstr "Ujemaj obstoječe postavke nabavnega naloga po načrtovanem datumu"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_has_error
@@ -707,17 +710,17 @@ msgstr "Sklic naročila"
 #. odoo-python
 #: code:addons/purchase_request/models/purchase_order.py:0
 msgid "Order confirmation %(po_name)s for your Request %(pr_name)s"
-msgstr ""
+msgstr "Potrditev nabavnega naloga %(po_name)s za vaš zahtevek %(pr_name)s"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__orderpoint_id
 msgid "Orderpoint"
-msgstr ""
+msgstr "Točka naročanja"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__description
 msgid "PR Description"
-msgstr "Opis nab. zaht."
+msgstr "Opis nab. zahtevka"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__pending_qty_to_receive
@@ -856,7 +859,7 @@ msgstr "Nabavni zahtevek %s je bil že dokončan"
 #. odoo-python
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
 msgid "Purchase Request %s is not approved or in progress"
-msgstr ""
+msgstr "Nabavni zahtevek %s ni odobren ali v teku"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_request_allocation
@@ -964,7 +967,7 @@ msgstr "Status nabave"
 #. module: purchase_request
 #: model:mail.message.subtype,name:purchase_request.mt_request_picking_done
 msgid "Purchase receipt confirmation"
-msgstr ""
+msgstr "Potrditev prejema nabave"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__purchase_count
@@ -1017,6 +1020,8 @@ msgid ""
 "Quantity of the purchase request line allocated to the stockmove, in the "
 "default UoM of the product"
 msgstr ""
+"Količina postavke nabavnega zahtevka, dodeljena premiku zaloge, v privzeti "
+"EM proizvoda"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_allocation__requested_product_uom_qty
@@ -1024,6 +1029,8 @@ msgid ""
 "Quantity of the purchase request line allocated to thestock move, in the UoM "
 "of the Purchase Request Line"
 msgstr ""
+"Količina postavke nabavnega zahtevka, dodeljena premiku zaloge, v EM "
+"postavke nabavnega zahtevka"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__product_qty
@@ -1039,24 +1046,24 @@ msgstr "Povpraševanje po ponudbi"
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__purchased_qty
 msgid "RFQ/PO Qty"
-msgstr ""
+msgstr "Količina RFQ/PO"
 
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/models/stock_move_line.py:0
 msgid "Receipt confirmation for Request {name}"
-msgstr ""
+msgstr "Potrditev prejema za zahtevek {name}"
 
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/models/stock_move_line.py:0
 msgid "Receipt confirmation {picking_name} for your Request {request_name}"
-msgstr ""
+msgstr "Potrditev prejema {picking_name} za vaš zahtevek {request_name}"
 
 #. module: purchase_request
 #: model:mail.message.subtype,description:purchase_request.mt_request_picking_done
 msgid "Receipt is done"
-msgstr ""
+msgstr "Prejem je zaključen"
 
 #. module: purchase_request
 #. odoo-python
@@ -1194,7 +1201,7 @@ msgstr "Storitvena postavka nabavnega naloga"
 #. odoo-python
 #: code:addons/purchase_request/models/purchase_order.py:0
 msgid "Service confirmation for Request {request_name}"
-msgstr ""
+msgstr "Potrditev prejema storitve za zahtevek {request_name}"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line_make_purchase_order_item__keep_description
@@ -1202,6 +1209,8 @@ msgid ""
 "Set true if you want to keep the descriptions provided in the wizard in the "
 "new PO."
 msgstr ""
+"Označite, če želite v novem nabavnem nalogu ohraniti opise, vnesene v "
+"čarovniku."
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line_make_purchase_order_item__keep_estimated_cost
@@ -1209,11 +1218,13 @@ msgid ""
 "Set true if you want to keep the estimated cost provided in the wizard in "
 "the new PO."
 msgstr ""
+"Označite, če želite v novem nabavnem nalogu ohraniti oceno stroškov, vneseno "
+"v čarovniku."
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Show Details"
-msgstr ""
+msgstr "Prikaži podrobnosti"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
@@ -1253,6 +1264,10 @@ msgid ""
 "Today: Activity date is today\n"
 "Planned: Future activities."
 msgstr ""
+"Status na osnovi aktivnosti\n"
+"Zapadel: Rok je že prekoračen\n"
+"Danes: Datum aktivnosti je danes\n"
+"Planirano: Bodoče aktivnosti."
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_stock_move
@@ -1285,7 +1300,7 @@ msgstr "Dobavitelj"
 #: code:addons/purchase_request/models/stock_move.py:0
 msgid ""
 "The company of the purchase request must match with that of the location."
-msgstr ""
+msgstr "Družba nabavnega zahtevka se mora ujemati z družbo lokacije."
 
 #. module: purchase_request
 #. odoo-python
@@ -1294,6 +1309,8 @@ msgid ""
 "The following requested items from Purchase Request %(pr_name)s have now "
 "been confirmed in Purchase Order %(po_name)s:"
 msgstr ""
+"Naslednje zahtevane postavke iz nabavnega zahtevka %(pr_name)s so zdaj "
+"potrjene v nabavnem nalogu %(po_name)s:"
 
 #. module: purchase_request
 #. odoo-python
@@ -1302,6 +1319,8 @@ msgid ""
 "The following requested items from Purchase Request {request_name} have now "
 "been received in {location_name} using Picking {picking_name}:"
 msgstr ""
+"Naslednje zahtevane postavke iz nabavnega zahtevka {request_name} so bile "
+"zdaj prejete v {location_name} z dobavnico {picking_name}:"
 
 #. module: purchase_request
 #. odoo-python
@@ -1310,6 +1329,8 @@ msgid ""
 "The following requested items from Purchase Request {request_name} requested "
 "by {requestor} have now been received in {location_name}:"
 msgstr ""
+"Naslednje zahtevane postavke iz nabavnega zahtevka {request_name}, ki ga je "
+"zahteval {requestor}, so bile zdaj prejete v {location_name}:"
 
 #. module: purchase_request
 #. odoo-python
@@ -1318,6 +1339,8 @@ msgid ""
 "The following requested services from Purchase Request {request_name} "
 "requested by {requestor} have now been received:"
 msgstr ""
+"Naslednje zahtevane storitve iz nabavnega zahtevka {request_name}, ki ga je "
+"zahteval {requestor}, so bile zdaj prejete:"
 
 #. module: purchase_request
 #. odoo-python
@@ -1328,7 +1351,7 @@ msgstr "Ta nabava je že zaključena."
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__qty_to_buy
 msgid "There is some pending qty to buy"
-msgstr ""
+msgstr "Odprta količina za nabavo"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
@@ -1355,13 +1378,13 @@ msgstr "Skupna ocena stroškov"
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_line_details
 msgid "Tracking"
-msgstr ""
+msgstr "Sledenje"
 
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/models/stock_move_line.py:0
 msgid "Transferred quantity"
-msgstr ""
+msgstr "Prenesena količina"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__activity_exception_decoration
@@ -1382,7 +1405,7 @@ msgstr "Nedodeljena zahteva"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Uncancelled"
-msgstr ""
+msgstr "Nepreklicano"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
@@ -1420,6 +1443,8 @@ msgid ""
 "When checked, PO lines on the selected purchase order are only reused if the "
 "scheduled date matches as well."
 msgstr ""
+"Če je označeno, se postavke izbranega nabavnega naloga ponovno uporabijo le, "
+"če se ujema tudi načrtovani datum."
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__wiz_id
@@ -1433,13 +1458,15 @@ msgid ""
 "You can only delete a purchase request line if the purchase request is in "
 "draft state."
 msgstr ""
+"Postavko nabavnega zahtevka lahko izbrišete le, če je nabavni zahtevek v "
+"stanju osnutka."
 
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/models/purchase_request.py:0
 msgid ""
 "You can't request an approval for a purchase request which is empty. (%s)"
-msgstr ""
+msgstr "Ne morete zahtevati odobritve za prazen nabavni zahtevek. (%s)"
 
 #. module: purchase_request
 #. odoo-python
@@ -1448,12 +1475,14 @@ msgid ""
 "You cannot create a single purchase order from purchase requests that have "
 "different procurement group."
 msgstr ""
+"Ne morete ustvariti enega nabavnega naloga iz nabavnih zahtevkov, ki imajo "
+"različne oskrbovalne skupine."
 
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/models/purchase_request.py:0
 msgid "You cannot delete a purchase request which is not draft."
-msgstr ""
+msgstr "Nabavnega zahtevka, ki ni v osnutku, ne morete izbrisati."
 
 #. module: purchase_request
 #. odoo-python
