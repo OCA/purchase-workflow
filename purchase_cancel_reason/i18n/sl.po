@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-03 03:48+0000\n"
-"PO-Revision-Date: 2026-01-22 19:50+0000\n"
+"PO-Revision-Date: 2026-06-13 06:17+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "Language: sl\n"
@@ -23,7 +23,7 @@ msgstr ""
 #. module: purchase_cancel_reason
 #: model:ir.model,name:purchase_cancel_reason.model_purchase_order_cancel
 msgid "Ask a reason for the purchase order cancellation."
-msgstr ""
+msgstr "Vprašajte po razlogu za preklic naročila."
 
 #. module: purchase_cancel_reason
 #: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.purchase_order_form
@@ -39,11 +39,13 @@ msgid ""
 "Choose the reason for the cancellation of the\n"
 "                    purchase order."
 msgstr ""
+"Izberite razlog za preklic\n"
+"                    nabavnega naloga."
 
 #. module: purchase_cancel_reason
 #: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel
 msgid "Confirm"
-msgstr ""
+msgstr "Potrdi"
 
 #. module: purchase_cancel_reason
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel__create_uid
@@ -72,7 +74,7 @@ msgstr "ID"
 #. module: purchase_cancel_reason
 #: model:purchase.order.cancel.reason,name:purchase_cancel_reason.cancel_reason_only_quotation
 msgid "Just for Quotation"
-msgstr ""
+msgstr "Le za predračun"
 
 #. module: purchase_cancel_reason
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel__write_uid
@@ -89,7 +91,7 @@ msgstr "Zadnjič posodobljeno"
 #. module: purchase_cancel_reason
 #: model:purchase.order.cancel.reason,name:purchase_cancel_reason.cancel_reason_other_provider
 msgid "Other Service Provider selected"
-msgstr ""
+msgstr "Izbran drugi ponudnik storitev"
 
 #. module: purchase_cancel_reason
 #: model:ir.model,name:purchase_cancel_reason.model_purchase_order
@@ -100,41 +102,41 @@ msgstr "Nabavni nalog"
 #: model:ir.actions.act_window,name:purchase_cancel_reason.action_purchase_order_cancel_reason
 #: model:ir.model,name:purchase_cancel_reason.model_purchase_order_cancel_reason
 msgid "Purchase Order Cancel Reason"
-msgstr ""
+msgstr "Razlog preklica nabavnega naloga"
 
 #. module: purchase_cancel_reason
 #: model:ir.ui.menu,name:purchase_cancel_reason.menu_purchase_order_cancel_reason
 #: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel_reason_form
 msgid "Purchase Order Cancel Reasons"
-msgstr ""
+msgstr "Razlogi preklicev nabavnih nalogov"
 
 #. module: purchase_cancel_reason
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel__reason_id
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason__name
 msgid "Reason"
-msgstr ""
+msgstr "Razlog"
 
 #. module: purchase_cancel_reason
 #. odoo-python
 #: code:addons/purchase_cancel_reason/models/purchase_order.py:0
 msgid "Reason for Cancellation"
-msgstr ""
+msgstr "Razlog za preklic"
 
 #. module: purchase_cancel_reason
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order__cancel_reason_id
 msgid "Reason for cancellation"
-msgstr ""
+msgstr "Razlog za preklic"
 
 #. module: purchase_cancel_reason
 #: model:ir.actions.act_window,name:purchase_cancel_reason.action_purchase_order_cancel
 #: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel
 msgid "Reason for the cancellation"
-msgstr ""
+msgstr "Razlog za preklic"
 
 #. module: purchase_cancel_reason
 #: model:purchase.order.cancel.reason,name:purchase_cancel_reason.cancel_reason_no_service_needed
 msgid "Service no longer needed"
-msgstr ""
+msgstr "Storitev ni več potrebovana"
 
 #. module: purchase_cancel_reason
 #. odoo-python
@@ -144,11 +146,14 @@ msgid ""
 "'Canceled' state:\n"
 "%s"
 msgstr ""
+"Izbranih naročil ni mogoče preklicati, saj so vsa v stanju 'Opravljeno' ali "
+"'Preklicano':\n"
+"%s"
 
 #. module: purchase_cancel_reason
 #: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel
 msgid "or"
-msgstr ""
+msgstr "ali"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Zadnjič spremenjeno"
