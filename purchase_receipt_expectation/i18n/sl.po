@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-06-13 07:50+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,11 +15,12 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: purchase_receipt_expectation
 #: model:ir.model.fields.selection,name:purchase_receipt_expectation.selection__purchase_order__receipt_expectation__automatic
 msgid "Automatic"
-msgstr ""
+msgstr "Samodejno"
 
 #. module: purchase_receipt_expectation
 #: model:ir.model.fields,help:purchase_receipt_expectation.field_purchase_order__receipt_expectation
@@ -26,13 +28,17 @@ msgid ""
 "Defines how reception pickings are managed when the order is approved.\n"
 "Default value is 'automatic', which means the picking will be created following the standard Odoo workflow."
 msgstr ""
+"Določa, kako se upravlja s pripravo blaga ob prejemu, ko je naročilo "
+"odobreno.\n"
+"Privzeta vrednost je 'avtomatsko', kar pomeni, da se dobavnica ustvari v "
+"skladu s standardnim delovnim tokom Odoo."
 
 #. module: purchase_receipt_expectation
 #: model:ir.model,name:purchase_receipt_expectation.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Nabavni nalog"
 
 #. module: purchase_receipt_expectation
 #: model:ir.model.fields,field_description:purchase_receipt_expectation.field_purchase_order__receipt_expectation
 msgid "Receipt Expectation"
-msgstr ""
+msgstr "Pričakovani prejem"
