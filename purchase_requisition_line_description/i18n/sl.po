@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-06-13 07:50+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,23 +15,24 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: purchase_requisition_line_description
 #: model_terms:ir.ui.view,arch_db:purchase_requisition_line_description.purchase_requisition
 msgid "<strong>Description</strong>"
-msgstr ""
+msgstr "<strong>Opis</strong>"
 
 #. module: purchase_requisition_line_description
 #: model_terms:ir.ui.view,arch_db:purchase_requisition_line_description.purchase_requisition
 msgid "<strong>Product</strong>"
-msgstr ""
+msgstr "<strong>Proizvod</strong>"
 
 #. module: purchase_requisition_line_description
 #: model:ir.model.fields,field_description:purchase_requisition_line_description.field_purchase_requisition_line__name
 msgid "Product Description"
-msgstr ""
+msgstr "Opis proizvoda"
 
 #. module: purchase_requisition_line_description
 #: model:ir.model,name:purchase_requisition_line_description.model_purchase_requisition_line
 msgid "Purchase Requisition Line"
-msgstr ""
+msgstr "Postavka nabavnega zahtevka"
