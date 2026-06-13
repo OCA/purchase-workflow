@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-06-13 08:16+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,46 +15,47 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: supplier_calendar
 #: model:ir.model,name:supplier_calendar.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Stik"
 
 #. module: supplier_calendar
 #: model:ir.model.fields,field_description:supplier_calendar.field_product_supplierinfo__delay_calendar_type
 #: model:ir.model.fields,field_description:supplier_calendar.field_res_partner__delay_calendar_type
 #: model:ir.model.fields,field_description:supplier_calendar.field_res_users__delay_calendar_type
 msgid "Delay Calendar Type"
-msgstr ""
+msgstr "Tip koledarja zamud"
 
 #. module: supplier_calendar
 #: model:ir.model.fields,field_description:supplier_calendar.field_res_partner__factory_calendar_id
 #: model:ir.model.fields,field_description:supplier_calendar.field_res_users__factory_calendar_id
 msgid "Factory Calendar"
-msgstr ""
+msgstr "Tovarniški koledar"
 
 #. module: supplier_calendar
 #: model:ir.model.fields.selection,name:supplier_calendar.selection__res_partner__delay_calendar_type__natural
 msgid "Natural days"
-msgstr ""
+msgstr "Sončevih dni"
 
 #. module: supplier_calendar
 #: model:ir.model,name:supplier_calendar.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Nabavna postavka"
 
 #. module: supplier_calendar
 #: model:ir.model,name:supplier_calendar.model_stock_rule
 msgid "Stock Rule"
-msgstr ""
+msgstr "Pravilo zaloge"
 
 #. module: supplier_calendar
 #: model:ir.model.fields.selection,name:supplier_calendar.selection__res_partner__delay_calendar_type__supplier_calendar
 msgid "Supplier Calendar"
-msgstr ""
+msgstr "Koledar dobavitelja"
 
 #. module: supplier_calendar
 #: model:ir.model,name:supplier_calendar.model_product_supplierinfo
 msgid "Supplier Pricelist"
-msgstr ""
+msgstr "Cenik dobavitelja"
