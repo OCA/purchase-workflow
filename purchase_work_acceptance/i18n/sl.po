@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-06-13 08:40+0000\n"
+"PO-Revision-Date: 2026-06-13 08:43+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
@@ -112,12 +112,12 @@ msgstr "Ustvari prejeti račun"
 #. module: purchase_work_acceptance
 #: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.purchase_order_form_inherit
 msgid "Create WA"
-msgstr ""
+msgstr "Ustvari WA"
 
 #. module: purchase_work_acceptance
 #: model_terms:ir.actions.act_window,help:purchase_work_acceptance.action_work_acceptance
 msgid "Create a new work acceptance"
-msgstr ""
+msgstr "Ustvari nov sprejem del"
 
 #. module: purchase_work_acceptance
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_select_work_acceptance_wizard__create_uid
@@ -181,41 +181,41 @@ msgstr "Datum zapadlosti"
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_res_config_settings__group_enable_wa_on_in
 #: model:res.groups,name:purchase_work_acceptance.group_enable_wa_on_in
 msgid "Enable WA on Goods Receipt"
-msgstr ""
+msgstr "Omogoči WA pri prejemu blaga"
 
 #. module: purchase_work_acceptance
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_res_config_settings__group_enable_wa_on_po
 #: model:res.groups,name:purchase_work_acceptance.group_enable_wa_on_po
 msgid "Enable WA on Purchase Order"
-msgstr ""
+msgstr "Omogoči WA na nabavnem nalogu"
 
 #. module: purchase_work_acceptance
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_res_config_settings__group_enable_wa_on_invoice
 #: model:res.groups,name:purchase_work_acceptance.group_enable_wa_on_invoice
 msgid "Enable WA on Vendor Bill"
-msgstr ""
+msgstr "Omogoči WA na prejetem računu"
 
 #. module: purchase_work_acceptance
 #: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.res_config_settings_view_form_purchase
 msgid "Enable to use work acceptance on purchase order."
-msgstr ""
+msgstr "Omogoči uporabo sprejema del na nabavnem nalogu."
 
 #. module: purchase_work_acceptance
 #: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.res_config_settings_view_form_purchase
 msgid "Enable work acceptance on purchase order"
-msgstr ""
+msgstr "Omogoči sprejem del na nabavnem nalogu"
 
 #. module: purchase_work_acceptance
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_res_config_settings__group_enforce_wa_on_in
 #: model:res.groups,name:purchase_work_acceptance.group_enforce_wa_on_in
 msgid "Enforce WA on Goods Receipt"
-msgstr ""
+msgstr "Uveljavi WA pri prejemu blaga"
 
 #. module: purchase_work_acceptance
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_res_config_settings__group_enforce_wa_on_invoice
 #: model:res.groups,name:purchase_work_acceptance.group_enforce_wa_on_invoice
 msgid "Enforce WA on Vendor Bill"
-msgstr ""
+msgstr "Uveljavi WA na prejetem računu"
 
 #. module: purchase_work_acceptance
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__message_follower_ids
@@ -321,7 +321,7 @@ msgstr "Rok mojih aktivnosti"
 #. module: purchase_work_acceptance
 #: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_acceptance_search
 msgid "My Work Acceptance"
-msgstr ""
+msgstr "Moji sprejemi del"
 
 #. module: purchase_work_acceptance
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__name
@@ -451,7 +451,7 @@ msgstr "Sklic"
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_select_work_acceptance_wizard__require_wa
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_stock_picking__require_wa
 msgid "Require Wa"
-msgstr ""
+msgstr "Zahtevaj WA"
 
 #. module: purchase_work_acceptance
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__responsible_id
@@ -485,17 +485,17 @@ msgstr "Izberi datum sprejetja"
 #: code:addons/purchase_work_acceptance/models/purchase.py:0
 #: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_select_work_acceptance_wizard
 msgid "Select Work Acceptance"
-msgstr ""
+msgstr "Izberi sprejem del"
 
 #. module: purchase_work_acceptance
 #: model:ir.model,name:purchase_work_acceptance.model_select_work_acceptance_wizard
 msgid "Select Work Acceptance Wizard"
-msgstr ""
+msgstr "Čarovnik za izbor sprejema del"
 
 #. module: purchase_work_acceptance
 #: model:ir.model,name:purchase_work_acceptance.model_work_accepted_date_wizard
 msgid "Select work accepted date"
-msgstr ""
+msgstr "Izberi datum sprejema del"
 
 #. module: purchase_work_acceptance
 #: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_acceptance_form
@@ -542,6 +542,8 @@ msgid ""
 "To control quantity and unit price of the vendor bill, to be according to "
 "the quantity and unit price of the work acceptance."
 msgstr ""
+"Za nadzor količine in cene na enoto prejetega računa, da sta v skladu s "
+"količino in ceno na enoto sprejema del."
 
 #. module: purchase_work_acceptance
 #: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_acceptance_form
@@ -565,6 +567,8 @@ msgid ""
 "Unable set to draft this work acceptance. You must first cancel the related "
 "receipts."
 msgstr ""
+"Tega sprejema del ni mogoče nastaviti na osnutek. Najprej morate preklicati "
+"povezane prejeme."
 
 #. module: purchase_work_acceptance
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance_line__price_unit
@@ -580,26 +584,26 @@ msgstr "Dobavitelj"
 #. module: purchase_work_acceptance
 #: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.purchase_order_form_inherit
 msgid "WA"
-msgstr ""
+msgstr "WA"
 
 #. module: purchase_work_acceptance
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_purchase_order__wa_accepted
 #: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.purchase_order_view_search
 #: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_purchase_order_filter
 msgid "WA Accepted"
-msgstr ""
+msgstr "WA sprejet"
 
 #. module: purchase_work_acceptance
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_purchase_order__wa_line_ids
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_purchase_order_line__wa_line_ids
 msgid "WA Lines"
-msgstr ""
+msgstr "Postavke WA"
 
 #. module: purchase_work_acceptance
 #: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.purchase_order_view_search
 #: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_purchase_order_filter
 msgid "WA Not Accepted"
-msgstr ""
+msgstr "WA ni sprejet"
 
 #. module: purchase_work_acceptance
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_account_bank_statement_line__wa_id
@@ -607,23 +611,23 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_stock_picking__wa_id
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance_line__wa_id
 msgid "WA Reference"
-msgstr ""
+msgstr "Sklic WA"
 
 #. module: purchase_work_acceptance
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_purchase_order__wa_count
 msgid "WA count"
-msgstr ""
+msgstr "Število WA"
 
 #. module: purchase_work_acceptance
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_stock_picking_type__bypass_wa
 msgid "WA not required"
-msgstr ""
+msgstr "WA ni potreben"
 
 #. module: purchase_work_acceptance
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_select_work_acceptance_wizard__wa_ids
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_stock_picking__wa_ids
 msgid "Wa"
-msgstr ""
+msgstr "WA"
 
 #. module: purchase_work_acceptance
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__website_message_ids
@@ -640,6 +644,8 @@ msgstr "Kronologija komunikacij spletne strani"
 msgid ""
 "When 'Enforce WA on Goods Receipt' is set, this option type can by pass it"
 msgstr ""
+"Ko je nastavljeno 'Uveljavi WA pri prejemu blaga', lahko ta tip operacije to "
+"zaobide"
 
 #. module: purchase_work_acceptance
 #: model:ir.actions.act_window,name:purchase_work_acceptance.action_work_acceptance
@@ -648,30 +654,30 @@ msgstr ""
 #: model:ir.ui.menu,name:purchase_work_acceptance.menu_work_acceptance
 #: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.res_config_settings_view_form_purchase
 msgid "Work Acceptance"
-msgstr ""
+msgstr "Sprejem del"
 
 #. module: purchase_work_acceptance
 #: model:ir.model,name:purchase_work_acceptance.model_work_acceptance_line
 msgid "Work Acceptance Line"
-msgstr ""
+msgstr "Postavka sprejema del"
 
 #. module: purchase_work_acceptance
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__wa_line_ids
 msgid "Work Acceptance Lines"
-msgstr ""
+msgstr "Postavke sprejema del"
 
 #. module: purchase_work_acceptance
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__user_id
 msgid "Work Acceptance Representative"
-msgstr ""
+msgstr "Predstavnik sprejema del"
 
 #. module: purchase_work_acceptance
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_purchase_order__wa_ids
 msgid "Work Acceptances"
-msgstr ""
+msgstr "Sprejemi del"
 
 #. module: purchase_work_acceptance
 #. odoo-python
 #: code:addons/purchase_work_acceptance/models/account_move.py:0
 msgid "You cannot validate a bill if Quantity not equal accepted quantity"
-msgstr ""
+msgstr "Računa ne morete potrditi, če količina ni enaka sprejeti količini"
