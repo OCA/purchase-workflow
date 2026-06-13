@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-24 07:53+0000\n"
-"PO-Revision-Date: 2026-06-13 07:44+0000\n"
+"PO-Revision-Date: 2026-06-13 08:40+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-purchase-workflow-"
 "10-0/language/sl/)\n"
@@ -527,7 +527,7 @@ msgstr "Ikona za prikaz izjem pri aktivnostih."
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__message_needaction
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr "Če označeno pomeni, da nova sporočila zahtevajo vašo pozornost."
+msgstr "Če je označeno, nova sporočila zahtevajo vašo pozornost."
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__message_has_error
@@ -736,7 +736,7 @@ msgstr "Dobavnica"
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__picking_type_id
 msgid "Picking Type"
-msgstr "Tip zbirnika"
+msgstr "Tip dobavnice"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
@@ -1264,9 +1264,9 @@ msgid ""
 "Today: Activity date is today\n"
 "Planned: Future activities."
 msgstr ""
-"Status na osnovi aktivnosti\n"
-"Zapadel: Rok je že prekoračen\n"
-"Danes: Datum aktivnosti je danes\n"
+"Status glede na aktivnosti\n"
+"Prekoračeno: rok izvedbe je že prekoračen\n"
+"Danes: Datum aktivnosti je današnji dan\n"
 "Planirano: Bodoče aktivnosti."
 
 #. module: purchase_request
