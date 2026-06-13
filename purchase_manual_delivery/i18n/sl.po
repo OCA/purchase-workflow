@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-04-11 13:23+0000\n"
+"PO-Revision-Date: 2026-06-13 06:17+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: purchase_manual_delivery
 #: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.view_create_stock_picking
@@ -25,7 +25,7 @@ msgstr "Preklic"
 #. module: purchase_manual_delivery
 #: model:ir.model,name:purchase_manual_delivery.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Družbe"
 
 #. module: purchase_manual_delivery
 #: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.purchase_order_view_form_inherit
@@ -82,12 +82,12 @@ msgstr "Valuta"
 #. module: purchase_manual_delivery
 #: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.res_config_settings_view_form
 msgid "Deliveries on purchase orders should be created manually."
-msgstr ""
+msgstr "Dobave na nabavnih nalogih je treba ustvariti ročno."
 
 #. module: purchase_manual_delivery
 #: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.res_config_settings_view_form
 msgid "Delivery"
-msgstr ""
+msgstr "Dostava"
 
 #. module: purchase_manual_delivery
 #: model:ir.model.fields,help:purchase_manual_delivery.field_create_stock_picking_wizard_line__date_planned
@@ -95,6 +95,8 @@ msgid ""
 "Delivery date expected from vendor. This date respectively defaults to "
 "vendor pricelist lead time then today's date."
 msgstr ""
+"Predvideni datum dobave od dobavitelja. Ta datum je privzeto določen glede "
+"na dobavni rok iz cenika dobavitelja oziroma glede na današnji datum."
 
 #. module: purchase_manual_delivery
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__name
@@ -126,7 +128,7 @@ msgstr "Obstoječa količina"
 #. module: purchase_manual_delivery
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__date_planned
 msgid "Expected Arrival"
-msgstr ""
+msgstr "Predvideni prihod"
 
 #. module: purchase_manual_delivery
 #: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.view_purchase_order_unreceived_line_filter
@@ -148,6 +150,8 @@ msgstr "ID"
 #: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.res_config_settings_view_form
 msgid "If active, Receipt of purchase orders should be manual created."
 msgstr ""
+"Če je ta možnost aktivirana, je treba potrdila o prejemu naročil ustvariti "
+"ročno."
 
 #. module: purchase_manual_delivery
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard____last_update
@@ -180,7 +184,7 @@ msgstr "Lokacija zaloge za prejem proizvodov."
 #. module: purchase_manual_delivery
 #: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.res_config_settings_view_form
 msgid "Manual Delivery"
-msgstr ""
+msgstr "Ročna dobava"
 
 #. module: purchase_manual_delivery
 #: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.view_create_stock_picking
@@ -224,7 +228,7 @@ msgstr "Prosimo, da izberete po en nabavni nalog hkrati"
 #. module: purchase_manual_delivery
 #: model:ir.model,name:purchase_manual_delivery.model_res_config_settings
 msgid "Procurement purchase grouping settings"
-msgstr ""
+msgstr "Nastavitve združevanja nabavnih oskrbovanj"
 
 #. module: purchase_manual_delivery
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__product_id
@@ -235,7 +239,7 @@ msgstr "Proizvod"
 #: model:ir.actions.act_window,name:purchase_manual_delivery.action_order_line_delivery_tree
 #: model:ir.ui.menu,name:purchase_manual_delivery.menu_delivery_purchase_order_lines
 msgid "Purchase Manual Receipt"
-msgstr ""
+msgstr "Ročni prejem na nabavi"
 
 #. module: purchase_manual_delivery
 #: model:ir.model,name:purchase_manual_delivery.model_purchase_order
@@ -273,7 +277,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_res_company__purchase_manual_delivery
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_res_config_settings__purchase_manual_delivery
 msgid "Purchase manual delivery?"
-msgstr ""
+msgstr "Ročni prejem pri nabavi?"
 
 #. module: purchase_manual_delivery
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__product_qty
