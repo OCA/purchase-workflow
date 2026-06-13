@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-11 01:39+0000\n"
-"PO-Revision-Date: 2026-01-22 19:50+0000\n"
+"PO-Revision-Date: 2026-06-13 06:59+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "Language: sl\n"
@@ -24,7 +24,7 @@ msgstr ""
 #: code:addons/purchase_request_to_requisition/models/purchase_requisition.py:0
 #, python-format
 msgid "<li><b>%(name)s</b>: Total bid quantity %(qty)s %(uom)s</li>"
-msgstr ""
+msgstr "<li><b>%(name)s</b>: Skupna količina ponudbe %(qty)s %(uom)s</li>"
 
 #. module: purchase_request_to_requisition
 #: model_terms:ir.ui.view,arch_db:purchase_request_to_requisition.purchase_request_line_search
@@ -39,7 +39,7 @@ msgstr "Potrjen je bil vsaj nabavni nalog"
 #. module: purchase_request_to_requisition
 #: model_terms:ir.ui.view,arch_db:purchase_request_to_requisition.purchase_request_line_search
 msgid "At least one of the Bids has been completed"
-msgstr "Vsaj ena izmed ponudb je bila dokončana."
+msgstr "Vsaj ena izmed ponudb je bila dokončana"
 
 #. module: purchase_request_to_requisition
 #: model_terms:ir.ui.view,arch_db:purchase_request_to_requisition.purchase_request_line_search
@@ -60,7 +60,7 @@ msgstr "Ponudba dokončana"
 #: code:addons/purchase_request_to_requisition/models/purchase_requisition.py:0
 #, python-format
 msgid "Bid confirmation %(bid_name)s for your Request %(request_name)s"
-msgstr ""
+msgstr "Potrditev ponudbe %(bid_name)s za vašo zahtevo %(request_name)s"
 
 #. module: purchase_request_to_requisition
 #: model_terms:ir.ui.view,arch_db:purchase_request_to_requisition.view_purchase_request_line_make_purchase_requisition
@@ -72,7 +72,7 @@ msgstr "Preklic"
 #: model:ir.actions.act_window,name:purchase_request_to_requisition.action_purchase_request_make_purchase_requisition
 #: model_terms:ir.ui.view,arch_db:purchase_request_to_requisition.view_purchase_request_line_make_purchase_requisition
 msgid "Create Purchase Agreements"
-msgstr ""
+msgstr "Ustvarjanje kupoprodajnih pogodb"
 
 #. module: purchase_request_to_requisition
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition__create_uid
@@ -105,9 +105,8 @@ msgstr "Vnesite pozitivno količino."
 
 #. module: purchase_request_to_requisition
 #: model_terms:ir.ui.view,arch_db:purchase_request_to_requisition.view_purchase_request_line_make_purchase_requisition
-#, fuzzy
 msgid "Existing draft purchase agreement to update:"
-msgstr "Obstoječi osnutek ponudbenega razpisa za posodobitev:"
+msgstr "Obstoječi osnutek kupoprodajne pogodbe, ki ga je treba posodobiti:"
 
 #. module: purchase_request_to_requisition
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_requisition_line__has_purchase_request_lines
@@ -123,7 +122,7 @@ msgstr "ID"
 #. module: purchase_request_to_requisition
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line__is_editable
 msgid "Is editable"
-msgstr ""
+msgstr "Lahko se ureja"
 
 #. module: purchase_request_to_requisition
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition__item_ids
@@ -165,19 +164,20 @@ msgstr "Nobena ponudba ni bila ustvarjena"
 
 #. module: purchase_request_to_requisition
 #: code:addons/purchase_request_to_requisition/models/product.py:0
-#, fuzzy, python-format
+#, python-format
 msgid "Only one selection of Purchase Request or Purchase Agreement allowed"
-msgstr "Dovoljena je le ena izbira nabavnega zahtevka ali ponudbenega razpisa"
+msgstr ""
+"Dovoljena je le ena izbira med nabavnim zahtevkom ali kupoprodajno pogodbo"
 
 #. module: purchase_request_to_requisition
 #: model_terms:ir.ui.view,arch_db:purchase_request_to_requisition.view_purchase_requisition_form
 msgid "PR Lines"
-msgstr ""
+msgstr "Postavke nabavnega zahtevka"
 
 #. module: purchase_request_to_requisition
 #: model_terms:ir.ui.view,arch_db:purchase_request_to_requisition.view_purchase_requisition_form
 msgid "PRs"
-msgstr ""
+msgstr "Nabavni zahtevki"
 
 #. module: purchase_request_to_requisition
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_item__product_id
@@ -192,17 +192,16 @@ msgstr "Predloga proizvoda"
 #. module: purchase_request_to_requisition
 #: code:addons/purchase_request_to_requisition/wizard/purchase_request_line_make_purchase_requisition.py:0
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition__purchase_requisition_id
-#, fuzzy, python-format
+#, python-format
 msgid "Purchase Agreement"
-msgstr "Zahteva po nabavi"
+msgstr "Kupoprodajna pogodba"
 
 #. module: purchase_request_to_requisition
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line__requisition_lines
 #: model_terms:ir.ui.view,arch_db:purchase_request_to_requisition.purchase_request_line_form
 #: model_terms:ir.ui.view,arch_db:purchase_request_to_requisition.view_purchase_request_line_details
-#, fuzzy
 msgid "Purchase Agreement Lines"
-msgstr "Postavke nabavne zahteve"
+msgstr "Postavke kupoprodajne pogodbe"
 
 #. module: purchase_request_to_requisition
 #: model:ir.model,name:purchase_request_to_requisition.model_purchase_request
@@ -212,9 +211,8 @@ msgstr "Zahteva po nabavi"
 
 #. module: purchase_request_to_requisition
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_requisition__purchase_request_count
-#, fuzzy
 msgid "Purchase Request Count"
-msgstr "Zahteva po nabavi"
+msgstr "Št. nabavnih zahtevkov"
 
 #. module: purchase_request_to_requisition
 #: model:ir.model,name:purchase_request_to_requisition.model_purchase_request_line
@@ -224,15 +222,13 @@ msgstr "Postavka zahteve po nabavi"
 
 #. module: purchase_request_to_requisition
 #: model:ir.model,name:purchase_request_to_requisition.model_purchase_request_line_make_purchase_requisition
-#, fuzzy
 msgid "Purchase Request Line Make Purchase Agreement"
-msgstr "Postavka nabavne zahteve izvede nabavni zahtevek"
+msgstr "Postavka nabavnega zahtevka - ustvari kupoprodajno pogodbo"
 
 #. module: purchase_request_to_requisition
 #: model:ir.model,name:purchase_request_to_requisition.model_purchase_request_line_make_purchase_requisition_item
-#, fuzzy
 msgid "Purchase Request Line Make Purchase Agreement Item"
-msgstr "Postavka nabavne zahteve izvede predmet nabavnega zahtevka"
+msgstr "Postavka nabavnega zahtevka - ustvari postavko kupoprodajne pogodbe"
 
 #. module: purchase_request_to_requisition
 #: code:addons/purchase_request_to_requisition/models/purchase_requisition.py:0
@@ -243,9 +239,8 @@ msgstr "Postavke nabavne zahteve"
 
 #. module: purchase_request_to_requisition
 #: model:ir.actions.act_window,name:purchase_request_to_requisition.action_purchase_purchase_list
-#, fuzzy
 msgid "Purchase Requests"
-msgstr "Zahteva po nabavi"
+msgstr "Nabavni zahtevki"
 
 #. module: purchase_request_to_requisition
 #: model:ir.model,name:purchase_request_to_requisition.model_purchase_requisition
@@ -274,9 +269,8 @@ msgstr "Zahteva"
 
 #. module: purchase_request_to_requisition
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request__requisition_count
-#, fuzzy
 msgid "Requisition Count"
-msgstr "Postavke zahtevka"
+msgstr "Št. zahtev"
 
 #. module: purchase_request_to_requisition
 #: model_terms:ir.ui.view,arch_db:purchase_request_to_requisition.purchase_request_line_search
@@ -286,7 +280,7 @@ msgstr "Status zahtevka"
 #. module: purchase_request_to_requisition
 #: model_terms:ir.ui.view,arch_db:purchase_request_to_requisition.view_purchase_request_form
 msgid "TEs"
-msgstr ""
+msgstr "TE"
 
 #. module: purchase_request_to_requisition
 #: code:addons/purchase_request_to_requisition/models/purchase_requisition.py:0
@@ -295,6 +289,8 @@ msgid ""
 "The following requested items from Purchase Request %(request_name)s have "
 "now being sent to Suppliers using Purchase Bid %(bid_name)s:"
 msgstr ""
+"Naslednje zahtevane postavke iz nabavnega zahtevka %(request_name)s smo "
+"sedaj poslali dobaviteljem prek razpisa %(bid_name)s:"
 
 #. module: purchase_request_to_requisition
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_item__product_uom_id
