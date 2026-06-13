@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-06-13 11:46+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,17 +15,18 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: purchase_reception_status
 #: model:ir.model.fields,field_description:purchase_reception_status.field_purchase_order__force_received
 msgid "Force Received"
-msgstr ""
+msgstr "Vsili prejeto"
 
 #. module: purchase_reception_status
 #: model:ir.model.fields.selection,name:purchase_reception_status.selection__purchase_order__receipt_status__full
 #: model_terms:ir.ui.view,arch_db:purchase_reception_status.view_purchase_order_filter
 msgid "Fully Received"
-msgstr ""
+msgstr "V celoti prejeto"
 
 #. module: purchase_reception_status
 #: model:ir.model.fields,help:purchase_reception_status.field_purchase_order__force_received
@@ -32,32 +34,34 @@ msgid ""
 "If true, the order is marked forced only when all lines are fully received "
 "and at least one line was manually forced."
 msgstr ""
+"Če je pravilno, se naročilo označi kot prisiljeno šele takrat, ko so vse "
+"postavke v celoti prejete in je bila vsaj ena postavka ročno vsiljena."
 
 #. module: purchase_reception_status
 #: model_terms:ir.ui.view,arch_db:purchase_reception_status.view_purchase_order_filter
 msgid "Not Fully Received"
-msgstr ""
+msgstr "Ne v celoti prejeto"
 
 #. module: purchase_reception_status
 #: model:ir.model.fields.selection,name:purchase_reception_status.selection__purchase_order__receipt_status__pending
 msgid "Nothing Received"
-msgstr ""
+msgstr "Nič prejetega"
 
 #. module: purchase_reception_status
 #: model:ir.model.fields.selection,name:purchase_reception_status.selection__purchase_order__receipt_status__partial
 msgid "Partially Received"
-msgstr ""
+msgstr "Delno prejeto"
 
 #. module: purchase_reception_status
 #: model:ir.model,name:purchase_reception_status.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Nabavni nalog"
 
 #. module: purchase_reception_status
 #: model:ir.model.fields,field_description:purchase_reception_status.field_purchase_order__receipt_status
 #: model_terms:ir.ui.view,arch_db:purchase_reception_status.view_purchase_order_filter
 msgid "Receipt Status"
-msgstr ""
+msgstr "Status prejema"
 
 #. module: purchase_reception_status
 #: model:ir.model.fields,help:purchase_reception_status.field_purchase_order__receipt_status
@@ -66,3 +70,6 @@ msgid ""
 "            Orange: To process today\n"
 "            Green: On time"
 msgstr ""
+"Rdeča: zamuda\n"
+"            Oranžna: obdelati danes\n"
+"            Zelena: pravočasno"
