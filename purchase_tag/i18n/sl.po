@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-06-13 08:18+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,96 +15,97 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: purchase_tag
 #: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag__child_ids
 msgid "Child"
-msgstr ""
+msgstr "Podrejeni"
 
 #. module: purchase_tag
 #: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag__color
 msgid "Color"
-msgstr ""
+msgstr "Barva"
 
 #. module: purchase_tag
 #: model_terms:ir.actions.act_window,help:purchase_tag.purchase_tag_action
 msgid "Create new tags for your purchase orders"
-msgstr ""
+msgstr "Ustvari nove oznake za nabavne naloge"
 
 #. module: purchase_tag
 #: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Ustvaril"
 
 #. module: purchase_tag
 #: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Ustvarjeno"
 
 #. module: purchase_tag
 #: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Prikazani naziv"
 
 #. module: purchase_tag
 #: model_terms:ir.ui.view,arch_db:purchase_tag.view_purchase_order_filter
 msgid "Don't have a tag"
-msgstr ""
+msgstr "Brez oznake"
 
 #. module: purchase_tag
 #: model_terms:ir.ui.view,arch_db:purchase_tag.view_purchase_order_filter
 msgid "Have a tag"
-msgstr ""
+msgstr "Z oznako"
 
 #. module: purchase_tag
 #: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: purchase_tag
 #: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Zadnji posodobil"
 
 #. module: purchase_tag
 #: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Zadnjič posodobljeno"
 
 #. module: purchase_tag
 #: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag__parent_id
 msgid "Parent"
-msgstr ""
+msgstr "Nadrejeni"
 
 #. module: purchase_tag
 #: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag__parent_path
 msgid "Parent Path"
-msgstr ""
+msgstr "Nadrejena pot"
 
 #. module: purchase_tag
 #: model:ir.model,name:purchase_tag.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Nabavni nalog"
 
 #. module: purchase_tag
 #: model:ir.model,name:purchase_tag.model_purchase_tag
 msgid "Purchase Tag"
-msgstr ""
+msgstr "Nabavna oznaka"
 
 #. module: purchase_tag
 #: model_terms:ir.ui.view,arch_db:purchase_tag.view_purchase_order_filter
 msgid "Tag"
-msgstr ""
+msgstr "Oznaka"
 
 #. module: purchase_tag
 #: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag__name
 msgid "Tag Name"
-msgstr ""
+msgstr "Naziv oznake"
 
 #. module: purchase_tag
 #: model:ir.model.constraint,message:purchase_tag.constraint_purchase_tag_tag_name_uniq
 msgid "Tag name already exists !"
-msgstr ""
+msgstr "Naziv oznake že obstaja!"
 
 #. module: purchase_tag
 #: model:ir.actions.act_window,name:purchase_tag.purchase_tag_action
@@ -111,4 +113,4 @@ msgstr ""
 #: model:ir.ui.menu,name:purchase_tag.menu_purchase_tag_config
 #: model_terms:ir.ui.view,arch_db:purchase_tag.purchase_tag_view_form
 msgid "Tags"
-msgstr ""
+msgstr "Oznake"
