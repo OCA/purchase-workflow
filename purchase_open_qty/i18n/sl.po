@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-24 07:53+0000\n"
-"PO-Revision-Date: 2026-06-01 06:23+0000\n"
+"PO-Revision-Date: 2026-06-13 06:59+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "Language: sl\n"
@@ -32,7 +32,7 @@ msgstr "Obračun v teku"
 #: model_terms:ir.ui.view,arch_db:purchase_open_qty.purchase_order_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_open_qty.view_purchase_order_filter
 msgid "Pending Qty to Receive"
-msgstr "Prejem v teku"
+msgstr "Za prejeti je še"
 
 #. module: purchase_open_qty
 #: model:ir.model,name:purchase_open_qty.model_purchase_order
