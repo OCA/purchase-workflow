@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-06-13 08:06+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,26 +15,27 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: purchase_force_invoiced_quantity
 #: model:ir.model.fields,field_description:purchase_force_invoiced_quantity.field_purchase_order_line__force_invoiced_qty
 msgid "Force Invoiced Qty"
-msgstr ""
+msgstr "Vsili zaračunano količino"
 
 #. module: purchase_force_invoiced_quantity
 #: model:product.template,name:purchase_force_invoiced_quantity.demo_product_purchase_force_invoiced_qty_1_product_template
 msgid "Purchase Force Invoiced qty product 1"
-msgstr ""
+msgstr "Nabava - vsili zaračunano količino proizvod 1"
 
 #. module: purchase_force_invoiced_quantity
 #: model:product.template,name:purchase_force_invoiced_quantity.demo_product_purchase_force_invoiced_qty_2_product_template
 msgid "Purchase Force Invoiced qty product 2"
-msgstr ""
+msgstr "Nabava - vsili zaračunano količino proizvod 2"
 
 #. module: purchase_force_invoiced_quantity
 #: model:ir.model,name:purchase_force_invoiced_quantity.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Nabavna postavka"
 
 #. module: purchase_force_invoiced_quantity
 #: model:ir.model.fields,help:purchase_force_invoiced_quantity.field_purchase_order_line__force_invoiced_qty
@@ -41,3 +43,5 @@ msgid ""
 "This amount will be deducted from quantity to invoice.\n"
 "quantity to invoice = delivered - invoiced - force invoiced qty"
 msgstr ""
+"Ta količina se bo odštela od količine za izstavitev računa.\n"
+"količina za izstavitev računa = dobavljeno – zaračunano – prisilno zaračunano"
