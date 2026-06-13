@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-06-13 08:07+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,34 +15,35 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: purchase_order_line_effective_date
 #: model:ir.model.fields,help:purchase_order_line_effective_date.field_purchase_order_line__effective_date
 msgid "Completion date of the first receipt order."
-msgstr ""
+msgstr "Datum izvedbe prvega prevzema."
 
 #. module: purchase_order_line_effective_date
 #: model:ir.model.fields,help:purchase_order_line_effective_date.field_purchase_order_line__last_effective_date
 msgid "Completion date of the last receipt order."
-msgstr ""
+msgstr "Datum izvedbe zadnjega prevzema."
 
 #. module: purchase_order_line_effective_date
 #: model:ir.model.fields,field_description:purchase_order_line_effective_date.field_purchase_order_line__effective_date
 msgid "Effective Date"
-msgstr ""
+msgstr "Dejanski datum"
 
 #. module: purchase_order_line_effective_date
 #: model:ir.model.fields,field_description:purchase_order_line_effective_date.field_purchase_order_line__last_effective_date
 #: model:ir.model.fields,field_description:purchase_order_line_effective_date.field_purchase_report__last_effective_date
 msgid "Last Effective Date"
-msgstr ""
+msgstr "Zadnji dejanski datum"
 
 #. module: purchase_order_line_effective_date
 #: model:ir.model,name:purchase_order_line_effective_date.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Nabavna postavka"
 
 #. module: purchase_order_line_effective_date
 #: model:ir.model,name:purchase_order_line_effective_date.model_purchase_report
 msgid "Purchase Report"
-msgstr ""
+msgstr "Poročilo o nabavi"
