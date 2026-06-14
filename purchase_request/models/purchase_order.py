@@ -52,7 +52,7 @@ class PurchaseOrder(models.Model):
                     data = {
                         "name": request_line.name,
                         "product_qty": line.product_qty,
-                        "product_uom": line.product_uom.name,
+                        "product_uom": line.product_uom_id.name,
                         "date_planned": date_planned,
                     }
                     requests_dict[request_id][request_line.id] = data

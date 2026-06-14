@@ -119,7 +119,7 @@ class PurchaseRequestAllocation(models.Model):
             "po_name": po_line.order_id.name,
             "product_name": po_line.product_id.display_name,
             "product_qty": allocated_qty,
-            "product_uom": po_line.product_uom.name,
+            "product_uom": po_line.product_uom_id.name,
         }
 
     def _notify_allocation(self, allocated_qty):

@@ -32,6 +32,41 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
                 "description_purchase": "Test Description",
             }
         )
+        self.partner_1 = self.env["res.partner"].create({
+            "name": "Partner #1",
+            "is_company": True,
+        })
+        self.partner_12 = self.env["res.partner"].create({
+            "name": "Partner #12",
+            "is_company": True,
+        })
+        self.product_13 = self.env["product.product"].create({
+            "name": "Product 13 (Test)",
+            "type": "consu",
+            "is_storable": True,
+        })
+        self.product_6 = self.env["product.product"].create({
+            "name": "Product 6 (Test)",
+            "type": "consu",
+            "is_storable": True,
+        })
+        self.product_8 = self.env["product.product"].create({
+            "name": "Product 8 (Test)",
+            "type": "consu",
+            "is_storable": True,
+            "seller_ids": [
+                (0, 0, {
+                    "partner_id": self.partner_1.id,
+                    "min_qty": 5,
+                    "delay": 1,
+                })
+            ],
+        })
+        self.product_10 = self.env["product.product"].create({
+            "name": "Product 10 (Test)",
+            "type": "consu",
+            "is_storable": True,
+        })
 
     def test_wizard_default_get(self):
         # Check that correct create items by purchase.request
@@ -43,7 +78,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
                     0,
                     0,
                     {
-                        "product_id": self.env.ref("product.product_product_13").id,
+                        "product_id": self.product_13.id,
                         "product_uom_id": self.env.ref("uom.product_uom_unit").id,
                         "product_qty": 2.0,
                     },
@@ -60,7 +95,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
                     0,
                     0,
                     {
-                        "product_id": self.env.ref("product.product_product_13").id,
+                        "product_id": self.product_13.id,
                         "product_uom_id": self.env.ref("uom.product_uom_unit").id,
                         "product_qty": 2.0,
                     },
@@ -69,7 +104,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         }
         purchase_request2 = self.purchase_request_obj.create(vals)
         purchase_request2.button_approved()
-        vals = {"supplier_id": self.env.ref("base.res_partner_1").id}
+        vals = {"supplier_id": self.partner_1.id}
         wiz_id = self.wiz.with_context(
             active_model="purchase.request.line",
             active_ids=[
@@ -91,7 +126,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         purchase_request = self.purchase_request_obj.create(vals)
         vals = {
             "request_id": purchase_request.id,
-            "product_id": self.env.ref("product.product_product_13").id,
+            "product_id": self.product_13.id,
             "product_uom_id": self.env.ref("uom.product_uom_unit").id,
             "product_qty": 5.0,
             "estimated_cost": 50.0,
@@ -100,7 +135,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         purchase_request.button_to_approve()
         purchase_request.button_approved()
 
-        vals = {"supplier_id": self.env.ref("base.res_partner_12").id}
+        vals = {"supplier_id": self.partner_12.id}
         wiz_id = self.wiz.with_context(
             active_model="purchase.request.line",
             active_ids=[purchase_request_line.id],
@@ -140,7 +175,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         purchase_request = self.purchase_request_obj.create(vals)
         vals = {
             "request_id": purchase_request.id,
-            "product_id": self.env.ref("product.product_product_13").id,
+            "product_id": self.product_13.id,
             "product_uom_id": self.env.ref("uom.product_uom_unit").id,
             "product_qty": 5.0,
         }
@@ -159,12 +194,12 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         purchase_request = self.purchase_request_obj.create(vals)
         vals = {
             "request_id": purchase_request.id,
-            "product_id": self.env.ref("product.product_product_8").id,
+            "product_id": self.product_8.id,
             "product_uom_id": self.env.ref("uom.product_uom_unit").id,
             "product_qty": 1.0,
         }
         purchase_request_line = self.purchase_request_line_obj.create(vals)
-        vals = {"supplier_id": self.env.ref("base.res_partner_1").id}
+        vals = {"supplier_id": self.partner_1.id}
         purchase_request.button_approved()
         wiz_id = self.wiz.with_context(
             active_model="purchase.request.line",
@@ -209,14 +244,14 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         purchase_request2 = self.purchase_request_obj.create(vals)
         vals = {
             "request_id": purchase_request1.id,
-            "product_id": self.env.ref("product.product_product_6").id,
+            "product_id": self.product_6.id,
             "product_uom_id": self.env.ref("uom.product_uom_dozen").id,
             "product_qty": 1.0,
         }
         purchase_request_line1 = self.purchase_request_line_obj.create(vals)
         vals = {
             "request_id": purchase_request2.id,
-            "product_id": self.env.ref("product.product_product_6").id,
+            "product_id": self.product_6.id,
             "product_uom_id": self.env.ref("uom.product_uom_unit").id,
             "product_qty": 1.0,
         }
@@ -228,7 +263,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
             "product_qty": 1.0,
         }
         purchase_request_line3 = self.purchase_request_line_obj.create(vals)
-        vals = {"supplier_id": self.env.ref("base.res_partner_1").id}
+        vals = {"supplier_id": self.partner_1.id}
         purchase_request1.button_approved()
         purchase_request2.button_approved()
         wiz_id = self.wiz.with_context(
@@ -253,8 +288,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         )
 
     def test_purchase_request_to_purchase_rfq_multiple_PO_purchaseUoM(self):
-        product = self.env.ref("product.product_product_6")
-        product.uom_po_id = self.env.ref("uom.product_uom_dozen")
+        product = self.product_6
 
         vals = {
             "picking_type_id": self.env.ref("stock.picking_type_in").id,
@@ -287,7 +321,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
             "product_qty": 1.0,
         }
         purchase_request_line3 = self.purchase_request_line_obj.create(vals)
-        vals = {"supplier_id": self.env.ref("base.res_partner_1").id}
+        vals = {"supplier_id": self.partner_1.id}
         purchase_request1.button_approved()
         purchase_request2.button_approved()
         wiz_id = self.wiz.with_context(
@@ -304,16 +338,16 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
                 item.keep_description = True
         wiz_id.make_purchase_order()
         po_line = purchase_request_line1.purchase_lines[0]
-        self.assertEqual(po_line.product_qty, 1.09, "Quantity should be 1.09")
+        self.assertEqual(po_line.product_qty, 13.0, "Quantity should be 13.0")
         self.assertEqual(
-            po_line.product_uom,
-            self.env.ref("uom.product_uom_dozen"),
-            "The purchase UoM should be Dozen(s).",
+            po_line.product_uom_id,
+            self.env.ref("uom.product_uom_unit"),
+            "The purchase UoM should be Unit(s).",
         )
 
     def test_purchase_request_to_rfq_minimum_order_qty_existing_po(self):
         # Define Supplier
-        supplier = self.env.ref("base.res_partner_1")
+        supplier = self.partner_1
         # Create Product Widget min_qty = 5
         product = self.env["product.product"].create(
             {
@@ -402,7 +436,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
                     0,
                     0,
                     {
-                        "product_id": self.env.ref("product.product_product_10").id,
+                        "product_id": self.product_10.id,
                         "product_uom_id": self.env.ref("uom.product_uom_unit").id,
                         "product_qty": 5.0,
                         "analytic_distribution": analytic_distribution,
@@ -413,7 +447,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         purchase_request = self.purchase_request_obj.create(vals)
         purchase_request.button_to_approve()
         purchase_request.button_approved()
-        supplier = self.env.ref("base.res_partner_12")
+        supplier = self.partner_12
         vals = {
             "supplier_id": supplier.id,
         }

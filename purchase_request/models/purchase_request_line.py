@@ -25,9 +25,7 @@ class PurchaseRequestLine(models.Model):
         comodel_name="uom.uom",
         string="UoM",
         tracking=True,
-        domain="[('category_id', '=', product_uom_category_id)]",
     )
-    product_uom_category_id = fields.Many2one(related="product_id.uom_id.category_id")
     product_qty = fields.Float(
         string="Quantity", tracking=True, digits="Product Unit of Measure"
     )
@@ -37,7 +35,6 @@ class PurchaseRequestLine(models.Model):
         ondelete="cascade",
         readonly=True,
         index=True,
-        auto_join=True,
     )
     company_id = fields.Many2one(
         comodel_name="res.company",
@@ -302,19 +299,23 @@ class PurchaseRequestLine(models.Model):
         for rec in self:
             rec.purchased_qty = 0.0
             for line in rec.purchase_lines.filtered(lambda x: x.state != "cancel"):
-                if rec.product_uom_id and line.product_uom != rec.product_uom_id:
-                    rec.purchased_qty += line.product_uom._compute_quantity(
+                if rec.product_uom_id and line.product_uom_id != rec.product_uom_id:
+                    rec.purchased_qty += line.product_uom_id._compute_quantity(
                         line.product_qty, rec.product_uom_id
                     )
                 else:
                     rec.purchased_qty += line.product_qty
 
-    @api.depends("purchase_lines.state", "purchase_lines.order_id.state")
+    @api.depends(
+        "purchase_lines.state",
+        "purchase_lines.order_id.state",
+        "purchase_lines.order_id.locked",
+    )
     def _compute_purchase_state(self):
         for rec in self:
             temp_purchase_state = False
             if rec.purchase_lines:
-                if any(po_line.state == "done" for po_line in rec.purchase_lines):
+                if any(po_line.order_id.locked for po_line in rec.purchase_lines):
                     temp_purchase_state = "done"
                 elif all(po_line.state == "cancel" for po_line in rec.purchase_lines):
                     temp_purchase_state = "cancel"
@@ -348,7 +349,7 @@ class PurchaseRequestLine(models.Model):
 
     @api.model
     def _calc_new_qty(self, request_line, po_line=None, new_pr_line=False):
-        purchase_uom = po_line.product_uom or request_line.product_id.uom_po_id
+        purchase_uom = po_line.product_uom_id or request_line.product_id.uom_id
         # TODO: Not implemented yet.
         #  Make sure we use the minimum quantity of the partner corresponding
         #  to the PO. This does not apply in case of dropshipping

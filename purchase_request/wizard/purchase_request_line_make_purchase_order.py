@@ -83,22 +83,11 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                 picking_type = line_picking_type
 
     @api.model
-    def check_group(self, request_lines):
-        if len(list(set(request_lines.mapped("request_id.group_id")))) > 1:
-            raise UserError(
-                _(
-                    "You cannot create a single purchase order from "
-                    "purchase requests that have different procurement group."
-                )
-            )
-
-    @api.model
     def get_items(self, request_line_ids):
         request_line_obj = self.env["purchase.request.line"]
         items = []
         request_lines = request_line_obj.browse(request_line_ids)
         self._check_valid_request_line(request_line_ids)
-        self.check_group(request_lines)
         for line in request_lines:
             items.append([0, 0, self._prepare_item(line)])
         return items
@@ -125,7 +114,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         return res
 
     @api.model
-    def _prepare_purchase_order(self, picking_type, group_id, company, origin):
+    def _prepare_purchase_order(self, picking_type, company, origin):
         if not self.supplier_id:
             raise UserError(_("Enter a supplier."))
         supplier = self.supplier_id
@@ -138,7 +127,6 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             or False,
             "picking_type_id": picking_type.id,
             "company_id": company.id,
-            "group_id": group_id.id,
         }
         return data
 
@@ -168,7 +156,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         # Keep the standard product UOM for purchase order so we should
         # convert the product quantity to this UOM
         qty = item.product_uom_id._compute_quantity(
-            item.product_qty, product.uom_po_id or product.uom_id
+            item.product_qty, product.uom_id
         )
         # Suggest the supplier min qty as it's done in Odoo core
         min_qty = item.line_id._get_supplier_min_qty(product, po.partner_id)
@@ -177,7 +165,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         return {
             "order_id": po.id,
             "product_id": product.id,
-            "product_uom": product.uom_po_id.id or product.uom_id.id,
+            "product_uom_id": product.uom_id.id,
             "product_qty": qty,
             "analytic_distribution": item.line_id.analytic_distribution,
             "purchase_request_lines": [(4, item.line_id.id)],
@@ -206,7 +194,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             ("order_id", "=", order.id),
             ("name", "=", name),
             ("product_id", "=", item.product_id.id),
-            ("product_uom", "=", vals["product_uom"]),
+            ("product_uom_id", "=", vals["product_uom_id"]),
         ]
 
         if item.line_id.analytic_distribution:
@@ -240,7 +228,6 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             if not purchase:
                 po_data = self._prepare_purchase_order(
                     line.request_id.picking_type_id,
-                    line.request_id.group_id,
                     line.company_id,
                     line.origin,
                 )
@@ -267,7 +254,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                 po_line = available_po_lines[0]
                 po_line.purchase_request_lines = [(4, line.id)]
                 po_line.move_dest_ids |= line.move_dest_ids
-                po_line_product_uom_qty = po_line.product_uom._compute_quantity(
+                po_line_product_uom_qty = po_line.product_uom_id._compute_quantity(
                     po_line.product_uom_qty, alloc_uom
                 )
                 wizard_product_uom_qty = wizard_uom._compute_quantity(
@@ -280,7 +267,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                 if item.keep_description:
                     po_line_data["name"] = item.name
                 po_line = po_line_obj.create(po_line_data)
-                po_line_product_uom_qty = po_line.product_uom._compute_quantity(
+                po_line_product_uom_qty = po_line.product_uom_id._compute_quantity(
                     po_line.product_uom_qty, alloc_uom
                 )
                 wizard_product_uom_qty = wizard_uom._compute_quantity(

@@ -135,12 +135,6 @@ class PurchaseRequest(models.Model):
         required=True,
         default=_default_picking_type,
     )
-    group_id = fields.Many2one(
-        comodel_name="procurement.group",
-        string="Procurement Group",
-        copy=False,
-        index=True,
-    )
     line_count = fields.Integer(
         string="Purchase Request Line count",
         compute="_compute_line_count",
