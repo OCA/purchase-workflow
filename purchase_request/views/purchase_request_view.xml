@@ -32,20 +32,20 @@
                     />
                     <button
                         name="button_in_progress"
-                        invisible="state not in ('approved')"
+                        invisible="state != 'approved'"
                         string="In Progress"
                         type="object"
                         groups="purchase_request.group_purchase_request_manager"
                     />
                     <button
                         name="%(action_purchase_request_line_make_purchase_order)d"
-                        invisible="state not in ('approved','in_progress')"
+                        invisible="state not in ('approved', 'in_progress')"
                         string="Create RFQ"
                         type="action"
                     />
                     <button
                         name="button_done"
-                        invisible="state not in ('approved','in_progress')"
+                        invisible="state not in ('approved', 'in_progress')"
                         string="Done"
                         type="object"
                         class="oe_highlight"
@@ -53,7 +53,7 @@
                     />
                     <button
                         name="button_rejected"
-                        invisible="state not in ('to_approve', 'approved','in_progress')"
+                        invisible="state not in ('to_approve', 'approved', 'in_progress')"
                         string="Reject"
                         type="object"
                         groups="purchase_request.group_purchase_request_manager"
@@ -133,6 +133,11 @@
                                 readonly="is_editable == False"
                             />
                             <field name="description" readonly="is_editable == False" />
+                            <field
+                                name="group_id"
+                                readonly="is_editable == False"
+                                groups="base.group_no_one"
+                            />
                         </group>
                         <group>
                             <field name="date_start" readonly="is_editable == False" />
@@ -151,7 +156,7 @@
                     </group>
                     <notebook>
                         <page string="Products">
-                            <field name="line_ids">
+                            <field name="line_ids" readonly="state != 'draft'">
                                 <list
                                     decoration-muted="cancelled == True"
                                     editable="bottom"
@@ -159,6 +164,10 @@
                                     <field name="product_id" />
                                     <field name="name" />
                                     <field name="product_qty" />
+                                    <field
+                                        name="product_uom_category_id"
+                                        column_invisible="1"
+                                    />
                                     <field
                                         name="product_uom_id"
                                         column_invisible="1"
@@ -325,25 +334,7 @@
                 <field name="requested_by" />
                 <field name="assigned_to" />
                 <field name="picking_type_id" />
-                <filter
-                    invisible="1"
-                    string="Late Activities"
-                    name="activities_overdue"
-                    domain="[('my_activity_date_deadline', '&lt;', 'today')]"
-                />
-                <filter
-                    invisible="1"
-                    string="Today Activities"
-                    name="activities_today"
-                    domain="[('my_activity_date_deadline', '=', 'today')]"
-                />
-                <filter
-                    invisible="1"
-                    string="Future Activities"
-                    name="activities_upcoming_all"
-                    domain="[('my_activity_date_deadline', '&gt;', 'today')]"
-                />
-                <group>
+                <group expand="0" string="Group By...">
                     <filter
                         name="requested_by"
                         string="Requested by"

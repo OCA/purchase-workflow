@@ -14,26 +14,8 @@ class TestPurchaseRequest(TransactionCase):
         self.purchase_order = self.env["purchase.order"]
         self.wiz = self.env["purchase.request.line.make.purchase.order"]
         self.picking_type_id = self.env.ref("stock.picking_type_in")
-
-        # Create test product
-        self.product = self.env["product.product"].create(
-            {
-                "name": "Test Product",
-                "type": "consu",
-                "uom_id": self.env.ref("uom.product_uom_unit").id,
-            }
-        )
-
-        # Create test supplier
-        self.supplier = self.env["res.partner"].create(
-            {
-                "name": "Test Supplier",
-                "is_company": True,
-                "supplier_rank": 1,
-            }
-        )
-
         vals = {
+            "group_id": self.env["procurement.group"].create({}).id,
             "picking_type_id": self.picking_type_id.id,
             "requested_by": SUPERUSER_ID,
         }
@@ -41,7 +23,7 @@ class TestPurchaseRequest(TransactionCase):
         vals = {
             "name": "Test line",
             "request_id": self.purchase_request.id,
-            "product_id": self.product.id,
+            "product_id": self.env.ref("product.product_product_13").id,
             "product_uom_id": self.env.ref("uom.product_uom_unit").id,
             "product_qty": 5.0,
         }
@@ -94,13 +76,13 @@ class TestPurchaseRequest(TransactionCase):
         vals = {
             "name": "Test line 1",
             "request_id": purchase_request.id,
-            "product_id": self.product.id,
+            "product_id": self.env.ref("product.product_product_6").id,
             "product_uom_id": self.env.ref("uom.product_uom_unit").id,
             "product_qty": 2.0,
         }
         purchase_request_line = self.purchase_request_line_obj.create(vals)
         purchase_request.button_approved()
-        vals = {"supplier_id": self.supplier.id}
+        vals = {"supplier_id": self.env.ref("base.res_partner_1").id}
 
         # It is required to have a picking type
         purchase_request.picking_type_id = False
@@ -122,6 +104,14 @@ class TestPurchaseRequest(TransactionCase):
                 active_ids=(purchase_request_line + purchase_request2.line_ids).ids,
             ).create(vals)
 
+        purchase_request2.picking_type_id = purchase_request.picking_type_id
+        purchase_request2.group_id = self.env["procurement.group"].create({})
+        with self.assertRaisesRegex(UserError, "different procurement group"):
+            self.wiz.with_context(
+                active_model="purchase.request.line",
+                active_ids=(purchase_request_line + purchase_request2.line_ids).ids,
+            ).create(vals)
+
         wiz_id = self.wiz.with_context(
             active_model="purchase.request.line", active_ids=[purchase_request_line.id]
         ).create(vals)
@@ -130,10 +120,21 @@ class TestPurchaseRequest(TransactionCase):
         with self.assertRaises(exceptions.UserError):
             purchase_request_line.unlink()
         purchase = purchase_request_line.purchase_lines.order_id
-        purchase.button_confirm()
-        self.assertEqual(purchase.state, "purchase")
+        purchase.button_done()
+        self.assertEqual(purchase.state, "done")
+
+        with self.assertRaisesRegex(
+            UserError, "The purchase has already been completed"
+        ):
+            self.wiz.with_context(
+                active_model="purchase.request.line",
+                active_ids=[purchase_request_line.id],
+            ).create(vals)
+
         purchase_request_line._compute_purchase_state()
-        # Cancel the purchase order
+        # Error case purchase_order in state done
+        with self.assertRaisesRegex(UserError, "has already been completed"):
+            purchase.button_confirm()
         purchase.button_cancel()
         self.assertEqual(purchase.state, "cancel")
         purchase_request_line._compute_purchase_state()
@@ -152,7 +153,7 @@ class TestPurchaseRequest(TransactionCase):
         # Add a second line to the PR:
         vals = {
             "request_id": purchase_request.id,
-            "product_id": self.product.id,
+            "product_id": self.env.ref("product.product_product_16").id,
             "product_uom_id": self.env.ref("uom.product_uom_unit").id,
             "product_qty": 5.0,
         }
@@ -191,7 +192,7 @@ class TestPurchaseRequest(TransactionCase):
         request.button_draft()
         new_line = self.purchase_request_line_obj.create(
             {
-                "product_id": self.product.id,
+                "product_id": self.env.ref("product.product_product_16").id,
                 "product_uom_id": self.env.ref("uom.product_uom_unit").id,
                 "product_qty": 0.0,
                 "request_id": request.id,
@@ -227,7 +228,7 @@ class TestPurchaseRequest(TransactionCase):
         # Add a second line to the PR:
         vals = {
             "request_id": purchase_request.id,
-            "product_id": self.product.id,
+            "product_id": self.env.ref("product.product_product_16").id,
             "product_uom_id": self.env.ref("uom.product_uom_unit").id,
             "product_qty": 5.0,
         }
@@ -243,7 +244,7 @@ class TestPurchaseRequest(TransactionCase):
         purchase_request = self.purchase_request.create(vals)
         vals = {
             "request_id": purchase_request.id,
-            "product_id": self.product.id,
+            "product_id": self.env.ref("product.product_product_16").id,
             "product_uom_id": self.env.ref("uom.product_uom_unit").id,
             "product_qty": 2.0,
         }
@@ -254,7 +255,7 @@ class TestPurchaseRequest(TransactionCase):
             self.wiz.with_context(
                 active_model="purchase.request.line",
                 active_ids=[purchase_request_line.id],
-            ).create({"supplier_id": self.supplier.id})  # Use proper wizard vals
+            ).create(vals)
         purchase_request.button_done()
         # create purchase order from done state
         self.assertEqual(purchase_request.state, "done")
@@ -263,12 +264,12 @@ class TestPurchaseRequest(TransactionCase):
             self.wiz.with_context(
                 active_model="purchase.request.line",
                 active_ids=[purchase_request_line.id],
-            ).create({"supplier_id": self.supplier.id})  # Use proper wizard vals
+            ).create(vals)
         # Change product_qty to negative
         purchase_request_line.write({"product_qty": -6})
         purchase_request.button_approved()
         self.assertEqual(purchase_request.state, "approved")
-        vals = {"supplier_id": self.supplier.id}
+        vals = {"supplier_id": self.env.ref("base.res_partner_1").id}
         wiz_id = self.wiz.with_context(
             active_model="purchase.request.line", active_ids=[purchase_request_line.id]
         ).create(vals)

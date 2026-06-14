@@ -3,7 +3,7 @@
 
 from markupsafe import Markup
 
-from odoo import api, exceptions, fields, models
+from odoo import _, api, exceptions, fields, models
 from odoo.tools import html_escape
 
 
@@ -14,13 +14,12 @@ class PurchaseOrder(models.Model):
         self.ensure_one()
         if not request_dict:
             request_dict = {}
-        title = self.env._(
-            "Order confirmation %(po_name)s for your Request %(pr_name)s",
-            po_name=self.name,
-            pr_name=request.name,
-        )
+        title = _("Order confirmation %(po_name)s for your Request %(pr_name)s") % {
+            "po_name": self.name,
+            "pr_name": request.name,
+        }
         message = f"<h3>{title}</h3><ul>"
-        message += self.env._(
+        message += _(
             "The following requested items from Purchase Request %(pr_name)s "
             "have now been confirmed in Purchase Order %(po_name)s:",
             po_name=self.name,
@@ -28,14 +27,15 @@ class PurchaseOrder(models.Model):
         )
 
         for line in request_dict.values():
-            message += self.env._(
+            message += _(
                 "<li><b>%(prl_name)s</b>: Ordered quantity %(prl_qty)s %(prl_uom)s, "
-                "Planned date %(prl_date_planned)s</li>",
-                prl_name=html_escape(line["name"]),
-                prl_qty=line["product_qty"],
-                prl_uom=line["product_uom"],
-                prl_date_planned=line["date_planned"],
-            )
+                "Planned date %(prl_date_planned)s</li>"
+            ) % {
+                "prl_name": html_escape(line["name"]),
+                "prl_qty": line["product_qty"],
+                "prl_uom": line["product_uom"],
+                "prl_date_planned": line["date_planned"],
+            }
         message += "</ul>"
         return message
 
@@ -52,7 +52,7 @@ class PurchaseOrder(models.Model):
                     data = {
                         "name": request_line.name,
                         "product_qty": line.product_qty,
-                        "product_uom": line.product_uom_id.name,
+                        "product_uom": line.product_uom.name,
                         "date_planned": date_planned,
                     }
                     requests_dict[request_id][request_line.id] = data
@@ -75,10 +75,8 @@ class PurchaseOrder(models.Model):
                 for request_line in line.purchase_request_lines:
                     if request_line.sudo().purchase_state == "done":
                         raise exceptions.UserError(
-                            self.env._(
-                                "Purchase Request %(name)s has already been completed",
-                                name=request_line.request_id.name,
-                            )
+                            _("Purchase Request %s has already been completed")
+                            % (request_line.request_id.name)
                         )
         return True
 
@@ -134,7 +132,7 @@ class PurchaseOrderLine(models.Model):
         domain = [("id", "in", request_line_ids)]
 
         return {
-            "name": self.env._("Purchase Request Lines"),
+            "name": _("Purchase Request Lines"),
             "type": "ir.actions.act_window",
             "res_model": "purchase.request.line",
             "view_mode": "list,form",
@@ -186,30 +184,31 @@ class PurchaseOrderLine(models.Model):
                 message = self._purchase_request_confirm_done_message_content(
                     message_data
                 )
-                alloc.purchase_request_line_id.request_id.message_post(
-                    body=Markup(message),
-                    subtype_id=self.env.ref("mail.mt_note").id,
-                )
+                if message:
+                    alloc.purchase_request_line_id.request_id.message_post(
+                        body=Markup(message),
+                        subtype_id=self.env.ref("mail.mt_comment").id,
+                    )
 
                 alloc.purchase_request_line_id._compute_qty()
         return True
 
     @api.model
     def _purchase_request_confirm_done_message_content(self, message_data):
-        title = self.env._(
-            "Service confirmation for Request %(request_name)s",
-            request_name=message_data["request_name"],
+        title = _("Service confirmation for Request {request_name}").format(
+            request_name=message_data["request_name"]
         )
 
-        message_body = self.env._(
-            "The following requested services from Purchase Request %(request_name)s "
-            "requested by %(requestor)s have now been received:",
+        message_body = _(
+            "The following requested services from Purchase Request {request_name} "
+            "requested by {requestor} have now been received:"
+        ).format(
             request_name=message_data["request_name"],
             requestor=message_data["requestor"],
         )
 
         product_line = Markup(
-            "<ul><li><b>{}</b>: " + self.env._("Received quantity") + " {} {}</li></ul>"
+            "<ul><li><b>{}</b>: " + _("Received quantity") + " {} {}</li></ul>"
         ).format(
             html_escape(message_data["product_name"]),
             message_data["product_qty"],

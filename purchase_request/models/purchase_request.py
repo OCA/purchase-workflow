@@ -1,7 +1,7 @@
 # Copyright 2018-2019 ForgeFlow, S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
 _STATES = [
@@ -63,7 +63,7 @@ class PurchaseRequest(models.Model):
     name = fields.Char(
         string="Request Reference",
         required=True,
-        default=lambda self: self.env._("New"),
+        default=lambda self: _("New"),
         tracking=True,
     )
     is_name_editable = fields.Boolean(
@@ -81,7 +81,7 @@ class PurchaseRequest(models.Model):
         required=True,
         copy=False,
         tracking=True,
-        default=lambda self: self._get_default_requested_by(),
+        default=_get_default_requested_by,
         index=True,
     )
     assigned_to = fields.Many2one(
@@ -90,7 +90,7 @@ class PurchaseRequest(models.Model):
         tracking=True,
         domain=lambda self: [
             (
-                "group_ids",
+                "groups_id",
                 "in",
                 self.env.ref("purchase_request.group_purchase_request_manager").id,
             )
@@ -101,7 +101,7 @@ class PurchaseRequest(models.Model):
     company_id = fields.Many2one(
         comodel_name="res.company",
         required=False,
-        default=lambda self: self._company_get(),
+        default=_company_get,
         tracking=True,
     )
     line_ids = fields.One2many(
@@ -133,7 +133,13 @@ class PurchaseRequest(models.Model):
         comodel_name="stock.picking.type",
         string="Picking Type",
         required=True,
-        default=lambda self: self._default_picking_type(),
+        default=_default_picking_type,
+    )
+    group_id = fields.Many2one(
+        comodel_name="procurement.group",
+        string="Procurement Group",
+        copy=False,
+        index=True,
     )
     line_count = fields.Integer(
         string="Purchase Request Line count",
@@ -240,7 +246,7 @@ class PurchaseRequest(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
-            if vals.get("name", self.env._("New")) == self.env._("New"):
+            if vals.get("name", _("New")) == _("New"):
                 vals["name"] = self._get_default_name()
         requests = super().create(vals_list)
         for vals, request in zip(vals_list, requests, strict=True):
@@ -261,15 +267,13 @@ class PurchaseRequest(models.Model):
         self.ensure_one()
         return self.state == "draft"
 
-    @api.ondelete(at_uninstall=False)
-    def _unlink_if_draft(self):
+    def unlink(self):
         for request in self:
             if not request._can_be_deleted():
                 raise UserError(
-                    self.env._(
-                        "You cannot delete a purchase request which is not draft."
-                    )
+                    _("You cannot delete a purchase request which is not draft.")
                 )
+        return super().unlink()
 
     def button_draft(self):
         self.mapped("line_ids").do_uncancel()
@@ -303,9 +307,9 @@ class PurchaseRequest(models.Model):
         for rec in self:
             if not rec.to_approve_allowed:
                 raise UserError(
-                    self.env._(
+                    _(
                         "You can't request an approval for a purchase request "
-                        "which is empty. (%(name)s)",
-                        name=rec.name,
+                        "which is empty. (%s)"
                     )
+                    % rec.name
                 )

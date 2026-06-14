@@ -4,7 +4,7 @@ from datetime import datetime
 
 import pytz
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import get_lang
 
@@ -46,6 +46,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             "name": line.name or line.product_id.name,
             "product_qty": line.pending_qty_to_receive,
             "product_uom_id": line.product_uom_id.id,
+            "estimated_cost": line.estimated_cost,
         }
 
     @api.model
@@ -55,35 +56,41 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
 
         for line in self.env["purchase.request.line"].browse(request_line_ids):
             if line.request_id.state == "done":
-                raise UserError(self.env._("The purchase has already been completed."))
+                raise UserError(_("The purchase has already been completed."))
             if line.request_id.state not in ["approved", "in_progress"]:
                 raise UserError(
-                    self.env._(
-                        "Purchase Request %(name)s is not approved or in progress",
-                        name=line.request_id.name,
-                    )
+                    _("Purchase Request %s is not approved or in progress")
+                    % line.request_id.name
                 )
 
             if line.purchase_state == "done":
-                raise UserError(self.env._("The purchase has already been completed."))
+                raise UserError(_("The purchase has already been completed."))
 
             line_company_id = line.company_id and line.company_id.id or False
             if company_id is not False and line_company_id != company_id:
-                raise UserError(
-                    self.env._("You have to select lines from the same company.")
-                )
+                raise UserError(_("You have to select lines from the same company."))
             else:
                 company_id = line_company_id
 
             line_picking_type = line.request_id.picking_type_id or False
             if not line_picking_type:
-                raise UserError(self.env._("You have to enter a Picking Type."))
+                raise UserError(_("You have to enter a Picking Type."))
             if picking_type is not False and line_picking_type != picking_type:
                 raise UserError(
-                    self.env._("You have to select lines from the same Picking Type.")
+                    _("You have to select lines from the same Picking Type.")
                 )
             else:
                 picking_type = line_picking_type
+
+    @api.model
+    def check_group(self, request_lines):
+        if len(list(set(request_lines.mapped("request_id.group_id")))) > 1:
+            raise UserError(
+                _(
+                    "You cannot create a single purchase order from "
+                    "purchase requests that have different procurement group."
+                )
+            )
 
     @api.model
     def get_items(self, request_line_ids):
@@ -91,6 +98,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         items = []
         request_lines = request_line_obj.browse(request_line_ids)
         self._check_valid_request_line(request_line_ids)
+        self.check_group(request_lines)
         for line in request_lines:
             items.append([0, 0, self._prepare_item(line)])
         return items
@@ -117,9 +125,9 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         return res
 
     @api.model
-    def _prepare_purchase_order(self, picking_type, company, origin):
+    def _prepare_purchase_order(self, picking_type, group_id, company, origin):
         if not self.supplier_id:
-            raise UserError(self.env._("Enter a supplier."))
+            raise UserError(_("Enter a supplier."))
         supplier = self.supplier_id
         data = {
             "origin": origin,
@@ -130,6 +138,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             or False,
             "picking_type_id": picking_type.id,
             "company_id": company.id,
+            "group_id": group_id.id,
         }
         return data
 
@@ -153,12 +162,14 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
     @api.model
     def _prepare_purchase_order_line(self, po, item):
         if not item.product_id:
-            raise UserError(self.env._("Please select a product for all lines"))
+            raise UserError(_("Please select a product for all lines"))
         product = item.product_id
 
         # Keep the standard product UOM for purchase order so we should
         # convert the product quantity to this UOM
-        qty = item.product_uom_id._compute_quantity(item.product_qty, product.uom_id)
+        qty = item.product_uom_id._compute_quantity(
+            item.product_qty, product.uom_po_id or product.uom_id
+        )
         # Suggest the supplier min qty as it's done in Odoo core
         min_qty = item.line_id._get_supplier_min_qty(product, po.partner_id)
         qty = max(qty, min_qty)
@@ -166,8 +177,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         return {
             "order_id": po.id,
             "product_id": product.id,
-            "product_uom_id": product.uom_id.id,
-            "price_unit": 0.0,
+            "product_uom": product.uom_po_id.id or product.uom_id.id,
             "product_qty": qty,
             "analytic_distribution": item.line_id.analytic_distribution,
             "purchase_request_lines": [(4, item.line_id.id)],
@@ -196,7 +206,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             ("order_id", "=", order.id),
             ("name", "=", name),
             ("product_id", "=", item.product_id.id),
-            ("product_uom_id", "=", vals["product_uom_id"]),
+            ("product_uom", "=", vals["product_uom"]),
         ]
 
         if item.line_id.analytic_distribution:
@@ -220,18 +230,17 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         res = []
         purchase_obj = self.env["purchase.order"]
         po_line_obj = self.env["purchase.order.line"]
-        pr_line_obj = self.env["purchase.request.line"]
         purchase = False
-
         for item in self.item_ids:
             line = item.line_id
             if item.product_qty <= 0.0:
-                raise UserError(self.env._("Enter a positive quantity."))
+                raise UserError(_("Enter a positive quantity."))
             if self.purchase_order_id:
                 purchase = self.purchase_order_id
             if not purchase:
                 po_data = self._prepare_purchase_order(
                     line.request_id.picking_type_id,
+                    line.request_id.group_id,
                     line.company_id,
                     line.origin,
                 )
@@ -249,11 +258,16 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             # Allocation UoM has to be the same as PR line UoM
             alloc_uom = line.product_uom_id
             wizard_uom = item.product_uom_id
-            if available_po_lines and not item.keep_description:
+            if (
+                available_po_lines
+                and not item.keep_description
+                and not item.keep_estimated_cost
+            ):
                 new_pr_line = False
                 po_line = available_po_lines[0]
+                po_line.purchase_request_lines = [(4, line.id)]
                 po_line.move_dest_ids |= line.move_dest_ids
-                po_line_product_uom_qty = po_line.product_uom_id._compute_quantity(
+                po_line_product_uom_qty = po_line.product_uom._compute_quantity(
                     po_line.product_uom_qty, alloc_uom
                 )
                 wizard_product_uom_qty = wizard_uom._compute_quantity(
@@ -266,7 +280,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                 if item.keep_description:
                     po_line_data["name"] = item.name
                 po_line = po_line_obj.create(po_line_data)
-                po_line_product_uom_qty = po_line.product_uom_id._compute_quantity(
+                po_line_product_uom_qty = po_line.product_uom._compute_quantity(
                     po_line.product_uom_qty, alloc_uom
                 )
                 wizard_product_uom_qty = wizard_uom._compute_quantity(
@@ -274,33 +288,46 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                 )
                 all_qty = min(po_line_product_uom_qty, wizard_product_uom_qty)
                 self.create_allocation(po_line, line, all_qty, alloc_uom)
-            # TODO: Check propagate_uom compatibility:
-            new_qty = pr_line_obj._calc_new_qty(
-                line, po_line=po_line, new_pr_line=new_pr_line
-            )
-            # The quantity update triggers a compute method that alters the
-            # unit price (which is what we want, to honor graduate pricing)
-            # but also the scheduled date which is what we don't want.
-            date_required = item.line_id.date_required
-            # we enforce to save the datetime value in the current tz of the user
-            date_planned = self._get_date_with_user_tz(date_required)
-            po_line.write({"product_qty": new_qty, "date_planned": date_planned})
-            # Now link the PR line to the PO line (if not already linked)
-            if line.id not in po_line.purchase_request_lines.ids:
-                po_line.purchase_request_lines = [(4, line.id)]
+            self._post_process_po_line(item, po_line, new_pr_line)
             res.append(purchase.id)
 
         purchase_requests = self.item_ids.mapped("request_id")
         purchase_requests.button_in_progress()
         return {
             "domain": [("id", "in", res)],
-            "name": self.env._("RFQ"),
+            "name": _("RFQ"),
             "view_mode": "list,form",
             "res_model": "purchase.order",
             "view_id": False,
             "context": False,
             "type": "ir.actions.act_window",
         }
+
+    def _post_process_po_line(self, item, po_line, new_pr_line):
+        self.ensure_one()
+        line = item.line_id
+        user_tz = pytz.timezone(self.env.user.tz or "UTC")
+        # TODO: Check propagate_uom compatibility:
+        price_unit = item.estimated_cost / item.product_qty
+        new_qty = self.env["purchase.request.line"]._calc_new_qty(
+            line, po_line=po_line, new_pr_line=new_pr_line
+        )
+        po_line.product_qty = new_qty
+        if item.keep_estimated_cost:
+            po_line.price_unit = price_unit
+            po_line._compute_amount()
+        # The quantity update triggers a compute method that alters the
+        # unit price (which is what we want, to honor graduate pricing)
+        # but also the scheduled date which is what we don't want.
+        date_required = line.date_required
+        # we enforce to save the datetime value in the current tz of the user
+        po_line.date_planned = (
+            user_tz.localize(
+                datetime(date_required.year, date_required.month, date_required.day)
+            )
+            .astimezone(pytz.utc)
+            .replace(tzinfo=None)
+        )
 
 
 class PurchaseRequestLineMakePurchaseOrderItem(models.TransientModel):
@@ -336,10 +363,20 @@ class PurchaseRequestLineMakePurchaseOrderItem(models.TransientModel):
     product_uom_id = fields.Many2one(
         comodel_name="uom.uom", string="UoM", required=True
     )
+    estimated_cost = fields.Monetary(currency_field="currency_id")
+    currency_id = fields.Many2one(
+        "res.currency", string="Currency", related="line_id.currency_id", readonly=True
+    )
     keep_description = fields.Boolean(
         string="Copy descriptions to new PO",
         help="Set true if you want to keep the "
         "descriptions provided in the "
+        "wizard in the new PO.",
+    )
+    keep_estimated_cost = fields.Boolean(
+        string="Copy estimative cost to new PO",
+        help="Set true if you want to keep the "
+        "estimated cost provided in the "
         "wizard in the new PO.",
     )
 

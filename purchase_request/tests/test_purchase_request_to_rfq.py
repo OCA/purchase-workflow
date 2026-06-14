@@ -14,38 +14,10 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         self.purchase_request_line_obj = self.env["purchase.request.line"]
         self.wiz = self.env["purchase.request.line.make.purchase.order"]
         self.purchase_order = self.env["purchase.order"]
-
-        # Create test supplier
-        self.supplier = self.env["res.partner"].create(
-            {
-                "name": "Test Supplier",
-                "is_company": True,
-                "supplier_rank": 1,
-            }
-        )
-
         vendor = self.env["res.partner"].create({"name": "Partner #2"})
         self.service_product = self.env["product.product"].create(
             {"name": "Product Service Test", "type": "service"}
         )
-
-        # Create test product for common use in tests
-        self.product = self.env["product.product"].create(
-            {
-                "name": "Test Product",
-                "type": "consu",
-            }
-        )
-
-        # Add supplier info with minimum order quantity for self.product
-        self.env["product.supplierinfo"].create(
-            {
-                "partner_id": self.supplier.id,
-                "product_tmpl_id": self.product.product_tmpl_id.id,
-                "min_qty": 1,
-            }
-        )
-
         self.env["product.supplierinfo"].create(
             {
                 "partner_id": vendor.id,
@@ -71,7 +43,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
                     0,
                     0,
                     {
-                        "product_id": self.product.id,
+                        "product_id": self.env.ref("product.product_product_13").id,
                         "product_uom_id": self.env.ref("uom.product_uom_unit").id,
                         "product_qty": 2.0,
                     },
@@ -88,7 +60,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
                     0,
                     0,
                     {
-                        "product_id": self.product.id,
+                        "product_id": self.env.ref("product.product_product_13").id,
                         "product_uom_id": self.env.ref("uom.product_uom_unit").id,
                         "product_qty": 2.0,
                     },
@@ -97,7 +69,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         }
         purchase_request2 = self.purchase_request_obj.create(vals)
         purchase_request2.button_approved()
-        vals = {"supplier_id": self.supplier.id}
+        vals = {"supplier_id": self.env.ref("base.res_partner_1").id}
         wiz_id = self.wiz.with_context(
             active_model="purchase.request.line",
             active_ids=[
@@ -119,21 +91,26 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         purchase_request = self.purchase_request_obj.create(vals)
         vals = {
             "request_id": purchase_request.id,
-            "product_id": self.product.id,
+            "product_id": self.env.ref("product.product_product_13").id,
             "product_uom_id": self.env.ref("uom.product_uom_unit").id,
             "product_qty": 5.0,
+            "estimated_cost": 50.0,
         }
         purchase_request_line = self.purchase_request_line_obj.create(vals)
         purchase_request.button_to_approve()
         purchase_request.button_approved()
 
-        vals = {"supplier_id": self.supplier.id}
+        vals = {"supplier_id": self.env.ref("base.res_partner_12").id}
         wiz_id = self.wiz.with_context(
             active_model="purchase.request.line",
             active_ids=[purchase_request_line.id],
             active_id=purchase_request_line.id,
         ).create(vals)
+        for item in wiz_id.item_ids:
+            if item.line_id.id == purchase_request_line.id:
+                item.keep_estimated_cost = True
         wiz_id.make_purchase_order()
+        purchase_order = purchase_request_line.purchase_lines.order_id
         self.assertTrue(
             len(purchase_request_line.purchase_lines), "Should have a purchase line"
         )
@@ -147,6 +124,11 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
             purchase_request_line.purchase_state,
             "Should have same state",
         )
+        self.assertEqual(
+            purchase_order.order_line.price_total,
+            purchase_request_line.estimated_cost,
+            "Should have same price",
+        )
 
     def test_bug_is_editable_multiple_lines(self):
         # Check that reading multiple lines is still possible
@@ -158,7 +140,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         purchase_request = self.purchase_request_obj.create(vals)
         vals = {
             "request_id": purchase_request.id,
-            "product_id": self.product.id,
+            "product_id": self.env.ref("product.product_product_13").id,
             "product_uom_id": self.env.ref("uom.product_uom_unit").id,
             "product_qty": 5.0,
         }
@@ -177,12 +159,12 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         purchase_request = self.purchase_request_obj.create(vals)
         vals = {
             "request_id": purchase_request.id,
-            "product_id": self.product.id,
+            "product_id": self.env.ref("product.product_product_8").id,
             "product_uom_id": self.env.ref("uom.product_uom_unit").id,
             "product_qty": 1.0,
         }
         purchase_request_line = self.purchase_request_line_obj.create(vals)
-        vals = {"supplier_id": self.supplier.id}
+        vals = {"supplier_id": self.env.ref("base.res_partner_1").id}
         purchase_request.button_approved()
         wiz_id = self.wiz.with_context(
             active_model="purchase.request.line",
@@ -205,7 +187,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         )
         self.assertEqual(
             purchase_request_line.purchase_lines.product_qty,
-            1,
+            5,
             "The PO line should have the minimum order quantity.",
         )
         self.assertEqual(
@@ -227,14 +209,14 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         purchase_request2 = self.purchase_request_obj.create(vals)
         vals = {
             "request_id": purchase_request1.id,
-            "product_id": self.product.id,
+            "product_id": self.env.ref("product.product_product_6").id,
             "product_uom_id": self.env.ref("uom.product_uom_dozen").id,
             "product_qty": 1.0,
         }
         purchase_request_line1 = self.purchase_request_line_obj.create(vals)
         vals = {
             "request_id": purchase_request2.id,
-            "product_id": self.product.id,
+            "product_id": self.env.ref("product.product_product_6").id,
             "product_uom_id": self.env.ref("uom.product_uom_unit").id,
             "product_qty": 1.0,
         }
@@ -246,7 +228,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
             "product_qty": 1.0,
         }
         purchase_request_line3 = self.purchase_request_line_obj.create(vals)
-        vals = {"supplier_id": self.supplier.id}
+        vals = {"supplier_id": self.env.ref("base.res_partner_1").id}
         purchase_request1.button_approved()
         purchase_request2.button_approved()
         wiz_id = self.wiz.with_context(
@@ -267,11 +249,13 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
             purchase_request_line1.purchased_qty, 1.0, "Should be a quantity of 1"
         )
         self.assertEqual(
-            purchase_request_line2.purchased_qty, 1.0, "Should be 1 unit (min_qty)"
+            purchase_request_line2.purchased_qty, 1.0, "Should be a quantity of 1"
         )
 
     def test_purchase_request_to_purchase_rfq_multiple_PO_purchaseUoM(self):
-        product = self.product_product
+        product = self.env.ref("product.product_product_6")
+        product.uom_po_id = self.env.ref("uom.product_uom_dozen")
+
         vals = {
             "picking_type_id": self.env.ref("stock.picking_type_in").id,
             "requested_by": SUPERUSER_ID,
@@ -303,7 +287,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
             "product_qty": 1.0,
         }
         purchase_request_line3 = self.purchase_request_line_obj.create(vals)
-        vals = {"supplier_id": self.supplier.id}
+        vals = {"supplier_id": self.env.ref("base.res_partner_1").id}
         purchase_request1.button_approved()
         purchase_request2.button_approved()
         wiz_id = self.wiz.with_context(
@@ -320,17 +304,16 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
                 item.keep_description = True
         wiz_id.make_purchase_order()
         po_line = purchase_request_line1.purchase_lines[0]
-        # PO uses product's base UoM (Units)
-        self.assertEqual(po_line.product_qty, 12, "Quantity should be 12 units")
+        self.assertEqual(po_line.product_qty, 1.09, "Quantity should be 1.09")
         self.assertEqual(
-            po_line.product_uom_id,
-            self.env.ref("uom.product_uom_unit"),
-            "The purchase UoM should be Unit(s)",
+            po_line.product_uom,
+            self.env.ref("uom.product_uom_dozen"),
+            "The purchase UoM should be Dozen(s).",
         )
 
     def test_purchase_request_to_rfq_minimum_order_qty_existing_po(self):
         # Define Supplier
-        supplier = self.supplier
+        supplier = self.env.ref("base.res_partner_1")
         # Create Product Widget min_qty = 5
         product = self.env["product.product"].create(
             {
@@ -391,15 +374,15 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
             active_model="purchase.request.line", active_ids=[purchase_request_line2.id]
         ).create(vals)
         wiz_id.make_purchase_order()
-        # Check Purchase qty
+        # Check Purchase qty should be 6
         po_line = purchase_request_line2.purchase_lines[0]
         # Add unit price in PO Line
         po_line.write({"price_unit": 10})
-        self.assertEqual(po_line.product_qty, 5.0, "Quantity should be 5")
+        self.assertEqual(po_line.product_qty, 6.0, "Quantity should be 6")
         # auto change state to done
         po_line.order_id.button_confirm()
         picking = po_line.order_id.picking_ids[0]
-        picking.move_line_ids[0].write({"quantity": 5.0})
+        picking.move_line_ids[0].write({"quantity": 6.0})
         picking.button_validate()
 
     def _setup_analytic_distribution(self):
@@ -419,7 +402,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
                     0,
                     0,
                     {
-                        "product_id": self.product.id,
+                        "product_id": self.env.ref("product.product_product_10").id,
                         "product_uom_id": self.env.ref("uom.product_uom_unit").id,
                         "product_qty": 5.0,
                         "analytic_distribution": analytic_distribution,
@@ -430,7 +413,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         purchase_request = self.purchase_request_obj.create(vals)
         purchase_request.button_to_approve()
         purchase_request.button_approved()
-        supplier = self.supplier
+        supplier = self.env.ref("base.res_partner_12")
         vals = {
             "supplier_id": supplier.id,
         }
