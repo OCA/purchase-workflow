@@ -18,6 +18,12 @@ class PurchaseOrder(models.Model):
 
     @api.onchange("requisition_id")
     def _onchange_requisition_id(self):
+        # Add company_id and partner_id to context for tax computation
+        # on purchase requisitions without a company_id
+        self = self.with_context(
+            order_company_id=self.company_id.id,
+            order_partner_id=self.partner_id.id,
+        )
         res = super()._onchange_requisition_id()
         if self and self.requisition_id:
             lines = []
