@@ -44,12 +44,14 @@ msgstr ""
 #. module: purchase_partner_incoterm
 #: model:ir.model.fields,field_description:purchase_partner_incoterm.field_purchase_order__display_name
 #: model:ir.model.fields,field_description:purchase_partner_incoterm.field_res_partner__display_name
+#: model:ir.model.fields,field_description:purchase_partner_incoterm.field_stock_rule__display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: purchase_partner_incoterm
 #: model:ir.model.fields,field_description:purchase_partner_incoterm.field_purchase_order__id
 #: model:ir.model.fields,field_description:purchase_partner_incoterm.field_res_partner__id
+#: model:ir.model.fields,field_description:purchase_partner_incoterm.field_stock_rule__id
 msgid "ID"
 msgstr ""
 
@@ -61,4 +63,9 @@ msgstr ""
 #. module: purchase_partner_incoterm
 #: model:ir.model,name:purchase_partner_incoterm.model_purchase_order
 msgid "Purchase Order"
+msgstr ""
+
+#. module: purchase_partner_incoterm
+#: model:ir.model,name:purchase_partner_incoterm.model_stock_rule
+msgid "Stock Rule"
 msgstr ""
