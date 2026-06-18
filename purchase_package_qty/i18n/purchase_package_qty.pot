@@ -1,12 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* purchase_package_qty
+# 	* purchase_package_qty
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2026-06-12 12:06+0000\n"
+"PO-Revision-Date: 2026-06-12 12:06+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,18 +16,6 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: purchase_package_qty
-#: model_terms:ir.ui.view,arch_db:purchase_package_qty.report_inventory
-msgid "<strong>Package Qty</strong>"
-msgstr ""
-
-#. module: purchase_package_qty
-#: model:ir.model.fields,field_description:purchase_package_qty.field_product_product__default_seller_id
-#: model:ir.model.fields,field_description:purchase_package_qty.field_product_template__default_seller_id
-msgid "Default Seller"
-msgstr ""
-
-#. module: purchase_package_qty
-#: model:ir.model.fields,field_description:purchase_package_qty.field_stock_pack_operation_qty_done_package
 #: model:ir.model.fields,field_description:purchase_package_qty.field_stock_move__qty_done_package
 #: model:ir.model.fields,field_description:purchase_package_qty.field_stock_move_line__qty_done_package
 msgid "Done (package)"
@@ -33,52 +23,32 @@ msgstr ""
 
 #. module: purchase_package_qty
 #: model:ir.model.fields,help:purchase_package_qty.field_product_supplierinfo__indicative_package
-msgid "If checked, the system will not force you to purchase a strict multiple of package quantity"
+msgid ""
+"If checked, the system will not force you to purchase a strict multiple of "
+"package quantity"
 msgstr ""
 
 #. module: purchase_package_qty
 #: model:ir.model.fields,field_description:purchase_package_qty.field_product_supplierinfo__indicative_package
 #: model:ir.model.fields,field_description:purchase_package_qty.field_purchase_order_line__indicative_package
-#: model:ir.model.fields,field_description:purchase_package_qty.field_stock_move__indicative_package
 msgid "Indicative Package"
 msgstr ""
 
 #. module: purchase_package_qty
-#: model:ir.model,name:purchase_package_qty.model_stock_inventory
-msgid "Inventory"
+#: model:ir.model,name:purchase_package_qty.model_account_move
+msgid "Journal Entry"
 msgstr ""
 
 #. module: purchase_package_qty
-#: model:ir.model,name:purchase_package_qty.model_stock_inventory_line
-msgid "Inventory Line"
+#: model:ir.model,name:purchase_package_qty.model_account_move_line
+msgid "Journal Item"
 msgstr ""
 
 #. module: purchase_package_qty
-#: model:ir.model,name:purchase_package_qty.model_account_invoice
-msgid "Invoice"
-msgstr ""
-
-#. module: purchase_package_qty
-#: model:ir.model,name:purchase_package_qty.model_account_invoice_line
-msgid "Invoice Line"
-msgstr ""
-
-#. module: purchase_package_qty
-#: model:ir.model.fields,field_description:purchase_package_qty.field_account_invoice_line__product_qty_package
+#: model:ir.model.fields,field_description:purchase_package_qty.field_account_move_line__product_qty_package
 #: model:ir.model.fields,field_description:purchase_package_qty.field_purchase_order_line__product_qty_package
 #: model:ir.model.fields,field_description:purchase_package_qty.field_stock_move__product_qty_package
-#: model:ir.model.fields,field_description:purchase_package_qty.field_stock_move_line__product_qty_package
 msgid "Number of packages"
-msgstr ""
-
-#. module: purchase_package_qty
-#: model:ir.model.fields,field_description:purchase_package_qty.field_purchase_order_line__operation_extra_id
-msgid "Pack Operation Extra"
-msgstr ""
-
-#. module: purchase_package_qty
-#: model_terms:ir.ui.view,arch_db:purchase_package_qty.stock_picking_form_view_package
-msgid "Pack. Qty"
 msgstr ""
 
 #. module: purchase_package_qty
@@ -87,10 +57,9 @@ msgid "Package Price"
 msgstr ""
 
 #. module: purchase_package_qty
-#: model:ir.model.fields,field_description:purchase_package_qty.field_account_invoice_line__package_qty
+#: model:ir.model.fields,field_description:purchase_package_qty.field_account_move_line__package_qty
 #: model:ir.model.fields,field_description:purchase_package_qty.field_product_supplierinfo__package_qty
 #: model:ir.model.fields,field_description:purchase_package_qty.field_purchase_order_line__package_qty
-#: model:ir.model.fields,field_description:purchase_package_qty.field_stock_inventory_line__package_qty
 #: model:ir.model.fields,field_description:purchase_package_qty.field_stock_move__package_qty
 #: model:ir.model.fields,field_description:purchase_package_qty.field_stock_move_line__package_qty
 msgid "Package Qty"
@@ -98,14 +67,20 @@ msgstr ""
 
 #. module: purchase_package_qty
 #: model:ir.model.fields,field_description:purchase_package_qty.field_product_supplierinfo__base_price
+#: model_terms:ir.ui.view,arch_db:purchase_package_qty.product_supplierinfo_form_view_package
 msgid "Price"
 msgstr ""
 
 #. module: purchase_package_qty
-#: model:ir.model.fields,field_description:purchase_package_qty.field_account_invoice_line__price_policy
+#: model:ir.model.fields,field_description:purchase_package_qty.field_account_move_line__price_policy
 #: model:ir.model.fields,field_description:purchase_package_qty.field_product_supplierinfo__price_policy
 #: model:ir.model.fields,field_description:purchase_package_qty.field_purchase_order_line__price_policy
 msgid "Price Policy"
+msgstr ""
+
+#. module: purchase_package_qty
+#: model:ir.model.fields,field_description:purchase_package_qty.field_purchase_order_line__unit_price
+msgid "Price Unit"
 msgstr ""
 
 #. module: purchase_package_qty
@@ -124,11 +99,6 @@ msgid "Product Moves (Stock Move Line)"
 msgstr ""
 
 #. module: purchase_package_qty
-#: model:ir.model,name:purchase_package_qty.model_product_template
-msgid "Product Template"
-msgstr ""
-
-#. module: purchase_package_qty
 #: model:ir.model,name:purchase_package_qty.model_purchase_order
 msgid "Purchase Order"
 msgstr ""
@@ -136,11 +106,6 @@ msgstr ""
 #. module: purchase_package_qty
 #: model:ir.model,name:purchase_package_qty.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
-
-#. module: purchase_package_qty
-#: model:ir.model.fields,field_description:purchase_package_qty.field_purchase_order_line__product_qty
-msgid "Quantity"
 msgstr ""
 
 #. module: purchase_package_qty
@@ -154,10 +119,12 @@ msgid "Supplier Pricelist"
 msgstr ""
 
 #. module: purchase_package_qty
-#: model:ir.model.fields,help:purchase_package_qty.field_account_invoice_line__product_qty_package
+#: model:ir.model,name:purchase_package_qty.model_account_tax
+msgid "Tax"
+msgstr ""
+
+#. module: purchase_package_qty
 #: model:ir.model.fields,help:purchase_package_qty.field_purchase_order_line__product_qty_package
-#: model:ir.model.fields,help:purchase_package_qty.field_stock_move__product_qty_package
-#: model:ir.model.fields,help:purchase_package_qty.field_stock_move_line__product_qty_package
 msgid "The number of packages you'll buy."
 msgstr ""
 
@@ -168,8 +135,13 @@ msgid "The number of packages you've received."
 msgstr ""
 
 #. module: purchase_package_qty
-#: code:addons/purchase_package_qty/models/product_supplierinfo.py:91
-#, python-format
+#: model:ir.model.fields,help:purchase_package_qty.field_account_move_line__product_qty_package
+msgid "The number of packages."
+msgstr ""
+
+#. module: purchase_package_qty
+#. odoo-python
+#: code:addons/purchase_package_qty/models/product_supplierinfo.py:0
 msgid "The package quantity cannot be 0."
 msgstr ""
 
@@ -180,50 +152,29 @@ msgid "The price to purchase a product"
 msgstr ""
 
 #. module: purchase_package_qty
-#: model:ir.model.fields,help:purchase_package_qty.field_account_invoice_line__package_qty
+#: model:ir.model.fields,help:purchase_package_qty.field_account_move_line__package_qty
 #: model:ir.model.fields,help:purchase_package_qty.field_purchase_order_line__package_qty
 #: model:ir.model.fields,help:purchase_package_qty.field_stock_move__package_qty
+msgid "The quantity of products in a package."
+msgstr ""
+
+#. module: purchase_package_qty
 #: model:ir.model.fields,help:purchase_package_qty.field_stock_move_line__package_qty
 msgid "The quantity of products in the supplier package."
 msgstr ""
 
 #. module: purchase_package_qty
 #: model:ir.model.fields,help:purchase_package_qty.field_product_supplierinfo__package_qty
-#: model:ir.model.fields,help:purchase_package_qty.field_stock_inventory_line__package_qty
-msgid "The quantity of products in the supplier package. You will always have to buy a multiple of this quantity."
+msgid ""
+"The quantity of products in the supplier package. You will always have to "
+"buy a multiple of this quantity."
 msgstr ""
 
 #. module: purchase_package_qty
-#: code:addons/purchase_package_qty/models/purchase_order_line.py:223
-#, python-format
-msgid "The selected supplier only sells this product by %s %s"
-msgstr ""
-
-#. module: purchase_package_qty
-#: model:ir.model.fields,help:purchase_package_qty.field_purchase_order_line__operation_extra_id
-msgid "The technical field is use to specify the line that was generated from adding operation pack manually"
-msgstr ""
-
-#. module: purchase_package_qty
-#: model:ir.model,name:purchase_package_qty.model_stock_picking
-msgid "Transfer"
-msgstr ""
-
-#. module: purchase_package_qty
-#: model:ir.model.fields,field_description:purchase_package_qty.field_purchase_order_line__unit_price
-msgid "Unit Price"
-msgstr ""
-
-#. module: purchase_package_qty
-#: code:addons/purchase_package_qty/models/purchase_order_line.py:222
-#, python-format
-msgid "Warning!"
-msgstr ""
-
-#. module: purchase_package_qty
-#: code:addons/purchase_package_qty/models/purchase_order_line.py:163
-#, python-format
-msgid "You have to buy a multiple of the package qty or change the package settings in the supplierinfo of the product for the following line: \n"
+#. odoo-python
+#: code:addons/purchase_package_qty/models/purchase_order_line.py:0
+msgid ""
+"You have to buy a multiple of the package qty or change the package settings in the supplierinfo of the product for the following line: \n"
 " - Product: %s; \n"
 " - Quantity: %s; \n"
 " - Unit Price: %s; \n"
@@ -231,16 +182,16 @@ msgid "You have to buy a multiple of the package qty or change the package setti
 msgstr ""
 
 #. module: purchase_package_qty
-#: selection:account.invoice.line,price_policy:0
-#: selection:product.supplierinfo,price_policy:0
-#: selection:purchase.order.line,price_policy:0
+#: model:ir.model.fields.selection,name:purchase_package_qty.selection__account_move_line__price_policy__package
+#: model:ir.model.fields.selection,name:purchase_package_qty.selection__product_supplierinfo__price_policy__package
+#: model:ir.model.fields.selection,name:purchase_package_qty.selection__purchase_order_line__price_policy__package
 msgid "per Package"
 msgstr ""
 
 #. module: purchase_package_qty
-#: selection:account.invoice.line,price_policy:0
-#: selection:product.supplierinfo,price_policy:0
-#: selection:purchase.order.line,price_policy:0
+#: model:ir.model.fields.selection,name:purchase_package_qty.selection__account_move_line__price_policy__uom
+#: model:ir.model.fields.selection,name:purchase_package_qty.selection__product_supplierinfo__price_policy__uom
+#: model:ir.model.fields.selection,name:purchase_package_qty.selection__purchase_order_line__price_policy__uom
 msgid "per UOM"
 msgstr ""
 
@@ -248,4 +199,3 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:purchase_package_qty.report_invoice_package
 msgid "pkg"
 msgstr ""
-

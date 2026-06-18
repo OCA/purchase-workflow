@@ -25,75 +25,54 @@
 
 from odoo import api, fields, models
 
-import odoo.addons.decimal_precision as dp
-
 
 class StockMove(models.Model):
     _inherit = "stock.move"
 
     package_qty = fields.Float(
-        "Package Qty",
-        compute="_compute_package_qty",
-        help="""The quantity of products in the supplier package.""",
+        digits="Product Unit of Measure",
+        help="""The quantity of products in a package.""",
     )
-    indicative_package = fields.Boolean("Indicative Package")
-    product_qty_package = fields.Float(
-        "Number of packages", help="""The number of packages you'll buy."""
-    )
+    product_qty_package = fields.Float("Number of packages")
     qty_done_package = fields.Float(
         "Done (package)",
         help="""The number of packages you've received.""",
-        digits=dp.get_precision("Product Unit of Measure"),
+        digits="Product Unit of Measure",
     )
 
-    @api.multi
-    @api.depends("product_id")
-    def _compute_package_qty(self):
-        for move in self:
-            if move.product_id and move.picking_id:
-                supplier = move.product_id._select_seller(
-                    partner_id=move.picking_id.partner_id, quantity=1
-                )
-                if supplier:
-                    # Get the first one
-                    move.package_qty = supplier.package_qty
-
-    # Views section
-    @api.onchange("product_id")
-    def onchange_product_id(self):
-        res = super().onchange_product_id()
-        if self.product_id and self.product_id.seller_ids:
+    @api.onchange("product_id", "picking_type_id")
+    def _onchange_product_id(self):
+        res = super()._onchange_product_id()
+        if self.product_id and self.picking_type_id:
             supplier = self.product_id._select_seller(
                 partner_id=self.picking_id.partner_id, quantity=1
             )
             if supplier:
+                # Get the first one
                 self.package_qty = supplier.package_qty
                 self.product_qty = supplier.package_qty
-                self.product_qty_package = 0.0
-                self.indicative_package = supplier.indicative_package
+                self.product_qty_package = 1
         return res
 
     @api.onchange("product_qty")
     def onchange_product_qty(self):
-        res = super().onchange_quantity()
         if self.package_qty:
             self.product_qty_package = self.product_qty / self.package_qty
-        return res
 
     @api.onchange("product_qty_package", "package_qty")
     def onchange_product_qty_package(self):
         if self.product_qty_package == int(self.product_qty_package):
             self.product_uom_qty = self.package_qty * self.product_qty_package
 
-    @api.onchange("quantity_done")
+    @api.onchange("quantity")
     def onchange_quantity_done(self):
         if self.package_qty:
-            self.qty_done_package = self.quantity_done / self.package_qty
+            self.qty_done_package = self.quantity / self.package_qty
 
     @api.onchange("qty_done_package")
     def onchange_qty_done_package(self):
         if self.qty_done_package == int(self.qty_done_package):
-            self.quantity_done = self.package_qty * self.qty_done_package
+            self.quantity = self.package_qty * self.qty_done_package
 
     @api.onchange("product_uom_qty")
     def onchange_product_uom_qty(self):
@@ -102,9 +81,28 @@ class StockMove(models.Model):
         else:
             self.product_qty_package = 0.0
 
-    def _action_done(self):
-        res = super()._action_done()
+    def _action_done(self, cancel_backorder=False):
+        res = super()._action_done(cancel_backorder)
         for move in self:
-            if move.purchase_line_id and move.quantity_done > 0 and move.package_qty:
-                move.qty_done_package = move.quantity_done / move.package_qty
+            if move.purchase_line_id and move.quantity > 0 and move.package_qty:
+                move.qty_done_package = move.quantity / move.package_qty
+        return res
+
+    def _prepare_move_line_vals(self, quantity=None, reserved_quant=None):
+        vals = super()._prepare_move_line_vals(quantity, reserved_quant)
+        if self.package_qty:
+            vals.update(
+                {
+                    "package_qty": self.package_qty,
+                    "qty_done_package": vals.get("quantity", 0.0) / self.package_qty,
+                }
+            )
+        return vals
+
+    def _action_assign(self, force_qty=False):
+        # resync qty_done_package with quantity after assigned
+        res = super()._action_assign(force_qty)
+        for move in self:
+            if move.quantity > 0 and move.package_qty:
+                move.qty_done_package = move.quantity / move.package_qty
         return res
