@@ -23,37 +23,22 @@
 #
 ##############################################################################
 
-from odoo import api, models
+from odoo import models
 
 
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
-    @api.multi
-    def _add_supplier_to_product(self):
-        # we have to override this method to modify the vals
-        # Do not add a contact as a supplier
-        partner = (
-            self.partner_id
-            if not self.partner_id.parent_id
-            else self.partner_id.parent_id
+    def _prepare_supplier_info(self, partner, line, price, currency):
+        # Prepare supplierinfo data when adding a product
+        supplierinfo = super()._prepare_supplier_info(partner, line, price, currency)
+        supplierinfo.update(
+            {
+                "price_policy": line.price_policy,
+                "package_qty": line.package_qty,
+            }
         )
-        for line in self.order_line:
-            if (
-                partner not in line.product_id.seller_ids.mapped("name")
-                and len(line.product_id.seller_ids) <= 10
-            ):
-                supplierinfo = line._get_supplierinfovals(partner)
-                vals = {
-                    "seller_ids": [(0, 0, supplierinfo)],
-                }
-                try:
-                    line.product_id.write(vals)
-                except Exception:  # If no Write access rights -> just ignore
-                    break
-
-    @api.multi
-    def action_view_picking(self):
-        res = super().action_view_picking()
-        res["context"].update({"readonly_by_pass": True})
-        return res
+        if line.price_policy == "package" and supplierinfo.get("price"):
+            supplierinfo["base_price"] = supplierinfo["price"]
+            del supplierinfo["price"]
+        return supplierinfo

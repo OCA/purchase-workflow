@@ -1,13 +1,6 @@
 ##############################################################################
 #
 #    Purchase - Package Quantity Module for Odoo
-#    Copyright (C) 2019-Today: La Louve (<https://cooplalouve.fr>)
-#    Copyright (C) 2019-Today: Druidoo (<https://www.druidoo.io>)
-#    Copyright (C) 2016-Today Akretion (https://www.akretion.com)
-#    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-#    @author Julien WESTE
-#    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
-#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
 #    published by the Free Software Foundation, either version 3 of the
@@ -23,22 +16,26 @@
 #
 ##############################################################################
 
-from odoo import api, fields, models
+from odoo import models
 
 
-class ProductTemplate(models.Model):
-    _inherit = "product.template"
+class AccountMove(models.Model):
+    _inherit = "account.move"
 
-    @api.depends(
-        "seller_ids",
-    )
-    @api.multi
-    def _compute_default_seller_id(self):
-        for pt in self:
-            pt.default_seller_id = pt.seller_ids and pt.seller_ids[0] or False
-
-    default_seller_id = fields.Many2one(
-        string="Default Seller",
-        comodel_name="product.supplierinfo",
-        compute="_compute_default_seller_id",
-    )
+    def _prepare_product_base_line_for_taxes_computation(self, product_line):
+        """Override to set quantity to nb of package if price policy is package."""
+        self.ensure_one()
+        if product_line.price_policy == "package":
+            origin_quantiy = product_line.quantity
+            product_line.with_context(
+                check_move_validity=False
+            ).quantity = product_line.product_qty_package
+            res = super()._prepare_product_base_line_for_taxes_computation(product_line)
+            product_line.with_context(
+                check_move_validity=False
+            ).quantity = origin_quantiy
+            return res
+        else:
+            return super()._prepare_product_base_line_for_taxes_computation(
+                product_line
+            )
