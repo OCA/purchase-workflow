@@ -302,12 +302,8 @@ class PurchaseOrderRecommendation(models.TransientModel):
                     wiz_line.purchase_line_id.unlink()
                 continue
             sequence += 1
-            # Use a new in-memory line otherwise
-            po_line = po_lines.new(wiz_line._prepare_new_po_line(sequence))
-            po_line.onchange_product_id()
-            po_line.update(wiz_line._prepare_update_po_line())
-            po_lines |= po_line
-        self.order_id.order_line |= po_lines
+            po_lines += po_lines.create(wiz_line._prepare_new_po_line(sequence))
+        self.order_id.order_line += po_lines
 
 
 class PurchaseOrderRecommendationLine(models.TransientModel):
@@ -390,4 +386,5 @@ class PurchaseOrderRecommendationLine(models.TransientModel):
             "order_id": self.wizard_id.order_id.id,
             "product_id": self.product_id.id,
             "sequence": sequence,
+            **self._prepare_update_po_line(),
         }
