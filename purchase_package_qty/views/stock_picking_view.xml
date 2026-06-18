@@ -25,47 +25,24 @@
         <field name="inherit_id" ref="stock.view_picking_form" />
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='move_ids_without_package']/tree/field
+                expr="//field[@name='move_ids_without_package']/list/field
                 [@name='product_uom_qty']"
                 position="before"
             >
-                <field
-                    name="product_qty_package"
-                    attrs="{'column_invisible': [('parent.state', 'not in', ('assigned', 'done'))]}"
-                />
-                <field
-                    name="package_qty"
-                    readonly="True"
-                    attrs="{'column_invisible': [('parent.state', 'not in', ('assigned', 'done'))]}"
-                    string="Pack. Qty"
-                />
+                <field name="product_qty_package" optional="show" />
+                <field name="package_qty" optional="show" />
             </xpath>
             <xpath
-                expr="//field[@name='move_ids_without_package']/tree/field
-                [@name='product_uom_qty']"
-                position="attributes"
-            >
-                <attribute name="force_save">1</attribute>
-            </xpath>
-            <xpath
-                expr="//field[@name='move_ids_without_package']/tree/field
-                [@name='quantity_done']"
+                expr="//field[@name='move_ids_without_package']/list/field
+                [@name='quantity']"
                 position="before"
             >
                 <field
                     name="qty_done_package"
-                    attrs="{'column_invisible': [('parent.state', 'not in', ('assigned', 'done'))]}"
+                    readonly="not is_quantity_done_editable"
+                    column_invisible="parent.state=='draft'"
+                    optional="show"
                 />
-            </xpath>
-            <xpath
-                expr="//field[@name='move_ids_without_package']/tree/field
-                [@name='quantity_done']"
-                position="attributes"
-            >
-                <attribute
-                    name="attrs"
-                >{'column_invisible': [('parent.state', 'not in', ('assigned', 'done'))]}
-                </attribute>
             </xpath>
         </field>
     </record>

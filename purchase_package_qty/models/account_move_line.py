@@ -26,21 +26,27 @@
 from odoo import api, fields, models
 
 
-class AccountInvoiceLine(models.Model):
-    _inherit = "account.invoice.line"
+class AccountMoveLine(models.Model):
+    _inherit = "account.move.line"
 
     package_qty = fields.Float(
-        "Package Qty", help="""The quantity of products in the supplier package."""
+        help="The quantity of products in a package.",
+        digits="Product Unit of Measure",
     )
     product_qty_package = fields.Float(
-        "Number of packages", help="""The number of packages you'll buy."""
+        "Number of packages",
+        help="The number of packages.",
     )
     price_policy = fields.Selection(
         [("uom", "per UOM"), ("package", "per Package")],
-        "Price Policy",
-        default="uom",
-        required=True,
     )
+
+    @api.model
+    def default_get(self, field_list):
+        res = super().default_get(field_list)
+        if "price_policy" not in res:
+            res["price_policy"] = "uom"
+        return res
 
     @api.onchange("quantity")
     def onchange_product_qty(self):
@@ -56,28 +62,6 @@ class AccountInvoiceLine(models.Model):
     def onchange_package_qty(self):
         self.quantity = self.package_qty * self.product_qty_package
 
-    # pylint: disable=W8104
-    @api.one
-    @api.depends(
-        "price_unit",
-        "discount",
-        "invoice_line_tax_ids",
-        "quantity",
-        "product_id",
-        "invoice_id.partner_id",
-        "invoice_id.currency_id",
-        "invoice_id.company_id",
-        "invoice_id.date_invoice",
-        "invoice_id.date",
-        "product_qty_package",
-        "price_policy",
-    )
-    def _compute_price(self):
-        if self.price_policy == "package":
-            origin_quantiy = self.quantity
-            self.quantity = self.product_qty_package
-            res = super()._compute_price()
-            self.quantity = origin_quantiy
-            return res
-        else:
-            return super()._compute_price()
+    @api.depends("price_policy")
+    def _compute_totals(self):
+        return super()._compute_totals()
