@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-06-13 07:20+0000\n"
+"PO-Revision-Date: 2026-06-22 12:46+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
@@ -26,7 +26,7 @@ msgstr "Se nabavno ceno lahko ureja"
 #. module: stock_move_purchase_price_update
 #: model:ir.model,name:stock_move_purchase_price_update.model_stock_move_line
 msgid "Product Moves (Stock Move Line)"
-msgstr "Premiki izdelkov (postavke premika zalog)"
+msgstr "Premiki proizvoda (postavka premika zaloge)"
 
 #. module: stock_move_purchase_price_update
 #: model:ir.model.fields,field_description:stock_move_purchase_price_update.field_stock_move_line__purchase_line_id
