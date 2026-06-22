@@ -30,6 +30,26 @@ class TestProductSupplierinfoSecondaryUnit(TestPurchaseSecondaryUnitCommon):
         # secondary_uom_price = 140, factor = 0.7, price = 200
         self.assertEqual(self.supplierinfo.price, 200.0)
 
+    def test_supplierinfo_keeps_price_when_secondary_price_rounds(self):
+        secondary_unit = self.env["product.secondary.unit"].create(
+            {
+                "name": "unit-900",
+                "uom_id": self.product_uom_unit.id,
+                "factor": 0.9,
+                "product_tmpl_id": self.product.product_tmpl_id.id,
+            }
+        )
+        supplierinfo_form = Form(
+            self.env["product.supplierinfo"].with_context(
+                default_product_tmpl_id=self.product.product_tmpl_id.id
+            )
+        )
+        supplierinfo_form.partner_id = self.partner
+        supplierinfo_form.price = 19.95
+        supplierinfo_form.secondary_uom_id = secondary_unit
+        self.assertAlmostEqual(supplierinfo_form.secondary_uom_price, 17.96)
+        self.assertAlmostEqual(supplierinfo_form.price, 19.95)
+
     def test_supplierinfo_no_secondary_unit(self):
         self.supplierinfo.secondary_uom_id = False
         self.assertEqual(self.supplierinfo.secondary_uom_price, 0.0)
