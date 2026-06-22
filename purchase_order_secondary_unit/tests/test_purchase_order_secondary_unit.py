@@ -65,6 +65,32 @@ class TestPurchaseOrderSecondaryUnit(TestPurchaseSecondaryUnitCommon):
             # price_unit = 100, factor = 0.7, secondary_uom_price = 70
             self.assertEqual(line.secondary_uom_price, 70.0)
 
+    def test_purchase_order_keeps_supplier_price_when_secondary_price_rounds(self):
+        secondary_unit = self.env["product.secondary.unit"].create(
+            {
+                "name": "unit-900",
+                "uom_id": self.product_uom_unit.id,
+                "factor": 0.9,
+                "product_tmpl_id": self.product.product_tmpl_id.id,
+            }
+        )
+        self.product.purchase_secondary_uom_id = secondary_unit
+        self.env["product.supplierinfo"].create(
+            {
+                "partner_id": self.partner.id,
+                "product_tmpl_id": self.product.product_tmpl_id.id,
+                "price": 19.95,
+            }
+        )
+        purchase_order = Form(self.purchase_order_obj)
+        purchase_order.partner_id = self.partner
+        with purchase_order.order_line.new() as line:
+            line.product_id = self.product
+            self.assertEqual(line.secondary_uom_qty, 1.0)
+            self.assertAlmostEqual(line.product_qty, 0.9)
+            self.assertAlmostEqual(line.secondary_uom_price, 17.96)
+            self.assertAlmostEqual(line.price_unit, 19.95)
+
     def test_purchase_order_confirm_creates_supplierinfo_with_secondary_uom(self):
         new_product = self.env["product.product"].create(
             {
