@@ -12,16 +12,16 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-17 03:38+0000\n"
-"PO-Revision-Date: 2025-07-01 13:25+0000\n"
+"PO-Revision-Date: 2026-06-22 18:59+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-purchase-"
-"workflow-10-0/language/it/)\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-purchase-workflow-"
+"10-0/language/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: purchase_request
 #. odoo-python
@@ -1369,6 +1369,8 @@ msgid ""
 "The product %(product_name)s in the Purchase Order Line must be the same as "
 "the product in the Purchase Request Line."
 msgstr ""
+"Il prodotto %(product_name)s nella riga dell'ordine di acquisto deve essere "
+"lo stesso del prodotto nella riga della richiesta di acquisto."
 
 #. module: purchase_request
 #. odoo-python
