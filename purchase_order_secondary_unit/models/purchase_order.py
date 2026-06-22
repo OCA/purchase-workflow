@@ -1,6 +1,7 @@
 # Copyright 2018 Tecnativa - Sergio Teruel
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import api, fields, models
+from odoo.tools import float_compare
 
 
 class PurchaseOrder(models.Model):
@@ -58,8 +59,20 @@ class PurchaseOrderLine(models.Model):
 
     @api.onchange("secondary_uom_price")
     def _inverse_secondary_uom_price(self):
+        precision = self.env["decimal.precision"].precision_get("Product Price")
         for rec in self:
             if rec.secondary_uom_id:
+                expected_secondary_price = rec.price_unit * rec.secondary_uom_id.factor
+                if (
+                    rec.price_unit
+                    and float_compare(
+                        rec.secondary_uom_price,
+                        expected_secondary_price,
+                        precision_digits=precision,
+                    )
+                    == 0
+                ):
+                    continue
                 rec.price_unit = rec.secondary_uom_price / rec.secondary_uom_id.factor
 
     @api.onchange("product_uom")
