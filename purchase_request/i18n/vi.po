@@ -1302,6 +1302,15 @@ msgstr ""
 
 #. module: purchase_request
 #. odoo-python
+#: code:addons/purchase_request/models/purchase_order.py:0
+#, python-format
+msgid ""
+"The product %(product_name)s in the Purchase Order Line must be the same as "
+"the product in the Purchase Request Line."
+msgstr ""
+
+#. module: purchase_request
+#. odoo-python
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
 #, python-format
 msgid "The purchase has already been completed."
