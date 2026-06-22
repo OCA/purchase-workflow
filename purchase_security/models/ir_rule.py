@@ -2,7 +2,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from odoo import api, models, tools
-from odoo.osv import expression
+from odoo.fields import Domain
 from odoo.tools import config
 
 
@@ -30,28 +30,43 @@ class IrRule(models.Model):
         group3 = "purchase.group_purchase_manager"
         if model_name == "res.partner" and not self.env.su:
             if user.has_group(group1) and not user.has_group(group3):
-                extra_domain = [
-                    "|",
-                    ("message_partner_ids", "in", user.partner_id.ids),
-                    "|",
-                    ("id", "=", user.partner_id.id),
-                ]
+                partner_domain = Domain.OR(
+                    [
+                        Domain("message_partner_ids", "in", user.partner_id.ids),
+                        Domain("id", "=", user.partner_id.id),
+                    ]
+                )
                 if user.has_group(group2):
-                    extra_domain += [
-                        "|",
-                        ("purchase_team_id", "=", user.purchase_team_ids[:1].id),
-                        ("purchase_team_id", "=", False),
-                    ]
+                    extra_domain = Domain.OR(
+                        [
+                            partner_domain,
+                            Domain(
+                                "purchase_team_id", "=", user.purchase_team_ids[:1].id
+                            ),
+                            Domain("purchase_team_id", "=", False),
+                        ]
+                    )
                 else:
-                    extra_domain += [
-                        "|",
-                        ("purchase_user_id", "=", user.id),
-                        "&",
-                        ("purchase_user_id", "=", False),
-                        "|",
-                        ("purchase_team_id", "=", False),
-                        ("purchase_team_id", "=", user.purchase_team_ids[:1].id),
-                    ]
-                extra_domain = expression.normalize_domain(extra_domain)
-                res = expression.AND([extra_domain] + [res])
+                    extra_domain = Domain.OR(
+                        [
+                            partner_domain,
+                            Domain("purchase_user_id", "=", user.id),
+                            Domain.AND(
+                                [
+                                    Domain("purchase_user_id", "=", False),
+                                    Domain.OR(
+                                        [
+                                            Domain("purchase_team_id", "=", False),
+                                            Domain(
+                                                "purchase_team_id",
+                                                "=",
+                                                user.purchase_team_ids[:1].id,
+                                            ),
+                                        ]
+                                    ),
+                                ]
+                            ),
+                        ]
+                    )
+                res = Domain.AND([extra_domain, Domain(res)])
         return res

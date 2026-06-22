@@ -31,8 +31,8 @@ class TestPurchaseOrderSecurity(BaseCommon):
             groups="purchase_security.group_purchase_group_orders",
         )
         # Adding user 1 to both teams
-        cls.team1.write({"user_ids": [(4, cls.user_group_team_1.id)]})
-        cls.team2.write({"user_ids": [(4, cls.user_group_team_1.id)]})
+        cls.team1.write({"user_ids": [Command.link(cls.user_group_team_1.id)]})
+        cls.team2.write({"user_ids": [Command.link(cls.user_group_team_1.id)]})
         # User 2 in group_purchase_group_orders
         cls.user_group_team_2 = new_test_user(
             cls.env,
@@ -40,7 +40,7 @@ class TestPurchaseOrderSecurity(BaseCommon):
             groups="purchase_security.group_purchase_group_orders",
         )
         # Adding user 2 to only one team
-        cls.team1.write({"user_ids": [(4, cls.user_group_team_2.id)]})
+        cls.team1.write({"user_ids": [Command.link(cls.user_group_team_2.id)]})
         # User with group permission but without being assigned to any team
         cls.user_group_team_3 = new_test_user(
             cls.env,
@@ -125,8 +125,8 @@ class TestPurchaseOrderSecurity(BaseCommon):
         self.assertEqual(order_form_1.user_id, self.user_group_team_1)
         self.assertEqual(order_form_1.team_id, self.team1)
         # order_form with default_user_id (user_group_team_2 > team_2)
-        self.team1.write({"user_ids": [(3, self.user_group_team_2.id)]})
-        self.team2.write({"user_ids": [(4, self.user_group_team_2.id)]})
+        self.team1.write({"user_ids": [Command.unlink(self.user_group_team_2.id)]})
+        self.team2.write({"user_ids": [Command.link(self.user_group_team_2.id)]})
         order_form_2 = Form(
             self.env["purchase.order"].with_context(
                 default_user_id=self.user_group_team_2.id
@@ -399,6 +399,7 @@ class TestPurchaseOrderSecurity(BaseCommon):
     @users("group_purchase_own_orders")
     def test_product_supplierinfo_access_01(self):
         order_form = Form(self.env["purchase.order"])
+        order_form.partner_id = self.partner_po
         with order_form.order_line.new() as line_form:
             line_form.product_id = self.product
         self.assertTrue(line_form.product_id)
@@ -407,6 +408,7 @@ class TestPurchaseOrderSecurity(BaseCommon):
     @users("po_manager")
     def test_product_supplierinfo_access_02(self):
         order_form = Form(self.env["purchase.order"])
+        order_form.partner_id = self.partner_po_with_po_user
         with order_form.order_line.new() as line_form:
             line_form.product_id = self.product
         self.assertTrue(line_form.product_id)

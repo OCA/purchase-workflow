@@ -150,13 +150,3 @@ msgstr "Usuario (pedidos del equipo)"
 #: model_terms:ir.ui.view,arch_db:purchase_security.purchase_team_form
 msgid "e.g. Europe"
 msgstr "Por ejemplo, Europa"
-
-#~ msgid ""
-#~ "<i class=\"fa fa-envelope mr-1\" role=\"img\" aria-label=\"Email\" "
-#~ "title=\"Email\"/>"
-#~ msgstr ""
-#~ "<i class=\"fa fa-envelope mr-1\" role=\"img\" aria-label=\"Email\" "
-#~ "title=\"Email\"/>"
-
-#~ msgid "Avatar"
-#~ msgstr "Avatar"
