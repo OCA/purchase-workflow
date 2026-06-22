@@ -17,7 +17,7 @@ class PurchaseOrder(models.Model):
         "purchase.team",
         string="Team",
         index=True,
-        auto_join=True,
+        bypass_search_access=True,
         compute="_compute_team_id",
         store=True,
         readonly=False,

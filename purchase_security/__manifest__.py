@@ -2,7 +2,7 @@
 
 {
     "name": "Purchase Order security",
-    "version": "18.0.1.1.2",
+    "version": "19.0.1.0.0",
     "category": "Purchase",
     "development_status": "Production/Stable",
     "author": "Tecnativa, Odoo Community Association (OCA)",

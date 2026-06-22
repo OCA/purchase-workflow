@@ -150,16 +150,3 @@ msgstr "Utente (ordini team)"
 #: model_terms:ir.ui.view,arch_db:purchase_security.purchase_team_form
 msgid "e.g. Europe"
 msgstr "es. Europa"
-
-#~ msgid ""
-#~ "<i class=\"fa fa-envelope mr-1\" role=\"img\" aria-label=\"Email\" "
-#~ "title=\"Email\"/>"
-#~ msgstr ""
-#~ "<i class=\"fa fa-envelope mr-1\" role=\"img\" aria-label=\"Email\" "
-#~ "title=\"E-mail\"/>"
-
-#~ msgid "Avatar"
-#~ msgstr "Avatar"
-
-#~ msgid "Last Modified on"
-#~ msgstr "Ultima modifica il"
