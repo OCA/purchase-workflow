@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-06-23 07:12+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,26 +15,27 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: product_supplierinfo_qty_multiplier
 #: model:product.template,name:product_supplierinfo_qty_multiplier.delta_ipa_product_template
 msgid "Delta IPA"
-msgstr ""
+msgstr "Delta IPA"
 
 #. module: product_supplierinfo_qty_multiplier
 #: model:ir.model.fields,field_description:product_supplierinfo_qty_multiplier.field_product_supplierinfo__multiplier_qty
 msgid "Multiplier Qty"
-msgstr ""
+msgstr "Količina multiplikatorja"
 
 #. module: product_supplierinfo_qty_multiplier
 #: model:ir.model,name:product_supplierinfo_qty_multiplier.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Postavka nabavnega naloga"
 
 #. module: product_supplierinfo_qty_multiplier
 #: model:ir.model,name:product_supplierinfo_qty_multiplier.model_product_supplierinfo
 msgid "Supplier Pricelist"
-msgstr ""
+msgstr "Cenik dobavitelja"
 
 #. module: product_supplierinfo_qty_multiplier
 #. odoo-python
@@ -42,9 +44,12 @@ msgid ""
 "The selected supplier only sells this product by %(multiplier_qty)s %(uom_name)s.\n"
 "The quantity has been automatically changed to %(new_product_qty)s %(uom_name)s."
 msgstr ""
+"Izbrani dobavitelj ta proizvod prodaja le v količini %(multiplier_qty) %"
+"(uom_name)s.\n"
+"Količina je bila samodejno spremenjena na %(new_product_qty) %(uom_name)s."
 
 #. module: product_supplierinfo_qty_multiplier
 #. odoo-python
 #: code:addons/product_supplierinfo_qty_multiplier/models/purchase_order_line.py:0
 msgid "Warning"
-msgstr ""
+msgstr "Opozorilo"
