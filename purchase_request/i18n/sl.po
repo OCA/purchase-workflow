@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-24 07:53+0000\n"
-"PO-Revision-Date: 2026-06-22 12:46+0000\n"
+"PO-Revision-Date: 2026-06-23 07:10+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-purchase-workflow-"
 "10-0/language/sl/)\n"
@@ -847,7 +847,7 @@ msgstr "Nabavni nalogi"
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Purchase Request"
-msgstr "Zahteva po nabavi"
+msgstr "Nabavni zahtevek"
 
 #. module: purchase_request
 #. odoo-python
@@ -880,7 +880,7 @@ msgstr "Dodelitve nabavnih zahtevkov"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__line_id
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_form
 msgid "Purchase Request Line"
-msgstr "Postavka zahteve po nabavi"
+msgstr "Postavka nabavnega zahtevka"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_request_line_make_purchase_order
