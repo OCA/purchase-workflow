@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-06-23 09:46+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,6 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: purchase_reception_notify
 #. odoo-python
@@ -21,25 +23,26 @@ msgstr ""
 msgid ""
 "<li><b>%(display_name)s</b>: Received quantity %(product_qty)s %(uom)s</li>"
 msgstr ""
+"<li><b>%(display_name)s</b>: Prejeta količina %(product_qty)s %(uom)s</li>"
 
 #. module: purchase_reception_notify
 #: model:mail.message.subtype,name:purchase_reception_notify.mt_purchase_reception
 msgid "Purchase Receptions"
-msgstr ""
+msgstr "Nabavni prejemi"
 
 #. module: purchase_reception_notify
 #. odoo-python
 #: code:addons/purchase_reception_notify/models/stock_picking.py:0
 msgid "Receipt confirmation {}"
-msgstr ""
+msgstr "Potrditev prejema {}"
 
 #. module: purchase_reception_notify
 #. odoo-python
 #: code:addons/purchase_reception_notify/models/stock_picking.py:0
 msgid "The following items have now been received in Incoming Shipment {}:"
-msgstr ""
+msgstr "V 'Vhodne pošiljke' {} so bili prejeti naslednji artikli:"
 
 #. module: purchase_reception_notify
 #: model:ir.model,name:purchase_reception_notify.model_stock_picking
 msgid "Transfer"
-msgstr ""
+msgstr "Premestitev"
