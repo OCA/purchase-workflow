@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="purchase_team_form" model="ir.ui.view">
+        <field name="name">purchase.team.form</field>
+        <field name="model">purchase.team</field>
+        <field name="arch" type="xml">
+            <form string="Purchase Team">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Purchase Team" />
+                        <h1>
+                            <field
+                                class="text-break"
+                                name="name"
+                                placeholder="e.g. Europe"
+                            />
+                        </h1>
+                    </div>
+                    <notebook>
+                        <page string="Members">
+                            <field name="user_ids" mode="kanban" />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="purchase_team_tree" model="ir.ui.view">
+        <field name="name">purchase.team.form</field>
+        <field name="model">purchase.team</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="sequence" widget="handle" />
+                <field name="name" />
+                <field
+                    name="user_ids"
+                    widget="many2many_avatar_user"
+                    domain="[('share', '=', False)]"
+                />
+                <button
+                    icon="fa-pencil"
+                    name="open_form_view"
+                    type="object"
+                    title="Open Form View"
+                />
+            </list>
+        </field>
+    </record>
+    <record id="action_purchase_team_display" model="ir.actions.act_window">
+        <field name="name">Purchase Teams</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">purchase.team</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <menuitem
+        id="menu_purchase_team_tree"
+        name="Purchase Teams"
+        parent="purchase.menu_purchase_config"
+        action="action_purchase_team_display"
+        sequence="5"
+    />
+</odoo>
