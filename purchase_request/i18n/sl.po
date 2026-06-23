@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-24 07:53+0000\n"
-"PO-Revision-Date: 2026-06-13 07:07+0000\n"
+"PO-Revision-Date: 2026-06-23 08:25+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-purchase-workflow-"
 "10-0/language/sl/)\n"
@@ -867,37 +867,35 @@ msgstr "Nabavne zahteve"
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Purchase Request"
-msgstr "Zahteva po nabavi"
+msgstr "Nabavni zahtevek"
 
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/models/purchase_order.py:0
-#, fuzzy, python-format
+#, python-format
 msgid "Purchase Request %s has already been completed"
-msgstr "Nabavna zahteva %s zavrnjena"
+msgstr "Nabavni zahtevek %s je bil že dokončan"
 
 #. module: purchase_request
 #. odoo-python
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
 #, python-format
 msgid "Purchase Request %s is not approved or in progress"
-msgstr ""
+msgstr "Nabavni zahtevek %s ni odobren ali v teku"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_request_allocation
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_order_line__purchase_request_allocation_ids
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__purchase_request_allocation_ids
 #: model:ir.model.fields,field_description:purchase_request.field_stock_move__purchase_request_allocation_ids
-#, fuzzy
 msgid "Purchase Request Allocation"
-msgstr "Postavke nabavne zahteve"
+msgstr "Dodelitev nabavnega zahtevka"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_move_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_picking_form
-#, fuzzy
 msgid "Purchase Request Allocations"
-msgstr "Postavke nabavne zahteve"
+msgstr "Dodelitve nabavnih zahtevkov"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_request_line
@@ -905,25 +903,22 @@ msgstr "Postavke nabavne zahteve"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__line_id
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_form
 msgid "Purchase Request Line"
-msgstr "Postavka zahteve po nabavi"
+msgstr "Postavka nabavnega zahtevka"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_request_line_make_purchase_order
-#, fuzzy
 msgid "Purchase Request Line Make Purchase Order"
-msgstr "Postavke nabavne zahteve"
+msgstr "Postavka nabavnega zahtevka ustvarjanje naloga"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_request_line_make_purchase_order_item
-#, fuzzy
 msgid "Purchase Request Line Make Purchase Order Item"
-msgstr "Postavke nabavne zahteve"
+msgstr "Postavka nabavnega zahtevka ustvarjanje postavke nabavnega naloga"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__line_count
-#, fuzzy
 msgid "Purchase Request Line count"
-msgstr "Postavka zahteve po nabavi"
+msgstr "Število postavk nabavnega zahtevka"
 
 #. module: purchase_request
 #. odoo-python
@@ -936,7 +931,7 @@ msgstr "Postavka zahteve po nabavi"
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_form2_sub
 #, python-format
 msgid "Purchase Request Lines"
-msgstr "Postavke nabavne zahteve"
+msgstr "Postavke nabavnega zahtevka"
 
 #. module: purchase_request
 #: model:res.groups,name:purchase_request.group_purchase_request_manager
