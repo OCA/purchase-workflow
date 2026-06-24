@@ -16,27 +16,52 @@ class TestPurchaseManualDelivery(TransactionCase):
         cls.purchase_order_line_obj = cls.env["purchase.order.line"]
         cls.stock_picking_obj = cls.env["stock.picking"]
         cls.env.company.purchase_manual_delivery = True
-        # Products
-        cls.product1 = cls.env.ref("product.product_product_13")
-        cls.product2 = cls.env.ref("product.product_product_25")
+        # Vendor
+        cls.partner = cls.env["res.partner"].create({"name": "Test Vendor"})
+        # Products (storable goods so that stock moves/pickings are generated)
+        cls.product1 = cls.env["product.product"].create(
+            {
+                "name": "Test Product 1",
+                "type": "consu",
+                "is_storable": True,
+                "standard_price": 100.0,
+            }
+        )
+        cls.product2 = cls.env["product.product"].create(
+            {
+                "name": "Test Product 2",
+                "type": "consu",
+                "is_storable": True,
+                "standard_price": 50.0,
+            }
+        )
 
-        # Sublocation
-        cls.shelf2 = cls.env.ref("stock.stock_location_14")
+        # Sublocation of the main warehouse stock location
+        warehouse = cls.env["stock.warehouse"].search(
+            [("company_id", "=", cls.env.company.id)], limit=1
+        )
+        cls.shelf2 = cls.env["stock.location"].create(
+            {
+                "name": "Test Shelf 2",
+                "usage": "internal",
+                "location_id": warehouse.lot_stock_id.id,
+            }
+        )
 
         # Purchase Orders
         cls.po1 = cls.purchase_order_obj.create(
             {
-                "partner_id": cls.env.ref("base.res_partner_3").id,
+                "partner_id": cls.partner.id,
             }
         )
         cls.po1_line1 = cls.purchase_order_line_obj.create(
             {
                 "order_id": cls.po1.id,
                 "product_id": cls.product1.id,
-                "product_uom": cls.product1.uom_id.id,
+                "product_uom_id": cls.product1.uom_id.id,
                 "name": cls.product1.name,
                 "price_unit": cls.product1.standard_price,
-                "date_planned": fields.datetime.now(),
+                "date_planned": fields.Datetime.now(),
                 "product_qty": 42.0,
             }
         )
@@ -44,27 +69,27 @@ class TestPurchaseManualDelivery(TransactionCase):
             {
                 "order_id": cls.po1.id,
                 "product_id": cls.product2.id,
-                "product_uom": cls.product2.uom_id.id,
+                "product_uom_id": cls.product2.uom_id.id,
                 "name": cls.product2.name,
                 "price_unit": cls.product2.standard_price,
-                "date_planned": fields.datetime.now(),
+                "date_planned": fields.Datetime.now(),
                 "product_qty": 12.0,
             }
         )
 
         cls.po2 = cls.purchase_order_obj.create(
             {
-                "partner_id": cls.env.ref("base.res_partner_3").id,
+                "partner_id": cls.partner.id,
             }
         )
         cls.po2_line1 = cls.purchase_order_line_obj.create(
             {
                 "order_id": cls.po2.id,
                 "product_id": cls.product1.id,
-                "product_uom": cls.product1.uom_id.id,
+                "product_uom_id": cls.product1.uom_id.id,
                 "name": cls.product1.name,
                 "price_unit": cls.product1.standard_price,
-                "date_planned": fields.datetime.now(),
+                "date_planned": fields.Datetime.now(),
                 "product_qty": 10.0,
             }
         )
@@ -72,10 +97,10 @@ class TestPurchaseManualDelivery(TransactionCase):
             {
                 "order_id": cls.po2.id,
                 "product_id": cls.product2.id,
-                "product_uom": cls.product2.uom_id.id,
+                "product_uom_id": cls.product2.uom_id.id,
                 "name": cls.product2.name,
                 "price_unit": cls.product2.standard_price,
-                "date_planned": fields.datetime.now(),
+                "date_planned": fields.Datetime.now(),
                 "product_qty": 22.0,
             }
         )
@@ -277,7 +302,7 @@ class TestPurchaseManualDelivery(TransactionCase):
         location, check location has been correctly set in Picking.
         """
         grp_multi_loc = self.env.ref("stock.group_stock_multi_locations")
-        self.env.user.write({"groups_id": [(4, grp_multi_loc.id, 0)]})
+        self.env.user.write({"group_ids": [(4, grp_multi_loc.id, 0)]})
         # confirm RFQ
         self.po1.button_confirm()
         self.assertTrue(self.po1_line1.pending_to_receive)
@@ -318,17 +343,17 @@ class TestPurchaseManualDelivery(TransactionCase):
         # Create PO and PO Line
         po_existing_bigger = self.purchase_order_obj.create(
             {
-                "partner_id": self.ref("base.res_partner_3"),
+                "partner_id": self.partner.id,
             }
         )
         pol_existing_bigger = self.purchase_order_line_obj.create(
             {
                 "order_id": po_existing_bigger.id,
                 "product_id": self.product1.id,
-                "product_uom": self.product1.uom_id.id,
+                "product_uom_id": self.product1.uom_id.id,
                 "name": self.product1.name,
                 "price_unit": self.product1.standard_price,
-                "date_planned": fields.datetime.now(),
+                "date_planned": fields.Datetime.now(),
                 "product_qty": 5.0,
             }
         )
@@ -377,17 +402,17 @@ class TestPurchaseManualDelivery(TransactionCase):
         )
         po_in_progress = self.purchase_order_obj.create(
             {
-                "partner_id": self.ref("base.res_partner_3"),
+                "partner_id": self.partner.id,
             }
         )
         self.purchase_order_line_obj.create(
             {
                 "order_id": po_in_progress.id,
                 "product_id": product_in_progress.id,
-                "product_uom": product_in_progress.uom_id.id,
+                "product_uom_id": product_in_progress.uom_id.id,
                 "name": product_in_progress.name,
                 "price_unit": product_in_progress.standard_price,
-                "date_planned": fields.datetime.now(),
+                "date_planned": fields.Datetime.now(),
                 "product_qty": 5.0,
             }
         )
@@ -448,7 +473,7 @@ class TestPurchaseManualDelivery(TransactionCase):
 
         # Create draft RFQ
         po_vals = {
-            "partner_id": self.ref("base.res_partner_3"),
+            "partner_id": self.partner.id,
             "order_line": [
                 (
                     0,
@@ -457,7 +482,7 @@ class TestPurchaseManualDelivery(TransactionCase):
                         "name": self.product1.name,
                         "product_id": self.product1.id,
                         "product_qty": 5.0,
-                        "product_uom": self.product1.uom_po_id.id,
+                        "product_uom_id": self.product1.uom_id.id,
                         "price_unit": 5000000.0,
                     },
                 )
@@ -480,7 +505,7 @@ class TestPurchaseManualDelivery(TransactionCase):
         self.assertEqual(self.po.state, "to approve")
 
         # PO approved by manager
-        self.po.env.user.groups_id += self.env.ref("purchase.group_purchase_manager")
+        self.po.env.user.group_ids += self.env.ref("purchase.group_purchase_manager")
         self.po.button_approve()
         self.assertTrue(self.po.order_line.pending_to_receive)
         self.assertEqual(self.po.order_line.qty_in_receipt, 0)

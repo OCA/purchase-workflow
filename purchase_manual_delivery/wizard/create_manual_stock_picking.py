@@ -1,7 +1,7 @@
 # Copyright 2019 ForgeFlow S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -54,9 +54,9 @@ class CreateManualStockPickingWizard(models.TransientModel):
 
     def _check_purchase_line_constrains(self, purchase_lines):
         if len(purchase_lines.mapped("order_id.partner_id")) > 1:
-            raise UserError(_("Please select one partner at a time"))
+            raise UserError(self.env._("Please select one partner at a time"))
         if len(purchase_lines.mapped("order_id")) > 1:
-            raise UserError(_("Please select one purchase order at a time"))
+            raise UserError(self.env._("Please select one purchase order at a time"))
 
     def fill_lines(self, po_lines):
         lines = [
@@ -79,7 +79,7 @@ class CreateManualStockPickingWizard(models.TransientModel):
         "purchase.order",
         string="Purchase Order",
         readonly=True,
-        default=_default_purchase_order,
+        default=lambda self: self._default_purchase_order(),
     )
     line_ids = fields.One2many(
         comodel_name="create.stock.picking.wizard.line",
@@ -94,7 +94,7 @@ class CreateManualStockPickingWizard(models.TransientModel):
     location_dest_id = fields.Many2one(
         "stock.location",
         "Destination Location",
-        default=_default_location_dest_id,
+        default=lambda self: self._default_location_dest_id(),
         help="Location where the system will stock the received products.",
     )
 
@@ -122,7 +122,7 @@ class CreateManualStockPickingWizard(models.TransientModel):
         # Check quantity is not above remaining quantity
         if any(line.qty > line.remaining_qty for line in self.line_ids):
             raise UserError(
-                _(
+                self.env._(
                     "You can not receive more than the remaining "
                     "quantity. If you need to do so, please edit "
                     "the purchase order first."
@@ -144,7 +144,7 @@ class CreateManualStockPickingWizard(models.TransientModel):
         )
 
         return {
-            "name": _("Stock Picking"),
+            "name": self.env._("Stock Picking"),
             "view_mode": "form",
             "res_model": "stock.picking",
             "view_id": self.env.ref("stock.view_picking_form").id,
@@ -172,7 +172,7 @@ class CreateManualStockPickingWizardLine(models.TransientModel):
     )
     product_uom = fields.Many2one(
         "uom.uom",
-        related="purchase_order_line_id.product_uom",
+        related="purchase_order_line_id.product_uom_id",
         string="Unit of Measure",
     )
     date_planned = fields.Datetime(related="purchase_order_line_id.date_planned")
@@ -210,9 +210,7 @@ class CreateManualStockPickingWizardLine(models.TransientModel):
         related="purchase_order_line_id.partner_id",
         string="Vendor",
     )
-    taxes_id = fields.Many2many(
-        "account.tax", related="purchase_order_line_id.taxes_id"
-    )
+    tax_ids = fields.Many2many("account.tax", related="purchase_order_line_id.tax_ids")
 
     def _compute_remaining_qty(self):
         for line in self:

@@ -45,7 +45,7 @@ class PurchaseOrderLine(models.Model):
                         # This is a return to vendor
                         if move.to_refund:
                             total -= move.product_uom._compute_quantity(
-                                move.quantity, line.product_uom
+                                move.quantity, line.product_uom_id
                             )
                     elif (
                         move.origin_returned_move_id
@@ -61,7 +61,7 @@ class PurchaseOrderLine(models.Model):
                         pass
                     else:
                         total += move.product_uom._compute_quantity(
-                            move.quantity, line.product_uom
+                            move.quantity, line.product_uom_id
                         )
             line.qty_in_receipt = total
             if (

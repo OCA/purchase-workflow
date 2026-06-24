@@ -8,20 +8,21 @@ class TestReportForecast(TestReportsCommon):
     def setUpClass(cls):
         super().setUpClass()
         cls.env.company.purchase_manual_delivery = True
+        cls.partner = cls.env["res.partner"].create({"name": "Test Vendor"})
         # Purchase Orders
         cls.po1 = cls.env["purchase.order"].create(
             {
-                "partner_id": cls.env.ref("base.res_partner_3").id,
+                "partner_id": cls.partner.id,
             }
         )
         cls.po1_line1 = cls.env["purchase.order.line"].create(
             {
                 "order_id": cls.po1.id,
                 "product_id": cls.product.id,
-                "product_uom": cls.product.uom_id.id,
+                "product_uom_id": cls.product.uom_id.id,
                 "name": cls.product.name,
                 "price_unit": cls.product.standard_price,
-                "date_planned": fields.datetime.now(),
+                "date_planned": fields.Datetime.now(),
                 "product_qty": 42.0,
             }
         )
@@ -57,11 +58,14 @@ class TestReportForecast(TestReportsCommon):
         report_values, docs, lines = self.get_report_forecast(
             product_template_ids=self.product_template.ids
         )
-        self.assertEqual(docs["no_delivery_purchase_qty"], 7)
-        self.assertEqual(docs["qty"]["in"], 7)
-        self.assertEqual(docs["quantity_on_hand"], 12)
-        self.assertEqual(docs["virtual_available"], 35)
+        product_data = docs["product"][self.product.id]
         self.assertEqual(
-            docs["no_delivery_purchase_orders"],
+            self.sum_dicts(docs["product"], "no_delivery_purchase_qty")["in"], 7
+        )
+        self.assertEqual(self.sum_dicts(docs["product"], "qty")["in"], 7)
+        self.assertEqual(product_data["quantity_on_hand"], 12)
+        self.assertEqual(product_data["virtual_available"], 35)
+        self.assertEqual(
+            product_data["no_delivery_purchase_orders"],
             [{"id": self.po1.id, "name": self.po1.name}],
         )

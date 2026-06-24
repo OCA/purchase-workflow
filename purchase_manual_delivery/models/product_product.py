@@ -1,23 +1,23 @@
 from odoo import models
+from odoo.fields import Domain
 
 
 class ProductProduct(models.Model):
     _inherit = "product.product"
 
     def _get_pending_lines_domain(self, location_ids=False, warehouse_ids=False):
+        """Reuse the base purchase lines domain but target confirmed lines that
+        are still pending to receive instead of the draft RFQ lines."""
         domain = self._get_lines_domain(location_ids, warehouse_ids)
-        for domain_part in domain:
-            if (
-                isinstance(domain_part, tuple)
-                and len(domain_part) == 3
-                and domain_part[0] == "state"
-            ):
-                domain_index = domain.index(domain_part)
-                domain[domain_index] = ("state", "in", ("purchase", "done"))
-                domain.insert(domain_index + 1, ("pending_to_receive", "=", True))
-                domain.insert(domain_index, "&")
-                break
-        return domain
+
+        def _replace_state(condition):
+            if condition.field_expr == "state":
+                return Domain("state", "in", ("purchase", "done")) & Domain(
+                    "pending_to_receive", "=", True
+                )
+            return condition
+
+        return domain.map_conditions(_replace_state)
 
     def _get_quantity_in_progress(self, location_ids=False, warehouse_ids=False):
         qty_by_product_location, qty_by_product_wh = super()._get_quantity_in_progress(
@@ -29,7 +29,7 @@ class ProductProduct(models.Model):
             [
                 "product_id",
                 "order_id",
-                "product_uom",
+                "product_uom_id",
                 "orderpoint_id",
             ],
             ["product_qty:sum", "qty_in_receipt:sum", "qty_received:sum"],
