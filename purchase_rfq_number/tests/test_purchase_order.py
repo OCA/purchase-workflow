@@ -2,14 +2,15 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo.exceptions import UserError
-from odoo.tests.common import TransactionCase
+from odoo.tests import TransactionCase
 
 
 class TestPurchaseOrder(TransactionCase):
-    def setUp(self, *args, **kwargs):
-        super(TestPurchaseOrder, self).setUp()
-        self.purchase_order_model = self.env["purchase.order"]
-        company = self.env.company
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.purchase_order_model = cls.env["purchase.order"]
+        company = cls.env.company
         company.keep_name_po = False
         company.auto_attachment_rfq = True
 
@@ -70,8 +71,7 @@ class TestPurchaseOrder(TransactionCase):
         next_name = sequence_id.get_next_char(sequence_id.number_next_actual)
         try:
             order.button_confirm()
-        # pylint: disable=W7938
-        except UserError:
+        except UserError:  # pylint: disable=except-pass
             pass
         order.update({"state": "draft"})
         # Now the RFQ can be confirmed

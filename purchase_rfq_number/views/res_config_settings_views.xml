@@ -10,32 +10,20 @@
             ref="purchase.res_config_settings_view_form_purchase"
         />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='group_send_reminder']/../.." position="after">
-                <div class="col-12 col-lg-6 o_setting_box">
-                    <div class="o_setting_left_pane">
-                        <field name="keep_name_po" />
-                    </div>
-                    <div class="o_setting_right_pane">
-                        <label for="keep_name_po" />
-                        <div class="text-muted">
-                            If this is unchecked, purchase rfq use a different sequence from purchase orders
-                        </div>
-                    </div>
-                </div>
-                <div
-                    class="col-12 col-lg-6 o_setting_box"
-                    attrs="{'invisible': [('keep_name_po', '=', True)]}"
+            <xpath expr="//setting[@id='auto_receipt_reminder']" position="after">
+                <setting
+                    id="keep_name_po"
+                    help="If this is unchecked, purchase rfq use a different sequence from purchase orders"
                 >
-                    <div class="o_setting_left_pane">
-                        <field name="auto_attachment_rfq" />
-                    </div>
-                    <div class="o_setting_right_pane">
-                        <label for="auto_attachment_rfq" />
-                        <div class="text-muted">
-                            Auto attachment requests for quotation after confirm
-                        </div>
-                    </div>
-                </div>
+                    <field name="keep_name_po" class="o_light_label" />
+                </setting>
+                <setting
+                    id="auto_attachment_rfq"
+                    invisible="keep_name_po"
+                    help="Auto attachment requests for quotation after confirm"
+                >
+                    <field name="auto_attachment_rfq" class="o_light_label" />
+                </setting>
             </xpath>
         </field>
     </record>
