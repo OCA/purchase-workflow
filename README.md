@@ -31,7 +31,7 @@ addon | version | maintainers | summary
 [purchase_default_terms_conditions](purchase_default_terms_conditions/) | 19.0.1.0.0 |  | This module allows purchase default terms & conditions
 [purchase_delivery_split_date](purchase_delivery_split_date/) | 19.0.1.0.0 |  | Allows Purchase Order you confirm to generate one Incoming Shipment for each expected date indicated in the Purchase Order Lines
 [purchase_deposit](purchase_deposit/) | 19.0.1.0.0 |  | Option to create deposit from purchase order
-[purchase_force_invoiced](purchase_force_invoiced/) | 19.0.1.0.0 |  | Allows to force the billing status of the purchase order to "Invoiced"
+[purchase_force_invoiced](purchase_force_invoiced/) | 19.0.1.0.1 |  | Allows to force the billing status of the purchase order to "Invoiced"
 [purchase_invoice_method](purchase_invoice_method/) | 19.0.1.0.0 |  | Allow to force the invoice method of a purchase
 [purchase_landed_cost](purchase_landed_cost/) | 19.0.1.0.0 |  | Purchase cost distribution
 [purchase_line_reassign](purchase_line_reassign/) | 19.0.1.0.0 |  | Purchase Line Reassign
