@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-06-27 11:46+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,68 +15,69 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: purchase_request_exception
 #: model_terms:ir.ui.view,arch_db:purchase_request_exception.view_purchase_request_form
 msgid "<strong>There are exceptions blocking this Purchase Order:</strong>"
-msgstr ""
+msgstr "<strong>Obstajajo izjeme, ki blokirajo ta nabavni nalog:</strong>"
 
 #. module: purchase_request_exception
 #: model:ir.model.fields,field_description:purchase_request_exception.field_exception_rule__model
 msgid "Apply on"
-msgstr ""
+msgstr "Uporabi pri"
 
 #. module: purchase_request_exception
 #: model_terms:ir.ui.view,arch_db:purchase_request_exception.view_purchase_request_search
 msgid "Blocked in Draft"
-msgstr ""
+msgstr "Blokirano v osnutku"
 
 #. module: purchase_request_exception
 #: model_terms:ir.ui.view,arch_db:purchase_request_exception.view_purchase_request_form
 msgid ""
 "Click here to be able to confirm this Agreement regardless of the "
 "exceptions."
-msgstr ""
+msgstr "Kliknite tukaj, da potrdite to dogovor ne glede na izjeme."
 
 #. module: purchase_request_exception
 #: model:ir.model.fields,field_description:purchase_request_exception.field_purchase_request_exception_confirm__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Ustvaril"
 
 #. module: purchase_request_exception
 #: model:ir.model.fields,field_description:purchase_request_exception.field_purchase_request_exception_confirm__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Ustvarjeno"
 
 #. module: purchase_request_exception
 #: model:ir.model.fields,field_description:purchase_request_exception.field_purchase_request_exception_confirm__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Prikazani naziv"
 
 #. module: purchase_request_exception
 #: model:ir.model,name:purchase_request_exception.model_exception_rule
 msgid "Exception Rule"
-msgstr ""
+msgstr "Pravilo izjeme"
 
 #. module: purchase_request_exception
 #: model:ir.model.fields,field_description:purchase_request_exception.field_purchase_request__exception_ids
 msgid "Exceptions"
-msgstr ""
+msgstr "Izjeme"
 
 #. module: purchase_request_exception
 #: model:ir.model.fields,field_description:purchase_request_exception.field_purchase_request__exceptions_summary
 msgid "Exceptions Summary"
-msgstr ""
+msgstr "Povzetek izjem"
 
 #. module: purchase_request_exception
 #: model:ir.model.fields,field_description:purchase_request_exception.field_purchase_request_exception_confirm__exception_ids
 msgid "Exceptions to resolve"
-msgstr ""
+msgstr "Izjeme za razrešitev"
 
 #. module: purchase_request_exception
 #: model:ir.model.fields,field_description:purchase_request_exception.field_purchase_request_exception_confirm__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: purchase_request_exception
 #: model:ir.model.fields,field_description:purchase_request_exception.field_purchase_request__ignore_exception
@@ -83,86 +85,86 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request_exception.field_purchase_request_line__ignore_exception
 #: model_terms:ir.ui.view,arch_db:purchase_request_exception.view_purchase_request_form
 msgid "Ignore Exceptions"
-msgstr ""
+msgstr "Prezri izjeme"
 
 #. module: purchase_request_exception
 #: model:ir.model.fields,field_description:purchase_request_exception.field_purchase_request_exception_confirm__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Zadnji posodobil"
 
 #. module: purchase_request_exception
 #: model:ir.model.fields,field_description:purchase_request_exception.field_purchase_request_exception_confirm__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Zadnjič posodobljeno"
 
 #. module: purchase_request_exception
 #: model:ir.model.fields,field_description:purchase_request_exception.field_purchase_request__main_exception_id
 msgid "Main Exception"
-msgstr ""
+msgstr "Glavna izjema"
 
 #. module: purchase_request_exception
 #: model:exception.rule,name:purchase_request_exception.pr_excep_no_approver
 msgid "No approver"
-msgstr ""
+msgstr "Brez odobritelja"
 
 #. module: purchase_request_exception
 #: model:exception.rule,description:purchase_request_exception.pr_excep_no_approver
 msgid "No approver assigned for this request"
-msgstr ""
+msgstr "Za to zahtevo ni dodeljen odobritelj"
 
 #. module: purchase_request_exception
 #: model:ir.actions.act_window,name:purchase_request_exception.action_purchase_request_exception_confirm
 msgid "Outstanding exceptions to manage"
-msgstr ""
+msgstr "Izjeme, ki jih je treba obravnavati"
 
 #. module: purchase_request_exception
 #: model:ir.model,name:purchase_request_exception.model_purchase_request
 msgid "Purchase Request"
-msgstr ""
+msgstr "Nabavni zahtevek"
 
 #. module: purchase_request_exception
 #: model:ir.actions.act_window,name:purchase_request_exception.action_purchase_request_test_list
 #: model:ir.ui.menu,name:purchase_request_exception.menu_purchase_request_test
 msgid "Purchase Request Exception Rules"
-msgstr ""
+msgstr "Pravila izjem za nabavne zahtevke"
 
 #. module: purchase_request_exception
 #: model:ir.model,name:purchase_request_exception.model_purchase_request_line
 msgid "Purchase Request Line"
-msgstr ""
+msgstr "Postavka nabavnega zahtevka"
 
 #. module: purchase_request_exception
 #: model:ir.actions.server,name:purchase_request_exception.ir_cron_test_pr_request_except_ir_actions_server
 msgid "Purchase Request: Test Draft Purchase Requests Exception"
-msgstr ""
+msgstr "Nabavni zahtevek: izjema testnega osnutka nabavnega zahtevka"
 
 #. module: purchase_request_exception
 #: model:ir.model.fields,field_description:purchase_request_exception.field_exception_rule__purchase_request_ids
 msgid "Purchase Requests"
-msgstr ""
+msgstr "Nabavni zahtevki"
 
 #. module: purchase_request_exception
 #: model:ir.model.fields,field_description:purchase_request_exception.field_purchase_request_exception_confirm__related_model_id
 #: model:ir.model.fields.selection,name:purchase_request_exception.selection__exception_rule__model__purchase_request
 msgid "Purchase request"
-msgstr ""
+msgstr "Nabavni zahtevek"
 
 #. module: purchase_request_exception
 #: model:ir.model,name:purchase_request_exception.model_purchase_request_exception_confirm
 msgid "Purchase request exception wizard"
-msgstr ""
+msgstr "Čarovnik za izjeme pri nabavnih zahtevkih"
 
 #. module: purchase_request_exception
 #: model:ir.model.fields.selection,name:purchase_request_exception.selection__exception_rule__model__purchase_request_line
 msgid "Purchase request line"
-msgstr ""
+msgstr "Postavka nabavnega zahtevka"
 
 #. module: purchase_request_exception
 #: model:exception.rule,description:purchase_request_exception.prl_excep_qty_check
 msgid "Purchase request line quantity must be positive"
-msgstr ""
+msgstr "Količina v postavki nabavnega zahtevka mora biti pozitivna"
 
 #. module: purchase_request_exception
 #: model:exception.rule,name:purchase_request_exception.prl_excep_qty_check
 msgid "Quantity not positive"
-msgstr ""
+msgstr "Količina ni pozitivna"
