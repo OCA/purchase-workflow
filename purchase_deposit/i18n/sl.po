@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-06-27 12:17+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,6 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
@@ -21,84 +23,86 @@ msgid ""
 "<span invisible=\"advance_payment_method != 'percentage'\" "
 "class=\"oe_inline\">%</span>"
 msgstr ""
+"<span invisible=\"advance_payment_method != 'percentage'\" "
+"class=\"oe_inline\">%</span>"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,help:purchase_deposit.field_purchase_advance_payment_inv__deposit_account_id
 msgid "Account used for deposits"
-msgstr ""
+msgstr "Konto, uporabljen za pologe"
 
 #. module: purchase_deposit
 #. odoo-python
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
 msgid "Advance: %(date)s"
-msgstr ""
+msgstr "Predplačilo: %(date)s"
 
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
 msgid "Cancel"
-msgstr ""
+msgstr "Prekliči"
 
 #. module: purchase_deposit
 #: model:ir.model,name:purchase_deposit.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Družbe"
 
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
 msgid "Create Bill"
-msgstr ""
+msgstr "Ustvari prejeti račun"
 
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
 msgid "Create and View bills"
-msgstr ""
+msgstr "Ustvari in prikaži prejete račune"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Ustvaril"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Ustvarjeno"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,help:purchase_deposit.field_res_company__purchase_deposit_product_id
 #: model:ir.model.fields,help:purchase_deposit.field_res_config_settings__purchase_deposit_product_id
 msgid "Default product used for payment advances."
-msgstr ""
+msgstr "Privzeti proizvod, ki se uporablja za predplačila."
 
 #. module: purchase_deposit
 #. odoo-python
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
 msgid "Deposit Payment"
-msgstr ""
+msgstr "Plačilo pologa"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__amount
 msgid "Deposit Payment Amount"
-msgstr ""
+msgstr "Znesek plačila pologa"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__purchase_deposit_product_id
 msgid "Deposit Payment Product"
-msgstr ""
+msgstr "Proizvod plačila pologa"
 
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.res_config_settings_view_form_purchase
 msgid "Deposit Payments"
-msgstr ""
+msgstr "Plačila pologov"
 
 #. module: purchase_deposit
 #: model:ir.model.fields.selection,name:purchase_deposit.selection__purchase_advance_payment_inv__advance_payment_method__fixed
 msgid "Deposit payment (fixed amount)"
-msgstr ""
+msgstr "Plačilo pologa (fiksni znesek)"
 
 #. module: purchase_deposit
 #: model:ir.model.fields.selection,name:purchase_deposit.selection__purchase_advance_payment_inv__advance_payment_method__percentage
 msgid "Deposit payment (percentage)"
-msgstr ""
+msgstr "Plačilo pologa (odstotek)"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,help:purchase_deposit.field_purchase_order_line__is_deposit
@@ -106,6 +110,8 @@ msgid ""
 "Deposit payments are made when creating bills from a purchase order. They "
 "are not copied when duplicating a purchase order."
 msgstr ""
+"Plačila pologa se izvedejo pri ustvarjanju računov iz nabavnega naloga. Pri "
+"podvajanju naročilnice se ne kopirajo."
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_account_move__display_name
@@ -115,12 +121,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_deposit.field_res_company__display_name
 #: model:ir.model.fields,field_description:purchase_deposit.field_res_config_settings__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Prikazani naziv"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__deposit_account_id
 msgid "Expense Account"
-msgstr ""
+msgstr "Konto stroškov"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_account_move__id
@@ -130,17 +136,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_deposit.field_res_company__id
 #: model:ir.model.fields,field_description:purchase_deposit.field_res_config_settings__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: purchase_deposit
 #: model:ir.actions.act_window,name:purchase_deposit.action_view_purchase_advance_payment_inv
 msgid "Invoice Order"
-msgstr ""
+msgstr "Obračunaj nalog"
 
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
 msgid "Invoice Purchases Order"
-msgstr ""
+msgstr "Obračunaj nabavni nalog"
 
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
@@ -148,78 +154,80 @@ msgid ""
 "Invoices will be created in draft so that you can review them before "
 "validation."
 msgstr ""
+"Računi bodo ustvarjeni v osnutku, tako da jih boste lahko pregledali pred "
+"potrditvijo."
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_order_line__is_deposit
 msgid "Is a deposit payment"
-msgstr ""
+msgstr "Je plačilo pologa"
 
 #. module: purchase_deposit
 #: model:ir.model,name:purchase_deposit.model_account_move
 msgid "Journal Entry"
-msgstr ""
+msgstr "Temeljnica"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Zadnji posodobil"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Zadnjič posodobljeno"
 
 #. module: purchase_deposit
 #: model:ir.model,name:purchase_deposit.model_res_config_settings
 msgid "Procurement purchase grouping settings"
-msgstr ""
+msgstr "Nastavitve združevanja nabavnih oskrbovanj"
 
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.res_config_settings_view_form_purchase
 msgid "Product used for deposit payments"
-msgstr ""
+msgstr "Proizvod uporabljen za plačila pologov"
 
 #. module: purchase_deposit
 #: model:ir.model,name:purchase_deposit.model_purchase_advance_payment_inv
 msgid "Purchase Advance Payment Invoice"
-msgstr ""
+msgstr "Račun za avansno plačilo nabave"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_res_company__purchase_deposit_product_id
 #: model:ir.model.fields,field_description:purchase_deposit.field_res_config_settings__purchase_deposit_product_id
 msgid "Purchase Deposit Product"
-msgstr ""
+msgstr "Proizvod nabavnega pologa"
 
 #. module: purchase_deposit
 #: model:ir.model,name:purchase_deposit.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Nabavni nalog"
 
 #. module: purchase_deposit
 #: model:ir.model,name:purchase_deposit.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Nabavna postavka"
 
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_order_form_inherit
 msgid "Register Deposit"
-msgstr ""
+msgstr "Registriraj polog"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,help:purchase_deposit.field_purchase_advance_payment_inv__deposit_taxes_id
 msgid "Taxes used for deposits"
-msgstr ""
+msgstr "Davki, uporabljeni za pologe"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,help:purchase_deposit.field_purchase_advance_payment_inv__amount
 msgid "The amount to be invoiced in advance, taxes excluded."
-msgstr ""
+msgstr "Znesek za vnaprejšnji obračun, brez davkov."
 
 #. module: purchase_deposit
 #. odoo-python
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
 msgid "The percentage of the deposit must be not over 100"
-msgstr ""
+msgstr "Odstotek pologa ne sme presegati 100"
 
 #. module: purchase_deposit
 #. odoo-python
@@ -228,6 +236,8 @@ msgid ""
 "The product used to invoice a down payment should be of type \"Service\". "
 "Please use another product or update this product."
 msgstr ""
+"Proizvod, uporabljen za obračun predplačila, mora biti tipa \"Storitev\". "
+"Uporabite drug proizvod ali posodobite ta proizvod."
 
 #. module: purchase_deposit
 #. odoo-python
@@ -237,12 +247,15 @@ msgid ""
 " to \"Ordered quantities\". Please update your deposit product to be able to"
 " create a deposit invoice."
 msgstr ""
+"Proizvod, uporabljen za obračun predplačila, mora imeti politiko "
+"obračunavanja nastavljeno na \"Naročene količine\". Posodobite proizvod "
+"pologa, da boste lahko ustvarili račun za polog."
 
 #. module: purchase_deposit
 #. odoo-python
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
 msgid "The value of the deposit must be positive."
-msgstr ""
+msgstr "Vrednost pologa mora biti pozitivna."
 
 #. module: purchase_deposit
 #. odoo-python
@@ -251,13 +264,16 @@ msgid ""
 "There is no purchase account defined for this product: %(product)s.\n"
 "You may have to install a chart of account from Accounting app, settings menu."
 msgstr ""
+"Za proizvod %(product)s ni določen nabavni konto.\n"
+"Morda morate namestiti kontni načrt iz aplikacije Računovodstvo, meni "
+"nastavitev."
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__deposit_taxes_id
 msgid "Vendor Taxes"
-msgstr ""
+msgstr "Nabavni davki"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__advance_payment_method
 msgid "What do you want to invoice?"
-msgstr ""
+msgstr "Kaj želite obračunati?"
