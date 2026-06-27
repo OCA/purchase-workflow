@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-10 05:30+0000\n"
-"PO-Revision-Date: 2017-06-10 05:30+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2026-06-27 11:02+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
-"n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,help:purchase_order_approved.field_res_company__purchase_approve_active
@@ -29,26 +30,31 @@ msgid ""
 "back to draft. You can release the creation of the incoming shipments moving "
 "the purchase order to state 'Purchase Order'."
 msgstr ""
+"V nabavne naloge doda dodatno stanje, ki sledi stanju 'Nabavni nalog'. Po "
+"potrditvi in odobritvi nabavnega naloga se ta premakne v stanje 'Odobreno'. "
+"V tem stanju še niso ustvarjeni prevzemi blaga in še vedno se lahko vrnete v "
+"osnutek. Ustvarjanje prevzemov blaga lahko sprožite tako, da nabavni nalog "
+"premaknete v stanje 'Nabavni nalog'."
 
 #. module: purchase_order_approved
 #: model:ir.model.fields.selection,name:purchase_order_approved.selection__res_partner__purchase_requires_second_approval__always
 msgid "Always"
-msgstr ""
+msgstr "Vedno"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields.selection,name:purchase_order_approved.selection__purchase_order__state__approved
 msgid "Approved"
-msgstr ""
+msgstr "Odobreno"
 
 #. module: purchase_order_approved
 #: model_terms:ir.ui.view,arch_db:purchase_order_approved.view_purchase_order_filter
 msgid "Approved Orders"
-msgstr ""
+msgstr "Odobreni nalogi"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields.selection,name:purchase_order_approved.selection__res_partner__purchase_requires_second_approval__based_on_company
 msgid "Based on company policy"
-msgstr ""
+msgstr "Glede na pravilnik družbe"
 
 #. module: purchase_order_approved
 #: model:ir.model,name:purchase_order_approved.model_res_company
@@ -58,12 +64,12 @@ msgstr "Družbe"
 #. module: purchase_order_approved
 #: model:ir.model,name:purchase_order_approved.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Stik"
 
 #. module: purchase_order_approved
 #: model_terms:ir.ui.view,arch_db:purchase_order_approved.purchase_order_form
 msgid "Convert to Purchase Order"
-msgstr ""
+msgstr "Pretvori v nabavni nalog"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__display_name
@@ -71,7 +77,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_order_approved.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:purchase_order_approved.field_res_partner__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Prikazani naziv"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__id
@@ -79,17 +85,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_order_approved.field_res_config_settings__id
 #: model:ir.model.fields,field_description:purchase_order_approved.field_res_partner__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields.selection,name:purchase_order_approved.selection__res_partner__purchase_requires_second_approval__never
 msgid "Never"
-msgstr ""
+msgstr "Nikoli"
 
 #. module: purchase_order_approved
 #: model:ir.model,name:purchase_order_approved.model_res_config_settings
 msgid "Procurement purchase grouping settings"
-msgstr ""
+msgstr "Nastavitve združevanja nabavnih oskrbovanj"
 
 #. module: purchase_order_approved
 #: model:ir.model,name:purchase_order_approved.model_purchase_order
@@ -100,7 +106,7 @@ msgstr "Nabavni nalog"
 #: model:ir.model.fields,field_description:purchase_order_approved.field_res_partner__purchase_requires_second_approval
 #: model:ir.model.fields,field_description:purchase_order_approved.field_res_users__purchase_requires_second_approval
 msgid "Purchase Requires Second Approval"
-msgstr ""
+msgstr "Nabava zahteva dodatno odobritev"
 
 #. module: purchase_order_approved
 #: model_terms:ir.ui.view,arch_db:purchase_order_approved.view_purchase_configuration
@@ -108,21 +114,23 @@ msgid ""
 "Require second approval for purchase orders as company policy (otherwise it "
 "can be set per supplier)"
 msgstr ""
+"Zahtevajte drugo (dodatno) odobritev za nabavne naloge kot pravilo družbe "
+"(sicer se lahko to nastavi za vsakega dobavitelja posebej)"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__state
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_res_config_settings__purchase_approve_active
 msgid "Use 'Approved' Stage"
-msgstr ""
+msgstr "Uporabi stopnjo 'Odobreno'"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_res_company__purchase_approve_active
 msgid "Use State 'Approved' in Purchase Orders"
-msgstr ""
+msgstr "Uporaba stanja 'odobreno' v nabavnih nalogih"
 
 #, fuzzy
 #~ msgid "Company"
