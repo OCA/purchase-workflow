@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-06-27 07:12+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,43 +15,44 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_purchase_force_vendor
 #: model:ir.model,name:sale_purchase_force_vendor.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Družbe"
 
 #. module: sale_purchase_force_vendor
 #: model:ir.model,name:sale_purchase_force_vendor.model_res_config_settings
 msgid "Procurement purchase grouping settings"
-msgstr ""
+msgstr "Nastavitve združevanja nabavnih oskrbovanj"
 
 #. module: sale_purchase_force_vendor
 #: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_res_company__sale_purchase_force_vendor_restrict
 #: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_res_config_settings__sale_purchase_force_vendor_restrict
 #: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_sale_order__sale_purchase_force_vendor_restrict
 msgid "Restrict allowed vendors in sale orders"
-msgstr ""
+msgstr "Omeji dovoljene dobavitelje v prodajnih nalogih"
 
 #. module: sale_purchase_force_vendor
 #: model:ir.model,name:sale_purchase_force_vendor.model_sale_report
 msgid "Sales Analysis Report"
-msgstr ""
+msgstr "Poročilo prodajne analize"
 
 #. module: sale_purchase_force_vendor
 #: model:ir.model,name:sale_purchase_force_vendor.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Prodajni nalog"
 
 #. module: sale_purchase_force_vendor
 #: model:ir.model,name:sale_purchase_force_vendor.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Prodajna postavka"
 
 #. module: sale_purchase_force_vendor
 #: model:ir.model,name:sale_purchase_force_vendor.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Premik zaloge"
 
 #. module: sale_purchase_force_vendor
 #: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_sale_order_line__vendor_id
@@ -59,9 +61,9 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_purchase_force_vendor.view_order_product_search
 #: model_terms:ir.ui.view,arch_db:sale_purchase_force_vendor.view_sales_order_filter
 msgid "Vendor"
-msgstr ""
+msgstr "Dobavitelj"
 
 #. module: sale_purchase_force_vendor
 #: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_sale_order_line__vendor_id_domain
 msgid "Vendor Id Domain"
-msgstr ""
+msgstr "Domena ID dobavitelja"
