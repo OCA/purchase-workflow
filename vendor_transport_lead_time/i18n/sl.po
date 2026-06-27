@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-06-27 11:46+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,21 +15,22 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: vendor_transport_lead_time
 #: model_terms:ir.ui.view,arch_db:vendor_transport_lead_time.report_purchaseorder_document
 msgid "<strong>Date Req.</strong>"
-msgstr ""
+msgstr "<strong>Zaht. datum</strong>"
 
 #. module: vendor_transport_lead_time
 #: model:ir.model.fields,field_description:vendor_transport_lead_time.field_purchase_order_line__report_date_planned
 msgid "Date planned (used by report)"
-msgstr ""
+msgstr "Planirani datum (uporaba v poročilu)"
 
 #. module: vendor_transport_lead_time
 #: model:ir.model.fields,field_description:vendor_transport_lead_time.field_product_supplierinfo__delay
 msgid "Delivery Lead Time"
-msgstr ""
+msgstr "Dobavni rok"
 
 #. module: vendor_transport_lead_time
 #: model:ir.model.fields,help:vendor_transport_lead_time.field_product_supplierinfo__delay
@@ -37,49 +39,51 @@ msgid ""
 "receipt of the products in your warehouse. Used by the scheduler for "
 "automatic computation of the purchase order planning."
 msgstr ""
+"Čas dobave v dneh od potrditve naročila do prejema izdelkov v vašem "
+"skladišču. Načrtovalec ga uporablja za samodejni izračun načrtovanja naročil."
 
 #. module: vendor_transport_lead_time
 #: model:ir.model,name:vendor_transport_lead_time.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Nabavna postavka"
 
 #. module: vendor_transport_lead_time
 #: model:ir.model.fields,field_description:vendor_transport_lead_time.field_product_supplierinfo__supplier_delay
 msgid "Supplier Lead Time"
-msgstr ""
+msgstr "Dobavni rok dobavitelja"
 
 #. module: vendor_transport_lead_time
 #: model:ir.model,name:vendor_transport_lead_time.model_product_supplierinfo
 msgid "Supplier Pricelist"
-msgstr ""
+msgstr "Cenik dobavitelja"
 
 #. module: vendor_transport_lead_time
 #: model:ir.model.fields,field_description:vendor_transport_lead_time.field_purchase_order_line__supplier_date_planned
 msgid "Supplier Scheduled Date"
-msgstr ""
+msgstr "Načrtovani datum dobavitelja"
 
 #. module: vendor_transport_lead_time
 #: model:ir.model.fields,help:vendor_transport_lead_time.field_product_supplierinfo__supplier_delay
 msgid "Supplier lead time in days."
-msgstr ""
+msgstr "Dob. rok dobavitelja v dnevih."
 
 #. module: vendor_transport_lead_time
 #: model:ir.model.fields,field_description:vendor_transport_lead_time.field_product_supplierinfo__transport_delay
 msgid "Transport Lead Time"
-msgstr ""
+msgstr "Dob. rok. transporta"
 
 #. module: vendor_transport_lead_time
 #: model:ir.model.fields,help:vendor_transport_lead_time.field_product_supplierinfo__transport_delay
 msgid "Transport lead time in days."
-msgstr ""
+msgstr "Dobavni rok transporta v dnevih."
 
 #. module: vendor_transport_lead_time
 #. odoo-python
 #: code:addons/vendor_transport_lead_time/models/product_supplierinfo.py:0
 msgid "You can't set a delay inferior to the transport delay."
-msgstr ""
+msgstr "Ni mogoče nastaviti manjšega zamika od zamika transporta."
 
 #. module: vendor_transport_lead_time
 #: model_terms:ir.ui.view,arch_db:vendor_transport_lead_time.product_supplierinfo_form_view
 msgid "days"
-msgstr ""
+msgstr "dni"
