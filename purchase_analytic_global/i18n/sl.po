@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-06-27 07:14+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,26 +15,27 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: purchase_analytic_global
 #: model:ir.model.fields,field_description:purchase_analytic_global.field_purchase_order__analytic_distribution
 msgid "Analytic Distribution"
-msgstr ""
+msgstr "Analitična porazdelitev"
 
 #. module: purchase_analytic_global
 #: model:ir.model.fields,field_description:purchase_analytic_global.field_purchase_order__analytic_precision
 msgid "Analytic Precision"
-msgstr ""
+msgstr "Analitična natančnost"
 
 #. module: purchase_analytic_global
 #: model:ir.model.fields,field_description:purchase_analytic_global.field_purchase_order__distribution_analytic_account_ids
 msgid "Distribution Analytic Account"
-msgstr ""
+msgstr "Distribucijski analitični konto"
 
 #. module: purchase_analytic_global
 #: model:ir.model,name:purchase_analytic_global.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Nabavni nalog"
 
 #. module: purchase_analytic_global
 #: model:ir.model.fields,help:purchase_analytic_global.field_purchase_order__analytic_distribution
@@ -42,3 +44,6 @@ msgid ""
 "distributions, if you need to use different analytic distribution, define it"
 " at line level."
 msgstr ""
+"Ta analitična porazdelitev se bo razširila na vse analitične porazdelitve "
+"vrstic. Če morate uporabiti drugačno analitično porazdelitev, jo definirajte "
+"na ravni postavk."
