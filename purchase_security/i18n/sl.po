@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-06-27 07:08+0000\n"
+"PO-Revision-Date: 2026-06-27 07:11+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
@@ -45,7 +45,7 @@ msgstr "ID"
 #. module: purchase_security
 #: model:ir.model.fields,field_description:purchase_security.field_purchase_order__is_user_id_editable
 msgid "Is User Id Editable"
-msgstr ""
+msgstr "Ali je uporabnika mogoče urejati"
 
 #. module: purchase_security
 #: model:ir.model.fields,field_description:purchase_security.field_purchase_team__write_uid
@@ -70,7 +70,7 @@ msgstr "Naziv"
 #. module: purchase_security
 #: model_terms:ir.ui.view,arch_db:purchase_security.purchase_team_tree
 msgid "Open Form View"
-msgstr ""
+msgstr "Odpri obrazec"
 
 #. module: purchase_security
 #: model:ir.model,name:purchase_security.model_purchase_order
@@ -92,14 +92,14 @@ msgstr "Nabavne ekipe"
 #. module: purchase_security
 #: model:ir.model.fields,field_description:purchase_security.field_purchase_team__user_ids
 msgid "Purchase Users"
-msgstr ""
+msgstr "Nabavni uporabniki"
 
 #. module: purchase_security
 #: model:ir.model.fields,field_description:purchase_security.field_res_partner__purchase_user_id
 #: model:ir.model.fields,field_description:purchase_security.field_res_users__purchase_user_id
 #: model_terms:ir.ui.view,arch_db:purchase_security.view_res_partner_filter
 msgid "Purchase representative"
-msgstr ""
+msgstr "Nabavni predstavnik"
 
 #. module: purchase_security
 #: model:ir.model.fields,field_description:purchase_security.field_res_partner__purchase_team_id
