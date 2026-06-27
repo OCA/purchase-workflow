@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-06-27 08:31+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,44 +15,45 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: purchase_manual_currency
 #. odoo-python
 #: code:addons/purchase_manual_currency/models/purchase.py:0
 msgid "%(company_currency_name)s per 1 %(rate_currency_name)s"
-msgstr ""
+msgstr "%(company_currency_name)s za 1 %(rate_currency_name)s"
 
 #. module: purchase_manual_currency
 #. odoo-python
 #: code:addons/purchase_manual_currency/models/purchase.py:0
 msgid "%(rate_currency_name)s per 1 %(company_currency_name)s"
-msgstr ""
+msgstr "%(rate_currency_name)s za 1 %(company_currency_name)s"
 
 #. module: purchase_manual_currency
 #: model_terms:ir.ui.view,arch_db:purchase_manual_currency.purchase_order_form
 msgid "<i title=\"Update Currency\" class=\"fa fa-fw fa-refresh\"/>"
-msgstr ""
+msgstr "<i title=\"Posodobi valuto\" class=\"fa fa-fw fa-refresh\"/>"
 
 #. module: purchase_manual_currency
 #: model_terms:ir.ui.view,arch_db:purchase_manual_currency.res_config_settings_view_form_purchase
 msgid "Bill Manual Currency"
-msgstr ""
+msgstr "Prejeti račun - valuta ročno"
 
 #. module: purchase_manual_currency
 #: model:ir.model,name:purchase_manual_currency.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Družbe"
 
 #. module: purchase_manual_currency
 #: model:ir.model.fields,field_description:purchase_manual_currency.field_purchase_order__company_currency_id
 #: model:ir.model.fields,field_description:purchase_manual_currency.field_purchase_order_line__company_currency_id
 msgid "Company Currency"
-msgstr ""
+msgstr "Valuta družbe"
 
 #. module: purchase_manual_currency
 #: model:ir.model.fields,field_description:purchase_manual_currency.field_purchase_order__currency_diff
 msgid "Currency Diff"
-msgstr ""
+msgstr "Valutne razlike"
 
 #. module: purchase_manual_currency
 #. odoo-python
@@ -60,59 +62,61 @@ msgid ""
 "In invoice cannot have a mixture of different manual currency rates in "
 "purchases."
 msgstr ""
+"Na računu ne sme biti mešanice različnih ročno vnesenih valutnih tečajev pri "
+"nabavah."
 
 #. module: purchase_manual_currency
 #. odoo-python
 #: code:addons/purchase_manual_currency/models/purchase.py:0
 msgid "In invoice cannot have a mixture of different manual currency."
-msgstr ""
+msgstr "V računu ne sme biti mešanice različnih ročno vnesenih valut."
 
 #. module: purchase_manual_currency
 #: model:ir.model.fields,field_description:purchase_manual_currency.field_purchase_order__is_manual
 msgid "Is Manual"
-msgstr ""
+msgstr "Je ročno"
 
 #. module: purchase_manual_currency
 #: model:ir.model.fields,field_description:purchase_manual_currency.field_purchase_order__manual_currency
 msgid "Manual Currency"
-msgstr ""
+msgstr "Ročno valuta"
 
 #. module: purchase_manual_currency
 #: model:ir.model.fields,field_description:purchase_manual_currency.field_res_company__manual_currency_po_inv
 #: model:ir.model.fields,field_description:purchase_manual_currency.field_res_config_settings__manual_currency_po_inv
 msgid "Manual Currency Purchase - Invoice"
-msgstr ""
+msgstr "Ročna valuta nabave - račun"
 
 #. module: purchase_manual_currency
 #: model:ir.model.fields,field_description:purchase_manual_currency.field_purchase_order__manual_currency_rate
 msgid "Manual Currency Rate"
-msgstr ""
+msgstr "Ročno menjalni tečaj"
 
 #. module: purchase_manual_currency
 #: model_terms:ir.ui.view,arch_db:purchase_manual_currency.purchase_order_form
 msgid "Opened"
-msgstr ""
+msgstr "Odprto"
 
 #. module: purchase_manual_currency
 #: model:ir.model,name:purchase_manual_currency.model_res_config_settings
 msgid "Procurement purchase grouping settings"
-msgstr ""
+msgstr "Nastavitve združevanja nabavnih oskrbovanj"
 
 #. module: purchase_manual_currency
 #: model:ir.model,name:purchase_manual_currency.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Nabavni nalog"
 
 #. module: purchase_manual_currency
 #: model:ir.model,name:purchase_manual_currency.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Postavka nabavnega naloga"
 
 #. module: purchase_manual_currency
 #. odoo-python
 #: code:addons/purchase_manual_currency/models/purchase.py:0
 msgid "Rate currency can refresh state draft only."
-msgstr ""
+msgstr "Menjalni tečaj lahko osveži le osnutke."
 
 #. module: purchase_manual_currency
 #: model:ir.model.fields,help:purchase_manual_currency.field_purchase_order__manual_currency_rate
@@ -120,28 +124,31 @@ msgid ""
 "Set new currency rate to apply on the invoice\n"
 ".This rate will be taken in order to convert amounts between the currency on the purchase order and last currency"
 msgstr ""
+"Nastavite nov menjalni tečaj, ki se bo uporabil na računu\n"
+".Ta tečaj se bo uporabil za preračun zneskov med valuto na naročilu in "
+"končno valuto"
 
 #. module: purchase_manual_currency
 #: model:ir.model.fields,field_description:purchase_manual_currency.field_purchase_order_line__subtotal_company_currency
 msgid "Subtotal (Company Currency)"
-msgstr ""
+msgstr "Subtotal (valuta družbe)"
 
 #. module: purchase_manual_currency
 #: model:ir.model.fields,field_description:purchase_manual_currency.field_purchase_order__total_company_currency
 msgid "Total Company Currency"
-msgstr ""
+msgstr "Skupaj v valuti družbe"
 
 #. module: purchase_manual_currency
 #: model:ir.model.fields,field_description:purchase_manual_currency.field_purchase_order__type_currency
 msgid "Type Currency"
-msgstr ""
+msgstr "Tip valute"
 
 #. module: purchase_manual_currency
 #: model:ir.model.fields.selection,name:purchase_manual_currency.selection__res_company__manual_currency_po_inv__currency_inv
 msgid "Use currency invoice"
-msgstr ""
+msgstr "Uporabi račune v valuti"
 
 #. module: purchase_manual_currency
 #: model:ir.model.fields.selection,name:purchase_manual_currency.selection__res_company__manual_currency_po_inv__currency_po
 msgid "Use currency purchase"
-msgstr ""
+msgstr "Uporabi valuto nabave"
