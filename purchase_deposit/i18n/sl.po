@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-06-27 08:49+0000\n"
+"PO-Revision-Date: 2026-06-27 08:52+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
@@ -121,22 +121,22 @@ msgstr "Prikazani naziv"
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__deposit_account_id
 msgid "Expense Account"
-msgstr ""
+msgstr "Konto stroškov"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: purchase_deposit
 #: model:ir.actions.act_window,name:purchase_deposit.action_view_purchase_advance_payment_inv
 msgid "Invoice Order"
-msgstr ""
+msgstr "Obračunaj nalog"
 
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
 msgid "Invoice Purchases Order"
-msgstr ""
+msgstr "Obračunaj nabavni nalog"
 
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
@@ -144,36 +144,38 @@ msgid ""
 "Invoices will be created in draft so that you can review them before "
 "validation."
 msgstr ""
+"Računi bodo ustvarjeni v osnutku, tako da jih boste lahko pregledali pred "
+"potrditvijo."
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_order_line__is_deposit
 msgid "Is a deposit payment"
-msgstr ""
+msgstr "Je plačilo pologa"
 
 #. module: purchase_deposit
 #: model:ir.model,name:purchase_deposit.model_account_move
 msgid "Journal Entry"
-msgstr ""
+msgstr "Temeljnica"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Zadnji posodobil"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Zadnjič posodobljeno"
 
 #. module: purchase_deposit
 #: model:ir.model,name:purchase_deposit.model_res_config_settings
 msgid "Procurement purchase grouping settings"
-msgstr ""
+msgstr "Nastavitve združevanja nabavnih oskrbovanj"
 
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.res_config_settings_view_form_purchase
 msgid "Product used for deposit payments"
-msgstr ""
+msgstr "Proizvod uporabljen za plačila pologov"
 
 #. module: purchase_deposit
 #: model:ir.model,name:purchase_deposit.model_purchase_advance_payment_inv
@@ -189,12 +191,12 @@ msgstr ""
 #. module: purchase_deposit
 #: model:ir.model,name:purchase_deposit.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Nabavni nalog"
 
 #. module: purchase_deposit
 #: model:ir.model,name:purchase_deposit.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Nabavna postavka"
 
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_order_form_inherit
@@ -251,7 +253,7 @@ msgstr ""
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__deposit_taxes_id
 msgid "Vendor Taxes"
-msgstr ""
+msgstr "Nabavni davki"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__advance_payment_method
