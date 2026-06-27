@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-24 07:53+0000\n"
-"PO-Revision-Date: 2017-11-24 07:53+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2026-06-27 11:02+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
-"%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: procurement_purchase_no_grouping
 #: model_terms:ir.ui.view,arch_db:procurement_purchase_no_grouping.res_config_settings_view_form_procurement_purchase_grouping
@@ -29,56 +30,63 @@ msgid ""
 "role=\"img\">\n"
 "                            </span>"
 msgstr ""
+"<span class=\"o_form_label\">Razvrščanje v skupine</span>\n"
+"                            <span class=\"fa fa-lg fa-object-group\" "
+"title=\"Vrednost, ki se uporabi, če je za posamezno kategorijo nastavljena "
+"možnost 'Sistemsko privzeto'\" aria-label=\"Vrednost, nastavljena tukaj, je "
+"privzeta. Posebne vrednosti se nastavijo za vsako kategorijo posebej.\" "
+"role=\"img\">\n"
+"                            </span>"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model,name:procurement_purchase_no_grouping.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Družbe"
 
 #. module: procurement_purchase_no_grouping
 #: model_terms:ir.ui.view,arch_db:procurement_purchase_no_grouping.res_config_settings_view_form_procurement_purchase_grouping
 msgid "Grouping"
-msgstr ""
+msgstr "Združevanje"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model.fields.selection,name:procurement_purchase_no_grouping.selection__product_category__procured_purchase_grouping__line
 #: model:ir.model.fields.selection,name:procurement_purchase_no_grouping.selection__res_company__procured_purchase_grouping__line
 msgid "No line grouping"
-msgstr ""
+msgstr "Brez združevanja postavk"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model.fields.selection,name:procurement_purchase_no_grouping.selection__product_category__procured_purchase_grouping__order
 #: model:ir.model.fields.selection,name:procurement_purchase_no_grouping.selection__res_company__procured_purchase_grouping__order
 msgid "No order grouping"
-msgstr ""
+msgstr "Brez združevanja nalogov"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model.fields,field_description:procurement_purchase_no_grouping.field_product_category__procured_purchase_grouping
 #: model:ir.model.fields,field_description:procurement_purchase_no_grouping.field_res_company__procured_purchase_grouping
 #: model:ir.model.fields,field_description:procurement_purchase_no_grouping.field_res_config_settings__procured_purchase_grouping
 msgid "Procured Purchase Grouping"
-msgstr ""
+msgstr "Združevanje oskrbovalnih nabav"
 
 #. module: procurement_purchase_no_grouping
 #: model_terms:ir.ui.view,arch_db:procurement_purchase_no_grouping.res_config_settings_view_form_procurement_purchase_grouping
 msgid "Procurement Purchase Grouping"
-msgstr ""
+msgstr "Združevanje oskrbovalnih nabav"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model,name:procurement_purchase_no_grouping.model_res_config_settings
 msgid "Procurement purchase grouping settings"
-msgstr ""
+msgstr "Nastavitve združevanja nabavnih oskrbovanj"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model,name:procurement_purchase_no_grouping.model_product_category
 msgid "Product Category"
-msgstr ""
+msgstr "Kategorija proizvoda"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model.fields.selection,name:procurement_purchase_no_grouping.selection__product_category__procured_purchase_grouping__product_category
 #: model:ir.model.fields.selection,name:procurement_purchase_no_grouping.selection__res_company__procured_purchase_grouping__product_category
 msgid "Product category grouping"
-msgstr ""
+msgstr "Združevanje kategorij proizvoda"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model,name:procurement_purchase_no_grouping.model_purchase_order_line
@@ -99,6 +107,17 @@ msgid ""
 "* Product category grouping: This option groups products in the same "
 "purchase order that belongs to the same product category."
 msgstr ""
+"Izberite način združevanja oskrbovalnih nabav za proizvode te kategorije:\n"
+"* Standardno združevanje (privzeto): oskrbovanja bodo kot doslej ustvarjala "
+"naročila, pri čemer bodo po možnosti združevala postavke in naročila.\n"
+"* Brez združevanja postavk: če obstaja kak odprt nabavni nalog za istega "
+"dobavitelja, se bo to ponovno uporabilo, vendar se postavke ne bodo "
+"združile.\n"
+"* Brez združevanja naročil: ta možnost prepreči kakršno koli združevanje.\n"
+"* <prazno>: če ni izbrana nobena vrednost, se bo uporabila privzeta vrednost "
+"za celoten sistem.\n"
+"* Združevanje po kategorijah proizvodov: ta možnost združuje proizvode v "
+"istem nabavnem nalogu, ki pripadajo isti kategoriji proizvodov."
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model.fields,help:procurement_purchase_no_grouping.field_res_company__procured_purchase_grouping
@@ -115,19 +134,30 @@ msgid ""
 "* Product category grouping: This option groups products in the same "
 "purchase order that belongs to the same product category."
 msgstr ""
+"Izberite način združevanja oskrbovalnih nabav za proizvode te kategorije:\n"
+"* Standardno združevanje: oskrbovanja bodo kot doslej ustvarjala naročila, "
+"pri čemer bodo po možnosti združevala postavke in naročila.\n"
+"* Brez združevanja postavk: če obstaja kak odprt nabavni nalog za istega "
+"dobavitelja, se bo to ponovno uporabilo, vendar se postavke ne bodo "
+"združile.\n"
+"* Brez združevanja naročil: ta možnost prepreči kakršno koli združevanje.\n"
+"* <prazno>: če ni izbrana nobena vrednost, se bo uporabila privzeta vrednost "
+"za celoten sistem.\n"
+"* Združevanje po kategorijah proizvodov: ta možnost združuje proizvode v "
+"istem nabavnem nalogu, ki pripadajo isti kategoriji proizvodov."
 
 #. module: procurement_purchase_no_grouping
 #: model_terms:ir.ui.view,arch_db:procurement_purchase_no_grouping.res_config_settings_view_form_procurement_purchase_grouping
 msgid "Set the default procurement purchase grouping type"
-msgstr ""
+msgstr "Nastavi privzeti tip združevanja oskrbovalne nabave"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model.fields.selection,name:procurement_purchase_no_grouping.selection__product_category__procured_purchase_grouping__standard
 #: model:ir.model.fields.selection,name:procurement_purchase_no_grouping.selection__res_company__procured_purchase_grouping__standard
 msgid "Standard grouping"
-msgstr ""
+msgstr "Standardno združevanje"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model,name:procurement_purchase_no_grouping.model_stock_rule
 msgid "Stock Rule"
-msgstr ""
+msgstr "Pravilo zalog"
