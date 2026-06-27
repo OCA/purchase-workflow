@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-06-27 07:03+0000\n"
+"PO-Revision-Date: 2026-06-27 07:06+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
@@ -39,13 +39,13 @@ msgstr "Zgodovina posodobitev lastne cene"
 #. module: purchase_stock_cost_update
 #: model_terms:ir.ui.view,arch_db:purchase_stock_cost_update.purchase_order_form
 msgid "Fix valuation"
-msgstr ""
+msgstr "Popravi vrednotenje"
 
 #. module: purchase_stock_cost_update
 #. odoo-python
 #: code:addons/purchase_stock_cost_update/models/purchase_order.py:0
 msgid "Price difference layer created from %(line)s"
-msgstr ""
+msgstr "Sloj razlike v ceni ustvarjen iz %(line)s"
 
 #. module: purchase_stock_cost_update
 #: model:ir.model.fields,field_description:purchase_stock_cost_update.field_stock_valuation_layer__purchase_line_id
@@ -73,6 +73,8 @@ msgid ""
 "This will make unreversible changes to the valuation layers related to the "
 "affected products"
 msgstr ""
+"To bo povzročilo nepovratne spremembe slojev vrednotenja, povezanih s "
+"prizadetimi proizvodi"
 
 #. module: purchase_stock_cost_update
 #: model_terms:ir.ui.view,arch_db:purchase_stock_cost_update.stock_valuation_layer_form
@@ -82,15 +84,15 @@ msgstr "Zgodovina posodobitev"
 #. module: purchase_stock_cost_update
 #: model:ir.model.fields,field_description:purchase_stock_cost_update.field_purchase_order_line__valuation_difference
 msgid "Valuation Difference"
-msgstr ""
+msgstr "Razlika v vrednotenju"
 
 #. module: purchase_stock_cost_update
 #: model:ir.model.fields,field_description:purchase_stock_cost_update.field_purchase_order__valuation_difference_report
 msgid "Valuation Difference Report"
-msgstr ""
+msgstr "Poročilo o razlikah v vrednotenju"
 
 #. module: purchase_stock_cost_update
 #: model:ir.model.fields,field_description:purchase_stock_cost_update.field_purchase_order__valuation_differs
 #: model:ir.model.fields,field_description:purchase_stock_cost_update.field_purchase_order_line__valuation_differs
 msgid "Valuation Differs"
-msgstr ""
+msgstr "Vrednotenje se razlikuje"
