@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-06-27 08:39+0000\n"
+"PO-Revision-Date: 2026-06-27 08:43+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
@@ -32,17 +32,17 @@ msgstr "Zaračunani znesek"
 #. module: purchase_invoice_plan
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.purchase_order_form
 msgid "Are you sure to remove this invoice plan?"
-msgstr ""
+msgstr "Ali ste prepričani, da želite odstraniti ta obračunski plan?"
 
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,help:purchase_invoice_plan.field_purchase_order__ip_invoice_plan
 msgid "At least one invoice plan line pending to create invoice"
-msgstr ""
+msgstr "Vsaj ena vrstica obračunskega plana čaka na ustvarjanje računa"
 
 #. module: purchase_invoice_plan
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_make_planned_invoice
 msgid "Bill Purchase Order"
-msgstr ""
+msgstr "Obračunaj nabavni nalog"
 
 #. module: purchase_invoice_plan
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_filter
@@ -55,6 +55,8 @@ msgid ""
 "Bills will be created in draft for this installment\n"
 "                        so that you can review them before validation."
 msgstr ""
+"Prejeti računi bodo za ta obrok ustvarjeni v osnutku\n"
+"                        tako da jih lahko pregledate pred potrditvijo."
 
 #. module: purchase_invoice_plan
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_create_invoice_plan
@@ -65,23 +67,23 @@ msgstr "Prekliči"
 #. module: purchase_invoice_plan
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_make_planned_invoice
 msgid "Create All Remaining Bills"
-msgstr ""
+msgstr "Ustvari vse preostale prejete račune"
 
 #. module: purchase_invoice_plan
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.purchase_order_form
 msgid "Create Bill by Plan"
-msgstr ""
+msgstr "Ustvari prejeti račun po planu"
 
 #. module: purchase_invoice_plan
 #: model:ir.actions.act_window,name:purchase_invoice_plan.action_purchase_create_invoice_plan
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_create_invoice_plan
 msgid "Create Invoice Plan"
-msgstr ""
+msgstr "Ustvari obračunski plan"
 
 #. module: purchase_invoice_plan
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_make_planned_invoice
 msgid "Create Next Bill"
-msgstr ""
+msgstr "Ustvari naslednji prejeti račun"
 
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_create_invoice_plan__create_uid
@@ -112,7 +114,7 @@ msgstr "Prikazani naziv"
 #. module: purchase_invoice_plan
 #: model:ir.model,name:purchase_invoice_plan.model_purchase_create_invoice_plan
 msgid "Fillig invoice planning criteria"
-msgstr ""
+msgstr "Vnos meril za obračunski plan"
 
 #. module: purchase_invoice_plan
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_filter
@@ -129,12 +131,12 @@ msgstr "ID"
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,help:purchase_invoice_plan.field_purchase_invoice_plan__invoiced
 msgid "If this line already invoiced"
-msgstr ""
+msgstr "Če je ta vrstica že obračunana"
 
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,help:purchase_invoice_plan.field_purchase_invoice_plan__to_invoice
 msgid "If this line is ready to create new invoice"
-msgstr ""
+msgstr "Če je ta vrstica pripravljena za ustvarjanje novega računa"
 
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__installment
@@ -150,11 +152,13 @@ msgid ""
 "Installment %s: already used and not allowed to delete.\n"
 "Please discard changes."
 msgstr ""
+"Obrok %s: že uporabljen in ga ni dovoljeno izbrisati.\n"
+"Zavrzite spremembe."
 
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_create_invoice_plan__installment_date
 msgid "Installment Date"
-msgstr ""
+msgstr "Datum obroka"
 
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_create_invoice_plan__interval
@@ -174,7 +178,7 @@ msgstr "Račun ustvarjen"
 #. module: purchase_invoice_plan
 #: model:ir.actions.act_window,name:purchase_invoice_plan.action_view_purchase_make_planned_invoice
 msgid "Invoice Order"
-msgstr ""
+msgstr "Obračunaj nalog"
 
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_order__invoice_plan_ids
@@ -185,18 +189,18 @@ msgstr "Obračunski plan"
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_order__ip_invoice_plan
 msgid "Invoice Plan In Process"
-msgstr ""
+msgstr "Obračunski plan v teku"
 
 #. module: purchase_invoice_plan
 #: model:ir.model,name:purchase_invoice_plan.model_purchase_invoice_plan
 msgid "Invoice Planning Detail"
-msgstr ""
+msgstr "Podrobnosti obračunskega plana"
 
 #. module: purchase_invoice_plan
 #. odoo-python
 #: code:addons/purchase_invoice_plan/models/purchase_order.py:0
 msgid "Invoice plan total percentage must not exceed 100%"
-msgstr ""
+msgstr "Skupni odstotek obračunskega plana ne sme preseči 100 %"
 
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__invoice_ids
@@ -206,7 +210,7 @@ msgstr "Računi"
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__last
 msgid "Last Installment"
-msgstr ""
+msgstr "Zadnji obrok"
 
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_create_invoice_plan__write_uid
@@ -225,7 +229,7 @@ msgstr "Zadnjič posodobljeno"
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,help:purchase_invoice_plan.field_purchase_invoice_plan__last
 msgid "Last installment will create invoice use remaining amount"
-msgstr ""
+msgstr "Zadnji obrok bo za ustvarjanje računa uporabil preostali znesek"
 
 #. module: purchase_invoice_plan
 #: model:ir.model.fields.selection,name:purchase_invoice_plan.selection__purchase_create_invoice_plan__interval_type__month
@@ -240,18 +244,18 @@ msgstr "Naslednji račun"
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__no_edit
 msgid "No Edit"
-msgstr ""
+msgstr "Brez urejanja"
 
 #. module: purchase_invoice_plan
 #. odoo-python
 #: code:addons/purchase_invoice_plan/wizard/purchase_create_invoice_plan.py:0
 msgid "Number Installment must greater than 1"
-msgstr ""
+msgstr "Število obrokov mora biti večje od 1"
 
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_create_invoice_plan__num_installment
 msgid "Number of Installment"
-msgstr ""
+msgstr "Število obrokov"
 
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__percent
@@ -272,18 +276,20 @@ msgid ""
 "Plan quantity: %(plan)s, exceed invoiceable quantity: %(qty)s\n"
 "Product should be delivered before invoice"
 msgstr ""
+"Načrtovana količina: %(plan)s presega količino za obračun: %(qty)s\n"
+"Izdelek mora biti dostavljen pred obračunom"
 
 #. module: purchase_invoice_plan
 #. odoo-python
 #: code:addons/purchase_invoice_plan/models/purchase_order.py:0
 msgid "Please fill percentage for all invoice plan lines"
-msgstr ""
+msgstr "Vnesite odstotek za vse vrstice obračunskega plana"
 
 #. module: purchase_invoice_plan
 #: model:ir.actions.act_window,name:purchase_invoice_plan.action_purchase_invoice_plan
 #: model:ir.ui.menu,name:purchase_invoice_plan.menu_purchase_invoice_plan
 msgid "Purchase Invoice Plan"
-msgstr ""
+msgstr "Obračunski plan nabave"
 
 #. module: purchase_invoice_plan
 #: model:ir.model,name:purchase_invoice_plan.model_purchase_order
@@ -299,12 +305,12 @@ msgstr "Nabavni nalogi"
 #. module: purchase_invoice_plan
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_filter
 msgid "Purchase orders that have been invoiced."
-msgstr ""
+msgstr "Nabavni nalogi, ki so bili obračunani."
 
 #. module: purchase_invoice_plan
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_filter
 msgid "Purchase orders that include lines not invoiced."
-msgstr ""
+msgstr "Nabavni nalogi, ki vključujejo neobračunane vrstice."
 
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__purchase_id
@@ -324,7 +330,7 @@ msgstr "Povezani prejeti računi"
 #. module: purchase_invoice_plan
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_filter
 msgid "Search Purchase Invoice Plan Lines"
-msgstr ""
+msgstr "Iskanje vrstic obračunskega plana nabave"
 
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__state
@@ -341,22 +347,24 @@ msgstr "Dobavitelj"
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,help:purchase_invoice_plan.field_purchase_invoice_plan__amount
 msgid "This amount will be used to calculate the percent"
-msgstr ""
+msgstr "Ta znesek bo uporabljen za izračun odstotka"
 
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,help:purchase_invoice_plan.field_purchase_invoice_plan__percent
 msgid "This percent will be used to calculate new quantity"
-msgstr ""
+msgstr "Ta odstotek bo uporabljen za izračun nove količine"
 
 #. module: purchase_invoice_plan
 #: model_terms:ir.actions.act_window,help:purchase_invoice_plan.action_purchase_invoice_plan
 msgid "This view show all available invoice plan line for reporting purposes"
 msgstr ""
+"Ta pogled prikazuje vse razpoložljive vrstice obračunskega plana za namene "
+"poročanja"
 
 #. module: purchase_invoice_plan
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_create_invoice_plan
 msgid "This wizard help you quickly create invoice plan."
-msgstr ""
+msgstr "Ta čarovnik vam pomaga hitro ustvariti obračunski plan."
 
 #. module: purchase_invoice_plan
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_filter
@@ -376,18 +384,18 @@ msgstr "Tip"
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_order__use_invoice_plan
 msgid "Use Invoice Plan"
-msgstr ""
+msgstr "Uporabi obračunski plan"
 
 #. module: purchase_invoice_plan
 #. odoo-python
 #: code:addons/purchase_invoice_plan/models/purchase_order.py:0
 msgid "Use Invoice Plan selected, but no plan created"
-msgstr ""
+msgstr "Izbrana je uporaba obračunskega plana, vendar plan ni ustvarjen"
 
 #. module: purchase_invoice_plan
 #: model_terms:ir.actions.act_window,help:purchase_invoice_plan.action_purchase_invoice_plan
 msgid "View purchase invoice plan lines"
-msgstr ""
+msgstr "Prikaz vrstic obračunskega plana nabave"
 
 #. module: purchase_invoice_plan
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_filter
@@ -397,7 +405,7 @@ msgstr "Čakanje računov"
 #. module: purchase_invoice_plan
 #: model:ir.model,name:purchase_invoice_plan.model_purchase_make_planned_invoice
 msgid "Wizard when create invoice by plan"
-msgstr ""
+msgstr "Čarovnik za ustvarjanje računa po planu"
 
 #. module: purchase_invoice_plan
 #: model:ir.model.fields.selection,name:purchase_invoice_plan.selection__purchase_create_invoice_plan__interval_type__year
