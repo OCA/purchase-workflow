@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-06-27 08:39+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,18 +15,19 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__amount
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_tree
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_tree_readonly
 msgid "Amount"
-msgstr ""
+msgstr "Znesek"
 
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__amount_invoiced
 msgid "Amount Invoiced"
-msgstr ""
+msgstr "Zaračunani znesek"
 
 #. module: purchase_invoice_plan
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.purchase_order_form
@@ -45,7 +47,7 @@ msgstr ""
 #. module: purchase_invoice_plan
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_filter
 msgid "Bills Received"
-msgstr ""
+msgstr "Prejeti računi"
 
 #. module: purchase_invoice_plan
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_make_planned_invoice
@@ -58,7 +60,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_create_invoice_plan
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_make_planned_invoice
 msgid "Cancel"
-msgstr ""
+msgstr "Prekliči"
 
 #. module: purchase_invoice_plan
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_make_planned_invoice
@@ -86,26 +88,26 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__create_uid
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_make_planned_invoice__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Ustvaril"
 
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_create_invoice_plan__create_date
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__create_date
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_make_planned_invoice__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Ustvarjeno"
 
 #. module: purchase_invoice_plan
 #: model:ir.model.fields.selection,name:purchase_invoice_plan.selection__purchase_create_invoice_plan__interval_type__day
 msgid "Day"
-msgstr ""
+msgstr "Dan"
 
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_create_invoice_plan__display_name
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__display_name
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_make_planned_invoice__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Prikazani naziv"
 
 #. module: purchase_invoice_plan
 #: model:ir.model,name:purchase_invoice_plan.model_purchase_create_invoice_plan
@@ -115,14 +117,14 @@ msgstr ""
 #. module: purchase_invoice_plan
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_filter
 msgid "Group By"
-msgstr ""
+msgstr "Združi po"
 
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_create_invoice_plan__id
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__id
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_make_planned_invoice__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,help:purchase_invoice_plan.field_purchase_invoice_plan__invoiced
@@ -139,7 +141,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:purchase_invoice_plan.selection__purchase_invoice_plan__invoice_type__installment
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_filter
 msgid "Installment"
-msgstr ""
+msgstr "Obrok"
 
 #. module: purchase_invoice_plan
 #. odoo-python
@@ -157,17 +159,17 @@ msgstr ""
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_create_invoice_plan__interval
 msgid "Interval"
-msgstr ""
+msgstr "Interval"
 
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_create_invoice_plan__interval_type
 msgid "Interval Type"
-msgstr ""
+msgstr "Tip intervala"
 
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__invoiced
 msgid "Invoice Created"
-msgstr ""
+msgstr "Račun ustvarjen"
 
 #. module: purchase_invoice_plan
 #: model:ir.actions.act_window,name:purchase_invoice_plan.action_view_purchase_make_planned_invoice
@@ -178,7 +180,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_order__invoice_plan_ids
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.purchase_order_form
 msgid "Invoice Plan"
-msgstr ""
+msgstr "Obračunski plan"
 
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_order__ip_invoice_plan
@@ -199,7 +201,7 @@ msgstr ""
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__invoice_ids
 msgid "Invoices"
-msgstr ""
+msgstr "Računi"
 
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__last
@@ -211,14 +213,14 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__write_uid
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_make_planned_invoice__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Zadnji posodobil"
 
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_create_invoice_plan__write_date
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__write_date
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_make_planned_invoice__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Zadnjič posodobljeno"
 
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,help:purchase_invoice_plan.field_purchase_invoice_plan__last
@@ -228,12 +230,12 @@ msgstr ""
 #. module: purchase_invoice_plan
 #: model:ir.model.fields.selection,name:purchase_invoice_plan.selection__purchase_create_invoice_plan__interval_type__month
 msgid "Month"
-msgstr ""
+msgstr "Mesec"
 
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__to_invoice
 msgid "Next Invoice"
-msgstr ""
+msgstr "Naslednji račun"
 
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__no_edit
@@ -256,12 +258,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_order__ip_total_percent
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_tree_readonly
 msgid "Percent"
-msgstr ""
+msgstr "Odstotek"
 
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__plan_date
 msgid "Plan Date"
-msgstr ""
+msgstr "Načrtovani datum"
 
 #. module: purchase_invoice_plan
 #. odoo-python
@@ -287,12 +289,12 @@ msgstr ""
 #: model:ir.model,name:purchase_invoice_plan.model_purchase_order
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_filter
 msgid "Purchase Order"
-msgstr ""
+msgstr "Nabavni nalog"
 
 #. module: purchase_invoice_plan
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_filter
 msgid "Purchase Orders"
-msgstr ""
+msgstr "Nabavni nalogi"
 
 #. module: purchase_invoice_plan
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_filter
@@ -307,17 +309,17 @@ msgstr ""
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__purchase_id
 msgid "Purchases Order"
-msgstr ""
+msgstr "Nabavni nalogi"
 
 #. module: purchase_invoice_plan
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_filter
 msgid "Quotations"
-msgstr ""
+msgstr "Predračuni"
 
 #. module: purchase_invoice_plan
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_form
 msgid "Related Bills"
-msgstr ""
+msgstr "Povezani prejeti računi"
 
 #. module: purchase_invoice_plan
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_filter
@@ -328,13 +330,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__state
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_filter
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__partner_id
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_filter
 msgid "Supplier"
-msgstr ""
+msgstr "Dobavitelj"
 
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,help:purchase_invoice_plan.field_purchase_invoice_plan__amount
@@ -359,17 +361,17 @@ msgstr ""
 #. module: purchase_invoice_plan
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_filter
 msgid "To Approve"
-msgstr ""
+msgstr "Za odobritev"
 
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_order__ip_total_amount
 msgid "Total Amount"
-msgstr ""
+msgstr "Skupni znesek"
 
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__invoice_type
 msgid "Type"
-msgstr ""
+msgstr "Tip"
 
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_order__use_invoice_plan
@@ -390,7 +392,7 @@ msgstr ""
 #. module: purchase_invoice_plan
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_filter
 msgid "Waiting Bills"
-msgstr ""
+msgstr "Čakanje računov"
 
 #. module: purchase_invoice_plan
 #: model:ir.model,name:purchase_invoice_plan.model_purchase_make_planned_invoice
@@ -400,19 +402,21 @@ msgstr ""
 #. module: purchase_invoice_plan
 #: model:ir.model.fields.selection,name:purchase_invoice_plan.selection__purchase_create_invoice_plan__interval_type__year
 msgid "Year"
-msgstr ""
+msgstr "Leto"
 
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,help:purchase_invoice_plan.field_purchase_invoice_plan__partner_id
 msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
 msgstr ""
+"Dobavitelja lahko najdete po imenu, davčni številki, email naslovu ali "
+"internem sklicu."
 
 #. module: purchase_invoice_plan
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.purchase_order_form
 msgid "⇒ Create Invoice Plan"
-msgstr ""
+msgstr "⇒ Ustvari obračunski plan"
 
 #. module: purchase_invoice_plan
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.purchase_order_form
 msgid "⇒ Remove Invoice Plan"
-msgstr ""
+msgstr "⇒ Odstrani obračunski plan"
