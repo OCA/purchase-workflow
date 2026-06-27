@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-06-27 08:25+0000\n"
+"PO-Revision-Date: 2026-06-27 11:46+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
@@ -75,7 +75,7 @@ msgstr "Premakni v nabavo"
 #. module: purchase_line_reassign
 #: model_terms:ir.ui.view,arch_db:purchase_line_reassign.purchase_order_line_reassign_wiz
 msgid "Purchase Order Lines"
-msgstr "Postavke nabavnega naloga"
+msgstr "Nabavne postavke"
 
 #. module: purchase_line_reassign
 #: model:ir.actions.act_window,name:purchase_line_reassign.action_purchase_order_line_reassign_wiz
