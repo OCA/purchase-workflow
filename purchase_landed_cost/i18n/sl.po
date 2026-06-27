@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-07 23:04+0000\n"
-"PO-Revision-Date: 2026-06-25 10:46+0000\n"
+"PO-Revision-Date: 2026-06-27 11:02+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: \n"
 "Language: sl\n"
@@ -31,7 +31,7 @@ msgstr "Znesek postavke"
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
 msgid "Are you sure that you want to set done state?"
-msgstr ""
+msgstr "Ali ste prepričani, da želite nastaviti stanje opravljeno?"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields.selection,name:purchase_landed_cost.selection__purchase_expense_type__calculation_method__amount
@@ -202,6 +202,8 @@ msgid ""
 "Define the type of the calculation of each purchase expense\n"
 "                used for calculating the distribution between lines."
 msgstr ""
+"Določi tip izračuna za vsak strošek nabave, ki se uporablja\n"
+"                za izračun porazdelitve med postavkami."
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_import_invoice_line_wizard__display_name
@@ -387,12 +389,12 @@ msgstr "Postavka računa"
 #. module: purchase_landed_cost
 #: model:ir.model,name:purchase_landed_cost.model_account_move
 msgid "Journal Entry"
-msgstr ""
+msgstr "Temeljnica"
 
 #. module: purchase_landed_cost
 #: model:ir.model,name:purchase_landed_cost.model_account_move_line
 msgid "Journal Item"
-msgstr ""
+msgstr "Dnevniška postavka"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_account_bank_statement_line__expense_line_ids
@@ -645,12 +647,12 @@ msgstr "Čarovnik za izbiro postavk prejetih računov"
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
 msgid "Set done"
-msgstr ""
+msgstr "Nastavi kot opravljeno"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
 msgid "Set draft"
-msgstr ""
+msgstr "Nastavi kot osnutek"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,help:purchase_landed_cost.field_purchase_expense_type__default_expense
@@ -684,6 +686,8 @@ msgid ""
 "The cost for the line '%s' can't be distributed because the calculation "
 "method doesn't provide valid data"
 msgstr ""
+"Strošek postavke '%s' ne more biti razporejen, ker metoda izračuna ne "
+"zagotavlja veljavnih podatkov"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,help:purchase_landed_cost.field_purchase_cost_distribution_line__product_weight
@@ -779,6 +783,8 @@ msgid ""
 "Use this menu to control the cost of purchases by expense type\n"
 "                such as transport, insurance, freight customs, etc."
 msgstr ""
+"Ta meni se uporablja za nadzor stroškov nabave po tipu stroška, kot\n"
+"                npr. transport, zavarovanje, carina, ipd."
 
 #. module: purchase_landed_cost
 #: model_terms:ir.actions.act_window,help:purchase_landed_cost.action_purchase_expense_type
@@ -787,6 +793,9 @@ msgid ""
 "                The types marked by default will be added to the cost\n"
 "                distribution automatically."
 msgstr ""
+"Uporabi ta meni za ustvarjanje tipa stroškov nabave.\n"
+"                Privzeto označeni tipi bodo samodejno dodani\n"
+"                v distribucijo stroškov."
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__product_volume
@@ -804,11 +813,15 @@ msgid ""
 "You can add one or more receipts which share the same expenses\n"
 "                and update cost price of product."
 msgstr ""
+"Dodate lahko eno ali več prejemnic, ki si delijo iste stroške\n"
+"                in posodobite lastno ceno proizvoda."
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,help:purchase_landed_cost.field_purchase_cost_distribution_line__partner
 msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
 msgstr ""
+"Dobavitelja lahko najdete po imenu, davčni številki, email naslovu ali "
+"internem sklicu."
 
 #. module: purchase_landed_cost
 #. odoo-python
@@ -824,6 +837,8 @@ msgstr "Ne morete izbrisati potrjene distribucije stroškov"
 msgid ""
 "You can't delete a cost line if it's an affected line of any expense line."
 msgstr ""
+"Postavke stroška nabave ne morete izbrisati, če je povezana s katerokoli "
+"stroškovno postavko."
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.import_invoice_line_wizard_view
