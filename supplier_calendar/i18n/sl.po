@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-06-27 12:06+0000\n"
+"PO-Revision-Date: 2026-06-28 08:46+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
@@ -64,7 +64,7 @@ msgstr "Nabavna postavka"
 #. module: supplier_calendar
 #: model:ir.model,name:supplier_calendar.model_stock_rule
 msgid "Stock Rule"
-msgstr "Pravilo zalog"
+msgstr "Pravilo zaloge"
 
 #. module: supplier_calendar
 #: model:ir.model.fields.selection,name:supplier_calendar.selection__res_partner__delay_calendar_type__supplier_calendar
