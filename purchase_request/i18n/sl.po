@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-24 07:53+0000\n"
-"PO-Revision-Date: 2026-06-27 11:02+0000\n"
+"PO-Revision-Date: 2026-06-28 08:46+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-purchase-workflow-"
 "10-0/language/sl/)\n"
@@ -1263,7 +1263,7 @@ msgstr "Premiki zaloge"
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_stock_rule
 msgid "Stock Rule"
-msgstr "Pravilo zalog"
+msgstr "Pravilo zaloge"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order__supplier_id
