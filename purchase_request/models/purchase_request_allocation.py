@@ -96,21 +96,20 @@ class PurchaseRequestAllocation(models.Model):
 
     @api.model
     def _purchase_request_confirm_done_message_content(self, message_data):
-        message = ""
-        message += self.env._(
+        message_body = self.env._(
             "From last reception this quantity has been "
             "allocated to this purchase request"
         )
-        message += "<ul>"
-        message += self.env._(
-            "<li><b>%(product_name)s</b>: "
-            "Received quantity %(product_qty)s %(product_uom)s</li>",
-            product_name=html_escape(message_data["product_name"]),
+        line_text = self.env._(
+            "Received quantity %(product_qty)s %(product_uom)s",
             product_qty=message_data["product_qty"],
             product_uom=message_data["product_uom"],
         )
-        message += "</ul>"
-        return message
+        product_line = Markup("<ul><li><b>{}</b>: {}</li></ul>").format(
+            html_escape(message_data["product_name"]),
+            line_text,
+        )
+        return Markup("{}{}").format(message_body, product_line)
 
     def _prepare_message_data(self, po_line, request, allocated_qty):
         return {
@@ -130,6 +129,6 @@ class PurchaseRequestAllocation(models.Model):
             message_data = self._prepare_message_data(po_line, request, allocated_qty)
             message = self._purchase_request_confirm_done_message_content(message_data)
             request.message_post(
-                body=Markup(message),
+                body=message,
                 subtype_id=self.env.ref("mail.mt_note").id,
             )
