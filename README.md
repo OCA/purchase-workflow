@@ -101,6 +101,7 @@ addon | version | maintainers | summary
 [purchase_request_to_requisition](purchase_request_to_requisition/) | 18.0.1.0.0 |  | Purchase Request to Purchase Agreement
 [purchase_request_type](purchase_request_type/) | 18.0.1.0.1 |  | Purchase Request Type
 [purchase_requisition_line_description](purchase_requisition_line_description/) | 18.0.1.0.0 |  | Extends the functionality of Purchase Agreements to show line description.
+[purchase_rfq_number](purchase_rfq_number/) | 18.0.1.0.0 |  | Different sequence for purchase for quotations
 [purchase_sale_link_by_origin](purchase_sale_link_by_origin/) | 18.0.1.0.0 |  | Link PO/SO by the PO's Origin in addition to the default behavior that only links them by their lines
 [purchase_security](purchase_security/) | 18.0.1.1.2 | <a href='https://github.com/pilarvargas-tecnativa'><img src='https://github.com/pilarvargas-tecnativa.png' width='32' height='32' style='border-radius:50%;' alt='pilarvargas-tecnativa'/></a> | See only your purchase orders
 [purchase_stock_cost_update](purchase_stock_cost_update/) | 18.0.1.0.0 | <a href='https://github.com/chienandalu'><img src='https://github.com/chienandalu.png' width='32' height='32' style='border-radius:50%;' alt='chienandalu'/></a> <a href='https://github.com/rafaelbn'><img src='https://github.com/rafaelbn.png' width='32' height='32' style='border-radius:50%;' alt='rafaelbn'/></a> | Allows to update valuation layers once the purchase is received
