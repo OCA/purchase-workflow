@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 ProThai Technology Co.,Ltd. (http://prothaitechnology.com)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="res_config_settings_view_form_purchase_rfq_number" model="ir.ui.view">
+        <field name="name">Purchase RFQ number configuration</field>
+        <field name="model">res.config.settings</field>
+        <field
+            name="inherit_id"
+            ref="purchase.res_config_settings_view_form_purchase"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//setting[@id='auto_receipt_reminder']" position="after">
+                <setting
+                    id="keep_name_po"
+                    help="If this is unchecked, purchase rfq use a different sequence from purchase orders"
+                >
+                    <field name="keep_name_po" class="o_light_label" />
+                </setting>
+                <setting
+                    id="auto_attachment_rfq"
+                    invisible="keep_name_po"
+                    help="Auto attachment requests for quotation after confirm"
+                >
+                    <field name="auto_attachment_rfq" class="o_light_label" />
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>
