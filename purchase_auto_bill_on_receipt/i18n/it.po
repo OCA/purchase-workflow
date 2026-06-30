@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-06-17 21:46+0000\n"
+"PO-Revision-Date: 2026-06-30 10:46+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -20,13 +20,13 @@ msgstr ""
 #. odoo-python
 #: code:addons/purchase_auto_bill_on_receipt/models/purchase_order.py:0
 msgid "Auto %(doc)s creation failed on %(src)s %(picking)s: %(error)s"
-msgstr ""
+msgstr "Creazione automatica %(doc)s fallita su %(src)s %(picking)s: %(error)s"
 
 #. module: purchase_auto_bill_on_receipt
 #. odoo-python
 #: code:addons/purchase_auto_bill_on_receipt/models/purchase_order.py:0
 msgid "Auto %(doc)s creation failed — manual review needed"
-msgstr ""
+msgstr "Creazione automatica %(doc)s fallita — richiesta revisione manuale"
 
 #. module: purchase_auto_bill_on_receipt
 #. odoo-python
@@ -35,22 +35,24 @@ msgid ""
 "Auto %(doc)s posting failed on %(src)s %(picking)s (%(doc)s %(bill)s remains"
 " in draft): %(error)s"
 msgstr ""
+"Registrazione automatica %(doc)s fallita su %(src)s %(picking)s (%(doc)s %"
+"(bill)s resta in bozza): %(error)s"
 
 #. module: purchase_auto_bill_on_receipt
 #. odoo-python
 #: code:addons/purchase_auto_bill_on_receipt/models/purchase_order.py:0
 msgid "Auto %(doc)s posting failed — manual review needed"
-msgstr ""
+msgstr "Registrazione automatica %(doc)s fallita — richiesta revisione manuale"
 
 #. module: purchase_auto_bill_on_receipt
 #: model:ir.model.fields.selection,name:purchase_auto_bill_on_receipt.selection__res_partner__auto_bill_on_receipt__auto
 msgid "Auto Bill"
-msgstr ""
+msgstr "Fatturazione automatica"
 
 #. module: purchase_auto_bill_on_receipt
 #: model:ir.model.fields,field_description:purchase_auto_bill_on_receipt.field_stock_picking__auto_bill_pending
 msgid "Auto Bill Pending"
-msgstr ""
+msgstr "Fatturazione automatica in sospeso"
 
 #. module: purchase_auto_bill_on_receipt
 #: model:ir.model.fields,field_description:purchase_auto_bill_on_receipt.field_res_company__auto_bill_on_receipt
@@ -58,7 +60,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_auto_bill_on_receipt.field_res_partner__auto_bill_on_receipt
 #: model:ir.model.fields,field_description:purchase_auto_bill_on_receipt.field_res_users__auto_bill_on_receipt
 msgid "Auto Bill on Purchase Receipt"
-msgstr ""
+msgstr "Fatturazione automatica su ricevuta acquisto"
 
 #. module: purchase_auto_bill_on_receipt
 #: model_terms:ir.ui.view,arch_db:purchase_auto_bill_on_receipt.res_config_settings_view_form
@@ -67,11 +69,14 @@ msgid ""
 "validated, and a Credit Note when a purchase return is validated. Can be "
 "overridden per vendor."
 msgstr ""
+"Crea automaticamente e registra una fattura fornitore quando viene validata "
+"una ricevuta di acquisto e una nota di credito quando è validato un reso. "
+"Può essere forzato per fornitore."
 
 #. module: purchase_auto_bill_on_receipt
 #: model:ir.model.fields,field_description:purchase_auto_bill_on_receipt.field_purchase_order__block_auto_bill
 msgid "Block Auto Bill"
-msgstr ""
+msgstr "Blocca fatturazione automatica"
 
 #. module: purchase_auto_bill_on_receipt
 #: model:ir.model,name:purchase_auto_bill_on_receipt.model_res_company
@@ -104,7 +109,7 @@ msgstr "ID"
 #. module: purchase_auto_bill_on_receipt
 #: model:ir.model.fields.selection,name:purchase_auto_bill_on_receipt.selection__res_partner__auto_bill_on_receipt__no_auto
 msgid "No Auto Bill"
-msgstr ""
+msgstr "Fatturazione automatica disabilitata"
 
 #. module: purchase_auto_bill_on_receipt
 #: model:ir.model.fields,help:purchase_auto_bill_on_receipt.field_res_partner__auto_bill_on_receipt
@@ -113,6 +118,8 @@ msgid ""
 "Override the company default for auto-billing on purchase receipt. Leave "
 "empty to inherit the company setting."
 msgstr ""
+"Forza la fatturazione automatica predefinita dell'azienda sulle ricevute di "
+"acquisto. Lasciare vuoto per utilizzare le impostazioni aziendali."
 
 #. module: purchase_auto_bill_on_receipt
 #: model:ir.model,name:purchase_auto_bill_on_receipt.model_res_config_settings
@@ -127,7 +134,7 @@ msgstr "Ordine di acquisto"
 #. module: purchase_auto_bill_on_receipt
 #: model:ir.actions.server,name:purchase_auto_bill_on_receipt.ir_cron_auto_bill_ir_actions_server
 msgid "Purchase: Auto Bill on Receipt"
-msgstr ""
+msgstr "Acquisto: fattura automatica alla ricevuta"
 
 #. module: purchase_auto_bill_on_receipt
 #: model:ir.model.fields,help:purchase_auto_bill_on_receipt.field_stock_picking__auto_bill_pending
@@ -136,6 +143,9 @@ msgid ""
 "scheduled action picks it up to create and post the Vendor Bill or Credit "
 "Note."
 msgstr ""
+"Imposta quando una ricevuta validata o un reso sono accodati per "
+"fatturazione automatica. L'azione schedulata la utilizza per creare e "
+"registrare la fattura fornitore o la nota di credito."
 
 #. module: purchase_auto_bill_on_receipt
 #: model:ir.model,name:purchase_auto_bill_on_receipt.model_stock_picking
@@ -148,6 +158,9 @@ msgid ""
 "When enabled, suppresses automatic bill creation on receipt for this order, "
 "regardless of the company or vendor settings."
 msgstr ""
+"Quando abilitata, sopprime la creazione automatica della fattura alla "
+"ricevuta per questo ordine, indipendentemente dalle impostazioni "
+"dell'azienda o del fornitore."
 
 #. module: purchase_auto_bill_on_receipt
 #: model:ir.model.fields,help:purchase_auto_bill_on_receipt.field_res_company__auto_bill_on_receipt
@@ -157,6 +170,10 @@ msgid ""
 "and posts a Vendor Bill. This is the default for all vendors and can be "
 "overridden per vendor."
 msgstr ""
+"Quando abilitata, la convalida di una ricevuta di acquisto in entrata crea e "
+"registra automaticamente una fattura fornitore. Questa è l'impostazione "
+"predefinita per tutti i fornitori e può essere modificata per ciascun "
+"fornitore."
 
 #. module: purchase_auto_bill_on_receipt
 #. odoo-python
