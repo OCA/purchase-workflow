@@ -54,7 +54,7 @@ class PurchaseRequisitionLine(models.Model):
                 ._get_fiscal_position(partner)
             )
             taxes = self.product_id.supplier_taxes_id.filtered(
-                lambda tax: tax.company_id in company.parent_ids
+                lambda tax: tax.company_id in company
             )
             values["taxes_id"] = [(6, 0, fpos.map_tax(taxes).ids)]
         return values
