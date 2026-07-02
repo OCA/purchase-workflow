@@ -4,6 +4,7 @@ from datetime import date, timedelta
 
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
+from odoo.fields import Domain
 
 
 class PurchaseOrder(models.Model):
@@ -29,9 +30,9 @@ class PurchaseOrder(models.Model):
                 raise ValidationError(
                     self.env._(
                         "Cannot confirm order %s as one of the lines refers "
-                        "to a blanket order that has no remaining quantity."
+                        "to a blanket order that has no remaining quantity.",
+                        order.name,
                     )
-                    % order.name
                 )
         return res
 
@@ -98,23 +99,27 @@ class PurchaseOrderLine(models.Model):
             return non_date_bo_lines[0]
 
     def _get_eligible_bo_lines_domain(self, base_qty):
-        filters = [
-            ("product_id", "=", self.product_id.id),
-            ("remaining_qty", ">=", base_qty),
-            ("currency_id", "=", self.order_id.currency_id.id),
-            ("order_id.state", "=", "open"),
-            (
-                "company_id",
-                "in",
-                [False, self.order_id.company_id.id],
-            ),
-        ]
+        filters = Domain(
+            [
+                ("product_id", "=", self.product_id.id),
+                ("remaining_qty", ">=", base_qty),
+                ("currency_id", "=", self.order_id.currency_id.id),
+                ("order_id.state", "=", "open"),
+                (
+                    "company_id",
+                    "in",
+                    [False, self.order_id.company_id.id],
+                ),
+            ]
+        )
         if self.order_id.partner_id:
-            filters.append(("partner_id", "=", self.order_id.partner_id.id))
+            filters = Domain.AND(
+                [filters, Domain("partner_id", "=", self.order_id.partner_id.id)]
+            )
         return filters
 
     def _get_eligible_bo_lines(self):
-        base_qty = self.product_uom._compute_quantity(
+        base_qty = self.product_uom_id._compute_quantity(
             self.product_qty, self.product_id.uom_id
         )
         filters = self._get_eligible_bo_lines_domain(base_qty)
@@ -132,7 +137,9 @@ class PurchaseOrderLine(models.Model):
         else:
             self.blanket_order_line = False
         self.onchange_blanket_order_line()
-        return {"domain": {"blanket_order_line": [("id", "in", eligible_bo_lines.ids)]}}
+        return {
+            "domain": {"blanket_order_line": Domain("id", "in", eligible_bo_lines.ids)}
+        }
 
     @api.onchange("product_id", "partner_id")
     def onchange_product_id(self):
@@ -160,15 +167,15 @@ class PurchaseOrderLine(models.Model):
             self.product_id = bol.product_id
             if bol.date_schedule:
                 self.date_planned = bol.date_schedule
-            if bol.product_uom != self.product_uom:
+            if bol.product_uom != self.product_uom_id:
                 price_unit = bol.product_uom._compute_price(
-                    bol.price_unit, self.product_uom
+                    bol.price_unit, self.product_uom_id
                 )
             else:
                 price_unit = bol.price_unit
             self.price_unit = price_unit
             if bol.taxes_id:
-                self.taxes_id = bol.taxes_id
+                self.tax_ids = bol.taxes_id
         else:
             if not self.env.context.get("assigned_from_creation", False):
                 self._compute_tax_id()
@@ -190,17 +197,5 @@ class PurchaseOrderLine(models.Model):
                     self.env._(
                         "Schedule dates defined on the Purchase Order Line "
                         "and on the Blanket Order Line do not match."
-                    )
-                )
-
-    @api.constrains("currency_id")
-    def check_currency(self):
-        for line in self:
-            blanket_currency = line.blanket_order_line.order_id.currency_id
-            if blanket_currency and line.order_id.currency_id != blanket_currency:
-                raise ValidationError(
-                    self.env._(
-                        "The currency of the blanket order must match with that "
-                        "of the purchase order."
                     )
                 )

@@ -2,8 +2,9 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from collections import defaultdict
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
+from odoo.fields import Command, Domain
 from odoo.tools import float_is_zero
 
 
@@ -26,7 +27,9 @@ class BlanketOrderWizard(models.TransientModel):
         )
         if blanket_order.state == "expired":
             raise UserError(
-                _("You can't create a purchase order from an expired blanket order!")
+                self.env._(
+                    "You can't create a purchase order from an expired blanket order!"
+                )
             )
         return blanket_order
 
@@ -40,17 +43,21 @@ class BlanketOrderWizard(models.TransientModel):
         if float_is_zero(
             sum(bo_lines.mapped("remaining_uom_qty")), precision_digits=precision
         ):
-            raise UserError(_("All lines have already been completed."))
+            raise UserError(self.env._("All lines have already been completed."))
 
         for line in bo_lines:
             if line.order_id.state != "open":
                 raise UserError(
-                    _("Purchase Blanket Order %s is not open") % line.order_id.name
+                    self.env._(
+                        "Purchase Blanket Order %s is not open", line.order_id.name
+                    )
                 )
 
             line_company_id = line.company_id and line.company_id.id or False
             if company_id is not False and line_company_id != company_id:
-                raise UserError(_("You have to select lines from the same company."))
+                raise UserError(
+                    self.env._("You have to select lines from the same company.")
+                )
             else:
                 company_id = line_company_id
 
@@ -68,9 +75,7 @@ class BlanketOrderWizard(models.TransientModel):
         self._check_valid_blanket_order_line(bo_lines)
 
         lines = [
-            (
-                0,
-                0,
+            Command.create(
                 {
                     "blanket_line_id": line.id,
                     "product_id": line.product_id.id,
@@ -88,7 +93,9 @@ class BlanketOrderWizard(models.TransientModel):
         return lines
 
     blanket_order_id = fields.Many2one(
-        "purchase.blanket.order", readonly=True, default=_default_order
+        "purchase.blanket.order",
+        readonly=True,
+        default=lambda self: self._default_order(),
     )
     purchase_order_id = fields.Many2one(
         "purchase.order",
@@ -99,7 +106,7 @@ class BlanketOrderWizard(models.TransientModel):
         "purchase.blanket.order.wizard.line",
         "wizard_id",
         string="Lines",
-        default=_default_lines,
+        default=lambda self: self._default_lines(),
     )
 
     def create_purchase_order(self):
@@ -111,7 +118,9 @@ class BlanketOrderWizard(models.TransientModel):
                 continue
 
             if line.qty > line.remaining_uom_qty:
-                raise UserError(_("You can't order more than the remaining quantities"))
+                raise UserError(
+                    self.env._("You can't order more than the remaining quantities")
+                )
 
             date_planned = line.blanket_line_id.date_schedule
 
@@ -121,14 +130,14 @@ class BlanketOrderWizard(models.TransientModel):
                 "date_planned": date_planned
                 if date_planned
                 else line.blanket_line_id.order_id.date_start,
-                "product_uom": line.product_uom.id,
+                "product_uom_id": line.product_uom.id,
                 "sequence": line.blanket_line_id.sequence,
                 "price_unit": line.blanket_line_id.price_unit,
                 "blanket_order_line": line.blanket_line_id.id,
                 "product_qty": line.qty,
-                "taxes_id": [(6, 0, line.taxes_id.ids)],
+                "tax_ids": [Command.set(line.taxes_id.ids)],
             }
-            order_lines_by_supplier[line.partner_id.id].append((0, 0, vals))
+            order_lines_by_supplier[line.partner_id.id].append(Command.create(vals))
 
             if currency_id == 0:
                 currency_id = line.blanket_line_id.order_id.currency_id.id
@@ -141,11 +150,11 @@ class BlanketOrderWizard(models.TransientModel):
                 payment_term_id = False
 
         if not order_lines_by_supplier:
-            raise UserError(_("An order can't be empty"))
+            raise UserError(self.env._("An order can't be empty"))
 
         if not currency_id:
             raise UserError(
-                _(
+                self.env._(
                     "Can not create Purchase Order from Blanket "
                     "Order lines with different currencies"
                 )
@@ -173,8 +182,8 @@ class BlanketOrderWizard(models.TransientModel):
             purchase_order = self.env["purchase.order"].create(order_vals)
             res.append(purchase_order.id)
         return {
-            "domain": [("id", "in", res)],
-            "name": _("RFQ"),
+            "domain": Domain("id", "in", res),
+            "name": self.env._("RFQ"),
             "view_mode": "list,form",
             "res_model": "purchase.order",
             "view_id": False,

@@ -4,6 +4,7 @@ from datetime import date, timedelta
 
 from odoo import fields
 from odoo.exceptions import ValidationError
+from odoo.fields import Command
 from odoo.tests import common
 
 
@@ -23,33 +24,44 @@ class TestPurchaseOrder(common.TransactionCase):
         )
         self.payment_term = self.env.ref("account.account_payment_term_30days")
 
-        # Seller IDS
-        seller = self.env["product.supplierinfo"].create(
-            {"partner_id": self.partner.id, "price": 30.0}
-        )
-
         self.product = self.env["product.product"].create(
             {
                 "name": "Demo",
-                "categ_id": self.env.ref("product.product_category_1").id,
                 "standard_price": 35.0,
-                "seller_ids": [(6, 0, [seller.id])],
                 "type": "consu",
                 "uom_id": self.env.ref("uom.product_uom_unit").id,
                 "default_code": "PROD_DEL01",
             }
         )
+        # Seller IDS
+        self.env["product.supplierinfo"].create(
+            {
+                "partner_id": self.partner.id,
+                "product_id": self.product.id,
+                "product_tmpl_id": self.product.product_tmpl_id.id,
+                "price": 30.0,
+            }
+        )
+
         self.product_2 = self.env["product.product"].create(
             {
                 "name": "Demo 2",
-                "categ_id": self.env.ref("product.product_category_1").id,
                 "standard_price": 35.0,
-                "seller_ids": [(6, 0, [seller.id])],
                 "type": "consu",
                 "uom_id": self.env.ref("uom.product_uom_unit").id,
                 "default_code": "PROD_DEL02",
             }
         )
+        # Seller IDS
+        self.env["product.supplierinfo"].create(
+            {
+                "partner_id": self.partner.id,
+                "product_id": self.product_2.id,
+                "product_tmpl_id": self.product_2.product_tmpl_id.id,
+                "price": 30.0,
+            }
+        )
+
         self.validity = date.today() + timedelta(days=365)
         self.date_schedule_1 = date.today() + timedelta(days=10)
         self.date_schedule_2 = date.today() + timedelta(days=20)
@@ -64,9 +76,7 @@ class TestPurchaseOrder(common.TransactionCase):
                 "validity_date": fields.Date.to_string(self.validity),
                 "payment_term_id": self.payment_term.id,
                 "line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": self.product.id,
                             "product_uom": self.product.uom_id.id,
@@ -77,9 +87,7 @@ class TestPurchaseOrder(common.TransactionCase):
                             "price_unit": 30.0,
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": self.product.id,
                             "product_uom": self.product.uom_id.id,
@@ -103,9 +111,7 @@ class TestPurchaseOrder(common.TransactionCase):
                 "validity_date": fields.Date.to_string(self.validity),
                 "payment_term_id": self.payment_term.id,
                 "line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": self.product.id,
                             "product_uom": self.product.uom_id.id,
@@ -113,9 +119,7 @@ class TestPurchaseOrder(common.TransactionCase):
                             "price_unit": 30.0,
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": self.product_2.id,
                             "product_uom": self.product.uom_id.id,
@@ -141,14 +145,11 @@ class TestPurchaseOrder(common.TransactionCase):
             {
                 "partner_id": self.partner.id,
                 "order_line": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "name": self.product.name,
                             "product_id": self.product.id,
                             "product_qty": 5.0,
-                            "product_uom": self.product.uom_po_id.id,
                             "date_planned": date.today(),
                             "price_unit": 10.0,
                         },
@@ -177,14 +178,11 @@ class TestPurchaseOrder(common.TransactionCase):
             {
                 "partner_id": self.partner.id,
                 "order_line": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "name": self.product.name,
                             "product_id": self.product.id,
                             "product_qty": 5.0,
-                            "product_uom": self.product.uom_po_id.id,
                             "date_planned": date.today(),
                             "price_unit": 10.0,
                         },
@@ -224,14 +222,11 @@ class TestPurchaseOrder(common.TransactionCase):
             {
                 "partner_id": self.partner.id,
                 "order_line": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "name": self.product.name,
                             "product_id": self.product.id,
                             "product_qty": 5.0,
-                            "product_uom": self.product.uom_po_id.id,
                             "date_planned": date.today(),
                             "price_unit": 10.0,
                         },

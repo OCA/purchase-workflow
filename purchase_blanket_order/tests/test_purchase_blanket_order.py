@@ -4,6 +4,7 @@ from datetime import date, timedelta
 
 from odoo import fields
 from odoo.exceptions import UserError
+from odoo.fields import Command, Domain
 from odoo.tests import common
 
 
@@ -22,27 +23,29 @@ class TestPurchaseBlanketOrders(common.TransactionCase):
         )
         self.payment_term = self.env.ref("account.account_payment_term_30days")
 
-        # Seller IDS
-        seller = self.env["product.supplierinfo"].create(
-            {"partner_id": self.partner.id, "price": 30.0}
-        )
-
         self.product = self.env["product.product"].create(
             {
                 "name": "Demo",
-                "categ_id": self.env.ref("product.product_category_1").id,
                 "standard_price": 35.0,
-                "seller_ids": [(6, 0, [seller.id])],
                 "type": "consu",
                 "uom_id": self.env.ref("uom.product_uom_unit").id,
                 "default_code": "PROD_DEL01",
                 "description_purchase": "Purchase Description",
             }
         )
+        # Seller IDS
+        self.env["product.supplierinfo"].create(
+            {
+                "partner_id": self.partner.id,
+                "product_id": self.product.id,
+                "product_tmpl_id": self.product.product_tmpl_id.id,
+                "price": 30.0,
+            }
+        )
+
         self.product2 = self.env["product.product"].create(
             {
                 "name": "Demo 2",
-                "categ_id": self.env.ref("product.product_category_1").id,
                 "standard_price": 50.0,
                 "type": "consu",
                 "uom_id": self.env.ref("uom.product_uom_unit").id,
@@ -64,9 +67,7 @@ class TestPurchaseBlanketOrders(common.TransactionCase):
                 "validity_date": fields.Date.to_string(self.yesterday),
                 "payment_term_id": self.payment_term.id,
                 "line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": self.product.id,
                             "original_uom_qty": 20.0,
@@ -132,9 +133,7 @@ class TestPurchaseBlanketOrders(common.TransactionCase):
                 "validity_date": fields.Date.to_string(self.tomorrow),
                 "payment_term_id": self.payment_term.id,
                 "line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": self.product.id,
                             "product_uom": self.product.uom_id.id,
@@ -186,7 +185,7 @@ class TestPurchaseBlanketOrders(common.TransactionCase):
         self.assertEqual(blanket_order.purchase_count, 2)
 
         view_action = blanket_order.action_view_purchase_orders()
-        domain_ids = view_action["domain"][0][2]
+        domain_ids = view_action.get("domain", Domain).value
         self.assertEqual(len(domain_ids), 2)
 
     def test_03_create_purchase_orders_from_blanket_order_line(self):
@@ -199,9 +198,7 @@ class TestPurchaseBlanketOrders(common.TransactionCase):
                 "validity_date": fields.Date.to_string(self.tomorrow),
                 "payment_term_id": self.payment_term.id,
                 "line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": self.product.id,
                             "product_uom": self.product.uom_id.id,
@@ -209,9 +206,7 @@ class TestPurchaseBlanketOrders(common.TransactionCase):
                             "price_unit": 30.0,
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": self.product2.id,
                             "product_uom": self.product2.uom_id.id,
@@ -248,9 +243,7 @@ class TestPurchaseBlanketOrders(common.TransactionCase):
                 "validity_date": fields.Date.to_string(self.tomorrow),
                 "payment_term_id": self.payment_term.id,
                 "line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": self.product.id,
                             "product_uom": self.product.uom_id.id,

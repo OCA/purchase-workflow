@@ -2,8 +2,10 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from datetime import datetime
 
-from odoo import SUPERUSER_ID, api, fields, models
+from odoo import api, fields, models
+from odoo.api import SUPERUSER_ID
 from odoo.exceptions import UserError
+from odoo.fields import Domain
 from odoo.tools import float_is_zero
 
 
@@ -104,7 +106,7 @@ class BlanketOrder(models.Model):
     company_id = fields.Many2one(
         "res.company",
         string="Company",
-        default=_default_company,
+        default=lambda self: self._default_company(),
         readonly=True,
     )
     purchase_count = fields.Integer(compute="_compute_purchase_count")
@@ -228,16 +230,14 @@ class BlanketOrder(models.Model):
         if self.partner_id.user_id:
             self.user_id = self.partner_id.user_id.id
 
-    def unlink(self):
-        for order in self:
-            if order.state not in ("draft", "expired"):
-                raise UserError(
-                    self.env._(
-                        "You can not delete an open blanket order! "
-                        "Try to cancel it before."
-                    )
+    @api.ondelete(at_uninstall=False)
+    def _unlink_except_state(self):
+        if any(order.state not in ("draft", "expired") for order in self):
+            raise UserError(
+                self.env._(
+                    "You can not delete an open blanket order! Try to cancel it before."
                 )
-        return super().unlink()
+            )
 
     def copy_data(self, default=None):
         if default is None:
@@ -297,8 +297,8 @@ class BlanketOrder(models.Model):
         purchase_orders = self._get_purchase_orders()
         action = self.env["ir.actions.actions"]._for_xml_id("purchase.purchase_rfq")
         if len(purchase_orders) > 0:
-            action["domain"] = [("id", "in", purchase_orders.ids)]
-            action["context"] = [("id", "in", purchase_orders.ids)]
+            action["domain"] = Domain("id", "in", purchase_orders.ids)
+            action["context"] = Domain("id", "in", purchase_orders.ids)
         else:
             action = {"type": "ir.actions.act_window_close"}
         return action
@@ -309,7 +309,7 @@ class BlanketOrder(models.Model):
         )
         lines = self.mapped("line_ids")
         if len(lines) > 0:
-            action["domain"] = [("id", "in", lines.ids)]
+            action["domain"] = Domain("id", "in", lines.ids)
         return action
 
     @api.model
@@ -329,47 +329,37 @@ class BlanketOrder(models.Model):
     @api.model
     def _search_original_uom_qty(self, operator, value):
         bo_line_obj = self.env["purchase.blanket.order.line"]
-        res = []
         bo_lines = bo_line_obj.search([("original_uom_qty", operator, value)])
         order_ids = bo_lines.mapped("order_id")
-        res.append(("id", "in", order_ids.ids))
-        return res
+        return Domain("id", "in", order_ids.ids)
 
     @api.model
     def _search_ordered_uom_qty(self, operator, value):
         bo_line_obj = self.env["purchase.blanket.order.line"]
-        res = []
         bo_lines = bo_line_obj.search([("ordered_uom_qty", operator, value)])
         order_ids = bo_lines.mapped("order_id")
-        res.append(("id", "in", order_ids.ids))
-        return res
+        return Domain("id", "in", order_ids.ids)
 
     @api.model
     def _search_invoiced_uom_qty(self, operator, value):
         bo_line_obj = self.env["purchase.blanket.order.line"]
-        res = []
         bo_lines = bo_line_obj.search([("invoiced_uom_qty", operator, value)])
         order_ids = bo_lines.mapped("order_id")
-        res.append(("id", "in", order_ids.ids))
-        return res
+        return Domain("id", "in", order_ids.ids)
 
     @api.model
     def _search_received_uom_qty(self, operator, value):
         bo_line_obj = self.env["purchase.blanket.order.line"]
-        res = []
         bo_lines = bo_line_obj.search([("received_uom_qty", operator, value)])
         order_ids = bo_lines.mapped("order_id")
-        res.append(("id", "in", order_ids.ids))
-        return res
+        return Domain("id", "in", order_ids.ids)
 
     @api.model
     def _search_remaining_uom_qty(self, operator, value):
         bo_line_obj = self.env["purchase.blanket.order.line"]
-        res = []
         bo_lines = bo_line_obj.search([("remaining_uom_qty", operator, value)])
         order_ids = bo_lines.mapped("order_id")
-        res.append(("id", "in", order_ids.ids))
-        return res
+        return Domain("id", "in", order_ids.ids)
 
 
 class BlanketOrderLine(models.Model):
@@ -530,7 +520,7 @@ class BlanketOrderLine(models.Model):
             self.env["account.tax"]._fix_tax_included_price_company(
                 seller.price,
                 product.supplier_taxes_id,
-                self.purchase_lines.taxes_id,
+                self.purchase_lines.tax_ids,
                 self.company_id,
             )
             if seller
@@ -546,8 +536,10 @@ class BlanketOrderLine(models.Model):
                 price_unit, self.order_id.currency_id
             )
 
-        if seller and self.product_uom and seller.product_uom != self.product_uom:
-            price_unit = seller.product_uom._compute_price(price_unit, self.product_uom)
+        if seller and self.product_uom and seller.product_uom_id != self.product_uom:
+            price_unit = seller.product_uom_id._compute_price(
+                price_unit, self.product_uom
+            )
 
         return price_unit
 
@@ -558,8 +550,15 @@ class BlanketOrderLine(models.Model):
         )
         if self.product_id:
             name = self.product_id.name
+            seller = self.product_id._select_seller(
+                partner_id=self.order_id.partner_id,
+                quantity=self.original_uom_qty,
+                date=self.order_id.date_start
+                and fields.Date.from_string(self.order_id.date_start),
+            )
+
             if not self.product_uom:
-                self.product_uom = self.product_id.uom_po_id or self.product_id.uom_id
+                self.product_uom = seller.product_uom_id or self.product_id.uom_id
             if self.order_id.partner_id and float_is_zero(
                 self.price_unit, precision_digits=precision
             ):
@@ -585,7 +584,7 @@ class BlanketOrderLine(models.Model):
         "purchase_lines.order_id.state",
         "purchase_lines.blanket_order_line",
         "purchase_lines.product_qty",
-        "purchase_lines.product_uom",
+        "purchase_lines.product_uom_id",
         "purchase_lines.qty_received",
         "purchase_lines.qty_invoiced",
         "original_uom_qty",
@@ -595,17 +594,17 @@ class BlanketOrderLine(models.Model):
         for line in self:
             purchase_lines = line.purchase_lines
             line.ordered_uom_qty = sum(
-                pol.product_uom._compute_quantity(pol.product_qty, line.product_uom)
+                pol.product_uom_id._compute_quantity(pol.product_qty, line.product_uom)
                 for pol in purchase_lines
                 if pol.order_id.state != "cancel" and pol.product_id == line.product_id
             )
             line.invoiced_uom_qty = sum(
-                pol.product_uom._compute_quantity(pol.qty_invoiced, line.product_uom)
+                pol.product_uom_id._compute_quantity(pol.qty_invoiced, line.product_uom)
                 for pol in purchase_lines
                 if pol.order_id.state != "cancel" and pol.product_id == line.product_id
             )
             line.received_uom_qty = sum(
-                pol.product_uom._compute_quantity(pol.qty_received, line.product_uom)
+                pol.product_uom_id._compute_quantity(pol.qty_received, line.product_uom)
                 for pol in purchase_lines
                 if pol.order_id.state != "cancel" and pol.product_id == line.product_id
             )
