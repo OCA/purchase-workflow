@@ -42,8 +42,7 @@ class PurchaseOrder(models.Model):
                 if line.blanket_order_line.partner_id != self.partner_id:
                     raise ValidationError(
                         self.env._(
-                            "The vendor must be equal to the blanket order"
-                            " lines vendor"
+                            "The vendor must be equal to the blanket order lines vendor"
                         )
                     )
 
