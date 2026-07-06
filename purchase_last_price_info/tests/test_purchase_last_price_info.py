@@ -127,6 +127,10 @@ class TestPurchaseLastPriceInfo(common.TransactionCase):
                 ]
             )
         )
+        last_purchase_line = self.product1.last_purchase_line_id
+        last_purchase_line_tmp = self.product1.product_tmpl_id.last_purchase_line_id
+        self.assertNotEqual(first_order_line, last_purchase_line)
+        self.assertEqual(last_purchase_line, last_purchase_line_tmp)
         self.assertNotEqual(
             first_order_line.date_order,
             self.product1.last_purchase_date,
@@ -134,6 +138,10 @@ class TestPurchaseLastPriceInfo(common.TransactionCase):
         expected_date = datetime.datetime(2001, 1, 1, 0, 0)
         self.assertEqual(
             expected_date,
+            self.product1.last_purchase_date,
+        )
+        self.assertEqual(
+            last_purchase_line.date_order,
             self.product1.last_purchase_date,
         )
         expected_price = 10.0
