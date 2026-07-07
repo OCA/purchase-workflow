@@ -28,7 +28,7 @@ class ProductProduct(models.Model):
                 quantity=record.qty_to_process or 1,
                 uom_id=record.quick_uom_id,
             )
-            price_unit = record.uom_id._compute_price(
+            price_unit = record.uom_po_id._compute_price(
                 seller.price,
                 record.quick_uom_id,
             )
