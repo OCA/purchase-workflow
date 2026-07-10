@@ -1,8 +1,9 @@
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from odoo.addons.purchase_order_approval_block.tests.\
-    test_purchase_order_approval_block import TestPurchaseOrderApprovalBlock
+from odoo.addons.purchase_order_approval_block.tests.test_purchase_order_approval_block import (
+    TestPurchaseOrderApprovalBlock,
+)
 
 
 class TestPoApprovalBlockReason(TestPurchaseOrderApprovalBlock):

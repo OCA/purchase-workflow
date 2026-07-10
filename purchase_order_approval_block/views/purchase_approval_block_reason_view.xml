@@ -11,10 +11,10 @@
         <field name="name">purchase.approval.block.reason.tree</field>
         <field name="model">purchase.approval.block.reason</field>
         <field name="arch" type="xml">
-            <tree string="Purchase Order Approval Block Reasons">
+            <list string="Purchase Order Approval Block Reasons">
                 <field name="name"/>
                 <field name="description"/>
-            </tree>
+            </list>
         </field>
     </record>
     <record id="purchase_approval_block_reason_form_view" model="ir.ui.view">
