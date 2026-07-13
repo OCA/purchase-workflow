@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_work_acceptance_evaluation_tab_form" model="ir.ui.view">
+        <field name="name">work.acceptance.evaluation.tab.form</field>
+        <field name="model">work.acceptance</field>
+        <field
+            name="inherit_id"
+            ref="purchase_work_acceptance.view_work_acceptance_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page
+                    string="Evaluation"
+                    name="evaluation"
+                    groups="purchase_work_acceptance_evaluation.group_enable_eval_on_wa"
+                >
+                    <field name="evaluation_result_ids">
+                        <list editable="bottom" create="0">
+                            <field name="case_id" readonly="1" force_save="1" />
+                            <field name="score_id" readonly="not editable" />
+                            <field name="note" readonly="not editable" />
+                            <field name="editable" column_invisible="1" />
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
