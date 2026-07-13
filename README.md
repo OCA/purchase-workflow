@@ -40,6 +40,7 @@ addon | version | maintainers | summary
 [purchase_order_general_discount](purchase_order_general_discount/) | 19.0.1.0.0 |  | General discount per purchase order
 [purchase_order_line_description](purchase_order_line_description/) | 19.0.1.0.0 |  | Purchase order line description
 [purchase_order_line_menu](purchase_order_line_menu/) | 19.0.1.0.0 |  | Adds Purchase Order Lines Menu
+[purchase_order_line_price_unit_digits](purchase_order_line_price_unit_digits/) | 19.0.1.0.0 | <a href='https://github.com/chienandalu'><img src='https://github.com/chienandalu.png' width='32' height='32' style='border-radius:50%;' alt='chienandalu'/></a> <a href='https://github.com/rafaelbn'><img src='https://github.com/rafaelbn.png' width='32' height='32' style='border-radius:50%;' alt='rafaelbn'/></a> | Legacy digits visualization for price unit
 [purchase_order_line_sequence](purchase_order_line_sequence/) | 19.0.1.0.0 |  | Adds sequence to PO lines and propagates it toInvoice lines and Stock Moves
 [purchase_order_owner](purchase_order_owner/) | 19.0.1.0.0 |  | Purchase Order Owner
 [purchase_order_supplierinfo_update](purchase_order_supplierinfo_update/) | 19.0.1.0.0 | <a href='https://github.com/ernestotejeda'><img src='https://github.com/ernestotejeda.png' width='32' height='32' style='border-radius:50%;' alt='ernestotejeda'/></a> | Update product supplierinfo with the last purchase price
