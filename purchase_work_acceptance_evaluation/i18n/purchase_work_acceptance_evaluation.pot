@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -117,14 +117,6 @@ msgid "ID"
 msgstr ""
 
 #. module: purchase_work_acceptance_evaluation
-#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation____last_update
-#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation_report____last_update
-#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation_result____last_update
-#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation_score____last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: purchase_work_acceptance_evaluation
 #: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation__write_uid
 #: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation_result__write_uid
 #: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation_score__write_uid
@@ -152,7 +144,6 @@ msgstr ""
 #. module: purchase_work_acceptance_evaluation
 #. odoo-python
 #: code:addons/purchase_work_acceptance_evaluation/models/work_acceptance.py:0
-#, python-format
 msgid "Please evaluate - %s"
 msgstr ""
 
