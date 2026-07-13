@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright (C) 2026 Akretion (<http://www.akretion.com>).
+@author Kévin Roche <kevin.roche@akretion.com>
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="view_purchase_order_form_intercompany_auto" model="ir.ui.view">
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field
+                    name="purchase_auto_validation_id"
+                    attrs="{'invisible': [('purchase_auto_validation_id', '=', False)]}"
+                />
+            </field>
+        </field>
+    </record>
+
+
+</odoo>

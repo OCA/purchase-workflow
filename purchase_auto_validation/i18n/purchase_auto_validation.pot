@@ -1,0 +1,194 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_auto_validation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-19 09:52+0000\n"
+"PO-Revision-Date: 2026-06-19 09:52+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_auto_validation
+#: model:ir.model.fields,field_description:purchase_auto_validation.field_purchase_auto_validation__active
+msgid "Active"
+msgstr ""
+
+#. module: purchase_auto_validation
+#: model:ir.model.fields,field_description:purchase_auto_validation.field_purchase_order__purchase_auto_validation_id
+msgid "Auto Purchase Validation"
+msgstr ""
+
+#. module: purchase_auto_validation
+#: model:ir.actions.server,name:purchase_auto_validation.ir_cron_purchase_auto_validation_ir_actions_server
+#: model:ir.cron,cron_name:purchase_auto_validation.ir_cron_purchase_auto_validation
+#: model:ir.cron,name:purchase_auto_validation.ir_cron_purchase_auto_validation
+msgid "Auto Validate Purchase Orders"
+msgstr ""
+
+#. module: purchase_auto_validation
+#: model:ir.actions.act_window,name:purchase_auto_validation.action_auto_purchase_config
+#: model:ir.ui.menu,name:purchase_auto_validation.menu_auto_intercompany_purchase
+msgid "Automatic Purchase Orders Validation"
+msgstr ""
+
+#. module: purchase_auto_validation
+#: model:ir.model.fields,field_description:purchase_auto_validation.field_purchase_auto_validation__company_id
+msgid "Company"
+msgstr ""
+
+#. module: purchase_auto_validation
+#: model:ir.model.fields,field_description:purchase_auto_validation.field_purchase_auto_validation__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: purchase_auto_validation
+#: model:ir.model.fields,field_description:purchase_auto_validation.field_purchase_auto_validation__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: purchase_auto_validation
+#: model:ir.model.fields,field_description:purchase_auto_validation.field_purchase_auto_validation__weekday
+msgid "Day"
+msgstr ""
+
+#. module: purchase_auto_validation
+#: model:ir.model.fields,field_description:purchase_auto_validation.field_purchase_auto_validation__display_name
+#: model:ir.model.fields,field_description:purchase_auto_validation.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:purchase_auto_validation.field_stock_rule__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_auto_validation
+#: code:addons/purchase_auto_validation/models/purchase_auto_validation.py:0
+#, python-format
+msgid "Friday"
+msgstr ""
+
+#. module: purchase_auto_validation
+#: model:ir.model.fields,field_description:purchase_auto_validation.field_purchase_auto_validation__hour
+msgid "Hour"
+msgstr ""
+
+#. module: purchase_auto_validation
+#: model:ir.model.fields,field_description:purchase_auto_validation.field_purchase_auto_validation__id
+#: model:ir.model.fields,field_description:purchase_auto_validation.field_purchase_order__id
+#: model:ir.model.fields,field_description:purchase_auto_validation.field_stock_rule__id
+msgid "ID"
+msgstr ""
+
+#. module: purchase_auto_validation
+#: model:ir.model.fields,field_description:purchase_auto_validation.field_purchase_auto_validation____last_update
+#: model:ir.model.fields,field_description:purchase_auto_validation.field_purchase_order____last_update
+#: model:ir.model.fields,field_description:purchase_auto_validation.field_stock_rule____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: purchase_auto_validation
+#: model:ir.model.fields,field_description:purchase_auto_validation.field_purchase_auto_validation__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: purchase_auto_validation
+#: model:ir.model.fields,field_description:purchase_auto_validation.field_purchase_auto_validation__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: purchase_auto_validation
+#: code:addons/purchase_auto_validation/models/purchase_auto_validation.py:0
+#, python-format
+msgid "Monday"
+msgstr ""
+
+#. module: purchase_auto_validation
+#: model:ir.model.fields,field_description:purchase_auto_validation.field_purchase_auto_validation__name
+msgid "Name"
+msgstr ""
+
+#. module: purchase_auto_validation
+#: code:addons/purchase_auto_validation/models/purchase_order.py:0
+#, python-format
+msgid ""
+"Only products configured in the auto purchase validation can be ordered in "
+"this purchase order. The following products are not allowed: %s"
+msgstr ""
+
+#. module: purchase_auto_validation
+#: model:ir.model.fields,field_description:purchase_auto_validation.field_purchase_auto_validation__product_ids
+msgid "Product Variants"
+msgstr ""
+
+#. module: purchase_auto_validation
+#: model:ir.model.fields,field_description:purchase_auto_validation.field_purchase_auto_validation__product_tmpl_ids
+msgid "Products"
+msgstr ""
+
+#. module: purchase_auto_validation
+#: model:ir.model,name:purchase_auto_validation.model_purchase_auto_validation
+msgid "Purchase Auto Validation"
+msgstr ""
+
+#. module: purchase_auto_validation
+#: model:ir.model,name:purchase_auto_validation.model_purchase_order
+msgid "Purchase Order"
+msgstr ""
+
+#. module: purchase_auto_validation
+#: model:ir.model.fields,field_description:purchase_auto_validation.field_purchase_auto_validation__purchase_order_ids
+#: model_terms:ir.ui.view,arch_db:purchase_auto_validation.purchase_auto_validation_form
+msgid "Purchase Orders"
+msgstr ""
+
+#. module: purchase_auto_validation
+#: code:addons/purchase_auto_validation/models/purchase_auto_validation.py:0
+#, python-format
+msgid "Saturday"
+msgstr ""
+
+#. module: purchase_auto_validation
+#: model:ir.model,name:purchase_auto_validation.model_stock_rule
+msgid "Stock Rule"
+msgstr ""
+
+#. module: purchase_auto_validation
+#: code:addons/purchase_auto_validation/models/purchase_auto_validation.py:0
+#, python-format
+msgid "Sunday"
+msgstr ""
+
+#. module: purchase_auto_validation
+#: model:ir.model.fields,field_description:purchase_auto_validation.field_purchase_auto_validation__partner_id
+msgid "Supplier"
+msgstr ""
+
+#. module: purchase_auto_validation
+#: code:addons/purchase_auto_validation/models/purchase_auto_validation.py:0
+#, python-format
+msgid ""
+"The following products are already covered by another auto purchase "
+"validation rule for the same company (or a rule without company): %s"
+msgstr ""
+
+#. module: purchase_auto_validation
+#: code:addons/purchase_auto_validation/models/purchase_auto_validation.py:0
+#, python-format
+msgid "Thursday"
+msgstr ""
+
+#. module: purchase_auto_validation
+#: code:addons/purchase_auto_validation/models/purchase_auto_validation.py:0
+#, python-format
+msgid "Tuesday"
+msgstr ""
+
+#. module: purchase_auto_validation
+#: code:addons/purchase_auto_validation/models/purchase_auto_validation.py:0
+#, python-format
+msgid "Wednesday"
+msgstr ""

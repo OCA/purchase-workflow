@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright (C) 2026 Akretion (<http://www.akretion.com>).
+@author Kévin Roche <kevin.roche@akretion.com>
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="purchase_auto_validation_form" model="ir.ui.view">
+        <field name="model">purchase.auto.validation</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="product_tmpl_ids">
+                            <tree editable="bottom">
+                                <field name="default_code" />
+                                <field name="name" />
+                            </tree>
+                        </field>
+                        <field name="product_ids">
+                            <tree editable="bottom">
+                                <field name="default_code" />
+                                <field name="name" />
+                            </tree>
+                        </field>
+                        <field name="partner_id" />
+                        <field name="weekday" />
+                        <field name="hour" />
+                        <field name="company_id" groups="base.group_multi_company" />
+                        <field name="active" />
+                    </group>
+                    <notebook>
+                        <page string="Purchase Orders">
+                            <field name="purchase_order_ids" readonly="1">
+                                <tree>
+                                    <field name="name" />
+                                    <field name="partner_id" />
+                                    <field name="state" />
+                                    <field name="amount_total" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="purchase_auto_validation_tree" model="ir.ui.view">
+        <field name="model">purchase.auto.validation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="partner_id" />
+                <field name="name" />
+                <field name="product_tmpl_ids" widget="many2many_tags" />
+                <field name="weekday" />
+                <field name="hour" />
+                <field name="active" invisible="1" />
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="action_auto_purchase_config" model="ir.actions.act_window">
+        <field name="name">Automatic Purchase Orders Validation</field>
+        <field name="res_model">purchase.auto.validation</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="menu_auto_intercompany_purchase"
+        name="Automatic Purchase Orders Validation"
+        parent="purchase.menu_purchase_config"
+        action="action_auto_purchase_config"
+        sequence="50"
+        groups="purchase.group_purchase_manager"
+    />
+</odoo>
