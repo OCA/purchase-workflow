@@ -16,6 +16,7 @@ setuptools.setup(
         'odoo14-addon-purchase_advance_payment',
         'odoo14-addon-purchase_allowed_product',
         'odoo14-addon-purchase_analytic_global',
+        'odoo14-addon-purchase_auto_validation',
         'odoo14-addon-purchase_blanket_order',
         'odoo14-addon-purchase_cancel_confirm',
         'odoo14-addon-purchase_cancel_reason',

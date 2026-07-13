@@ -30,6 +30,7 @@ addon | version | maintainers | summary
 [purchase_advance_payment](purchase_advance_payment/) | 14.0.1.1.3 |  | Allow to add advance payments on purchase orders
 [purchase_allowed_product](purchase_allowed_product/) | 14.0.2.3.0 | <a href='https://github.com/aleuffre'><img src='https://github.com/aleuffre.png' width='32' height='32' style='border-radius:50%;' alt='aleuffre'/></a> <a href='https://github.com/renda-dev'><img src='https://github.com/renda-dev.png' width='32' height='32' style='border-radius:50%;' alt='renda-dev'/></a> | This module allows to select only products that can be supplied by the vendor
 [purchase_analytic_global](purchase_analytic_global/) | 14.0.1.0.0 |  | Purchase - Analytic Account Global
+[purchase_auto_validation](purchase_auto_validation/) | 14.0.1.0.0 | <a href='https://github.com/Kev-Roche'><img src='https://github.com/Kev-Roche.png' width='32' height='32' style='border-radius:50%;' alt='Kev-Roche'/></a> | Purchase Auto Validation with rules
 [purchase_blanket_order](purchase_blanket_order/) | 14.0.2.0.1 |  | Purchase Blanket Orders
 [purchase_cancel_confirm](purchase_cancel_confirm/) | 14.0.1.0.1 | <a href='https://github.com/kittiu'><img src='https://github.com/kittiu.png' width='32' height='32' style='border-radius:50%;' alt='kittiu'/></a> | Purchase Cancel Confirm
 [purchase_cancel_reason](purchase_cancel_reason/) | 14.0.1.0.1 |  | Purchase Cancel Reason
