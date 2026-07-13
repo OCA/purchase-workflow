@@ -5,10 +5,10 @@ from odoo import fields, models
 
 
 class PurchaseApprovalBlockReason(models.Model):
-    _name = 'purchase.approval.block.reason'
-    _description = 'Purchase Approval Block Reason'
+    _name = "purchase.approval.block.reason"
+    _description = "Purchase Approval Block Reason"
 
     name = fields.Char(required=True)
     description = fields.Text()
     active = fields.Boolean(default=True)
-    amount = fields.Float('Amount limit')
+    amount = fields.Float("Amount limit")

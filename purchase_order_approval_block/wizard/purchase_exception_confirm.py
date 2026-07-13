@@ -5,10 +5,10 @@ from odoo import models
 
 
 class PurchaseExceptionConfirm(models.TransientModel):
-    _inherit = 'purchase.exception.confirm'
+    _inherit = "purchase.exception.confirm"
 
     def action_confirm(self):
         self.ensure_one()
         if self.ignore and self.related_model_id.approval_block_id:
             self.related_model_id.button_release_approval_block()
-        return super(PurchaseExceptionConfirm, self).action_confirm()
+        return super().action_confirm()

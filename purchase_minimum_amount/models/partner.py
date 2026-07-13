@@ -6,6 +6,6 @@ from odoo import fields, models
 
 
 class ResPartner(models.Model):
-    _inherit = 'res.partner'
+    _inherit = "res.partner"
 
     minimum_po_amount = fields.Float("Minimum Purchase Amount")

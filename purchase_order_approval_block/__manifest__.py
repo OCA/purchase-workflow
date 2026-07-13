@@ -7,19 +7,18 @@
     "version": "17.0.1.0.0",
     "summary": "RUN-1134",
     "category": "Purchase Management",
-    "description": 'RUN-1324:https://jira.metrosystems.net/browse/RUN-1324',
     "website": "https://github.com/OCA/purchase-workflow",
     "depends": [
-        'purchase_stock',
-        'purchase_exception',
+        "purchase_stock",
+        "purchase_exception",
     ],
     "data": [
-        'data/purchase_exception_data.xml',
-        'security/ir.model.access.csv',
-        'security/purchase_order_approval_block_security.xml',
-        'views/purchase_approval_block_reason_view.xml',
-        'views/purchase_order_view.xml',
+        "data/purchase_exception_data.xml",
+        "security/ir.model.access.csv",
+        "security/purchase_order_approval_block_security.xml",
+        "views/purchase_approval_block_reason_view.xml",
+        "views/purchase_order_view.xml",
     ],
-    "license": 'AGPL-3',
-    "installable": True
+    "license": "AGPL-3",
+    "installable": True,
 }
