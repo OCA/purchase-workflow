@@ -1,0 +1,93 @@
+<odoo>
+    <record id="view_work_acceptance_search" model="ir.ui.view">
+        <field name="name">work.acceptance.search</field>
+        <field name="model">work.acceptance</field>
+        <field
+            name="inherit_id"
+            ref="purchase_work_acceptance.view_work_acceptance_search"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//search/filter[@name='my_wa']" position="after">
+                <filter
+                    string="Fines"
+                    name="fines"
+                    domain="[('fines_late', '>', 0.0)]"
+                />
+            </xpath>
+        </field>
+    </record>
+    <record id="view_work_acceptance_fines_late_tab_form" model="ir.ui.view">
+        <field name="name">work.acceptance.late.fines.tab.form</field>
+        <field name="model">work.acceptance</field>
+        <field
+            name="inherit_id"
+            ref="purchase_work_acceptance.view_work_acceptance_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button
+                    name="%(purchase_work_acceptance_late_fines.action_wa_create_fines)d"
+                    string="Create Fines"
+                    type="action"
+                    class="oe_highlight"
+                    invisible="state != 'accept' or not fines_late or fines_invoice_ids"
+                    groups="account.group_account_invoice"
+                />
+                <button
+                    name="%(purchase_work_acceptance_late_fines.action_wa_create_fines)d"
+                    string="Create Fines"
+                    type="action"
+                    invisible="state != 'accept' or not fines_late or not fines_invoice_ids"
+                    groups="account.group_account_invoice"
+                />
+            </xpath>
+            <xpath expr="//sheet/div[hasclass('oe_title')]" position="before">
+                <div class="oe_button_box" name="button_box">
+                    <button
+                        type="object"
+                        name="action_view_invoice"
+                        class="oe_stat_button"
+                        icon="fa-pencil-square-o"
+                        invisible="not fines_invoice_ids"
+                        context="{'default_partner_id': partner_id}"
+                    >
+                        <field
+                            name="fines_invoice_count"
+                            widget="statinfo"
+                            string="Late Fines"
+                        />
+                        <field name="fines_invoice_ids" invisible="1" />
+                    </button>
+                </div>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page
+                    string="Late Fines"
+                    name="fines_late"
+                    groups="purchase_work_acceptance_late_fines.group_enable_fines_on_wa"
+                >
+                    <group>
+                        <group name="Fines">
+                            <label for="late_days" />
+                            <div>
+                                <field name="late_days" class="oe_inline" />
+                                <t
+                                    class="text-muted"
+                                    invisible="state != 'draft'"
+                                > (Approximately)</t>
+                            </div>
+                            <label for="fines_rate" />
+                            <div>
+                                    <field
+                                name="fines_rate"
+                                class="oe_inline"
+                            /> per day
+                                </div>
+                            <field name="fines_late" />
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

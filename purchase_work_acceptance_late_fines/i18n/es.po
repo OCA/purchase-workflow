@@ -1,0 +1,257 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_work_acceptance_late_fines
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-10-28 19:59+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: purchase_work_acceptance_late_fines
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_late_fines.view_work_acceptance_fines_late_tab_form
+msgid "(Approximately)"
+msgstr "(Aproximadamente)"
+
+#. module: purchase_work_acceptance_late_fines
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_late_fines.view_wa_create_fines
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.model,name:purchase_work_acceptance_late_fines.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.model.fields,help:purchase_work_acceptance_late_fines.field_work_acceptance__fines_late
+msgid "Computed amount. Can be overwritten"
+msgstr "Importe calculado. Puede sobrescribirse"
+
+#. module: purchase_work_acceptance_late_fines
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_late_fines.view_wa_create_fines
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_late_fines.view_work_acceptance_fines_late_tab_form
+msgid "Create Fines"
+msgstr "Crear Sanciones"
+
+#. module: purchase_work_acceptance_late_fines
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_late_fines.view_wa_create_fines
+msgid "Create Fines As"
+msgstr "Crear Sanciones Como"
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.actions.act_window,name:purchase_work_acceptance_late_fines.action_wa_create_fines
+msgid "Create Fines Invoice/Refund"
+msgstr "Crear factura de Sanciones/Reembolso"
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.model,name:purchase_work_acceptance_late_fines.model_work_acceptance_create_fines
+msgid "Create Fines Invoice/Refund from WA"
+msgstr "Crear Factura de Sanciones/Reembolso de WA"
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.model.fields,field_description:purchase_work_acceptance_late_fines.field_work_acceptance_create_fines__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.model.fields,field_description:purchase_work_acceptance_late_fines.field_work_acceptance_create_fines__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.model.fields.selection,name:purchase_work_acceptance_late_fines.selection__work_acceptance_create_fines__move_type__out_invoice
+msgid "Customer Invoice"
+msgstr "Factura Cliente"
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.model.fields,help:purchase_work_acceptance_late_fines.field_work_acceptance__fines_rate
+msgid "Default fines per day. Can be overwritten"
+msgstr "Sanciones diarias por defecto. Puede sobrescribirse"
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.model.fields,field_description:purchase_work_acceptance_late_fines.field_work_acceptance_create_fines__display_name
+msgid "Display Name"
+msgstr "Mostrar Nombre"
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.model.fields,field_description:purchase_work_acceptance_late_fines.field_res_config_settings__group_enable_fines_on_wa
+#: model:res.groups,name:purchase_work_acceptance_late_fines.group_enable_fines_on_wa
+msgid "Enable Late Delivery Fines on Work Acceptance"
+msgstr "Permitir Sanciones Por Retraso en la Aceptación del Trabajo"
+
+#. module: purchase_work_acceptance_late_fines
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_late_fines.view_work_acceptance_search
+msgid "Fines"
+msgstr "Sanciones"
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.model.fields,field_description:purchase_work_acceptance_late_fines.field_work_acceptance__fines_late
+msgid "Fines Amount"
+msgstr "Importe de Sanciones"
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.model.fields,field_description:purchase_work_acceptance_late_fines.field_work_acceptance__fines_invoice_count
+msgid "Fines Invoice Count"
+msgstr "Recuento de Facturas de Sanciones"
+
+#. module: purchase_work_acceptance_late_fines
+#: code:addons/purchase_work_acceptance_late_fines/models/work_acceptance.py:0
+#, python-format
+msgid "Fines Invoice/Refund"
+msgstr "Sanciones Facturación/Reembolso"
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.model.fields,field_description:purchase_work_acceptance_late_fines.field_work_acceptance__fines_invoice_ids
+msgid "Fines Invoices"
+msgstr "Facturas de Sanciones"
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.model.fields,field_description:purchase_work_acceptance_late_fines.field_res_company__wa_fines_rate
+#: model:ir.model.fields,field_description:purchase_work_acceptance_late_fines.field_res_config_settings__wa_fines_rate
+#: model:ir.model.fields,field_description:purchase_work_acceptance_late_fines.field_work_acceptance__fines_rate
+msgid "Fines Rate"
+msgstr "Tasa de Sanciones"
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.model.fields,help:purchase_work_acceptance_late_fines.field_account_bank_statement_line__late_wa_id
+#: model:ir.model.fields,help:purchase_work_acceptance_late_fines.field_account_move__late_wa_id
+#: model:ir.model.fields,help:purchase_work_acceptance_late_fines.field_account_payment__late_wa_id
+msgid ""
+"For the supplier with late penalty (from work acceptance), choosing the late"
+" WA to get the amount this partner need to pay."
+msgstr ""
+"Para el proveedor con penalización por demora (desde la aceptación del "
+"trabajo), elija la WA por demora para obtener el importe que este socio debe "
+"pagar."
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.model.fields,field_description:purchase_work_acceptance_late_fines.field_work_acceptance_create_fines__id
+msgid "ID"
+msgstr "ID (identificación)"
+
+#. module: purchase_work_acceptance_late_fines
+#: code:addons/purchase_work_acceptance_late_fines/models/work_acceptance.py:0
+#, python-format
+msgid "Invoice already created for %s"
+msgstr "Ya se ha creado la factura para %s"
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.model,name:purchase_work_acceptance_late_fines.model_account_move
+msgid "Journal Entry"
+msgstr "Entrada Diaria"
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.model.fields,field_description:purchase_work_acceptance_late_fines.field_work_acceptance_create_fines____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.model.fields,field_description:purchase_work_acceptance_late_fines.field_work_acceptance_create_fines__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización Por"
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.model.fields,field_description:purchase_work_acceptance_late_fines.field_work_acceptance_create_fines__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.model.fields,field_description:purchase_work_acceptance_late_fines.field_work_acceptance__late_days
+msgid "Late Days"
+msgstr "Días de Retraso"
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.model.fields,field_description:purchase_work_acceptance_late_fines.field_res_company__wa_fines_late_account_id
+#: model:ir.model.fields,field_description:purchase_work_acceptance_late_fines.field_res_config_settings__wa_fines_late_account_id
+msgid "Late Delivery Fines Revenue Account"
+msgstr "Cuenta de Ingresos por Sanciones por Retraso en la Entrega"
+
+#. module: purchase_work_acceptance_late_fines
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_late_fines.view_work_acceptance_fines_late_tab_form
+msgid "Late Fines"
+msgstr "Sanciones por Demora"
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.model.fields,field_description:purchase_work_acceptance_late_fines.field_account_bank_statement_line__late_wa_id
+#: model:ir.model.fields,field_description:purchase_work_acceptance_late_fines.field_account_move__late_wa_id
+#: model:ir.model.fields,field_description:purchase_work_acceptance_late_fines.field_account_payment__late_wa_id
+msgid "Late WA"
+msgstr "Retraso en WA"
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.model.fields,help:purchase_work_acceptance_late_fines.field_work_acceptance__late_days
+msgid "Late day(s) from Received Date - Due Date"
+msgstr "Día(s) de retraso desde la fecha de Recepción - Fecha de Vencimiento"
+
+#. module: purchase_work_acceptance_late_fines
+#: code:addons/purchase_work_acceptance_late_fines/models/work_acceptance.py:0
+#, python-format
+msgid "No fine invoices"
+msgstr "Sin facturas de sanciones"
+
+#. module: purchase_work_acceptance_late_fines
+#: code:addons/purchase_work_acceptance_late_fines/models/work_acceptance.py:0
+#, python-format
+msgid "No late fines on work acceptance(s)"
+msgstr "Sin sanciones por retraso en la aceptación(es) de trabajos"
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.model,name:purchase_work_acceptance_late_fines.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr "Configuración de la agrupación de adquisición de compras"
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.model.fields,field_description:purchase_work_acceptance_late_fines.field_work_acceptance_create_fines__move_type
+msgid "Type"
+msgstr "Tipo"
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.model.fields.selection,name:purchase_work_acceptance_late_fines.selection__work_acceptance_create_fines__move_type__in_refund
+msgid "Vendor Refund"
+msgstr "Reembolso al Vendedor"
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.model,name:purchase_work_acceptance_late_fines.model_work_acceptance
+msgid "Work Acceptance"
+msgstr "Aceptación de Trabajo"
+
+#. module: purchase_work_acceptance_late_fines
+#: code:addons/purchase_work_acceptance_late_fines/models/work_acceptance.py:0
+#, python-format
+msgid "Work Acceptance Late Delivery Fines %s"
+msgstr "Aceptación del trabajo Sanciones por retraso %s"
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.model.constraint,message:purchase_work_acceptance_late_fines.constraint_work_acceptance_fines_late
+msgid "Wrong Fines Amount, it must be positive!"
+msgstr "Importe de la Sanción Incorrecto, ¡debe ser positivo!"
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.model.constraint,message:purchase_work_acceptance_late_fines.constraint_work_acceptance_fines_rate
+msgid "Wrong Fines Rate, it must be positive!"
+msgstr "Tasa de Sanciones errónea, ¡debe ser positiva!"
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.model.constraint,message:purchase_work_acceptance_late_fines.constraint_work_acceptance_late_days
+msgid "Wrong Late Days, it must be positive!"
+msgstr "Días de Retraso Erróneos, ¡debe ser positivo!"
+
+#. module: purchase_work_acceptance_late_fines
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_late_fines.view_wa_create_fines
+msgid "You can create fines as either customer invoice or vendor refund."
+msgstr "Puede crear sanciones como factura de cliente o reembolso del vendedor."
+
+#. module: purchase_work_acceptance_late_fines
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_late_fines.res_config_settings_view_form_purchase
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_late_fines.view_work_acceptance_fines_late_tab_form
+msgid "per day"
+msgstr "por día"
