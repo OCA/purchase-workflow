@@ -6,135 +6,139 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-07-14 07:40+0000\n"
+"Last-Translator: Ömer KÜLAK <omer.kulak@kitayazilim.com>\n"
 "Language-Team: none\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: purchase_advance_payment
 #: model:ir.model,name:purchase_advance_payment.model_account_voucher_wizard_purchase
 msgid "Account Voucher Wizard Purchase"
-msgstr ""
+msgstr "Satınalma Ödeme Sihirbazı"
 
 #. module: purchase_advance_payment
 #: model:ir.actions.act_window,name:purchase_advance_payment.action_view_account_voucher_wizard
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_voucher_wizard
 msgid "Advance Payment"
-msgstr ""
+msgstr "Ön Ödeme"
 
 #. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_purchase_order__advance_payment_status
 msgid "Advance Payment Status"
-msgstr ""
+msgstr "Ön Ödeme Durumu"
 
 #. module: purchase_advance_payment
 #: model:ir.actions.act_window,name:purchase_advance_payment.action_account_advance_payments_payable
 #: model:ir.ui.menu,name:purchase_advance_payment.menu_account_advance_payments_payable
 msgid "Advance Payments"
-msgstr ""
+msgstr "Ödemeler"
 
 #. module: purchase_advance_payment
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.purchase_order_kpis_tree
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.purchase_order_view_tree
 msgid "Amount Residual"
-msgstr ""
+msgstr "Kalan Tutar"
 
 #. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__amount_total
 msgid "Amount Total"
-msgstr ""
+msgstr "Toplam Tutar"
 
 #. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__amount_advance
 msgid "Amount advanced"
-msgstr ""
+msgstr "Ödenen tutar"
 
 #. module: purchase_advance_payment
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_voucher_wizard
 msgid "Amount in Order Currency"
-msgstr ""
+msgstr "Sipariş Para Biriminden Tutar"
 
 #. module: purchase_advance_payment
 #. odoo-python
 #: code:addons/purchase_advance_payment/wizard/purchase_advance_payment_wizard.py:0
 msgid "Amount of advance is greater than residual amount on purchase"
-msgstr ""
+msgstr "Ödeme miktarı, satın alma işleminde kalan miktardan daha fazladır"
 
 #. module: purchase_advance_payment
 #. odoo-python
 #: code:addons/purchase_advance_payment/wizard/purchase_advance_payment_wizard.py:0
 msgid "Amount of advance must be positive."
-msgstr ""
+msgstr "Ödeme miktarı 0 dan büyük olmalı."
 
 #. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_res_config_settings__auto_post_purchase_advance_payments
 msgid "Auto Post Purchase Advance Payments"
-msgstr ""
+msgstr "Satınalma Ön Ödemelerini Otomatik Onayla"
 
 #. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_res_config_settings__auto_reconcile_purchase_advance_payments
 msgid "Auto Reconcile Purchase Advance Payments"
-msgstr ""
+msgstr "Satınalma Ön Ödemelerini Otomatik Uzlaştır"
 
 #. module: purchase_advance_payment
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.res_config_settings_view_form_purchase
 msgid "Automatically reconcile payments upon bill confirmation."
-msgstr ""
+msgstr "Fatura onayının ardından ödemeleri otomatik olarak eşleştir."
 
 #. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__available_payment_method_line_ids
 msgid "Available Payment Method Line"
-msgstr ""
+msgstr "Uygun Ödeme Methodları Satırları"
 
 #. module: purchase_advance_payment
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_voucher_wizard
 msgid "Cancel"
-msgstr ""
+msgstr "İptal"
 
 #. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Oluşturan"
 
 #. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Oluşturulma"
 
 #. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__currency_amount
 msgid "Curr. amount"
-msgstr ""
+msgstr "Para B. tutarı"
 
 #. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__currency_id
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_voucher_wizard
 msgid "Currency"
-msgstr ""
+msgstr "Para Birimi"
 
 #. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__date
 msgid "Date"
-msgstr ""
+msgstr "Tarih"
 
 #. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Görünen Ad"
 
 #. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: purchase_advance_payment
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.res_config_settings_view_form_purchase
 msgid ""
 "If enabled, advance payments created from POs are automatically posted."
 msgstr ""
+"Etkinleştirilirse, satınalma siparişlerinden oluşturulan ön ödemeler "
+"otomatik olarak kaydedilir."
 
 #. module: purchase_advance_payment
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.res_config_settings_view_form_purchase
@@ -142,125 +146,127 @@ msgid ""
 "If enabled, advance payments created from POs are automatically reconciled "
 "upon bill confirmation."
 msgstr ""
+"Etkinleştirilirse, satınalma siparişlerinden oluşturulan ön ödemeler, fatura "
+"onaylandığında otomatik olarak uzlaştırılır."
 
 #. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__journal_id
 msgid "Journal"
-msgstr ""
+msgstr "Yevmiye"
 
 #. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__journal_currency_id
 msgid "Journal Currency"
-msgstr ""
+msgstr "Yevmiye Para Birimi"
 
 #. module: purchase_advance_payment
 #: model:ir.model,name:purchase_advance_payment.model_account_move
 msgid "Journal Entry"
-msgstr ""
+msgstr "Yevmiye Kaydı"
 
 #. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Son Güncelleyen"
 
 #. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Son Güncelleme"
 
 #. module: purchase_advance_payment
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_voucher_wizard
 msgid "Make advance payment"
-msgstr ""
+msgstr "Ödemeyi Kaydet"
 
 #. module: purchase_advance_payment
 #: model:ir.model.fields.selection,name:purchase_advance_payment.selection__purchase_order__advance_payment_status__not_paid
 msgid "Not Paid"
-msgstr ""
+msgstr "Ödenmedi"
 
 #. module: purchase_advance_payment
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_payment_search
 msgid "Not Reconciled"
-msgstr ""
+msgstr "Uzlaştırılmadı"
 
 #. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__order_id
 msgid "Order"
-msgstr ""
+msgstr "Sipariş"
 
 #. module: purchase_advance_payment
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_voucher_wizard
 msgid "Order Due Amount"
-msgstr ""
+msgstr "Sipariş Ödeecek Tutarı"
 
 #. module: purchase_advance_payment
 #: model:ir.model.fields.selection,name:purchase_advance_payment.selection__purchase_order__advance_payment_status__paid
 msgid "Paid"
-msgstr ""
+msgstr "Ödendi"
 
 #. module: purchase_advance_payment
 #: model:ir.model.fields.selection,name:purchase_advance_payment.selection__purchase_order__advance_payment_status__partial
 msgid "Partially Paid"
-msgstr ""
+msgstr "Kısmı Ödendi"
 
 #. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_purchase_order__account_payment_ids
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.purchase_order_form
 msgid "Pay purchase advanced"
-msgstr ""
+msgstr "Ön Ödeme Al"
 
 #. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__payment_method_line_id
 msgid "Payment Method"
-msgstr ""
+msgstr "Ödeme Yöntemi"
 
 #. module: purchase_advance_payment
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_supplier_payment_tree
 msgid "Payment Sent?"
-msgstr ""
+msgstr "Ödeme Gönderildi mi?"
 
 #. module: purchase_advance_payment
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.purchase_order_form
 msgid "Payment advances"
-msgstr ""
+msgstr "Ön Ödemeler"
 
 #. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_purchase_order__payment_line_ids
 msgid "Payment move lines"
-msgstr ""
+msgstr "Ödeme hesap hareketleri"
 
 #. module: purchase_advance_payment
 #: model:ir.model,name:purchase_advance_payment.model_account_payment
 msgid "Payments"
-msgstr ""
+msgstr "Ödemeler"
 
 #. module: purchase_advance_payment
 #: model:ir.model,name:purchase_advance_payment.model_res_config_settings
 msgid "Procurement purchase grouping settings"
-msgstr ""
+msgstr "Tedarik satın alma gruplama ayarları"
 
 #. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_account_payment__purchase_id
 msgid "Purchase"
-msgstr ""
+msgstr "Satınalma"
 
 #. module: purchase_advance_payment
 #: model:ir.model,name:purchase_advance_payment.model_purchase_order
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_payment_form
 msgid "Purchase Order"
-msgstr ""
+msgstr "Satınalma Siparişi"
 
 #. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__payment_ref
 msgid "Ref."
-msgstr ""
+msgstr "Referans"
 
 #. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_purchase_order__amount_residual
 msgid "Residual amount"
-msgstr ""
+msgstr "Kalan Tutar"
 
 #. module: purchase_advance_payment
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_payment_search
 msgid "Vendor Advance Payments"
-msgstr ""
+msgstr "Tedarikçi Ön Ödemeleri"
