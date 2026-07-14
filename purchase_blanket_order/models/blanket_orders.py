@@ -13,10 +13,6 @@ class BlanketOrder(models.Model):
     _description = "Purchase Blanket Order"
     _order = "date_start desc, id desc"
 
-    @api.model
-    def _default_company(self):
-        return self.env.user.company_id
-
     @api.depends("line_ids.price_total")
     def _compute_amount_all(self):
         for order in self:
@@ -104,7 +100,7 @@ class BlanketOrder(models.Model):
     company_id = fields.Many2one(
         "res.company",
         string="Company",
-        default=_default_company,
+        default=lambda self: self.env.company,
         readonly=True,
     )
     purchase_count = fields.Integer(compute="_compute_purchase_count")
