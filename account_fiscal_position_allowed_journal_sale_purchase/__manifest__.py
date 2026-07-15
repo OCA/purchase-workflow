@@ -4,7 +4,7 @@
     "name": "Account Fiscal Position Allowed Journal Purchase",
     "summary": """Glue module between Sale + purchase +
     account fiscal position allowed journal purchase""",
-    "version": "13.0.1.0.0",
+    "version": "19.0.1.0.0",
     "development_status": "Beta",
     "license": "AGPL-3",
     "author": "ACSONE SA/NV,Odoo Community Association (OCA)",
