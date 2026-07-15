@@ -14,19 +14,15 @@ class AccountMove(models.Model):
         one purchase journal allowed, set this journal on the invoice.
         """
         # We need to save de PO because the origin method unset it
-        purchase_order = self.purchase_id
+        purchase_order = (
+            self.purchase_id or self.purchase_vendor_bill_id.purchase_order_id
+        )
         res = super()._onchange_purchase_auto_complete()
+        if not purchase_order:
+            return res
         fiscal_position = purchase_order.fiscal_position_id
         if fiscal_position:
             purchase_journal = fiscal_position._get_allowed_journal("purchase")
             if purchase_journal:
                 self.journal_id = purchase_journal
-        return res
-
-    @api.onchange("partner_id", "company_id")
-    def _onchange_partner_id(self):
-        journal = self.journal_id
-        res = super()._onchange_partner_id()
-        self.journal_id = journal
-        self._onchange_fiscal_position_allowed_journal()
         return res
