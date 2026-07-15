@@ -2,10 +2,10 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 
-class TestAccountFiscalPositionAllowedJournalPurchase(SavepointCase):
+class TestAccountFiscalPositionAllowedJournalPurchase(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -26,8 +26,8 @@ class TestAccountFiscalPositionAllowedJournalPurchase(SavepointCase):
         cls.journal_01 = cls.journal_model.search([("type", "=", "purchase")], limit=1)
         cls.journal_02 = cls.journal_01.copy()
         cls.partner_01 = cls.partner_model.search([], limit=1)
-        cls.product_01 = cls.product_product_model.search(
-            [("type", "=", "service")], limit=1
+        cls.product_01 = cls.product_product_model.create(
+            {"name": "Service product 01", "type": "service"}
         )
         cls.purchase_order_01 = cls.purchase_order_model.create(
             {
@@ -40,7 +40,7 @@ class TestAccountFiscalPositionAllowedJournalPurchase(SavepointCase):
                         {
                             "name": "Purchase order line 01",
                             "product_id": cls.product_01.id,
-                            "product_uom": cls.product_01.uom_id.id,
+                            "product_uom_id": cls.product_01.uom_id.id,
                             "product_qty": 1,
                             "price_unit": 1,
                             "date_planned": fields.Date.today(),
@@ -52,7 +52,7 @@ class TestAccountFiscalPositionAllowedJournalPurchase(SavepointCase):
         cls.purchase_order_01.button_confirm()
         cls.invoice_01 = cls.account_move_model.create(
             {
-                "type": "in_invoice",
+                "move_type": "in_invoice",
                 "partner_id": cls.partner_01.id,
                 "journal_id": cls.journal_01.id,
                 "fiscal_position_id": cls.fiscal_position_01.id,

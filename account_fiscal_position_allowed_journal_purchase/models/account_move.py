@@ -22,11 +22,3 @@ class AccountMove(models.Model):
             if purchase_journal:
                 self.journal_id = purchase_journal
         return res
-
-    @api.onchange("partner_id", "company_id")
-    def _onchange_partner_id(self):
-        journal = self.journal_id
-        res = super()._onchange_partner_id()
-        self.journal_id = journal
-        self._onchange_fiscal_position_allowed_journal()
-        return res
