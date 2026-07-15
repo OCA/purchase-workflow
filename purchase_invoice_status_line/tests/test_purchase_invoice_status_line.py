@@ -131,3 +131,50 @@ class TestPurchaseInvoiceStatusLine(common.TransactionCase):
             "invoiced",
             "An over-billed line must not show Waiting Bills",
         )
+
+    def test_bill_matching_excludes_force_invoiced_line(self):
+        po = self.env["purchase.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product_order.id,
+                            "product_qty": 10,
+                            "price_unit": 10.0,
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product_order.id,
+                            "product_qty": 5,
+                            "price_unit": 20.0,
+                        },
+                    ),
+                ],
+            }
+        )
+        po.button_confirm()
+        line1 = po.order_line[0]
+        line2 = po.order_line[1]
+        match_model = self.env["purchase.bill.line.match"]
+        # Both lines are pending to bill, so they are offered for matching
+        self.env.flush_all()
+        self.assertTrue(match_model.search([("pol_id", "=", line1.id)]))
+        self.assertTrue(match_model.search([("pol_id", "=", line2.id)]))
+        # Force only the first line: the order is not forced as a whole
+        line1.force_invoiced = True
+        self.assertFalse(po.force_invoiced)
+        self.env.flush_all()
+        self.assertFalse(match_model.search([("pol_id", "=", line1.id)]))
+        self.assertTrue(match_model.search([("pol_id", "=", line2.id)]))
+        # Force whole PO (both lines)
+        po.force_invoiced = True
+        self.assertTrue(po.force_invoiced)
+        self.env.flush_all()
+        self.assertFalse(match_model.search([("pol_id", "=", line1.id)]))
+        self.assertFalse(match_model.search([("pol_id", "=", line2.id)]))
