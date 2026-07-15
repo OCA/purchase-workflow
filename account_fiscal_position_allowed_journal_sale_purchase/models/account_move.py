@@ -1,28 +1,21 @@
 # Copyright 2020 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, models
+from odoo import models
 
 
 class AccountMove(models.Model):
     _inherit = "account.move"
 
-    @api.onchange("partner_shipping_id", "company_id")
-    def _onchange_partner_shipping_id(self):
+    def _compute_fiscal_position_id(self):
+        """When both sale and purchase are installed, the fiscal position is
+        recomputed from the partner whenever a related field changes, which
+        would override the one set on the originating purchase order. Keep the
+        purchase order's fiscal position on the related vendor bill.
         """
-        Trigger the change of fiscal position when the shipping address is modified.
-        """
-        fiscal_position = self.fiscal_position_id
-        res = super()._onchange_partner_shipping_id()
-        if fiscal_position and fiscal_position != self.fiscal_position_id:
-            self.fiscal_position_id = fiscal_position
-        return res
-
-    @api.onchange("partner_id", "company_id")
-    def _onchange_partner_id(self):
-        fiscal_position = self.fiscal_position_id
-        res = super()._onchange_partner_id()
-        if fiscal_position:
-            self.fiscal_position_id = fiscal_position
-        self._onchange_fiscal_position_allowed_journal()
+        res = super()._compute_fiscal_position_id()
+        for move in self:
+            purchase_order = move.line_ids.purchase_line_id.order_id[:1]
+            if purchase_order.fiscal_position_id:
+                move.fiscal_position_id = purchase_order.fiscal_position_id
         return res
