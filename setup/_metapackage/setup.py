@@ -88,6 +88,7 @@ setuptools.setup(
         'odoo-addon-purchase_product_packaging_container_deposit>=16.0dev,<16.1dev',
         'odoo-addon-purchase_quick>=16.0dev,<16.1dev',
         'odoo-addon-purchase_quick_discount>=16.0dev,<16.1dev',
+        'odoo-addon-purchase_quick_triple_discount>=16.0dev,<16.1dev',
         'odoo-addon-purchase_reception_status>=16.0dev,<16.1dev',
         'odoo-addon-purchase_reorder_control>=16.0dev,<16.1dev',
         'odoo-addon-purchase_request>=16.0dev,<16.1dev',
