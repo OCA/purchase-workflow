@@ -54,6 +54,9 @@ class TestQuickPurchase(TransactionCase):
         self.assertEqual(self.product_1.seller_price, 8)
         self.product_1.quick_uom_id = self.uom_dozen
         self.assertEqual(self.product_1.seller_price, 96)
+        self.product_1.uom_po_id = self.uom_dozen
+        self.product_1.quick_uom_id = self.uom_dozen
+        self.assertEqual(self.product_1.seller_price, 8)
 
     def test_product_seller_price_with_currency(self):
         self.po.currency_id = self.env.ref("base.EUR")
