@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="report_purchaseorder_document"
+        inherit_id="purchase.report_purchaseorder_document"
+    >
+        <!-- Content data -->
+        <xpath expr="//td[@id='product']" position="inside">
+            <div id="vendor_comment">
+                <span t-field="line.vendor_comment" />
+            </div>
+        </xpath>
+    </template>
+</odoo>
