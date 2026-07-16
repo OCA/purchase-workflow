@@ -6,24 +6,26 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-07-16 08:47+0000\n"
+"Last-Translator: MJD <maximilian@si-gmbh.de>\n"
 "Language-Team: none\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: purchase_order_line_menu
 #: model:ir.model.fields,field_description:purchase_order_line_menu.field_purchase_order_line__invoice_status
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
 msgid "Billing Status"
-msgstr ""
+msgstr "Abrechnungsstatus"
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
 msgid "Cancelled"
-msgstr ""
+msgstr "Abgebrochen"
 
 #. module: purchase_order_line_menu
 #: model:ir.model.fields,help:purchase_order_line_menu.field_purchase_order_line__date_order
@@ -31,90 +33,92 @@ msgid ""
 "Depicts the date within which the Quotation should be confirmed and "
 "converted into a purchase order."
 msgstr ""
+"Gibt das Datum an, bis zu dem das Angebot bestätigt und in eine Bestellung "
+"umgewandelt werden soll."
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
 msgid "Fully Billed"
-msgstr ""
+msgstr "Vollständig abgerechnet"
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
 msgid "Locked"
-msgstr ""
+msgstr "Gesperrt"
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
 msgid "Nothing to Bill"
-msgstr ""
+msgstr "Nichts abzurechnen"
 
 #. module: purchase_order_line_menu
 #: model:ir.model.fields,field_description:purchase_order_line_menu.field_purchase_order_line__date_order
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
 msgid "Order Date"
-msgstr ""
+msgstr "Bestelldatum"
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.view_purchase_order_line_pivot
 msgid "Order Lines"
-msgstr ""
+msgstr "Bestellzeilen"
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
 msgid "Order date"
-msgstr ""
+msgstr "Bestelldatum"
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
 msgid "Planned date"
-msgstr ""
+msgstr "Geplantes Datum"
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_tree
 msgid "Price Subtotal"
-msgstr ""
+msgstr "Zwischensumme"
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_tree
 msgid "Price Tax"
-msgstr ""
+msgstr "Steuern"
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_tree
 msgid "Price Total"
-msgstr ""
+msgstr "Gesamtpreis"
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
 msgid "Purchase Order"
-msgstr ""
+msgstr "Bestellung"
 
 #. module: purchase_order_line_menu
 #: model:ir.model,name:purchase_order_line_menu.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Bestellzeile"
 
 #. module: purchase_order_line_menu
 #: model:ir.actions.act_window,name:purchase_order_line_menu.action_purchase_orders_lines
 #: model:ir.ui.menu,name:purchase_order_line_menu.purchase_order_line_menu
 msgid "Purchase Order Lines"
-msgstr ""
+msgstr "Bestellzeilen"
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
 msgid "RFQ"
-msgstr ""
+msgstr "Angebotsanfrage"
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
 msgid "RFQ Sent"
-msgstr ""
+msgstr "Angebotsanfrage gesendet"
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
 msgid "To Approve"
-msgstr ""
+msgstr "Zu bestätigen"
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
 msgid "Waiting Bills"
-msgstr ""
+msgstr "Ausstehende Rechnungen"
