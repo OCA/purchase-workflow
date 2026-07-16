@@ -99,9 +99,7 @@ class TestPurchaseOrderUpdate(BaseCommon):
                     "partner_id": self.supplier.id,
                     "order_line": [
                         Command.create(
-                            {
-                                "product_id": self.product_2.id,
-                            }
+                            {"product_id": self.product_2.id, "product_uom_qty": 2.0}
                         )
                     ],
                 }
@@ -111,7 +109,18 @@ class TestPurchaseOrderUpdate(BaseCommon):
         )
 
         with freeze_time("2026-02-13"):
-            self.po.button_confirm()
+            result = self.po.button_confirm()
+            self.assertIn(result["res_model"], "purchase.update.date.confirmation")
+            wizard = self.env["purchase.update.date.confirmation"].create(
+                {"purchase_order_id": self.po.id}
+            )
+            wizard.doit()
         self.assertEqual(
-            fields.Datetime.from_string("2026-02-10"), self.po.date_planned
+            fields.Datetime.from_string("2026-02-13"), self.po.date_planned
+        )
+        self.po.order_line.product_id.seller_ids = False
+        self.po.order_line.product_qty = 1.0
+
+        self.assertEqual(
+            fields.Datetime.from_string("2026-02-13"), self.po.order_line.date_planned
         )

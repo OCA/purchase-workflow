@@ -48,16 +48,13 @@ class PurchaseOrderLine(models.Model):
                 params=params,
             )
 
-            if seller:
-                with self._change_date_order_to_compute_date_planned(
-                    current_date=fields.Date.context_today(line)
-                ):
-                    date_planned = line._get_date_planned(seller).strftime(
-                        DEFAULT_SERVER_DATETIME_FORMAT
-                    )
-                line.current_date_planned = date_planned
-            else:
-                line.current_date_planned = False
+            with self._change_date_order_to_compute_date_planned(
+                current_date=fields.Date.context_today(line)
+            ):
+                date_planned = line._get_date_planned(seller).strftime(
+                    DEFAULT_SERVER_DATETIME_FORMAT
+                )
+            line.current_date_planned = date_planned
 
     def _update_date_planned_at_confirm(self):
         with self._change_date_order_to_compute_date_planned():
