@@ -5,9 +5,9 @@
 import time
 from datetime import datetime
 
-from odoo import _, api, fields, models
+from odoo import Command, api, fields, models
 from odoo.exceptions import UserError
-from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
+from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT, float_compare
 
 
 class PurchaseAdvancePaymentInv(models.TransientModel):
@@ -75,23 +75,25 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
             )
         if not account_id:
             raise UserError(
-                _(
-                    "There is no purchase account defined for this product: %s."
+                self.env._(
+                    "There is no purchase account defined "
+                    f"for this product: {product.name}."
                     "\nYou may have to install a chart of account from "
                     "Accounting app, settings menu."
                 )
-                % (product.name,)
             )
 
         if self.amount <= 0:
-            raise UserError(_("The value of the deposit must be positive."))
+            raise UserError(self.env._("The value of the deposit must be positive."))
         context = {"lang": order.partner_id.lang}
         amount = self.amount
         if self.advance_payment_method == "percentage":  # Case percent
             if self.amount > 100:
-                raise UserError(_("The percentage of the deposit must be not over 100"))
+                raise UserError(
+                    self.env._("The percentage of the deposit must be not over 100")
+                )
             amount = self.amount / 100 * order.amount_untaxed
-        name = _("Deposit Payment")
+        name = self.env._("Deposit Payment")
         del context
         taxes = product.supplier_taxes_id.filtered(
             lambda r: not order.company_id or r.company_id == order.company_id
@@ -106,9 +108,7 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
             "move_type": "in_invoice",
             "partner_id": order.partner_id.id,
             "invoice_line_ids": [
-                (
-                    0,
-                    0,
+                Command.create(
                     {
                         "name": name,
                         "account_id": account_id,
@@ -117,7 +117,7 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
                         "product_uom_id": product.uom_id.id,
                         "product_id": product.id,
                         "purchase_line_id": po_line.id,
-                        "tax_ids": [(6, 0, tax_ids)],
+                        "tax_ids": [Command.set(tax_ids)],
                         "analytic_distribution": po_line.analytic_distribution,
                     },
                 )
@@ -144,20 +144,20 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
 
     def _prepare_advance_purchase_line(self, order, product, tax_ids, amount):
         return {
-            "name": _("Advance: %s") % (time.strftime("%m %Y"),),
+            "name": self.env._(f"Advance: {time.strftime('%m %Y')}"),
             "price_unit": amount,
             "product_qty": 0.0,
             "order_id": order.id,
             "product_uom": product.uom_id.id,
             "product_id": product.id,
-            "taxes_id": [(6, 0, tax_ids)],
+            "taxes_id": [Command.set(tax_ids)],
             "date_planned": datetime.today().strftime(DEFAULT_SERVER_DATETIME_FORMAT),
             "is_deposit": True,
         }
 
     def create_invoices(self):
         Purchase = self.env["purchase.order"]
-        purchases = Purchase.browse(self._context.get("active_ids", []))
+        purchases = Purchase.browse(self.env.context.get("active_ids", []))
         # Create deposit product if necessary
         product = self.purchase_deposit_product_id
         if not product:
@@ -171,9 +171,32 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
             amount = self.amount
             if self.advance_payment_method == "percentage":  # Case percent
                 amount = self.amount / 100 * order.amount_untaxed
+            # calculate all deposit lines
+            sum_deposit = (
+                sum(
+                    line.price_unit
+                    for line in order.order_line
+                    if (line.is_deposit and line.invoice_lines)
+                )
+                or 0.00
+            )
+            if (
+                float_compare(
+                    sum_deposit + amount,
+                    order.amount_total,
+                    precision_rounding=order.currency_id.rounding,
+                )
+                > 0
+            ):
+                raise UserError(
+                    self.env._(
+                        "The amount to be registered as deposit can't be "
+                        f"greater than total amount of {order.name}."
+                    )
+                )
             if product.purchase_method != "purchase":
                 raise UserError(
-                    _(
+                    self.env._(
                         "The product used to invoice a down payment should have "
                         'an invoice policy set to "Ordered quantities". '
                         "Please update your deposit product to be able to "
@@ -182,7 +205,7 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
                 )
             if product.type != "service":
                 raise UserError(
-                    _(
+                    self.env._(
                         "The product used to invoice a down payment should be "
                         'of type "Service". Please use another product or '
                         "update this product."
@@ -203,7 +226,7 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
             po_line = PurchaseLine.create(adv_po_line_dict)
             del context
             self._create_invoice(order, po_line, amount)
-            if self._context.get("open_bills", False):
+            if self.env.context.get("open_bills", False):
                 return purchases.action_view_invoice()
         return {"type": "ir.actions.act_window_close"}
 
@@ -213,6 +236,6 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
             "type": "service",
             "purchase_method": "purchase",
             "property_account_expense_id": self.deposit_account_id.id,
-            "supplier_taxes_id": [(6, 0, self.deposit_taxes_id.ids)],
+            "supplier_taxes_id": [Command.set(self.deposit_taxes_id.ids)],
             "company_id": False,
         }
