@@ -26,12 +26,6 @@ msgid "Account used for deposits"
 msgstr ""
 
 #. module: purchase_deposit
-#. odoo-python
-#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
-msgid "Advance: %s"
-msgstr ""
-
-#. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
 msgid "Cancel"
 msgstr ""
@@ -65,12 +59,6 @@ msgstr ""
 #: model:ir.model.fields,help:purchase_deposit.field_res_company__purchase_deposit_product_id
 #: model:ir.model.fields,help:purchase_deposit.field_res_config_settings__purchase_deposit_product_id
 msgid "Default product used for payment advances."
-msgstr ""
-
-#. module: purchase_deposit
-#. odoo-python
-#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
-msgid "Deposit Payment"
 msgstr ""
 
 #. module: purchase_deposit
@@ -201,43 +189,6 @@ msgstr ""
 #. module: purchase_deposit
 #: model:ir.model.fields,help:purchase_deposit.field_purchase_advance_payment_inv__amount
 msgid "The amount to be invoiced in advance, taxes excluded."
-msgstr ""
-
-#. module: purchase_deposit
-#. odoo-python
-#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
-msgid "The percentage of the deposit must be not over 100"
-msgstr ""
-
-#. module: purchase_deposit
-#. odoo-python
-#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
-msgid ""
-"The product used to invoice a down payment should be of type \"Service\". "
-"Please use another product or update this product."
-msgstr ""
-
-#. module: purchase_deposit
-#. odoo-python
-#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
-msgid ""
-"The product used to invoice a down payment should have an invoice policy set"
-" to \"Ordered quantities\". Please update your deposit product to be able to"
-" create a deposit invoice."
-msgstr ""
-
-#. module: purchase_deposit
-#. odoo-python
-#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
-msgid "The value of the deposit must be positive."
-msgstr ""
-
-#. module: purchase_deposit
-#. odoo-python
-#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
-msgid ""
-"There is no purchase account defined for this product: %s.\n"
-"You may have to install a chart of account from Accounting app, settings menu."
 msgstr ""
 
 #. module: purchase_deposit
