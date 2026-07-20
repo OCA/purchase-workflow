@@ -32,12 +32,6 @@ msgid "Account used for deposits"
 msgstr "Konto, uporabljen za pologe"
 
 #. module: purchase_deposit
-#. odoo-python
-#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
-msgid "Advance: %s"
-msgstr "Avans: %s"
-
-#. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
 msgid "Cancel"
 msgstr "Prekliči"
@@ -72,12 +66,6 @@ msgstr "Ustvarjeno"
 #: model:ir.model.fields,help:purchase_deposit.field_res_config_settings__purchase_deposit_product_id
 msgid "Default product used for payment advances."
 msgstr "Privzeti proizvod, ki se uporablja za predplačila."
-
-#. module: purchase_deposit
-#. odoo-python
-#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
-msgid "Deposit Payment"
-msgstr "Plačilo pologa"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__amount
@@ -214,51 +202,6 @@ msgid "The amount to be invoiced in advance, taxes excluded."
 msgstr "Znesek za vnaprejšnji obračun, brez davkov."
 
 #. module: purchase_deposit
-#. odoo-python
-#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
-msgid "The percentage of the deposit must be not over 100"
-msgstr "Odstotek pologa ne sme presegati 100"
-
-#. module: purchase_deposit
-#. odoo-python
-#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
-msgid ""
-"The product used to invoice a down payment should be of type \"Service\". "
-"Please use another product or update this product."
-msgstr ""
-"Proizvod, uporabljen za obračun predplačila, mora biti tipa \"Storitev\". "
-"Uporabite drug proizvod ali posodobite ta proizvod."
-
-#. module: purchase_deposit
-#. odoo-python
-#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
-msgid ""
-"The product used to invoice a down payment should have an invoice policy set"
-" to \"Ordered quantities\". Please update your deposit product to be able to"
-" create a deposit invoice."
-msgstr ""
-"Proizvod, uporabljen za obračun predplačila, mora imeti politiko "
-"obračunavanja nastavljeno na \"Naročene količine\". Posodobite proizvod "
-"pologa, da boste lahko ustvarili račun za polog."
-
-#. module: purchase_deposit
-#. odoo-python
-#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
-msgid "The value of the deposit must be positive."
-msgstr "Vrednost pologa mora biti pozitivna."
-
-#. module: purchase_deposit
-#. odoo-python
-#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
-msgid ""
-"There is no purchase account defined for this product: %s.\n"
-"You may have to install a chart of account from Accounting app, settings menu."
-msgstr ""
-"Za proizvod %s ni določen nabavni konto.\n"
-"Morda morate namestiti kontni načrt iz aplikacije Računovodstvo, meni "
-"nastavitev."
-
-#. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__deposit_taxes_id
 msgid "Vendor Taxes"
 msgstr "Nabavni davki"
@@ -267,3 +210,40 @@ msgstr "Nabavni davki"
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__advance_payment_method
 msgid "What do you want to invoice?"
 msgstr "Kaj želite obračunati?"
+
+#~ msgid "Advance: %s"
+#~ msgstr "Avans: %s"
+
+#~ msgid "Deposit Payment"
+#~ msgstr "Plačilo pologa"
+
+#~ msgid "The percentage of the deposit must be not over 100"
+#~ msgstr "Odstotek pologa ne sme presegati 100"
+
+#~ msgid ""
+#~ "The product used to invoice a down payment should be of type \"Service\". "
+#~ "Please use another product or update this product."
+#~ msgstr ""
+#~ "Proizvod, uporabljen za obračun predplačila, mora biti tipa \"Storitev\". "
+#~ "Uporabite drug proizvod ali posodobite ta proizvod."
+
+#~ msgid ""
+#~ "The product used to invoice a down payment should have an invoice policy "
+#~ "set to \"Ordered quantities\". Please update your deposit product to be "
+#~ "able to create a deposit invoice."
+#~ msgstr ""
+#~ "Proizvod, uporabljen za obračun predplačila, mora imeti politiko "
+#~ "obračunavanja nastavljeno na \"Naročene količine\". Posodobite proizvod "
+#~ "pologa, da boste lahko ustvarili račun za polog."
+
+#~ msgid "The value of the deposit must be positive."
+#~ msgstr "Vrednost pologa mora biti pozitivna."
+
+#~ msgid ""
+#~ "There is no purchase account defined for this product: %s.\n"
+#~ "You may have to install a chart of account from Accounting app, settings "
+#~ "menu."
+#~ msgstr ""
+#~ "Za proizvod %s ni določen nabavni konto.\n"
+#~ "Morda morate namestiti kontni načrt iz aplikacije Računovodstvo, meni "
+#~ "nastavitev."

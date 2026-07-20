@@ -31,12 +31,6 @@ msgid "Account used for deposits"
 msgstr "Conto usato per le cauzioni"
 
 #. module: purchase_deposit
-#. odoo-python
-#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
-msgid "Advance: %s"
-msgstr "Anticipo: %s"
-
-#. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
 msgid "Cancel"
 msgstr "Annulla"
@@ -71,12 +65,6 @@ msgstr "Creato il"
 #: model:ir.model.fields,help:purchase_deposit.field_res_config_settings__purchase_deposit_product_id
 msgid "Default product used for payment advances."
 msgstr "Prodotto predefinito utilizzato per anticipi pagamenti."
-
-#. module: purchase_deposit
-#. odoo-python
-#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
-msgid "Deposit Payment"
-msgstr "Pagamento cauzione"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__amount
@@ -213,52 +201,6 @@ msgid "The amount to be invoiced in advance, taxes excluded."
 msgstr "Valore da fatturare in anticipo, imposte escluse."
 
 #. module: purchase_deposit
-#. odoo-python
-#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
-msgid "The percentage of the deposit must be not over 100"
-msgstr "La percentuale della cauzione non può essere più di 100"
-
-#. module: purchase_deposit
-#. odoo-python
-#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
-msgid ""
-"The product used to invoice a down payment should be of type \"Service\". "
-"Please use another product or update this product."
-msgstr ""
-"Il prodottoutilizzato per fatturare un acconto deve essere di tipo "
-"\"Servizio\". Utilizzare un altro prodotto o modificare questo."
-
-#. module: purchase_deposit
-#. odoo-python
-#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
-msgid ""
-"The product used to invoice a down payment should have an invoice policy set "
-"to \"Ordered quantities\". Please update your deposit product to be able to "
-"create a deposit invoice."
-msgstr ""
-"Il prodotto utilizzato per fatturare un acconto deve avere una politica di "
-"fatturazione impostata a \"Quantità ordinate\". Modificare il prodotto "
-"cauzione per consentire la creazione di una fattura cauzione."
-
-#. module: purchase_deposit
-#. odoo-python
-#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
-msgid "The value of the deposit must be positive."
-msgstr "Il valore della cauzione deve essere positivo."
-
-#. module: purchase_deposit
-#. odoo-python
-#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
-msgid ""
-"There is no purchase account defined for this product: %s.\n"
-"You may have to install a chart of account from Accounting app, settings "
-"menu."
-msgstr ""
-"Non c'è un conto acquisto definito per questo prodotto: %s\n"
-"Bisogna installare il piano dei conti dall'app Contabilità, menu "
-"impostazioni."
-
-#. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__deposit_taxes_id
 msgid "Vendor Taxes"
 msgstr "Imposte venditore"
@@ -267,6 +209,43 @@ msgstr "Imposte venditore"
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__advance_payment_method
 msgid "What do you want to invoice?"
 msgstr "Cosa si vuole fatturare?"
+
+#~ msgid "Advance: %s"
+#~ msgstr "Anticipo: %s"
+
+#~ msgid "Deposit Payment"
+#~ msgstr "Pagamento cauzione"
+
+#~ msgid "The percentage of the deposit must be not over 100"
+#~ msgstr "La percentuale della cauzione non può essere più di 100"
+
+#~ msgid ""
+#~ "The product used to invoice a down payment should be of type \"Service\". "
+#~ "Please use another product or update this product."
+#~ msgstr ""
+#~ "Il prodottoutilizzato per fatturare un acconto deve essere di tipo "
+#~ "\"Servizio\". Utilizzare un altro prodotto o modificare questo."
+
+#~ msgid ""
+#~ "The product used to invoice a down payment should have an invoice policy "
+#~ "set to \"Ordered quantities\". Please update your deposit product to be "
+#~ "able to create a deposit invoice."
+#~ msgstr ""
+#~ "Il prodotto utilizzato per fatturare un acconto deve avere una politica "
+#~ "di fatturazione impostata a \"Quantità ordinate\". Modificare il prodotto "
+#~ "cauzione per consentire la creazione di una fattura cauzione."
+
+#~ msgid "The value of the deposit must be positive."
+#~ msgstr "Il valore della cauzione deve essere positivo."
+
+#~ msgid ""
+#~ "There is no purchase account defined for this product: %s.\n"
+#~ "You may have to install a chart of account from Accounting app, settings "
+#~ "menu."
+#~ msgstr ""
+#~ "Non c'è un conto acquisto definito per questo prodotto: %s\n"
+#~ "Bisogna installare il piano dei conti dall'app Contabilità, menu "
+#~ "impostazioni."
 
 #~ msgid "Config Settings"
 #~ msgstr "Impostazioni configurazione"
