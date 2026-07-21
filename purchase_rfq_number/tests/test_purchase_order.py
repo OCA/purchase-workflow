@@ -59,7 +59,7 @@ class TestPurchaseOrder(TransactionCase):
         order = self.purchase_order_model.create(
             {
                 "partner_id": self.env.ref("base.res_partner_1").id,
-                "state": "done",
+                "state": "purchase",
             }
         )
         sequence_id = self.env["ir.sequence"].search(
