@@ -10,19 +10,16 @@ class TestPurchaseOrder(TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.purchase_order_model = cls.env["purchase.order"]
+        cls.partner = cls.env["res.partner"].create({"name": "Test Vendor"})
         company = cls.env.company
         company.keep_name_po = False
         company.auto_attachment_rfq = True
 
     def test_enumeration(self):
-        order1 = self.purchase_order_model.create(
-            {"partner_id": self.env.ref("base.res_partner_1").id}
-        )
+        order1 = self.purchase_order_model.create({"partner_id": self.partner.id})
 
         purchase_for_quotation1_name = order1.name
-        order2 = self.purchase_order_model.create(
-            {"partner_id": self.env.ref("base.res_partner_1").id}
-        )
+        order2 = self.purchase_order_model.create({"partner_id": self.partner.id})
         purchase_for_quotation2_name = order2.name
 
         self.assertRegex(purchase_for_quotation1_name, "RFQ")
@@ -46,7 +43,7 @@ class TestPurchaseOrder(TransactionCase):
         order1 = self.purchase_order_model.create(
             {
                 "rfq_number": rfq_number,
-                "partner_id": self.env.ref("base.res_partner_1").id,
+                "partner_id": self.partner.id,
             }
         )
         purchase_for_quotation1_name = order1.name
@@ -58,7 +55,7 @@ class TestPurchaseOrder(TransactionCase):
     def test_error_confirmation_sequence(self):
         order = self.purchase_order_model.create(
             {
-                "partner_id": self.env.ref("base.res_partner_1").id,
+                "partner_id": self.partner.id,
                 "state": "purchase",
             }
         )
@@ -81,7 +78,7 @@ class TestPurchaseOrder(TransactionCase):
     def test_auto_attachment_rfq(self):
         order = self.purchase_order_model.create(
             {
-                "partner_id": self.env.ref("base.res_partner_1").id,
+                "partner_id": self.partner.id,
                 "state": "draft",
             }
         )
