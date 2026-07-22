@@ -15,6 +15,7 @@ class TestPurchaseForceInvoiced(BaseCommon):
         super().setUpClass()
         cls.purchase_order_model = cls.env["purchase.order"]
         cls.purchase_order_line_model = cls.env["purchase.order.line"]
+        cls.match_model = cls.env["purchase.bill.line.match"]
         cls.account_invoice_model = cls.env["account.move"]
         cls.account_invoice_line = cls.env["account.move.line"]
         cls.invoice_account = cls.env["account.account"].search(
@@ -130,3 +131,28 @@ class TestPurchaseForceInvoiced(BaseCommon):
             ).mapped("quantity")
         )
         self.assertEqual(invoice_qty, 2.0)
+
+    def test_bill_matching_excludes_force_invoiced(self):
+        po = self.purchase_order_model.create({"partner_id": self.customer.id})
+        pol = self.purchase_order_line_model.create(
+            {
+                "name": self.service_1.name,
+                "product_id": self.service_1.id,
+                "product_qty": 1,
+                "product_uom": self.service_1.uom_po_id.id,
+                "price_unit": 500.0,
+                "date_planned": fields.Date.today(),
+                "order_id": po.id,
+            }
+        )
+        po.button_confirm()
+        pol.qty_received = 1
+        # The line is pending to bill, so it is offered for matching
+        self.env.flush_all()
+        self.assertTrue(self.match_model.search([("pol_id", "=", pol.id)]))
+
+        # Once the order is force invoiced, its lines must no longer appear
+        po.button_done()
+        po.force_invoiced = True
+        self.env.flush_all()
+        self.assertFalse(self.match_model.search([("pol_id", "=", pol.id)]))
