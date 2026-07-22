@@ -72,6 +72,11 @@ msgid "On received"
 msgstr "po prejetem"
 
 #. module: purchase_invoice_status_line
+#: model:ir.model,name:purchase_invoice_status_line.model_purchase_bill_line_match
+msgid "Purchase Line and Vendor Bill line matching view"
+msgstr ""
+
+#. module: purchase_invoice_status_line
 #: model:ir.model,name:purchase_invoice_status_line.model_purchase_order
 msgid "Purchase Order"
 msgstr "Nabavni nalog"
