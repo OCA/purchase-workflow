@@ -32,6 +32,11 @@ msgstr ""
 "une ligne a été forcée manuellement."
 
 #. module: purchase_force_invoiced
+#: model:ir.model,name:purchase_force_invoiced.model_purchase_bill_line_match
+msgid "Purchase Line and Vendor Bill line matching view"
+msgstr ""
+
+#. module: purchase_force_invoiced
 #: model:ir.model,name:purchase_force_invoiced.model_purchase_order
 msgid "Purchase Order"
 msgstr "Commande fournisseur"
