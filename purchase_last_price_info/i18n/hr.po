@@ -27,6 +27,12 @@ msgid "Last Purchase Currency"
 msgstr "Valuta zadnje nabave"
 
 #. module: purchase_last_price_info
+#: model:ir.model.fields,field_description:purchase_last_price_info.field_product_product__last_purchase_price_currency_rate
+#: model:ir.model.fields,field_description:purchase_last_price_info.field_product_template__last_purchase_price_currency_rate
+msgid "Last Purchase Currency Rate"
+msgstr ""
+
+#. module: purchase_last_price_info
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_product__last_purchase_date
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_template__last_purchase_date
 msgid "Last Purchase Date"
@@ -51,16 +57,16 @@ msgid "Last Purchase Price"
 msgstr "Zadnja cijena nabave"
 
 #. module: purchase_last_price_info
+#: model:ir.model.fields,field_description:purchase_last_price_info.field_product_product__last_purchase_price_currency
+#: model:ir.model.fields,field_description:purchase_last_price_info.field_product_template__last_purchase_price_currency
+msgid "Last Purchase Price Currency"
+msgstr ""
+
+#. module: purchase_last_price_info
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_product__last_purchase_supplier_id
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_template__last_purchase_supplier_id
 msgid "Last Supplier"
 msgstr "Zadnji dobavljač"
-
-#. module: purchase_last_price_info
-#: model:ir.model.fields,field_description:purchase_last_price_info.field_product_product__last_purchase_price_currency
-#: model:ir.model.fields,field_description:purchase_last_price_info.field_product_template__last_purchase_price_currency
-msgid "Last currency purchase price"
-msgstr "Zadnja cijena u valuti"
 
 #. module: purchase_last_price_info
 #: model:ir.model,name:purchase_last_price_info.model_product_template
@@ -83,6 +89,15 @@ msgstr "Nabava"
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_template__show_last_purchase_price_currency
 msgid "Show Last Purchase Price Currency"
 msgstr "Prikaži valutu zadnje nabavne cijene"
+
+#. module: purchase_last_price_info
+#: model:ir.model.fields,field_description:purchase_last_price_info.field_product_product__show_last_purchase_price_currency_rate
+#: model:ir.model.fields,field_description:purchase_last_price_info.field_product_template__show_last_purchase_price_currency_rate
+msgid "Show Last Purchase Price Currency Rate"
+msgstr ""
+
+#~ msgid "Last currency purchase price"
+#~ msgstr "Zadnja cijena u valuti"
 
 #, fuzzy
 #~ msgid "Product Template"
