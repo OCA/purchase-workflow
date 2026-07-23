@@ -33,6 +33,9 @@
                 <field name="qty_received" optional="hide" />
                 <field name="qty_received_manual" optional="hide" />
             </xpath>
+            <xpath expr="//field[@name='price_unit']" position="after">
+                <field name="discount" string="Disc.%" optional="hide" />
+            </xpath>
             <xpath expr="//field[@name='price_subtotal']" position="after">
                 <field name="taxes_id" widget="many2many_tags" optional="hide" />
                 <field
