@@ -26,6 +26,12 @@ msgid "Last Purchase Currency"
 msgstr "Valuta ultimo acquisto"
 
 #. module: purchase_last_price_info
+#: model:ir.model.fields,field_description:purchase_last_price_info.field_product_product__last_purchase_price_currency_rate
+#: model:ir.model.fields,field_description:purchase_last_price_info.field_product_template__last_purchase_price_currency_rate
+msgid "Last Purchase Currency Rate"
+msgstr ""
+
+#. module: purchase_last_price_info
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_product__last_purchase_date
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_template__last_purchase_date
 msgid "Last Purchase Date"
@@ -50,16 +56,16 @@ msgid "Last Purchase Price"
 msgstr "Ultimo prezzo di acquisto"
 
 #. module: purchase_last_price_info
+#: model:ir.model.fields,field_description:purchase_last_price_info.field_product_product__last_purchase_price_currency
+#: model:ir.model.fields,field_description:purchase_last_price_info.field_product_template__last_purchase_price_currency
+msgid "Last Purchase Price Currency"
+msgstr ""
+
+#. module: purchase_last_price_info
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_product__last_purchase_supplier_id
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_template__last_purchase_supplier_id
 msgid "Last Supplier"
 msgstr "Ultimo fornitore"
-
-#. module: purchase_last_price_info
-#: model:ir.model.fields,field_description:purchase_last_price_info.field_product_product__last_purchase_price_currency
-#: model:ir.model.fields,field_description:purchase_last_price_info.field_product_template__last_purchase_price_currency
-msgid "Last currency purchase price"
-msgstr "Ultima valuta prezzo acquisto"
 
 #. module: purchase_last_price_info
 #: model:ir.model,name:purchase_last_price_info.model_product_template
@@ -82,6 +88,15 @@ msgstr "Acquisto"
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_template__show_last_purchase_price_currency
 msgid "Show Last Purchase Price Currency"
 msgstr "Visualizza la valuta prezzo ultimo acquisto"
+
+#. module: purchase_last_price_info
+#: model:ir.model.fields,field_description:purchase_last_price_info.field_product_product__show_last_purchase_price_currency_rate
+#: model:ir.model.fields,field_description:purchase_last_price_info.field_product_template__show_last_purchase_price_currency_rate
+msgid "Show Last Purchase Price Currency Rate"
+msgstr ""
+
+#~ msgid "Last currency purchase price"
+#~ msgstr "Ultima valuta prezzo acquisto"
 
 #, fuzzy
 #~ msgid "Product Template"
