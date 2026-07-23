@@ -35,6 +35,11 @@ msgid ""
 msgstr "お見積りを確認して販売オーダに更新しないといけない期日を表示します。"
 
 #. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_tree
+msgid "Disc.%"
+msgstr ""
+
+#. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
 msgid "Fully Billed"
 msgstr "完全請求済"

@@ -37,6 +37,11 @@ msgstr ""
 "umgewandelt werden soll."
 
 #. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_tree
+msgid "Disc.%"
+msgstr ""
+
+#. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
 msgid "Fully Billed"
 msgstr "Vollständig abgerechnet"
