@@ -27,9 +27,19 @@ msgid "An optional cancel reason"
 msgstr "Un motivo di annullamento opzionale"
 
 #. module: purchase_request_cancel_confirm
+#: model:ir.model.fields,field_description:purchase_request_cancel_confirm.field_purchase_request__cancel_by
+msgid "Cancel By"
+msgstr ""
+
+#. module: purchase_request_cancel_confirm
 #: model:ir.model.fields,field_description:purchase_request_cancel_confirm.field_purchase_request__cancel_confirm
 msgid "Cancel Confirmed"
 msgstr "Annullamento confermato"
+
+#. module: purchase_request_cancel_confirm
+#: model:ir.model.fields,field_description:purchase_request_cancel_confirm.field_purchase_request__cancel_date
+msgid "Cancel Date"
+msgstr ""
 
 #. module: purchase_request_cancel_confirm
 #: model:ir.model.fields,field_description:purchase_request_cancel_confirm.field_purchase_request__cancel_reason
