@@ -51,3 +51,19 @@ class TestPurchaseOrderNoZeroPrice(common.TransactionCase):
             self.purchase_order2.order_line.write({"price_unit": 0.0})
             self.purchase_order2.button_confirm()
         self.assertEqual(self.purchase_order2.state, "draft")
+
+    def test_cannot_confirm_purchase_order_with_zero_price(self):
+        self.assertEqual(self.purchase_order2.state, "draft")
+        # A zero price is allowed while the PO remains in draft.
+        self.purchase_order2.order_line.write({"price_unit": 0.0})
+        self.assertEqual(self.purchase_order2.order_line.price_unit, 0.0)
+        with self.assertRaises(UserError), self.cr.savepoint():
+            self.purchase_order2.button_confirm()
+        self.assertEqual(self.purchase_order2.state, "draft")
+
+    def test_cannot_set_zero_price_on_confirmed_purchase_order(self):
+        self.purchase_order1.button_confirm()
+        self.assertEqual(self.purchase_order1.state, "purchase")
+        with self.assertRaises(UserError), self.cr.savepoint():
+            self.purchase_order1.order_line.write({"price_unit": 0.0})
+        self.assertEqual(self.purchase_order1.order_line.price_unit, 10.0)
