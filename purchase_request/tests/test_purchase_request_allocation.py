@@ -70,10 +70,11 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
             active_ids=[purchase_request_line1.id, purchase_request_line2.id],
         ).create(vals)
         wiz_id.make_purchase_order()
+        (
+            purchase_request_line1 + purchase_request_line2
+        ).purchase_lines.price_unit = 100.0
         purchase_request1.action_view_purchase_order()
         po_line = purchase_request_line1.purchase_lines[0]
-        # Add unit price in PO Line
-        po_line.write({"price_unit": 10})
         purchase = po_line.order_id
         purchase.order_line.action_open_request_line_tree_view()
         purchase.button_confirm()
@@ -157,10 +158,9 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
             active_model="purchase.request.line", active_ids=[purchase_request_line1.id]
         ).create(vals)
         wiz_id.make_purchase_order()
+        purchase_request_line1.purchase_lines.price_unit = 100.0
         purchase_request1.action_view_purchase_order()
         po_line = purchase_request_line1.purchase_lines[0]
-        # Add unit price in PO Line
-        po_line.write({"price_unit": 10})
         purchase = po_line.order_id
         purchase.button_confirm()
         self.assertEqual(purchase_request_line1.qty_in_progress, 2.0)
@@ -191,6 +191,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
             active_model="purchase.request.line", active_ids=[purchase_request_line2.id]
         ).create(vals)
         wiz_id.make_purchase_order()
+        purchase_request_line2.purchase_lines.price_unit = 100.0
         (purchase_request1 + purchase_request2).action_view_purchase_order()
         po_line = purchase_request_line2.purchase_lines[0]
         purchase2 = po_line.order_id
@@ -229,6 +230,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
             active_model="purchase.request.line", active_ids=[purchase_request_line1.id]
         ).create(vals)
         wiz_id.make_purchase_order()
+        purchase_request_line1.purchase_lines.price_unit = 100.0
         self.assertEqual(
             purchase_request_line1.purchase_request_allocation_ids[0].open_product_qty,
             2.0,
@@ -265,6 +267,9 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         ).create(vals)
         # Create PO
         wiz_id.make_purchase_order()
+        (
+            purchase_request_line1 + purchase_request_line2
+        ).purchase_lines.price_unit = 100.0
         po_line = purchase_request_line1.purchase_lines[0]
         self.assertEqual(po_line.product_qty, 2, "Quantity should be 2")
         self.assertEqual(
@@ -349,6 +354,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         ).create(vals)
         # Create PO
         wiz_id.make_purchase_order()
+        purchase_request_line1.purchase_lines.price_unit = 100.0
         po_line = purchase_request_line1.purchase_lines[0]
         self.assertEqual(
             purchase_request_line1.purchase_request_allocation_ids[
