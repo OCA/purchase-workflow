@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2025 ACSONE SA/NV
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="purchase_order_line_form_view" model="ir.ui.view">
+        <field name="model">purchase.order.line</field>
+        <field name="inherit_id" ref="purchase.purchase_order_line_form2" />
+        <field name="arch" type="xml">
+            <field name="price_unit" position="after">
+                <field name="line_receipt_status" states="purchase,done" />
+            </field>
+        </field>
+    </record>
+
+    <record id="purchase_order_line_search_view" model="ir.ui.view">
+        <field name="model">purchase.order.line</field>
+        <field name="inherit_id" ref="purchase.purchase_order_line_search" />
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='hide_cancelled']" position="after">
+                <separator string="Receipt Status" />
+                <filter
+                    name="filter_no"
+                    string="Nothing to Receive"
+                    domain="[('line_receipt_status','=',False),('state','in',['done','purchase'])]"
+                />
+                <filter
+                    name="filter_pending"
+                    string="Pending Receipts"
+                    domain="[('line_receipt_status','=','pending'),('state','in',['done','purchase'])]"
+                />
+                <filter
+                    name="filter_partial"
+                    string="Partially Received"
+                    domain="[('line_receipt_status','=','partial'),('state','in',['done','purchase'])]"
+                />
+                <filter
+                    name="filter_received"
+                    string="Fully Received"
+                    domain="[('line_receipt_status','=','full'),('state','in',['done','purchase'])]"
+                />
+                <separator />
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="purchase_order_line_tree_view" model="ir.ui.view">
+        <field name="model">purchase.order.line</field>
+        <field name="inherit_id" ref="purchase.purchase_order_line_tree" />
+        <field name="arch" type="xml">
+            <field name="date_planned" position="before">
+                <field
+                    name="line_receipt_status"
+                    widget="badge"
+                    decoration-info="line_receipt_status == 'pending'"
+                    decoration-warning="line_receipt_status == 'partial'"
+                    decoration-success="line_receipt_status == 'full'"
+                />
+            </field>
+        </field>
+    </record>
+
+</odoo>
