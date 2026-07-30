@@ -1,0 +1,23 @@
+<odoo>
+    <record id="stock_valuation_layer_form" model="ir.ui.view">
+        <field name="model">stock.valuation.layer</field>
+        <field name="inherit_id" ref="stock_account.stock_valuation_layer_form" />
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page
+                    string="Update history"
+                    attrs="{'invisible': [('cost_update_history', '=', False)]}"
+                >
+                    <field name="cost_update_history" readonly="1" />
+                </page>
+            </notebook>
+            <field name="account_move_id" position="after">
+                <field
+                    name="purchase_line_id"
+                    attrs="{'invisible': [('purchase_line_id', '=', False)]}"
+                    readonly="1"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
