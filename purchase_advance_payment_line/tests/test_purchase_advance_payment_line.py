@@ -131,14 +131,14 @@ class TestPurchaseAdvancePaymentLine(common.TransactionCase):
         action = self.purchase_order.action_view_ongoing_payment_lines()
         self.assertEqual(action["view_mode"], "form")
 
-    def test_06_check_amount_positive(self):
+    def test_06_check_amount_create_non_positive(self):
         """A non-positive amount raises a ValidationError."""
         with self.assertRaisesRegex(
             ValidationError, "Amount of advance must be positive"
         ):
             self._create_payment_line(0.0)
 
-    def test_07_check_amount_exceeds_residual(self):
+    def test_07_check_amount_create_exceeds_residual(self):
         """An amount exceeding the purchase order residual raises a ValidationError."""
         with self.assertRaisesRegex(
             ValidationError,
@@ -148,7 +148,32 @@ class TestPurchaseAdvancePaymentLine(common.TransactionCase):
                 self.purchase_order.amount_residual + 1,
             )
 
-    def test_08_prepare_account_payment_vals_includes_purchase_id(self):
+    def test_08_check_amount_write_non_positive(self):
+        """Updating amount_currency to a non-positive value raises a ValidationError."""
+        pline = self._create_payment_line(100.0)
+        with self.assertRaisesRegex(
+            ValidationError, "Amount of advance must be positive"
+        ):
+            pline.write({"amount_currency": 0.0})
+
+    def test_09_check_amount_write_exceeds_residual(self):
+        """Updating amount_currency beyond the residual raises a ValidationError."""
+        pline = self._create_payment_line(100.0)
+        amount_currency = self.purchase_order.amount_residual + 1
+        with self.assertRaisesRegex(
+            ValidationError,
+            "Amount of advance is greater than residual amount on purchase",
+        ):
+            pline.write({"amount_currency": amount_currency})
+
+    def test_10_check_amount_write_valid(self):
+        """Updating amount_currency to a valid value within residual succeeds."""
+        pline = self._create_payment_line(100.0)
+        amount_currency = self.purchase_order.amount_residual - 1
+        pline.write({"amount_currency": amount_currency})
+        self.assertEqual(pline.amount_currency, amount_currency)
+
+    def test_11_prepare_account_payment_vals_includes_purchase_id(self):
         """_prepare_account_payment_vals includes purchase_id when set."""
         pline = self._create_payment_line(100.0)
         vals = pline._prepare_account_payment_vals()
