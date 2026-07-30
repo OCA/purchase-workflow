@@ -7,7 +7,7 @@
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": "Purchase Management",
-    "depends": ["purchase"],
+    "depends": ["purchase", "stock"],
     "website": "https://github.com/OCA/purchase-workflow",
     "data": [
         "security/ir.model.access.csv",
