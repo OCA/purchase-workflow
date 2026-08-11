@@ -8,4 +8,12 @@
     "website": "https://github.com/OCA/purchase-workflow",
     "license": "AGPL-3",
     "depends": ["purchase"],
+    "assets": {
+        "web.assets_backend": [
+            "purchase_order_line_description/static/src/js/purchase_product_field.esm.js",
+        ],
+        "web.assets_tests": [
+            "purchase_order_line_description/static/tests/tours/*.js",
+        ],
+    },
 }
