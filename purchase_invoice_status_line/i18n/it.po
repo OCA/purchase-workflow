@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-05-29 13:19+0000\n"
+"PO-Revision-Date: 2026-08-11 14:41+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -74,7 +74,7 @@ msgstr "Sul ricevuto"
 #. module: purchase_invoice_status_line
 #: model:ir.model,name:purchase_invoice_status_line.model_purchase_bill_line_match
 msgid "Purchase Line and Vendor Bill line matching view"
-msgstr ""
+msgstr "Vista corrispondenza riga acquisto e fattura fornitore"
 
 #. module: purchase_invoice_status_line
 #: model:ir.model,name:purchase_invoice_status_line.model_purchase_order
