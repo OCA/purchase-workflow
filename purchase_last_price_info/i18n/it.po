@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-15 11:37+0000\n"
-"PO-Revision-Date: 2026-07-27 11:07+0000\n"
+"PO-Revision-Date: 2026-08-11 14:41+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-purchase-workflow-8-"
 "0/language/it/)\n"
@@ -29,7 +29,7 @@ msgstr "Valuta ultimo acquisto"
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_product__last_purchase_price_currency_rate
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_template__last_purchase_price_currency_rate
 msgid "Last Purchase Currency Rate"
-msgstr ""
+msgstr "Coefficiente valuta ultimo acquisto"
 
 #. module: purchase_last_price_info
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_product__last_purchase_date
@@ -59,7 +59,7 @@ msgstr "Prezzo ultimo acquisto"
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_product__last_purchase_price_currency
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_template__last_purchase_price_currency
 msgid "Last Purchase Price Currency"
-msgstr ""
+msgstr "Valuta prezzo ultimo acquisto"
 
 #. module: purchase_last_price_info
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_product__last_purchase_supplier_id
@@ -93,7 +93,7 @@ msgstr "Visualizza la valuta prezzo ultimo acquisto"
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_product__show_last_purchase_price_currency_rate
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_template__show_last_purchase_price_currency_rate
 msgid "Show Last Purchase Price Currency Rate"
-msgstr ""
+msgstr "Visualizza il coefficiente valuta prezzo ultimo acquisto"
 
 #~ msgid "Last currency purchase price"
 #~ msgstr "Ultima valuta prezzo acquisto"
