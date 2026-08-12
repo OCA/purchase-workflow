@@ -9,7 +9,6 @@ class ResCompany(models.Model):
 
     purchase_deposit_product_id = fields.Many2one(
         comodel_name="product.product",
-        string="Purchase Deposit Product",
         domain=[("type", "=", "service")],
         help="Default product used for payment advances.",
     )
