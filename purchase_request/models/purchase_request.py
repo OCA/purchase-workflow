@@ -131,7 +131,6 @@ class PurchaseRequest(models.Model):
     to_approve_allowed = fields.Boolean(compute="_compute_to_approve_allowed")
     picking_type_id = fields.Many2one(
         comodel_name="stock.picking.type",
-        string="Picking Type",
         required=True,
         default=lambda self: self._default_picking_type(),
     )

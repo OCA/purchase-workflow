@@ -17,7 +17,6 @@ class SaleOrderLine(models.Model):
 
     vendor_id = fields.Many2one(
         comodel_name="res.partner",
-        string="Vendor",
     )
     vendor_id_domain = fields.Binary(
         compute="_compute_vendor_id_domain",
