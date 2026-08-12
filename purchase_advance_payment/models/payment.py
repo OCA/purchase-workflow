@@ -9,6 +9,5 @@ class AccountPayment(models.Model):
 
     purchase_id = fields.Many2one(
         "purchase.order",
-        "Purchase",
         readonly=True,
     )
