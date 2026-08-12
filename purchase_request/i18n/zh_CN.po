@@ -540,8 +540,8 @@ msgstr ""
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order__item_ids
-msgid "Items"
-msgstr "明细"
+msgid "Item"
+msgstr ""
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__write_uid
@@ -810,6 +810,7 @@ msgstr "采购订单"
 #: model:ir.model.fields,field_description:purchase_request.field_product_template__purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__request_id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__request_id
+#: model:ir.model.fields,field_description:purchase_request.field_stock_move__purchase_request_ids
 #: model:ir.module.category,name:purchase_request.module_category_purchase_request
 #: model:res.groups.privilege,name:purchase_request.res_groups_privilege_purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
@@ -919,7 +920,6 @@ msgstr "请购待批准"
 #. module: purchase_request
 #: model:ir.actions.act_window,name:purchase_request.action_purchase_request_line_product_tree
 #: model:ir.actions.act_window,name:purchase_request.purchase_request_form_action
-#: model:ir.model.fields,field_description:purchase_request.field_stock_move__purchase_request_ids
 #: model:ir.ui.menu,name:purchase_request.menu_purchase_request
 #: model:ir.ui.menu,name:purchase_request.menu_purchase_request_act
 #: model:ir.ui.menu,name:purchase_request.menu_purchase_request_pro_mgt
@@ -1445,6 +1445,9 @@ msgstr "您必须选择相同作业类型的请购明细。"
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
 msgid "You have to select lines from the same company."
 msgstr "您必须选择同一个公司的请购明细。"
+
+#~ msgid "Items"
+#~ msgstr "明细"
 
 #~ msgid "Group By"
 #~ msgstr "分组"

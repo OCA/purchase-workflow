@@ -115,13 +115,10 @@ class PurchaseRequestLine(models.Model):
         string="Downstream Moves",
     )
 
-    orderpoint_id = fields.Many2one(
-        comodel_name="stock.warehouse.orderpoint", string="Orderpoint"
-    )
+    orderpoint_id = fields.Many2one(comodel_name="stock.warehouse.orderpoint")
     purchase_request_allocation_ids = fields.One2many(
         comodel_name="purchase.request.allocation",
         inverse_name="purchase_request_line_id",
-        string="Purchase Request Allocation",
     )
 
     qty_in_progress = fields.Float(
@@ -165,7 +162,6 @@ class PurchaseRequestLine(models.Model):
     currency_id = fields.Many2one(related="company_id.currency_id", readonly=True)
     product_id = fields.Many2one(
         comodel_name="product.product",
-        string="Product",
         domain=[("purchase_ok", "=", True)],
         tracking=True,
     )

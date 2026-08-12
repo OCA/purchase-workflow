@@ -525,7 +525,7 @@ msgstr ""
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order__item_ids
-msgid "Items"
+msgid "Item"
 msgstr ""
 
 #. module: purchase_request
@@ -796,6 +796,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request.field_product_template__purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__request_id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__request_id
+#: model:ir.model.fields,field_description:purchase_request.field_stock_move__purchase_request_ids
 #: model:ir.module.category,name:purchase_request.module_category_purchase_request
 #: model:res.groups.privilege,name:purchase_request.res_groups_privilege_purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
@@ -905,7 +906,6 @@ msgstr ""
 #. module: purchase_request
 #: model:ir.actions.act_window,name:purchase_request.action_purchase_request_line_product_tree
 #: model:ir.actions.act_window,name:purchase_request.purchase_request_form_action
-#: model:ir.model.fields,field_description:purchase_request.field_stock_move__purchase_request_ids
 #: model:ir.ui.menu,name:purchase_request.menu_purchase_request
 #: model:ir.ui.menu,name:purchase_request.menu_purchase_request_act
 #: model:ir.ui.menu,name:purchase_request.menu_purchase_request_pro_mgt

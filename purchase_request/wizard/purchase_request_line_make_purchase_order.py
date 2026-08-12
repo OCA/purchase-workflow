@@ -15,18 +15,15 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
 
     supplier_id = fields.Many2one(
         comodel_name="res.partner",
-        string="Supplier",
         required=True,
         context={"res_partner_search_mode": "supplier"},
     )
     item_ids = fields.One2many(
         comodel_name="purchase.request.line.make.purchase.order.item",
         inverse_name="wiz_id",
-        string="Items",
     )
     purchase_order_id = fields.Many2one(
         comodel_name="purchase.order",
-        string="Purchase Order",
         domain=[("state", "=", "draft")],
     )
     sync_data_planned = fields.Boolean(
