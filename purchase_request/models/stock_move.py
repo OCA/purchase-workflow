@@ -11,7 +11,6 @@ class StockMove(models.Model):
 
     created_purchase_request_line_id = fields.Many2one(
         comodel_name="purchase.request.line",
-        string="Created Purchase Request Line",
         ondelete="set null",
         readonly=True,
         copy=False,
@@ -22,12 +21,10 @@ class StockMove(models.Model):
         comodel_name="purchase.request.allocation",
         inverse_name="stock_move_id",
         copy=False,
-        string="Purchase Request Allocation",
     )
 
     purchase_request_ids = fields.One2many(
         comodel_name="purchase.request",
-        string="Purchase Requests",
         compute="_compute_purchase_request_ids",
     )
 
