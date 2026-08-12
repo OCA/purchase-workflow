@@ -36,10 +36,9 @@ class PurchaseOrderType(models.Model):
     payment_term_id = fields.Many2one(
         comodel_name="account.payment.term", string="Payment Terms"
     )
-    incoterm_id = fields.Many2one(comodel_name="account.incoterms", string="Incoterm")
+    incoterm_id = fields.Many2one(comodel_name="account.incoterms")
     sequence = fields.Integer(default=10)
     company_id = fields.Many2one(
         comodel_name="res.company",
-        string="Company",
         default=lambda self: self.env.company,
     )
