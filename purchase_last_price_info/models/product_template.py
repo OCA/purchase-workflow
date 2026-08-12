@@ -17,7 +17,6 @@ class ProductTemplate(models.Model):
     last_purchase_line_id = fields.Many2one(
         comodel_name="purchase.order.line",
         compute="_compute_last_purchase_line_id",
-        string="Last Purchase Line",
     )
     last_purchase_price = fields.Float(
         compute="_compute_last_purchase_line_id_info",
@@ -33,7 +32,6 @@ class ProductTemplate(models.Model):
     last_purchase_currency_id = fields.Many2one(
         comodel_name="res.currency",
         compute="_compute_last_purchase_line_id_info",
-        string="Last Purchase Currency",
     )
     show_last_purchase_price_currency_rate = fields.Boolean(
         related="product_variant_ids.show_last_purchase_price_currency_rate",
