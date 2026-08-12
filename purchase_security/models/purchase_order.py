@@ -15,7 +15,6 @@ class PurchaseOrder(models.Model):
     )
     team_id = fields.Many2one(
         "purchase.team",
-        string="Team",
         index=True,
         bypass_search_access=True,
         compute="_compute_team_id",
