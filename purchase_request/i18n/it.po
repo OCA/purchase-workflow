@@ -14,8 +14,8 @@ msgstr ""
 "POT-Creation-Date: 2016-11-17 03:38+0000\n"
 "PO-Revision-Date: 2026-03-23 07:54+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-purchase-workflow-"
-"10-0/language/it/)\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-purchase-"
+"workflow-10-0/language/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -556,8 +556,8 @@ msgstr "Il nome è modificabile"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order__item_ids
-msgid "Items"
-msgstr "Articoli"
+msgid "Item"
+msgstr ""
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__write_uid
@@ -826,6 +826,7 @@ msgstr "Ordini di acquisto"
 #: model:ir.model.fields,field_description:purchase_request.field_product_template__purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__request_id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__request_id
+#: model:ir.model.fields,field_description:purchase_request.field_stock_move__purchase_request_ids
 #: model:ir.module.category,name:purchase_request.module_category_purchase_request
 #: model:res.groups.privilege,name:purchase_request.res_groups_privilege_purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
@@ -935,7 +936,6 @@ msgstr "Richiesta di acquisto da approvare"
 #. module: purchase_request
 #: model:ir.actions.act_window,name:purchase_request.action_purchase_request_line_product_tree
 #: model:ir.actions.act_window,name:purchase_request.purchase_request_form_action
-#: model:ir.model.fields,field_description:purchase_request.field_stock_move__purchase_request_ids
 #: model:ir.ui.menu,name:purchase_request.menu_purchase_request
 #: model:ir.ui.menu,name:purchase_request.menu_purchase_request_act
 #: model:ir.ui.menu,name:purchase_request.menu_purchase_request_pro_mgt
@@ -1452,7 +1452,8 @@ msgstr ""
 msgid ""
 "You can't request an approval for a purchase request which is empty. (%"
 "(name)s)"
-msgstr "Non si può richiedere l'approvazione di una richiesta vuota. (%(name)s)"
+msgstr ""
+"Non si può richiedere l'approvazione di una richiesta vuota. (%(name)s)"
 
 #. module: purchase_request
 #. odoo-python
@@ -1484,6 +1485,9 @@ msgstr "Bisogna selezionare le righe dallo stesso tipo di prelievo."
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
 msgid "You have to select lines from the same company."
 msgstr "Bisogna selezionare le righe della stessa azienda."
+
+#~ msgid "Items"
+#~ msgstr "Articoli"
 
 #~ msgid "Category"
 #~ msgstr "Categoria"
