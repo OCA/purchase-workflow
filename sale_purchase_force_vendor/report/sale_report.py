@@ -9,7 +9,6 @@ class SaleReport(models.Model):
 
     vendor_id = fields.Many2one(
         comodel_name="res.partner",
-        string="Vendor",
         readonly=True,
     )
 

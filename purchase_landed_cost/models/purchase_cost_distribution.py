@@ -75,7 +75,6 @@ class PurchaseCostDistribution(models.Model):
     )
     company_id = fields.Many2one(
         comodel_name="res.company",
-        string="Company",
         required=True,
         default=lambda self: self.env.company,
     )
@@ -402,7 +401,6 @@ class PurchaseCostDistributionLine(models.Model):
     )
     product_id = fields.Many2one(
         comodel_name="product.product",
-        string="Product",
         store=True,
         compute="_compute_product_id",
     )
@@ -579,7 +577,7 @@ class PurchaseCostDistributionExpense(models.Model):
         domain="[('move_id.move_type', '=', 'in_invoice'),"
         "('move_id.state', '=', 'posted')]",
     )
-    invoice_id = fields.Many2one(comodel_name="account.move", string="Invoice")
+    invoice_id = fields.Many2one(comodel_name="account.move")
     display_name = fields.Char(compute="_compute_display_name", store=True)
     company_id = fields.Many2one(
         comodel_name="res.company",
