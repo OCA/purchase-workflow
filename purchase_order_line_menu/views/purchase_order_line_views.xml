@@ -26,6 +26,12 @@
             </xpath>
             <xpath expr="//field[@name='product_id']" position="after">
                 <field name="product_type" optional="hide" />
+                <field
+                    name="analytic_distribution"
+                    widget="analytic_distribution"
+                    optional="hide"
+                    groups="analytic.group_analytic_accounting"
+                />
             </xpath>
             <xpath expr="//field[@name='product_qty']" position="after">
                 <field name="qty_invoiced" optional="hide" />
