@@ -29,6 +29,21 @@ class TestThreeStepReception(TransactionCase):
         self.po._compute_all_picking_count()
         self.assertEqual(3, self.po.all_picking_count)
 
+    def test_picking_of_other_document_excluded(self):
+        self.po.button_confirm()
+        other_picking = self.env["stock.picking"].create(
+            {
+                "picking_type_id": self.wh.out_type_id.id,
+                "location_id": self.wh.lot_stock_id.id,
+                "location_dest_id": self.env.ref("stock.stock_location_customers").id,
+                "group_id": self.po.group_id.id,
+            }
+        )
+        self.po._compute_all_pickings()
+        self.po._compute_all_picking_count()
+        self.assertNotIn(other_picking, self.po.all_picking_ids)
+        self.assertEqual(1, self.po.all_picking_count)
+
     def test_action_view_all_pickings_one_step(self):
         self.po.button_confirm()
         action_data = self.po.action_view_all_pickings()

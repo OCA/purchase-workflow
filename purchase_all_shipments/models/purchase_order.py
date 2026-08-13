@@ -19,11 +19,10 @@ class PurchaseOrder(models.Model):
 
     def _compute_all_pickings(self):
         for rec in self:
-            groups = rec.mapped("picking_ids.group_id")
-            all_picking_ids = self.env["stock.picking"].search(
-                [("group_id", "in", groups.ids)]
+            moves = rec.order_line.move_ids
+            rec.all_picking_ids = (
+                rec.picking_ids | moves._get_reception_chain_moves().picking_id
             )
-            rec.all_picking_ids = all_picking_ids
 
     def action_view_all_pickings(self):
         return self._get_action_view_all_pickings(self.all_picking_ids)
