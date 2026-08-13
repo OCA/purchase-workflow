@@ -92,7 +92,7 @@ Contributors
 
 * `PopSolutions <https://popsolutions.co>`__:
 
-  * Marcos Mendez <popsolutions.co@gmail.com>
+  * Marcos Mendez <mendez.foto@gmail.com>
 
 Maintainers
 ~~~~~~~~~~~
