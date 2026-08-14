@@ -4,6 +4,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 from datetime import datetime
 
+from odoo import Command
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 from odoo.addons.base.tests.common import BaseCommon
@@ -16,37 +17,38 @@ class TestPurchaseException(BaseCommon):
         # Useful models
         cls.PurchaseOrder = cls.env["purchase.order"]
         cls.PurchaseOrderLine = cls.env["purchase.order.line"]
-        cls.partner_id = cls.env.ref("base.res_partner_1")
-        cls.product_id_1 = cls.env.ref("product.product_product_6")
-        cls.product_id_2 = cls.env.ref("product.product_product_7")
-        cls.product_id_3 = cls.env.ref("product.product_product_7")
+        cls.product_id_1 = cls.env["product.product"].create(
+            {"name": "Test Product 1", "type": "consu"}
+        )
+        cls.product_id_2 = cls.env["product.product"].create(
+            {"name": "Test Product 2", "type": "consu"}
+        )
+        cls.product_id_3 = cls.env["product.product"].create(
+            {"name": "Test Product 3", "type": "consu"}
+        )
         cls.date_planned = datetime.today().strftime(DEFAULT_SERVER_DATETIME_FORMAT)
         cls.purchase_exception_confirm = cls.env["purchase.exception.confirm"]
         cls.exception_noemail = cls.env.ref("purchase_exception.po_excep_no_email")
         cls.exception_qtycheck = cls.env.ref("purchase_exception.pol_excep_qty_check")
         cls.po_vals = {
-            "partner_id": cls.partner_id.id,
+            "partner_id": cls.partner.id,
             "order_line": [
-                (
-                    0,
-                    0,
+                Command.create(
                     {
                         "name": cls.product_id_1.name,
                         "product_id": cls.product_id_1.id,
                         "product_qty": 5.0,
-                        "product_uom": cls.product_id_1.uom_po_id.id,
+                        "product_uom_id": cls.product_id_1.uom_id.id,
                         "price_unit": 500.0,
                         "date_planned": cls.date_planned,
                     },
                 ),
                 (
-                    0,
-                    0,
                     {
                         "name": cls.product_id_2.name,
                         "product_id": cls.product_id_2.id,
                         "product_qty": 5.0,
-                        "product_uom": cls.product_id_2.uom_po_id.id,
+                        "product_uom_id": cls.product_id_2.uom_id.id,
                         "price_unit": 250.0,
                         "date_planned": cls.date_planned,
                     },
@@ -54,16 +56,14 @@ class TestPurchaseException(BaseCommon):
             ],
         }
         cls.po_vals2 = {
-            "partner_id": cls.partner_id.id,
+            "partner_id": cls.partner.id,
             "order_line": [
-                (
-                    0,
-                    0,
+                Command.create(
                     {
                         "name": cls.product_id_3.name,
                         "product_id": cls.product_id_3.id,
                         "product_qty": -1.0,
-                        "product_uom": cls.product_id_3.uom_po_id.id,
+                        "product_uom_id": cls.product_id_3.uom_id.id,
                         "price_unit": 20.0,
                         "date_planned": cls.date_planned,
                     },
@@ -74,7 +74,7 @@ class TestPurchaseException(BaseCommon):
     def test_purchase_order_exception(self):
         self.exception_noemail.active = True
         self.exception_qtycheck.active = True
-        self.partner_id.email = False
+        self.partner.email = False
         self.po = self.PurchaseOrder.create(self.po_vals.copy())
 
         # confirm quotation
@@ -99,14 +99,12 @@ class TestPurchaseException(BaseCommon):
         self.po.write(
             {
                 "order_line": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "name": self.product_id_3.name,
                             "product_id": self.product_id_3.id,
                             "product_qty": 2,
-                            "product_uom": self.product_id_3.uom_id.id,
+                            "product_uom_id": self.product_id_3.uom_id.id,
                             "price_unit": 30,
                             "date_planned": self.date_planned,
                         },
@@ -147,3 +145,9 @@ class TestPurchaseException(BaseCommon):
         ).create({"ignore": True})
         po_except_confirm.exception_ids = self.exception_qtycheck
         po_except_confirm.action_confirm()
+
+    def test_purchase_get_lines(self):
+        self.po4 = self.PurchaseOrder.create(self.po_vals2.copy())
+        self.assertEqual(self.po4.ensure_one(), self.po4)
+        self.po4._purchase_get_lines()
+        self.assertEqual(len(self.po4.order_line), 1)
