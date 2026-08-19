@@ -39,7 +39,7 @@ msgstr ""
 #. module: purchase_v12_control_menu
 #: model:ir.actions.act_window,name:purchase_v12_control_menu.action_receipt_picking_move
 #: model:ir.ui.menu,name:purchase_v12_control_menu.menu_action_picking_tree_in_move
-msgid "Incoming  Products"
+msgid "Incoming Products"
 msgstr ""
 
 #. module: purchase_v12_control_menu
