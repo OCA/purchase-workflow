@@ -15,25 +15,25 @@
                     title="Select a default sort criteria for purchase order lines."
                     help="Default sort criteria for purchase order lines"
                 >
-                        <div class="row mt16">
-                            <label
+                    <div class="row mt16">
+                        <label
                             string="Line Order"
                             for="po_line_order_default"
                             class="col-lg-3 o_light_label"
                         />
-                            <field name="po_line_order_default" />
-                        </div>
-                        <div class="row mt16" invisible="not po_line_order_default">
-                            <label
+                        <field name="po_line_order_default" />
+                    </div>
+                    <div class="row mt16" invisible="not po_line_order_default">
+                        <label
                             string="Direction"
                             for="po_line_direction_default"
                             class="col-lg-3 o_light_label"
                         />
-                            <field
+                        <field
                             name="po_line_direction_default"
                             required="po_line_order_default"
                         />
-                        </div>
+                    </div>
                 </setting>
             </xpath>
         </field>
