@@ -21,17 +21,17 @@ class PurchaseOrderLine(models.Model):
         values,
     ):
         """If not grouping by line, we should make an exception when you update an
-        existing sales order line, so we filter a bit more by procurement group.
+        existing sales order line, so we filter a bit more by references.
 
-        NOTE: This makes that if you manually assign the same procurement group to
+        NOTE: This makes that if you manually assign the same references to
         several different sales orders, the grouping will be done no matter the grouping
         criteria, but this is the only way to do it without having to put a lot of glue
-        modules, and on standard operation mode, procurement groups are not reused
-        between sales orders.
+        modules, and on standard operation mode, references are not reused between sales
+        orders.
         """
         if values.get("grouping") == "line":
             self = self.filtered(
-                lambda x: x.order_id.reference_ids == values.get("group_id")
+                lambda x: x.order_id.reference_ids == values.get("reference_ids")
             )
         return super()._find_candidate(
             product_id,
