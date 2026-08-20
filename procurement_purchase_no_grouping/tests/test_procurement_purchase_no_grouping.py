@@ -2,7 +2,7 @@
 # Copyright 2021 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
-from odoo import fields
+from odoo import Command, fields
 
 from odoo.addons.base.tests.common import BaseCommon
 
@@ -43,7 +43,7 @@ class TestProcurementPurchaseNoGrouping(BaseCommon):
         )
         return product
 
-    def _run_procurement(self, product):
+    def _run_procurement(self, product, **extra_values):
         procurement = self.env["stock.rule"].Procurement(
             product,
             1,
@@ -52,7 +52,7 @@ class TestProcurementPurchaseNoGrouping(BaseCommon):
             False,
             self.origin,
             self.env.company,
-            self.values,
+            {**self.values, **extra_values},
         )
         rule = self.env["stock.rule"]._get_rule(
             procurement.product_id, procurement.location_id, procurement.values
@@ -108,6 +108,18 @@ class TestProcurementPurchaseNoGrouping(BaseCommon):
         self.assertEqual(
             len(orders.order_line), 3, "Procured purchase orders lines are the same"
         )
+        # We are simulating the dropshipping use case, such that when a confirmed sales
+        # order modifies a sales order line, it must NOT create an additional purchase
+        # order line; instead, it must modify the existing one.
+        line_2 = orders.order_line.filtered(lambda x: x.product_id == self.product_2)
+        self.assertEqual(line_2.product_uom_qty, 1)
+        reference = self.env["stock.reference"].create({"name": "test"})
+        orders.write({"reference_ids": [Command.set(reference.ids)]})
+        self._run_procurement(self.product_2, reference_ids=orders.reference_ids)
+        self.assertEqual(len(orders.order_line), 3)
+        lines_2 = orders.order_line.filtered(lambda x: x.product_id == self.product_2)
+        self.assertEqual(len(lines_2), 1)
+        self.assertEqual(lines_2.product_uom_qty, 2)
 
     def test_procurement_system_no_grouping_line_purchase(self):
         self.category.procured_purchase_grouping = None
