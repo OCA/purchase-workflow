@@ -152,6 +152,29 @@ class TestPurchaseOrderLineDeepSort(common.TransactionCase):
         lines = self.po_line_model.search([("order_id", "=", self.po.id)])
         self.assertEqual(lines[0], self.po_line_3)
 
+    def test_line_sections_are_kept_in_place(self):
+        """Section lines are pinned and lines are sorted inside their block"""
+        self.po_line_1.sequence = 10
+        section = self.po_line_model.create(
+            {
+                "order_id": self.po.id,
+                "display_type": "line_section",
+                "name": "Section",
+                "product_qty": 0.0,
+                "sequence": 20,
+            }
+        )
+        self.po_line_2.sequence = 30
+        self.po_line_3.sequence = 40
+        self.po.write({"line_order": "price_unit", "line_direction": "asc"})
+        lines = self.po.order_line
+        # The only line above the section stays there, and the lines below it
+        # are sorted among themselves (3.0 before 6.0).
+        self.assertEqual(lines[0], self.po_line_1)
+        self.assertEqual(lines[1], section)
+        self.assertEqual(lines[2], self.po_line_3)
+        self.assertEqual(lines[3], self.po_line_2)
+
     def test_res_config_settings(self):
         purchase_config = (
             self.env["res.config.settings"]
