@@ -1,8 +1,9 @@
 - [Tecnativa](https://www.tecnativa.com:):
 
-  - Vicent Cubells \<<vicent.cubells@tecnativa.com>\>
+  - Vicent Cubells
   - Pedro M. Baeza
   - Stefan Ungureanu
+  - Carlos Roca
 
 - [Prothai](https://www.prothaitechnology.com:):
 

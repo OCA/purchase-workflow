@@ -30,7 +30,7 @@ class TestPurchaseOrderLineDeepSort(common.TransactionCase):
                 "date_planned": "2018-11-01",
                 "name": "Test 1",
                 "product_qty": 3.0,
-                "product_uom": cls.product_1.uom_id.id,
+                "product_uom_id": cls.product_1.uom_id.id,
                 "price_unit": 10.0,
             }
         )
@@ -41,7 +41,7 @@ class TestPurchaseOrderLineDeepSort(common.TransactionCase):
                 "date_planned": "2018-11-05",
                 "name": "Test 2",
                 "product_qty": 4.0,
-                "product_uom": cls.product_2.uom_id.id,
+                "product_uom_id": cls.product_2.uom_id.id,
                 "price_unit": 6.0,
             }
         )
@@ -52,7 +52,7 @@ class TestPurchaseOrderLineDeepSort(common.TransactionCase):
                 "date_planned": "2018-11-03",
                 "name": "Test 3",
                 "product_qty": 2.0,
-                "product_uom": cls.product_3.uom_id.id,
+                "product_uom_id": cls.product_3.uom_id.id,
                 "price_unit": 3.0,
             }
         )
