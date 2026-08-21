@@ -1,0 +1,100 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_order_secondary_unit
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2026-06-27 11:46+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
+"Language-Team: none\n"
+"Language: sl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
+
+#. module: purchase_order_secondary_unit
+#: model_terms:ir.ui.view,arch_db:purchase_order_secondary_unit.report_purchaseorder_document
+#: model_terms:ir.ui.view,arch_db:purchase_order_secondary_unit.report_purchasequotation_document
+msgid "<strong>Second Qty</strong>"
+msgstr "<strong>Druga kol</strong>"
+
+#. module: purchase_order_secondary_unit
+#: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_product_product__purchase_secondary_uom_id
+#: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_product_template__purchase_secondary_uom_id
+msgid "Default secondary unit for purchases"
+msgstr "Privzeta sekundarna EM za nabavo"
+
+#. module: purchase_order_secondary_unit
+#: model:ir.model.fields,help:purchase_order_secondary_unit.field_product_product__purchase_secondary_uom_id
+msgid ""
+"In order to set a value, please first add at least one record in 'Secondary "
+"Unit of Measure'"
+msgstr ""
+"Če želite nastaviti vrednost, najprej dodajte vsaj en zapis v polje »"
+"Sekundarna EM«"
+
+#. module: purchase_order_secondary_unit
+#: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_purchase_order_line__product_packaging_id
+msgid "Packaging"
+msgstr "Pakiranje"
+
+#. module: purchase_order_secondary_unit
+#: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_purchase_order_line__product_packaging_qty
+msgid "Packaging Quantity"
+msgstr "Količina pakiranja"
+
+#. module: purchase_order_secondary_unit
+#: model:ir.model,name:purchase_order_secondary_unit.model_product_template
+msgid "Product"
+msgstr "Proizvod"
+
+#. module: purchase_order_secondary_unit
+#: model:ir.model,name:purchase_order_secondary_unit.model_product_product
+msgid "Product Variant"
+msgstr "Različica proizvoda"
+
+#. module: purchase_order_secondary_unit
+#: model:ir.model,name:purchase_order_secondary_unit.model_purchase_order
+msgid "Purchase Order"
+msgstr "Nabavni nalog"
+
+#. module: purchase_order_secondary_unit
+#: model:ir.model,name:purchase_order_secondary_unit.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Postavka nabavnega naloga"
+
+#. module: purchase_order_secondary_unit
+#: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_purchase_order_line__product_qty
+msgid "Quantity"
+msgstr "Količina"
+
+#. module: purchase_order_secondary_unit
+#: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_purchase_order_line__secondary_uom_id
+msgid "Second unit"
+msgstr "Druga enota"
+
+#. module: purchase_order_secondary_unit
+#: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_product_supplierinfo__secondary_uom_price
+#: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_purchase_order_line__secondary_uom_price
+msgid "Secondary Price"
+msgstr "Sekundarna cena"
+
+#. module: purchase_order_secondary_unit
+#: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_purchase_order_line__secondary_uom_qty
+msgid "Secondary Qty"
+msgstr "Sekundarna kol"
+
+#. module: purchase_order_secondary_unit
+#: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_product_supplierinfo__secondary_uom_id
+msgid "Secondary Unit"
+msgstr "Sekundarna enota"
+
+#. module: purchase_order_secondary_unit
+#: model:ir.model,name:purchase_order_secondary_unit.model_product_supplierinfo
+msgid "Supplier Pricelist"
+msgstr "Cenik dobavitelja"
