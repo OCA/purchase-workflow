@@ -3,6 +3,8 @@
 # Copyright 2019 Tecnativa - Sergio Teruel
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3
 
+from functools import partial
+
 from odoo import api, fields, models
 
 from .res_company import SORTING_CRITERIA, SORTING_DIRECTION
@@ -14,12 +16,12 @@ class PurchaseOrder(models.Model):
     line_order = fields.Selection(
         selection=SORTING_CRITERIA,
         string="Sort Lines By",
-        default=lambda self: self.env.user.company_id.default_po_line_order,
+        default=lambda self: self.env.company.default_po_line_order,
     )
     line_direction = fields.Selection(
         selection=SORTING_DIRECTION,
         string="Sort Direction",
-        default=lambda self: self.env.user.company_id.default_po_line_direction,
+        default=lambda self: self.env.company.default_po_line_direction,
     )
 
     @api.onchange("line_order")
@@ -39,42 +41,39 @@ class PurchaseOrder(models.Model):
                     res = getattr(res, subfield)
             return res
 
-        if not self.line_order and not self.line_direction:
-            return
-        reverse = self.line_direction == "desc"
-        sequence = 0
-        sorted_lines = self.order_line.sorted(
-            key=lambda p: resolve_subfields(p, self.line_order),
-            reverse=reverse,
-        )
-        for line in sorted_lines:
-            sequence += 10
-            if line.sequence == sequence:
+        for order in self:
+            if not order.line_order and not order.line_direction:
                 continue
-            line.sequence = sequence
+            reverse = order.line_direction == "desc"
+            sequence = 0
+            sorted_lines = order.order_line.sorted(
+                key=partial(resolve_subfields, line_order=order.line_order),
+                reverse=reverse,
+            )
+            for line in sorted_lines:
+                sequence += 10
+                if line.sequence == sequence:
+                    continue
+                line.sequence = sequence
 
     def write(self, values):
         res = super().write(values)
-        if (
-            "order_line" in values
-            or "line_order" in values
-            or "line_direction" in values
-        ):
+        if {"order_line", "line_order", "line_direction"} & values.keys():
             self._sort_purchase_line()
         return res
 
-    @api.model
-    def create(self, values):
-        purchase = super().create(values)
-        purchase._sort_purchase_line()
-        return purchase
+    @api.model_create_multi
+    def create(self, vals_list):
+        purchases = super().create(vals_list)
+        purchases._sort_purchase_line()
+        return purchases
 
 
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
-    @api.model
-    def create(self, vals):
-        line = super().create(vals)
-        line.order_id._sort_purchase_line()
-        return line
+    @api.model_create_multi
+    def create(self, vals_list):
+        lines = super().create(vals_list)
+        lines.order_id._sort_purchase_line()
+        return lines
