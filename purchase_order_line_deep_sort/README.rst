@@ -38,6 +38,10 @@ and allow you to manage sort of lines.
 You can set the default sort order for the current company or you can
 set sort order for a particular purchase order.
 
+Section, subsection and note lines are not part of the sorting: they
+stay where you placed them, and the sorting criteria is only applied to
+the product lines inside each of the blocks they delimit.
+
 **Table of contents**
 
 .. contents::
@@ -48,8 +52,6 @@ Configuration
 
 - Sort criteria items can be defined with a dot notation. This means
   that you can define an order as follows: **product_id.default_code**.
-  But the field defined must exist in database. If you define, e.g., a
-  calculated field, sort criteria won't work.
 
 Usage
 =====
