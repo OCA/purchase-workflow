@@ -5,6 +5,7 @@ from lxml import etree
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
+from odoo.tools import formatLang
 
 
 class PurchaseOrder(models.Model):
@@ -37,6 +38,27 @@ class PurchaseOrder(models.Model):
         compute="_compute_currency_diff",
         store=True,
     )
+
+    @api.depends_context("lang")
+    @api.depends(
+        "order_line.price_subtotal",
+        "currency_id",
+        "company_id",
+        "total_company_currency",
+    )
+    def _compute_tax_totals(self):
+        super()._compute_tax_totals()
+        # Add amount_total_cc to tax_totals to show total in company currency
+        for order in self:
+            if order.currency_id != order.company_currency_id:
+                amount_cc = formatLang(
+                    self.env,
+                    order.total_company_currency,
+                    currency_obj=self.company_currency_id,
+                )
+                order.tax_totals["amount_total_cc"] = f"({amount_cc})"
+                order.amount_total_cc = order.total_company_currency
+        return
 
     @api.depends("currency_id")
     def _compute_currency_diff(self):
