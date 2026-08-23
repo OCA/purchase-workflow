@@ -1,0 +1,44 @@
+<odoo>
+    <record id="view_purchase_request_form" model="ir.ui.view">
+        <field name="name">purchase.request.form</field>
+        <field name="model">purchase.request</field>
+        <field name="inherit_id" ref="purchase_request.view_purchase_request_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group/group[3]" position="inside">
+                <label
+                    for="manual_currency"
+                    groups="base.group_multi_currency"
+                    invisible="currency_id == company_currency_id"
+                />
+                <div
+                    groups="base.group_multi_currency"
+                    invisible="currency_id == company_currency_id"
+                >
+                    <field name="manual_currency" readonly="state != 'draft'" />
+                    <label for="currency_rate" invisible='1' />
+                    <div class="o_row" invisible="not manual_currency">
+                        <field
+                            name="currency_rate"
+                            readonly="state != 'draft'"
+                            digits="[12,12]"
+                        />
+                        <field
+                            name="type_currency"
+                            required="manual_currency"
+                            readonly="state != 'draft'"
+                        />
+                        <button
+                            aria-label="Opened"
+                            type="object"
+                            name="action_refresh_currency"
+                            class="btn-link"
+                            invisible="state != 'draft'"
+                        >
+                            <i title="Update Currency" class="fa fa-fw fa-refresh" />
+                        </button>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
