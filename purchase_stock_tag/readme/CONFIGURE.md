@@ -1,0 +1,2 @@
+- Go to Inventory > Configuration > Warehouse > Routes
+- Fill in the Purchase Tags field.
