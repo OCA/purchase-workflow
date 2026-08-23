@@ -1,0 +1,18 @@
+<odoo>
+    <record id="purchase_hide_price_grp" model="res.groups">
+        <field name="name">Purchase hide prices</field>
+        <field name="category_id" ref="base.module_category_inventory_purchase" />
+    </record>
+
+    <record id="hide_vendor_price_rule" model="ir.rule">
+        <field name="name">Hide vendor prices</field>
+        <field name="model_id" ref="product.model_product_supplierinfo" />
+        <field
+            name="groups"
+            eval="[(4, ref('purchase_hide_price.purchase_hide_price_grp'))]"
+        />
+        <field
+            name="domain_force"
+        >[('partner_id.commercial_partner_id.hide_purchase_price', '=', False)]</field>
+    </record>
+</odoo>

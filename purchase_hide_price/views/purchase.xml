@@ -1,0 +1,116 @@
+<odoo>
+    <record id="purchase_order_kpis_tree" model="ir.ui.view">
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_kpis_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='amount_untaxed']" position="after">
+                <field name="hide_price" column_invisible="1" />
+            </xpath>
+            <xpath expr="//field[@name='amount_untaxed']" position="attributes">
+                <attribute
+                    name="groups"
+                >!purchase_hide_price.purchase_hide_price_grp</attribute>
+            </xpath>
+            <xpath expr="//field[@name='amount_total']" position="attributes">
+                <attribute
+                    name="groups"
+                >!purchase_hide_price.purchase_hide_price_grp</attribute>
+            </xpath>
+            <xpath expr="//field[@name='amount_total']" position="after">
+                <field
+                    name="amount_total_hide"
+                    optional="show"
+                    groups="purchase_hide_price.purchase_hide_price_grp"
+                />
+            </xpath>
+            <xpath expr="//field[@name='amount_untaxed']" position="after">
+                <field
+                    name="amount_untaxed_hide"
+                    optional="show"
+                    groups="purchase_hide_price.purchase_hide_price_grp"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="purchase_order_view_tree" model="ir.ui.view">
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_view_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='amount_untaxed']" position="after">
+                <field name="hide_price" column_invisible="1" />
+            </xpath>
+            <xpath expr="//field[@name='amount_untaxed']" position="attributes">
+                <attribute
+                    name="groups"
+                >!purchase_hide_price.purchase_hide_price_grp</attribute>
+            </xpath>
+            <xpath expr="//field[@name='amount_total']" position="attributes">
+                <attribute
+                    name="groups"
+                >!purchase_hide_price.purchase_hide_price_grp</attribute>
+            </xpath>
+            <xpath expr="//field[@name='amount_total']" position="after">
+                <field
+                    name="amount_total_hide"
+                    optional="show"
+                    groups="purchase_hide_price.purchase_hide_price_grp"
+                />
+            </xpath>
+            <xpath expr="//field[@name='amount_untaxed']" position="after">
+                <field
+                    name="amount_untaxed_hide"
+                    optional="show"
+                    groups="purchase_hide_price.purchase_hide_price_grp"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='fiscal_position_id']" position="after">
+                <field name="hide_price" invisible="1" />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']//field[@name='price_unit']"
+                position="attributes"
+            >
+                <attribute
+                    name="groups"
+                >!purchase_hide_price.purchase_hide_price_grp</attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']//field[@name='price_subtotal']"
+                position="attributes"
+            >
+                <attribute
+                    name="groups"
+                >!purchase_hide_price.purchase_hide_price_grp</attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']//field[@name='price_unit']"
+                position="after"
+            >
+                <field
+                    name="price_unit_hide"
+                    groups="purchase_hide_price.purchase_hide_price_grp"
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']//field[@name='price_subtotal']"
+                position="after"
+            >
+                <field
+                    name="price_subtotal_hide"
+                    groups="purchase_hide_price.purchase_hide_price_grp"
+                />
+            </xpath>
+            <xpath expr="//field[@name='tax_totals']" position="attributes">
+                <attribute name="invisible">hide_price</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
