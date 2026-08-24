@@ -59,7 +59,8 @@ class PurchaseOrderLine(models.Model):
             location = line.location_dest_id or default_picking_location
             if location:
                 moves = line.move_ids.filtered(
-                    lambda m: m.state != "done" and (not picking or m.picking_id == picking)
+                    lambda m: m.state != "done"
+                    and (not picking or m.picking_id == picking)
                 )
                 if moves:
                     moves.write({"location_dest_id": location.id})
@@ -68,6 +69,9 @@ class PurchaseOrderLine(models.Model):
             move_locations = picking_rec.move_ids.filtered(
                 lambda m: m.state != "cancel"
             ).mapped("location_dest_id")
-            if len(move_locations) == 1 and move_locations != picking_rec.location_dest_id:
+            if (
+                len(move_locations) == 1
+                and move_locations != picking_rec.location_dest_id
+            ):
                 picking_rec.location_dest_id = move_locations.id
         return res
