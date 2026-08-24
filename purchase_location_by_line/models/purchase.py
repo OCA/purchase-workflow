@@ -50,6 +50,7 @@ class PurchaseOrderLine(models.Model):
 
     def _create_stock_moves(self, picking):
         res = super()._create_stock_moves(picking)
+        updated_pickings = self.env["stock.picking"]
         for line in self:
             default_picking_location_id = line.order_id._get_destination_location()
             default_picking_location = self.env["stock.location"].browse(
@@ -57,7 +58,20 @@ class PurchaseOrderLine(models.Model):
             )
             location = line.location_dest_id or default_picking_location
             if location:
-                line.move_ids.filtered(lambda m: m.state != "done").write(
-                    {"location_dest_id": location.id}
+                moves = line.move_ids.filtered(
+                    lambda m: m.state != "done"
+                    and (not picking or m.picking_id == picking)
                 )
+                if moves:
+                    moves.write({"location_dest_id": location.id})
+                    updated_pickings |= moves.picking_id
+        for picking_rec in updated_pickings:
+            move_locations = picking_rec.move_ids.filtered(
+                lambda m: m.state != "cancel"
+            ).mapped("location_dest_id")
+            if (
+                len(move_locations) == 1
+                and move_locations != picking_rec.location_dest_id
+            ):
+                picking_rec.location_dest_id = move_locations.id
         return res
