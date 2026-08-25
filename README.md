@@ -59,6 +59,7 @@ addon | version | maintainers | summary
 [purchase_stock_price_unit_sync](purchase_stock_price_unit_sync/) | 19.0.1.0.0 |  | Update cost price in stock moves already done
 [purchase_tag](purchase_tag/) | 19.0.1.1.0 |  | Allows to add multiple tags to purchase orders
 [purchase_uom_discrete](purchase_uom_discrete/) | 19.0.1.0.0 |  | Round discrete purchase quantities up to whole numbers
+[purchase_v12_control_menu](purchase_v12_control_menu/) | 19.0.1.0.0 |  | Purchase Control Menu from v12
 [sale_purchase_force_vendor](sale_purchase_force_vendor/) | 19.0.1.0.1 | <a href='https://github.com/victoralmau'><img src='https://github.com/victoralmau.png' width='32' height='32' style='border-radius:50%;' alt='victoralmau'/></a> | Sale Purchase Force Vendor
 [supplier_calendar](supplier_calendar/) | 19.0.1.0.0 | <a href='https://github.com/LoisRForgeFlow'><img src='https://github.com/LoisRForgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='LoisRForgeFlow'/></a> | Supplier Calendar
 
