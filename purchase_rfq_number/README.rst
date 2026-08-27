@@ -108,6 +108,7 @@ Contributors
 ------------
 
 - Prapassorn Sornkaew <prapassorn.s@prothaitechnology.com>
+- Alejandro Parrales <alejandro17parrales@gmail.com>
 
 Other credits
 -------------

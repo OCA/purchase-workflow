@@ -1,11 +1,10 @@
 # Copyright 2021 ProThai Technology Co.,Ltd. (http://prothaitechnology.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo.exceptions import UserError
-from odoo.tests import TransactionCase
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestPurchaseOrder(TransactionCase):
+class TestPurchaseOrder(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -14,6 +13,7 @@ class TestPurchaseOrder(TransactionCase):
         company = cls.env.company
         company.keep_name_po = False
         company.auto_attachment_rfq = True
+        cls.partner = cls.env["res.partner"].create({"name": "RFQ Number Test Partner"})
 
     def test_enumeration(self):
         order1 = self.purchase_order_model.create({"partner_id": self.partner.id})
@@ -66,10 +66,10 @@ class TestPurchaseOrder(TransactionCase):
             ]
         )
         next_name = sequence_id.get_next_char(sequence_id.number_next_actual)
-        try:
-            order.button_confirm()
-        except UserError:  # pylint: disable=except-pass
-            pass
+        # Re-confirming an already confirmed order is a no-op in core Odoo
+        # (it doesn't raise anymore since 19.0); it must not consume/advance
+        # the purchase order sequence either.
+        order.button_confirm()
         order.update({"state": "draft"})
         # Now the RFQ can be confirmed
         order.button_confirm()
