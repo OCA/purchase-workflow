@@ -1,0 +1,9 @@
+- [Tecnativa](https://www.tecnativa.com):
+  - Manuel Calero
+  - João Marques
+  - Pedro M. Baeza
+  - Ernesto Tejeda
+  - Víctor Martínez
+  - Juan Carlos Oñate
+- [Heliconia Solutions Pvt. Ltd.](https://www.heliconia.io)
+  - Bhavesh Heliconia
