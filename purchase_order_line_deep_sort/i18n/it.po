@@ -1,0 +1,143 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_order_line_deep_sort
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2025-01-19 14:06+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
+
+#. module: purchase_order_line_deep_sort
+#: model:ir.model.fields.selection,name:purchase_order_line_deep_sort.selection__purchase_order__line_direction__asc
+#: model:ir.model.fields.selection,name:purchase_order_line_deep_sort.selection__res_company__default_po_line_direction__asc
+msgid "Ascending"
+msgstr "Crescente"
+
+#. module: purchase_order_line_deep_sort
+#: model:ir.model.fields.selection,name:purchase_order_line_deep_sort.selection__purchase_order__line_order__date_planned
+#: model:ir.model.fields.selection,name:purchase_order_line_deep_sort.selection__res_company__default_po_line_order__date_planned
+msgid "By date planned"
+msgstr "Per data pianificata"
+
+#. module: purchase_order_line_deep_sort
+#: model:ir.model.fields.selection,name:purchase_order_line_deep_sort.selection__purchase_order__line_order__name
+#: model:ir.model.fields.selection,name:purchase_order_line_deep_sort.selection__res_company__default_po_line_order__name
+msgid "By name"
+msgstr "Per nome"
+
+#. module: purchase_order_line_deep_sort
+#: model:ir.model.fields.selection,name:purchase_order_line_deep_sort.selection__purchase_order__line_order__product_id_name
+#: model:ir.model.fields.selection,name:purchase_order_line_deep_sort.selection__res_company__default_po_line_order__product_id_name
+msgid "By product name"
+msgstr "Per nome prodotto"
+
+#. module: purchase_order_line_deep_sort
+#: model:ir.model.fields.selection,name:purchase_order_line_deep_sort.selection__purchase_order__line_order__product_id_default_code
+#: model:ir.model.fields.selection,name:purchase_order_line_deep_sort.selection__res_company__default_po_line_order__product_id_default_code
+msgid "By product reference"
+msgstr "Per referenza prodotto"
+
+#. module: purchase_order_line_deep_sort
+#: model:ir.model.fields.selection,name:purchase_order_line_deep_sort.selection__purchase_order__line_order__product_qty
+#: model:ir.model.fields.selection,name:purchase_order_line_deep_sort.selection__res_company__default_po_line_order__product_qty
+msgid "By quantity"
+msgstr "Per quantità"
+
+#. module: purchase_order_line_deep_sort
+#: model:ir.model.fields.selection,name:purchase_order_line_deep_sort.selection__purchase_order__line_order__price_unit
+#: model:ir.model.fields.selection,name:purchase_order_line_deep_sort.selection__res_company__default_po_line_order__price_unit
+msgid "By unit price"
+msgstr "Per prezzo unitario"
+
+#. module: purchase_order_line_deep_sort
+#: model:ir.model,name:purchase_order_line_deep_sort.model_res_company
+msgid "Companies"
+msgstr "Aziende"
+
+#. module: purchase_order_line_deep_sort
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_deep_sort.res_config_settings_view_form
+msgid "Default Sort Criteria"
+msgstr "Criterio ordinamento predefinito"
+
+#. module: purchase_order_line_deep_sort
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_deep_sort.res_config_settings_view_form
+msgid "Default sort criteria for purchase order lines"
+msgstr "Criterio ordinamento predefinito per le righe ordine acquisto"
+
+#. module: purchase_order_line_deep_sort
+#: model:ir.model.fields.selection,name:purchase_order_line_deep_sort.selection__purchase_order__line_direction__desc
+#: model:ir.model.fields.selection,name:purchase_order_line_deep_sort.selection__res_company__default_po_line_direction__desc
+msgid "Descending"
+msgstr "Decrescente"
+
+#. module: purchase_order_line_deep_sort
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_deep_sort.res_config_settings_view_form
+msgid "Direction"
+msgstr "Direzione"
+
+#. module: purchase_order_line_deep_sort
+#: model:ir.model.fields,field_description:purchase_order_line_deep_sort.field_res_company__default_po_line_order
+#: model:ir.model.fields,field_description:purchase_order_line_deep_sort.field_res_config_settings__po_line_order_default
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_deep_sort.res_config_settings_view_form
+msgid "Line Order"
+msgstr "Riga ordine"
+
+#. module: purchase_order_line_deep_sort
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_deep_sort.purchase_order_form
+msgid "Other Info"
+msgstr "Altre informazioni"
+
+#. module: purchase_order_line_deep_sort
+#: model:ir.model,name:purchase_order_line_deep_sort.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr "Impostazioni raggruppamento approvvigionamento acquisti"
+
+#. module: purchase_order_line_deep_sort
+#: model:ir.model,name:purchase_order_line_deep_sort.model_purchase_order
+msgid "Purchase Order"
+msgstr "Ordine di acquisto"
+
+#. module: purchase_order_line_deep_sort
+#: model:ir.model,name:purchase_order_line_deep_sort.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Riga ordine di acquisto"
+
+#. module: purchase_order_line_deep_sort
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_deep_sort.res_config_settings_view_form
+msgid "Select a default sort criteria for purchase order lines."
+msgstr ""
+"Seleziona un criterio di ordinamento predefinito per le righe ordine "
+"acquisto."
+
+#. module: purchase_order_line_deep_sort
+#: model:ir.model.fields,help:purchase_order_line_deep_sort.field_res_company__default_po_line_order
+#: model:ir.model.fields,help:purchase_order_line_deep_sort.field_res_config_settings__po_line_order_default
+msgid "Select a sorting criteria for purchase order lines."
+msgstr "Seleziona un criterio di ordinamento per le righe ordine di acquisto."
+
+#. module: purchase_order_line_deep_sort
+#: model:ir.model.fields,help:purchase_order_line_deep_sort.field_res_company__default_po_line_direction
+#: model:ir.model.fields,help:purchase_order_line_deep_sort.field_res_config_settings__po_line_direction_default
+msgid "Select a sorting direction for purchase order lines."
+msgstr "Seleziona la direzione ordinamento per le righe ordine di acquisto."
+
+#. module: purchase_order_line_deep_sort
+#: model:ir.model.fields,field_description:purchase_order_line_deep_sort.field_purchase_order__line_direction
+#: model:ir.model.fields,field_description:purchase_order_line_deep_sort.field_res_company__default_po_line_direction
+#: model:ir.model.fields,field_description:purchase_order_line_deep_sort.field_res_config_settings__po_line_direction_default
+msgid "Sort Direction"
+msgstr "Direzione ordinamento"
+
+#. module: purchase_order_line_deep_sort
+#: model:ir.model.fields,field_description:purchase_order_line_deep_sort.field_purchase_order__line_order
+msgid "Sort Lines By"
+msgstr "Ordina per righe"
