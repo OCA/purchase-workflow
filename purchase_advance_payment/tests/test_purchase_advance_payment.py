@@ -13,6 +13,12 @@ class TestPurchaseAdvancePayment(BaseCommon):
     def setUpClass(cls):
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
+        # A chart of accounts is required: taxes, journals and outstanding
+        # accounts cannot be created on a company without one.
+        if not cls.env.company.chart_template:
+            cls.env["account.chart.template"].try_loading(
+                "generic_coa", company=cls.env.company, install_demo=False
+            )
 
         # Partners
         cls.res_partner_1 = cls.env["res.partner"].create({"name": "Wood Corner"})
