@@ -1,0 +1,8 @@
+- Lois Rilo Antelo \<<lois.rilo@forgeflow.com>\>
+- Denis Roussel \<<denis.roussel@acsone.eu>\>
+- [Binhex System Solutions](https://binhex.cloud/):
+    - Deriman Alonso \<<d.alonso@binhex.cloud>\>
+- [360ERP](https://www.360erp.com):
+    - Kevin Khao \<<kevinkhao@gmail.com>\>
+- [Heliconia Solutions Pvt. Ltd.](https://www.heliconia.io)
+  - Bhavesh Heliconia
