@@ -1,0 +1,43 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_lot
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2025-05-27 08:40+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
+
+#. module: purchase_lot
+#: model:ir.model.fields,help:purchase_lot.field_purchase_order_line__tracking
+msgid "Ensure the traceability of a storable product in your warehouse."
+msgstr "Assicura la tracciabilità di un prodotto stoccabile nel magazzino."
+
+#. module: purchase_lot
+#: model:ir.model,name:purchase_lot.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Riga ordine di acquisto"
+
+#. module: purchase_lot
+#: model:ir.model.fields,field_description:purchase_lot.field_purchase_order_line__lot_id
+#: model_terms:ir.ui.view,arch_db:purchase_lot.view_purchase_order_filter
+msgid "Serial Number"
+msgstr "Numero seriale"
+
+#. module: purchase_lot
+#: model:ir.model,name:purchase_lot.model_stock_rule
+msgid "Stock Rule"
+msgstr "Regola di giacenza"
+
+#. module: purchase_lot
+#: model:ir.model.fields,field_description:purchase_lot.field_purchase_order_line__tracking
+msgid "Tracking"
+msgstr "Tracciamento"
