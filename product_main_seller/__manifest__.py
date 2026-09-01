@@ -13,6 +13,7 @@
     "depends": ["purchase"],
     "maintainers": ["legalsylvain", "quentinDupont"],
     "data": [
+        "data/ir_cron.xml",
         "views/view_product_product.xml",
         "views/view_product_template.xml",
     ],
