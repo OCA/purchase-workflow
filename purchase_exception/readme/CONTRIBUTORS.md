@@ -1,0 +1,7 @@
+- Mourad EL HADJ MIMOUNE \<<mourad.elhadj.mimoune@akretion.com>\>
+- Sudhir Arya \<<sudhir@erpharbor.com>\>
+- Kitti U. \<<kittiu@ecosoft.co.th>\> (migration to v14)
+- `Trobz <https://trobz.com>`_:
+    - Son Ho \<<sonhd@trobz.com>\>
+- CIT-Services \<<cit-services.eu>\>
+  - Prayag \<<prayag.k@cit-services.eu>\>
