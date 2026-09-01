@@ -25,6 +25,7 @@
                 <field name="date_required" />
                 <field name="estimated_cost" widget="monetary" />
                 <field name="currency_id" column_invisible="1" />
+                <field name="rfq_qty" />
                 <field name="purchased_qty" />
                 <field
                     name="purchase_state"
@@ -32,8 +33,8 @@
                     decoration-success="purchase_state == 'done'"
                     decoration-muted="purchase_state == 'draft'"
                     decoration-info="purchase_state in ('sent', 'purchase')"
-                    decoration-warning="purchase_state == 'to_approve'"
-                    decoration-danger="purchase_state == 'cancelled'"
+                    decoration-warning="purchase_state in ('to approve', 'partially')"
+                    decoration-danger="purchase_state == 'cancel'"
                 />
                 <field name="product_id" />
                 <field name="name" />
@@ -152,6 +153,7 @@
                     <notebook>
                         <page name="purchase_lines" string="Purchase Order Lines">
                             <group>
+                                <field name="rfq_qty" />
                                 <field name="purchased_qty" />
                                 <field name="purchase_state" />
                             </group>
