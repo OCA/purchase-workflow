@@ -10,7 +10,7 @@ _noupdate_xmlids = [
 ]
 
 
-@openupgrade.migrate()
+@openupgrade.migrate(pkg="purchase_request")
 def migrate(env, version):
     openupgrade.set_xml_ids_noupdate_value(
         env, "purchase_request", _noupdate_xmlids, True
