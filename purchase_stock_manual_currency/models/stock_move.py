@@ -28,9 +28,9 @@ class StockMove(models.Model):
                 )
                 # Convert the price to the company currency, using the manual rate
                 rate = (
-                    p_order.manual_currency_rate
+                    p_order.currency_rate
                     if p_order.type_currency == "inverse_company_rate"
-                    else (1.0 / p_order.manual_currency_rate)
+                    else (1.0 / p_order.currency_rate)
                 )
                 converted_dict[lot] = price_po_curr * rate
             return converted_dict
