@@ -63,18 +63,20 @@ class PurchaseOrder(models.Model):
             self._sort_purchase_line()
         return res
 
-    @api.model
-    def create(self, values):
-        purchase = super().create(values)
-        purchase._sort_purchase_line()
-        return purchase
+    @api.model_create_multi
+    def create(self, vals_list):
+        purchases = super().create(vals_list)
+        for purchase in purchases:
+            purchase._sort_purchase_line()
+        return purchases
 
 
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
-    @api.model
-    def create(self, vals):
-        line = super().create(vals)
-        line.order_id._sort_purchase_line()
-        return line
+    @api.model_create_multi
+    def create(self, vals_list):
+        lines = super().create(vals_list)
+        for order in lines.mapped("order_id"):
+            order._sort_purchase_line()
+        return lines
