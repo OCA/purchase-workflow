@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="ir_rule_computed_purchase_order" model="ir.rule">
+        <field name="name">Access to computed purchase order</field>
+        <field
+            name="model_id"
+            ref="purchase_compute_order.model_computed_purchase_order"
+        />
+        <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+    </record>
+</odoo>
