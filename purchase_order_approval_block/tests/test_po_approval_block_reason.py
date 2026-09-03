@@ -1,10 +1,16 @@
 # Copyright 2017 ForgeFlow S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
+from odoo.addons.base_exception.tests.common import (
+    patch_base_exception_method_env,
+    swallow_base_exception_error,
+)
+
 from .test_purchase_order_approval_block import TestPurchaseOrderApprovalBlock
 
 
 class TestPoApprovalBlockReason(TestPurchaseOrderApprovalBlock):
+    @patch_base_exception_method_env
     def test_po_approval_block_manual_release(self):
         """Confirming the Blocked PO"""
         # Create a PO
@@ -25,6 +31,8 @@ class TestPoApprovalBlockReason(TestPurchaseOrderApprovalBlock):
         # The PO is approved
         self.assertEqual(purchase.state, "purchase")
 
+    @patch_base_exception_method_env
+    @swallow_base_exception_error
     def test_po_approval_block_to_approve_release_01(self):
         # Create a PO
         purchase = self._create_purchase(
@@ -54,6 +62,8 @@ class TestPoApprovalBlockReason(TestPurchaseOrderApprovalBlock):
 
         self.assertEqual(purchase.state, "purchase")
 
+    @patch_base_exception_method_env
+    @swallow_base_exception_error
     def test_po_approval_block_to_approve_release_02(self):
         # Create a PO
         purchase = self._create_purchase(

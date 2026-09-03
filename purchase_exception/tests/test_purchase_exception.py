@@ -7,12 +7,17 @@ from datetime import datetime
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 from odoo.addons.base.tests.common import BaseCommon
+from odoo.addons.base_exception.tests.common import (
+    patch_base_exception_method_env,
+    swallow_base_exception_error,
+)
 
 
 class TestPurchaseException(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, test_base_exception=True))
         # Useful models
         cls.PurchaseOrder = cls.env["purchase.order"]
         cls.PurchaseOrderLine = cls.env["purchase.order.line"]
@@ -71,6 +76,8 @@ class TestPurchaseException(BaseCommon):
             ],
         }
 
+    @patch_base_exception_method_env
+    @swallow_base_exception_error
     def test_purchase_order_exception(self):
         self.exception_noemail.active = True
         self.exception_qtycheck.active = True

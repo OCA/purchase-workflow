@@ -22,3 +22,7 @@ class PurchaseRequestLine(models.Model):
     def _detect_exceptions(self, rule):
         records = super()._detect_exceptions(rule)
         return records.mapped("request_id")
+
+    def _detect_exception_get_exc_class_values(self):
+        res = super()._detect_exception_get_exc_class_values()
+        return dict(res, target_model="purchase.request")
