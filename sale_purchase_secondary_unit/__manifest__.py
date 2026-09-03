@@ -10,6 +10,7 @@
     "website": "https://github.com/OCA/purchase-workflow",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "license": "AGPL-3",
+    "maintainers": ["sergio-teruel", "carlosdauden"],
     "installable": True,
     "depends": [
         "sale_purchase_stock",
