@@ -10,7 +10,7 @@
     "installable": True,
     "depends": ["purchase", "web_notify"],
     "maintainers": ["victoralmau", "legalsylvain"],
-    "data": ["views/product_supplierinfo_view.xml"],
+    "data": ["views/product_supplierinfo_view.xml", "views/purchase_order_view.xml"],
     "demo": [
         "demo/res_partner_demo.xml",
         "demo/product_product_demo.xml",
