@@ -1,0 +1,108 @@
+##############################################################################
+#
+#    Purchase - Package Quantity Module for Odoo
+#    Copyright (C) 2019-Today: La Louve (<https://cooplalouve.fr>)
+#    Copyright (C) 2019-Today: Druidoo (<https://www.druidoo.io>)
+#    Copyright (C) 2016-Today Akretion (https://www.akretion.com)
+#    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+#    @author Julien WESTE
+#    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
+
+from odoo import api, fields, models
+from odoo.exceptions import ValidationError
+
+
+class ProductSupplierinfo(models.Model):
+    _inherit = "product.supplierinfo"
+
+    # Columns section
+    package_qty = fields.Float(
+        digits="Product Unit of Measure",
+        help="""The quantity of products in the supplier package."""
+        """ You will always have to buy a multiple of this quantity.""",
+        default=1,
+    )
+    indicative_package = fields.Boolean(
+        help="""If checked, the system will not force you to purchase"""
+        """ a strict multiple of package quantity""",
+        default=False,
+    )
+    price_policy = fields.Selection(
+        [("uom", "per UOM"), ("package", "per Package")],
+        default="uom",
+    )
+    base_price = fields.Float(
+        string="Price",
+        digits="Product Price",
+        help="The price to purchase a product",
+    )
+    price = fields.Float(
+        string="Price per Unit",
+        compute="_compute_price",
+        store=True,
+        readonly=False,
+    )
+
+    @api.depends("base_price", "price_policy", "package_qty")
+    def _compute_price(self):
+        for psi in self:
+            if psi.price_policy == "package":
+                if psi.package_qty == 0:
+                    psi.package_qty = 1
+                psi.price = psi.base_price / psi.package_qty
+            else:
+                psi.price = psi.base_price
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if not vals.get("base_price"):
+                if vals.get("price"):
+                    vals["base_price"] = vals["price"]
+                    vals["price_policy"] = "uom"
+                else:
+                    vals["base_price"] = 0
+        return super().create(vals_list)
+
+    def write(self, vals):
+        if not vals.get("base_price"):
+            if vals.get("price"):
+                vals["base_price"] = vals["price"]
+                vals["price_policy"] = "uom"
+        return super().write(vals)
+
+    # Constraints section
+    @api.constrains("package_qty")
+    def _check_package_qty(self):
+        for psi in self:
+            if psi.price_policy == "package" and psi.package_qty == 0:
+                raise ValidationError(self.env._("The package quantity cannot be 0."))
+
+    # Init section
+    @api.model
+    def _init_package_qty(self):
+        psi_ids = self.sudo().search([])
+        for psi in psi_ids:
+            vals = {}
+            if not psi.package_qty:
+                vals["package_qty"] = max(psi.min_qty, 1)
+            if not psi.base_price:
+                vals["base_price"] = psi.price
+            if vals:
+                psi.write(vals)
+        return psi_ids.ids
