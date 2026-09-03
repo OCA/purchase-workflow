@@ -47,3 +47,29 @@ class TestPurchaseOrderLineInput(TransactionCase):
             order_form.general_discount = 10
             with order_form.order_line.edit(0) as line_form:
                 self.assertEqual(line_form.discount, 10)
+
+    def test_04_manual_line_discount_not_overwritten(self):
+        """Ensure manual line discount is not overridden by general discount onchange.
+        Scenario:
+        - Apply a general discount → it propagates to all lines.
+        - Modify the discount manually on a line.
+        - Ensure the manual value is preserved.
+        This validates that the onchange is no longer triggered on order_line changes.
+        """
+        company = self.order.company_id
+        company.purchase_general_discount_field = "discount"
+        po_form_view_xmlid = "purchase_order_general_discount.purchase_order_form"
+        with Form(self.order, po_form_view_xmlid) as order_form:
+            # Step 1: Apply global discount
+            order_form.general_discount = 10
+            # Step 2: Manually override line discount
+            with order_form.order_line.edit(0) as line_form:
+                line_form.discount = 20
+            # Step 3: Re-open line and verify value is preserved
+            with order_form.order_line.edit(0) as line_form:
+                self.assertEqual(
+                    line_form.discount,
+                    20,
+                    "Manual discount should not be overridden by general "
+                    "discount onchange",
+                )
