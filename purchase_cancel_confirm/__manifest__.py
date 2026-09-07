@@ -9,6 +9,9 @@
     "license": "AGPL-3",
     "website": "https://github.com/OCA/purchase-workflow",
     "depends": ["base_cancel_confirm", "purchase"],
+    "data": [
+        "views/purchase_order_views.xml",
+    ],
     "auto_install": False,
     "installable": True,
     "maintainers": ["kittiu"],
