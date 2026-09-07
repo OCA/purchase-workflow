@@ -7,12 +7,17 @@ from odoo import Command
 from odoo.tests.common import TransactionCase
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
+from odoo.addons.base_exception.tests.common import (
+    patch_base_exception_method_env,
+    swallow_base_exception_error,
+)
+
 
 class TestPurchaseRequestException(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-
+        cls.env = cls.env(context=dict(cls.env.context, test_base_exception=True))
         # Useful models
         cls.PurchaseRequest = cls.env["purchase.request"]
         cls.PurchaseRequestLine = cls.env["purchase.request.line"]
@@ -49,6 +54,8 @@ class TestPurchaseRequestException(TransactionCase):
             ],
         }
 
+    @patch_base_exception_method_env
+    @swallow_base_exception_error
     def test_purchase_request_exception(self):
         self.exception_noapprover.active = True
         self.exception_qtycheck.active = True

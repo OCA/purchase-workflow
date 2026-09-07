@@ -36,9 +36,11 @@ class PurchaseRequest(models.Model):
         if self.state == "to_approve":
             self.ignore_exception = False
 
+    def _must_popup_exception(self):
+        return True
+
     def button_to_approve(self):
-        if self.detect_exceptions() and not self.ignore_exception:
-            return self._popup_exceptions()
+        self.detect_exceptions()
         return super().button_to_approve()
 
     def button_draft(self):
