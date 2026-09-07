@@ -1,27 +1,36 @@
 # Copyright 2020 Ecosoft Co., Ltd. (http://ecosoft.co.th)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+from odoo.tests import tagged
 from odoo.tests.common import Form, TransactionCase
 
 
+@tagged("post_install", "-at_install")
 class TestPurchaseCancelConfirm(TransactionCase):
-    def setUp(self):
-        super(TestPurchaseCancelConfirm, self).setUp()
-        self.purchase_order_obj = self.env["purchase.order"]
-        self.env["ir.config_parameter"].sudo().set_param(
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        # Models
+        cls.PurchaseOrder = cls.env["purchase.order"]
+        # Setup
+        cls.env["ir.config_parameter"].sudo().set_param(
             "purchase.order.cancel_confirm_disable", "False"
         )
-        self.purchase_order = self.purchase_order_obj.create(
-            {
-                "partner_id": self.env.ref("base.res_partner_12").id,
-            }
-        )
+        # Instances
+        cls.partner = cls.env["res.partner"].create({"name": "Test vendor"})
+        cls.purchase_order = cls._create_purchase_order()
+
+    @classmethod
+    def _create_purchase_order(cls, **kwargs):
+        vals = {"partner_id": cls.partner.id}
+        vals.update(kwargs)
+        return cls.PurchaseOrder.create(vals)
 
     def test_01_cancel_confirm_purchase(self):
         """Cancel a document, I expect cancel_reason.
         Then, set to draft, I expect cancel_reason is deleted.
         """
         self.purchase_order.button_confirm()
-        # Click reject, cancel confirm wizard will open. Type in cancel_reason
+        # Click cancel, cancel confirm wizard will open. Type in cancel_reason
         res = self.purchase_order.button_cancel()
         ctx = res.get("context")
         self.assertEqual(ctx["cancel_method"], "button_cancel")
@@ -31,9 +40,9 @@ class TestPurchaseCancelConfirm(TransactionCase):
         wiz = wizard.save()
         # Confirm cancel on wizard
         wiz.confirm_cancel()
-        self.assertEqual(self.purchase_order.cancel_reason, wizard.cancel_reason)
+        self.assertEqual(self.purchase_order.cancel_reason, "Wrong information")
         self.assertEqual(self.purchase_order.state, "cancel")
         # Set to draft
         self.purchase_order.button_draft()
-        self.assertEqual(self.purchase_order.cancel_reason, False)
+        self.assertFalse(self.purchase_order.cancel_reason)
         self.assertEqual(self.purchase_order.state, "draft")
