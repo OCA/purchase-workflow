@@ -78,11 +78,6 @@ msgid "Purchase Order"
 msgstr ""
 
 #. module: purchase_advance_payment_line
-#: model:ir.model.fields,field_description:purchase_advance_payment_line.field_account_payment_line__purchase_amount_residual
-msgid "Residual amount"
-msgstr ""
-
-#. module: purchase_advance_payment_line
 #: model:ir.model.fields,field_description:purchase_advance_payment_line.field_purchase_order__payment_order_ok
 msgid "Selectable in Payment Orders"
 msgstr ""
