@@ -81,11 +81,6 @@ msgid "Purchase Order"
 msgstr "Ordine di acquisto"
 
 #. module: purchase_advance_payment_line
-#: model:ir.model.fields,field_description:purchase_advance_payment_line.field_account_payment_line__purchase_amount_residual
-msgid "Residual amount"
-msgstr "Importo residuo"
-
-#. module: purchase_advance_payment_line
 #: model:ir.model.fields,field_description:purchase_advance_payment_line.field_purchase_order__payment_order_ok
 msgid "Selectable in Payment Orders"
 msgstr "Selezionabile negli ordini di pagamento"
@@ -99,3 +94,6 @@ msgstr ""
 "La riga di pagamento è aggiunta al primo ordine di pagamento in bozza con lo "
 "stesso modo di pagamento. Se non viene trovato nulla, ne verrà creato uno "
 "nuovo."
+
+#~ msgid "Residual amount"
+#~ msgstr "Importo residuo"
