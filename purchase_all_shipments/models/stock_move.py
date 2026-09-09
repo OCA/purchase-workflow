@@ -7,8 +7,18 @@ class StockMove(models.Model):
     _inherit = "stock.move"
 
     def _get_move_dest_ids(self):
-        """Recursively get all destination moves"""
-        res = self.filtered("move_dest_ids").mapped("move_dest_ids")
-        if res.filtered("move_dest_ids"):
-            res |= res.filtered("move_dest_ids")._get_move_dest_ids()
-        return res
+        """Recursively get all destination moves with cycle protection"""
+        visited = set()
+
+        def _get_dest_recursive(moves):
+            result = self.env["stock.move"]
+            for move in moves:
+                if move.id not in visited:
+                    visited.add(move.id)
+                    dest_moves = move.move_dest_ids
+                    result |= dest_moves
+                    if dest_moves:
+                        result |= _get_dest_recursive(dest_moves)
+            return result
+
+        return _get_dest_recursive(self.filtered("move_dest_ids"))
