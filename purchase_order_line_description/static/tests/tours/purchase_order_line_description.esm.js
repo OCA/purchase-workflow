@@ -8,7 +8,7 @@ registry.category("web_tour.tours").add("purchase_order_line_description_manual_
         {
             content: "Open the purchase order line editor",
             trigger:
-                '.o_field_product_label_section_and_note_cell:contains("Purchase description for test product")',
+                '.o_field_product_label_section_and_note_cell:has(textarea:value("Purchase description for test product"))',
             run: "click",
         },
         {
@@ -24,7 +24,7 @@ registry.category("web_tour.tours").add("purchase_order_line_description_manual_
         },
         {
             content: "Wait for the line to leave inline edit mode",
-            trigger: ".o_field_product_label_section_and_note_cell:not(:has(textarea))",
+            trigger: ".o_list_renderer:not(:has(.o_selected_row))",
         },
         {
             content: "Save the purchase order",
