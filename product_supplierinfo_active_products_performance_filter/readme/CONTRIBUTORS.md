@@ -1,0 +1,2 @@
+- ACSONE SA/NV
+  - Stéphane Mangin \<stephane.mangin@acsone.eu\>
