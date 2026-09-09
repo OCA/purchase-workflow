@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="purchase_invoice_plan_allocation_company_rule" model="ir.rule">
+        <field name="name">Invoice Plan Allocation multi-company</field>
+        <field name="model_id" ref="model_purchase_invoice_plan_allocation" />
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+</odoo>
