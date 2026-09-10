@@ -82,7 +82,7 @@ class PurchaseRequestAllocation(models.Model):
     )
     def _compute_open_product_qty(self):
         for rec in self:
-            if rec.purchase_state in ["cancel", "done"]:
+            if rec.purchase_state == "cancel":
                 rec.open_product_qty = 0.0
             else:
                 rec.open_product_qty = (
