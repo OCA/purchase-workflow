@@ -2,7 +2,7 @@
 # Copyright 2019 Ecosoft Co., Ltd., Kitti U. <kittiu@ecosoft.co.th>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import fields
+from odoo import Command, fields
 from odoo.exceptions import UserError
 from odoo.tests import Form, TransactionCase
 
@@ -205,3 +205,36 @@ class TestPurchaseDeposit(TransactionCase):
         deposit_line = self.po.order_line.filtered(lambda p: p.is_deposit)
         self.assertEqual(deposit_line.price_unit, 500.0)
         self.assertEqual(deposit_line.tax_ids.id, self.tax.id)
+
+    def test_deposit_billed_in_another_currency(self):
+        """Posting a bill must not leak its currency figure into the order."""
+        # An order currency worth 1000 times the company one
+        self.po.currency_id = self.env["res.currency"].create(
+            {
+                "name": "PDX",
+                "symbol": "PDX",
+                "rate_ids": [
+                    Command.create(
+                        {
+                            "name": "2020-01-01",
+                            "rate": 0.001,
+                            "company_id": self.env.company.id,
+                        },
+                    )
+                ],
+            }
+        )
+        f = self.create_advance_payment_form()
+        f.advance_payment_method = "fixed"
+        f.amount = 300.0
+        f.deposit_account_id = self.account_deposit
+        f.save().create_invoices()
+        deposit_line = self.po.order_line.filtered("is_deposit")
+        self.assertEqual(deposit_line.price_unit, 300.0)
+        # The vendor bills the deposit in the company currency instead
+        bill = self.po.invoice_ids
+        bill.invoice_date = fields.Date.today()
+        bill.currency_id = self.env.company.currency_id
+        bill.invoice_line_ids.price_unit = 300000.0
+        bill.action_post()
+        self.assertEqual(deposit_line.price_unit, 300.0)
