@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ==============================
 Purchase stock price unit sync
 ==============================
@@ -17,7 +13,7 @@ Purchase stock price unit sync
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github
@@ -35,12 +31,58 @@ Purchase stock price unit sync
 This module allows to sync picking cost prices with purchase order line
 price when moves are already done.
 
+It does the same when the price is corrected on the **vendor bill**.
+Odoo corrects a price difference with a child valuation layer worth the
+difference times the quantity that has not left stock yet, and sends the
+rest to the expense account, so the moves that already left keep the
+cost that turned out to be wrong. Here the invoiced price is applied to
+the whole receipt instead, which leaves the bill on the same footing as
+changing the price on the purchase order.
+
 Can be used with product_cost_price_avco_sync.
 
 **Table of contents**
 
 .. contents::
    :local:
+
+Configuration
+=============
+
+The correction through the vendor bill needs
+``product_cost_price_avco_sync`` installed: it is that module which
+replays the valuation chain once the layer changes, re-pricing what
+already left stock and correcting a valuation asked for a date before
+the correction. Without it the bill keeps Odoo's standard behaviour.
+
+It applies to products with the **Average Cost (AVCO)** costing method
+and **manual** inventory valuation. Refunds are left to Odoo, which
+compensates them against the original bill with a logic of its own, and
+so is automated valuation, where the journal entry of the layer is
+already posted and restating it would pull stock valuation and
+accounting apart.
+
+Usage
+=====
+
+There are two moments where the real price of a purchase shows up after
+the goods have already been received, and both are synced:
+
+- **The purchase order line.** Changing its price writes the new one on
+  the stock moves that are already done and on their valuation layers.
+- **The vendor bill.** Posting it at a different price applies that
+  price to the whole receipt layer, instead of only to the part that has
+  not left stock yet, which is what Odoo does on its own.
+
+Correcting the same price in both places does not count it twice:
+whichever runs second finds the layer already worth what it says and
+does nothing.
+
+With ``product_cost_price_avco_sync`` installed, either of them replays
+the valuation chain, so the outgoing moves valued in between are
+re-priced and a stock valuation asked for a date before the correction
+comes out right. Without it, only the layers themselves are written and
+the vendor bill keeps Odoo's standard behaviour.
 
 Bug Tracker
 ===========
