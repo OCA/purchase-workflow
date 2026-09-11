@@ -15,51 +15,27 @@
 #
 ##############################################################################
 
-from odoo import _, api, models
+from odoo import api, models
 from odoo.exceptions import ValidationError
 
 
 class ComputedPurchaseOrderLine(models.Model):
     _inherit = "computed.purchase.order.line"
 
-    def get_psi(
-        self, purchase_qty_package=None, operator="<=", order="min_nb_of_package DESC"
-    ):
-        if purchase_qty_package is None:
-            purchase_qty_package = self.purchase_qty_package
-        args = [
-            ("name", "=", self.computed_purchase_order_id.partner_id.id),
-            "|",
-            ("product_id", "=", self.product_id.id),
-            ("product_tmpl_id", "=", self.product_id.product_tmpl_id.id),
-            ("min_nb_of_package", operator, purchase_qty_package),
-        ]
-        psi = self.env["product.supplierinfo"].sudo().search(args, order=order, limit=1)
-        return psi
-
-    @api.onchange("purchase_qty_package")
-    def onchange_purchase_qty_package(self):
-        psi = self.get_psi()
-        if psi:
-            max_nb_of_package = psi.max_nb_of_package
-        else:
-            max_nb_of_package = self.psi_id.max_nb_of_package
-        if not max_nb_of_package:
-            return
-        if self.purchase_qty_package > max_nb_of_package:
-            product_disp_format = "[{supplier_code}] {product_name}"
-            if not self.product_code_inv:
-                product_disp_format = "{product_name}"
-
-            raise ValidationError(
-                _(
-                    "Don't allow to change the number of package for "
-                    "the product {product} is greater than Max. Nb of Package configured: {max_nb}"
-                ).format(
-                    product=product_disp_format.format(
-                        supplier_code=self.product_code_inv,
-                        product_name=self.product_id.name,
-                    ),
-                    max_nb=max_nb_of_package,
+    @api.constrains("purchase_qty_package")
+    def _check_purchase_qty_package_max(self):
+        for rec in self:
+            max_nb_of_package = rec.psi_id.max_nb_of_package
+            if max_nb_of_package > 0 and rec.purchase_qty_package > max_nb_of_package:
+                product_name = rec.product_id.name
+                product_disp_format = f"[{rec.product_code}] {product_name}"
+                if not rec.product_code:
+                    product_disp_format = f"{product_name}"
+                raise ValidationError(
+                    self.env._(
+                        "Don't allow to change the number of package for "
+                        "the product %s is greater than Max. Nb of Package configured: %s",  # noqa E501
+                        product_disp_format,
+                        max_nb_of_package,
+                    )
                 )
-            )

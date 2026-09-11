@@ -15,10 +15,8 @@
 #
 ##############################################################################
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
-
-from odoo.addons import decimal_precision as dp
 
 
 class ProductSupplierinfo(models.Model):
@@ -27,27 +25,51 @@ class ProductSupplierinfo(models.Model):
     # Columns section
     min_nb_of_package = fields.Float(
         "Min. Nb of Package",
-        digits=dp.get_precision("Product UoM"),
+        digits="Product UoM",
         help="""The minimum number of package you have to buy to get"""
         """ the lowest price.""",
         default=0,
     )
     max_nb_of_package = fields.Float(
         "Max. Nb of Package",
-        digits=dp.get_precision("Product UoM"),
+        digits="Product UoM",
         help="""The maximum number of package you can buy.""",
     )
+    min_qty = fields.Float(
+        store=True,
+        readonly=False,
+        compute="_compute_min_qty",
+    )
 
-    @api.onchange("min_nb_of_package")
-    def onchange_min_nb_of_package(self):
-        self.min_qty = self.min_nb_of_package * self.package_qty
+    @api.depends("min_nb_of_package", "package_qty")
+    def _compute_min_qty(self):
+        for rec in self:
+            if rec.package_qty:
+                rec.min_qty = rec.min_nb_of_package * rec.package_qty
+            # Don't care the else case, because the min_qty is stored.
 
     @api.constrains("max_nb_of_package", "min_nb_of_package")
     def _check_nb_of_package_limit(self):
-        if (
-            self.max_nb_of_package > 0
-            and self.max_nb_of_package < self.min_nb_of_package
-        ):
-            raise ValidationError(
-                _("Max. Nb of Package must be greater than Min. Nb of Package")
-            )
+        for rec in self:
+            if (
+                rec.max_nb_of_package > 0
+                and rec.max_nb_of_package < rec.min_nb_of_package
+            ):
+                raise ValidationError(
+                    self.env._(
+                        "Max. Nb of Package must be greater than Min. Nb of Package"
+                    )
+                )
+
+    def fix_nb_of_package(self, nb_package):
+        """
+        Override to enforce the minimum / maximum number of packages requirement.
+        """
+        nb_package = super().fix_nb_of_package(nb_package)
+        if self.min_nb_of_package > 0 and nb_package < self.min_nb_of_package:
+            # If the number of packages is below the minimum, set it to 0.
+            # Means the order does not meet the minimum package requirement.
+            return 0
+        if self.max_nb_of_package > 0 and nb_package > self.max_nb_of_package:
+            nb_package = self.max_nb_of_package
+        return nb_package
