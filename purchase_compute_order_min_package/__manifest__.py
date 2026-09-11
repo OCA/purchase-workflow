@@ -17,10 +17,9 @@
 
 {
     "name": "Computed Purchase Order by Min. Nb of Package",
-    "version": "12.0.1.0.1",
-    "description": "Computed Purchase Order by Min. Nb of Package",
+    "version": "18.0.1.0.1",
     "category": "Purchase",
-    "author": "Trobz",
+    "author": "Trobz, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
     "license": "AGPL-3",
     "depends": [
