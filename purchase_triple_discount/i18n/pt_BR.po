@@ -1,0 +1,111 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * purchase_triple_discount
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-24 07:53+0000\n"
+"PO-Revision-Date: 2024-05-29 18:36+0000\n"
+"Last-Translator: Rodrigo Macedo <sottomaiormacedotec@users.noreply."
+"translation.odoo-community.org>\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
+"23907/pt_BR/)\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: purchase_triple_discount
+#: model_terms:ir.ui.view,arch_db:purchase_triple_discount.report_purchaseorder_document_triple_discount
+msgid "<strong>Disc. 2 (%)</strong>"
+msgstr "<strong>Desc. 2 (%)</strong>"
+
+#. module: purchase_triple_discount
+#: model_terms:ir.ui.view,arch_db:purchase_triple_discount.report_purchaseorder_document_triple_discount
+msgid "<strong>Disc. 3 (%)</strong>"
+msgstr "<strong>Desc. 3 (%)</strong>"
+
+#. module: purchase_triple_discount
+#: model:ir.model,name:purchase_triple_discount.model_res_partner
+msgid "Contact"
+msgstr "Contato"
+
+#. module: purchase_triple_discount
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_res_partner__default_supplierinfo_discount2
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_res_users__default_supplierinfo_discount2
+msgid "Default Supplier Discount 2 (%)"
+msgstr "Desconto padrão do fornecedor 2 (%)"
+
+#. module: purchase_triple_discount
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_res_partner__default_supplierinfo_discount3
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_res_users__default_supplierinfo_discount3
+msgid "Default Supplier Discount 3 (%)"
+msgstr "Desconto padrão do fornecedor 3 (%)"
+
+#. module: purchase_triple_discount
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_purchase_order_line__discount2
+msgid "Disc. 2 (%)"
+msgstr "Desc. 2 (%)"
+
+#. module: purchase_triple_discount
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_purchase_order_line__discount3
+msgid "Disc. 3 (%)"
+msgstr "Desc. 3 (%)"
+
+#. module: purchase_triple_discount
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_product_supplierinfo__discount2
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_purchase_report__discount2
+msgid "Discount 2 (%)"
+msgstr "Desconto 2 (%)"
+
+#. module: purchase_triple_discount
+#: model:ir.model.constraint,message:purchase_triple_discount.constraint_purchase_order_line_discount2_limit
+msgid "Discount 2 must be lower than 100%."
+msgstr "O desconto 2 deve ser inferior a 100%."
+
+#. module: purchase_triple_discount
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_product_supplierinfo__discount3
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_purchase_report__discount3
+msgid "Discount 3 (%)"
+msgstr "Desconto 3 (%)"
+
+#. module: purchase_triple_discount
+#: model:ir.model.constraint,message:purchase_triple_discount.constraint_purchase_order_line_discount3_limit
+msgid "Discount 3 must be lower than 100%."
+msgstr "O desconto 3 deve ser inferior a 100%."
+
+#. module: purchase_triple_discount
+#: model:ir.model,name:purchase_triple_discount.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Linha da Ordem de Compra"
+
+#. module: purchase_triple_discount
+#: model:ir.model,name:purchase_triple_discount.model_purchase_report
+msgid "Purchase Report"
+msgstr "Relatório de Compra"
+
+#. module: purchase_triple_discount
+#: model:ir.model,name:purchase_triple_discount.model_product_supplierinfo
+msgid "Supplier Pricelist"
+msgstr "Lista de preços do fornecedor"
+
+#. module: purchase_triple_discount
+#: model:ir.model.fields,help:purchase_triple_discount.field_res_partner__default_supplierinfo_discount2
+#: model:ir.model.fields,help:purchase_triple_discount.field_res_partner__default_supplierinfo_discount3
+#: model:ir.model.fields,help:purchase_triple_discount.field_res_users__default_supplierinfo_discount2
+#: model:ir.model.fields,help:purchase_triple_discount.field_res_users__default_supplierinfo_discount3
+msgid ""
+"This value will be used as the default one, for each new supplierinfo line "
+"depending on that supplier."
+msgstr ""
+"Este valor será usado como padrão, para cada nova linha de informações do "
+"fornecedor dependendo desse fornecedor."
+
+#~ msgid "Invoice"
+#~ msgstr "Fatura"
