@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2020 Camptocamp SA
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <template
+        id="report_purchaseorder_document"
+        inherit_id="purchase.report_purchaseorder_document"
+    >
+        <th name="th_taxes" position="after">
+            <th name="th_date_req" class="text-center">
+                <strong>Date Req.</strong>
+            </th>
+        </th>
+        <xpath expr="//t[@t-if='not line.display_type']/td[5]" position="after">
+            <td class="text-center">
+                <span
+                    t-field="line.report_date_planned"
+                    t-options="{'date_only': 'true'}"
+                />
+            </td>
+        </xpath>
+    </template>
+</odoo>
