@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="res_partner_form_view_fop_shipping">
+        <field name="model">res.partner</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="account.view_partner_property_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='property_supplier_payment_term_id']"
+                position="after"
+            >
+                <field name="fop_shipping" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
