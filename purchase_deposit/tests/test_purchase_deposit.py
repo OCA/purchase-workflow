@@ -11,6 +11,12 @@ class TestPurchaseDeposit(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        # A chart of accounts is required: accounts and taxes cannot be
+        # created on a company without one.
+        if not cls.env.company.chart_template:
+            cls.env["account.chart.template"].try_loading(
+                "generic_coa", company=cls.env.company, install_demo=False
+            )
         cls.product_model = cls.env["product.product"]
         cls.account_model = cls.env["account.account"]
         cls.invoice_model = cls.env["account.move"]
