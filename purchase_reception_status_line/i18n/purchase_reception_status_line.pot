@@ -1,0 +1,232 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_reception_status_line
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields,field_description:purchase_reception_status_line.field_purchase_order_line__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields,field_description:purchase_reception_status_line.field_purchase_order_line__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields,field_description:purchase_reception_status_line.field_purchase_order_line__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields,field_description:purchase_reception_status_line.field_purchase_order_line__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields,field_description:purchase_reception_status_line.field_purchase_order_line__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields,field_description:purchase_reception_status_line.field_purchase_order_line__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields,field_description:purchase_reception_status_line.field_purchase_order_line__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields,field_description:purchase_reception_status_line.field_purchase_order_line__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields,help:purchase_reception_status_line.field_purchase_order_line__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields,field_description:purchase_reception_status_line.field_purchase_order__force_received
+#: model:ir.model.fields,field_description:purchase_reception_status_line.field_purchase_order_line__force_received
+msgid "Force Received"
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields.selection,name:purchase_reception_status_line.selection__purchase_order_line__receipt_status__full
+#: model_terms:ir.ui.view,arch_db:purchase_reception_status_line.purchase_order_line_search_filters
+msgid "Fully Received"
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields,field_description:purchase_reception_status_line.field_purchase_order_line__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields,field_description:purchase_reception_status_line.field_purchase_order_line__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields,help:purchase_reception_status_line.field_purchase_order_line__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields,help:purchase_reception_status_line.field_purchase_order_line__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields,help:purchase_reception_status_line.field_purchase_order_line__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields,help:purchase_reception_status_line.field_purchase_order__force_received
+msgid ""
+"If true, the order is marked forced only when all lines are fully received "
+"and at least one line was manually forced."
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields,help:purchase_reception_status_line.field_purchase_order_line__force_received
+msgid ""
+"If true, the reception status will be forced to Fully Received, even if some"
+" quantities are not fully received. "
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields,field_description:purchase_reception_status_line.field_purchase_order_line__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields,field_description:purchase_reception_status_line.field_purchase_order_line__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields,field_description:purchase_reception_status_line.field_purchase_order_line__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields,field_description:purchase_reception_status_line.field_purchase_order_line__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields,field_description:purchase_reception_status_line.field_purchase_order_line__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields,field_description:purchase_reception_status_line.field_purchase_order_line__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields,field_description:purchase_reception_status_line.field_purchase_order_line__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields.selection,name:purchase_reception_status_line.selection__purchase_order_line__receipt_status__pending
+#: model_terms:ir.ui.view,arch_db:purchase_reception_status_line.purchase_order_line_search_filters
+msgid "Nothing Received"
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields,field_description:purchase_reception_status_line.field_purchase_order_line__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields,field_description:purchase_reception_status_line.field_purchase_order_line__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields,help:purchase_reception_status_line.field_purchase_order_line__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields,help:purchase_reception_status_line.field_purchase_order_line__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields.selection,name:purchase_reception_status_line.selection__purchase_order_line__receipt_status__over
+#: model_terms:ir.ui.view,arch_db:purchase_reception_status_line.purchase_order_line_search_filters
+msgid "Over Received"
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields.selection,name:purchase_reception_status_line.selection__purchase_order_line__receipt_status__partial
+#: model_terms:ir.ui.view,arch_db:purchase_reception_status_line.purchase_order_line_search_filters
+msgid "Partially Received"
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model,name:purchase_reception_status_line.model_purchase_order
+msgid "Purchase Order"
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model,name:purchase_reception_status_line.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields,field_description:purchase_reception_status_line.field_purchase_order_line__receipt_status
+msgid "Receipt Status"
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model_terms:ir.ui.view,arch_db:purchase_reception_status_line.purchase_order_line_search_filters
+msgid "Reception Status"
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields,field_description:purchase_reception_status_line.field_purchase_order_line__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields,help:purchase_reception_status_line.field_purchase_order_line__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields,help:purchase_reception_status_line.field_purchase_order_line__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields,field_description:purchase_reception_status_line.field_purchase_order_line__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields,help:purchase_reception_status_line.field_purchase_order_line__website_message_ids
+msgid "Website communication history"
+msgstr ""
