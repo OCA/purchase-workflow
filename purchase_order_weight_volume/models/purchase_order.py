@@ -71,25 +71,12 @@ class PurchaseOrder(models.Model):
 
     @api.depends("order_line.product_uom_qty", "order_line.product_id")
     def _compute_total_physical_properties(self):
-        default_weight_uom = (
-            self.env["ir.config_parameter"]
-            .sudo()
-            .get_param("product_default_weight_uom_id")
-        )
-        default_volume_uom = (
-            self.env["ir.config_parameter"]
-            .sudo()
-            .get_param("product_default_volume_uom_id")
-        )
-
         for po in self:
             po.total_weight = 0
             po.total_volume = 0
-            if default_weight_uom:
-                po.total_weight_uom_id = int(default_weight_uom)
-            if default_volume_uom:
-                po.total_volume_uom_id = int(default_volume_uom)
-            if po.company_id.display_order_weight_in_po and po.total_weight_uom_id:
+            po.total_weight_uom_id = self.env["product.template"]._get_weight_uom_id_from_ir_config_parameter()
+            po.total_volume_uom_id = self.env["product.template"]._get_volume_uom_id_from_ir_config_parameter()
+            if po.company_id.display_order_weight_in_po:
                 po.total_weight = sum(po.mapped("order_line.line_weight"))
-            if po.company_id.display_order_volume_in_po and po.total_volume_uom_id:
+            if po.company_id.display_order_volume_in_po:
                 po.total_volume = sum(po.mapped("order_line.line_volume"))
