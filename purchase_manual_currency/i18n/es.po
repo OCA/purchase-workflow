@@ -17,14 +17,14 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: purchase_manual_currency
+#. odoo-python
 #: code:addons/purchase_manual_currency/models/purchase.py:0
-#, python-format
 msgid "%(company_currency_name)s per 1 %(rate_currency_name)s"
 msgstr "%(company_currency_name)s por 1 %(rate_currency_name)s"
 
 #. module: purchase_manual_currency
+#. odoo-python
 #: code:addons/purchase_manual_currency/models/purchase.py:0
-#, python-format
 msgid "%(rate_currency_name)s per 1 %(company_currency_name)s"
 msgstr "%(rate_currency_name)s por 1 %(company_currency_name)s"
 
@@ -32,6 +32,11 @@ msgstr "%(rate_currency_name)s por 1 %(company_currency_name)s"
 #: model_terms:ir.ui.view,arch_db:purchase_manual_currency.purchase_order_form
 msgid "<i title=\"Update Currency\" class=\"fa fa-fw fa-refresh\"/>"
 msgstr "<i title=\"Update Currency\" class=\"fa fa-fw fa-refresh\"/>"
+
+#. module: purchase_manual_currency
+#: model_terms:ir.ui.view,arch_db:purchase_manual_currency.purchase_order_form
+msgid "Amount (Company Currency)"
+msgstr ""
 
 #. module: purchase_manual_currency
 #: model_terms:ir.ui.view,arch_db:purchase_manual_currency.res_config_settings_view_form_purchase
@@ -50,13 +55,8 @@ msgid "Company Currency"
 msgstr "Divisa de la Compañía"
 
 #. module: purchase_manual_currency
-#: model:ir.model.fields,field_description:purchase_manual_currency.field_purchase_order__currency_diff
-msgid "Currency Diff"
-msgstr "Dif de Divisa"
-
-#. module: purchase_manual_currency
+#. odoo-python
 #: code:addons/purchase_manual_currency/models/purchase.py:0
-#, python-format
 msgid ""
 "In invoice cannot have a mixture of different manual currency rates in "
 "purchases."
@@ -65,15 +65,11 @@ msgstr ""
 "manuales en las compras."
 
 #. module: purchase_manual_currency
+#. odoo-python
 #: code:addons/purchase_manual_currency/models/purchase.py:0
-#, python-format
 msgid "In invoice cannot have a mixture of different manual currency."
-msgstr "En la factura no puede haber una mezcla de diferentes divisas manuales."
-
-#. module: purchase_manual_currency
-#: model:ir.model.fields,field_description:purchase_manual_currency.field_purchase_order__is_manual
-msgid "Is Manual"
-msgstr "Es Manual"
+msgstr ""
+"En la factura no puede haber una mezcla de diferentes divisas manuales."
 
 #. module: purchase_manual_currency
 #: model:ir.model.fields,field_description:purchase_manual_currency.field_purchase_order__manual_currency
@@ -85,11 +81,6 @@ msgstr "Divisa Manual"
 #: model:ir.model.fields,field_description:purchase_manual_currency.field_res_config_settings__manual_currency_po_inv
 msgid "Manual Currency Purchase - Invoice"
 msgstr "Compra de Divisas Manual - Factura"
-
-#. module: purchase_manual_currency
-#: model:ir.model.fields,field_description:purchase_manual_currency.field_purchase_order__manual_currency_rate
-msgid "Manual Currency Rate"
-msgstr "Tipo de Divisa Manual"
 
 #. module: purchase_manual_currency
 #: model_terms:ir.ui.view,arch_db:purchase_manual_currency.purchase_order_form
@@ -112,30 +103,15 @@ msgid "Purchase Order Line"
 msgstr "Línea de Orden de Compra"
 
 #. module: purchase_manual_currency
+#. odoo-python
 #: code:addons/purchase_manual_currency/models/purchase.py:0
-#, python-format
 msgid "Rate currency can refresh state draft only."
 msgstr "El tipo de divisa sólo puede actualizarse en estado de borrador."
-
-#. module: purchase_manual_currency
-#: model:ir.model.fields,help:purchase_manual_currency.field_purchase_order__manual_currency_rate
-msgid ""
-"Set new currency rate to apply on the invoice\n"
-".This rate will be taken in order to convert amounts between the currency on the purchase order and last currency"
-msgstr ""
-"Establecer el nuevo tipo de cambio que se aplicará a la factura\n"
-"Este tipo de cambio se utilizará para convertir los importes entre la divisa "
-"de la orden de compra y la última divisa"
 
 #. module: purchase_manual_currency
 #: model:ir.model.fields,field_description:purchase_manual_currency.field_purchase_order_line__subtotal_company_currency
 msgid "Subtotal (Company Currency)"
 msgstr "Subtotal (Divisa de la Compañía)"
-
-#. module: purchase_manual_currency
-#: model:ir.model.fields,field_description:purchase_manual_currency.field_purchase_order__total_company_currency
-msgid "Total Company Currency"
-msgstr "Total Divisa de la Compañía"
 
 #. module: purchase_manual_currency
 #: model:ir.model.fields,field_description:purchase_manual_currency.field_purchase_order__type_currency
@@ -151,3 +127,24 @@ msgstr "Utilizar la factura de divisas"
 #: model:ir.model.fields.selection,name:purchase_manual_currency.selection__res_company__manual_currency_po_inv__currency_po
 msgid "Use currency purchase"
 msgstr "Utilizar la compra de divisa"
+
+#~ msgid "Currency Diff"
+#~ msgstr "Dif de Divisa"
+
+#~ msgid "Is Manual"
+#~ msgstr "Es Manual"
+
+#~ msgid "Manual Currency Rate"
+#~ msgstr "Tipo de Divisa Manual"
+
+#~ msgid ""
+#~ "Set new currency rate to apply on the invoice\n"
+#~ ".This rate will be taken in order to convert amounts between the currency "
+#~ "on the purchase order and last currency"
+#~ msgstr ""
+#~ "Establecer el nuevo tipo de cambio que se aplicará a la factura\n"
+#~ "Este tipo de cambio se utilizará para convertir los importes entre la "
+#~ "divisa de la orden de compra y la última divisa"
+
+#~ msgid "Total Company Currency"
+#~ msgstr "Total Divisa de la Compañía"

@@ -34,6 +34,11 @@ msgid "<i title=\"Update Currency\" class=\"fa fa-fw fa-refresh\"/>"
 msgstr "<i title=\"Aggiorna valuta\" class=\"fa fa-fw fa-refresh\"/>"
 
 #. module: purchase_manual_currency
+#: model_terms:ir.ui.view,arch_db:purchase_manual_currency.purchase_order_form
+msgid "Amount (Company Currency)"
+msgstr ""
+
+#. module: purchase_manual_currency
 #: model_terms:ir.ui.view,arch_db:purchase_manual_currency.res_config_settings_view_form_purchase
 msgid "Bill Manual Currency"
 msgstr "Valuta manuale fattura"
@@ -48,11 +53,6 @@ msgstr "Aziende"
 #: model:ir.model.fields,field_description:purchase_manual_currency.field_purchase_order_line__company_currency_id
 msgid "Company Currency"
 msgstr "Valuta aziendale"
-
-#. module: purchase_manual_currency
-#: model:ir.model.fields,field_description:purchase_manual_currency.field_purchase_order__currency_diff
-msgid "Currency Diff"
-msgstr "Diff. valuta"
 
 #. module: purchase_manual_currency
 #. odoo-python
@@ -71,11 +71,6 @@ msgid "In invoice cannot have a mixture of different manual currency."
 msgstr "Nella fattura non si può avere un misto di valute manuali diverse."
 
 #. module: purchase_manual_currency
-#: model:ir.model.fields,field_description:purchase_manual_currency.field_purchase_order__is_manual
-msgid "Is Manual"
-msgstr "È manuale"
-
-#. module: purchase_manual_currency
 #: model:ir.model.fields,field_description:purchase_manual_currency.field_purchase_order__manual_currency
 msgid "Manual Currency"
 msgstr "Valuta manuale"
@@ -85,11 +80,6 @@ msgstr "Valuta manuale"
 #: model:ir.model.fields,field_description:purchase_manual_currency.field_res_config_settings__manual_currency_po_inv
 msgid "Manual Currency Purchase - Invoice"
 msgstr "Valuta manuale acquisto - Fattura"
-
-#. module: purchase_manual_currency
-#: model:ir.model.fields,field_description:purchase_manual_currency.field_purchase_order__manual_currency_rate
-msgid "Manual Currency Rate"
-msgstr "Tasso di cambio manuale"
 
 #. module: purchase_manual_currency
 #: model_terms:ir.ui.view,arch_db:purchase_manual_currency.purchase_order_form
@@ -118,24 +108,9 @@ msgid "Rate currency can refresh state draft only."
 msgstr "Il tasso di cambio può aggiornare solo lo stato bozza."
 
 #. module: purchase_manual_currency
-#: model:ir.model.fields,help:purchase_manual_currency.field_purchase_order__manual_currency_rate
-msgid ""
-"Set new currency rate to apply on the invoice\n"
-".This rate will be taken in order to convert amounts between the currency on the purchase order and last currency"
-msgstr ""
-"Imposta il nuovo tasso di cambio da applicare alla fattura. \n"
-"Questo tasso verrà utilizzato per convertire gli importi tra la valuta "
-"dell'ordine di acquisto e l'ultima valuta"
-
-#. module: purchase_manual_currency
 #: model:ir.model.fields,field_description:purchase_manual_currency.field_purchase_order_line__subtotal_company_currency
 msgid "Subtotal (Company Currency)"
 msgstr "Subtotale (valuta azienda)"
-
-#. module: purchase_manual_currency
-#: model:ir.model.fields,field_description:purchase_manual_currency.field_purchase_order__total_company_currency
-msgid "Total Company Currency"
-msgstr "Totale in valuta dell'azienda"
 
 #. module: purchase_manual_currency
 #: model:ir.model.fields,field_description:purchase_manual_currency.field_purchase_order__type_currency
@@ -151,3 +126,24 @@ msgstr "Usa valuta fattura"
 #: model:ir.model.fields.selection,name:purchase_manual_currency.selection__res_company__manual_currency_po_inv__currency_po
 msgid "Use currency purchase"
 msgstr "Usa valuta acquisto"
+
+#~ msgid "Currency Diff"
+#~ msgstr "Diff. valuta"
+
+#~ msgid "Is Manual"
+#~ msgstr "È manuale"
+
+#~ msgid "Manual Currency Rate"
+#~ msgstr "Tasso di cambio manuale"
+
+#~ msgid ""
+#~ "Set new currency rate to apply on the invoice\n"
+#~ ".This rate will be taken in order to convert amounts between the currency "
+#~ "on the purchase order and last currency"
+#~ msgstr ""
+#~ "Imposta il nuovo tasso di cambio da applicare alla fattura. \n"
+#~ "Questo tasso verrà utilizzato per convertire gli importi tra la valuta "
+#~ "dell'ordine di acquisto e l'ultima valuta"
+
+#~ msgid "Total Company Currency"
+#~ msgstr "Totale in valuta dell'azienda"

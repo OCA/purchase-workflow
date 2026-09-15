@@ -35,6 +35,11 @@ msgid "<i title=\"Update Currency\" class=\"fa fa-fw fa-refresh\"/>"
 msgstr "<i title=\"Posodobi valuto\" class=\"fa fa-fw fa-refresh\"/>"
 
 #. module: purchase_manual_currency
+#: model_terms:ir.ui.view,arch_db:purchase_manual_currency.purchase_order_form
+msgid "Amount (Company Currency)"
+msgstr ""
+
+#. module: purchase_manual_currency
 #: model_terms:ir.ui.view,arch_db:purchase_manual_currency.res_config_settings_view_form_purchase
 msgid "Bill Manual Currency"
 msgstr "Prejeti račun - valuta ročno"
@@ -49,11 +54,6 @@ msgstr "Družbe"
 #: model:ir.model.fields,field_description:purchase_manual_currency.field_purchase_order_line__company_currency_id
 msgid "Company Currency"
 msgstr "Valuta družbe"
-
-#. module: purchase_manual_currency
-#: model:ir.model.fields,field_description:purchase_manual_currency.field_purchase_order__currency_diff
-msgid "Currency Diff"
-msgstr "Valutne razlike"
 
 #. module: purchase_manual_currency
 #. odoo-python
@@ -72,11 +72,6 @@ msgid "In invoice cannot have a mixture of different manual currency."
 msgstr "V računu ne sme biti mešanice različnih ročno vnesenih valut."
 
 #. module: purchase_manual_currency
-#: model:ir.model.fields,field_description:purchase_manual_currency.field_purchase_order__is_manual
-msgid "Is Manual"
-msgstr "Je ročno"
-
-#. module: purchase_manual_currency
 #: model:ir.model.fields,field_description:purchase_manual_currency.field_purchase_order__manual_currency
 msgid "Manual Currency"
 msgstr "Ročno valuta"
@@ -86,11 +81,6 @@ msgstr "Ročno valuta"
 #: model:ir.model.fields,field_description:purchase_manual_currency.field_res_config_settings__manual_currency_po_inv
 msgid "Manual Currency Purchase - Invoice"
 msgstr "Ročna valuta nabave - račun"
-
-#. module: purchase_manual_currency
-#: model:ir.model.fields,field_description:purchase_manual_currency.field_purchase_order__manual_currency_rate
-msgid "Manual Currency Rate"
-msgstr "Ročno menjalni tečaj"
 
 #. module: purchase_manual_currency
 #: model_terms:ir.ui.view,arch_db:purchase_manual_currency.purchase_order_form
@@ -119,24 +109,9 @@ msgid "Rate currency can refresh state draft only."
 msgstr "Menjalni tečaj lahko osveži le osnutke."
 
 #. module: purchase_manual_currency
-#: model:ir.model.fields,help:purchase_manual_currency.field_purchase_order__manual_currency_rate
-msgid ""
-"Set new currency rate to apply on the invoice\n"
-".This rate will be taken in order to convert amounts between the currency on the purchase order and last currency"
-msgstr ""
-"Nastavite nov menjalni tečaj, ki se bo uporabil na računu\n"
-".Ta tečaj se bo uporabil za preračun zneskov med valuto na naročilu in "
-"končno valuto"
-
-#. module: purchase_manual_currency
 #: model:ir.model.fields,field_description:purchase_manual_currency.field_purchase_order_line__subtotal_company_currency
 msgid "Subtotal (Company Currency)"
 msgstr "Subtotal (valuta družbe)"
-
-#. module: purchase_manual_currency
-#: model:ir.model.fields,field_description:purchase_manual_currency.field_purchase_order__total_company_currency
-msgid "Total Company Currency"
-msgstr "Skupaj v valuti družbe"
 
 #. module: purchase_manual_currency
 #: model:ir.model.fields,field_description:purchase_manual_currency.field_purchase_order__type_currency
@@ -152,3 +127,24 @@ msgstr "Uporabi račune v valuti"
 #: model:ir.model.fields.selection,name:purchase_manual_currency.selection__res_company__manual_currency_po_inv__currency_po
 msgid "Use currency purchase"
 msgstr "Uporabi valuto nabave"
+
+#~ msgid "Currency Diff"
+#~ msgstr "Valutne razlike"
+
+#~ msgid "Is Manual"
+#~ msgstr "Je ročno"
+
+#~ msgid "Manual Currency Rate"
+#~ msgstr "Ročno menjalni tečaj"
+
+#~ msgid ""
+#~ "Set new currency rate to apply on the invoice\n"
+#~ ".This rate will be taken in order to convert amounts between the currency "
+#~ "on the purchase order and last currency"
+#~ msgstr ""
+#~ "Nastavite nov menjalni tečaj, ki se bo uporabil na računu\n"
+#~ ".Ta tečaj se bo uporabil za preračun zneskov med valuto na naročilu in "
+#~ "končno valuto"
+
+#~ msgid "Total Company Currency"
+#~ msgstr "Skupaj v valuti družbe"
