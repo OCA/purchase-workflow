@@ -115,10 +115,11 @@ class TestPurchaseStockManualCurrency(TransactionCase):
 
     def test_02_purchase_stock_manual_currency(self):
         self.p_order.manual_currency = True
-        self.p_order.manual_currency_rate = 2.0
         self.p_order.type_currency = "company_rate"
+        self.p_order.currency_rate = 2.0
         self.assertEqual(round(self.p_order.order_line.price_unit, 2), 8.0)
         self.assertEqual(round(self.p_order.order_line.price_subtotal, 2), 80.0)
+        self.assertEqual(self.p_order.currency_rate, 2.0)
         self.assertEqual(
             round(self.p_order.order_line.subtotal_company_currency, 2), 40.0
         )
@@ -150,7 +151,6 @@ class TestPurchaseStockManualCurrency(TransactionCase):
 
     def test_03_purchase_stock_manual_currency(self):
         self.p_order.currency_id = self.eur_currency
-        self.p_order._onchange_currency_change_rate()
         self.assertEqual(round(self.p_order.order_line.price_unit, 2), 8.0)
         self.assertEqual(round(self.p_order.order_line.price_subtotal, 2), 80.0)
         self.assertEqual(
