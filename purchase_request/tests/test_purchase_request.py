@@ -1,6 +1,8 @@
 # Copyright 2018-2019 ForgeFlow, S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 
+from lxml import etree
+
 from odoo import SUPERUSER_ID, exceptions
 from odoo.exceptions import UserError
 from odoo.tests import Form, TransactionCase
@@ -28,6 +30,16 @@ class TestPurchaseRequest(TransactionCase):
             "product_qty": 5.0,
         }
         self.purchase_request_line_obj.create(vals)
+
+    def test_name_editable_without_developer_mode(self):
+        """The request reference is editable without developer mode."""
+        arch = etree.fromstring(
+            self.purchase_request_obj.get_view(
+                self.env.ref("purchase_request.view_purchase_request_form").id
+            )["arch"]
+        )
+        name_field = arch.xpath("//h1/field[@name='name']")[0]
+        self.assertNotIn("readonly", name_field.attrib)
 
     def test_purchase_request_line_action(self):
         action = self.purchase_request.line_ids.action_show_details()
