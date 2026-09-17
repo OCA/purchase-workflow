@@ -12,6 +12,7 @@
                 <field name="incoterm_id" />
                 <field name="description" />
                 <field name="company_id" groups="base.group_multi_company" />
+                <field name="is_default" />
             </tree>
         </field>
     </record>
@@ -41,6 +42,7 @@
                                 name="company_id"
                                 groups="base.group_multi_company"
                             />
+                            <field name="is_default" />
                         </group>
                         <group>
                             <field name="payment_term_id" />
