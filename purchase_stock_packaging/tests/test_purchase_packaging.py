@@ -94,3 +94,48 @@ class TestPurchasePackaging(BaseCommon):
         self.assertTrue(po_line, "PO line should have been created from move")
         self.assertEqual(po_line.product_uom_id, self.packaging_uom)
         self.assertEqual(po_line.product_qty, 3.0)  # 18 / 6
+
+    def test_purchase_packaging_price_converted(self):
+        """The unit price follows the packaging UoM when the supplier
+        sells in a different UoM"""
+        pallet_uom = self.env["uom.uom"].create(
+            {
+                "name": "Pallet of 24",
+                "relative_uom_id": self.uom_unit.id,
+                "relative_factor": 24.0,
+            }
+        )
+        # Vendor sells by pallet of 24 at 240.0 (i.e. 10.0 per unit)
+        self.product.seller_ids.write(
+            {"product_uom_id": pallet_uom.id, "price": 240.0, "min_qty": 0}
+        )
+        values = {
+            "warehouse_id": self.warehouse,
+            "packaging_uom_id": self.packaging_uom,
+            "route_ids": self.warehouse.reception_route_id,
+        }
+        self.env["stock.rule"].run(
+            [
+                self.env["stock.rule"].Procurement(
+                    self.product,
+                    12.0,
+                    self.uom_unit,
+                    self.warehouse.lot_stock_id,
+                    "Test procurement price",
+                    "TEST_PROC_PRICE",
+                    self.env.company,
+                    values,
+                )
+            ]
+        )
+        po_line = self.line_obj.search(
+            [
+                ("product_id", "=", self.product.id),
+                ("order_id.origin", "ilike", "TEST_PROC_PRICE"),
+            ]
+        )
+        self.assertEqual(po_line.product_uom_id, self.packaging_uom)
+        self.assertEqual(po_line.product_qty, 2.0)
+        # 2 boxes of 6 at 10.0/unit -> 60.0 per box, 120.0 total
+        self.assertAlmostEqual(po_line.price_unit, 60.0)
+        self.assertAlmostEqual(po_line.price_subtotal, 120.0)
