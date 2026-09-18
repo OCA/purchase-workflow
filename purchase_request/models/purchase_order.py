@@ -19,24 +19,27 @@ class PurchaseOrder(models.Model):
             po_name=self.name,
             pr_name=request.name,
         )
-        message = f"<h3>{title}</h3><ul>"
-        message += self.env._(
+        intro = self.env._(
             "The following requested items from Purchase Request %(pr_name)s "
             "have now been confirmed in Purchase Order %(po_name)s:",
             po_name=self.name,
             pr_name=request.name,
         )
+        message = Markup("<h3>{}</h3>{}<ul>").format(title, intro)
 
         for line in request_dict.values():
-            message += self.env._(
-                "<li><b>%(prl_name)s</b>: Ordered quantity %(prl_qty)s %(prl_uom)s, "
-                "Planned date %(prl_date_planned)s</li>",
-                prl_name=html_escape(line["name"]),
+            line_text = self.env._(
+                "Ordered quantity %(prl_qty)s %(prl_uom)s, "
+                "Planned date %(prl_date_planned)s",
                 prl_qty=line["product_qty"],
                 prl_uom=line["product_uom"],
                 prl_date_planned=line["date_planned"],
             )
-        message += "</ul>"
+            message += Markup("<li><b>{}</b>: {}</li>").format(
+                html_escape(line["name"]),
+                line_text,
+            )
+        message += Markup("</ul>")
         return message
 
     def _purchase_request_confirm_message(self):
@@ -62,7 +65,7 @@ class PurchaseOrder(models.Model):
                     request, requests_dict[request_id]
                 )
                 request.message_post(
-                    body=Markup(message),
+                    body=message,
                     subtype_id=self.env.ref(
                         "purchase_request.mt_request_po_confirmed"
                     ).id,
