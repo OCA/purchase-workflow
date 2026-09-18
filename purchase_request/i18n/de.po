@@ -12,15 +12,16 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-24 07:53+0000\n"
-"PO-Revision-Date: 2017-11-24 07:55+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: German (http://www.transifex.com/oca/OCA-purchase-"
-"workflow-10-0/language/de/)\n"
+"PO-Revision-Date: 2026-09-25 12:53+0000\n"
+"Last-Translator: Florian Gruber <f.gruber@bitscode.dev>\n"
+"Language-Team: German (http://www.transifex.com/oca/OCA-purchase-workflow-10-"
+"0/language/de/)\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: purchase_request
 #. odoo-python
@@ -154,13 +155,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_needaction
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "Aktion erforderlich"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__activity_ids
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__activity_ids
 msgid "Activities"
-msgstr ""
+msgstr "Aktivitäten"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__activity_exception_decoration
@@ -240,39 +241,38 @@ msgstr "Zugewiesen an mich"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "At least a Draft PO has been created"
-msgstr ""
+msgstr "Zumindest wurde ein Entwurf für eine Bestellung erstellt"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "At least a PO has been completed"
-msgstr ""
+msgstr "Zumindest wurde eine Bestellung abgeschlossen"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "At least a PO has been confirmed"
-msgstr ""
+msgstr "Zumindest eine Bestellung wurde bestätigt"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_attachment_count
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "Anzahl der Anhänge"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_line_make_purchase_order
 msgid "Cancel"
-msgstr ""
+msgstr "Abbrechen"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__cancelled
 msgid "Cancelled"
-msgstr ""
+msgstr "Storniert"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
-#, fuzzy
 msgid "Cancelled Quantity"
-msgstr "Menge"
+msgstr "Stornierte Menge"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_product_product__purchase_request
@@ -281,6 +281,8 @@ msgid ""
 "Check this box to generate Purchase Request instead of generating Requests "
 "For Quotation from procurement."
 msgstr ""
+"Aktivieren Sie dieses Kontrollkästchen, um eine Bestellanforderung zu "
+"erstellen, anstatt Angebotsanfragen aus der Beschaffung zu generieren."
 
 #. module: purchase_request
 #: model_terms:ir.actions.act_window,help:purchase_request.purchase_request_form_action
@@ -297,15 +299,14 @@ msgstr "Unternehmen"
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__keep_description
 msgid "Copy descriptions to new PO"
-msgstr ""
+msgstr "Beschreibungen in neue Bestellung kopieren"
 
 #. module: purchase_request
 #: model:ir.actions.act_window,name:purchase_request.action_purchase_request_line_make_purchase_order
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_line_make_purchase_order
-#, fuzzy
 msgid "Create RFQ"
-msgstr "Erstellt von"
+msgstr "Angebotsanfrage erstellen"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_stock_move__created_purchase_request_line_id
@@ -329,7 +330,7 @@ msgstr "Erstellt von"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order__create_date
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__create_date
 msgid "Created on"
-msgstr "Erstellt am:"
+msgstr "Erstellt am"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__date_start
@@ -341,7 +342,7 @@ msgstr "Erstellungsdatum"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__currency_id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__currency_id
 msgid "Currency"
-msgstr ""
+msgstr "Währung"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__date_start
@@ -360,7 +361,7 @@ msgstr "Beschreibung"
 #. odoo-python
 #: code:addons/purchase_request/models/purchase_request_line.py:0
 msgid "Detailed Line"
-msgstr ""
+msgstr "Detaillierte Zeile"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_product_template__display_name
@@ -388,7 +389,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Done"
-msgstr ""
+msgstr "Erledigt"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__move_dest_ids
@@ -617,7 +618,7 @@ msgstr "Meine Anfragen"
 #. odoo-python
 #: code:addons/purchase_request/models/purchase_request.py:0
 msgid "New"
-msgstr ""
+msgstr "Neu"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_line_make_purchase_order
@@ -803,12 +804,12 @@ msgstr "Kaufanfragezeilen"
 #. module: purchase_request
 #: model:mail.message.subtype,name:purchase_request.mt_request_po_confirmed
 msgid "Purchase Order confirmation"
-msgstr ""
+msgstr "Bestellbestätigung"
 
 #. module: purchase_request
 #: model:mail.message.subtype,description:purchase_request.mt_request_po_confirmed
 msgid "Purchase Order is confirmed"
-msgstr ""
+msgstr "Die Bestellung wurde bestätigt"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
@@ -1141,7 +1142,7 @@ msgstr "Anfragestatus"
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__requested_by
 msgid "Requested By"
-msgstr ""
+msgstr "Angefragt von"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__requested_product_uom_qty
@@ -1349,7 +1350,7 @@ msgstr ""
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__estimated_cost
 msgid "Total Estimated Cost"
-msgstr ""
+msgstr "Geschätzte Gesamtkosten"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_form
