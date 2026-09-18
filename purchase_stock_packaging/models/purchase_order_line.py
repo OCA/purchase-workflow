@@ -34,7 +34,14 @@ class PurchaseOrderLine(models.Model):
             po,
         )
         packaging_uom = values.get("packaging_uom_id")
-        if packaging_uom:
+        if packaging_uom and res.get("product_uom_id") != packaging_uom.id:
+            # The super() priced the line in the UoM it resolved (usually the
+            # supplier's); convert the price along with the UoM and qty.
+            line_uom = self.env["uom.uom"].browse(res["product_uom_id"])
+            if res.get("price_unit"):
+                res["price_unit"] = line_uom._compute_price(
+                    res["price_unit"], packaging_uom
+                )
             res["product_uom_id"] = packaging_uom.id
             res["product_qty"] = product_uom._compute_quantity(
                 product_qty, packaging_uom
