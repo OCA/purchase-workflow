@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2020 Camptocamp SA
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="product_supplierinfo_form_view" model="ir.ui.view">
+        <field name="name">product.supplierinfo.form.inherit</field>
+        <field name="model">product.supplierinfo</field>
+        <field name="inherit_id" ref="product.product_supplierinfo_form_view" />
+        <field name="arch" type="xml">
+            <field name="delay" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </field>
+            <xpath expr="//field[@name='product_id']" position="after">
+                <label for="supplier_delay" />
+                <div>
+        <field name="supplier_delay" class="oe_inline" /> days
+      </div>
+                <label for="transport_delay" />
+                <div>
+        <field name="transport_delay" class="oe_inline" /> days
+      </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_supplierinfo_tree_inherit_view" model="ir.ui.view">
+        <field name="name">product.supplierinfo.tree.inherit.view</field>
+        <field name="model">product.supplierinfo</field>
+        <field name="inherit_id" ref="product.product_supplierinfo_tree_view" />
+        <field name="arch" type="xml">
+            <field name="delay" position="before">
+                <field name="supplier_delay" optional="hide" />
+                <field name="transport_delay" optional="hide" />
+            </field>
+        </field>
+    </record>
+
+</odoo>
