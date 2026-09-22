@@ -220,10 +220,6 @@
                     domain="[('purchase_state','=','done')]"
                     help="At least a PO has been completed"
                 />
-                <field
-                    name="analytic_distribution"
-                    groups="analytic.group_analytic_accounting"
-                />
                 <field name="cancelled" invisible="1" />
                 <filter
                     name="request_state_draft"
@@ -314,13 +310,6 @@
                         string="Request status"
                         domain="[]"
                         context="{'group_by':'request_state'}"
-                    />
-                    <filter
-                        name="group_analytic_distribution"
-                        string="Analytic Distribution"
-                        domain="[]"
-                        context="{'group_by':'analytic_distribution'}"
-                        groups="analytic.group_analytic_accounting"
                     />
                     <filter
                         name="purchase_status"
