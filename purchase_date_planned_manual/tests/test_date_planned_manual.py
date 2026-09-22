@@ -114,6 +114,39 @@ class TestDatePlannedManual(TransactionCase):
         with self.assertRaises(UserError):
             po_line_1.action_delayed_line()
 
+    def test_predicted_arrival_late_transient_false_date_order(self):
+        """The compute must not crash when order_id.date_order is
+        transiently False on a virtual/new record (as can happen during an
+        onchange), even though the underlying order already has a date."""
+        po_line = self.pol_model.create(
+            {
+                "order_id": self.purchase_order.id,
+                "product_id": self.product_1.id,
+                "date_planned": self.next_week_time,
+                "name": "Test",
+                "product_qty": 1.0,
+                "product_uom": self.product_1.uom_id.id,
+                "price_unit": 10.0,
+            }
+        )
+        new_order = self.purchase_order.new(origin=self.purchase_order)
+        new_order.date_order = False
+        new_line = po_line.new(
+            {
+                "order_id": new_order.id,
+                "product_id": self.product_1.id,
+                "product_qty": 1.0,
+                "product_uom": self.product_1.uom_id.id,
+                "date_planned": self.next_week_time,
+            },
+            origin=po_line,
+        )
+        new_line._compute_predicted_arrival_late()
+        self.assertEqual(
+            new_line.predicted_arrival_late,
+            po_line.predicted_arrival_late,
+        )
+
     def _run_procurement(self, product, origin, values):
         procurement_group_obj = self.env["procurement.group"]
         procurement = procurement_group_obj.Procurement(
