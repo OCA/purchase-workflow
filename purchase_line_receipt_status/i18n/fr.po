@@ -1,0 +1,63 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_line_receipt_status
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-04 09:26+0000\n"
+"PO-Revision-Date: 2025-11-04 09:26+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_line_receipt_status
+#: model:ir.model.fields.selection,name:purchase_line_receipt_status.selection__purchase_order_line__line_receipt_status__full
+#: model_terms:ir.ui.view,arch_db:purchase_line_receipt_status.purchase_order_line_search_view
+msgid "Fully Received"
+msgstr "Entièrement reçu"
+
+#. module: purchase_line_receipt_status
+#: model:ir.model.fields,help:purchase_line_receipt_status.field_purchase_order_line__line_receipt_status
+msgid ""
+"Indicates the progress of the reception flow for this purchase line. "
+"Computed from incoming stock moves."
+msgstr ""
+"Indique l'état d'avancement du flux de réception pour cette ligne d'achat. "
+"Calculé à partir des mouvements de stock entrants."
+
+#. module: purchase_line_receipt_status
+#: model:ir.model.fields.selection,name:purchase_line_receipt_status.selection__purchase_order_line__line_receipt_status__pending
+msgid "Not Received"
+msgstr "Non reçu"
+
+#. module: purchase_line_receipt_status
+#: model_terms:ir.ui.view,arch_db:purchase_line_receipt_status.purchase_order_line_search_view
+msgid "Nothing to Receive"
+msgstr "Rien à recevoir"
+
+#. module: purchase_line_receipt_status
+#: model:ir.model.fields.selection,name:purchase_line_receipt_status.selection__purchase_order_line__line_receipt_status__partial
+#: model_terms:ir.ui.view,arch_db:purchase_line_receipt_status.purchase_order_line_search_view
+msgid "Partially Received"
+msgstr "Partiellement reçu"
+
+#. module: purchase_line_receipt_status
+#: model_terms:ir.ui.view,arch_db:purchase_line_receipt_status.purchase_order_line_search_view
+msgid "Pending Receipts"
+msgstr "Réceptions en attente"
+
+#. module: purchase_line_receipt_status
+#: model:ir.model,name:purchase_line_receipt_status.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Ligne de commande d'achat"
+
+#. module: purchase_line_receipt_status
+#: model:ir.model.fields,field_description:purchase_line_receipt_status.field_purchase_order_line__line_receipt_status
+#: model_terms:ir.ui.view,arch_db:purchase_line_receipt_status.purchase_order_line_search_view
+msgid "Receipt Status"
+msgstr "État de réception"
