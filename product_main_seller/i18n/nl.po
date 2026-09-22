@@ -1,0 +1,37 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* product_main_seller
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2025-04-18 14:23+0000\n"
+"Last-Translator: Bosd <c5e2fd43-d292-4c90-9d1f-74ff3436329a@anonaddy.me>\n"
+"Language-Team: none\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
+
+#. module: product_main_seller
+#: model:ir.model.fields,field_description:product_main_seller.field_product_product__main_seller_id
+#: model:ir.model.fields,field_description:product_main_seller.field_product_template__main_seller_id
+#: model_terms:ir.ui.view,arch_db:product_main_seller.view_product_template_search
+msgid "Main Vendor"
+msgstr "Hoofdleverancier"
+
+#. module: product_main_seller
+#: model:ir.model,name:product_main_seller.model_product_template
+msgid "Product"
+msgstr "Product"
+
+#. module: product_main_seller
+#: model:ir.model.fields,help:product_main_seller.field_product_product__main_seller_id
+#: model:ir.model.fields,help:product_main_seller.field_product_template__main_seller_id
+msgid "Put your supplier info in first position to set as main vendor"
+msgstr ""
+"Zet uw leverancier op de eerste plaats om deze als hoofdleverancier in te "
+"stellen"
