@@ -118,6 +118,7 @@ class TestPurchaseRequest(TransactionCase):
         with self.assertRaises(UserError):
             purchase_request_line.unlink()
         purchase = purchase_request_line.purchase_lines.order_id
+        purchase_request_line.purchase_lines.price_unit = 100.0
         purchase.button_done()
         self.assertEqual(purchase.state, "done")
 
