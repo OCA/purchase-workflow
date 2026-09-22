@@ -1,0 +1,183 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_order_line_merge
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_order_line_merge
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_merge.purchase_order_line_merge_form
+msgid "Cancel"
+msgstr ""
+
+#. module: purchase_order_line_merge
+#. odoo-python
+#: code:addons/purchase_order_line_merge/wizard/purchase_order_line_merge.py:0
+msgid ""
+"Cannot merge lines from different warehouses. Please select lines with the "
+"same warehouse."
+msgstr ""
+
+#. module: purchase_order_line_merge
+#. odoo-python
+#: code:addons/purchase_order_line_merge/wizard/purchase_order_line_merge.py:0
+msgid ""
+"Cannot merge lines with different currencies. Please select lines with the "
+"same currency."
+msgstr ""
+
+#. module: purchase_order_line_merge
+#: model:ir.model.fields,field_description:purchase_order_line_merge.field_purchase_order_line_merge__create_uid
+#: model:ir.model.fields,field_description:purchase_order_line_merge.field_purchase_order_line_merge_line__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: purchase_order_line_merge
+#: model:ir.model.fields,field_description:purchase_order_line_merge.field_purchase_order_line_merge__create_date
+#: model:ir.model.fields,field_description:purchase_order_line_merge.field_purchase_order_line_merge_line__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: purchase_order_line_merge
+#: model:ir.model.fields,field_description:purchase_order_line_merge.field_purchase_order_line_merge_line__discount
+msgid "Discount (%)"
+msgstr ""
+
+#. module: purchase_order_line_merge
+#: model:ir.model.fields,field_description:purchase_order_line_merge.field_purchase_order_line_merge__display_name
+#: model:ir.model.fields,field_description:purchase_order_line_merge.field_purchase_order_line_merge_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_order_line_merge
+#: model:ir.model.fields,field_description:purchase_order_line_merge.field_purchase_order_line_merge__id
+#: model:ir.model.fields,field_description:purchase_order_line_merge.field_purchase_order_line_merge_line__id
+msgid "ID"
+msgstr ""
+
+#. module: purchase_order_line_merge
+#: model:ir.model.fields,field_description:purchase_order_line_merge.field_purchase_order_line_merge__write_uid
+#: model:ir.model.fields,field_description:purchase_order_line_merge.field_purchase_order_line_merge_line__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: purchase_order_line_merge
+#: model:ir.model.fields,field_description:purchase_order_line_merge.field_purchase_order_line_merge__write_date
+#: model:ir.model.fields,field_description:purchase_order_line_merge.field_purchase_order_line_merge_line__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: purchase_order_line_merge
+#: model:ir.model.fields,field_description:purchase_order_line_merge.field_purchase_order_line_merge__line_ids
+msgid "Lines"
+msgstr ""
+
+#. module: purchase_order_line_merge
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_merge.purchase_order_line_merge_form
+msgid "Merge Lines"
+msgstr ""
+
+#. module: purchase_order_line_merge
+#: model:ir.model,name:purchase_order_line_merge.model_purchase_order_line_merge
+msgid "Merge Purchase Order Lines"
+msgstr ""
+
+#. module: purchase_order_line_merge
+#: model:ir.actions.act_window,name:purchase_order_line_merge.action_purchase_order_line_merge
+msgid "Merge into Purchase Order"
+msgstr ""
+
+#. module: purchase_order_line_merge
+#. odoo-python
+#: code:addons/purchase_order_line_merge/wizard/purchase_order_line_merge.py:0
+msgid "No lines with quantity greater than zero to merge."
+msgstr ""
+
+#. module: purchase_order_line_merge
+#: model:ir.model.fields,field_description:purchase_order_line_merge.field_purchase_order_line_merge__date_order
+msgid "Order Date"
+msgstr ""
+
+#. module: purchase_order_line_merge
+#: model:ir.model.fields,field_description:purchase_order_line_merge.field_purchase_order_line_merge_line__order_id
+msgid "Order Reference"
+msgstr ""
+
+#. module: purchase_order_line_merge
+#: model:ir.model.fields,field_description:purchase_order_line_merge.field_purchase_order_line_merge_line__original_qty
+msgid "Original Qty"
+msgstr ""
+
+#. module: purchase_order_line_merge
+#: model:ir.model.fields,field_description:purchase_order_line_merge.field_purchase_order_line_merge_line__product_id
+msgid "Product"
+msgstr ""
+
+#. module: purchase_order_line_merge
+#. odoo-python
+#: code:addons/purchase_order_line_merge/wizard/purchase_order_line_merge.py:0
+msgid "Purchase Order"
+msgstr ""
+
+#. module: purchase_order_line_merge
+#: model:ir.model,name:purchase_order_line_merge.model_purchase_order_line_merge_line
+msgid "Purchase Order Line Merge Line"
+msgstr ""
+
+#. module: purchase_order_line_merge
+#: model:ir.model.fields,field_description:purchase_order_line_merge.field_purchase_order_line_merge_line__quantity
+msgid "Quantity to Merge"
+msgstr ""
+
+#. module: purchase_order_line_merge
+#: model:ir.model.fields,field_description:purchase_order_line_merge.field_purchase_order_line_merge_line__source_line_id
+msgid "Source Line"
+msgstr ""
+
+#. module: purchase_order_line_merge
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_merge.purchase_order_line_merge_form
+msgid "Source PO"
+msgstr ""
+
+#. module: purchase_order_line_merge
+#: model:ir.model.fields,field_description:purchase_order_line_merge.field_purchase_order_line_merge_line__price_subtotal
+msgid "Subtotal"
+msgstr ""
+
+#. module: purchase_order_line_merge
+#: model:ir.model.fields,field_description:purchase_order_line_merge.field_purchase_order_line_merge_line__taxes_id
+msgid "Taxes"
+msgstr ""
+
+#. module: purchase_order_line_merge
+#: model:ir.model.fields,field_description:purchase_order_line_merge.field_purchase_order_line_merge_line__price_unit
+msgid "Unit Price"
+msgstr ""
+
+#. module: purchase_order_line_merge
+#: model:ir.model.fields,field_description:purchase_order_line_merge.field_purchase_order_line_merge_line__product_uom
+msgid "Unit of Measure"
+msgstr ""
+
+#. module: purchase_order_line_merge
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_merge.purchase_order_line_merge_form
+msgid "UoM"
+msgstr ""
+
+#. module: purchase_order_line_merge
+#: model:ir.model.fields,field_description:purchase_order_line_merge.field_purchase_order_line_merge__partner_id
+msgid "Vendor"
+msgstr ""
+
+#. module: purchase_order_line_merge
+#: model:ir.model.fields,field_description:purchase_order_line_merge.field_purchase_order_line_merge_line__wizard_id
+msgid "Wizard"
+msgstr ""
