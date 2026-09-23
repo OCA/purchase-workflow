@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2025 Open Source Integrators -->
+<!-- License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo noupdate="1">
+
+        <!-- Demo Product Categories -->
+        <record id="product_category_all" model="product.category">
+            <field name="name">All</field>
+            <field name="require_approved_supplier" eval="False" />
+        </record>
+
+        <record id="product_category_components" model="product.category">
+            <field name="name">Components</field>
+            <field name="parent_id" ref="product_category_all" />
+            <field name="require_approved_supplier" eval="True" />
+        </record>
+
+        <record id="product_category_services" model="product.category">
+            <field name="name">Services</field>
+            <field name="parent_id" ref="product_category_all" />
+            <field name="require_approved_supplier" eval="False" />
+        </record>
+
+        <!-- Demo Products -->
+        <record id="demo_product_component_1" model="product.template">
+            <field name="name">Demo Component 1</field>
+            <field name="categ_id" ref="product_category_components" />
+            <field name="purchase_ok" eval="True" />
+            <field name="type">product</field>
+            <field name="uom_id" ref="uom.product_uom_unit" />
+            <field name="uom_po_id" ref="uom.product_uom_unit" />
+        </record>
+
+        <record id="demo_product_component_2" model="product.template">
+            <field name="name">Demo Component 2</field>
+            <field name="categ_id" ref="product_category_components" />
+            <field name="purchase_ok" eval="True" />
+            <field name="type">product</field>
+            <field name="uom_id" ref="uom.product_uom_unit" />
+            <field name="uom_po_id" ref="uom.product_uom_unit" />
+        </record>
+
+        <record id="demo_product_service" model="product.template">
+            <field name="name">Demo Service</field>
+            <field name="categ_id" ref="product_category_services" />
+            <field name="approved_supplier_requirement">required</field>
+            <field name="purchase_ok" eval="True" />
+            <field name="type">service</field>
+            <field name="uom_id" ref="uom.product_uom_unit" />
+            <field name="uom_po_id" ref="uom.product_uom_unit" />
+        </record>
+
+        <!-- Demo Approved Suppliers -->
+        <record id="demo_approved_supplier_1" model="purchase.supplier.approved">
+            <field name="partner_id" ref="base.res_partner_1" />
+            <field name="product_tmpl_id" ref="demo_product_component_1" />
+            <field
+            name="date_from"
+            eval="(DateTime.now() - timedelta(days=30)).strftime('%Y-%m-%d')"
+        />
+            <field name="active">True</field>
+        </record>
+
+        <record id="demo_approved_supplier_2" model="purchase.supplier.approved">
+            <field name="partner_id" ref="base.res_partner_3" />
+            <field name="product_tmpl_id" ref="demo_product_component_2" />
+            <field
+            name="date_from"
+            eval="(DateTime.now() - timedelta(days=60)).strftime('%Y-%m-%d')"
+        />
+            <field
+            name="date_to"
+            eval="(DateTime.now() + timedelta(days=365)).strftime('%Y-%m-%d')"
+        />
+            <field name="active">True</field>
+        </record>
+
+        <record id="demo_approved_supplier_3" model="purchase.supplier.approved">
+            <field name="partner_id" ref="base.res_partner_12" />
+            <field name="product_tmpl_id" ref="demo_product_service" />
+            <field name="date_from" eval="DateTime.now().strftime('%Y-%m-%d')" />
+            <field name="active">True</field>
+        </record>
+
+        </odoo>
