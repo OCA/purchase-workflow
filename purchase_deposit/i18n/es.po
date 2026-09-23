@@ -155,6 +155,12 @@ msgid "Last Updated on"
 msgstr "Última actualización el"
 
 #. module: purchase_deposit
+#: model:ir.model.fields,field_description:purchase_deposit.field_res_company__purchase_deposit_limit_order_total
+#: model:ir.model.fields,field_description:purchase_deposit.field_res_config_settings__purchase_deposit_limit_order_total
+msgid "Limit Deposits to Order Total"
+msgstr ""
+
+#. module: purchase_deposit
 #: model:ir.model,name:purchase_deposit.model_res_config_settings
 msgid "Procurement purchase grouping settings"
 msgstr "Configuración de la agrupación de compra abastecida"
@@ -184,6 +190,21 @@ msgstr "Pedido de compra"
 #: model:ir.model,name:purchase_deposit.model_purchase_order_line
 msgid "Purchase Order Line"
 msgstr "Línea de pedido de compra"
+
+#. module: purchase_deposit
+#: model_terms:ir.ui.view,arch_db:purchase_deposit.res_config_settings_view_form_purchase
+msgid ""
+"Refuse a deposit when the deposits already invoiced, plus the one being "
+"registered, exceed the purchase order total"
+msgstr ""
+
+#. module: purchase_deposit
+#: model:ir.model.fields,help:purchase_deposit.field_res_company__purchase_deposit_limit_order_total
+#: model:ir.model.fields,help:purchase_deposit.field_res_config_settings__purchase_deposit_limit_order_total
+msgid ""
+"Refuse a deposit when the deposits already invoiced, plus the one being "
+"registered, exceed the purchase order total."
+msgstr ""
 
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_order_form_inherit
