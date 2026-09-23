@@ -1,0 +1,855 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_compute_order
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-13 02:42+0000\n"
+"PO-Revision-Date: 2026-06-13 02:42+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_compute_order
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_form
+msgid "&amp;nbsp;"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order__active
+msgid "Active"
+msgstr ""
+
+#. module: purchase_compute_order
+#. odoo-python
+#: code:addons/purchase_compute_order/models/computed_purchase_order.py:0
+msgid "All purchase quantities are set to 0!"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order__computed_amount
+msgid "Amount of the computed order"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_form_update_products
+msgid "Apply"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields.selection,name:purchase_compute_order.selection__computed_purchase_order__line_order__asc
+#: model:ir.model.fields.selection,name:purchase_compute_order.selection__res_partner__cpo_line_order__asc
+msgid "Ascending"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order_line__average_consumption
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_line_tree
+msgid "Average Consumption"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_form
+msgid "Avg. Consumption"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,help:purchase_compute_order.field_computed_purchase_order__active
+msgid ""
+"By unchecking the active field, you may hide this item without deleting it."
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_res_partner__cpo_line_order_field
+#: model:ir.model.fields,field_description:purchase_compute_order.field_res_users__cpo_line_order_field
+msgid "CPO Lines Order"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_res_partner__cpo_line_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_res_users__cpo_line_order
+msgid "CPO Lines Order Direction"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order_line__cpo_state
+msgid "CPO State"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_line_search
+msgid "CPO Status"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_form_update_products
+msgid "Cancel"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields.selection,name:purchase_compute_order.selection__computed_purchase_order__state__canceled
+msgid "Canceled"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model_terms:ir.actions.act_window,help:purchase_compute_order.action_view_computed_purchase_order_tree
+msgid "Click to begin a computed purchase order."
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order__company_id
+msgid "Company"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_search
+msgid ""
+"Computations already converted into purchase                               "
+"orders"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_search
+msgid "Computations in draft state"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_form
+msgid "Compute Order"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_form
+msgid "Compute Purchase Quantities"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_form
+msgid ""
+"Compute the optimal purchase quantities                                 of "
+"selected products according to the                                 "
+"objective."
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.actions.act_window,name:purchase_compute_order.action_view_computed_purchase_order_tree
+#: model:ir.model,name:purchase_compute_order.model_computed_purchase_order
+#: model:ir.ui.menu,name:purchase_compute_order.menu_computed_purchase_order
+msgid "Computed Purchase Order"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.actions.act_window,name:purchase_compute_order.action_computed_purchase_order_tree
+#: model:ir.model,name:purchase_compute_order.model_computed_purchase_order_line
+msgid "Computed Purchase Order Line"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order__name
+msgid "Computed Purchase Order Reference"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_form_update_products
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_line_form
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_line_tree
+msgid "Computed purchase order lines"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model,name:purchase_compute_order.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields.selection,name:purchase_compute_order.selection__computed_purchase_order__valid_psi__all
+#: model:ir.model.fields.selection,name:purchase_compute_order.selection__res_config_settings__default_valid_psi__all
+msgid "Consider all the suppliers registered on the product"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields.selection,name:purchase_compute_order.selection__computed_purchase_order__valid_psi__first
+#: model:ir.model.fields.selection,name:purchase_compute_order.selection__res_config_settings__default_valid_psi__first
+msgid "Consider only the first supplier on the product"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model,name:purchase_compute_order.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_search
+msgid "Converted"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order__create_uid
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order_line__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order__create_date
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order_line__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,help:purchase_compute_order.field_computed_purchase_order_line__uom_id
+msgid "Default unit of measure used for all stock operations."
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,help:purchase_compute_order.field_computed_purchase_order_line__uom_po_id
+msgid ""
+"Default unit of measure used for purchase orders. It must be in the same "
+"category as the default unit of measure."
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields.selection,name:purchase_compute_order.selection__computed_purchase_order__line_order__desc
+#: model:ir.model.fields.selection,name:purchase_compute_order.selection__res_partner__cpo_line_order__desc
+msgid "Descending"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order_line__discount
+msgid "Discount"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order__display_name
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order_line__displayed_average_consumption
+msgid "Displayed Average Consumption"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields.selection,name:purchase_compute_order.selection__computed_purchase_order__state__done
+msgid "Done"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields.selection,name:purchase_compute_order.selection__computed_purchase_order__state__draft
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_search
+msgid "Draft"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_form
+msgid ""
+"Fetch all active products sold by                                 selected "
+"supplier and calculate the available                                 "
+"quantities. It ignores inactive or not                                 "
+"purchasable products."
+msgstr ""
+
+#. module: purchase_compute_order
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_form
+msgid "Get Products"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_form
+msgid "Get products and stocks"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,help:purchase_compute_order.field_computed_purchase_order_line__sequence
+msgid ""
+"Gives the sequence order when displaying a list of purchase order lines."
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,help:purchase_compute_order.field_computed_purchase_order_line__product_sequence
+msgid "Gives the sequence order when displaying a product list"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_line_search
+msgid "Group By"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order__id
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order_line__id
+msgid "ID"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_form
+msgid ""
+"If you click this button,                                         it means "
+"you don't want to buy this                                         product "
+"to this supplier anymore.                                         The "
+"supplier will thus be removed from                                         "
+"the product form."
+msgstr ""
+
+#. module: purchase_compute_order
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_form
+msgid ""
+"If you click this button,                                         it means "
+"you want to buy this product                                         to this"
+" supplier regularly.                                         The supplier "
+"will thus be added to                                         the product "
+"form."
+msgstr ""
+
+#. module: purchase_compute_order
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_line_tree
+msgid ""
+"If you click this button,                             it means you don't "
+"want to buy this                             product to this supplier "
+"anymore.                             The supplier will thus be removed from"
+"                             the product form."
+msgstr ""
+
+#. module: purchase_compute_order
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_line_tree
+msgid ""
+"If you click this button,                             it means you want to "
+"buy this product                             to this supplier regularly."
+"                             The supplier will thus be added to"
+"                             the product form."
+msgstr ""
+
+#. module: purchase_compute_order
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_form
+msgid "Incoming"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order_line__incoming_qty
+msgid "Incoming Quantity"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order__products_updated
+msgid "Indicate if there were any products updated in the list"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order__write_uid
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order_line__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order__write_date
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order_line__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order__line_updated_ids
+msgid "Line Updated"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order__line_order_field
+msgid "Lines Order"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order__line_order
+msgid "Lines Order Direction"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_form
+msgid "Make Purchase Order"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order_line__manual_input_output_qty
+msgid "Manual variation"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,help:purchase_compute_order.field_computed_purchase_order__valid_psi
+msgid "Method of selection of suppliers"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order__computed_duration
+msgid "Minimum duration after order"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order_line__weight
+msgid "Net Weight"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields.selection,name:purchase_compute_order.selection__computed_purchase_order_line__state__new
+msgid "New"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,help:purchase_compute_order.field_computed_purchase_order_line__virtual_duration
+msgid "Number of days the stock should last after the purchase."
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,help:purchase_compute_order.field_computed_purchase_order_line__stock_duration
+msgid "Number of days the stock should last."
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order_line__purchase_qty_package
+msgid "Number of packages"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order_line__qty_available
+msgid "On Hand Quantity"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_form
+msgid "On hand"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order__line_ids
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.button_purchase_orderlines_tree
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_form
+msgid "Order Lines"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order_line__computed_purchase_order_id
+msgid "Order Reference"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_form
+msgid "Order lines"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_line_search
+msgid "Ordered Products"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order_line__outgoing_qty
+msgid "Outgoing Quantity"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order_line__package_qty
+msgid "Package Quantity"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order__compute_pending_quantity
+msgid "Pending quantity taken in account"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order_line__price_policy
+msgid "Price Policy"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order_line__product_id
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_line_search
+msgid "Product"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order_line__product_sequence
+#: model:ir.model.fields.selection,name:purchase_compute_order.selection__computed_purchase_order__line_order_field__product_sequence
+#: model:ir.model.fields.selection,name:purchase_compute_order.selection__res_partner__cpo_line_order_field__product_sequence
+msgid "Product Sequence"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model,name:purchase_compute_order.model_product_product
+msgid "Product Variant"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.constraint,message:purchase_compute_order.constraint_computed_purchase_order_line_product_id_uniq
+msgid "Product must be unique by computed purchase order!"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,help:purchase_compute_order.field_computed_purchase_order__line_ids
+#: model:ir.model.fields,help:purchase_compute_order.field_computed_purchase_order__stock_line_ids
+msgid "Products to order."
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order_line__psi_id
+msgid "Psi"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_cpo_config_settings
+msgid "Purchase Compute Order"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order__purchase_order_id
+msgid "Purchase Order"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.actions.act_window,name:purchase_compute_order.action_purchase_order_line_tree
+msgid "Purchase Orderlines"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order__purchase_target
+#: model:ir.model.fields,field_description:purchase_compute_order.field_res_partner__purchase_target
+#: model:ir.model.fields,field_description:purchase_compute_order.field_res_users__purchase_target
+msgid "Purchase Target"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order_line__uom_po_id
+msgid "Purchase Unit"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,help:purchase_compute_order.field_computed_purchase_order_line__virtual_qty
+msgid "Quantity on hand + Virtual incoming and outgoing entries"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order_line__purchase_qty
+msgid "Quantity to purchase"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order_line__consumption_range
+msgid "Range (days)"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,help:purchase_compute_order.field_computed_purchase_order_line__consumption_range
+msgid ""
+"Range (in days) used to display the average\n"
+"        consumption"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_purchase_order_line_tree
+msgid "Reference"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_form
+msgid "Result"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_form
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_line_tree
+msgid "Save the changes."
+msgstr ""
+
+#. module: purchase_compute_order
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_search
+msgid "Search Purchase Order"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_line_search
+msgid "Search Purchase Order Lines"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order_line__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order_line__shelf_life
+#: model:ir.model.fields,field_description:purchase_compute_order.field_product_supplierinfo__shelf_life
+msgid "Shelf life (days)"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,help:purchase_compute_order.field_computed_purchase_order_line__state
+msgid "Shows if the product's information has been updated"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_form
+msgid "Sort lines"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order__state
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order_line__state
+msgid "State"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_line_search
+msgid "Status"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order_line__computed_qty
+msgid "Stock"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order_line__stock_duration
+msgid "Stock Duration (Days)"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order__stock_line_ids
+msgid "Stock Line"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order_line__subtotal
+msgid "Subtotal"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order__partner_id
+msgid "Supplier"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model,name:purchase_compute_order.model_product_supplierinfo
+msgid "Supplier Pricelist"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order_line__product_code
+#: model:ir.model.fields.selection,name:purchase_compute_order.selection__computed_purchase_order__line_order_field__product_code
+#: model:ir.model.fields.selection,name:purchase_compute_order.selection__res_partner__cpo_line_order_field__product_code
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_form
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_form_update_products
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_line_tree
+msgid "Supplier Product Code"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order_line__product_name
+#: model:ir.model.fields.selection,name:purchase_compute_order.selection__computed_purchase_order__line_order_field__product_name
+#: model:ir.model.fields.selection,name:purchase_compute_order.selection__res_partner__cpo_line_order_field__product_name
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_form_update_products
+msgid "Supplier Product Name"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order_line__product_price
+msgid "Supplier Product Price"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order__valid_psi
+#: model:ir.model.fields,field_description:purchase_compute_order.field_res_config_settings__default_valid_psi
+msgid "Supplier choice"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,help:purchase_compute_order.field_computed_purchase_order__partner_id
+msgid "Supplier of the purchase order."
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order__target_type
+#: model:ir.model.fields,field_description:purchase_compute_order.field_res_partner__target_type
+#: model:ir.model.fields,field_description:purchase_compute_order.field_res_users__target_type
+msgid "Target Type"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,help:purchase_compute_order.field_computed_purchase_order_line__qty_available
+msgid "The available quantity on hand for this product"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,help:purchase_compute_order.field_computed_purchase_order__line_order_field
+#: model:ir.model.fields,help:purchase_compute_order.field_res_partner__cpo_line_order_field
+#: model:ir.model.fields,help:purchase_compute_order.field_res_users__cpo_line_order_field
+msgid "The field used to sort the CPO lines"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,help:purchase_compute_order.field_computed_purchase_order_line__purchase_qty_package
+msgid "The number of packages you'll buy."
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,help:purchase_compute_order.field_computed_purchase_order_line__purchase_qty
+msgid "The quantity you should purchase."
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,help:purchase_compute_order.field_computed_purchase_order_line__computed_qty
+msgid "The sum of all quantities selected."
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,help:purchase_compute_order.field_computed_purchase_order__target_type
+msgid ""
+"This defines the amount of products you want to purchase. \n"
+"The system will compute a purchase order based on the stock you have and the average consumption of each product. * Target type '€': computed purchase order will cost at least the amount specified\n"
+" * Target type 'days': computed purchase order will last at least the number of days specified (according to current average consumption)\n"
+" * Target type 'kg': computed purchase order will weight at least the weight specified"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,help:purchase_compute_order.field_res_partner__target_type
+#: model:ir.model.fields,help:purchase_compute_order.field_res_users__target_type
+msgid ""
+"This defines the amount of products you want to purchase. \n"
+"The system will compute a purchase order based on the stock you have and the average consumption of each product.* Target type '€': computed purchase order will cost at least the amount specified\n"
+"* Target type 'days': computed purchase order will last at least the number of days specified (according to current average consumption)\n"
+"* Target type 'kg': computed purchase order will weight at least the weight specified"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model_terms:ir.actions.act_window,help:purchase_compute_order.action_view_computed_purchase_order_tree
+msgid ""
+"This tool will allow you to calculate your needs according to the\n"
+"            stock and average consumption of your products and the purchase\n"
+"            objective defined against the supplier."
+msgstr ""
+
+#. module: purchase_compute_order
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_purchase_order_line_tree
+msgid "Total"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order__lines_with_qty_count
+msgid "Total Ordered Lines"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order__package_qty_count
+msgid "Total Quantity of Packages"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,help:purchase_compute_order.field_computed_purchase_order__package_qty_count
+msgid "Total count of packages by the current vendor"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,help:purchase_compute_order.field_computed_purchase_order__name
+msgid ""
+"Unique number of the automated purchase order, computed automatically when "
+"the computed purchase order is created."
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order_line__uom_id
+msgid "Unit of Measure"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_form
+msgid "UoM"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields.selection,name:purchase_compute_order.selection__computed_purchase_order_line__state__up_to_date
+msgid "Up to date"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.actions.act_window,name:purchase_compute_order.action_view_update_products
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_form
+msgid "Update Products"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields.selection,name:purchase_compute_order.selection__computed_purchase_order_line__state__updated
+msgid "Updated"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model_terms:ir.ui.view,arch_db:purchase_compute_order.view_computed_purchase_order_line_form
+msgid "Vendor Pricelist"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order_line__virtual_duration
+msgid "Virtual Duration (Days)"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order_line__virtual_qty
+msgid "Virtual Quantity"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,help:purchase_compute_order.field_computed_purchase_order_line__incoming_qty
+msgid "Virtual incoming entries"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,help:purchase_compute_order.field_computed_purchase_order_line__outgoing_qty
+msgid "Virtual outgoing entries"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,help:purchase_compute_order.field_computed_purchase_order__company_id
+msgid ""
+"When you will validate this item, this will create a purchase order for this"
+" company."
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order__incoming_date
+msgid "Wished Incoming Date"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,help:purchase_compute_order.field_computed_purchase_order__incoming_date
+msgid "Wished date for products delivery."
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields,help:purchase_compute_order.field_computed_purchase_order_line__manual_input_output_qty
+msgid ""
+"Write here some extra quantity depending of some input or output of products not entered in the software\n"
+"- negative quantity : extra output ; \n"
+"- positive quantity : extra input."
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields.selection,name:purchase_compute_order.selection__computed_purchase_order__target_type__time
+#: model:ir.model.fields.selection,name:purchase_compute_order.selection__res_partner__target_type__time
+msgid "days"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields.selection,name:purchase_compute_order.selection__computed_purchase_order__target_type__weight
+#: model:ir.model.fields.selection,name:purchase_compute_order.selection__res_partner__target_type__weight
+msgid "kg"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields.selection,name:purchase_compute_order.selection__computed_purchase_order_line__price_policy__package
+msgid "per Package"
+msgstr ""
+
+#. module: purchase_compute_order
+#: model:ir.model.fields.selection,name:purchase_compute_order.selection__computed_purchase_order_line__price_policy__uom
+msgid "per UOM"
+msgstr ""
