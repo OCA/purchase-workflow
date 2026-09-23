@@ -31,8 +31,8 @@ msgstr "Cuenta contable para el anticipo"
 #. module: purchase_deposit
 #. odoo-python
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
-msgid "Advance: %s"
-msgstr "Anticipo:%s"
+msgid "Advance: %(date)s"
+msgstr ""
 
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
@@ -111,7 +111,12 @@ msgstr ""
 "se copian al duplicar una orden de compra."
 
 #. module: purchase_deposit
+#: model:ir.model.fields,field_description:purchase_deposit.field_account_move__display_name
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__display_name
+#: model:ir.model.fields,field_description:purchase_deposit.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:purchase_deposit.field_purchase_order_line__display_name
+#: model:ir.model.fields,field_description:purchase_deposit.field_res_company__display_name
+#: model:ir.model.fields,field_description:purchase_deposit.field_res_config_settings__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
 
@@ -121,7 +126,12 @@ msgid "Expense Account"
 msgstr "Cuenta de coste"
 
 #. module: purchase_deposit
+#: model:ir.model.fields,field_description:purchase_deposit.field_account_move__id
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__id
+#: model:ir.model.fields,field_description:purchase_deposit.field_purchase_order__id
+#: model:ir.model.fields,field_description:purchase_deposit.field_purchase_order_line__id
+#: model:ir.model.fields,field_description:purchase_deposit.field_res_company__id
+#: model:ir.model.fields,field_description:purchase_deposit.field_res_config_settings__id
 msgid "ID"
 msgstr "Identificación"
 
@@ -165,6 +175,12 @@ msgid "Last Updated on"
 msgstr "Última actualización el"
 
 #. module: purchase_deposit
+#: model:ir.model.fields,field_description:purchase_deposit.field_res_company__purchase_deposit_limit_order_total
+#: model:ir.model.fields,field_description:purchase_deposit.field_res_config_settings__purchase_deposit_limit_order_total
+msgid "Limit Deposits to Order Total"
+msgstr ""
+
+#. module: purchase_deposit
 #: model:ir.model,name:purchase_deposit.model_res_config_settings
 msgid "Procurement purchase grouping settings"
 msgstr "Configuración de la agrupación de compra abastecida"
@@ -196,6 +212,21 @@ msgid "Purchase Order Line"
 msgstr "Línea de pedido de compra"
 
 #. module: purchase_deposit
+#: model_terms:ir.ui.view,arch_db:purchase_deposit.res_config_settings_view_form_purchase
+msgid ""
+"Refuse a deposit when the deposits already invoiced, plus the one being "
+"registered, exceed the purchase order total"
+msgstr ""
+
+#. module: purchase_deposit
+#: model:ir.model.fields,help:purchase_deposit.field_res_company__purchase_deposit_limit_order_total
+#: model:ir.model.fields,help:purchase_deposit.field_res_config_settings__purchase_deposit_limit_order_total
+msgid ""
+"Refuse a deposit when the deposits already invoiced, plus the one being "
+"registered, exceed the purchase order total."
+msgstr ""
+
+#. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_order_form_inherit
 msgid "Register Deposit"
 msgstr "Crear anticipo"
@@ -209,6 +240,14 @@ msgstr "Impuestos para los anticipos"
 #: model:ir.model.fields,help:purchase_deposit.field_purchase_advance_payment_inv__amount
 msgid "The amount to be invoiced in advance, taxes excluded."
 msgstr "Importe a facturar por adelantado, sin impuestos."
+
+#. module: purchase_deposit
+#. odoo-python
+#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
+msgid ""
+"The deposits of %(order)s would add up to %(deposit)s, more than its total "
+"amount of %(total)s."
+msgstr ""
 
 #. module: purchase_deposit
 #. odoo-python
@@ -248,13 +287,10 @@ msgstr "El importe del anticipo debe de ser positivo."
 #. odoo-python
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
 msgid ""
-"There is no purchase account defined for this product: %s.\n"
+"There is no purchase account defined for this product: %(product)s.\n"
 "You may have to install a chart of account from Accounting app, settings "
 "menu."
 msgstr ""
-"No hay una cuenta contable definida para este producto:%s.\n"
-"Es posible que tengas que instalar un plan contable desde la aplicación "
-"Contabilidad, en el menú de configuración."
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__deposit_taxes_id
@@ -265,6 +301,18 @@ msgstr "Impuestos de proveedor"
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__advance_payment_method
 msgid "What do you want to invoice?"
 msgstr "¿Que quieres facturar?"
+
+#~ msgid "Advance: %s"
+#~ msgstr "Anticipo:%s"
+
+#~ msgid ""
+#~ "There is no purchase account defined for this product: %s.\n"
+#~ "You may have to install a chart of account from Accounting app, settings "
+#~ "menu."
+#~ msgstr ""
+#~ "No hay una cuenta contable definida para este producto:%s.\n"
+#~ "Es posible que tengas que instalar un plan contable desde la aplicación "
+#~ "Contabilidad, en el menú de configuración."
 
 #~ msgid "Config Settings"
 #~ msgstr "Ajustes de configuración"

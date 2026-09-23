@@ -12,3 +12,8 @@ class ResCompany(models.Model):
         domain=[("type", "=", "service")],
         help="Default product used for payment advances.",
     )
+    purchase_deposit_limit_order_total = fields.Boolean(
+        string="Limit Deposits to Order Total",
+        help="Refuse a deposit when the deposits already invoiced, plus the "
+        "one being registered, exceed the purchase order total.",
+    )

@@ -244,3 +244,42 @@ class TestPurchaseDeposit(TransactionCase):
         bill.invoice_line_ids.price_unit = 300000.0
         bill.action_post()
         self.assertEqual(deposit_line.price_unit, 300.0)
+
+    def test_not_allow_deposit_greater_than_po_total(self):
+        self.env.company.purchase_deposit_limit_order_total = True
+        self.assertEqual(len(self.po.order_line), 1)
+        # We create invoice from expense
+        f = self.create_advance_payment_form()
+        f.advance_payment_method = "fixed"
+        wizard = f.save()
+        wizard.amount = 5000.0
+        wizard.deposit_account_id = self.account_deposit
+        with self.assertRaises(UserError):
+            wizard.create_invoices()
+
+    def test_allow_deposit_greater_than_po_total_by_default(self):
+        self.assertFalse(self.env.company.purchase_deposit_limit_order_total)
+        f = self.create_advance_payment_form()
+        f.advance_payment_method = "fixed"
+        wizard = f.save()
+        wizard.amount = 5000.0
+        wizard.deposit_account_id = self.account_deposit
+        wizard.create_invoices()
+        deposit_line = self.po.order_line.filtered(lambda p: p.is_deposit)
+        self.assertEqual(deposit_line.price_unit, 5000.0)
+
+    def test_not_allow_deposit_over_total_with_deposit_already_invoiced(self):
+        self.env.company.purchase_deposit_limit_order_total = True
+        f = self.create_advance_payment_form()
+        f.advance_payment_method = "fixed"
+        wizard = f.save()
+        wizard.amount = self.po.amount_total
+        wizard.deposit_account_id = self.account_deposit
+        wizard.create_invoices()
+        f = self.create_advance_payment_form()
+        f.advance_payment_method = "fixed"
+        wizard = f.save()
+        wizard.amount = 1.0
+        wizard.deposit_account_id = self.account_deposit
+        with self.assertRaises(UserError):
+            wizard.create_invoices()
