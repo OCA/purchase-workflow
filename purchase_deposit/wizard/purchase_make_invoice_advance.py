@@ -7,7 +7,7 @@ from datetime import datetime
 
 from odoo import Command, api, fields, models
 from odoo.exceptions import UserError
-from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT, float_compare
+from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT, float_compare, formatLang
 
 
 class PurchaseAdvancePaymentInv(models.TransientModel):
@@ -171,29 +171,38 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
             amount = self.amount
             if self.advance_payment_method == "percentage":  # Case percent
                 amount = self.amount / 100 * order.amount_untaxed
-            # calculate all deposit lines
-            sum_deposit = (
-                sum(
+            if order.company_id.purchase_deposit_limit_order_total:
+                sum_deposit = sum(
                     line.price_unit
                     for line in order.order_line
-                    if (line.is_deposit and line.invoice_lines)
+                    if line.is_deposit and line.invoice_lines
                 )
-                or 0.00
-            )
-            if (
-                float_compare(
-                    sum_deposit + amount,
-                    order.amount_total,
-                    precision_rounding=order.currency_id.rounding,
-                )
-                > 0
-            ):
-                raise UserError(
-                    self.env._(
-                        "The amount to be registered as deposit can't be "
-                        f"greater than total amount of {order.name}."
+                if (
+                    float_compare(
+                        sum_deposit + amount,
+                        order.amount_total,
+                        precision_rounding=order.currency_id.rounding,
                     )
-                )
+                    > 0
+                ):
+                    raise UserError(
+                        self.env._(
+                            "The deposits of %(order)s would add up to "
+                            "%(deposit)s, more than its total amount of "
+                            "%(total)s.",
+                            order=order.name,
+                            deposit=formatLang(
+                                self.env,
+                                sum_deposit + amount,
+                                currency_obj=order.currency_id,
+                            ),
+                            total=formatLang(
+                                self.env,
+                                order.amount_total,
+                                currency_obj=order.currency_id,
+                            ),
+                        )
+                    )
             if product.purchase_method != "purchase":
                 raise UserError(
                     self.env._(
