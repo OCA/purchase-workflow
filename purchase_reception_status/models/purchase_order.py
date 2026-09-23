@@ -40,7 +40,6 @@ class PurchaseOrder(models.Model):
                     lambda line: not line.display_type
                     and line.product_id.type == "consu"
                 )
-                
                 if order.force_received:
                     status = "full"
                 elif all(
