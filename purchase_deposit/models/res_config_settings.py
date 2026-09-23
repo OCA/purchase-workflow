@@ -13,3 +13,7 @@ class ResConfigSettings(models.TransientModel):
         related="company_id.purchase_deposit_product_id",
         readonly=False,
     )
+    purchase_deposit_limit_order_total = fields.Boolean(
+        related="company_id.purchase_deposit_limit_order_total",
+        readonly=False,
+    )
