@@ -22,6 +22,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
+[account_fiscal_position_allowed_journal_purchase](account_fiscal_position_allowed_journal_purchase/) | 19.0.1.0.0 | <a href='https://github.com/ThomasBinsfeld'><img src='https://github.com/ThomasBinsfeld.png' width='32' height='32' style='border-radius:50%;' alt='ThomasBinsfeld'/></a> | Use an allowed journal when creating an invoice from a purchase order.
 [partner_supplierinfo_smartbutton](partner_supplierinfo_smartbutton/) | 19.0.1.0.0 | <a href='https://github.com/victoralmau'><img src='https://github.com/victoralmau.png' width='32' height='32' style='border-radius:50%;' alt='victoralmau'/></a> | Access supplied products from the vendor
 [procurement_purchase_no_grouping](procurement_purchase_no_grouping/) | 19.0.1.0.0 |  | Procurement Purchase No Grouping
 [product_main_seller](product_main_seller/) | 19.0.1.0.0 | <a href='https://github.com/legalsylvain'><img src='https://github.com/legalsylvain.png' width='32' height='32' style='border-radius:50%;' alt='legalsylvain'/></a> <a href='https://github.com/quentinDupont'><img src='https://github.com/quentinDupont.png' width='32' height='32' style='border-radius:50%;' alt='quentinDupont'/></a> | Main Vendor for a product
