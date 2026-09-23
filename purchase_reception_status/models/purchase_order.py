@@ -34,9 +34,10 @@ class PurchaseOrder(models.Model):
         for order in self:
             status = "pending"
             if order.state in ("purchase", "done"):
-                # calc receipt status using only product lines (skip section/notes and services)
+                # Calculate receipt status using only product lines.
+                # Skip sections, notes, and services.
                 product_lines = order.order_line.filtered(
-                    lambda line: line.display_type == False
+                    lambda line: not line.display_type
                     and line.product_id.type == "consu"
                 )
                 
