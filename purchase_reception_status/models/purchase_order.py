@@ -34,6 +34,12 @@ class PurchaseOrder(models.Model):
         for order in self:
             status = "pending"
             if order.state in ("purchase", "done"):
+                # calc receipt status using only product lines (skip section/notes and services)
+                product_lines = order.order_line.filtered(
+                    lambda line: line.display_type == False
+                    and line.product_id.type == "consu"
+                )
+                
                 if order.force_received:
                     status = "full"
                 elif all(
@@ -42,14 +48,14 @@ class PurchaseOrder(models.Model):
                             line.qty_received, line.product_qty, precision_digits=prec
                         )
                         >= 0
-                        for line in order.order_line
+                        for line in product_lines
                     ]
                 ):
                     status = "full"
                 elif any(
                     [
                         float_compare(line.qty_received, 0, precision_digits=prec) > 0
-                        for line in order.order_line
+                        for line in product_lines
                     ]
                 ):
                     status = "partial"
