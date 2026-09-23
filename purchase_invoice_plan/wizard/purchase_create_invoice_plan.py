@@ -36,6 +36,8 @@ class PurchaseCreateInvoicePlan(models.TransientModel):
     def purchase_create_invoice_plan(self):
         purchase = self.env["purchase.order"].browse(self._context.get("active_id"))
         self.ensure_one()
+        for line in purchase.order_line:
+            line.qty_invoiced_before_plan = line.qty_invoiced
         purchase.create_invoice_plan(
             self.num_installment,
             self.installment_date,
