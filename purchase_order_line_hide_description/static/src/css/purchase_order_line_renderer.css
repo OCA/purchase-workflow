@@ -1,0 +1,3 @@
+.o_purchase_order div[name="order_line"] th[data-name="name"] {
+    display: none !important;
+}
