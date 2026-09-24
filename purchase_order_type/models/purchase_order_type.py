@@ -1,7 +1,8 @@
 # Copyright (C) 2015 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class PurchaseOrderType(models.Model):
@@ -43,3 +44,25 @@ class PurchaseOrderType(models.Model):
         string="Company",
         default=lambda self: self.env.company,
     )
+    is_default = fields.Boolean(
+        string="Default",
+        help="Used as the fallback order type for a purchase order whose "
+        "vendor does not provide one, and to correct a purchase order "
+        "whose type no longer suits its company after the company "
+        "changes.",
+    )
+
+    @api.constrains("is_default", "company_id")
+    def _check_is_default_unique(self):
+        for record in self.filtered("is_default"):
+            other_count = self.search_count(
+                [
+                    ("is_default", "=", True),
+                    ("company_id", "=", record.company_id.id),
+                    ("id", "!=", record.id),
+                ]
+            )
+            if other_count:
+                raise ValidationError(
+                    _("Only one default order type is allowed per company.")
+                )
