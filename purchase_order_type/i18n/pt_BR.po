@@ -11,10 +11,10 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-16 12:06+0000\n"
 "PO-Revision-Date: 2024-05-21 01:00+0000\n"
-"Last-Translator: Rodrigo Macedo <sottomaiormacedotec@users.noreply."
-"translation.odoo-community.org>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/"
-"OCA-purchase-workflow-8-0/language/pt_BR/)\n"
+"Last-Translator: Rodrigo Macedo "
+"<sottomaiormacedotec@users.noreply.translation.odoo-community.org>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-"
+"purchase-workflow-8-0/language/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -57,6 +57,11 @@ msgstr "Criado por"
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__create_date
 msgid "Created on"
 msgstr "Criado em"
+
+#. module: purchase_order_type
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__is_default
+msgid "Default"
+msgstr ""
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__description
@@ -118,6 +123,13 @@ msgid "Name"
 msgstr "Nome"
 
 #. module: purchase_order_type
+#. odoo-python
+#: code:addons/purchase_order_type/models/purchase_order_type.py:0
+#, python-format
+msgid "Only one default order type is allowed per company."
+msgstr ""
+
+#. module: purchase_order_type
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
 msgid "Payment Term"
 msgstr "Condição de Pagamento"
@@ -162,6 +174,14 @@ msgstr "Tipo"
 #: model:ir.model,name:purchase_order_type.model_purchase_order_type
 msgid "Type of purchase order"
 msgstr "Pedido de Compra"
+
+#. module: purchase_order_type
+#: model:ir.model.fields,help:purchase_order_type.field_purchase_order_type__is_default
+msgid ""
+"Used as the fallback order type for a purchase order whose vendor does not "
+"provide one, and to correct a purchase order whose type no longer suits its "
+"company after the company changes."
+msgstr ""
 
 #~ msgid "Partner"
 #~ msgstr "Parceiro"
