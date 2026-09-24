@@ -1,0 +1,75 @@
+<odoo noupdate="0">
+    <record id="purchase_template" model="purchase.requisition">
+        <field name="user_id" ref="base.user_admin" />
+        <field name="vendor_id" ref="base.res_partner_1" />
+        <field name="requisition_type">purchase_template</field>
+        <field name="reference">my template</field>
+    </record>
+
+    <record id="purchase_template_line_section1" model="purchase.requisition.line">
+        <field name="requisition_id" ref="purchase_template" />
+        <field name="display_type">line_section</field>
+        <field name="sequence">2</field>
+        <field name="product_qty">0</field>
+        <field name="name">Section 1</field>
+    </record>
+    <record id="purchase_template_line1" model="purchase.requisition.line">
+        <field name="requisition_id" ref="purchase_template" />
+        <field name="sequence">4</field>
+        <field name="product_id" ref="product.product_delivery_02" />
+        <field name="product_qty">1</field>
+    </record>
+    <record id="purchase_template_line2" model="purchase.requisition.line">
+        <field name="requisition_id" ref="purchase_template" />
+        <field name="sequence">6</field>
+        <field name="product_id" ref="product.product_delivery_01" />
+        <field name="product_qty">1</field>
+    </record>
+    <record id="purchase_template_line3" model="purchase.requisition.line">
+        <field name="requisition_id" ref="purchase_template" />
+        <field name="sequence">8</field>
+        <field name="product_id" ref="product.consu_delivery_01" />
+        <field name="product_qty">1</field>
+    </record>
+    <record id="purchase_template_line_section2" model="purchase.requisition.line">
+        <field name="requisition_id" ref="purchase_template" />
+        <field name="display_type">line_section</field>
+        <field name="sequence">10</field>
+        <field name="product_qty">0</field>
+        <field name="name">Section 2</field>
+    </record>
+    <record id="purchase_template_line5" model="purchase.requisition.line">
+        <field name="requisition_id" ref="purchase_template" />
+        <field name="sequence">12</field>
+        <field name="product_id" ref="product.product_product_25" />
+        <field name="product_qty">1</field>
+    </record>
+    <record id="purchase_template_line_note" model="purchase.requisition.line">
+        <field name="requisition_id" ref="purchase_template" />
+        <field name="sequence">14</field>
+        <field name="display_type">line_note</field>
+        <field name="product_qty">0</field>
+        <field name="name">  -->  Nice flipover</field>
+    </record>
+    <record id="purchase_template_line6" model="purchase.requisition.line">
+        <field name="requisition_id" ref="purchase_template" />
+        <field name="sequence">16</field>
+        <field name="product_id" ref="product.product_product_20" />
+        <field name="product_qty">1</field>
+    </record>
+
+    <function
+        model="purchase.requisition"
+        name="action_confirm"
+        eval="[[ref('purchase_template')]]"
+    />
+
+    <!--Resource: purchase.order-->
+    <record id="po1" model="purchase.order">
+        <field name="partner_id" ref="base.res_partner_1" />
+        <field name="user_id" ref="base.user_admin" />
+        <field name="requisition_id" ref="purchase_template" />
+    </record>
+
+    <function model="purchase.order" name="reorder_lines" eval="[[ref('po1')]]" />
+</odoo>

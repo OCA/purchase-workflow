@@ -1,0 +1,122 @@
+<odoo>
+    <record id="view_purchase_requisition_form" model="ir.ui.view">
+        <field name="model">purchase.requisition</field>
+        <field
+            name="inherit_id"
+            ref="purchase_requisition.view_purchase_requisition_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//page[1]" position="before">
+                <!-- Add new page -->
+                <page string="Sections" name="section">
+                    <field
+                        name="line_with_sectionnote_ids"
+                        widget="section_and_note_one2many"
+                        readonly="state == 'done'"
+                        context="{'default_product_id': False, 'default_requisition_id': id}"
+                    >
+                        <list string="Products" editable="bottom">
+                            <control>
+                                <create
+                                    name="add_product_control"
+                                    string="Add a product"
+                                />
+                                <create
+                                    name="add_section_control"
+                                    string="Add a section"
+                                    context="{'default_display_type': 'line_section'}"
+                                />
+                                <create
+                                    name="add_note_control"
+                                    string="Add a note"
+                                    context="{'default_display_type': 'line_note'}"
+                                />
+                            </control>
+                            <field name="display_type" column_invisible="True" />
+                            <field name="sequence" widget="handle" />
+                            <field
+                                name="product_id"
+                                invisible="display_type"
+                                required="not display_type"
+                                domain="[('purchase_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]"
+                                context="{
+                              'default_type': 'consu',
+                              'default_detailed_type': 'product'
+                            }"
+                            />
+                            <field
+                                name="product_description_variants"
+                                invisible="product_description_variants == ''"
+                            />
+                            <field name="product_qty" />
+                            <field
+                                name="qty_ordered"
+                                optional="show"
+                                column_invisible="parent.requisition_type == 'purchase_template'"
+                            />
+                            <field
+                                name="name"
+                                string="."
+                                widget="section_and_note_text"
+                                optional="show"
+                            />
+                            <field
+                                name="product_uom_category_id"
+                                column_invisible="True"
+                            />
+                            <field
+                                name="product_uom_id"
+                                string="UoM"
+                                groups="uom.group_uom"
+                                optional="show"
+                                required="product_id"
+                            />
+                            <field
+                                name="analytic_distribution"
+                                widget="analytic_distribution"
+                                optional="hide"
+                                groups="analytic.group_analytic_accounting"
+                                options="{'product_field': 'product_id', 'business_domain': 'purchase_order'}"
+                            />
+                            <field name="price_unit" />
+                        </list>
+                        <form string="Products">
+                            <group>
+                                <field
+                                    name="product_id"
+                                    domain="[('purchase_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]"
+                                />
+                                <field name="product_qty" invisible="display_type" />
+                                <field name="qty_ordered" />
+                                <field
+                                    name="product_uom_category_id"
+                                    column_invisible="1"
+                                />
+                                <field
+                                    name="product_uom_id"
+                                    groups="uom.group_uom"
+                                    options="{'no_open':True,'no_create':True}"
+                                    required="not display_type"
+                                    invisible="display_type"
+                                />
+                                <field
+                                    name="analytic_distribution"
+                                    widget="analytic_distribution"
+                                    groups="analytic.group_analytic_accounting"
+                                    options="{'product_field': 'product_id', 'business_domain': 'purchase_order'}"
+                                />
+                                <field
+                                    name="company_id"
+                                    groups="base.group_multi_company"
+                                    options="{'no_create': True}"
+                                />
+                            </group>
+                        </form>
+                    </field>
+                    <separator string="Terms and Conditions" />
+                    <field name="description" class="oe-bordered-editor" />
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
