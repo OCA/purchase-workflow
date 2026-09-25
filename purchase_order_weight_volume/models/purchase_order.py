@@ -51,23 +51,11 @@ class PurchaseOrder(models.Model):
     )
 
     display_order_weight_in_po = fields.Boolean(
-        "Display Order Weight in PO",
-        compute="_compute_display_order",
+        related="company_id.display_order_weight_in_po",
     )
     display_order_volume_in_po = fields.Boolean(
-        "Display Order Volume in PO",
-        compute="_compute_display_order",
+        related="company_id.display_order_volume_in_po",
     )
-
-    @api.depends("company_id")
-    def _compute_display_order(self):
-        for purchase in self:
-            purchase.display_order_weight_in_po = (
-                purchase.company_id.display_order_weight_in_po
-            )
-            purchase.display_order_volume_in_po = (
-                purchase.company_id.display_order_volume_in_po
-            )
 
     @api.depends("order_line.product_uom_qty", "order_line.product_id")
     def _compute_total_physical_properties(self):
