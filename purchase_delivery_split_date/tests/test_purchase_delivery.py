@@ -4,7 +4,7 @@
 from freezegun import freeze_time
 
 from odoo.fields import Datetime
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests.common import Form, TransactionCase, tagged
 
 
 class TestDeliverySingle(TransactionCase):
@@ -390,3 +390,54 @@ class TestDeliverySingle(TransactionCase):
 
         for move in moves_after - new_move:
             self.assertEqual(move.date, Datetime.to_datetime(self.date_sooner))
+
+
+@tagged("post_install", "-at_install")
+class TestDeliverySplitCreateMulti(TransactionCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.product = cls.env["product.product"].create(
+            {"name": "Test Product", "type": "product"}
+        )
+        cls.orders = cls.env["purchase.order"].create(
+            [
+                {
+                    "partner_id": cls.env.ref("base.res_partner_3").id,
+                    "order_line": [
+                        (
+                            0,
+                            0,
+                            {
+                                "product_id": cls.product.id,
+                                "product_qty": 1.0,
+                                "price_unit": 5.0,
+                                "date_planned": "2015-01-01",
+                            },
+                        )
+                    ],
+                }
+                for _i in range(3)
+            ]
+        )
+        cls.orders[:2].button_confirm()
+
+    def test_create_lines_of_several_orders(self):
+        """Lines of several orders created at once split each confirmed order."""
+        dates = ["2015-12-13", "2015-12-31", "2016-01-30"]
+        lines = self.env["purchase.order.line"].create(
+            [
+                {
+                    "order_id": order.id,
+                    "product_id": self.product.id,
+                    "product_qty": 2.0,
+                    "price_unit": 5.0,
+                    "date_planned": date,
+                }
+                for order, date in zip(self.orders, dates)
+            ]
+        )
+        for order, line, date in zip(self.orders[:2], lines, dates):
+            self.assertEqual(len(order.picking_ids), 2)
+            self.assertEqual(str(line.move_ids.picking_id.scheduled_date)[:10], date)
+        self.assertFalse(self.orders[2].picking_ids)
