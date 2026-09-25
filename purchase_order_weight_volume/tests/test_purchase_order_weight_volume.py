@@ -109,6 +109,18 @@ class TestPurchaseOrderWeightVolume(TransactionCase):
                 line.line_volume, line.product_id.volume * line.product_uom_qty
             )
 
+    def test_purchase_order_display_follows_company_settings(self):
+        po = self._create_purchase(self.line_products)
+        self.assertTrue(po.display_order_weight_in_po)
+        self.assertTrue(po.display_order_volume_in_po)
+
+        po.company_id.display_order_weight_in_po = False
+        self.assertFalse(po.display_order_weight_in_po)
+        self.assertTrue(po.display_order_volume_in_po)
+
+        po.company_id.display_order_volume_in_po = False
+        self.assertFalse(po.display_order_volume_in_po)
+
     def _create_purchase(self, line_products):
         """Create a purchase order.
         ``line_products`` is a list of tuple [(product, qty)]
