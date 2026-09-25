@@ -22,7 +22,7 @@ class PurchaseOrderLine(models.Model):
             default_picking_location_id
         )
         location = self.location_dest_id or default_picking_location
-        return key + ({"location_dest_id": location.id},)
+        return key + (("location_dest_id", location.id),)
 
     def _purchase_split_date_get_sorted_keys(self):
         keys = super()._purchase_split_date_get_sorted_keys()
