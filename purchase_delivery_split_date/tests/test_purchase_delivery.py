@@ -415,6 +415,40 @@ class TestDeliverySingle(TransactionCase):
                 line.date_planned.date(),
             )
 
+    def test_14_check_split_pickings_twice(self):
+        """Running the split again moves nothing and creates no picking."""
+        self.po.button_confirm()
+        self.po.order_line[0].date_planned = self.date_later
+        pickings = self.po.picking_ids
+        move_pickings = {move: move.picking_id for move in self.po.order_line.move_ids}
+        self.po._check_split_pickings()
+        self.po._check_split_pickings()
+        self.assertEqual(self.po.picking_ids, pickings)
+        for move, picking in move_pickings.items():
+            self.assertEqual(move.picking_id, picking)
+
+    def test_15_pickings_of_another_kind_stay_apart(self):
+        """A move only goes to a picking of its own type and locations."""
+        self.po.button_confirm()
+        receipt = self.po.picking_ids
+        other_location = self.env["stock.location"].create(
+            {
+                "name": "Other destination",
+                "usage": "internal",
+                "location_id": receipt.location_dest_id.location_id.id,
+            }
+        )
+        other = receipt.copy({"move_ids": [], "location_dest_id": other_location.id})
+        other_move = self.po.order_line[1].move_ids
+        other_move.write(
+            {"picking_id": other.id, "location_dest_id": other_location.id}
+        )
+        self.po.order_line.write({"date_planned": self.date_later})
+        for move in self.po.order_line.move_ids:
+            self.assertEqual(move.picking_id.location_dest_id, move.location_dest_id)
+            self.assertEqual(str(move.picking_id.scheduled_date)[:10], self.date_later)
+        self.assertEqual(other_move.picking_id.location_dest_id, other_location)
+
 
 @tagged("post_install", "-at_install")
 class TestDeliverySplitCreateMulti(TransactionCase):
