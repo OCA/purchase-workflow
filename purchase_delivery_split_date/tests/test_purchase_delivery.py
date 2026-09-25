@@ -1,6 +1,8 @@
 # Copyright 2014-2016 Numérigraphe SARL
 # Copyright 2017 ForgeFlow, S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+from unittest.mock import patch
+
 from freezegun import freeze_time
 
 from odoo.fields import Datetime
@@ -390,6 +392,28 @@ class TestDeliverySingle(TransactionCase):
 
         for move in moves_after - new_move:
             self.assertEqual(move.date, Datetime.to_datetime(self.date_sooner))
+
+    def test_13_date_change_of_several_lines_is_one_reservation(self):
+        """Moves shifted to other pickings are reserved again once per order."""
+        self.po.button_confirm()
+        StockMove = type(self.env["stock.move"])
+        original = StockMove._action_assign
+        calls = []
+
+        def counting(moves, *args, **kwargs):
+            calls.append(len(moves))
+            return original(moves, *args, **kwargs)
+
+        with patch.object(StockMove, "_action_assign", counting):
+            self.po.order_line[0].date_planned = self.date_later
+            self.po.order_line[1:].write({"date_planned": self.date_3rd})
+        self.assertEqual(calls, [1, 2])
+        self.assertEqual(len(self.po.picking_ids), 2)
+        for line in self.po.order_line:
+            self.assertEqual(
+                line.move_ids.picking_id.scheduled_date.date(),
+                line.date_planned.date(),
+            )
 
 
 @tagged("post_install", "-at_install")

@@ -2,6 +2,7 @@
 # Copyright 2017 ForgeFlow, S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
+from collections import defaultdict
 from itertools import groupby
 
 from odoo import fields, models
@@ -19,8 +20,9 @@ class PurchaseOrder(models.Model):
             ]
         )
         for order in self:
+            order_line_ids = set(order.order_line.ids)
             moves = purchases_moves.filtered(
-                lambda move: move.purchase_line_id.id in order.order_line.ids
+                lambda move: move.purchase_line_id.id in order_line_ids
             )
             pickings = moves.mapped("picking_id")
             pickings_by_date = {}
@@ -31,6 +33,9 @@ class PurchaseOrder(models.Model):
             date_groups = groupby(
                 order_lines, lambda l: l._get_group_keys(l.order_id, l)
             )
+            # Moves to shift, per target picking and date: they are unreserved,
+            # moved and reserved again once per order instead of once per move.
+            moves_by_target = defaultdict(lambda: self.env["stock.move"])
             for key, lines in date_groups:
                 date_key = fields.Date.from_string(key[0]["date_planned"])
                 for line in lines:
@@ -45,15 +50,21 @@ class PurchaseOrder(models.Model):
                                 copy_vals = line._first_picking_copy_vals(key, line)
                                 new_picking = move.picking_id.sudo().copy(copy_vals)
                                 pickings_by_date[date_key] = new_picking
-                            move._do_unreserve()
-                            move.update(
-                                {
-                                    "picking_id": pickings_by_date[date_key],
-                                    "date_deadline": date_key,
-                                    "date": date_key,
-                                }
-                            )
-                            move._action_assign()
+                            moves_by_target[
+                                (pickings_by_date[date_key], date_key)
+                            ] |= move
+            if moves_by_target:
+                shifted_moves = self.env["stock.move"].concat(*moves_by_target.values())
+                shifted_moves._do_unreserve()
+                for (picking, date_key), target_moves in moves_by_target.items():
+                    target_moves.write(
+                        {
+                            "picking_id": picking.id,
+                            "date_deadline": date_key,
+                            "date": date_key,
+                        }
+                    )
+                shifted_moves._action_assign()
             pickings.filtered(lambda picking: not picking.move_ids).write(
                 {"state": "cancel"}
             )
