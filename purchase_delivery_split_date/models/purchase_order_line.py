@@ -84,11 +84,13 @@ class PurchaseOrderLine(models.Model):
             self.mapped("order_id")._check_split_pickings()
         return res
 
-    def create(self, values):
-        line = super().create(values)
-        if line.order_id.state == "purchase":
-            line.order_id._check_split_pickings()
-        return line
+    @api.model_create_multi
+    def create(self, vals_list):
+        lines = super().create(vals_list)
+        orders = lines.order_id.filtered(lambda o: o.state == "purchase")
+        if orders:
+            orders._check_split_pickings()
+        return lines
 
     def _compute_price_unit_and_date_planned_and_name(self):
         """

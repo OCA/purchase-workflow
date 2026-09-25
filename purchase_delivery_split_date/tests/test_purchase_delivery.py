@@ -1,10 +1,12 @@
 # Copyright 2014-2016 Numérigraphe SARL
 # Copyright 2017 ForgeFlow, S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+from unittest.mock import patch
+
 from freezegun import freeze_time
 
 from odoo.fields import Datetime
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests.common import Form, TransactionCase, tagged
 
 
 class TestDeliverySingle(TransactionCase):
@@ -390,3 +392,110 @@ class TestDeliverySingle(TransactionCase):
 
         for move in moves_after - new_move:
             self.assertEqual(move.date, Datetime.to_datetime(self.date_sooner))
+
+    def test_13_date_change_of_several_lines_is_one_reservation(self):
+        """Moves shifted to other pickings are reserved again once per order."""
+        self.po.button_confirm()
+        StockMove = type(self.env["stock.move"])
+        original = StockMove._action_assign
+        calls = []
+
+        def counting(moves, *args, **kwargs):
+            calls.append(len(moves))
+            return original(moves, *args, **kwargs)
+
+        with patch.object(StockMove, "_action_assign", counting):
+            self.po.order_line[0].date_planned = self.date_later
+            self.po.order_line[1:].write({"date_planned": self.date_3rd})
+        self.assertEqual(calls, [1, 2])
+        self.assertEqual(len(self.po.picking_ids), 2)
+        for line in self.po.order_line:
+            self.assertEqual(
+                line.move_ids.picking_id.scheduled_date.date(),
+                line.date_planned.date(),
+            )
+
+    def test_14_check_split_pickings_twice(self):
+        """Running the split again moves nothing and creates no picking."""
+        self.po.button_confirm()
+        self.po.order_line[0].date_planned = self.date_later
+        pickings = self.po.picking_ids
+        move_pickings = {move: move.picking_id for move in self.po.order_line.move_ids}
+        self.po._check_split_pickings()
+        self.po._check_split_pickings()
+        self.assertEqual(self.po.picking_ids, pickings)
+        for move, picking in move_pickings.items():
+            self.assertEqual(move.picking_id, picking)
+
+    def test_15_pickings_of_another_kind_stay_apart(self):
+        """A move only goes to a picking of its own type and locations."""
+        self.po.button_confirm()
+        receipt = self.po.picking_ids
+        other_location = self.env["stock.location"].create(
+            {
+                "name": "Other destination",
+                "usage": "internal",
+                "location_id": receipt.location_dest_id.location_id.id,
+            }
+        )
+        other = receipt.copy({"move_ids": [], "location_dest_id": other_location.id})
+        other_move = self.po.order_line[1].move_ids
+        other_move.write(
+            {"picking_id": other.id, "location_dest_id": other_location.id}
+        )
+        self.po.order_line.write({"date_planned": self.date_later})
+        for move in self.po.order_line.move_ids:
+            self.assertEqual(move.picking_id.location_dest_id, move.location_dest_id)
+            self.assertEqual(str(move.picking_id.scheduled_date)[:10], self.date_later)
+        self.assertEqual(other_move.picking_id.location_dest_id, other_location)
+
+
+@tagged("post_install", "-at_install")
+class TestDeliverySplitCreateMulti(TransactionCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.product = cls.env["product.product"].create(
+            {"name": "Test Product", "type": "product"}
+        )
+        cls.orders = cls.env["purchase.order"].create(
+            [
+                {
+                    "partner_id": cls.env.ref("base.res_partner_3").id,
+                    "order_line": [
+                        (
+                            0,
+                            0,
+                            {
+                                "product_id": cls.product.id,
+                                "product_qty": 1.0,
+                                "price_unit": 5.0,
+                                "date_planned": "2015-01-01",
+                            },
+                        )
+                    ],
+                }
+                for _i in range(3)
+            ]
+        )
+        cls.orders[:2].button_confirm()
+
+    def test_create_lines_of_several_orders(self):
+        """Lines of several orders created at once split each confirmed order."""
+        dates = ["2015-12-13", "2015-12-31", "2016-01-30"]
+        lines = self.env["purchase.order.line"].create(
+            [
+                {
+                    "order_id": order.id,
+                    "product_id": self.product.id,
+                    "product_qty": 2.0,
+                    "price_unit": 5.0,
+                    "date_planned": date,
+                }
+                for order, date in zip(self.orders, dates)
+            ]
+        )
+        for order, line, date in zip(self.orders[:2], lines, dates):
+            self.assertEqual(len(order.picking_ids), 2)
+            self.assertEqual(str(line.move_ids.picking_id.scheduled_date)[:10], date)
+        self.assertFalse(self.orders[2].picking_ids)
