@@ -6,7 +6,7 @@
 {
     "name": "Purchase Location by Line",
     "summary": "Allows to define a specific destination location on each PO line",
-    "version": "18.0.1.0.1",
+    "version": "19.0.1.0.0",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
     "category": "Purchase Management",
