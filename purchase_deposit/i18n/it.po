@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-07-23 09:58+0000\n"
+"PO-Revision-Date: 2026-09-25 20:20+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
@@ -34,7 +34,7 @@ msgstr "Conto usato per le cauzioni"
 #. odoo-python
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
 msgid "Advance: %(date)s"
-msgstr ""
+msgstr "Anticipo: %(date)s"
 
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
@@ -180,7 +180,7 @@ msgstr "Ultimo aggiornamento il"
 #: model:ir.model.fields,field_description:purchase_deposit.field_res_company__purchase_deposit_limit_order_total
 #: model:ir.model.fields,field_description:purchase_deposit.field_res_config_settings__purchase_deposit_limit_order_total
 msgid "Limit Deposits to Order Total"
-msgstr ""
+msgstr "Limita gli acconti al totale ordine"
 
 #. module: purchase_deposit
 #: model:ir.model,name:purchase_deposit.model_res_config_settings
@@ -219,6 +219,8 @@ msgid ""
 "Refuse a deposit when the deposits already invoiced, plus the one being "
 "registered, exceed the purchase order total"
 msgstr ""
+"Rifiutare un acconto quando gli acconti già fatturati, sommati a quello in "
+"fase di registrazione, superano il totale dell'ordine di acquisto"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,help:purchase_deposit.field_res_company__purchase_deposit_limit_order_total
@@ -227,6 +229,8 @@ msgid ""
 "Refuse a deposit when the deposits already invoiced, plus the one being "
 "registered, exceed the purchase order total."
 msgstr ""
+"Rifiutare un acconto quando gli acconti già fatturati, sommati a quello in "
+"fase di registrazione, superano il totale dell'ordine di acquisto."
 
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_order_form_inherit
@@ -250,6 +254,8 @@ msgid ""
 "The deposits of %(order)s would add up to %(deposit)s, more than its total "
 "amount of %(total)s."
 msgstr ""
+"Gli acconti per %(order)s raggiungerebbero un totale di %(deposit)s, "
+"superando l'importo complessivo di %(total)s."
 
 #. module: purchase_deposit
 #. odoo-python
@@ -293,6 +299,9 @@ msgid ""
 "You may have to install a chart of account from Accounting app, settings "
 "menu."
 msgstr ""
+"Non c'è un conto acquisto definito per questo prodotto: %(product)s.\n"
+"Bisogna installare il piano dei conti dall'app Contabilità, menu "
+"impostazioni."
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__deposit_taxes_id
