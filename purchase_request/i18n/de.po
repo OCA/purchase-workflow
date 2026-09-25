@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-24 07:53+0000\n"
-"PO-Revision-Date: 2026-09-25 12:24+0000\n"
+"PO-Revision-Date: 2026-09-25 12:46+0000\n"
 "Last-Translator: Florian Gruber <f.gruber@bitscode.dev>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-purchase-workflow-10-"
 "0/language/de/)\n"
@@ -155,13 +155,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_needaction
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "Aktion erforderlich"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__activity_ids
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__activity_ids
 msgid "Activities"
-msgstr ""
+msgstr "Aktivitäten"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__activity_exception_decoration
@@ -241,7 +241,7 @@ msgstr "Zugewiesen an mich"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "At least a Draft PO has been created"
-msgstr ""
+msgstr "Zumindest wurde ein Entwurf für eine Bestellung erstellt"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
