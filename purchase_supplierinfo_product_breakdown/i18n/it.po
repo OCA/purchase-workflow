@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-10-29 17:39+0000\n"
+"PO-Revision-Date: 2026-09-25 18:53+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: purchase_supplierinfo_product_breakdown
 #: model_terms:ir.ui.view,arch_db:purchase_supplierinfo_product_breakdown.product_supplierinfo_component_form_view
@@ -157,7 +157,7 @@ msgstr "Sega"
 #. module: purchase_supplierinfo_product_breakdown
 #: model:ir.model.fields,field_description:purchase_supplierinfo_product_breakdown.field_product_supplierinfo_component__supplierinfo_id
 msgid "Supplier Info"
-msgstr "Listino fornitore"
+msgstr "Informazioni fornitore"
 
 #. module: purchase_supplierinfo_product_breakdown
 #: model:ir.model,name:purchase_supplierinfo_product_breakdown.model_product_supplierinfo
