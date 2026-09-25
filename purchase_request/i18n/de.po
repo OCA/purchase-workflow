@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-24 07:53+0000\n"
-"PO-Revision-Date: 2026-09-18 13:23+0000\n"
+"PO-Revision-Date: 2026-09-25 12:24+0000\n"
 "Last-Translator: Florian Gruber <f.gruber@bitscode.dev>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-purchase-workflow-10-"
 "0/language/de/)\n"
@@ -304,9 +304,8 @@ msgstr ""
 #: model:ir.actions.act_window,name:purchase_request.action_purchase_request_line_make_purchase_order
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_line_make_purchase_order
-#, fuzzy
 msgid "Create RFQ"
-msgstr "Erstellt von"
+msgstr "Angebotsanfrage erstellen"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_stock_move__created_purchase_request_line_id
