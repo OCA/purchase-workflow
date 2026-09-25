@@ -391,6 +391,19 @@ class TestDeliverySingle(TransactionCase):
         for move in moves_after - new_move:
             self.assertEqual(move.date, Datetime.to_datetime(self.date_sooner))
 
+    def test_13_date_change_of_several_lines(self):
+        """Lines moved to other dates together end up in the pickings of
+        their dates."""
+        self.po.button_confirm()
+        self.po.order_line[0].date_planned = self.date_later
+        self.po.order_line[1:].write({"date_planned": self.date_3rd})
+        self.assertEqual(len(self.po.picking_ids), 2)
+        for line in self.po.order_line:
+            self.assertEqual(
+                line.move_ids.picking_id.scheduled_date.date(),
+                line.date_planned.date(),
+            )
+
 
 class TestDeliverySplitCreateMulti(TransactionCase):
     @classmethod
