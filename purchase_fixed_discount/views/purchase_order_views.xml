@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017-20 ForgeFlow S.L.
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">purchase.order.form - purchase_fixed_discount</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='order_line']/list/field[@name='discount']"
+                position="before"
+            >
+                <field
+                    name="discount_fixed"
+                    readonly="qty_invoiced != 0"
+                    optional="hide"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
