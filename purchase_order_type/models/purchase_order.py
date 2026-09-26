@@ -79,6 +79,12 @@ class PurchaseOrder(models.Model):
         ):
             self.order_type = self._default_order_type()
 
+    def _prepare_invoice(self):
+        res = super()._prepare_invoice()
+        if self.order_type.journal_id:
+            res["journal_id"] = self.order_type.journal_id.id
+        return res
+
     @api.depends("partner_id")
     def _compute_partner_order_type(self):
         for record in self:

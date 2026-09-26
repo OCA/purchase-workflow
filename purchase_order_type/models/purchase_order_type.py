@@ -8,6 +8,7 @@ class PurchaseOrderType(models.Model):
     _name = "purchase.order.type"
     _description = "Type of purchase order"
     _order = "sequence"
+    _check_company_auto = True
 
     @api.model
     def _get_domain_sequence_id(self):
@@ -32,6 +33,12 @@ class PurchaseOrderType(models.Model):
         domain=lambda self: self._get_domain_sequence_id(),
         default=lambda self: self._default_sequence_id(),
         required=True,
+    )
+    journal_id = fields.Many2one(
+        comodel_name="account.journal",
+        string="Billing Journal",
+        domain="[('type', '=', 'purchase')]",
+        check_company=True,
     )
     payment_term_id = fields.Many2one(
         comodel_name="account.payment.term", string="Payment Terms"

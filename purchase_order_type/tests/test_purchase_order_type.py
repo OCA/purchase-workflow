@@ -3,7 +3,7 @@
 
 import time
 
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError, ValidationError
 from odoo.tests import common, tagged
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
@@ -32,6 +32,15 @@ class TestPurchaseOrderType(common.TransactionCase):
         cls.type2.incoterm_id = cls.incoterm
         cls.partner1.purchase_type = cls.type2
         cls.company2 = cls.company_obj.create({"name": "company2"})
+        # Journal
+        cls.journal = cls.env["account.journal"].create(
+            {
+                "name": "Test Purchase Type Journal",
+                "code": "TPOT",
+                "type": "purchase",
+                "company_id": cls.type1.company_id.id,
+            }
+        )
 
     def test_purchase_order_type(self):
         purchase = self._create_purchase(
@@ -69,6 +78,32 @@ class TestPurchaseOrderType(common.TransactionCase):
             }
         )
         return purchase
+
+    def test_purchase_order_type_journal(self):
+        self.type1.journal_id = self.journal
+        self.product1.purchase_method = "purchase"
+        purchase = self._create_purchase([(self.product1, 2)])
+        self.assertEqual(purchase.order_type, self.type1)
+        purchase.button_confirm()
+        purchase.action_create_invoice()
+        self.assertEqual(purchase.invoice_ids.journal_id, self.journal)
+
+    def test_purchase_order_type_without_journal(self):
+        purchase = self._create_purchase([(self.product1, 2)])
+        self.assertFalse(purchase.order_type.journal_id)
+        self.assertNotIn("journal_id", purchase._prepare_invoice())
+
+    def test_purchase_order_type_journal_company_error(self):
+        journal2 = self.env["account.journal"].create(
+            {
+                "name": "Test Purchase Type Journal 2",
+                "code": "TPOT2",
+                "type": "purchase",
+                "company_id": self.company2.id,
+            }
+        )
+        with self.assertRaises(UserError):
+            self.type1.journal_id = journal2
 
     def test_purchase_order_change_company(self):
         order = self.po_obj.new({"partner_id": self.partner1.id})

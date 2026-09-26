@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ===================
 Purchase Order Type
 ===================
@@ -17,7 +13,7 @@ Purchase Order Type
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github
@@ -35,6 +31,9 @@ Purchase Order Type
 Adds a configurable *type* on the purchase orders. This type can be used
 in filters and groupbys.
 
+A billing journal can be set on each type: vendor bills created from
+purchase orders of that type will use it.
+
 **Table of contents**
 
 .. contents::
@@ -45,20 +44,20 @@ Configuration
 
 To configure this module, you need to:
 
-- Go to **Purchases > Configuration > Purchase types**
-- Modify / create the purchase order types
+-  Go to **Purchases > Configuration > Purchase types**
+-  Modify / create the purchase order types
 
 Usage
 =====
 
 To use this module, you need to:
 
-- Attribute a type when editing purchase orders
+-  Attribute a type when editing purchase orders
 
 Known issues / Roadmap
 ======================
 
-- Suggestion: add a default configuration attached to the types
+-  Suggestion: add a default configuration attached to the types
 
 Bug Tracker
 ===========
@@ -81,9 +80,9 @@ Authors
 Contributors
 ------------
 
-- Guewen Baconnier <guewen.baconnier@camptocamp.com>
-- Pimolnat Suntian <pimolnats@ecosoft.co.th>
-- Roger Sans <roger.sans@sygel.es>
+-  Guewen Baconnier <guewen.baconnier@camptocamp.com>
+-  Pimolnat Suntian <pimolnats@ecosoft.co.th>
+-  Roger Sans <roger.sans@sygel.es>
 
 Maintainers
 -----------
