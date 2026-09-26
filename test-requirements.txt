@@ -1,0 +1,3 @@
+odoo-addon-purchase_order_uninvoiced_amount_line @ git+https://github.com/OCA/purchase-workflow.git@refs/pull/2998/head#subdirectory=purchase_order_uninvoiced_amount_line
+odoo-addon-purchase_invoice_status_line @ git+https://github.com/OCA/purchase-workflow.git@refs/pull/3036/head#subdirectory=purchase_invoice_status_line
+odoo-addon-purchase_order_line_menu @ git+https://github.com/OCA/purchase-workflow.git@refs/pull/2846/head#subdirectory=purchase_order_line_menu
