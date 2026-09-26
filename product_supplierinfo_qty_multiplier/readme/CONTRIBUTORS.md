@@ -2,3 +2,5 @@
   - Víctor Martínez
   - Pedro M. Baeza
 - Sylvain LE GAL (<https://twitter.com/legalsylvain>)
+- [Binhex] (https://binhex.cloud):
+  - Ariel Barreiros
