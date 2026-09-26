@@ -1,0 +1,3 @@
+- Florian Dacosta \<<florian.dacosta@akretion.com>\>
+- David BEAL \<<david.beal@akretion.com>\>
+- Alejandro Parrales \<<alejandro17parrales@gmail.com>\>
