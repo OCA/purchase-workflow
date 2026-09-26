@@ -22,7 +22,7 @@ class StockRule(models.Model):
             "product_qty": procurement_uom_po_qty,
             "request_id": request_id.id,
             "move_dest_ids": [
-                (4, x.id) for x in procurement.values.get("move_dest_ids", [])
+                (4, x.id) for x in (procurement.values.get("move_dest_ids") or [])
             ],
             "orderpoint_id": procurement.values.get("orderpoint_id", False)
             and procurement.values.get("orderpoint_id").id,
