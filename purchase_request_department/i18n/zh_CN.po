@@ -1,0 +1,35 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_request_department
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2021-02-28 10:45+0000\n"
+"Last-Translator: Dong <dong@freshoo.cn>\n"
+"Language-Team: none\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: purchase_request_department
+#: model:ir.model.fields,field_description:purchase_request_department.field_purchase_request__department_id
+#: model:ir.model.fields,field_description:purchase_request_department.field_purchase_request_line__department_id
+#: model_terms:ir.ui.view,arch_db:purchase_request_department.purchase_request_line_search
+#: model_terms:ir.ui.view,arch_db:purchase_request_department.view_purchase_request_search
+msgid "Department"
+msgstr "申请部门"
+
+#. module: purchase_request_department
+#: model:ir.model,name:purchase_request_department.model_purchase_request
+msgid "Purchase Request"
+msgstr "采购申请"
+
+#. module: purchase_request_department
+#: model:ir.model,name:purchase_request_department.model_purchase_request_line
+msgid "Purchase Request Line"
+msgstr "采购申请明细"
