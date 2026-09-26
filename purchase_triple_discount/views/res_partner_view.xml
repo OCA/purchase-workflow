@@ -1,0 +1,22 @@
+<odoo>
+    <record model="ir.ui.view" id="view_partner_property_form_inherit_triple_discount">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="purchase.view_partner_property_form" />
+        <field name="arch" type="xml">
+            <field name="buyer_id" position="after">
+                <field
+                    name="default_supplierinfo_discount1"
+                    invisible="not is_company or parent_id"
+                />
+                <field
+                    name="default_supplierinfo_discount2"
+                    invisible="not is_company or parent_id"
+                />
+                <field
+                    name="default_supplierinfo_discount3"
+                    invisible="not is_company or parent_id"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
