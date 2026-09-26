@@ -768,3 +768,119 @@ class TestPurchaseAdvancePayment(common.TransactionCase):
         )._create_payments()
         self.assertEqual(self.purchase_order_1.amount_residual, 0)
         self.assertEqual(self.purchase_order_1.advance_payment_status, "paid")
+
+    def test_11_multi_po_invoice_proportional_amount_residual(self):
+        """Regression test for multi-PO invoice bug.
+
+        When a vendor bill groups lines from multiple purchase orders
+        (Multi-PO invoice), ``amount_residual`` for each PO must be computed
+        proportionally to that PO's share of the invoice total. The old code
+        attributed 100 % of every invoice payment to each linked PO, causing
+        the residual to be understated by the amount paid for the other PO(s).
+
+        Scenario
+        --------
+        - PO-A total: 1 000 USD  (10 units × 100 USD, no tax)
+        - PO-B total:   600 USD  ( 6 units × 100 USD, no tax)
+        - Multi-PO vendor bill: 1 600 USD  (PO-A line: 1 000, PO-B line: 600)
+        - Payment: 800 USD (50 % of the invoice)
+
+        Expected (proportional fix):
+            PO-A residual = 1 000 - 800 × (1 000/1 600) = 500 USD
+            PO-B residual =   600 - 800 × (  600/1 600) = 300 USD
+
+        With the old buggy code (no proportion):
+            PO-A invoice_paid_amount = 800  →  residual = 200  (WRONG)
+            PO-B invoice_paid_amount = 800  →  residual ≤ 0   (WRONG)
+        """
+        partner = self.res_partner_1
+        po_a = self.env["purchase.order"].create({"partner_id": partner.id})
+        self.env["purchase.order.line"].create(
+            {
+                "order_id": po_a.id,
+                "product_id": self.product_1.id,
+                "product_uom": self.product_1.uom_id.id,
+                "product_qty": 10.0,
+                "price_unit": 100.0,
+                "taxes_id": [(5, 0, 0)],
+            }
+        )
+        po_a.button_confirm()
+        self.assertAlmostEqual(po_a.amount_total, 1000.0, places=2)
+        po_b = self.env["purchase.order"].create({"partner_id": partner.id})
+        po_b_line = self.env["purchase.order.line"].create(
+            {
+                "order_id": po_b.id,
+                "product_id": self.product_2.id,
+                "product_uom": self.product_2.uom_id.id,
+                "product_qty": 6.0,
+                "price_unit": 100.0,
+                "taxes_id": [(5, 0, 0)],
+            }
+        )
+        po_b.button_confirm()
+        self.assertAlmostEqual(po_b.amount_total, 600.0, places=2)
+        po_a.action_create_invoice()
+        invoice = po_a.invoice_ids
+        self.assertEqual(len(invoice), 1)
+        self.assertEqual(invoice.state, "draft")
+        expense_account = invoice.invoice_line_ids[0].account_id
+        invoice.write(
+            {
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": po_b_line.product_id.id,
+                            "name": po_b_line.name,
+                            "quantity": po_b_line.product_qty,
+                            "price_unit": po_b_line.price_unit,
+                            "account_id": expense_account.id,
+                            "purchase_line_id": po_b_line.id,
+                            "tax_ids": [(5, 0, 0)],
+                        },
+                    )
+                ]
+            }
+        )
+        invoice.invoice_date = fields.Date.today()
+        invoice.action_post()
+        self.assertAlmostEqual(invoice.amount_total, 1600.0, places=2)
+        self.assertIn(invoice.id, po_a.invoice_ids.ids)
+        self.assertIn(invoice.id, po_b.invoice_ids.ids)
+        self.assertAlmostEqual(po_a.amount_residual, 1000.0, places=2)
+        self.assertAlmostEqual(po_b.amount_residual, 600.0, places=2)
+        self.env["account.payment.register"].with_context(
+            active_model="account.move", active_ids=invoice.ids
+        ).create(
+            {
+                "amount": 800.0,
+                "payment_difference_handling": "open",
+            }
+        )._create_payments()
+        po_a.env.invalidate_all()
+        self.assertAlmostEqual(
+            po_a.amount_residual,
+            500.0,
+            places=2,
+            msg=(
+                "PO-A residual must reflect only its proportional share of the "
+                "invoice payment (1000/1600 × 800 = 500), not the full 800 USD."
+            ),
+        )
+        self.assertAlmostEqual(
+            po_b.amount_residual,
+            300.0,
+            places=2,
+            msg=(
+                "PO-B residual must reflect only its proportional share of the "
+                "invoice payment (600/1600 × 800 = 300), not the full 800 USD."
+            ),
+        )
+        self.assertAlmostEqual(
+            po_a.amount_residual + po_b.amount_residual,
+            invoice.amount_residual,
+            places=2,
+            msg="Sum of PO residuals must equal the invoice residual (800 USD).",
+        )
