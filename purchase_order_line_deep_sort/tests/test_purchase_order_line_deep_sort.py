@@ -76,6 +76,14 @@ class TestPurchaseOrderLineDeepSort(common.TransactionCase):
         self._check_value(lines, self.product_3, self.product_1)
         self.assertEqual(lines[1].name, "Test 2")
 
+    def test_line_by_name_on_several_orders(self):
+        """Writing the sort order on several purchase orders sorts each one"""
+        po2 = self.po.copy()
+        (self.po | po2).write({"line_order": "name", "line_direction": "desc"})
+        for po in self.po | po2:
+            lines = self.po_line_model.search([("order_id", "=", po.id)])
+            self._check_value(lines, self.product_3, self.product_1)
+
     def test_line_by_product_name(self):
         """Test if lines are ordered by product name"""
         self.po.write({"line_order": "product_id.name", "line_direction": "asc"})

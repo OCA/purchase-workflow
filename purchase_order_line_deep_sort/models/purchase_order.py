@@ -39,19 +39,22 @@ class PurchaseOrder(models.Model):
                     res = getattr(res, subfield)
             return res
 
-        if not self.line_order and not self.line_direction:
-            return
-        reverse = self.line_direction == "desc"
-        sequence = 0
-        sorted_lines = self.order_line.sorted(
-            key=lambda p: resolve_subfields(p, self.line_order),
-            reverse=reverse,
-        )
-        for line in sorted_lines:
-            sequence += 10
-            if line.sequence == sequence:
+        for purchase in self:
+            if not purchase.line_order and not purchase.line_direction:
                 continue
-            line.sequence = sequence
+            reverse = purchase.line_direction == "desc"
+            sequence = 0
+            sorted_lines = purchase.order_line.sorted(
+                key=lambda p, purchase=purchase: resolve_subfields(
+                    p, purchase.line_order
+                ),
+                reverse=reverse,
+            )
+            for line in sorted_lines:
+                sequence += 10
+                if line.sequence == sequence:
+                    continue
+                line.sequence = sequence
 
     def write(self, values):
         res = super().write(values)
@@ -66,8 +69,7 @@ class PurchaseOrder(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         purchases = super().create(vals_list)
-        for purchase in purchases:
-            purchase._sort_purchase_line()
+        purchases._sort_purchase_line()
         return purchases
 
 
@@ -77,6 +79,5 @@ class PurchaseOrderLine(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         lines = super().create(vals_list)
-        for order in lines.mapped("order_id"):
-            order._sort_purchase_line()
+        lines.order_id._sort_purchase_line()
         return lines
