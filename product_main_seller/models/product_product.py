@@ -1,12 +1,11 @@
-# Copyright (C) 2022 - Today: GRAP (http://www.grap.coop)
-# @author: Quentin DUPONT (quentin.dupont@grap.coop)
+# Copyright 2026 Tecnativa - Andrii Kompaniiets
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
 
 
-class ProductTemplate(models.Model):
-    _inherit = "product.template"
+class ProductProduct(models.Model):
+    _inherit = "product.product"
 
     main_seller_id = fields.Many2one(
         comodel_name="res.partner",
@@ -23,11 +22,11 @@ class ProductTemplate(models.Model):
         "variant_seller_ids.date_end",
     )
     def _compute_main_seller_id(self):
-        for template in self:
-            if template.variant_seller_ids:
-                template.main_seller_id = fields.first(
-                    template.variant_seller_ids.filtered(
-                        lambda seller: seller.partner_id.active
+        for product in self:
+            if product.variant_seller_ids:
+                product.main_seller_id = fields.first(
+                    product.variant_seller_ids.filtered(
+                        lambda seller, p=product: seller.partner_id.active
                         and (
                             not seller.date_start
                             or seller.date_start <= fields.Date.today()
@@ -36,7 +35,8 @@ class ProductTemplate(models.Model):
                             not seller.date_end
                             or seller.date_end >= fields.Date.today()
                         )
+                        and (not seller.product_id or seller.product_id == p)
                     )
                 ).partner_id
             else:
-                template.main_seller_id = False
+                product.main_seller_id = False
