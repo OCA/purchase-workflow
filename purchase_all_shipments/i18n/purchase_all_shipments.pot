@@ -33,3 +33,8 @@ msgstr ""
 #: model:ir.model,name:purchase_all_shipments.model_purchase_order
 msgid "Purchase Order"
 msgstr ""
+
+#. module: purchase_all_shipments
+#: model:ir.model,name:purchase_all_shipments.model_stock_move
+msgid "Stock Move"
+msgstr ""
