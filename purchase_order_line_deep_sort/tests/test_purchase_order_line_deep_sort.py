@@ -84,6 +84,14 @@ class TestPurchaseOrderLineDeepSort(common.TransactionCase):
             lines = self.po_line_model.search([("order_id", "=", po.id)])
             self._check_value(lines, self.product_3, self.product_1)
 
+    def test_line_sort_trigger_fields(self):
+        """The lines are sorted again when these fields are written"""
+        self.assertTrue(
+            {"order_line", "line_order", "line_direction"}.issubset(
+                self.po._line_sort_trigger_fields()
+            )
+        )
+
     def test_line_by_product_name(self):
         """Test if lines are ordered by product name"""
         self.po.write({"line_order": "product_id.name", "line_direction": "asc"})

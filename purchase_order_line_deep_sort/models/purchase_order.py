@@ -56,13 +56,14 @@ class PurchaseOrder(models.Model):
                     continue
                 line.sequence = sequence
 
+    @api.model
+    def _line_sort_trigger_fields(self):
+        """Return the fields whose change in write() sorts the lines again"""
+        return {"order_line", "line_order", "line_direction"}
+
     def write(self, values):
         res = super().write(values)
-        if (
-            "order_line" in values
-            or "line_order" in values
-            or "line_direction" in values
-        ):
+        if self._line_sort_trigger_fields().intersection(values):
             self._sort_purchase_line()
         return res
 
