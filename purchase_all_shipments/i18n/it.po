@@ -36,3 +36,8 @@ msgstr "Tutti i prelievi, inclusi i concatenati"
 #: model:ir.model,name:purchase_all_shipments.model_purchase_order
 msgid "Purchase Order"
 msgstr "Ordine di acquisto"
+
+#. module: purchase_all_shipments
+#: model:ir.model,name:purchase_all_shipments.model_stock_move
+msgid "Stock Move"
+msgstr ""
