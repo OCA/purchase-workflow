@@ -37,3 +37,8 @@ msgstr "Vse dobavnice, vključno verižene"
 #: model:ir.model,name:purchase_all_shipments.model_purchase_order
 msgid "Purchase Order"
 msgstr "Nabavni nalog"
+
+#. module: purchase_all_shipments
+#: model:ir.model,name:purchase_all_shipments.model_stock_move
+msgid "Stock Move"
+msgstr ""

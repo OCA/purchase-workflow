@@ -37,3 +37,8 @@ msgstr "Todas las recepciones, incluidos encadenados"
 #: model:ir.model,name:purchase_all_shipments.model_purchase_order
 msgid "Purchase Order"
 msgstr "Línea orden de compra"
+
+#. module: purchase_all_shipments
+#: model:ir.model,name:purchase_all_shipments.model_stock_move
+msgid "Stock Move"
+msgstr ""
