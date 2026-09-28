@@ -85,6 +85,7 @@ Contributors
 - Pimolnat Suntian <pimolnats@ecosoft.co.th>
 - Roger Sans <roger.sans@sygel.es>
 - Hudson Amadeus Leonardy <https://solusiaglis.co.id>
+- Bastian Guenther <Bastian.Guenther@ametras.com>
 
 Maintainers
 -----------
