@@ -17,6 +17,9 @@
         "views/res_partner_view.xml",
         "data/purchase_order_type.xml",
     ],
+    "demo": [
+        "demo/purchase_order_type_demo.xml",
+    ],
     "installable": True,
     "auto_install": False,
 }
