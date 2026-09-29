@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Replace the JOIN-heavy "Active Products" filter with a direct index lookup. -->
+    <record id="product_supplierinfo_search_view_active_index" model="ir.ui.view">
+        <field name="name">product.supplierinfo.search.active_index</field>
+        <field name="model">product.supplierinfo</field>
+        <field name="inherit_id" ref="product.product_supplierinfo_search_view" />
+        <field name="arch" type="xml">
+            <filter name="active_products" position="attributes">
+                <attribute name="domain">[('is_product_active', '=', True)]</attribute>
+            </filter>
+        </field>
+    </record>
+</odoo>
