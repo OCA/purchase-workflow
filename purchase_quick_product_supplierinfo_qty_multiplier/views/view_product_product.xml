@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright (C) 2013-Today GRAP (http://www.grap.coop)
+@author: Julien WESTE
+@author: Sylvain LE GAL
+@author: Quentin DUPONT
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+
+    <record id="view_product_product_tree" model="ir.ui.view">
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="purchase_quick.product_tree_view4purchase" />
+        <field name="priority">100</field>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="decoration-info">qty_to_process == 0</attribute>
+                <attribute name="decoration-bf">qty_to_process != 0</attribute>
+            </xpath>
+            <field name="quick_uom_id" position="after">
+                <field
+                    name="mass_addition_purchase_multiplier_qty"
+                    string="Multiplier Qty"
+                    optional="show"
+                    attrs="{'invisible': [('mass_addition_purchase_multiplier_qty', '=', 0)]}"
+                    options="{'bg_color': 'red: mass_addition_purchase_multiplier_qty_bad == True'}"
+                />
+                <field
+                    name="mass_addition_purchase_min_qty"
+                    string="Min Qty"
+                    attrs="{'invisible': [('mass_addition_purchase_min_qty', '=', 0)]}"
+                    options="{'bg_color': 'red: mass_addition_purchase_min_qty_bad == True'}"
+                />
+                <field name="mass_addition_purchase_multiplier_qty_bad" invisible="1" />
+                <field name="mass_addition_purchase_min_qty_bad" invisible="1" />
+            </field>
+        </field>
+    </record>
+</odoo>
