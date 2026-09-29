@@ -1,0 +1,3 @@
+- [Coop IT Easy SC](https://coopiteasy.be):
+  - Victor Champonnois
+- Jasmin Solanki \<<jasmin.solanki@forgeflow.com>\>
