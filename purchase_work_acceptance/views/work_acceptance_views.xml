@@ -101,7 +101,7 @@
                                                         class="oe_inline"
                                                     />
                                                     <span class="oe_inline">
-                                                        &#160;
+                                                         
                                                     </span>
                                                     <field
                                                         name="product_uom"
@@ -182,7 +182,7 @@
                     name="accepted"
                     domain="[('state', '=', 'accept')]"
                 />
-                <group expand="0" string="Group By">
+                <group>
                     <filter
                         string="Accepted By"
                         name="accept_by"

@@ -41,7 +41,6 @@ class WorkAcceptance(models.Model):
     )
     currency_id = fields.Many2one(
         comodel_name="res.currency",
-        string="Currency",
         default=lambda self: self.env.company.currency_id,
         required=True,
         readonly=True,
@@ -76,7 +75,6 @@ class WorkAcceptance(models.Model):
     )
     company_id = fields.Many2one(
         comodel_name="res.company",
-        string="Company",
         default=lambda self: self.env.company,
         required=True,
         index=True,
@@ -180,14 +178,10 @@ class WorkAcceptanceLine(models.Model):
     _order = "id"
 
     name = fields.Text(string="Description", required=True)
-    product_qty = fields.Float(
-        string="Quantity", required=True, digits="Product Unit of Measure"
-    )
-    product_id = fields.Many2one(
-        comodel_name="product.product", string="Product", required=True
-    )
+    product_qty = fields.Float(string="Quantity", required=True, digits="Product Unit")
+    product_id = fields.Many2one(comodel_name="product.product", required=True)
     product_uom = fields.Many2one(
-        comodel_name="uom.uom", string="Product Unit of Measure", required=True
+        comodel_name="uom.uom", string="Product Unit", required=True
     )
     price_unit = fields.Float(string="Unit Price", required=True)
     price_subtotal = fields.Monetary(compute="_compute_amount", string="Subtotal")

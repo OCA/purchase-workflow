@@ -1,2 +1,4 @@
 - [Ecosoft](http://ecosoft.co.th):
   - Pimolnat Suntian \<<pimolnats@ecosoft.co.th>\>
+- [Niboo](https://www.niboo.com):
+  - Simon Falesse \<<sfa@niboo.com>\>

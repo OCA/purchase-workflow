@@ -20,12 +20,25 @@ class TestPurchaseWorkAcceptance(BaseCommon):
         cls.move_model = cls.env["account.move"]
         cls.config_setting_model = cls.env["res.config.settings"]
         cls.wa_accept_wizard = cls.env["work.accepted.date.wizard"]
-        cls.service_product = cls.env.ref("product.product_product_1")
-        cls.service_product.purchase_method = "purchase"
-        cls.product_product = cls.env.ref("product.product_product_6")
-        cls.res_partner = cls.env.ref("base.res_partner_3")
-        cls.employee = cls.env.ref("base.user_demo")
-        cls.main_company = cls.env.ref("base.main_company")
+        cls.service_product = cls.env["product.product"].create(
+            {
+                "name": "Test Service",
+                "type": "service",
+                "purchase_method": "purchase",
+                "standard_price": 100.0,
+            }
+        )
+        cls.product_product = cls.env["product.product"].create(
+            {
+                "name": "Test Product",
+                "type": "consu",
+                "is_storable": True,
+                "standard_price": 800.0,
+            }
+        )
+        cls.res_partner = cls.partner
+        cls.employee = cls.env.user
+        cls.main_company = cls.company
         cls.date_now = fields.Datetime.now()
 
         # Enable and Config WA in PO / Picking
@@ -56,7 +69,7 @@ class TestPurchaseWorkAcceptance(BaseCommon):
                     Command.create(
                         {
                             "product_id": product.id,
-                            "product_uom": product.uom_id.id,
+                            "product_uom_id": product.uom_id.id,
                             "name": product.name,
                             "price_unit": product.standard_price,
                             "date_planned": self.date_now,
@@ -76,7 +89,7 @@ class TestPurchaseWorkAcceptance(BaseCommon):
                     Command.create(
                         {
                             "product_id": self.product_product.id,
-                            "product_uom": self.product_product.uom_id.id,
+                            "product_uom_id": self.product_product.uom_id.id,
                             "name": self.product_product.name,
                             "price_unit": self.product_product.standard_price,
                             "date_planned": self.date_now,
@@ -112,7 +125,7 @@ class TestPurchaseWorkAcceptance(BaseCommon):
                             and po.order_line[0].price_unit
                             or self.service_product.standard_price,
                             "product_uom": po
-                            and po.order_line[0].product_uom.id
+                            and po.order_line[0].product_uom_id.id
                             or self.service_product.uom_id.id,
                             "product_qty": qty,
                         }
@@ -138,7 +151,9 @@ class TestPurchaseWorkAcceptance(BaseCommon):
                             "product_id": purchase_order.order_line[x].product_id.id,
                             "name": purchase_order.order_line[x].name,
                             "price_unit": purchase_order.order_line[x].price_unit,
-                            "product_uom": purchase_order.order_line[x].product_uom.id,
+                            "product_uom": purchase_order.order_line[
+                                x
+                            ].product_uom_id.id,
                             "product_qty": qty,
                         }
                     )
@@ -211,14 +226,14 @@ class TestPurchaseWorkAcceptance(BaseCommon):
         self.assertEqual(purchase_order.wa_count, 1)
         # Received Products
         picking = purchase_order.picking_ids[0]
-        self.assertEqual(len(picking.move_ids_without_package), 1)
+        self.assertEqual(len(picking.move_ids), 1)
         with Form(picking) as p:
             p.wa_id = work_acceptance
         p.save()
         with self.assertRaises(ValidationError):
-            picking.move_ids_without_package[0].quantity = 30.0
+            picking.move_ids[0].quantity = 30.0
             picking.button_validate()
-        picking.move_ids_without_package[0].quantity = 42.0
+        picking.move_ids[0].quantity = 42.0
         picking.button_validate()
         # Can't set to draft wa when you validate picking
         with self.assertRaises(UserError):
@@ -317,7 +332,7 @@ class TestPurchaseWorkAcceptance(BaseCommon):
         work_acceptance.button_accept()
         # Received Products
         picking = purchase_order.picking_ids[0]
-        self.assertEqual(len(picking.move_ids_without_package), 2)
+        self.assertEqual(len(picking.move_ids), 2)
         with Form(picking) as p:
             p.wa_id = work_acceptance
         p.save()
@@ -354,12 +369,16 @@ class TestPurchaseWorkAcceptance(BaseCommon):
         work_acceptance.button_accept()
         purchase_order._compute_wa_accepted()
         self.assertEqual(purchase_order.wa_accepted, False)
+        self.assertIn(
+            purchase_order, self.po_model.search([("wa_accepted", "=", False)])
+        )
         work_acceptance = self._create_work_acceptance(qty=8, po=purchase_order)
         work_acceptance.button_accept()
         purchase_order._compute_wa_accepted()
         self.assertEqual(purchase_order.wa_accepted, True)
-        # Search wa accepted
-        purchase_order._search_wa_accepted("=", True)
-        # Search with not `=` or `!=`
-        with self.assertRaises(UserError):
-            purchase_order._search_wa_accepted(">", True)
+        self.assertIn(
+            purchase_order, self.po_model.search([("wa_accepted", "=", True)])
+        )
+        self.assertNotIn(
+            purchase_order, self.po_model.search([("wa_accepted", "!=", True)])
+        )

@@ -52,7 +52,7 @@ class Picking(models.Model):
             valid_was = wa_obj._get_valid_wa("picking", order_id)
             if picking.wa_id not in (valid_was | picking.wa_id):
                 raise ValidationError(
-                    self.env._(f"{picking.wa_id.name} was used in some picking.")
+                    self.env._("%s was used in some picking.", picking.wa_id.name)
                 )
 
             wa_line = {}
@@ -65,7 +65,7 @@ class Picking(models.Model):
                         wa_line.get(line.product_id.id, 0) + qty
                     )
             move_line = {}
-            for move in picking.move_ids_without_package:
+            for move in picking.move_ids:
                 qty = move.product_uom._compute_quantity(
                     move.quantity, move.product_id.uom_id
                 )
@@ -98,7 +98,7 @@ class Picking(models.Model):
             wa_line[product_id] = wa_line.get(product_id, 0) + qty
 
         # Batch update move lines
-        for move_line in self.move_line_ids_without_package:
+        for move_line in self.move_line_ids:
             product_id = move_line.product_id.id
             if product_id in wa_line:
                 qty = wa_line[product_id]

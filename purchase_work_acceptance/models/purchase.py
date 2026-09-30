@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import Command, api, fields, models
-from odoo.exceptions import UserError
+from odoo.fields import Domain
 
 
 class PurchaseOrder(models.Model):
@@ -50,7 +50,7 @@ class PurchaseOrder(models.Model):
                     {
                         "purchase_line_id": line.id,
                         "name": line.name,
-                        "product_uom": line.product_uom.id,
+                        "product_uom": line.product_uom_id.id,
                         "product_id": line.product_id.id,
                         "price_unit": line.price_unit,
                         "product_qty": line._get_product_qty(),
@@ -71,7 +71,7 @@ class PurchaseOrder(models.Model):
                 result["res_id"] = self.wa_ids.id or False
         return result
 
-    def action_create_invoice(self):
+    def action_create_invoice(self, attachment_ids=False):
         enable_wa = self.env.user.has_group(
             "purchase_work_acceptance.group_enable_wa_on_invoice"
         )
@@ -89,7 +89,7 @@ class PurchaseOrder(models.Model):
                 "view_id": wizard.id,
                 "target": "new",
             }
-        res = super().action_create_invoice()
+        res = super().action_create_invoice(attachment_ids=attachment_ids)
         # Set 'ref' to WA
         if (
             ctx.get("wa_id")
@@ -117,10 +117,19 @@ class PurchaseOrder(models.Model):
 
     @api.model
     def _search_wa_accepted(self, operator, value):
-        if operator not in ["=", "!="] or not isinstance(value, bool):
-            raise UserError(self.env._("Operation not supported"))
-        recs = self.search([]).filtered(lambda line: line.wa_accepted is value)
-        return [("id", "in", recs.ids)]
+        if operator != "in":
+            return NotImplemented
+        to_accept = Domain(
+            "order_line",
+            "any",
+            [("product_qty", ">", 0), ("qty_to_accept", ">", 0)],
+        )
+        domain = Domain.FALSE
+        if True in value:
+            domain |= ~to_accept
+        if False in value:
+            domain |= to_accept
+        return domain
 
     def _prepare_invoice(self):
         invoice_vals = super()._prepare_invoice()
@@ -142,14 +151,14 @@ class PurchaseOrderLine(models.Model):
         string="Accepted Qty.",
         store=True,
         readonly=True,
-        digits="Product Unit of Measure",
+        digits="Product Unit",
     )
     qty_to_accept = fields.Float(
         compute="_compute_qty_accepted",
         string="To Accept Qty.",
         store=True,
         readonly=True,
-        digits="Product Unit of Measure",
+        digits="Product Unit",
     )
 
     def _get_product_qty(self):
@@ -186,7 +195,7 @@ class PurchaseOrderLine(models.Model):
                     continue
 
                 qty_accepted += wa_line.product_uom._compute_quantity(
-                    wa_line.product_qty, line.product_uom, round=False
+                    wa_line.product_qty, line.product_uom_id, round=False
                 )
             line.qty_accepted = qty_accepted
 
