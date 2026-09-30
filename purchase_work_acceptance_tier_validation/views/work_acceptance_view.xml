@@ -15,19 +15,19 @@
                 <filter
                     name="needs_review"
                     string="Needs my Review"
-                    domain="[('reviewer_ids','in',uid), ('state', 'not in', ['done', 'cancel','to approve'])]"
+                    domain="[('reviewer_ids','in',uid), ('state', 'not in', ['accept', 'cancel'])]"
                     help="My WA to review"
                 />
                 <filter
                     name="tier_validated"
                     string="Validated"
-                    domain="[('validated', '=', True)]"
+                    domain="[('validation_status', '=', 'validated')]"
                     help="WAs validated and ready to be confirmed"
                 />
                 <filter
                     name="tier_rejected"
                     string="Rejected"
-                    domain="[('rejected', '=', True)]"
+                    domain="[('validation_status', '=', 'rejected')]"
                     help="WAs rejected"
                 />
             </separator>
