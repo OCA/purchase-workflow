@@ -16,7 +16,7 @@ class AccountMove(models.Model):
         readonly=True,
         domain=lambda self: [
             ("state", "=", "accept"),
-            ("purchase_id", "=", self._context.get("active_id")),
+            ("purchase_id", "=", self.env.context.get("active_id")),
         ],
         help="To control quantity and unit price of the vendor bill, to be "
         "according to the quantity and unit price of the work acceptance.",
