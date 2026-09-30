@@ -200,7 +200,7 @@
                                     />
                                 </list>
                             </field>
-                            <group class="oe_subtotal_footer oe_right">
+                            <group class="oe_subtotal_footer float-end">
                                 <field name="currency_id" invisible="1" />
                                 <div class="oe_subtotal_footer_separator oe_inline">
                                     <label for="estimated_cost" />
