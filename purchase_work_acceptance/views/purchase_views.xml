@@ -55,7 +55,7 @@
                     class="oe_highlight"
                     context="{'create_wa':True}"
                     groups="purchase_work_acceptance.group_enable_wa_on_po"
-                    invisible="state not in ('purchase', 'done') or wa_accepted"
+                    invisible="state != 'purchase' or wa_accepted"
                 />
             </xpath>
             <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
@@ -80,7 +80,7 @@
             >
                 <attribute
                     name="column_invisible"
-                >parent.state not in ('purchase', 'done')</attribute>
+                >parent.state != 'purchase'</attribute>
                 <attribute
                     name="readonly"
                 >product_type == 'consu' or wa_line_ids</attribute>
@@ -93,14 +93,14 @@
                 <field
                     name="qty_accepted"
                     string="Accepted"
-                    column_invisible="parent.state not in ('purchase', 'done')"
+                    column_invisible="parent.state != 'purchase'"
                 />
             </xpath>
             <field name="fiscal_position_id" position="after">
                 <field
                     name="wa_accepted"
                     groups="purchase_work_acceptance.group_enable_wa_on_po"
-                    invisible="state not in ('purchase', 'done')"
+                    invisible="state != 'purchase'"
                 />
             </field>
         </field>

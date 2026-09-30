@@ -41,7 +41,6 @@ class WorkAcceptance(models.Model):
     )
     currency_id = fields.Many2one(
         comodel_name="res.currency",
-        string="Currency",
         default=lambda self: self.env.company.currency_id,
         required=True,
         readonly=True,
@@ -76,7 +75,6 @@ class WorkAcceptance(models.Model):
     )
     company_id = fields.Many2one(
         comodel_name="res.company",
-        string="Company",
         default=lambda self: self.env.company,
         required=True,
         index=True,
@@ -183,9 +181,7 @@ class WorkAcceptanceLine(models.Model):
     product_qty = fields.Float(
         string="Quantity", required=True, digits="Product Unit of Measure"
     )
-    product_id = fields.Many2one(
-        comodel_name="product.product", string="Product", required=True
-    )
+    product_id = fields.Many2one(comodel_name="product.product", required=True)
     product_uom = fields.Many2one(
         comodel_name="uom.uom", string="Product Unit of Measure", required=True
     )
