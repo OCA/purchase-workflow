@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="report_purchaseorder_document"
+        inherit_id="purchase.report_purchaseorder_document"
+    >
+        <xpath expr="//div[hasclass('page')]" position="before">
+            <t t-set="information_block">
+                <t t-out="information_block or ''" />
+                <div t-if="o.company_invoice_address_id" class="mt-3">
+                    <strong>Invoice address:</strong>
+                    <div>
+                        <span t-field="o.company_invoice_address_id.name" />
+                        <div
+                            t-field="o.company_invoice_address_id"
+                            t-options='{"widget": "contact", "fields": ["address"], "no_marker": True}'
+                        />
+                    </div>
+                </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>
