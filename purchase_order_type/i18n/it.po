@@ -22,16 +22,16 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-16 12:06+0000\n"
-"PO-Revision-Date: 2026-01-13 17:03+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-purchase-"
-"workflow-8-0/language/it/)\n"
+"PO-Revision-Date: 2026-10-01 15:46+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-purchase-workflow-8-"
+"0/language/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__active
@@ -72,7 +72,7 @@ msgstr "Creato il"
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__is_default
 msgid "Default"
-msgstr ""
+msgstr "Predefinito"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__description
@@ -131,7 +131,7 @@ msgstr "Nome"
 #. odoo-python
 #: code:addons/purchase_order_type/models/purchase_order_type.py:0
 msgid "Only one default order type is allowed per company."
-msgstr ""
+msgstr "È consentito solo un tipo ordine predefinito per azienda."
 
 #. module: purchase_order_type
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
@@ -186,6 +186,9 @@ msgid ""
 "provide one, and to correct a purchase order whose type no longer suits its "
 "company after the company changes."
 msgstr ""
+"Utilizzato come tipo di ordine predefinito per un ordine di acquisto il cui "
+"fornitore non ne specifica uno, e per correggere un ordine di acquisto il "
+"cui tipo non è più idoneo all'azienda a seguito di una variazione aziendale."
 
 #~ msgid "Last Modified on"
 #~ msgstr "Ultima modifica il"
