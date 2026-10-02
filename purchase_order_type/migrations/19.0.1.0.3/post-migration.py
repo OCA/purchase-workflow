@@ -4,14 +4,19 @@ from odoo import SUPERUSER_ID, api
 
 
 def migrate(cr, version):
-    """Flag, per company, the order type _default_order_type() used to
-    return before is_default existed: the lowest-sequence type in that
-    company's scope. Only existing installations need this - a fresh
-    install has nothing configured and simply leaves order_type empty
-    until a default is set, which is the intended behavior going forward.
+    """Keep the behavior existing installations had before this version.
+
+    The purchase order form always required an order type, so every
+    existing company keeps requiring it. Per company, the order type
+    _default_order_type() used to return before is_default existed (the
+    lowest-sequence type in that company's scope) is flagged as default, so
+    it stays the type a new purchase order gets, now as an explicit,
+    reconfigurable choice. A fresh install requires no order type and has no
+    default until one is configured.
     """
     if not version:
         return
+    cr.execute("UPDATE res_company SET purchase_order_type_required = TRUE")
     env = api.Environment(cr, SUPERUSER_ID, {})
     order_type = env["purchase.order.type"]
     # A database migrated from an earlier version that already had is_default
