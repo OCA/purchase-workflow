@@ -3,7 +3,7 @@
 
 from odoo import fields
 from odoo.exceptions import ValidationError
-from odoo.tests import common, tagged
+from odoo.tests import Form, common, tagged
 
 
 @tagged("post_install", "-at_install")
@@ -269,10 +269,9 @@ class TestPurchaseOrderTypeDefault(common.TransactionCase):
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.company = cls.env.company
-        # Demo data flags po_type_regular as the default for cls.company -
-        # cleared so each test below starts from "nothing configured" and
-        # controls is_default itself without tripping the one-default-per-
-        # company constraint.
+        # Any default already configured in the database is cleared so each
+        # test below starts from "nothing configured" and controls is_default
+        # itself without tripping the one-default-per-company constraint.
         cls.env["purchase.order.type"].search(
             [("is_default", "=", True)]
         ).is_default = False
@@ -306,6 +305,28 @@ class TestPurchaseOrderTypeDefault(common.TransactionCase):
             {"partner_id": self.vendor_without_type.id}
         )
         self.assertFalse(order.order_type)
+
+    def test_order_type_not_required_by_default(self):
+        """A new company does not require an order type."""
+        self.assertFalse(self.other_company.purchase_order_type_required)
+
+    def test_form_saves_without_order_type_when_not_required(self):
+        """Without a default and without the requirement, a purchase order
+        is saved through the form with an empty order type."""
+        self.company.purchase_order_type_required = False
+        purchase_form = Form(self.env["purchase.order"])
+        purchase_form.partner_id = self.vendor_without_type
+        order = purchase_form.save()
+        self.assertFalse(order.order_type)
+
+    def test_form_requires_order_type_when_enabled(self):
+        """With the requirement enabled, the form does not save a purchase
+        order without an order type."""
+        self.company.purchase_order_type_required = True
+        purchase_form = Form(self.env["purchase.order"])
+        purchase_form.partner_id = self.vendor_without_type
+        with self.assertRaises(AssertionError):
+            purchase_form.save()
 
     def test_no_types_for_company_leaves_order_type_empty(self):
         """other_company has no type at all - not the vendor's, not an
