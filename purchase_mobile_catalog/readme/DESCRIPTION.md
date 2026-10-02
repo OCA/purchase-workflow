@@ -1,0 +1,1 @@
+Show the 'Catalog' action in mobile (kanban) view for purchase order lines.
