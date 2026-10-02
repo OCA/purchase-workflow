@@ -15,10 +15,8 @@
         "views/view_purchase_order_type.xml",
         "views/view_purchase_order.xml",
         "views/res_partner_view.xml",
+        "views/res_config_settings_views.xml",
         "data/purchase_order_type.xml",
-    ],
-    "demo": [
-        "demo/purchase_order_type_demo.xml",
     ],
     "installable": True,
     "auto_install": False,
