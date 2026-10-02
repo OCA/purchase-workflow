@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form_purchase" model="ir.ui.view">
+        <field name="model">res.config.settings</field>
+        <field
+            name="inherit_id"
+            ref="purchase.res_config_settings_view_form_purchase"
+        />
+        <field name="arch" type="xml">
+            <setting id="automatic_lock_confirmed_orders" position="after">
+                <setting
+                    id="purchase_order_type_required"
+                    company_dependent="1"
+                    help="Purchase orders can only be saved once they have an order type"
+                >
+                    <field name="purchase_order_type_required" />
+                </setting>
+            </setting>
+        </field>
+    </record>
+</odoo>
