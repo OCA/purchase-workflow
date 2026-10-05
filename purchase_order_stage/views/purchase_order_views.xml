@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="purchase_order_form">
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="after">
+                <header name="stage">
+                   <field
+                        name="stage_id"
+                        widget="statusbar"
+                        options="{'clickable': '1', 'fold_field': 'fold'}"
+                        attrs="{'invisible': [('state', '=', 'draft')]}"
+                    />
+                </header>
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="purchase_order_tree">
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_tree" />
+        <field name="arch" type="xml">
+            <field name="state" position="after">
+                   <field name="stage_id" />
+            </field>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_purchase_order_filter">
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_filter" />
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                   <field name="stage_id" />
+            </field>
+            <filter name="order_date" position="before">
+                <filter
+                    string="Stage"
+                    name="group_stage"
+                    context="{'group_by':'stage_id'}"
+                />
+            </filter>
+        </field>
+    </record>
+    <record id="purchase.purchase_rfq" model="ir.actions.act_window">
+        <field name="name">Requests for Quotation</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">purchase.order</field>
+        <field name="view_mode">tree,kanban,form,pivot,graph,calendar,activity</field>
+        <field name="context">{'search_default_group_stage': True}</field>
+        <field name="search_view_id" ref="purchase.view_purchase_order_filter" />
+    </record>
+    <record id="purchase.purchase_form_action" model="ir.actions.act_window">
+        <field name="name">Purchase Orders</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">purchase.order</field>
+        <field name="view_mode">tree,kanban,form,pivot,graph,calendar,activity</field>
+        <field name="domain">[('state','in',('purchase', 'done'))]</field>
+        <field name="context">{'search_default_group_stage': True}</field>
+        <field name="search_view_id" ref="purchase.view_purchase_order_filter" />
+    </record>
+</odoo>
