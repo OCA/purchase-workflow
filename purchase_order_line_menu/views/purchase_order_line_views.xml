@@ -108,7 +108,7 @@
                 <filter
                     name="flt_state_to_approve"
                     string="To Approve"
-                    domain="[('state','=','to_approve')]"
+                    domain="[('state','=','to approve')]"
                 />
                 <filter
                     name="flt_state_purchase"
@@ -118,7 +118,7 @@
                 <filter
                     name="flt_state_done"
                     string="Locked"
-                    domain="[('state','=','done')]"
+                    domain="[('order_id.locked','=',True)]"
                 />
                 <filter
                     name="flt_state_cancel"
