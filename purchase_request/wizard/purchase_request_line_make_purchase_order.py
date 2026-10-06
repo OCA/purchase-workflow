@@ -327,9 +327,7 @@ class PurchaseRequestLineMakePurchaseOrderItem(models.TransientModel):
         readonly=False,
     )
     name = fields.Char(string="Description", required=True)
-    product_qty = fields.Float(
-        string="Quantity to purchase", digits="Product Unit of Measure"
-    )
+    product_qty = fields.Float(string="Quantity to purchase", digits="Product Unit")
     product_uom_id = fields.Many2one(
         comodel_name="uom.uom", string="UoM", required=True
     )
