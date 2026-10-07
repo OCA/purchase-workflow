@@ -1,0 +1,49 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_order_archive
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2025-01-09 11:06+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
+
+#. module: purchase_order_archive
+#: model:ir.model.fields,field_description:purchase_order_archive.field_purchase_order__active
+msgid "Active"
+msgstr "Attivo"
+
+#. module: purchase_order_archive
+#: model_terms:ir.ui.view,arch_db:purchase_order_archive.purchase_order_archive_form
+#: model_terms:ir.ui.view,arch_db:purchase_order_archive.view_purchase_order_archive_filter
+msgid "Archived"
+msgstr "In archivio"
+
+#. module: purchase_order_archive
+#. odoo-python
+#: code:addons/purchase_order_archive/models/purchase_order.py:0
+msgid "Only 'Locked' or 'Canceled' orders can be archived"
+msgstr "Solo ordini 'Bloccati' o 'Annullati' possono essere archiviati"
+
+#. module: purchase_order_archive
+#: model:ir.model,name:purchase_order_archive.model_purchase_order
+msgid "Purchase Order"
+msgstr "Ordine di acquisto"
+
+#. module: purchase_order_archive
+#. odoo-python
+#: code:addons/purchase_order_archive/models/purchase_order.py:0
+msgid ""
+"This record is currently archived and cannot have its state modified. Please "
+"unarchive the record to make changes. "
+msgstr ""
+"Questo record attualmente è archiviato e non se ne può modificare lo stato. "
+"Disattivare l'archiviazione per poterlo modificare. "
