@@ -4,3 +4,5 @@
   - Mario Luis \<<m.luis@binhex.cloud>\>
 - [Heliconia Solutions Pvt. Ltd.](https://www.heliconia.io)
   - Bhavesh Heliconia
+- Sudhir Arya <sudhir@erpharbor.com>
+  
