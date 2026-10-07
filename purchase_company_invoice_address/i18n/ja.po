@@ -1,0 +1,42 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_company_invoice_address
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-07 08:06+0000\n"
+"PO-Revision-Date: 2026-10-07 05:48+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_company_invoice_address
+#: model_terms:ir.ui.view,arch_db:purchase_company_invoice_address.report_company_invoice_address
+msgid "<strong>Invoice address:</strong>"
+msgstr "<strong>請求先住所:</strong>"
+
+#. module: purchase_company_invoice_address
+#: model:ir.model.fields,help:purchase_company_invoice_address.field_purchase_order__company_invoice_address_id
+msgid ""
+"Address of your own company to which the vendor should send the invoice."
+msgstr "仕入先に請求書を送付してもらう自社の住所。"
+
+#. module: purchase_company_invoice_address
+#: model:ir.model.fields,field_description:purchase_company_invoice_address.field_purchase_order__company_invoice_address_id
+msgid "Company Invoice Address"
+msgstr "請求先住所"
+
+#. module: purchase_company_invoice_address
+#: model:ir.model.fields,field_description:purchase_company_invoice_address.field_purchase_order__company_partner_id
+msgid "Partner"
+msgstr "取引先"
+
+#. module: purchase_company_invoice_address
+#: model:ir.model,name:purchase_company_invoice_address.model_purchase_order
+msgid "Purchase Order"
+msgstr "購買オーダ"
