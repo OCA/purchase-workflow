@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="mt_purchase_reception" model="mail.message.subtype">
+        <field name="name">Purchase Receptions</field>
+        <field name="res_model">purchase.order</field>
+        <field name="default" eval="True" />
+        <field name="internal" eval="True" />
+    </record>
+</odoo>
