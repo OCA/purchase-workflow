@@ -24,6 +24,7 @@
         "views/purchase_order_views.xml",
         "report/templates.xml",
         "report/report.xml",
+        "data/mail_template_blanket_order.xml",
     ],
     "installable": True,
 }

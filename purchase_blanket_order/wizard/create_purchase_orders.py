@@ -119,7 +119,6 @@ class BlanketOrderWizard(models.TransientModel):
 
             vals = {
                 "product_id": line.product_id.id,
-                "name": line.product_id.name,
                 "date_planned": date_planned
                 if date_planned
                 else line.blanket_line_id.order_id.date_start,
