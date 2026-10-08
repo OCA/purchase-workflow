@@ -10,7 +10,7 @@ class StockRule(models.Model):
     @api.model
     def _prepare_purchase_request_line(self, request_id, procurement):
         # Note: uom_po_id doesn't exist in Odoo 19, use product.uom_id
-        procurement_uom_po_qty = procurement.product_uom._compute_quantity(
+        procurement_uom_po_qty = procurement.uom_id._compute_quantity(
             procurement.product_qty, procurement.product_id.uom_id
         )
         return {

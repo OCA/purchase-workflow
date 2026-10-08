@@ -52,14 +52,14 @@ class PurchaseOrder(models.Model):
                     data = {
                         "name": request_line.name,
                         "product_qty": line.product_qty,
-                        "product_uom": line.product_uom_id.name,
+                        "product_uom": line.uom_id.name,
                         "date_planned": date_planned,
                     }
                     requests_dict[request_id][request_line.id] = data
-            for request_id in requests_dict:
+            for request_id, request_data in requests_dict.items():
                 request = request_obj.sudo().browse(request_id)
                 message = po._purchase_request_confirm_message_content(
-                    request, requests_dict[request_id]
+                    request, request_data
                 )
                 request.message_post(
                     body=Markup(message),
@@ -140,7 +140,7 @@ class PurchaseOrderLine(models.Model):
             "domain": domain,
         }
 
-    def _prepare_stock_moves(self, picking):
+    def _prepare_stock_moves(self, picking=False):
         self.ensure_one()
         val = super()._prepare_stock_moves(picking)
         all_list = []

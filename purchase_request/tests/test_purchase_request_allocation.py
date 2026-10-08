@@ -311,7 +311,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         # All lines should use base UoM (Units) since uom_po_id doesn't exist
         for po_line in all_po_lines:
             self.assertEqual(
-                po_line.product_uom_id,
+                po_line.uom_id,
                 self.env.ref("uom.product_uom_unit"),
                 "The purchase UoM should be Unit(s)",
             )

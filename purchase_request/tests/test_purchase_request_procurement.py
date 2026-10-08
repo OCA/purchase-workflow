@@ -18,6 +18,7 @@ class TestPurchaseRequestProcurement(common.TransactionCase):
 
         # Get required Model data
         self.route_buy = self.env.ref("purchase_stock.route_warehouse0_buy")
+        self.route_buy.product_selectable = True
         self.product_1 = self.env["product.product"].create(
             {
                 "name": "Test Product",
@@ -61,7 +62,7 @@ class TestPurchaseRequestProcurement(common.TransactionCase):
                 "origin": origin,
                 "procure_method": "make_to_order",
                 "product_id": product.id,
-                "product_uom": product.uom_id.id,
+                "uom_id": product.uom_id.id,
                 "product_uom_qty": qty,
                 "route_ids": [(4, self.route_buy.id)],
             }

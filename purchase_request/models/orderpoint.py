@@ -21,6 +21,6 @@ class Orderpoint(models.Model):
             ]
         ):
             res[prline.orderpoint_id.id] += prline.product_uom_id._compute_quantity(
-                prline.product_qty, prline.orderpoint_id.product_uom, round=False
+                prline.product_qty, prline.orderpoint_id.uom_id, round=False
             )
         return res
