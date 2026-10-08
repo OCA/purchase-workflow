@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 PopSolutions
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="purchase_order_form_view" model="ir.ui.view">
+        <field name="name">purchase.order.form.purchase.request.smartbutton</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    name="action_view_purchase_requests"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-list-alt"
+                    attrs="{'invisible': [('purchase_request_count', '=', 0)]}"
+                >
+                    <field
+                        name="purchase_request_count"
+                        widget="statinfo"
+                        string="Requests"
+                    />
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>
