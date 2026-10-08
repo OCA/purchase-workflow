@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2023 Moduon Team
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
@@ -6,7 +7,7 @@
         <field name="model">purchase.order.line</field>
         <field name="inherit_id" ref="purchase.purchase_order_line_tree" />
         <field name="mode">primary</field>
-        <field name="priority">17</field>
+        <field name="priority" eval="17" />
         <field name="arch" type="xml">
             <xpath expr="//list" position="attributes">
                 <attribute name="default_order">order_id asc, id asc</attribute>
@@ -56,7 +57,7 @@
                 <field name="date_order" optional="show" widget="date" />
             </xpath>
             <xpath expr="//list" position="inside">
-                <field name="product_uom_id" optional="hide" />
+                <field name="uom_id" optional="hide" />
             </xpath>
             <xpath expr="//field[@name='name']" position="attributes">
                 <attribute name="optional">show</attribute>
@@ -75,7 +76,7 @@
         </field>
     </record>
 
-    <record model="ir.ui.view" id="view_purchase_order_line_pivot">
+    <record id="view_purchase_order_line_pivot" model="ir.ui.view">
         <field name="name">purchase.order.line.pivot</field>
         <field name="model">purchase.order.line</field>
         <field name="arch" type="xml">
@@ -92,7 +93,7 @@
         <field name="model">purchase.order.line</field>
         <field name="inherit_id" ref="purchase.purchase_order_line_search" />
         <field name="mode">primary</field>
-        <field name="priority">999</field>
+        <field name="priority" eval="999" />
         <field name="arch" type="xml">
             <xpath expr="//filter[@name='hide_cancelled']" position="replace">
                 <filter

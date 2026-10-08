@@ -7,3 +7,5 @@
     - Emilio Pascual \<<emilio@moduon.team>\>
     - Rafael Blasco \<<rblasco@moduon.team>\>
   - Hudson Amadeus Leonardy \<<https://solusiaglis.co.id>\>
+- Sudhir Arya\<<sudhir@erpharbor.com>\>
+  
