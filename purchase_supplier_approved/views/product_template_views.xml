@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2025 Open Source Integrators -->
+<!-- License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo>
+
+    <!-- Inherit Product Template Form View -->
+    <record id="view_product_template_form_inherit" model="ir.ui.view">
+        <field name="name">product.template.form.inherit.approved.suppliers</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button
+                    class="oe_stat_button"
+                    type="object"
+                    name="action_view_approved_suppliers"
+                    icon="fa-users"
+                >
+                    <field
+                        string="Approved Suppliers"
+                        name="approved_supplier_count"
+                        widget="statinfo"
+                    />
+                </button>
+            </div>
+        </field>
+    </record>
+
+    <!-- Inherit Product Template Form View - Purchase Tab -->
+    <record id="view_product_template_purchase_form_inherit" model="ir.ui.view">
+        <field
+            name="name"
+        >product.template.purchase.form.inherit.approved.suppliers</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="purchase.view_product_supplier_inherit" />
+        <field name="arch" type="xml">
+            <page name="purchase" position="inside">
+                <group
+                    string="Supplier Approval"
+                    groups="purchase_supplier_approved.group_manage_approved_suppliers"
+                >
+                    <field
+                        name="approved_supplier_requirement"
+                        groups="purchase_supplier_approved.group_manage_approved_suppliers"
+                    />
+                    <field name="is_approved_supplier_required" readonly="1" />
+                </group>
+            </page>
+        </field>
+    </record>
+
+</odoo>
