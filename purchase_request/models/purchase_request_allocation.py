@@ -87,8 +87,7 @@ class PurchaseRequestAllocation(models.Model):
                 rec.open_product_qty = (
                     rec.requested_product_uom_qty - rec.allocated_product_qty
                 )
-                if rec.open_product_qty < 0.0:
-                    rec.open_product_qty = 0.0
+                rec.open_product_qty = max(rec.open_product_qty, 0.0)
 
     @api.model
     def _purchase_request_confirm_done_message_content(self, message_data):

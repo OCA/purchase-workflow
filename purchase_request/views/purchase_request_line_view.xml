@@ -1,4 +1,4 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2018-2019 ForgeFlow, S.L.
      License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0) -->
 <odoo>
@@ -505,7 +505,7 @@
     <record id="view_purchase_request_line_details" model="ir.ui.view">
         <field name="name">purchase.request.line.details.form</field>
         <field name="model">purchase.request.line</field>
-        <field name="priority">1000</field>
+        <field name="priority" eval="1000" />
         <field name="arch" type="xml">
             <form>
                 <sheet>
@@ -581,8 +581,8 @@
         </field>
     </record>
     <menuitem
-        action="purchase_request_line_form_action"
         id="menu_purchase_request_line"
+        action="purchase_request_line_form_action"
         parent="purchase.menu_procurement_management"
     />
     <menuitem

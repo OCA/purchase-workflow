@@ -1,4 +1,4 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2018-2019 ForgeFlow, S.L.
      License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0) -->
 <odoo>
@@ -423,7 +423,7 @@
             </kanban>
         </field>
     </record>
-    <record model="ir.actions.act_window" id="purchase_request_form_action">
+    <record id="purchase_request_form_action" model="ir.actions.act_window">
         <field name="name">Purchase Requests</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">purchase.request</field>

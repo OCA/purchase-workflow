@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2018-2019 ForgeFlow, S.L.
      License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
 <odoo>
-    <record model="ir.module.category" id="module_category_purchase_request">
+    <record id="module_category_purchase_request" model="ir.module.category">
         <field name="name">Purchase Request</field>
         <field name="parent_id" ref="base.module_category_purchase_management" />
-        <field name="sequence">10</field>
+        <field name="sequence" eval="10" />
     </record>
-    <record model="res.groups.privilege" id="res_groups_privilege_purchase_request">
+    <record id="res_groups_privilege_purchase_request" model="res.groups.privilege">
         <field name="name">Purchase Request</field>
         <field name="category_id" ref="module_category_purchase_request" />
     </record>
@@ -25,7 +25,7 @@
         />
         <field name="privilege_id" ref="res_groups_privilege_purchase_request" />
     </record>
-    <record model="ir.rule" id="purchase_request_comp_rule">
+    <record id="purchase_request_comp_rule" model="ir.rule">
         <field name="name">Purchase Request multi-company</field>
         <field name="model_id" ref="model_purchase_request" />
         <field name="global" eval="True" />
@@ -33,7 +33,7 @@
             ['|',('company_id','=',False),('company_id', 'in', company_ids)]
         </field>
     </record>
-    <record model="ir.rule" id="purchase_request_line_comp_rule">
+    <record id="purchase_request_line_comp_rule" model="ir.rule">
         <field name="name">Purchase Request Line multi-company</field>
         <field name="model_id" ref="model_purchase_request_line" />
         <field name="global" eval="True" />
