@@ -1,0 +1,1 @@
+This module allows you to block the archiving of a contact that has replenishment rules.
