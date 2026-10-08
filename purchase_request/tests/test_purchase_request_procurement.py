@@ -167,3 +167,30 @@ class TestPurchaseRequestProcurement(common.TransactionCase):
         move4 = self._procurement_group_run("Split", self.product_1, 10)
         self.assertEqual(move4.created_purchase_request_line_id.request_id, pr)
         self.assertEqual(pr.origin, "Test Origin, Test, Split")
+
+    def test_procurement_without_move_dest_ids(self):
+        """Test that procurement works when move_dest_ids is False/None.
+
+        This tests the fix for issue #2927 where move_dest_ids could be
+        a boolean False in Odoo 18 instead of an empty list, causing
+        TypeError: 'bool' object is not iterable
+        """
+        move = self.env["stock.move"].create(
+            {
+                "reservation_date": fields.Datetime.now(),
+                "location_dest_id": self.customer_location.id,
+                "location_id": self.location.id,
+                "name": self.product_1.name,
+                "origin": "Test Move Dest Ids",
+                "procure_method": "make_to_order",
+                "product_id": self.product_1.id,
+                "product_uom": self.product_1.uom_id.id,
+                "product_uom_qty": 5,
+                "route_ids": [(4, self.route_buy.id)],
+                # Explicitly set move_dest_ids to False (simulating Odoo 18 edge case)
+                "move_dest_ids": [(5, 0, 0)],
+            }
+        )
+        # This should not raise TypeError: 'bool' object is not iterable
+        move._action_confirm()
+        self.assertTrue(move.created_purchase_request_line_id)
