@@ -310,3 +310,37 @@ class TestPurchaseRequest(TransactionCase):
         pr.button_draft()
         self.assertEqual(pr.state, "draft", "Should be in state draft")
         pr_lines.unlink()
+
+    def test_purchase_request_multi_currency(self):
+        usd = self.env.ref("base.USD")
+        eur = self.env.ref("base.EUR")
+        eur.write({"active": True})
+        self.assertEqual(self.env.user.company_id.currency_id, usd)
+
+        pr = self.purchase_request
+
+        # Create a purchase request line
+        vals = {
+            "name": "Test line 1",
+            "request_id": pr.id,
+            "product_id": self.env.ref("product.product_product_6").id,
+            "product_uom_id": self.env.ref("uom.product_uom_unit").id,
+            "product_qty": 2.0,
+            "estimated_cost": 100.0,
+        }
+        purchase_request_line = self.purchase_request_line_obj.create(vals)
+
+        self.assertEqual(purchase_request_line.currency_id, usd)
+        self.assertEqual(pr.currency_id, usd)
+        self.assertEqual(pr.currency_rate, 1)
+        self.assertEqual(pr.estimated_cost, pr.estimated_cost_cc)
+
+        # Change currency to EUR
+        with Form(pr) as p:
+            p.currency_id = eur
+        p.save()
+
+        self.assertEqual(purchase_request_line.currency_id, eur)
+        self.assertEqual(pr.currency_id, eur)
+        self.assertNotEqual(pr.currency_rate, 1)
+        self.assertNotEqual(pr.estimated_cost, pr.estimated_cost_cc)
