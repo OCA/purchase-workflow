@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Docutils: https://docutils.sourceforge.io/" />
-<title>Purchase Order Type</title>
+<title>README.rst</title>
 <style type="text/css">
 
 /*
@@ -398,7 +398,19 @@ This type can be used in filters and groupbys.</p>
 <ul class="simple">
 <li>Go to <strong>Purchases &gt; Configuration &gt; Purchase types</strong></li>
 <li>Modify / create the purchase order types</li>
+<li>Enable <strong>Default</strong> on the order type a purchase order gets when its
+vendor has no order type. One default can be set per company, plus one
+for all companies.</li>
 </ul>
+<p>To make an order type mandatory on purchase orders:</p>
+<ul class="simple">
+<li>Go to <strong>Purchases &gt; Configuration &gt; Settings</strong></li>
+<li>Enable <strong>Require Purchase Order Type</strong>. The setting applies per company.</li>
+</ul>
+<p>A purchase order then cannot be saved in the form without an order type.
+New installations do not require an order type. Upgraded installations
+keep requiring it for every existing company; companies created later do
+not require it until the setting is enabled.</p>
 </div>
 <div class="section" id="usage">
 <h2><a class="toc-backref" href="#toc-entry-2">Usage</a></h2>
