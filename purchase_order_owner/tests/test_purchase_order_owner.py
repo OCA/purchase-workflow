@@ -1,8 +1,8 @@
 # Copyright 2023 Quartile Limited
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
-from datetime import datetime
 
+from odoo import fields
 from odoo.tests.common import TransactionCase
 
 
@@ -35,9 +35,9 @@ class TestPurchaseOrderOwner(TransactionCase):
                             "name": self.product_id.name,
                             "product_id": self.product_id.id,
                             "product_qty": 1.0,
-                            "product_uom_id": self.uom_id.id,
+                            "uom_id": self.uom_id.id,
                             "price_unit": 100.0,
-                            "date_planned": datetime.today(),
+                            "date_planned": fields.Datetime.now(),
                         },
                     )
                 ],

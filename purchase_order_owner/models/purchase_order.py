@@ -15,7 +15,9 @@ class PurchaseOrder(models.Model):
         "incoming stock picking.",
     )
 
-    def _prepare_picking(self):
-        res = super()._prepare_picking()
-        res["owner_id"] = self.owner_id.id
-        return res
+    def _create_picking(self):
+        result = super()._create_picking()
+        for order in self:
+            if order.owner_id:
+                order.picking_ids.owner_id = order.owner_id
+        return result
