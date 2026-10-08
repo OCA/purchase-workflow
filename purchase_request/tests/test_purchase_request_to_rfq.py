@@ -1,8 +1,6 @@
 # Copyright 2018-2019 ForgeFlow, S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 
-import pytz
-
 from odoo import SUPERUSER_ID
 from odoo.tests import common
 
@@ -323,7 +321,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         # PO uses product's base UoM (Units)
         self.assertEqual(po_line.product_qty, 12, "Quantity should be 12 units")
         self.assertEqual(
-            po_line.product_uom_id,
+            po_line.uom_id,
             self.env.ref("uom.product_uom_unit"),
             "The purchase UoM should be Unit(s)",
         )
@@ -362,10 +360,11 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         ).create(vals)
         wiz_id.make_purchase_order()
         # The planned date is taken from the request, not from the supplier
-        user_tz = pytz.timezone(self.env.user.tz or "UTC")
         self.assertEqual(
             purchase_request_line1.date_required.day,
-            purchase_request_line1.purchase_lines.date_planned.astimezone(user_tz).day,
+            purchase_request_line1.purchase_lines.date_planned.astimezone(
+                self.env.tz
+            ).day,
         )
         po = purchase_request_line1.purchase_lines[0].order_id
         # Create Purchase Request

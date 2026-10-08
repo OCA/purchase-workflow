@@ -1,8 +1,6 @@
 # Copyright 2018-2019 ForgeFlow, S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0).
-from datetime import datetime
-
-import pytz
+from datetime import UTC, datetime
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError
@@ -140,10 +138,9 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         return self.env["purchase.request.allocation"].create(vals)
 
     def _get_date_with_user_tz(self, date):
-        user_tz = pytz.timezone(self.env.user.tz or "UTC")
         return (
-            user_tz.localize(datetime(date.year, date.month, date.day))
-            .astimezone(pytz.utc)
+            datetime(date.year, date.month, date.day, tzinfo=self.env.tz)
+            .astimezone(UTC)
             .replace(tzinfo=None)
         )
 
@@ -163,7 +160,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         return {
             "order_id": po.id,
             "product_id": product.id,
-            "product_uom_id": product.uom_id.id,
+            "uom_id": product.uom_id.id,
             "price_unit": 0.0,
             "product_qty": qty,
             "analytic_distribution": item.line_id.analytic_distribution,
@@ -193,7 +190,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             ("order_id", "=", order.id),
             ("name", "=", name),
             ("product_id", "=", item.product_id.id),
-            ("product_uom_id", "=", vals["product_uom_id"]),
+            ("uom_id", "=", vals["uom_id"]),
         ]
 
         if item.line_id.analytic_distribution:
@@ -250,7 +247,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                 new_pr_line = False
                 po_line = available_po_lines[0]
                 po_line.move_dest_ids |= line.move_dest_ids
-                po_line_product_uom_qty = po_line.product_uom_id._compute_quantity(
+                po_line_product_uom_qty = po_line.uom_id._compute_quantity(
                     po_line.product_uom_qty, alloc_uom
                 )
                 wizard_product_uom_qty = wizard_uom._compute_quantity(
@@ -263,7 +260,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                 if item.keep_description:
                     po_line_data["name"] = item.name
                 po_line = po_line_obj.create(po_line_data)
-                po_line_product_uom_qty = po_line.product_uom_id._compute_quantity(
+                po_line_product_uom_qty = po_line.uom_id._compute_quantity(
                     po_line.product_uom_qty, alloc_uom
                 )
                 wizard_product_uom_qty = wizard_uom._compute_quantity(

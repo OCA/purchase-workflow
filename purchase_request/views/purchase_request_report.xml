@@ -8,6 +8,5 @@
         <field name="model">purchase.request</field>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">purchase_request.report_purchase_request</field>
-        <field name="report_file">purchase_request.report_purchase_request</field>
     </record>
 </odoo>

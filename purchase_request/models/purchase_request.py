@@ -18,7 +18,7 @@ class PurchaseRequest(models.Model):
     _name = "purchase.request"
     _description = "Purchase Request"
     _mail_post_access = "read"
-    _inherit = ["mail.thread", "mail.activity.mixin"]
+    _inherit = ["mail.thread", "mail.activity.mixin"]  # noqa: RUF012
     _order = "id desc"
 
     @api.model

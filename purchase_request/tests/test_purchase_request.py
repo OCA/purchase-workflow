@@ -103,8 +103,8 @@ class TestPurchaseRequest(TransactionCase):
         vals = {"supplier_id": self.supplier.id}
 
         # It is required to have a picking type
-        purchase_request.picking_type_id = False
         with self.assertRaisesRegex(UserError, "a Picking Type"):
+            purchase_request.picking_type_id = False
             self.wiz.with_context(
                 active_model="purchase.request",
                 active_ids=[purchase_request.id],

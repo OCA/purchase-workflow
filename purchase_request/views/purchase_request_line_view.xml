@@ -408,7 +408,7 @@
                                     class="oe_inline"
                                 />
                                 <field
-                                    name="product_uom_id"
+                                    name="uom_id"
                                     readonly="1"
                                     groups="uom.group_uom"
                                     class="oe_inline"
@@ -461,7 +461,7 @@
                 <field name="product_id" />
                 <field name="price_unit" />
                 <field name="product_qty" />
-                <field name="product_uom_id" groups="uom.group_uom" />
+                <field name="uom_id" groups="uom.group_uom" />
                 <field name="price_subtotal" widget="monetary" />
                 <field name="date_planned" widget="date" />
                 <field name="purchase_request_lines" column_invisible="1" />
