@@ -1,0 +1,148 @@
+// Copyright 2026 Jarsa
+// License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+// Odoo backend palette reference: primary #714B67
+
+// Floats over the form instead of sitting in the normal document flow:
+// with many order lines, an in-flow (or merely sticky-header) panel is
+// still pushed below the fold and needs an initial scroll to be reached
+// at all. Anchored to the viewport, it is visible with zero scrolling
+// regardless of line count.
+.o_purchase_sales_history {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    z-index: $zindex-fixed;
+    width: 480px;
+    max-width: calc(100vw - 32px);
+    max-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid $border-color;
+    border-radius: 8px;
+    background-color: $o-view-background-color;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+
+    @include media-breakpoint-down(md) {
+        left: 8px;
+        right: 8px;
+        bottom: 8px;
+        width: auto;
+        max-width: none;
+    }
+
+    .o_purchase_sales_history_header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        width: 100%;
+        padding: 8px 12px;
+        border: 0;
+        background-color: transparent;
+        text-align: start;
+        cursor: pointer;
+
+        &:hover {
+            background-color: darken($o-view-background-color, 3%);
+        }
+
+        .o_purchase_sales_history_header_text {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+
+            strong {
+                font-size: 0.9rem;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
+
+        .o_purchase_sales_history_toggle_icon {
+            flex: 0 0 auto;
+            color: $text-muted;
+        }
+    }
+
+    &:not(.o_purchase_sales_history_collapsed) .o_purchase_sales_history_header {
+        border-bottom: 1px solid $border-color;
+    }
+
+    .o_purchase_sales_history_scroll {
+        overflow: auto;
+        padding: 0 12px 12px;
+    }
+
+    .o_purchase_sales_history_table {
+        font-size: 0.75rem;
+        border-collapse: collapse;
+        margin-bottom: 0;
+
+        th,
+        td {
+            white-space: nowrap;
+            padding: 4px 10px;
+        }
+
+        thead th {
+            color: $text-muted;
+            font-weight: 500;
+            border-bottom: 1px solid $border-color;
+        }
+
+        // Fixed "Year" column: solid background required so it never blends
+        // with the data cells scrolling behind it. Do NOT use a
+        // transparent/inherited background here.
+        .o_purchase_sales_history_sticky_col {
+            position: sticky;
+            left: 0;
+            z-index: 2;
+            font-weight: 500;
+            background-color: $o-view-background-color;
+            // Subtle right-edge shadow, only visible once content scrolls
+            // underneath — reinforces the "frozen column" affordance.
+            box-shadow: 2px 0 4px -1px rgba(0, 0, 0, 0.12);
+        }
+
+        thead .o_purchase_sales_history_sticky_col {
+            background-color: darken($o-view-background-color, 3%);
+        }
+
+        tbody .o_purchase_sales_history_sticky_col.o_row_even {
+            background-color: darken($o-view-background-color, 4%);
+        }
+
+        tbody .o_purchase_sales_history_sticky_col.o_row_odd {
+            background-color: darken($o-view-background-color, 1%);
+        }
+
+        tfoot .o_purchase_sales_history_sticky_col {
+            background-color: darken($o-view-background-color, 3%);
+        }
+
+        tbody tr.o_row_odd {
+            background-color: $o-view-background-color;
+        }
+
+        .o_purchase_sales_history_current_month {
+            color: $o-brand-primary;
+        }
+
+        .o_purchase_sales_history_cell {
+            display: inline-block;
+            min-width: 100%;
+            border-radius: 3px;
+            padding: 0 4px;
+        }
+
+        .o_purchase_sales_history_total {
+            border-left: 1px solid $border-color;
+            font-weight: 600;
+        }
+
+        tfoot .o_purchase_sales_history_total {
+            color: $o-brand-primary;
+        }
+    }
+}

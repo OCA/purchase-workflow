@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Jarsa
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl). -->
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.form - purchase_line_sale_history</field>
+        <field name="model">res.config.settings</field>
+        <field
+            name="inherit_id"
+            ref="purchase.res_config_settings_view_form_purchase"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//block[@name='purchase_setting_container']" position="inside">
+                <setting
+                    id="purchase_sales_history_years"
+                    help="Number of past years, in addition to the current one, shown in the sales history of a purchase order line"
+                >
+                    <field name="purchase_sales_history_years" class="col-2" />
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>

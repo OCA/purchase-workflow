@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+    <t t-name="purchase_line_sale_history.SalesHistoryField">
+        <div
+            t-if="historyData"
+            t-attf-class="o_purchase_sales_history #{state.collapsed ? 'o_purchase_sales_history_collapsed' : ''}"
+        >
+            <button
+                type="button"
+                class="o_purchase_sales_history_header"
+                t-on-click="toggleCollapse"
+                t-att-aria-expanded="!state.collapsed ? 'true' : 'false'"
+            >
+                <span class="o_purchase_sales_history_header_text">
+                    <span class="text-muted small text-uppercase">
+                        Sales History
+                    </span>
+                    <strong t-esc="historyData.product_name" />
+                </span>
+                <i
+                    t-attf-class="fa #{state.collapsed ? 'fa-chevron-up' : 'fa-chevron-down'} o_purchase_sales_history_toggle_icon"
+                />
+            </button>
+            <div
+                class="o_purchase_sales_history_scroll"
+                t-if="!state.collapsed"
+            >
+                <table class="table table-sm o_purchase_sales_history_table">
+                    <thead>
+                        <tr>
+                            <th class="o_purchase_sales_history_sticky_col">Year</th>
+                            <t t-foreach="months" t-as="month" t-key="month_index">
+                                <th
+                                    t-attf-class="text-end #{month_index === currentMonthIndex ? 'o_purchase_sales_history_current_month' : ''}"
+                                    t-esc="month"
+                                />
+                            </t>
+                            <th
+                                class="text-end o_purchase_sales_history_total"
+                            >Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="years" t-as="year" t-key="year">
+                            <tr
+                                t-attf-class="#{year_index % 2 === 1 ? 'o_row_odd' : 'o_row_even'}"
+                            >
+                                <td
+                                    t-attf-class="o_purchase_sales_history_sticky_col #{year_index % 2 === 1 ? 'o_row_odd' : 'o_row_even'}"
+                                >
+                                    <t t-esc="year" />
+                                </td>
+                                <t t-foreach="months" t-as="month" t-key="month_index">
+                                    <td class="text-end">
+                                        <t
+                                            t-set="value"
+                                            t-value="valueFor(year, month_index)"
+                                        />
+                                        <span
+                                            t-if="value === null"
+                                            class="text-muted"
+                                        >—</span>
+                                        <span
+                                            t-else=""
+                                            class="o_purchase_sales_history_cell"
+                                            t-attf-style="#{cellStyle(year, month_index)}"
+                                            t-esc="value"
+                                        />
+                                    </td>
+                                </t>
+                                <td
+                                    class="text-end fw-bold o_purchase_sales_history_total"
+                                >
+                                    <t t-esc="rowTotal(year)" />
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td class="o_purchase_sales_history_sticky_col text-muted">
+                                Total
+                            </td>
+                            <t t-foreach="months" t-as="month" t-key="month_index">
+                                <td
+                                    class="text-end text-muted"
+                                    t-esc="colTotal(month_index)"
+                                />
+                            </t>
+                            <td
+                                class="text-end fw-bold o_purchase_sales_history_total"
+                                t-esc="grandTotal"
+                            />
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        <div class="text-muted small fst-italic" t-else="">
+            Check the Sales History box on a line to see its product's sales history.
+        </div>
+    </t>
+
+</templates>
