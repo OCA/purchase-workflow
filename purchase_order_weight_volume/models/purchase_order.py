@@ -74,12 +74,12 @@ class PurchaseOrder(models.Model):
         default_weight_uom = (
             self.env["ir.config_parameter"]
             .sudo()
-            .get_param("product_default_weight_uom_id")
+            .get_int("product_default_weight_uom_id")
         )
         default_volume_uom = (
             self.env["ir.config_parameter"]
             .sudo()
-            .get_param("product_default_volume_uom_id")
+            .get_int("product_default_volume_uom_id")
         )
 
         for po in self:

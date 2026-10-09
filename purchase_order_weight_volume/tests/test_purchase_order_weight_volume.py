@@ -80,13 +80,13 @@ class TestPurchaseOrderWeightVolume(TransactionCase):
     def _prepare_uom(cls):
         # Configure weight in kg
         cls.product_uom_kgm = cls.env.ref("uom.product_uom_kgm")
-        cls.env["ir.config_parameter"].sudo().set_param(
+        cls.env["ir.config_parameter"].sudo().set_int(
             "product_default_weight_uom_id", cls.product_uom_kgm.id
         )
 
         # Configure volume in m3
         cls.product_uom_cubic_meter = cls.env.ref("uom.product_uom_cubic_meter")
-        cls.env["ir.config_parameter"].sudo().set_param(
+        cls.env["ir.config_parameter"].sudo().set_int(
             "product_default_volume_uom_id", cls.product_uom_cubic_meter.id
         )
 
@@ -120,7 +120,7 @@ class TestPurchaseOrderWeightVolume(TransactionCase):
                 "name": product.name,
                 "product_id": product.id,
                 "product_qty": qty,
-                "product_uom_id": product.uom_id.id,
+                "uom_id": product.uom_id.id,
                 "price_unit": 100,
                 "date_planned": time.strftime(DEFAULT_SERVER_DATETIME_FORMAT),
             }

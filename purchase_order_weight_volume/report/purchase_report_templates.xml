@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <template
         id="report_purchasequotation_document"
@@ -35,15 +35,15 @@
         <xpath expr="//th[@name='th_quantity']" position="before">
             <th
                 t-if="o.display_total_weight_in_report"
-                name="th_weight"
                 class="text-right"
+                name="th_weight"
             >
                 <strong>Weight</strong>
             </th>
             <th
                 t-if="o.display_total_volume_in_report"
-                name="th_volume"
                 class="text-right"
+                name="th_volume"
             >
                 <strong>Volume</strong>
             </th>
@@ -96,15 +96,15 @@
         <xpath expr="//th[@name='th_quantity']" position="before">
             <th
                 t-if="o.display_total_weight_in_report"
-                name="th_weight"
                 class="text-right"
+                name="th_weight"
             >
                 <strong>Weight</strong>
             </th>
             <th
                 t-if="o.display_total_volume_in_report"
-                name="th_volume"
                 class="text-right"
+                name="th_volume"
             >
                 <strong>Volume</strong>
             </th>
