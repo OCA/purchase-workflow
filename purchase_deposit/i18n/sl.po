@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-06-27 13:53+0000\n"
+"PO-Revision-Date: 2026-10-10 11:46+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
@@ -159,7 +159,7 @@ msgstr "Zadnjič posodobljeno"
 #: model:ir.model.fields,field_description:purchase_deposit.field_res_company__purchase_deposit_limit_order_total
 #: model:ir.model.fields,field_description:purchase_deposit.field_res_config_settings__purchase_deposit_limit_order_total
 msgid "Limit Deposits to Order Total"
-msgstr ""
+msgstr "Omejitev pologa na skupni znesek naročila"
 
 #. module: purchase_deposit
 #: model:ir.model,name:purchase_deposit.model_res_config_settings
@@ -198,6 +198,8 @@ msgid ""
 "Refuse a deposit when the deposits already invoiced, plus the one being "
 "registered, exceed the purchase order total"
 msgstr ""
+"Zavrni polog, če vsota že zaračunanih pologov skupaj s tistim, ki se "
+"trenutno evidentira, presega skupni znesek naročila"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,help:purchase_deposit.field_res_company__purchase_deposit_limit_order_total
@@ -206,6 +208,8 @@ msgid ""
 "Refuse a deposit when the deposits already invoiced, plus the one being "
 "registered, exceed the purchase order total."
 msgstr ""
+"Zavrni polog, če vsota že zaračunanih pologov skupaj s tistim, ki se "
+"trenutno evidentira, presega skupni znesek naročila."
 
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_order_form_inherit
