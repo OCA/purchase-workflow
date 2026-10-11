@@ -1,0 +1,84 @@
+<odoo>
+    <record id="purchase_order_kpis_tree" model="ir.ui.view">
+        <field
+            name="name"
+        >purchase.order.tree (purchase_order_partner_ref_mandatory)</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_kpis_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_ref']" position="attributes">
+                <attribute name="column_invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="partner_ref" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field
+            name="name"
+        >purchase.order.form (purchase_order_partner_ref_mandatory)</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_ref']" position="attributes">
+                <attribute name="required">True</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_purchase_order_kanban" model="ir.ui.view">
+        <field
+            name="name"
+        >purchase.order.kanban (purchase_order_partner_ref_mandatory)</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_kanban" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="partner_ref" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_purchase_order_filter" model="ir.ui.view">
+        <field
+            name="name"
+        >purchase.order.search (purchase_order_partner_ref_mandatory)</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="partner_ref" />
+            </xpath>
+        </field>
+    </record>
+    <record id="purchase_order_view_search" model="ir.ui.view">
+        <field
+            name="name"
+        >purchase.order.select (purchase_order_partner_ref_mandatory)</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_view_search" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="partner_ref" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="purchase_order_view_tree" model="ir.ui.view">
+        <field
+            name="name"
+        >purchase.order.tree (purchase_order_partner_ref_mandatory)</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_view_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_ref']" position="attributes">
+                <attribute name="column_invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="partner_ref" optional="show" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
