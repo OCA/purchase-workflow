@@ -85,10 +85,12 @@ class ProductProduct(models.Model):
         for item in self:
             if item.show_last_purchase_price_currency_rate:
                 rates = item.last_purchase_currency_id._get_rates(
-                    item.last_purchase_line_id.company_id, item.last_purchase_date
+                    item.last_purchase_line_id.company_id,
+                    item.last_purchase_date,
                 )
-                item.last_purchase_price_currency_rate = rates.get(
-                    item.last_purchase_currency_id.id
-                )
+                rate = rates.get(item.last_purchase_currency_id.id)
+                item.last_purchase_price_currency_rate = (
+                    rate[0] if isinstance(rate, tuple) else rate
+                ) or 1.0
             else:
-                item.last_purchase_price_currency_rate = 1
+                item.last_purchase_price_currency_rate = 1.0

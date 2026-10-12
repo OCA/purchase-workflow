@@ -2,10 +2,9 @@
 # Copyright 2021 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import datetime
 
-import odoo.tests.common as common
 from odoo import Command, fields
+from odoo.tests import common
 
 
 class TestPurchaseLastPriceInfo(common.TransactionCase):
@@ -92,7 +91,7 @@ class TestPurchaseLastPriceInfo(common.TransactionCase):
                             "name": self.product_2.name,
                             "price_unit": 58,
                             "product_qty": 9,
-                            "product_uom_id": self.product_2.uom_id.id,
+                            "uom_id": self.product_2.uom_id.id,
                             "date_planned": fields.Datetime.now(),
                         },
                     ),
@@ -102,7 +101,7 @@ class TestPurchaseLastPriceInfo(common.TransactionCase):
                             "name": self.product_3.name,
                             "price_unit": 65,
                             "product_qty": 3,
-                            "product_uom_id": self.product_3.uom_id.id,
+                            "uom_id": self.product_3.uom_id.id,
                             "date_planned": fields.Datetime.now(),
                         },
                     ),
@@ -112,7 +111,7 @@ class TestPurchaseLastPriceInfo(common.TransactionCase):
                             "name": self.product.name,
                             "price_unit": 154.5,
                             "product_qty": 4,
-                            "product_uom_id": self.product.uom_id.id,
+                            "uom_id": self.product.uom_id.id,
                             "date_planned": fields.Datetime.now(),
                         },
                     ),
@@ -156,7 +155,7 @@ class TestPurchaseLastPriceInfo(common.TransactionCase):
                         0,
                         {
                             "product_id": self.product1.id,
-                            "product_uom_id": self.product1.uom_id.id,
+                            "uom_id": self.product1.uom_id.id,
                             "price_unit": self.product1.standard_price,
                             "name": self.product1.name,
                             "date_planned": fields.Datetime.now(),
@@ -178,7 +177,7 @@ class TestPurchaseLastPriceInfo(common.TransactionCase):
                         0,
                         {
                             "product_id": self.product1.id,
-                            "product_uom_id": self.product1.uom_id.id,
+                            "uom_id": self.product1.uom_id.id,
                             "price_unit": self.product1.standard_price,
                             "name": self.product1.name,
                             "date_planned": fields.Datetime.now(),
@@ -211,7 +210,8 @@ class TestPurchaseLastPriceInfo(common.TransactionCase):
             first_order_line.date_order,
             self.product1.last_purchase_date,
         )
-        expected_date = datetime.datetime(2001, 1, 1, 0, 0)
+        # expected_date = datetime.datetime(2001, 1, 1, 0, 0)
+        expected_date = fields.Datetime.to_datetime("2001-01-01 00:00:00")
         self.assertEqual(
             expected_date,
             self.product1.last_purchase_date,
