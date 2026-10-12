@@ -38,7 +38,7 @@ class TestPurchaseReceptionStatus(TransactionCase):
                 "product_id": self.product_1.id,
                 "name": self.product_1.name,
                 "product_qty": 10.0,
-                "product_uom_id": self.product_1.uom_id.id,
+                "uom_id": self.product_1.uom_id.id,
                 "price_unit": 100.0,
                 "date_planned": fields.Date.today(),
             }
@@ -63,7 +63,7 @@ class TestPurchaseReceptionStatus(TransactionCase):
                 "product_id": self.product_1.id,
                 "name": self.product_1.name,
                 "product_qty": 10.0,
-                "product_uom_id": self.product_1.uom_id.id,
+                "uom_id": self.product_1.uom_id.id,
                 "price_unit": 100.0,
                 "date_planned": fields.Date.today(),
             }
@@ -82,7 +82,7 @@ class TestPurchaseReceptionStatus(TransactionCase):
                 "product_id": self.product_1.id,
                 "name": self.product_1.name,
                 "product_qty": 10.0,
-                "product_uom_id": self.product_1.uom_id.id,
+                "uom_id": self.product_1.uom_id.id,
                 "price_unit": 100.0,
                 "date_planned": fields.Date.today(),
             }

@@ -29,7 +29,6 @@ class PurchaseOrder(models.Model):
     @api.depends(
         "state",
         "force_received",
-        "locked",
         "order_line.qty_received",
         "order_line.product_qty",
     )
@@ -38,23 +37,18 @@ class PurchaseOrder(models.Model):
         for order in self:
             status = "pending"
             if order.state == "purchase" or order.locked:
-                if order.force_received:
-                    status = "full"
-                elif all(
-                    [
-                        float_compare(
-                            line.qty_received, line.product_qty, precision_digits=prec
-                        )
-                        >= 0
-                        for line in order.order_line
-                    ]
+                if order.force_received or all(
+                    float_compare(
+                        line.qty_received, line.product_qty, precision_digits=prec
+                    )
+                    >= 0
+                    for line in order.order_line
                 ):
                     status = "full"
                 elif any(
-                    [
-                        float_compare(line.qty_received, 0, precision_digits=prec) > 0
-                        for line in order.order_line
-                    ]
+                    float_compare(line.qty_received, 0, precision_digits=prec) > 0
+                    for line in order.order_line
                 ):
                     status = "partial"
+
             order.receipt_status = status
