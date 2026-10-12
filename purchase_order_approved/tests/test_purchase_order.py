@@ -25,7 +25,7 @@ class TestPurchaseOrder(TransactionCase):
                 "date_planned": fields.Datetime.now(),
                 "name": "Test",
                 "product_qty": 10.0,
-                "product_uom_id": product.uom_id.id,
+                "uom_id": product.uom_id.id,
                 "price_unit": 100.0,
             }
         )
