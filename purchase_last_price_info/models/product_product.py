@@ -1,7 +1,6 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 # Copyright 2019 ForgeFlow S.L.
 # Copyright 2021 Tecnativa - Víctor Martínez
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
 
@@ -85,10 +84,10 @@ class ProductProduct(models.Model):
         for item in self:
             if item.show_last_purchase_price_currency_rate:
                 rates = item.last_purchase_currency_id._get_rates(
-                    item.last_purchase_line_id.company_id, item.last_purchase_date
+                    item.last_purchase_line_id.company_id,
+                    item.last_purchase_date,
                 )
-                item.last_purchase_price_currency_rate = rates.get(
-                    item.last_purchase_currency_id.id
-                )
+                rate = rates.get(item.last_purchase_currency_id.id)
+                item.last_purchase_price_currency_rate = rate[0] or 1.0
             else:
-                item.last_purchase_price_currency_rate = 1
+                item.last_purchase_price_currency_rate = 1.0
