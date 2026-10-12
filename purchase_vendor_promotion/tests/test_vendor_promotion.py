@@ -153,3 +153,71 @@ class TestVendorPromotion(PurchaseTestCommon):
         )
         promotion_vendor.write({"is_promotion": False})
         self.assertTrue(self.test_orderpoint.supplier_id)
+
+    def test_compute_supplier_with_orderpoint_batch(self):
+        """Batch recompute must keep supplier selection isolated per company."""
+        company_b = self.env.company
+        warehouse_b = self.warehouse_1
+        stock_location_b = warehouse_b.lot_stock_id
+        vendor_b = (
+            self.env["res.partner"].with_company(company_b).create({"name": "Vendor B"})
+        )
+        seller_b = self.env["product.supplierinfo"].create(
+            {
+                "partner_id": vendor_b.id,
+                "company_id": company_b.id,
+                "product_tmpl_id": self.product.product_tmpl_id.id,
+                "min_qty": 1,
+                "price": 130,
+                "is_promotion": True,
+                "date_start": date(self.current_year, 1, 1),
+                "date_end": date(self.current_year, 12, 31),
+            }
+        )
+
+        location_a = self.env["stock.location"].create(
+            {
+                "name": "Test OP A Location",
+                "usage": "internal",
+                "location_id": self.stock_location_a.id,
+                "company_id": self.company_a.id,
+            }
+        )
+        orderpoint_a = (
+            self.env["stock.warehouse.orderpoint"]
+            .with_company(self.company_a)
+            .create(
+                {
+                    "product_id": self.product.id,
+                    "product_min_qty": 1,
+                    "warehouse_id": self.warehouse_a.id,
+                    "location_id": location_a.id,
+                    "route_id": self.buy_route.id,
+                }
+            )
+        )
+        orderpoint_b = (
+            self.env["stock.warehouse.orderpoint"]
+            .with_company(company_b)
+            .create(
+                {
+                    "product_id": self.product.id,
+                    "product_min_qty": 1,
+                    "warehouse_id": warehouse_b.id,
+                    "location_id": stock_location_b.id,
+                    "route_id": self.buy_route.id,
+                }
+            )
+        )
+
+        orderpoints = orderpoint_a | orderpoint_b
+        # Force the core compute method on the full batch to reproduce the
+        # original cross-record domain leak in allowed_location_ids.
+        orderpoints._compute_allowed_location_ids()
+        orderpoints._compute_supplier_id()
+
+        seller_a = self.product.seller_ids.filtered(
+            lambda s: s.partner_id == self.vendor2
+        )
+        self.assertEqual(orderpoint_a.supplier_id, seller_a)
+        self.assertEqual(orderpoint_b.supplier_id, seller_b)
