@@ -1,7 +1,6 @@
 # Copyright 2021 ProThai Technology Co.,Ltd. (http://prothaitechnology.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-import base64
 
 from odoo import api, fields, models
 
@@ -69,7 +68,8 @@ class PurchaseOrder(models.Model):
             {
                 "name": f"{self.name}.pdf",
                 "type": "binary",
-                "datas": base64.encodebytes(rfq_pdf),
+                "raw": rfq_pdf,
+                # "datas": base64.encodebytes(rfq_pdf),
                 "res_model": self._name,
                 "res_id": self.id,
             }
