@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+    <record id="po_type_regular" model="purchase.order.type">
+        <field name="name">Regular</field>
+        <field name="sequence" eval="5" />
+    </record>
+    <record id="po_type_blanket" model="purchase.order.type">
+        <field name="name">Blanket</field>
+    </record>
+    <record id="po_type_contract" model="purchase.order.type">
+        <field name="name">Contract</field>
+    </record>
+    <record id="po_type_planned" model="purchase.order.type">
+        <field name="name">Planned</field>
+    </record>
+</odoo>
