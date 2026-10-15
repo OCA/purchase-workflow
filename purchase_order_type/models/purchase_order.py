@@ -40,22 +40,28 @@ class PurchaseOrder(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         for values in vals_list:
-            if values.get("name", "/") == "/" and values.get("order_type"):
+            if values.get("name", "/") in ("/", self.env._("New")) and values.get(
+                "order_type"
+            ):
                 purchase_type = self.env["purchase.order.type"].browse(
                     values["order_type"]
                 )
                 if purchase_type.sequence_id:
                     values["name"] = purchase_type.sequence_id.next_by_id(
-                        sequence_date=values.get("date_order")
+                        sequence_date=fields.Datetime.to_datetime(
+                            values.get("date_order")
+                        )
                     )
         return super().create(vals_list)
 
     @api.constrains("company_id")
     def _check_po_type_company(self):
         if self.filtered(
-            lambda r: r.order_type.company_id
-            and r.company_id
-            and r.order_type.company_id != r.company_id
+            lambda r: (
+                r.order_type.company_id
+                and r.company_id
+                and r.order_type.company_id != r.company_id
+            )
         ):
             raise ValidationError(
                 self.env._("Document's company and type's company mismatch")

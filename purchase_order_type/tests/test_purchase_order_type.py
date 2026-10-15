@@ -1,6 +1,8 @@
 # Copyright 2019 Oihane Crucelaegui - AvanzOSC
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
+from unittest.mock import patch
+
 from odoo import fields
 from odoo.exceptions import ValidationError
 from odoo.tests import common, tagged
@@ -97,20 +99,49 @@ class TestPurchaseOrderType(common.TransactionCase):
 
         # Payment Term
         cls.payterm = cls.env["account.payment.term"].create({"name": "Immediate"})
-        # Incoterm (safe fallback if account not loaded)
-        if "account.incoterm" in cls.env:
-            cls.incoterm = cls.env["account.incoterm"].create(
-                {
-                    "code": "EXW",
-                    "name": "Ex Works",
-                }
-            )
-        else:
-            cls.incoterm = False
+        cls.incoterm = cls.env["account.incoterms"].create(
+            {"code": "EXW", "name": "Ex Works"}
+        )
         cls.type2.payment_term_id = cls.payterm
-        cls.type2.incoterm_id = cls.incoterm if cls.incoterm else False
+        cls.type2.incoterm_id = cls.incoterm
         cls.partner1.purchase_type = cls.type2
         cls.company2 = cls.company_obj.create({"name": "company2"})
+
+    def test_onchange_partner_uses_commercial_partner_order_type(self):
+        commercial_partner = self.env["res.partner"].create(
+            {
+                "name": "Supplier Company",
+                "is_company": True,
+                "purchase_type": self.type2.id,
+            }
+        )
+        contact = self.env["res.partner"].create(
+            {"name": "Supplier Contact", "parent_id": commercial_partner.id}
+        )
+        order = self.po_obj.new(
+            {"partner_id": contact.id, "company_id": self.env.company.id}
+        )
+        order.onchange_partner_id()
+        self.assertEqual(order.order_type, self.type2)
+
+    def test_order_type_sequence_with_new_name_and_datetime(self):
+        date_order = "2026-01-15 09:30:00"
+        sequence = self.type1.sequence_id
+        with patch.object(
+            type(sequence), "next_by_id", return_value="PO/TYPE/0001"
+        ) as next_by_id:
+            order = self.po_obj.create(
+                {
+                    "name": self.env._("New"),
+                    "partner_id": self.partner1.id,
+                    "order_type": self.type1.id,
+                    "date_order": date_order,
+                }
+            )
+        self.assertEqual(order.name, "PO/TYPE/0001")
+        next_by_id.assert_called_once_with(
+            sequence_date=fields.Datetime.to_datetime(date_order)
+        )
 
     def test_purchase_order_type(self):
         purchase = self._create_purchase(
@@ -126,10 +157,7 @@ class TestPurchaseOrderType(common.TransactionCase):
         purchase.onchange_partner_id()
         self.assertEqual(purchase.order_type, self.type2)
         purchase.onchange_order_type()
-        if self.incoterm:
-            self.assertEqual(purchase.incoterm_id, self.incoterm)
-        else:
-            self.assertFalse(purchase.incoterm_id)
+        self.assertEqual(purchase.incoterm_id, self.incoterm)
 
         self.assertEqual(purchase.payment_term_id, self.payterm)
 
@@ -143,7 +171,7 @@ class TestPurchaseOrderType(common.TransactionCase):
                 "name": product.name,
                 "product_id": product.id,
                 "product_qty": qty,
-                "product_uom_id": product.uom_id.id,
+                "uom_id": product.uom_id.id,
                 "price_unit": 100,
                 "date_planned": fields.Datetime.now(),
             }
@@ -189,7 +217,7 @@ class TestPurchaseOrderType(common.TransactionCase):
                     "name": self.product_conference_chair.name,
                     "product_id": self.product_conference_chair.id,
                     "product_qty": 3,
-                    "product_uom_id": self.product_conference_chair.uom_id.id,
+                    "uom_id": self.product_conference_chair.uom_id.id,
                     "price_unit": 100,
                     "date_planned": fields.Datetime.now(),
                 },
