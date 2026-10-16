@@ -10,16 +10,16 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-17 03:38+0000\n"
-"PO-Revision-Date: 2025-07-01 16:25+0000\n"
-"Last-Translator: Betül Öğmen <betulo@eska.biz>\n"
-"Language-Team: Turkish (http://www.transifex.com/oca/OCA-purchase-"
-"workflow-10-0/language/tr/)\n"
+"PO-Revision-Date: 2026-10-16 20:46+0000\n"
+"Last-Translator: Dante5657 <mert.orsman@icloud.com>\n"
+"Language-Team: Turkish (http://www.transifex.com/oca/OCA-purchase-workflow-"
+"10-0/language/tr/)\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: purchase_request
 #. odoo-python
@@ -435,7 +435,7 @@ msgstr "Bu Satın Alma Talep Satırı'nın tahmini maliyeti, PO'ya aktarılmaz."
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_line_make_purchase_order
 msgid "Existing RFQ to update:"
-msgstr "Mevcut RFQ'yu güncelle:"
+msgstr "Mevcut Fiyat Teklifi Talebi'ni güncelle:"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_follower_ids
