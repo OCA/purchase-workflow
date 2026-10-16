@@ -1,0 +1,306 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_order_line_import
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-16 14:19+0000\n"
+"PO-Revision-Date: 2026-10-16 14:19+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#. module: purchase_order_line_import
+#. odoo-python
+#: code:addons/purchase_order_line_import/wizards/purchase_order_line_import.py:0
+#, python-format
+msgid "%(label)s: \"%(value)s\" is not a valid number."
+msgstr "%(label)s: \"%(value)s\" no es un número válido."
+
+#. module: purchase_order_line_import
+#. odoo-python
+#: code:addons/purchase_order_line_import/wizards/purchase_order_line_import.py:0
+#, python-format
+msgid "Analytic Account"
+msgstr "Cuenta analítica"
+
+#. module: purchase_order_line_import
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_import.purchase_order_line_import_view_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: purchase_order_line_import
+#. odoo-python
+#: code:addons/purchase_order_line_import/wizards/purchase_order_line_import.py:0
+#, python-format
+msgid "Code or name of the analytic account the whole line is distributed to."
+msgstr "Código o nombre de la cuenta analítica a la que se imputa toda la línea."
+
+#. module: purchase_order_line_import
+#. odoo-python
+#: code:addons/purchase_order_line_import/wizards/purchase_order_line_import.py:0
+#, python-format
+msgid "Column \"%s\" appears more than once."
+msgstr "La columna \"%s\" aparece más de una vez."
+
+#. module: purchase_order_line_import
+#: model:ir.model.fields,field_description:purchase_order_line_import.field_purchase_order_line_import__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: purchase_order_line_import
+#: model:ir.model.fields,field_description:purchase_order_line_import.field_purchase_order_line_import__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: purchase_order_line_import
+#. odoo-python
+#: code:addons/purchase_order_line_import/wizards/purchase_order_line_import.py:0
+#, python-format
+msgid "Description"
+msgstr "Descripción"
+
+#. module: purchase_order_line_import
+#: model:ir.model.fields,field_description:purchase_order_line_import.field_purchase_order_line_import__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: purchase_order_line_import
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_import.purchase_order_line_import_view_form
+msgid "Download Template"
+msgstr "Descargar plantilla"
+
+#. module: purchase_order_line_import
+#: model:ir.model.fields,field_description:purchase_order_line_import.field_purchase_order_line_import__file
+msgid "File"
+msgstr "Archivo"
+
+#. module: purchase_order_line_import
+#: model:ir.model.fields,field_description:purchase_order_line_import.field_purchase_order_line_import__file_name
+msgid "File Name"
+msgstr "Nombre del archivo"
+
+#. module: purchase_order_line_import
+#: model:ir.model.fields,field_description:purchase_order_line_import.field_purchase_order_line_import__id
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_order_line_import
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_import.purchase_order_line_import_view_form
+msgid "Import"
+msgstr "Importar"
+
+#. module: purchase_order_line_import
+#: model:ir.actions.act_window,name:purchase_order_line_import.purchase_order_line_import_action
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_import.purchase_order_form
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_import.purchase_order_line_import_view_form
+msgid "Import Lines"
+msgstr "Importar líneas"
+
+#. module: purchase_order_line_import
+#. odoo-python
+#: code:addons/purchase_order_line_import/wizards/purchase_order_line_import.py:0
+#, python-format
+msgid "Internal Reference"
+msgstr "Referencia interna"
+
+#. module: purchase_order_line_import
+#. odoo-python
+#: code:addons/purchase_order_line_import/wizards/purchase_order_line_import.py:0
+#, python-format
+msgid "Internal reference of the product to purchase."
+msgstr "Referencia interna del producto a comprar."
+
+#. module: purchase_order_line_import
+#: model:ir.model.fields,field_description:purchase_order_line_import.field_purchase_order_line_import__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: purchase_order_line_import
+#: model:ir.model.fields,field_description:purchase_order_line_import.field_purchase_order_line_import__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: purchase_order_line_import
+#. odoo-python
+#: code:addons/purchase_order_line_import/wizards/purchase_order_line_import.py:0
+#, python-format
+msgid "Line description. Leave empty to use the default one."
+msgstr "Descripción de la línea. Déjela vacía para usar la descripción por defecto."
+
+#. module: purchase_order_line_import
+#. odoo-python
+#: code:addons/purchase_order_line_import/wizards/purchase_order_line_import.py:0
+#, python-format
+msgid "Lines"
+msgstr "Líneas"
+
+#. module: purchase_order_line_import
+#. odoo-python
+#: code:addons/purchase_order_line_import/models/purchase_order.py:0
+#, python-format
+msgid "Lines can only be imported into a request for quotation."
+msgstr "Solo se pueden importar líneas en una solicitud de presupuesto."
+
+#. module: purchase_order_line_import
+#. odoo-python
+#: code:addons/purchase_order_line_import/wizards/purchase_order_line_import.py:0
+#, python-format
+msgid "Lines imported from %(file)s: %(count)s."
+msgstr "Líneas importadas desde %(file)s: %(count)s."
+
+#. module: purchase_order_line_import
+#. odoo-python
+#: code:addons/purchase_order_line_import/wizards/purchase_order_line_import.py:0
+#, python-format
+msgid "No analytic account found for \"%s\"."
+msgstr "No se ha encontrado ninguna cuenta analítica para \"%s\"."
+
+#. module: purchase_order_line_import
+#. odoo-python
+#: code:addons/purchase_order_line_import/wizards/purchase_order_line_import.py:0
+#, python-format
+msgid "No line has been imported."
+msgstr "No se ha importado ninguna línea."
+
+#. module: purchase_order_line_import
+#. odoo-python
+#: code:addons/purchase_order_line_import/wizards/purchase_order_line_import.py:0
+#, python-format
+msgid "No purchasable product found with internal reference \"%s\"."
+msgstr ""
+"No se ha encontrado ningún producto que se pueda comprar con la referencia "
+"interna \"%s\"."
+
+#. module: purchase_order_line_import
+#: model:ir.model.fields,field_description:purchase_order_line_import.field_purchase_order_line_import__order_id
+msgid "Order"
+msgstr "Pedido"
+
+#. module: purchase_order_line_import
+#. odoo-python
+#: code:addons/purchase_order_line_import/wizards/purchase_order_line_import.py:0
+#, python-format
+msgid "Please select a file to import."
+msgstr "Seleccione un archivo para importar."
+
+#. module: purchase_order_line_import
+#: model:ir.model,name:purchase_order_line_import.model_purchase_order_line_import
+msgid "Purchase Order Line Import"
+msgstr "Importación de líneas de pedido de compra"
+
+#. module: purchase_order_line_import
+#. odoo-python
+#: code:addons/purchase_order_line_import/wizards/purchase_order_line_import.py:0
+#: code:addons/purchase_order_line_import/wizards/purchase_order_line_import.py:0
+#, python-format
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: purchase_order_line_import
+#. odoo-python
+#: code:addons/purchase_order_line_import/wizards/purchase_order_line_import.py:0
+#, python-format
+msgid "Quantity to purchase, in the purchase unit of measure."
+msgstr "Cantidad a comprar, en la unidad de medida de compra."
+
+#. module: purchase_order_line_import
+#. odoo-python
+#: code:addons/purchase_order_line_import/wizards/purchase_order_line_import.py:0
+#, python-format
+msgid "Required column \"%s\" is missing."
+msgstr "Falta la columna obligatoria \"%s\"."
+
+#. module: purchase_order_line_import
+#. odoo-python
+#: code:addons/purchase_order_line_import/wizards/purchase_order_line_import.py:0
+#, python-format
+msgid "Row %(row)s: %(error)s"
+msgstr "Fila %(row)s: %(error)s"
+
+#. module: purchase_order_line_import
+#. odoo-python
+#: code:addons/purchase_order_line_import/wizards/purchase_order_line_import.py:0
+#, python-format
+msgid "Several analytic accounts found for \"%s\"."
+msgstr "Se han encontrado varias cuentas analíticas para \"%s\"."
+
+#. module: purchase_order_line_import
+#. odoo-python
+#: code:addons/purchase_order_line_import/wizards/purchase_order_line_import.py:0
+#, python-format
+msgid "Several products found with internal reference \"%s\"."
+msgstr "Se han encontrado varios productos con la referencia interna \"%s\"."
+
+#. module: purchase_order_line_import
+#: model:ir.model.fields,field_description:purchase_order_line_import.field_purchase_order_line_import__template_file
+msgid "Template File"
+msgstr "Archivo de plantilla"
+
+#. module: purchase_order_line_import
+#. odoo-python
+#: code:addons/purchase_order_line_import/wizards/purchase_order_line_import.py:0
+#, python-format
+msgid "The file has no lines to import."
+msgstr "El archivo no contiene líneas para importar."
+
+#. module: purchase_order_line_import
+#. odoo-python
+#: code:addons/purchase_order_line_import/wizards/purchase_order_line_import.py:0
+#, python-format
+msgid "The internal reference is required."
+msgstr "La referencia interna es obligatoria."
+
+#. module: purchase_order_line_import
+#. odoo-python
+#: code:addons/purchase_order_line_import/wizards/purchase_order_line_import.py:0
+#, python-format
+msgid "The quantity is required."
+msgstr "La cantidad es obligatoria."
+
+#. module: purchase_order_line_import
+#. odoo-python
+#: code:addons/purchase_order_line_import/wizards/purchase_order_line_import.py:0
+#, python-format
+msgid "The quantity must be greater than zero."
+msgstr "La cantidad debe ser mayor que cero."
+
+#. module: purchase_order_line_import
+#. odoo-python
+#: code:addons/purchase_order_line_import/wizards/purchase_order_line_import.py:0
+#: code:addons/purchase_order_line_import/wizards/purchase_order_line_import.py:0
+#, python-format
+msgid "Unit Price"
+msgstr "Precio unitario"
+
+#. module: purchase_order_line_import
+#. odoo-python
+#: code:addons/purchase_order_line_import/wizards/purchase_order_line_import.py:0
+#, python-format
+msgid "Unit price. Leave empty to use the vendor price."
+msgstr "Precio unitario. Déjelo vacío para usar el precio del proveedor."
+
+#. module: purchase_order_line_import
+#. odoo-python
+#: code:addons/purchase_order_line_import/wizards/purchase_order_line_import.py:0
+#, python-format
+msgid "Unknown column \"%s\"."
+msgstr "Columna desconocida \"%s\"."
+
+#. module: purchase_order_line_import
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_import.purchase_order_line_import_view_form
+msgid ""
+"Upload a spreadsheet whose first row holds the column names of\n"
+"                    the template. Each following row adds a line to the request for\n"
+"                    quotation. If any row has an error, no line is imported."
+msgstr ""
+"Suba una hoja de cálculo cuya primera fila contenga los nombres de las "
+"columnas de la plantilla. Cada una de las filas siguientes añade una línea a "
+"la solicitud de presupuesto. Si alguna fila tiene un error, no se importa "
+"ninguna línea."
