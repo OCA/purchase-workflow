@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 ForgeFlow S.L. (https://www.forgeflow.com)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field
+            name="name"
+        >purchase.order.form - purchase_order_line_import_sheet_file</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/tree/control" position="inside">
+                <button
+                    name="action_open_line_import"
+                    type="object"
+                    string="Import Lines"
+                    class="px-4 btn-link"
+                    context="{'order_id': parent.id}"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
