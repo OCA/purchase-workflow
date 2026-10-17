@@ -4,7 +4,7 @@ from datetime import datetime
 
 import pytz
 
-from odoo import api, fields, models
+from odoo import Command, api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import get_lang
 
@@ -167,9 +167,11 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             "price_unit": 0.0,
             "product_qty": qty,
             "analytic_distribution": item.line_id.analytic_distribution,
-            "purchase_request_lines": [(4, item.line_id.id)],
+            "purchase_request_lines": [Command.link(item.line_id.id)],
             "date_planned": self._get_date_with_user_tz(date_required),
-            "move_dest_ids": [(4, x.id) for x in item.line_id.move_dest_ids],
+            "move_dest_ids": [
+                Command.link(move_dest.id) for move_dest in item.line_id.move_dest_ids
+            ],
         }
 
     @api.model
@@ -271,6 +273,9 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                 )
                 all_qty = min(po_line_product_uom_qty, wizard_product_uom_qty)
                 self.create_allocation(po_line, line, all_qty, alloc_uom)
+            # Now link the PR line to the PO line (if not already linked)
+            if line.id not in po_line.purchase_request_lines.ids:
+                po_line.purchase_request_lines = [Command.link(line.id)]
             # TODO: Check propagate_uom compatibility:
             new_qty = pr_line_obj._calc_new_qty(
                 line, po_line=po_line, new_pr_line=new_pr_line
@@ -282,9 +287,6 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             # we enforce to save the datetime value in the current tz of the user
             date_planned = self._get_date_with_user_tz(date_required)
             po_line.write({"product_qty": new_qty, "date_planned": date_planned})
-            # Now link the PR line to the PO line (if not already linked)
-            if line.id not in po_line.purchase_request_lines.ids:
-                po_line.purchase_request_lines = [(4, line.id)]
             res.append(purchase.id)
 
         purchase_requests = self.item_ids.mapped("request_id")
