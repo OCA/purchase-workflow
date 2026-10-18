@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-24 07:53+0000\n"
-"PO-Revision-Date: 2026-10-18 14:06+0000\n"
+"PO-Revision-Date: 2026-10-18 14:22+0000\n"
 "Last-Translator: Luis Felipe Miléo <mileo@kmee.com.br>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-"
 "purchase-workflow-10-0/language/pt_BR/)\n"
@@ -357,7 +357,7 @@ msgstr "Copiar as descrições para um novo Pedido de Compras"
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__keep_estimated_cost
 msgid "Copy estimative cost to new PO"
-msgstr "Copiar estimativa de custos para um novo Pedido de Compras"
+msgstr "Usar custo estimado como preço"
 
 #. module: purchase_request
 #: model:ir.actions.act_window,name:purchase_request.action_purchase_request_line_make_purchase_order
@@ -393,7 +393,7 @@ msgstr "Criado em"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__date_start
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__date_start
 msgid "Creation date"
-msgstr "Data de criação:"
+msgstr "Data de criação"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__currency_id
@@ -480,7 +480,7 @@ msgstr ""
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_line_make_purchase_order
 msgid "Existing RFQ to update:"
-msgstr "Requisições existentes para atualizar:"
+msgstr "Cotação existente a atualizar"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_follower_ids
@@ -570,12 +570,12 @@ msgstr "Se checado, algumas mensagens tem erros de entrega."
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "In Progress"
-msgstr "Em Progresso"
+msgstr "Em andamento"
 
 #. module: purchase_request
 #: model:ir.model.fields.selection,name:purchase_request.selection__purchase_request__state__in_progress
 msgid "In progress"
-msgstr "Em progresso"
+msgstr "Em andamento"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__is_editable
@@ -645,7 +645,7 @@ msgstr "Faturas Manuais"
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order__sync_data_planned
 msgid "Match existing PO lines by Scheduled Date"
-msgstr "Combine as linhas de pedidos de compra existentes por Data Agendada"
+msgstr "Juntar só linhas com a mesma data prevista"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_has_error
@@ -686,7 +686,7 @@ msgstr "Novo"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_line_make_purchase_order
 msgid "New PO details:"
-msgstr "Novo Pedido detalhes:"
+msgstr "Detalhes do novo pedido"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__activity_date_deadline
@@ -744,7 +744,7 @@ msgstr "Quantidade em Aberto"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_search_sub
 msgid "Order Reference"
-msgstr "Referência da requisição:"
+msgstr "Referência da requisição"
 
 #. module: purchase_request
 #. odoo-python
@@ -772,17 +772,17 @@ msgstr "Qtd Pendente para Receber"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Picking"
-msgstr "Seleção"
+msgstr "Transferência"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__picking_type_id
 msgid "Picking Type"
-msgstr "Tipo de Seleção"
+msgstr "Tipo de operação"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Pickings"
-msgstr "Seleções"
+msgstr "Transferências"
 
 #. module: purchase_request
 #. odoo-python
@@ -1038,7 +1038,7 @@ msgstr "Qtd Concluída"
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__qty_in_progress
 msgid "Qty In Progress"
-msgstr "Qtd em Progresso"
+msgstr "Qtd em andamento"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__product_qty
@@ -1058,7 +1058,7 @@ msgstr "Quantidade completada"
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__qty_in_progress
 msgid "Quantity in progress."
-msgstr "Quantidade em progresso."
+msgstr "Quantidade em andamento."
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_allocation__allocated_product_qty
@@ -1147,7 +1147,7 @@ msgstr "Linhas da requisição"
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__name
 msgid "Request Reference"
-msgstr "Referência da requisição:"
+msgstr "Referência da requisição"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
@@ -1218,7 +1218,7 @@ msgstr "Estado da requisição"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Reset"
-msgstr "Resetar"
+msgstr "Voltar para provisório"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__activity_user_id
@@ -1415,7 +1415,7 @@ msgstr "Para aprovação"
 #. module: purchase_request
 #: model:ir.model.fields.selection,name:purchase_request.selection__purchase_request__state__to_approve
 msgid "To be approved"
-msgstr "Para ser aprovado"
+msgstr "Aguardando aprovação"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__estimated_cost
