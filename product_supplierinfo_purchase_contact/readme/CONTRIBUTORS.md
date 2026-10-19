@@ -3,3 +3,4 @@
   > - Carolina Fernandez
   > - Pedro M. Baeza
   > - Víctor Martínez
+  > - Carlos Dauden

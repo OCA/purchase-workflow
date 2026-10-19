@@ -8,6 +8,13 @@ from odoo.addons.base.tests.common import BaseCommon
 
 
 class TestStockRule(BaseCommon):
+    _test_user_groups = (
+        "purchase.group_purchase_manager",
+        "stock.group_stock_manager",
+        "base.group_partner_manager",
+        "base.group_system",
+    )
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
