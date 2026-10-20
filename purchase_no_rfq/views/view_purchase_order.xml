@@ -16,9 +16,7 @@
                     name="decoration-info"
                 >state == 'draft' or state == 'sent'</attribute>
                 <attribute name="decoration-warning">state == 'to approve'</attribute>
-                <attribute
-                    name="decoration-success"
-                >state == 'purchase' or state == 'done'</attribute>
+                <attribute name="decoration-success">state == 'purchase'</attribute>
             </field>
             <field name="date_order" position="attributes">
                 <attribute name="widget">remaining_days</attribute>
@@ -57,6 +55,18 @@
             >
                 <attribute name="context">{'send_rfq':False}</attribute>
                 <attribute name="string">Send by Email</attribute>
+            </xpath>
+            <xpath
+                expr="//header/button[@name='%(purchase.report_purchase_quotation)d']"
+                position="attributes"
+            >
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <xpath
+                expr="//header/button[@name='%(purchase.action_report_purchase_order)d']"
+                position="attributes"
+            >
+                <attribute name="invisible">state == 'cancel'</attribute>
             </xpath>
         </field>
     </record>
