@@ -3,8 +3,10 @@ Quotation' state, simplifying the workflow for the end users.
 
 Once installed :
 
-- The menu item 'Purchase \> Purchase \> Requests for Quotation' is
-  hidden. A single menu item 'Purchase Order' is available
+- The menu item 'Purchase > Orders > Requests for Quotation' is hidden 
+for regular users (it is only visible with technical features). 
+A single menu item 'Purchase Orders' is available and shows all the 
+orders, whatever their state.
 - The states names of the purchase order is altered. 'RFQ' is replaced
   by 'Draft' and 'RFQ sent' by 'Sent'.
 - The colors in the tree view is correctly set to `decoration-info` for
