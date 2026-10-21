@@ -1,0 +1,19 @@
+<odoo>
+    <record id="view_purchase_order_inherit" model="ir.ui.view">
+        <field name="name">purchase.order.form (in purchase_order_line_copy)</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_id']" position="before">
+                <button
+                    name="copy_pol"
+                    icon="fa-copy"
+                    type="object"
+                    aria-label="Copy line"
+                    invisible="state == 'cancel' or parent.locked"
+                    confirm="Are you sure you want to copy this order line?"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
