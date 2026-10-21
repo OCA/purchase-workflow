@@ -1,0 +1,1 @@
+   odoo-addon-purchase_order_line_menu @ git+https://github.com/OCA/purchase-workflow.git@refs/pull/3210/head#subdirectory=purchase_order_line_menu
