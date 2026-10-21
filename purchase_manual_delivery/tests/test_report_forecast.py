@@ -34,11 +34,9 @@ class TestReportForecast(TestReportsCommon):
         wizard = (
             self.env["create.stock.picking.wizard"]
             .with_context(
-                **{
-                    "active_model": "purchase.order",
-                    "active_id": self.po1.id,
-                    "active_ids": self.po1.ids,
-                }
+                active_model="purchase.order",
+                active_id=self.po1.id,
+                active_ids=self.po1.ids,
             )
             .create({})
         )

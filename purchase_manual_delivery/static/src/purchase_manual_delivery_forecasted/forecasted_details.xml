@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <templates id="template" xml:space="preserve">
     <t
         t-name="purchase_manual_delivery.ForecastedDetails"
@@ -8,8 +8,8 @@
         <xpath expr="//tr[@name='draft_po_in']" position="after">
             <tr
                 t-if="currentProduct.no_delivery_purchase_qty.in"
-                name="no_delivery_in"
                 t-attf-class="#{multipleProducts and 'collapse show' or ''} collapseGroup_#{line.product.id}"
+                name="no_delivery_in"
             >
                 <td />
                 <td>Requests without delivery :

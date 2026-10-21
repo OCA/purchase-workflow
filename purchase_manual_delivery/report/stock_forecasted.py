@@ -23,8 +23,9 @@ class StockForecastedProductProduct(models.AbstractModel):
         in_qty = {
             product.id: sum(
                 lines.mapped(
-                    lambda pol: pol.product_qty
-                    - (pol.qty_in_receipt + pol.qty_received)
+                    lambda pol: (
+                        pol.product_qty - (pol.qty_in_receipt + pol.qty_received)
+                    )
                 )
             )
             for product, lines in po_lines.items()
