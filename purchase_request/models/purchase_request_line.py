@@ -91,7 +91,12 @@ class PurchaseRequestLine(models.Model):
     cancelled = fields.Boolean(readonly=True, default=False, copy=False)
 
     purchased_qty = fields.Float(
-        string="RFQ/PO Qty",
+        string="Purchased Quantity",
+        digits="Product Unit of Measure",
+        compute="_compute_purchased_qty",
+    )
+    rfq_qty = fields.Float(
+        string="Quantity in RFQ",
         digits="Product Unit of Measure",
         compute="_compute_purchased_qty",
     )
@@ -105,11 +110,9 @@ class PurchaseRequestLine(models.Model):
         copy=False,
     )
     purchase_state = fields.Selection(
-        compute="_compute_purchase_state",
+        selection=lambda self: self._get_purchase_state_selection(),
         string="Purchase Status",
-        selection=lambda self: self.env["purchase.order"]
-        ._fields["state"]
-        ._description_selection(self.env),
+        compute="_compute_purchase_state",
         store=True,
     )
     move_dest_ids = fields.One2many(
@@ -274,14 +277,11 @@ class PurchaseRequestLine(models.Model):
     @api.onchange("product_id")
     def onchange_product_id(self):
         if self.product_id:
-            name = self.product_id.name
-            if self.product_id.code:
-                name = f"[{self.product_id.code}] {name}"
+            self.name = self.product_id.display_name
             if self.product_id.description_purchase:
-                name += "\n" + self.product_id.description_purchase
-            self.product_uom_id = self.product_id.uom_id.id
+                self.name += " " + self.product_id.description_purchase
+            self.product_uom_id = self.product_id.uom_po_id.id
             self.product_qty = 1
-            self.name = name
 
     def do_cancel(self):
         """Actions to perform when cancelling a purchase request line."""
@@ -298,28 +298,74 @@ class PurchaseRequestLine(models.Model):
             requests.check_auto_reject()
         return res
 
+    @api.model
+    def _get_purchase_state_selection(self):
+        """Purchase order states, plus a value of our own for partial purchases.
+
+        The order states are taken from ``purchase.order`` so that they keep
+        their translation, and ``partially`` is inserted right before
+        ``purchase``.
+        """
+        selection = list(
+            self.env["purchase.order"]._fields["state"]._description_selection(self.env)
+        )
+        values = [value for value, _label in selection]
+        index = values.index("purchase") if "purchase" in values else len(selection)
+        selection.insert(index, ("partially", _("Partially Purchased")))
+        return selection
+
+    def _get_purchased_qty(self, states):
+        """Quantity of the purchase order lines in ``states``, in the line UoM."""
+        self.ensure_one()
+        return sum(
+            po_line.product_uom._compute_quantity(
+                po_line.product_qty, self.product_uom_id
+            )
+            for po_line in self.purchase_lines.filtered(
+                lambda po_line: po_line.state in states
+            )
+        )
+
     def _compute_purchased_qty(self):
         for rec in self:
             rec.purchased_qty = 0.0
+            rec.rfq_qty = 0.0
             for line in rec.purchase_lines.filtered(lambda x: x.state != "cancel"):
-                if rec.product_uom_id and line.product_uom != rec.product_uom_id:
+                if line.state in ["purchase", "done"]:
                     rec.purchased_qty += line.product_uom._compute_quantity(
                         line.product_qty, rec.product_uom_id
                     )
                 else:
-                    rec.purchased_qty += line.product_qty
+                    rec.rfq_qty += line.product_uom._compute_quantity(
+                        line.product_qty, rec.product_uom_id
+                    )
 
-    @api.depends("purchase_lines.state", "purchase_lines.order_id.state")
+    @api.depends(
+        "product_qty",
+        "product_uom_id",
+        "purchase_lines.state",
+        "purchase_lines.order_id.state",
+        "purchase_lines.product_qty",
+        "purchase_lines.product_uom",
+    )
     def _compute_purchase_state(self):
         for rec in self:
             temp_purchase_state = False
             if rec.purchase_lines:
                 if any(po_line.state == "done" for po_line in rec.purchase_lines):
-                    temp_purchase_state = "done"
+                    temp_purchase_state = (
+                        "done"
+                        if rec._get_purchased_qty(["done"]) >= rec.product_qty
+                        else "partially"
+                    )
                 elif all(po_line.state == "cancel" for po_line in rec.purchase_lines):
                     temp_purchase_state = "cancel"
                 elif any(po_line.state == "purchase" for po_line in rec.purchase_lines):
-                    temp_purchase_state = "purchase"
+                    temp_purchase_state = (
+                        "purchase"
+                        if rec._get_purchased_qty(["purchase"]) >= rec.product_qty
+                        else "partially"
+                    )
                 elif any(
                     po_line.state == "to approve" for po_line in rec.purchase_lines
                 ):

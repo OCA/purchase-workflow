@@ -130,6 +130,52 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
             "Should have same price",
         )
 
+    def test_purchase_state_transitions(self):
+        """The purchase status follows the order state, the ordered quantity
+        and the cancellation of the order.
+        """
+        purchase_request = self.purchase_request_obj.create(
+            {
+                "picking_type_id": self.env.ref("stock.picking_type_in").id,
+                "requested_by": SUPERUSER_ID,
+            }
+        )
+        purchase_request_line = self.purchase_request_line_obj.create(
+            {
+                "request_id": purchase_request.id,
+                "product_id": self.product_product.id,
+                "product_uom_id": self.env.ref("uom.product_uom_unit").id,
+                "product_qty": 5.0,
+            }
+        )
+        purchase_request.button_to_approve()
+        purchase_request.button_approved()
+        wiz_id = self.wiz.with_context(
+            active_model="purchase.request.line",
+            active_ids=[purchase_request_line.id],
+            active_id=purchase_request_line.id,
+        ).create({"supplier_id": self.env.ref("base.res_partner_12").id})
+        wiz_id.make_purchase_order()
+        purchase_order = purchase_request_line.purchase_lines.order_id
+        self.assertEqual(purchase_request_line.purchase_state, "draft")
+
+        purchase_order.button_confirm()
+        self.assertEqual(purchase_request_line.purchase_state, "purchase")
+
+        # the order only covers part of what was requested
+        purchase_request_line.product_qty = 8.0
+        self.assertEqual(purchase_request_line.purchase_state, "partially")
+
+        # ... and the whole of it again
+        purchase_request_line.purchase_lines.product_qty = 8.0
+        self.assertEqual(purchase_request_line.purchase_state, "purchase")
+
+        purchase_order.button_cancel()
+        self.assertEqual(purchase_request_line.purchase_state, "cancel")
+        # a cancelled order is neither purchased nor pending in an RFQ
+        self.assertEqual(purchase_request_line.purchased_qty, 0.0)
+        self.assertEqual(purchase_request_line.rfq_qty, 0.0)
+
     def test_bug_is_editable_multiple_lines(self):
         # Check that reading multiple lines is still possible
         # https://github.com/OCA/purchase-workflow/pull/291
@@ -246,10 +292,15 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
                 item.onchange_product_id()
         wiz_id.make_purchase_order()
         self.assertEqual(
-            purchase_request_line1.purchased_qty, 1.0, "Should be a quantity of 1"
+            purchase_request_line1.rfq_qty, 1.0, "Quantity in RFQ should be 1"
         )
         self.assertEqual(
-            purchase_request_line2.purchased_qty, 1.0, "Should be a quantity of 1"
+            purchase_request_line2.rfq_qty, 1.0, "Quantity in RFQ should be 1"
+        )
+        purchase_request_line1.purchase_lines.order_id.button_confirm()
+        purchase_request_line1._compute_purchased_qty()
+        self.assertEqual(
+            purchase_request_line1.purchased_qty, 1.0, "Purchased quantity should be 1"
         )
 
     def test_purchase_request_to_purchase_rfq_multiple_PO_purchaseUoM(self):
