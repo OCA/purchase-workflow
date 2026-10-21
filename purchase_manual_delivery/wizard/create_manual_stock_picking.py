@@ -103,22 +103,22 @@ class CreateManualStockPickingWizard(models.TransientModel):
         if self.picking_id:
             self.location_dest_id = self.picking_id.location_dest_id
 
-    def _prepare_picking(self):
-        res = self.purchase_id._prepare_picking()
+    def _prepare_picking(self, moves):
+        """Return the values to create a new receipt for ``moves``.
+
+        Since Odoo 20.0, ``purchase.order._prepare_picking()`` does not exist
+        anymore: purchase moves get their picking in ``_action_confirm()``.
+        We build the values from the moves in the same way, but we always
+        create a new receipt, so we do not merge into an open one.
+        """
+        res = moves.with_context(
+            move_picking_partner_id=self.purchase_id.partner_id
+        )._get_new_picking_values()
         if self.location_dest_id:
             res["location_dest_id"] = self.location_dest_id.id
         return res
 
     def create_stock_picking(self):
-        StockPicking = self.env["stock.picking"]
-
-        # If a picking has been selected, we add products to the picking
-        # otherwise we create a new picking
-        picking_id = self.picking_id
-        if not picking_id:
-            res = self._prepare_picking()
-            picking_id = StockPicking.create(res)
-
         # Check quantity is not above remaining quantity
         if any(line.qty > line.remaining_qty for line in self.line_ids):
             raise UserError(
@@ -128,18 +128,29 @@ class CreateManualStockPickingWizard(models.TransientModel):
                     "the purchase order first."
                 )
             )
-        moves = self.line_ids._create_stock_moves(picking_id)
-        moves = moves.filtered(
-            lambda x: x.state not in ("done", "cancel")
-        )._action_confirm()
+        # If a picking has been selected, we add products to the picking
+        # otherwise we create a new picking
+        picking = self.picking_id
+        moves = self.line_ids._create_stock_moves(picking)
+        if not picking:
+            picking = self.env["stock.picking"].create(self._prepare_picking(moves))
+            moves.picking_id = picking
+        moves = (
+            moves.filtered(lambda x: x.state not in ("done", "cancel"))
+            .with_context(move_picking_partner_id=self.purchase_id.partner_id)
+            ._action_confirm()
+        )
         seq = 0
         for move in sorted(moves, key=lambda move: move.date_deadline or move.date):
             seq += 5
             move.sequence = seq
         moves._action_assign()
-        picking_id.message_post_with_source(
+        # Also confirm the next pickings created by push rules (multi-step)
+        forward_pickings = self.env["stock.picking"]._get_impacted_pickings(moves)
+        (picking | forward_pickings).action_confirm()
+        picking.message_post_with_source(
             "mail.message_origin_link",
-            render_values={"self": picking_id, "origin": self.purchase_id},
+            render_values={"self": picking, "origin": self.purchase_id},
             subtype_xmlid="mail.mt_note",
         )
 
@@ -148,7 +159,7 @@ class CreateManualStockPickingWizard(models.TransientModel):
             "view_mode": "form",
             "res_model": "stock.picking",
             "view_id": self.env.ref("stock.view_picking_form").id,
-            "res_id": picking_id.id,
+            "res_id": picking.id,
             "type": "ir.actions.act_window",
         }
 
@@ -158,7 +169,6 @@ class CreateManualStockPickingWizardLine(models.TransientModel):
     _description = "Create Manual Stock Picking Wizard Line"
 
     wizard_id = fields.Many2one(
-        string="Wizard",
         comodel_name="create.stock.picking.wizard",
         required=True,
         ondelete="cascade",
@@ -170,33 +180,33 @@ class CreateManualStockPickingWizardLine(models.TransientModel):
         related="purchase_order_line_id.product_id",
         string="Product",
     )
-    product_uom = fields.Many2one(
+    uom_id = fields.Many2one(
         "uom.uom",
-        related="purchase_order_line_id.product_uom_id",
+        related="purchase_order_line_id.uom_id",
         string="Unit of Measure",
     )
     date_planned = fields.Datetime(related="purchase_order_line_id.date_planned")
     product_qty = fields.Float(
         string="Quantity",
         related="purchase_order_line_id.product_qty",
-        digits="Product Unit of Measure",
+        digits="Product Unit",
     )
     qty_in_receipt = fields.Float(
         related="purchase_order_line_id.qty_in_receipt",
-        digits="Product Unit of Measure",
+        digits="Product Unit",
     )
     qty_received = fields.Float(
         related="purchase_order_line_id.qty_received",
-        digits="Product Unit of Measure",
+        digits="Product Unit",
     )
     remaining_qty = fields.Float(
         string="Remaining Quantity",
         compute="_compute_remaining_qty",
-        digits="Product Unit of Measure",
+        digits="Product Unit",
     )
     qty = fields.Float(
         string="Quantity to Receive",
-        digits="Product Unit of Measure",
+        digits="Product Unit",
         help="This is the quantity taken into account to create the picking",
     )
     price_unit = fields.Float(
@@ -228,13 +238,12 @@ class CreateManualStockPickingWizardLine(models.TransientModel):
             for val in line._prepare_stock_moves(picking):
                 if val.get("product_uom_qty", False):
                     # CHECK ME: We can receive more than one move
-                    product_uom = (
-                        self.env["uom.uom"].browse(val.get("product_uom", 0))
-                        or line.product_uom
+                    move_uom = (
+                        self.env["uom.uom"].browse(val.get("uom_id", 0)) or line.uom_id
                     )
-                    val["product_uom_qty"] = line.product_uom._compute_quantity(
+                    val["product_uom_qty"] = line.uom_id._compute_quantity(
                         line.qty,
-                        product_uom,
+                        move_uom,
                         rounding_method="HALF-UP",
                     )
                 if (

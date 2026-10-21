@@ -20,7 +20,7 @@
                 <field
                     name="qty_in_receipt"
                     optional="hide"
-                    column_invisible="parent.state not in ('purchase', 'done')"
+                    column_invisible="parent.state != 'purchase'"
                 />
             </field>
             <xpath expr="//field[@name='order_line']/list" position="attributes">
@@ -28,7 +28,7 @@
                     name="decoration-info"
                 >state == 'purchase' and pending_to_receive</attribute>
             </xpath>
-            <group name="other_info" position="inside">
+            <group name="purchase_info" position="inside">
                 <field
                     name="manual_delivery"
                     readonly="state not in ('draft', 'sent')"

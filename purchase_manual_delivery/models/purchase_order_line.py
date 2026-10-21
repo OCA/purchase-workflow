@@ -11,7 +11,7 @@ class PurchaseOrderLine(models.Model):
     qty_in_receipt = fields.Float(
         compute="_compute_qty_in_receipt",
         store=True,
-        digits="Product Unit of Measure",
+        digits="Product Unit",
         help="Quantity for which there are pending stock moves",
     )
     pending_to_receive = fields.Boolean(
@@ -24,57 +24,51 @@ class PurchaseOrderLine(models.Model):
     @api.depends(
         "move_ids",
         "move_ids.state",
+        "move_ids.quantity",
         "move_ids.location_id",
         "move_ids.location_dest_id",
+        "product_qty",
         "product_uom_qty",
         "qty_received",
         "state",
     )
     def _compute_qty_in_receipt(self):
+        precision_digits = self.env["decimal.precision"].precision_get("Product Unit")
         for line in self:
-            precision_digits = self.env["decimal.precision"].precision_get(
-                "Product Unit of Measure"
-            )
             total = 0.0
+            dest_location = line.order_id.picking_type_id.default_location_dest_id
             for move in line.move_ids:
-                if move.state not in ["cancel", "done"]:
-                    if (
-                        move.location_id
-                        == self.order_id.picking_type_id.default_location_dest_id
-                    ):
-                        # This is a return to vendor
-                        if move.to_refund:
-                            total -= move.product_uom._compute_quantity(
-                                move.quantity, line.product_uom_id
-                            )
-                    elif (
-                        move.origin_returned_move_id
-                        and move.origin_returned_move_id._is_dropshipped()
-                        and not move._is_dropshipped_returned()
-                    ):
-                        # Edge case: the dropship is returned to the stock,
-                        # no to the supplier.
-                        # In this case, the received quantity on the PO is
-                        # set although we didn't receive the product
-                        # physically in our stock. To avoid counting the
-                        # quantity twice, we do nothing.
-                        pass
-                    else:
-                        total += move.product_uom._compute_quantity(
-                            move.quantity, line.product_uom_id
+                if move.state in ("cancel", "done"):
+                    continue
+                if move.location_id == dest_location:
+                    # This is a return to vendor
+                    if move.to_refund:
+                        total -= move.uom_id._compute_quantity(
+                            move.quantity, line.uom_id
                         )
+                elif (
+                    move.origin_returned_move_id
+                    and move.origin_returned_move_id._is_dropshipped()
+                    and not move._is_dropshipped_returned()
+                ):
+                    # Edge case: the dropship is returned to the stock,
+                    # no to the supplier.
+                    # In this case, the received quantity on the PO is
+                    # set although we didn't receive the product
+                    # physically in our stock. To avoid counting the
+                    # quantity twice, we do nothing.
+                    pass
+                else:
+                    total += move.uom_id._compute_quantity(move.quantity, line.uom_id)
             line.qty_in_receipt = total
-            if (
+            line.pending_to_receive = (
                 float_compare(
                     line.product_qty,
                     line.qty_in_receipt + line.qty_received,
                     precision_digits=precision_digits,
                 )
-                == 1
-            ):
-                line.pending_to_receive = True
-            else:
-                line.pending_to_receive = False
+                > 0
+            )
 
     def _create_or_update_picking(self):
         # Avoid creating deliveries on manual delivery orders

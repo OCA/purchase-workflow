@@ -3,18 +3,14 @@
 
 {
     "name": "Purchase Manual Delivery",
-    "summary": """
-        Prevents pickings to be auto generated upon Purchase Order confirmation
-        and adds the ability to manually generate them as the supplier confirms
-        the different purchase order lines.
-    """,
-    "version": "19.0.1.0.0",
+    "summary": "Create purchase receipts manually instead of on confirmation",
+    "version": "20.0.1.0.0",
     "license": "AGPL-3",
     "author": "ForgeFlow S.L.,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
     "depends": ["purchase_stock", "purchase_order_line_menu"],
     "data": [
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
         "wizard/create_manual_stock_picking.xml",
         "views/purchase_order_line_views.xml",
         "views/purchase_order_views.xml",

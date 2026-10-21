@@ -8,7 +8,7 @@
         <xpath expr="//tr[@name='draft_po_in']" position="after">
             <tr
                 t-if="currentProduct.no_delivery_purchase_qty.in"
-                t-attf-class="#{multipleProducts and 'collapse show' or ''} collapseGroup_#{line.product.id}"
+                t-attf-class="#{this.multipleProducts and 'collapse show' or ''} collapseGroup_#{line.product.id}"
                 name="no_delivery_in"
             >
                 <td />
@@ -29,7 +29,7 @@
                 </td>
                 <td class="text-end text-success">
                     <t
-                        t-out="_formatFloat(currentProduct.no_delivery_purchase_qty.in)"
+                        t-out="this._formatFloat(currentProduct.no_delivery_purchase_qty.in)"
                     />
                     <t t-out="line.uom_id.display_name" />
                 </td>

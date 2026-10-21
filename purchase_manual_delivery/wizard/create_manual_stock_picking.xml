@@ -34,7 +34,7 @@
                         <field name="qty_in_receipt" />
                         <field name="remaining_qty" string="Remaining Qty" />
                         <field name="qty" string="Quantity" />
-                        <field name="product_uom" groups="uom.group_uom" />
+                        <field name="uom_id" groups="uom.group_uom" />
                     </list>
                 </field>
                 <footer>

@@ -10,7 +10,7 @@ class StockForecastedProductProduct(models.AbstractModel):
             product_template_ids, product_ids, wh_location_ids
         )
         domain = [
-            ("state", "in", ["purchase", "done"]),
+            ("state", "=", "purchase"),
             ("pending_to_receive", "=", True),
         ]
         domain += self._product_purchase_domain(product_template_ids, product_ids)

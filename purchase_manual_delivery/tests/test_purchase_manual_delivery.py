@@ -3,7 +3,7 @@
 
 from odoo import fields
 from odoo.exceptions import UserError
-from odoo.tests import Form, TransactionCase
+from odoo.tests import TransactionCase
 
 from odoo.addons.mail.tests.common import mail_new_test_user
 
@@ -58,7 +58,7 @@ class TestPurchaseManualDelivery(TransactionCase):
             {
                 "order_id": cls.po1.id,
                 "product_id": cls.product1.id,
-                "product_uom_id": cls.product1.uom_id.id,
+                "uom_id": cls.product1.uom_id.id,
                 "name": cls.product1.name,
                 "price_unit": cls.product1.standard_price,
                 "date_planned": fields.Datetime.now(),
@@ -69,7 +69,7 @@ class TestPurchaseManualDelivery(TransactionCase):
             {
                 "order_id": cls.po1.id,
                 "product_id": cls.product2.id,
-                "product_uom_id": cls.product2.uom_id.id,
+                "uom_id": cls.product2.uom_id.id,
                 "name": cls.product2.name,
                 "price_unit": cls.product2.standard_price,
                 "date_planned": fields.Datetime.now(),
@@ -86,7 +86,7 @@ class TestPurchaseManualDelivery(TransactionCase):
             {
                 "order_id": cls.po2.id,
                 "product_id": cls.product1.id,
-                "product_uom_id": cls.product1.uom_id.id,
+                "uom_id": cls.product1.uom_id.id,
                 "name": cls.product1.name,
                 "price_unit": cls.product1.standard_price,
                 "date_planned": fields.Datetime.now(),
@@ -97,7 +97,7 @@ class TestPurchaseManualDelivery(TransactionCase):
             {
                 "order_id": cls.po2.id,
                 "product_id": cls.product2.id,
-                "product_uom_id": cls.product2.uom_id.id,
+                "uom_id": cls.product2.uom_id.id,
                 "name": cls.product2.name,
                 "price_unit": cls.product2.standard_price,
                 "date_planned": fields.Datetime.now(),
@@ -204,31 +204,16 @@ class TestPurchaseManualDelivery(TransactionCase):
         picking.button_validate()
 
         # Process some returns
-        stock_return_picking_form = Form(
-            self.env["stock.return.picking"].with_context(
-                active_ids=picking.ids,
-                active_id=picking.id,
-                active_model=picking._name,
-            )
+        return_picking = picking._create_return()
+        return_move1 = return_picking.move_ids.filtered(
+            lambda m: m.origin_returned_move_id.purchase_line_id == self.po1_line1
         )
-        return_wiz = stock_return_picking_form.save()
-        return_wiz.product_return_moves.filtered(
-            lambda prm: prm.move_id.purchase_line_id == self.po1_line1
-        ).write(
-            {
-                "quantity": 2,
-                "to_refund": True,
-            }
+        return_move1.write({"product_uom_qty": 2, "to_refund": True})
+        return_move2 = return_picking.move_ids.filtered(
+            lambda m: m.origin_returned_move_id.purchase_line_id == self.po1_line2
         )
-        return_wiz.product_return_moves.filtered(
-            lambda prm: prm.move_id.purchase_line_id == self.po1_line2
-        ).write(
-            {
-                "quantity": 2,
-                "to_refund": False,
-            }
-        )
-        return_wiz.action_create_returns()
+        return_move2.write({"product_uom_qty": 2, "to_refund": False})
+        return_picking.action_assign()
 
         # The refund line is open to re-receive the returned item
         self.assertTrue(self.po1_line1.pending_to_receive)
@@ -339,7 +324,7 @@ class TestPurchaseManualDelivery(TransactionCase):
             {
                 "order_id": po_existing_bigger.id,
                 "product_id": self.product1.id,
-                "product_uom_id": self.product1.uom_id.id,
+                "uom_id": self.product1.uom_id.id,
                 "name": self.product1.name,
                 "price_unit": self.product1.standard_price,
                 "date_planned": fields.Datetime.now(),
@@ -396,7 +381,7 @@ class TestPurchaseManualDelivery(TransactionCase):
             {
                 "order_id": po_in_progress.id,
                 "product_id": product_in_progress.id,
-                "product_uom_id": product_in_progress.uom_id.id,
+                "uom_id": product_in_progress.uom_id.id,
                 "name": product_in_progress.name,
                 "price_unit": product_in_progress.standard_price,
                 "date_planned": fields.Datetime.now(),
@@ -467,7 +452,7 @@ class TestPurchaseManualDelivery(TransactionCase):
                         "name": self.product1.name,
                         "product_id": self.product1.id,
                         "product_qty": 5.0,
-                        "product_uom_id": self.product1.uom_id.id,
+                        "uom_id": self.product1.uom_id.id,
                         "price_unit": 5000000.0,
                     },
                 )

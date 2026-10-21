@@ -24,6 +24,7 @@ class PurchaseOrder(models.Model):
         for po in self:
             po.manual_delivery = po.company_id.purchase_manual_delivery
 
+    @api.depends("order_line.pending_to_receive")
     def _compute_pending_to_receive(self):
         """An order is 'pending to receive' if any of its lines is"""
         for order in self:

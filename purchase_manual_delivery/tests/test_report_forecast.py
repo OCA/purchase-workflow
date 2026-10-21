@@ -19,7 +19,7 @@ class TestReportForecast(TestReportsCommon):
             {
                 "order_id": cls.po1.id,
                 "product_id": cls.product.id,
-                "product_uom_id": cls.product.uom_id.id,
+                "uom_id": cls.product.uom_id.id,
                 "name": cls.product.name,
                 "price_unit": cls.product.standard_price,
                 "date_planned": fields.Datetime.now(),
@@ -53,7 +53,7 @@ class TestReportForecast(TestReportsCommon):
         wizard.create_stock_picking()
 
         # Checks the report.
-        report_values, docs, lines = self.get_report_forecast(
+        _report_values, docs, _lines = self.get_report_forecast(
             product_template_ids=self.product_template.ids
         )
         product_data = docs["product"][self.product.id]
