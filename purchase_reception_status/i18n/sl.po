@@ -41,13 +41,9 @@ msgstr "ID"
 #. module: purchase_reception_status
 #: model:ir.model.fields,help:purchase_reception_status.field_purchase_order__force_received
 msgid ""
-"If true, the reception status will be forced to Fully Received, even if some"
-" lines are not fully received. To be able to modify this field, you must "
-"first lock the order."
+"If true, the order is marked forced only when all lines are fully received "
+"and at least one line was manually forced."
 msgstr ""
-"Če je vrednost 'true', bo stanje sprejema vsiljeno na 'Popolnoma prejeto', "
-"tudi če nekatere vrstice niso v celoti prejete. Če želite spremeniti to "
-"polje, morate najprej zakleniti naročilo."
 
 #. module: purchase_reception_status
 #: model_terms:ir.ui.view,arch_db:purchase_reception_status.view_purchase_order_filter
@@ -85,3 +81,12 @@ msgstr ""
 "Rdeča: zamuda\n"
 "            Oranžna: obdelati danes\n"
 "            Zelena: pravočasno"
+
+#~ msgid ""
+#~ "If true, the reception status will be forced to Fully Received, even if "
+#~ "some lines are not fully received. To be able to modify this field, you "
+#~ "must first lock the order."
+#~ msgstr ""
+#~ "Če je vrednost 'true', bo stanje sprejema vsiljeno na 'Popolnoma "
+#~ "prejeto', tudi če nekatere vrstice niso v celoti prejete. Če želite "
+#~ "spremeniti to polje, morate najprej zakleniti naročilo."
