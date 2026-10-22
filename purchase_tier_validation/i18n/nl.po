@@ -1,0 +1,115 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_tier_validation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2025-11-20 22:42+0000\n"
+"Last-Translator: Bosd <c5e2fd43-d292-4c90-9d1f-74ff3436329a@anonaddy.me>\n"
+"Language-Team: none\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
+
+#. module: purchase_tier_validation
+#: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__can_review
+msgid "Can Review"
+msgstr "Kan Beoordelen"
+
+#. module: purchase_tier_validation
+#: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__has_comment
+msgid "Has Comment"
+msgstr "Heeft Opmerking"
+
+#. module: purchase_tier_validation
+#: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__hide_reviews
+msgid "Hide Reviews"
+msgstr "Verberg Beoordelingen"
+
+#. module: purchase_tier_validation
+#: model:ir.model.fields,help:purchase_tier_validation.field_purchase_order__has_comment
+msgid "If set, Allow the reviewer to leave a comment on the review."
+msgstr ""
+"Indien ingesteld, kan de beoordelaar een opmerking achterlaten bij de "
+"beoordeling."
+
+#. module: purchase_tier_validation
+#: model_terms:ir.ui.view,arch_db:purchase_tier_validation.view_purchase_order_filter
+msgid "My Purchases to review"
+msgstr "Mijn Inkooppen om te beoordelen"
+
+#. module: purchase_tier_validation
+#: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__need_validation
+msgid "Need Validation"
+msgstr "Validatie Nodig"
+
+#. module: purchase_tier_validation
+#: model_terms:ir.ui.view,arch_db:purchase_tier_validation.view_purchase_order_filter
+msgid "Needs my Review"
+msgstr "Heeft mijn Beoordeling Nodig"
+
+#. module: purchase_tier_validation
+#: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__next_review
+msgid "Next Review"
+msgstr "Volgende Beoordeling"
+
+#. module: purchase_tier_validation
+#: model_terms:ir.ui.view,arch_db:purchase_tier_validation.view_purchase_order_filter
+msgid "POs validated and ready to be confirmed"
+msgstr "IO's gevalideerd en klaar om bevestigd te worden"
+
+#. module: purchase_tier_validation
+#: model:ir.model,name:purchase_tier_validation.model_purchase_order
+msgid "Purchase Order"
+msgstr "Inkooporder"
+
+#. module: purchase_tier_validation
+#: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__rejected
+msgid "Rejected"
+msgstr "Afgewezen"
+
+#. module: purchase_tier_validation
+#: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__rejected_message
+msgid "Rejected Message"
+msgstr "Bericht Afwijzing"
+
+#. module: purchase_tier_validation
+#: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__reviewer_ids
+msgid "Reviewers"
+msgstr "Beoordelaars"
+
+#. module: purchase_tier_validation
+#: model:ir.model,name:purchase_tier_validation.model_tier_definition
+msgid "Tier Definition"
+msgstr "Tier Definitie"
+
+#. module: purchase_tier_validation
+#: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__to_validate_message
+msgid "To Validate Message"
+msgstr "Te Valideren Bericht"
+
+#. module: purchase_tier_validation
+#: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__validated
+#: model_terms:ir.ui.view,arch_db:purchase_tier_validation.view_purchase_order_filter
+msgid "Validated"
+msgstr "Gevalideerd"
+
+#. module: purchase_tier_validation
+#: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__validated_message
+msgid "Validated Message"
+msgstr "Gevalideerd Bericht"
+
+#. module: purchase_tier_validation
+#: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__validation_status
+msgid "Validation Status"
+msgstr "Validatiestatus"
+
+#. module: purchase_tier_validation
+#: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__review_ids
+msgid "Validations"
+msgstr "Validaties"
