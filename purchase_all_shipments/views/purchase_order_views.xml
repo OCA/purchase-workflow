@@ -13,7 +13,7 @@
                     type="object"
                     name="action_view_all_pickings"
                     class="oe_stat_button"
-                    icon="fa-truck"
+                    icon="local_shipping"
                     invisible="all_picking_count == 0"
                 >
                     <field
