@@ -19,12 +19,9 @@
                 <group class="oe_right">
                     <label
                         for="total_weight"
-                        invisible="total_weight_uom_id == False or display_order_weight_in_po == False"
+                        invisible="not display_order_weight_in_po"
                     />
-                    <div
-                        class="text-nowrap"
-                        invisible="total_weight_uom_id == False or display_order_weight_in_po == False"
-                    >
+                    <div class="text-nowrap" invisible="not display_order_weight_in_po">
                         <field name="total_weight" class="oe_inline" />
                         <span style="margin-left:3px;">
                             <field
@@ -35,12 +32,9 @@
                     </div>
                     <label
                         for="total_volume"
-                        invisible="total_weight_uom_id == False or display_order_weight_in_po == False"
+                        invisible="not display_order_volume_in_po"
                     />
-                    <div
-                        class="text-nowrap"
-                        invisible="total_weight_uom_id == False or display_order_weight_in_po == False"
-                    >
+                    <div class="text-nowrap" invisible="not display_order_volume_in_po">
                         <field name="total_volume" class="oe_inline" />
                         <span style="margin-left:3px;">
                             <field
