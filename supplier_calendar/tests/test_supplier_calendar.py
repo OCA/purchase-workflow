@@ -141,3 +141,81 @@ class TestStockWarehouseCalendar(BaseCommon):
         self.assertEqual(
             date, aux_date, "The date should be the same if the delay is 0."
         )
+
+    def test_05_company_default_supplier_calendar(self):
+        reference = "2097-01-11 12:00:00"  # friday
+        # Without default calendar, it counts natural days
+        self.company_partner.write(
+            {"delay_calendar_type": "company_calendar", "factory_calendar_id": False}
+        )
+        result = self.company_partner.supplier_plan_days(
+            reference, 3, self.company
+        ).date()
+        self.assertEqual(result, fields.Date.to_date("2097-01-14"))  # Monday
+        self.company_partner.delay_calendar_type = "natural"
+        self.company.supplier_calendar_id = self.calendar
+        # Natural days stay natural days
+        result = self.company_partner.supplier_plan_days(
+            reference, 3, self.company
+        ).date()
+        self.assertEqual(result, fields.Date.to_date("2097-01-14"))  # Monday
+        self.company_partner.delay_calendar_type = "company_calendar"
+        result = self.company_partner.supplier_plan_days(
+            reference, 3, self.company
+        ).date()
+        self.assertEqual(result, fields.Date.to_date("2097-01-16"))  # Wednesday
+        # A line without vendor keeps the core date
+        self.assertTrue(
+            self.PurchaseOrderLine._get_date_planned(self.env["product.supplierinfo"])
+        )
+
+    def test_06_delay_calendar_type_default(self):
+        partner = self.env["res.partner"].create({"name": "Vendor"})
+        self.assertEqual(partner.delay_calendar_type, "natural")
+        self.company.supplier_calendar_id = self.calendar
+        partner = self.env["res.partner"].create({"name": "Vendor"})
+        self.assertEqual(partner.delay_calendar_type, "company_calendar")
+
+    def test_07_settings_warn_vendors_in_natural_days(self):
+        self.company_partner.write(
+            {
+                "supplier_rank": 1,
+                "delay_calendar_type": "natural",
+                "factory_calendar_id": False,
+            }
+        )
+        settings = self.env["res.config.settings"].create(
+            {"supplier_calendar_id": self.calendar.id}
+        )
+        self.assertTrue(settings.supplier_calendar_natural_count)
+        settings.action_set_vendors_default_supplier_calendar()
+        self.assertEqual(self.company_partner.delay_calendar_type, "company_calendar")
+        settings.invalidate_recordset()
+        self.assertFalse(settings.supplier_calendar_natural_count)
+
+    def test_08_settings_button_only_changes_the_configured_company(self):
+        company_b = self.env["res.company"].create({"name": "Company B"})
+        vendor_b = self.env["res.partner"].create(
+            {
+                "name": "Vendor of company B",
+                "company_id": company_b.id,
+                "supplier_rank": 1,
+                "delay_calendar_type": "natural",
+            }
+        )
+        shared_vendor = self.env["res.partner"].create(
+            {
+                "name": "Shared vendor",
+                "supplier_rank": 1,
+                "delay_calendar_type": "natural",
+            }
+        )
+        settings = (
+            self.env["res.config.settings"]
+            .with_context(allowed_company_ids=[self.company.id, company_b.id])
+            .create({"supplier_calendar_id": self.calendar.id})
+        )
+        self.assertEqual(settings.company_id, self.company)
+        settings.action_set_vendors_default_supplier_calendar()
+        self.assertEqual(shared_vendor.delay_calendar_type, "company_calendar")
+        self.assertEqual(vendor_b.delay_calendar_type, "natural")
