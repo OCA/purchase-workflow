@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -44,6 +44,12 @@ msgid "Attachment Count"
 msgstr ""
 
 #. module: purchase_reception_status_line
+#: model:ir.model.fields,field_description:purchase_reception_status_line.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:purchase_reception_status_line.field_purchase_order_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_reception_status_line
 #: model:ir.model.fields,field_description:purchase_reception_status_line.field_purchase_order_line__message_follower_ids
 msgid "Followers"
 msgstr ""
@@ -73,6 +79,12 @@ msgstr ""
 #. module: purchase_reception_status_line
 #: model:ir.model.fields,field_description:purchase_reception_status_line.field_purchase_order_line__has_message
 msgid "Has Message"
+msgstr ""
+
+#. module: purchase_reception_status_line
+#: model:ir.model.fields,field_description:purchase_reception_status_line.field_purchase_order__id
+#: model:ir.model.fields,field_description:purchase_reception_status_line.field_purchase_order_line__id
+msgid "ID"
 msgstr ""
 
 #. module: purchase_reception_status_line
