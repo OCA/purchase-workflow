@@ -28,25 +28,8 @@ class PurchaseOrder(models.Model):
         return self._get_action_view_all_pickings(self.all_picking_ids)
 
     def _get_action_view_all_pickings(self, picking_ids):
-        """Similar to the _get_action_view_picking method in the purchase module"""
-        self.ensure_one()
-        result = self.env["ir.actions.actions"]._for_xml_id(
-            "stock.action_picking_tree_all"
-        )
-        # override the context to get rid of the default filtering on picking type
+        """Same action as the core receipts button, for all the given pickings"""
+        result = self._get_action_view_picking(picking_ids)
+        # override the context to get rid of the receipt defaults
         result["context"] = {}
-
-        if len(picking_ids) > 1:
-            result["domain"] = [("id", "in", picking_ids.ids)]
-        elif len(picking_ids) == 1:
-            res = self.env.ref("stock.view_picking_form", False)
-            form_view = [(res and res.id or False, "form")]
-            result["views"] = form_view + [
-                (state, view)
-                for state, view in result.get("views", [])
-                if view != "form"
-            ]
-            result["res_id"] = picking_ids.id
-        else:
-            result["domain"] = [("id", "in", [])]
         return result

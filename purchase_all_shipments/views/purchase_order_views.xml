@@ -15,6 +15,7 @@
                     class="oe_stat_button"
                     icon="local_shipping"
                     invisible="all_picking_count == 0"
+                    groups="stock.group_stock_user"
                 >
                     <field
                         name="all_picking_count"
