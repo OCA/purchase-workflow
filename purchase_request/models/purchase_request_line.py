@@ -104,9 +104,7 @@ class PurchaseRequestLine(models.Model):
     purchase_state = fields.Selection(
         compute="_compute_purchase_state",
         string="Purchase Status",
-        selection=lambda self: self.env["purchase.order"]
-        ._fields["state"]
-        ._description_selection(self.env),
+        selection="_selection_purchase_state",
         store=True,
     )
     move_dest_ids = fields.One2many(
@@ -301,6 +299,20 @@ class PurchaseRequestLine(models.Model):
                     )
                 else:
                     rec.purchased_qty += line.product_qty
+
+    @api.model
+    def _selection_purchase_state(self):
+        """Purchase order states, plus ``done`` for fully received lines.
+
+        ``purchase.order`` has no ``done`` state since 19.0, but
+        ``_compute_purchase_state`` still uses it.
+        """
+        selection = list(
+            self.env["purchase.order"]._fields["state"]._description_selection(self.env)
+        )
+        if "done" not in dict(selection):
+            selection.append(("done", self.env._("Done")))
+        return selection
 
     @api.depends("purchase_lines.state", "purchase_lines.order_id.state")
     def _compute_purchase_state(self):
