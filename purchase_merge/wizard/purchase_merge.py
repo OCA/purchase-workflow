@@ -193,8 +193,11 @@ class MergePurchaseAutomatic(models.TransientModel):
             dst_purchase = self.purchase_ids[-1]
             src_purchase = self.purchase_ids[:-1]
 
+        # sudo: merge_records() reads ir.model.fields and rewrites followers and
+        # other documents' references to the source orders, which a purchase
+        # user may not access. The orders are still written as the user below.
         openupgrade_merge_records.merge_records(
-            env=self.env,
+            env=self.sudo().env,
             model_name="purchase.order",
             record_ids=src_purchase.ids,
             target_record_id=dst_purchase.id,
