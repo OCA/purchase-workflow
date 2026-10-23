@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2025 ForgeFlow S.L. (https://www.forgeflow.com)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html). -->
+<odoo>
+    <record id="purchase_order_line_tree_uninvoiced" model="ir.ui.view">
+        <field name="name">purchase.order.line.tree.uninvoiced</field>
+        <field name="model">purchase.order.line</field>
+        <field
+            name="inherit_id"
+            ref="purchase_order_line_menu.purchase_order_line_tree"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='price_total']" position="before">
+                <field
+                    name="amount_uninvoiced"
+                    widget="monetary"
+                    optional="show"
+                    sum="Uninvoiced Amount"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
