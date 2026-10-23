@@ -35,6 +35,11 @@ msgid "Click to set a new type for purchase order."
 msgstr ""
 
 #. module: purchase_order_type
+#: model:ir.model,name:purchase_order_type.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__company_id
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
 msgid "Company"
@@ -56,12 +61,21 @@ msgid "Created on"
 msgstr "建立於"
 
 #. module: purchase_order_type
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__is_default
+msgid "Default"
+msgstr ""
+
+#. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__description
 msgid "Description"
 msgstr ""
 
 #. module: purchase_order_type
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order__display_name
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__display_name
+#: model:ir.model.fields,field_description:purchase_order_type.field_res_company__display_name
+#: model:ir.model.fields,field_description:purchase_order_type.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:purchase_order_type.field_res_partner__display_name
 msgid "Display Name"
 msgstr "顯示名稱"
 
@@ -78,14 +92,22 @@ msgid "Entry Sequence"
 msgstr ""
 
 #. module: purchase_order_type
-#: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
-msgid "Group By"
-msgstr ""
-
-#. module: purchase_order_type
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order__id
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__id
+#: model:ir.model.fields,field_description:purchase_order_type.field_res_company__id
+#: model:ir.model.fields,field_description:purchase_order_type.field_res_config_settings__id
+#: model:ir.model.fields,field_description:purchase_order_type.field_res_partner__id
 msgid "ID"
 msgstr "類型"
+
+#. module: purchase_order_type
+#: model:ir.model.fields,help:purchase_order_type.field_purchase_order__order_type_required
+#: model:ir.model.fields,help:purchase_order_type.field_res_company__purchase_order_type_required
+#: model:ir.model.fields,help:purchase_order_type.field_res_config_settings__purchase_order_type_required
+msgid ""
+"If enabled, a purchase order can only be saved in the form once it has an "
+"order type."
+msgstr ""
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__incoterm_id
@@ -109,6 +131,12 @@ msgid "Name"
 msgstr "類型"
 
 #. module: purchase_order_type
+#. odoo-python
+#: code:addons/purchase_order_type/models/purchase_order_type.py:0
+msgid "Only one default order type is allowed per company."
+msgstr ""
+
+#. module: purchase_order_type
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
 msgid "Payment Term"
 msgstr ""
@@ -116,6 +144,11 @@ msgstr ""
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__payment_term_id
 msgid "Payment Terms"
+msgstr ""
+
+#. module: purchase_order_type
+#: model:ir.model,name:purchase_order_type.model_res_config_settings
+msgid "Procurement purchase grouping settings"
 msgstr ""
 
 #. module: purchase_order_type
@@ -138,6 +171,18 @@ msgid "Purchase Order Types"
 msgstr ""
 
 #. module: purchase_order_type
+#: model_terms:ir.ui.view,arch_db:purchase_order_type.res_config_settings_view_form_purchase
+msgid "Purchase orders can only be saved once they have an order type"
+msgstr ""
+
+#. module: purchase_order_type
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order__order_type_required
+#: model:ir.model.fields,field_description:purchase_order_type.field_res_company__purchase_order_type_required
+#: model:ir.model.fields,field_description:purchase_order_type.field_res_config_settings__purchase_order_type_required
+msgid "Require Purchase Order Type"
+msgstr ""
+
+#. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__sequence
 msgid "Sequence"
 msgstr ""
@@ -153,6 +198,14 @@ msgstr "類型"
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_purchase_order_type
 msgid "Type of purchase order"
+msgstr ""
+
+#. module: purchase_order_type
+#: model:ir.model.fields,help:purchase_order_type.field_purchase_order_type__is_default
+msgid ""
+"Used as the fallback order type for a purchase order whose vendor does not "
+"provide one, and to correct a purchase order whose type no longer suits its "
+"company after the company changes."
 msgstr ""
 
 #~ msgid "Last Modified on"
