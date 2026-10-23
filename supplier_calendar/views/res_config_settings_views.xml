@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 ForgeFlow S.L.
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html). -->
+<odoo>
+    <record id="res_config_settings_view_form_purchase" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.supplier.calendar</field>
+        <field name="model">res.config.settings</field>
+        <field
+            name="inherit_id"
+            ref="purchase.res_config_settings_view_form_purchase"
+        />
+        <field name="arch" type="xml">
+            <block name="purchase_setting_container" position="inside">
+                <setting
+                    id="supplier_calendar"
+                    company_dependent="1"
+                    help="Count the lead time of the vendors with Default Supplier Calendar in these working days"
+                >
+                    <field name="supplier_calendar_id" />
+                    <div
+                        class="alert alert-warning mt-2"
+                        role="alert"
+                        invisible="not supplier_calendar_id or not supplier_calendar_natural_count"
+                    >
+                        <field
+                        name="supplier_calendar_natural_count"
+                        class="oe_inline"
+                    /> vendors have Natural days as Delay Calendar Type, so they do not use this calendar. The button sets all of them to Default Supplier Calendar.
+                        <button
+                        name="action_set_vendors_default_supplier_calendar"
+                        type="object"
+                        string="Set them to Default Supplier Calendar"
+                        class="btn-link p-0"
+                    />
+                    </div>
+                </setting>
+            </block>
+        </field>
+    </record>
+</odoo>

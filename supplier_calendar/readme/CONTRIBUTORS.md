@@ -3,3 +3,4 @@
 - Lois Rilo \<<lois.rilo@eforgeflow>\>
 - [Heliconia Solutions Pvt. Ltd.](https://www.heliconia.io)
   - Bhavesh Heliconia
+- Laura Valls \<<laura.valls@forgeflow.com>\>
