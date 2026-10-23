@@ -16,14 +16,24 @@ class StockWarehouseOrderpoint(models.Model):
         compute="_compute_supplier_id", readonly=False, store=True
     )
 
-    @api.depends("route_id", "route_id.force_vendor_with_best_promotion")
+    @api.depends(
+        "route_id.force_vendor_with_best_promotion",
+        "company_id",
+        "product_id.seller_ids.company_id",
+        "product_id.seller_ids.date_start",
+        "product_id.seller_ids.date_end",
+        "product_id.seller_ids.is_promotion",
+    )
     def _compute_supplier_id(self):
         for rec in self:
             rec.supplier_id = False
             if rec.route_id and rec.route_id.force_vendor_with_best_promotion:
-                allowed_company_ids = rec.allowed_location_ids.company_id
-                suppliers = rec.product_id._prepare_sellers(False).filtered(
-                    lambda x: x.company_id in allowed_company_ids
+                suppliers = (
+                    rec.product_id.with_company(rec.company_id)
+                    ._prepare_sellers(False)
+                    .filtered(
+                        lambda x: not x.company_id or x.company_id == rec.company_id
+                    )
                 )
                 promotion_suppliers = suppliers.filtered(
                     lambda x: x._is_promotion_active_or_upcoming()
