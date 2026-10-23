@@ -26,9 +26,7 @@ class PurchaseRequestLine(models.Model):
         string="UoM",
         tracking=True,
     )
-    product_qty = fields.Float(
-        string="Quantity", tracking=True, digits="Product Unit of Measure"
-    )
+    product_qty = fields.Float(string="Quantity", tracking=True, digits="Product Unit")
     request_id = fields.Many2one(
         comodel_name="purchase.request",
         string="Purchase Request",
@@ -89,7 +87,7 @@ class PurchaseRequestLine(models.Model):
 
     purchased_qty = fields.Float(
         string="RFQ/PO Qty",
-        digits="Product Unit of Measure",
+        digits="Product Unit",
         compute="_compute_purchased_qty",
     )
     purchase_lines = fields.Many2many(
@@ -122,21 +120,21 @@ class PurchaseRequestLine(models.Model):
     )
 
     qty_in_progress = fields.Float(
-        digits="Product Unit of Measure",
+        digits="Product Unit",
         readonly=True,
         compute="_compute_qty",
         store=True,
         help="Quantity in progress.",
     )
     qty_done = fields.Float(
-        digits="Product Unit of Measure",
+        digits="Product Unit",
         readonly=True,
         compute="_compute_qty",
         store=True,
         help="Quantity completed",
     )
     qty_cancelled = fields.Float(
-        digits="Product Unit of Measure",
+        digits="Product Unit",
         readonly=True,
         compute="_compute_qty_cancelled",
         store=True,
@@ -149,7 +147,7 @@ class PurchaseRequestLine(models.Model):
     )
     pending_qty_to_receive = fields.Float(
         compute="_compute_qty_to_buy",
-        digits="Product Unit of Measure",
+        digits="Product Unit",
         copy=False,
         string="Pending Qty to Receive",
         store=True,
