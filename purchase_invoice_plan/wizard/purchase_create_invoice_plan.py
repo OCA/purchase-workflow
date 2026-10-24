@@ -34,7 +34,7 @@ class PurchaseCreateInvoicePlan(models.TransientModel):
             raise ValidationError(self.env._("Number Installment must greater than 1"))
 
     def purchase_create_invoice_plan(self):
-        purchase = self.env["purchase.order"].browse(self._context.get("active_id"))
+        purchase = self.env["purchase.order"].browse(self.env.context.get("active_id"))
         self.ensure_one()
         purchase.create_invoice_plan(
             self.num_installment,

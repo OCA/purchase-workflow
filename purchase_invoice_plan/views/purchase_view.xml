@@ -52,7 +52,10 @@
                     <label for="use_invoice_plan" />
                 </div>
             </xpath>
-            <xpath expr="//button[@name='action_create_invoice']" position="before">
+            <xpath
+                expr="//header/widget[@name='purchase_file_uploader']"
+                position="before"
+            >
                 <button
                     name="%(action_view_purchase_make_planned_invoice)d"
                     string="Create Bill by Plan"
@@ -80,7 +83,7 @@
                     />
                     <field
                         name="invoice_plan_ids"
-                        context="{'tree_view_ref': 'purchase_invoice_plan.view_purchase_invoice_plan_tree'}"
+                        context="{'list_view_ref': 'purchase_invoice_plan.view_purchase_invoice_plan_tree'}"
                         invisible="not invoice_plan_ids"
                     />
                     <group class="oe_subtotal_footer oe_right">
@@ -109,7 +112,7 @@
                 <filter
                     name="approved"
                     string="Purchase Orders"
-                    domain="[('state','in',('purchase','done'))]"
+                    domain="[('state', '=', 'purchase')]"
                 />
                 <filter
                     name="to_approve"
@@ -129,7 +132,7 @@
                     domain="[('invoiced','=', True)]"
                     help="Purchase orders that have been invoiced."
                 />
-                <group expand="0" string="Group By">
+                <group>
                     <filter
                         string="Supplier"
                         name="supplier"

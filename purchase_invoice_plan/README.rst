@@ -21,13 +21,13 @@ Purchase Invoice Plan
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/purchase-workflow/tree/18.0/purchase_invoice_plan
+    :target: https://github.com/OCA/purchase-workflow/tree/20.0/purchase_invoice_plan
     :alt: OCA/purchase-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/purchase-workflow-18-0/purchase-workflow-18-0-purchase_invoice_plan
+    :target: https://translation.odoo-community.org/projects/purchase-workflow-20-0/purchase-workflow-20-0-purchase_invoice_plan
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&target_branch=18.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&target_branch=20.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -59,13 +59,37 @@ Usage
   Plan"
 - User can create only next bill or create all bills at the same time
 
+Bills created by the standard flows also follow the invoice plan:
+"Create Bills" from the purchase order list, "Upload Bill", a vendor
+bill auto-completed from the purchase order, or Bill Matching.
+
+- The bill uses the next installment not billed yet; all lines of the
+  same purchase order in a bill use the same installment
+- Lines created from the purchase order get the installment quantity,
+  but never more than the quantity to bill of the standard
+- Lines imported from a vendor document (EDI, matching with an existing
+  bill line) keep their quantity and are only linked to the installment
+- The bill date is the installment date, as with "Create Bill by Plan",
+  unless the bill already has a date (e.g. typed before the
+  auto-complete, or from the vendor document)
+- The installments of a bill are shown in its header, and the
+  installment of each bill line in the optional column "Invoice Plan" of
+  the bill lines
+
+Down payments added to the purchase order (Bill Matching > Add to PO >
+Add Down Payment) are deducted in proportion of each installment, as in
+sale_invoice_plan: an installment of 20% deducts 20% of the down
+payments, a partial bill of the installment deducts in proportion of the
+billed amount, and the last installment deducts the remaining down
+payment.
+
 Bug Tracker
 ===========
 
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/purchase-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_invoice_plan%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_invoice_plan%0Aversion:%2020.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -100,11 +124,14 @@ promote its widespread use.
 .. |maintainer-kittiu| image:: https://github.com/kittiu.png?size=40px
     :target: https://github.com/kittiu
     :alt: kittiu
+.. |maintainer-Saran440| image:: https://github.com/Saran440.png?size=40px
+    :target: https://github.com/Saran440
+    :alt: Saran440
 
-Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-kittiu| 
+|maintainer-kittiu| |maintainer-Saran440| 
 
-This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/18.0/purchase_invoice_plan>`_ project on GitHub.
+This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/20.0/purchase_invoice_plan>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

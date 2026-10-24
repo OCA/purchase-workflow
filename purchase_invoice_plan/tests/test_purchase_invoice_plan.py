@@ -3,70 +3,14 @@
 
 from freezegun import freeze_time
 
-from odoo import fields
-from odoo.exceptions import UserError, ValidationError
+from odoo import Command, fields
+from odoo.exceptions import AccessError, UserError, ValidationError
 from odoo.tests import Form
 
-from odoo.addons.base.tests.common import BaseCommon
+from .common import TestPurchaseInvoicePlanCommon
 
 
-class TestPurchaseInvoicePlan(BaseCommon):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        # Create a PO
-        cls.PurchaseOrder = cls.env["purchase.order"]
-        cls.PurchaseInvoicePlan = cls.env["purchase.create.invoice.plan"]
-        cls.StockBackorderConfirm = cls.env["stock.backorder.confirmation"]
-        cls.StockPicking = cls.env["stock.picking"]
-
-        cls.test_partner = cls.env.ref("base.res_partner_12")
-        cls.test_service = cls.env.ref("product.product_product_2")
-        cls.test_product = cls.env.ref("product.product_product_7")
-
-        cls.test_po_service = cls.env["purchase.order"].create(
-            {
-                "partner_id": cls.test_partner.id,
-                "use_invoice_plan": True,
-                "order_line": [
-                    (
-                        0,
-                        0,
-                        {
-                            "name": "PO-Service",
-                            "product_id": cls.test_service.id,
-                            "date_planned": fields.Datetime.now(),
-                            "product_qty": 1,
-                            "product_uom": cls.test_service.uom_id.id,
-                            "price_unit": 500,
-                            "taxes_id": False,
-                        },
-                    )
-                ],
-            }
-        )
-        cls.test_po_product = cls.env["purchase.order"].create(
-            {
-                "partner_id": cls.test_partner.id,
-                "use_invoice_plan": True,
-                "order_line": [
-                    (
-                        0,
-                        0,
-                        {
-                            "name": "PO-Product",
-                            "product_id": cls.test_product.id,
-                            "date_planned": fields.Datetime.now(),
-                            "product_qty": 10,
-                            "product_uom": cls.test_product.uom_id.id,
-                            "price_unit": 1000,
-                            "taxes_id": False,
-                        },
-                    )
-                ],
-            }
-        )
-
+class TestPurchaseInvoicePlan(TestPurchaseInvoicePlanCommon):
     def test_invoice_plan(self):
         ctx = {
             "active_id": self.test_po_product.id,
@@ -88,7 +32,7 @@ class TestPurchaseInvoicePlan(BaseCommon):
         receive = self.test_po_product.picking_ids.filtered(
             lambda pick: pick.state != "done"
         )
-        receive.move_ids_without_package.quantity = 10.0
+        receive.move_ids.quantity = 10.0
         receive.button_validate()
         purchase_create = self.env["purchase.make.planned.invoice"].create({})
         purchase_create.with_context(**ctx).create_invoices_by_plan()
@@ -96,6 +40,10 @@ class TestPurchaseInvoicePlan(BaseCommon):
             self.test_po_product.amount_total,
             sum(self.test_po_product.invoice_ids.mapped("amount_total")),
         )
+        for plan in self.test_po_product.invoice_plan_ids:
+            self.assertEqual(len(plan.invoice_ids), 1)
+            self.assertEqual(plan.invoice_ids.invoice_date, plan.plan_date)
+            self.assertEqual(plan.amount_invoiced, plan.invoice_ids.amount_untaxed)
 
     def test_unlink_invoice_plan(self):
         ctx = {
@@ -120,10 +68,12 @@ class TestPurchaseInvoicePlan(BaseCommon):
         with self.assertRaises(UserError):
             self.test_po_product.button_confirm()
         # ValidationError Number of Installment <= 1
-        with self.assertRaises(ValidationError) as e:
-            with Form(self.PurchaseInvoicePlan) as p:
-                p.num_installment = 0
-                p.save()
+        with (
+            self.assertRaises(ValidationError) as e,
+            Form(self.PurchaseInvoicePlan) as p,
+        ):
+            p.num_installment = 0
+            p.save()
         error_message = "Number Installment must greater than 1"
         self.assertEqual(e.exception.args[0], error_message)
         # Create purchase plan
@@ -146,7 +96,7 @@ class TestPurchaseInvoicePlan(BaseCommon):
         receive = self.test_po_product.picking_ids.filtered(
             lambda pick: pick.state != "done"
         )
-        receive.move_ids_without_package.quantity = 1.0
+        receive.move_ids.quantity = 1.0
         # receive.button_validate()
         backorder_wizard_dict = receive.button_validate()
         backorder_wizard = Form(
@@ -192,7 +142,7 @@ class TestPurchaseInvoicePlan(BaseCommon):
         receive = self.test_po_product.picking_ids.filtered(
             lambda pick: pick.state != "done"
         )
-        receive.move_ids_without_package.quantity = 10.0
+        receive.move_ids.quantity = 10.0
         receive.button_validate()
         purchase_create = self.env["purchase.make.planned.invoice"].create({})
         # Create only the 1st invoice, amount should be 1000, and percent is 10
@@ -211,9 +161,9 @@ class TestPurchaseInvoicePlan(BaseCommon):
                             "product_id": self.test_product.id,
                             "date_planned": fields.Datetime.now(),
                             "product_qty": 1,
-                            "product_uom": self.test_product.uom_id.id,
+                            "uom_id": self.test_product.uom_id.id,
                             "price_unit": 1000,
-                            "taxes_id": False,
+                            "tax_ids": False,
                         },
                     )
                 ],
@@ -222,7 +172,6 @@ class TestPurchaseInvoicePlan(BaseCommon):
         # Overall amount changed to 11000, install amount not changed, only percent
         # changed.
         self.assertEqual(self.test_po_product.amount_total, 11000)
-        self.test_po_product.invoice_plan_ids._compute_amount()
         self.assertEqual(first_install.amount, 1000)
         self.assertEqual(first_install.percent, 9.090909)
         with self.assertRaises(UserError):
@@ -245,3 +194,127 @@ class TestPurchaseInvoicePlan(BaseCommon):
             purchase_plan.with_context(**ctx).purchase_create_invoice_plan()
             self.assertEqual(len(self.test_po_product.invoice_plan_ids), 5)
             self.test_po_product.remove_invoice_plan()
+
+    def test_invoice_plan_keeps_sections(self):
+        """Bills created from PO keep section lines, only product lines
+        get the planned quantity"""
+        ctx = {
+            "active_id": self.test_po_product.id,
+            "active_ids": [self.test_po_product.id],
+            "all_remain_invoices": False,
+        }
+        self.test_po_product.order_line = [
+            Command.create(
+                {
+                    "name": "Section",
+                    "display_type": "line_section",
+                    "product_qty": 0,
+                    "sequence": 1,
+                }
+            ),
+        ]
+        with Form(self.PurchaseInvoicePlan) as p:
+            p.num_installment = 2
+        purchase_plan = p.save()
+        purchase_plan.with_context(**ctx).purchase_create_invoice_plan()
+        self.test_po_product.button_confirm()
+        receive = self.test_po_product.picking_ids.filtered(
+            lambda pick: pick.state != "done"
+        )
+        receive.move_ids.quantity = 10.0
+        receive.button_validate()
+        purchase_create = self.env["purchase.make.planned.invoice"].create({})
+        purchase_create.with_context(**ctx).create_invoices_by_plan()
+        invoice_lines = self.test_po_product.invoice_ids.invoice_line_ids
+        self.assertEqual(
+            invoice_lines.mapped("display_type"),
+            ["line_section", "product"],
+        )
+        product_line = invoice_lines.filtered(lambda ln: ln.display_type == "product")
+        self.assertEqual(product_line.quantity, 5)
+
+    def test_to_invoice_multi_purchase(self):
+        """Purchase orders confirmed together have each their next installment"""
+        purchases = self.test_po_product | self._create_plan_purchase()
+        self.test_po_product.create_invoice_plan(5, fields.Date.today(), 1, "month")
+        purchases.button_confirm()
+        for purchase in purchases:
+            self.assertEqual(
+                purchase.invoice_plan_ids.mapped("to_invoice"),
+                [True, False, False, False, False],
+            )
+
+    def test_zero_amount_purchase(self):
+        """Installment billed on a purchase order without amount"""
+        purchase = self._create_plan_purchase(price_unit=0)
+        purchase.button_confirm()
+        receive = purchase.picking_ids
+        receive.move_ids.quantity = 10
+        receive.button_validate()
+        self._create_bill_by_plan(purchase)
+        first = purchase.invoice_plan_ids[0]
+        self.assertTrue(first.invoiced)
+        self.assertEqual(first.amount, 0)
+        self.assertEqual(first.percent, 20)
+
+    def test_check_percent(self):
+        """Installments are checked when written directly"""
+        self.test_po_product.create_invoice_plan(5, fields.Date.today(), 1, "month")
+        plans = self.test_po_product.invoice_plan_ids
+        with self.assertRaises(UserError):
+            plans[0].percent = 20.2
+        with self.assertRaises(ValidationError):
+            plans[0].percent = -10
+        plans[0].percent = 20.004
+        # Installments changed together from the order form
+        self.test_po_product.write(
+            {
+                "invoice_plan_ids": [
+                    Command.update(plans[2].id, {"percent": 30}),
+                    Command.update(plans[3].id, {"percent": 10}),
+                ]
+            }
+        )
+        with self.assertRaises(UserError):
+            self.test_po_product.write(
+                {"invoice_plan_ids": [Command.update(plans[2].id, {"percent": 40})]}
+            )
+        with self.assertRaises(ValidationError):
+            self.test_po_product.write(
+                {
+                    "invoice_plan_ids": [
+                        Command.update(plans[2].id, {"percent": -10}),
+                        Command.update(plans[3].id, {"percent": 50}),
+                    ]
+                }
+            )
+        self.test_po_product.button_confirm()
+        with self.assertRaises(ValidationError):
+            plans[1].percent = 0
+
+    def test_invoice_more_than_plan(self):
+        """Bill edited over its installment is accepted, as in the standard"""
+        self.test_po_product.create_invoice_plan(5, fields.Date.today(), 1, "month")
+        self.test_po_product.button_confirm()
+        receive = self.test_po_product.picking_ids
+        receive.move_ids.quantity = 10
+        receive.button_validate()
+        self._create_bill_by_plan(self.test_po_product)
+        first = self.test_po_product.invoice_plan_ids[0]
+        first.invoice_ids.invoice_line_ids.quantity = 4
+        self.assertEqual(first.percent, 40)
+        self.assertEqual(self.test_po_product.ip_total_percent, 120)
+
+    def test_multi_company(self):
+        """Installments of another company are not accessible"""
+        company = self.env["res.company"].sudo().create({"name": "Other Company"})
+        purchase = self._create_plan_purchase(company=company)
+        # New company is given to its creator
+        self.env.user.sudo().company_ids -= company
+        self.env.invalidate_all()
+        plans = self.env["purchase.invoice.plan"].search(
+            [("purchase_id", "=", purchase.id)]
+        )
+        self.assertFalse(plans)
+        with self.assertRaises(AccessError):
+            self._create_bill_by_plan(purchase)

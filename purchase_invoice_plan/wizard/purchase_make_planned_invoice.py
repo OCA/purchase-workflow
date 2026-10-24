@@ -4,7 +4,7 @@
 from odoo import models
 
 
-class PurchaseAdvancePaymentInv(models.TransientModel):
+class PurchaseMakePlannedInvoice(models.TransientModel):
     _name = "purchase.make.planned.invoice"
     _description = "Wizard when create invoice by plan"
 
@@ -17,7 +17,5 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
             or purchase.invoice_plan_ids.filtered("to_invoice")
         )
         for plan in invoice_plans.sorted("installment"):
-            purchase.sudo().with_context(
-                invoice_plan_id=plan.id
-            ).action_create_invoice()
+            purchase.with_context(invoice_plan_id=plan.id).action_create_invoice()
         return {"type": "ir.actions.act_window_close"}

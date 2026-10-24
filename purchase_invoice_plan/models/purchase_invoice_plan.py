@@ -4,7 +4,6 @@
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError, ValidationError
-from odoo.tools.float_utils import float_compare
 
 
 class PurchaseInvoicePlan(models.Model):
@@ -49,6 +48,9 @@ class PurchaseInvoicePlan(models.Model):
     )
     percent = fields.Float(
         digits="Purchase Invoice Plan Percent",
+        compute="_compute_percent",
+        store=True,
+        readonly=False,
         help="This percent will be used to calculate new quantity",
     )
     amount = fields.Float(
@@ -57,18 +59,24 @@ class PurchaseInvoicePlan(models.Model):
         inverse="_inverse_amount",
         help="This amount will be used to calculate the percent",
     )
+    invoice_line_ids = fields.One2many(
+        comodel_name="account.move.line",
+        inverse_name="purchase_invoice_plan_id",
+        string="Bill Lines",
+        readonly=True,
+    )
     invoice_ids = fields.Many2many(
         comodel_name="account.move",
         relation="purchase_invoice_plan_invoice_rel",
         column1="plan_id",
         column2="move_id",
         string="Invoices",
-        readonly=True,
+        compute="_compute_invoice_ids",
+        store=True,
     )
     amount_invoiced = fields.Float(
         compute="_compute_invoiced",
         store=True,
-        readonly=False,
     )
     to_invoice = fields.Boolean(
         string="Next Invoice",
@@ -86,14 +94,21 @@ class PurchaseInvoicePlan(models.Model):
         compute="_compute_no_edit",
     )
 
-    @api.depends("percent")
+    @api.depends("invoiced", "amount_invoiced", "purchase_id.amount_untaxed")
+    def _compute_percent(self):
+        """Percent of an invoiced installment follows its invoiced amount"""
+        for rec in self:
+            amount_untaxed = rec.purchase_id.amount_untaxed
+            if rec.invoiced and amount_untaxed:
+                rec.percent = rec.amount_invoiced / amount_untaxed * 100
+
+    @api.depends("percent", "invoiced", "amount_invoiced")
     def _compute_amount(self):
         for rec in self:
             amount_untaxed = rec.purchase_id._origin.amount_untaxed
             # With invoice already created, no recompute
             if rec.invoiced:
                 rec.amount = rec.amount_invoiced
-                rec.percent = rec.amount / amount_untaxed * 100
                 continue
             # For last line, amount is the left over
             if rec.last:
@@ -120,33 +135,50 @@ class PurchaseInvoicePlan(models.Model):
                 continue
             rec.percent = 0
 
-    @api.depends("purchase_id.state", "purchase_id.invoice_plan_ids.invoiced")
+    @api.depends(
+        "purchase_id.state",
+        "purchase_id.invoice_plan_ids.invoiced",
+        "purchase_id.invoice_plan_ids.installment",
+    )
     def _compute_to_invoice(self):
         """If any invoice is in draft/open/paid do not allow to create inv
-        Only if previous to_invoice is False, it is eligible to_invoice
+        Only the first installment not invoiced of each order is to_invoice
         """
+        for order, plans in self.grouped("purchase_id").items():
+            next_plan = plans.browse()
+            if order.state == "purchase":
+                next_plan = order._get_next_invoice_plan()
+            for rec in plans:
+                rec.to_invoice = rec == next_plan
+
+    @api.depends("invoice_line_ids.move_id")
+    def _compute_invoice_ids(self):
         for rec in self:
-            rec.to_invoice = False
-        for rec in self.sorted("installment"):
-            if rec.purchase_id.state != "purchase":
-                continue
-            if not rec.invoiced:
-                rec.to_invoice = True
-                break
+            rec.invoice_ids = rec.invoice_line_ids.move_id
 
     def _get_amount_invoice(self, invoices):
         """Hook function"""
-        return sum(invoices.mapped("amount_untaxed"))
+        self.ensure_one()
+        lines = self.invoice_line_ids.filtered(lambda ln: ln.move_id in invoices)
+        return sum(lines.mapped("price_subtotal"))
 
-    @api.depends("invoice_ids.state")
+    @api.depends(
+        "invoice_ids.state",
+        "invoice_ids.move_type",
+        "invoice_line_ids.price_subtotal",
+    )
     def _compute_invoiced(self):
         for rec in self:
+            # A bill switched to refund (negative total) is not an installment
             invoiced = rec.invoice_ids.filtered(
-                lambda inv: inv.state in ("draft", "posted")
+                lambda inv: (
+                    inv.move_type == "in_invoice" and inv.state in ("draft", "posted")
+                )
             )
-            rec.invoiced = invoiced and True or False
-            rec.amount_invoiced = rec._get_amount_invoice(invoiced[:1])
+            rec.invoiced = bool(invoiced)
+            rec.amount_invoiced = rec._get_amount_invoice(invoiced)
 
+    @api.depends("installment", "purchase_id.invoice_plan_ids.installment")
     def _compute_last(self):
         for rec in self:
             last = max(rec.purchase_id.invoice_plan_ids.mapped("installment"))
@@ -160,36 +192,98 @@ class PurchaseInvoicePlan(models.Model):
         for rec in self:
             rec.no_edit = rec._no_edit()
 
-    def _compute_new_invoice_quantity(self, invoice_move):
+    def _get_invoice_line_quantity(self, order_line, quantity):
+        """Hook function: quantity of order_line to bill in this installment
+
+        :param quantity: invoiceable quantity computed by the standard
+        """
         self.ensure_one()
         if self.last:  # For last install, let the system do the calc.
-            return
-        percent = self.percent
-        move = invoice_move.with_context(check_move_validity=False)
-        for line in move.invoice_line_ids:
-            self._update_new_quantity(line, percent)
-
-    def _update_new_quantity(self, line, percent):
-        """Hook function"""
-        plan_qty = self._get_plan_qty(line.purchase_line_id, percent)
-        prec = line.purchase_line_id.product_uom.rounding
-        if (
-            float_compare(abs(plan_qty), abs(line.quantity), precision_rounding=prec)
-            == 1
-        ):
+            return quantity
+        plan_qty = self._get_plan_qty(order_line, self.percent)
+        # Not more than the standard, which is negative after a return
+        if order_line.uom_id.compare(plan_qty, quantity) > 0:
+            if self.env.context.get("invoice_plan_id") != self.id:
+                # Bill not created by plan, do not bill more than the standard
+                return quantity
             raise ValidationError(
                 self.env._(
                     "Plan quantity: %(plan)s, exceed invoiceable quantity: %(qty)s"
-                    "\nProduct should be delivered before invoice"
+                    "\nProduct should be delivered before invoice",
+                    plan=plan_qty,
+                    qty=quantity,
                 )
-                % {"plan": plan_qty, "qty": line.quantity}
             )
-        line.write({"quantity": plan_qty})
+        return plan_qty
+
+    def _get_invoiced_ratio(self):
+        """Part of the purchase order untaxed amount billed by this installment,
+        with the quantities billed by the standard flows"""
+        self.ensure_one()
+        order = self.purchase_id
+        if not order.amount_untaxed:
+            return self.percent / 100
+        amount = 0.0
+        for line in order.order_line.filtered(
+            lambda ln: ln._is_invoice_plan_line() and ln.product_qty
+        ):
+            quantity = self._get_invoice_line_quantity(line, line.qty_to_invoice)
+            amount += line.price_subtotal * quantity / line.product_qty
+        return amount / order.amount_untaxed
+
+    def _get_downpayment_line_quantity(self, order_line, quantity):
+        """Hook function: quantity of the down payment order_line deducted
+        by this installment, in proportion of the installment, as
+        sale_invoice_plan does. The last installment deducts the remaining.
+
+        :param quantity: deduction of the standard, all the remaining
+            down payment (negative)
+        """
+        self.ensure_one()
+        if self.last:
+            return quantity
+        down_payment_lines = order_line.invoice_lines.filtered(
+            lambda ln: (
+                ln.move_id.move_type == "in_invoice"
+                and ln.parent_state != "cancel"
+                and ln.quantity > 0
+            )
+        )
+        down_payment_qty = sum(
+            ln.product_uom_id._compute_quantity(ln.quantity, order_line.uom_id)
+            if ln.product_uom_id and order_line.uom_id
+            else ln.quantity
+            for ln in down_payment_lines
+        )
+        # Not more than the remaining down payment
+        return max(-down_payment_qty * self._get_invoiced_ratio(), quantity)
 
     @api.model
     def _get_plan_qty(self, order_line, percent):
         plan_qty = order_line.product_qty * (percent / 100)
         return plan_qty
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        plans = super().create(vals_list)
+        plans._check_percent()
+        return plans
+
+    def write(self, vals):
+        res = super().write(vals)
+        if {"percent", "installment", "purchase_id"} & set(vals):
+            self._check_percent()
+        return res
+
+    def _check_percent(self):
+        """Check installments entered by the user. Not a constraint, as the
+        percent recomputed from an invoiced amount may exceed the plan.
+        Installments written from their order are checked by the order, once
+        all of them are written."""
+        if self.env.context.get("invoice_plan_check_by_order"):
+            return
+        self.purchase_id._check_ip_total_percent()
+        self.purchase_id._check_invoice_plan()
 
     @api.ondelete(at_uninstall=False)
     def _unlink_except_no_edit(self):
@@ -199,9 +293,9 @@ class PurchaseInvoicePlan(models.Model):
             raise UserError(
                 self.env._(
                     "Installment %s: already used and not allowed to delete.\n"
-                    "Please discard changes."
+                    "Please discard changes.",
+                    ", ".join(installments),
                 )
-                % ", ".join(installments)
             )
 
     @api.depends("purchase_id", "installment", "plan_date", "percent")
