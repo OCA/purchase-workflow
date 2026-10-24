@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="report_purchase_return_order" model="ir.actions.report">
+        <field name="name">Purchase Return Order</field>
+        <field name="model">purchase.return.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">purchase_return.report_purchasereturnorder</field>
+        <field name="report_file">purchase_return.report_purchasereturnorder</field>
+        <field name="print_report_name">'Purchase Return - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="model_purchase_return_order" />
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
