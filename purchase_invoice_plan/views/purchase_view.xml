@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="view_purchase_invoice_plan_tree" model="ir.ui.view">
         <field name="name">view.purchase.invoice.plan.tree</field>
@@ -195,8 +196,8 @@
         </field>
     </record>
     <menuitem
-        action="action_purchase_invoice_plan"
         id="menu_purchase_invoice_plan"
+        action="action_purchase_invoice_plan"
         parent="purchase.menu_procurement_management"
         sequence="7"
     />

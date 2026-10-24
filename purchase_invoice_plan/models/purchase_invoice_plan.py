@@ -165,7 +165,7 @@ class PurchaseInvoicePlan(models.Model):
         if self.last:  # For last install, let the system do the calc.
             return
         percent = self.percent
-        move = invoice_move.with_context(**{"check_move_validity": False})
+        move = invoice_move.with_context(check_move_validity=False)
         for line in move.invoice_line_ids:
             self._update_new_quantity(line, percent)
 
