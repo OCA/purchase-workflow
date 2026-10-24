@@ -1,0 +1,7 @@
+id,name,model_id,group_id/id,operation,domain
+access_purchase_invoice_plan,access_purchase_invoice_plan,purchase.invoice.plan,purchase.group_purchase_user,crud,
+access_purchase_create_invoice_plan,access_purchase_create_invoice_plan,purchase.create.invoice.plan,purchase.group_purchase_user,crud,
+access_purchase_make_planned_invoice,access_purchase_make_planned_invoice,purchase.make.planned.invoice,purchase.group_purchase_user,crud,
+purchase_invoice_plan_comp_rule,Purchase Invoice Plan multi-company,purchase.invoice.plan,,crud,"[('purchase_id.company_id', 'in', company_ids)]"
+access_purchase_invoice_plan_invoicing,access_purchase_invoice_plan_invoicing,purchase.invoice.plan,account.group_account_invoice,r,
+access_purchase_invoice_plan_invoicing_readonly,access_purchase_invoice_plan_invoicing_readonly,purchase.invoice.plan,account.group_account_readonly,r,
