@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-09-17 10:36+0000\n"
+"PO-Revision-Date: 2026-10-25 22:46+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,12 +14,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: purchase_reception_status
 #: model:ir.model.fields,field_description:purchase_reception_status.field_purchase_order__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: purchase_reception_status
 #: model:ir.model.fields,field_description:purchase_reception_status.field_purchase_order__force_received
@@ -35,7 +35,7 @@ msgstr "Ricevuto completamente"
 #. module: purchase_reception_status
 #: model:ir.model.fields,field_description:purchase_reception_status.field_purchase_order__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: purchase_reception_status
 #: model:ir.model.fields,help:purchase_reception_status.field_purchase_order__force_received
@@ -43,6 +43,9 @@ msgid ""
 "If true, the order is marked forced only when all lines are fully received "
 "and at least one line was manually forced."
 msgstr ""
+"Se è vero, l'ordine viene contrassegnato come forzato solo quando tutte le "
+"righe sono state ricevute completamente e almeno una riga è stata forzata "
+"manualmente."
 
 #. module: purchase_reception_status
 #: model_terms:ir.ui.view,arch_db:purchase_reception_status.view_purchase_order_filter
@@ -68,7 +71,7 @@ msgstr "Ordine di acquisto"
 #: model:ir.model.fields,field_description:purchase_reception_status.field_purchase_order__receipt_status
 #: model_terms:ir.ui.view,arch_db:purchase_reception_status.view_purchase_order_filter
 msgid "Receipt Status"
-msgstr ""
+msgstr "Stato ricevuta"
 
 #. module: purchase_reception_status
 #: model:ir.model.fields,help:purchase_reception_status.field_purchase_order__receipt_status
@@ -77,6 +80,9 @@ msgid ""
 "            Orange: To process today\n"
 "            Green: On time"
 msgstr ""
+"Rosso: in ritardo\n"
+"            Arancione: da elaborare oggi\n"
+"            Verde: in tempo"
 
 #~ msgid ""
 #~ "If true, the reception status will be forced to Fully Received, even if "
