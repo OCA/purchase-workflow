@@ -22,16 +22,16 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-16 12:06+0000\n"
-"PO-Revision-Date: 2024-02-04 15:37+0000\n"
+"PO-Revision-Date: 2026-10-25 22:46+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-purchase-"
-"workflow-8-0/language/it/)\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-purchase-workflow-8-"
+"0/language/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__active
@@ -51,7 +51,7 @@ msgstr "Clicca per impostare un nuovo tipo per l'ordine di acquisto."
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Aziende"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__company_id
@@ -77,7 +77,7 @@ msgstr "Creato il"
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__is_default
 msgid "Default"
-msgstr ""
+msgstr "Predefinito"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__description
@@ -122,6 +122,8 @@ msgid ""
 "If enabled, a purchase order can only be saved in the form once it has an "
 "order type."
 msgstr ""
+"Se l'opzione è abilitata, un ordine di acquisto può essere salvato nel "
+"modulo solo dopo che gli è stato assegnato un tipo di ordine."
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__incoterm_id
@@ -148,7 +150,7 @@ msgstr "Nome"
 #. odoo-python
 #: code:addons/purchase_order_type/models/purchase_order_type.py:0
 msgid "Only one default order type is allowed per company."
-msgstr ""
+msgstr "È consentito solo un tipo ordine predefinito per azienda."
 
 #. module: purchase_order_type
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
@@ -163,7 +165,7 @@ msgstr "Termini di pagamento"
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_res_config_settings
 msgid "Procurement purchase grouping settings"
-msgstr ""
+msgstr "Impostazioni raggruppamento approvvigionamento acquisti"
 
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_purchase_order
@@ -188,13 +190,15 @@ msgstr "Tipo Ordine Acquisto"
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.res_config_settings_view_form_purchase
 msgid "Purchase orders can only be saved once they have an order type"
 msgstr ""
+"Gli ordini di acquisto possono essere salvati solo una volta che è stato "
+"loro assegnato un tipo di ordine"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order__order_type_required
 #: model:ir.model.fields,field_description:purchase_order_type.field_res_company__purchase_order_type_required
 #: model:ir.model.fields,field_description:purchase_order_type.field_res_config_settings__purchase_order_type_required
 msgid "Require Purchase Order Type"
-msgstr ""
+msgstr "Richiede tipo ordine acquisto"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__sequence
@@ -221,6 +225,9 @@ msgid ""
 "provide one, and to correct a purchase order whose type no longer suits its "
 "company after the company changes."
 msgstr ""
+"Utilizzato come tipo di ordine predefinito per un ordine di acquisto il cui "
+"fornitore non ne specifica uno, e per correggere un ordine di acquisto il "
+"cui tipo non è più idoneo all'azienda a seguito di una variazione aziendale."
 
 #~ msgid "Group By"
 #~ msgstr "Raggruppa per"
