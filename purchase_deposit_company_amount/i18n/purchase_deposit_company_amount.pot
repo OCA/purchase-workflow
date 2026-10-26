@@ -1,0 +1,119 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_deposit_company_amount
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_deposit_company_amount
+#. odoo-python
+#: code:addons/purchase_deposit_company_amount/models/account_move_line.py:0
+#, python-format
+msgid ""
+"'%(field)s' can only be set on a deposit bill raised in a foreign currency. "
+"On line '%(line)s' of '%(move)s' the standard exchange-rate conversion "
+"applies; clear the value to continue."
+msgstr ""
+
+#. module: purchase_deposit_company_amount
+#: model:ir.model.fields,field_description:purchase_deposit_company_amount.field_account_bank_statement_line__allow_company_amount
+#: model:ir.model.fields,field_description:purchase_deposit_company_amount.field_account_move__allow_company_amount
+#: model:ir.model.fields,field_description:purchase_deposit_company_amount.field_account_payment__allow_company_amount
+msgid "Allow Company Amount"
+msgstr ""
+
+#. module: purchase_deposit_company_amount
+#: model:ir.model.fields,field_description:purchase_deposit_company_amount.field_purchase_order_line__company_currency_id
+msgid "Company Currency"
+msgstr ""
+
+#. module: purchase_deposit_company_amount
+#: model:ir.model.fields,field_description:purchase_deposit_company_amount.field_account_move_line__company_amount
+msgid "Company Currency Amount"
+msgstr ""
+
+#. module: purchase_deposit_company_amount
+#: model:ir.model.fields,help:purchase_deposit_company_amount.field_purchase_order_line__deposit_company_amount
+msgid ""
+"Company-currency value actually booked by the posted deposit vendor bill(s) "
+"for this deposit line, and zero unless one of them carries a hand-entered "
+"Company Currency Amount. The final vendor bill pins its deposit-offset line "
+"to this value so the deposit account closes out at the amount that was "
+"really paid, whatever the exchange rate has done since."
+msgstr ""
+
+#. module: purchase_deposit_company_amount
+#: model:ir.model.fields,help:purchase_deposit_company_amount.field_account_move_line__company_amount
+msgid ""
+"Company-currency value you actually paid for this line. When set, the line's"
+" balance is forced to this amount instead of the standard amount_currency / "
+"exchange_rate conversion, while the foreign-currency amount stays untouched."
+" Enter it unsigned -- the debit/credit direction follows the line's foreign-"
+"currency amount. Leave it empty to keep the standard conversion. Only "
+"available on the deposit line of a deposit bill raised in a foreign "
+"currency; every other line follows from it automatically."
+msgstr ""
+
+#. module: purchase_deposit_company_amount
+#: model:ir.model.fields,field_description:purchase_deposit_company_amount.field_purchase_order_line__deposit_company_amount
+msgid "Deposit Company-Currency Amount"
+msgstr ""
+
+#. module: purchase_deposit_company_amount
+#: model:ir.model.fields,field_description:purchase_deposit_company_amount.field_account_bank_statement_line__is_deposit
+#: model:ir.model.fields,field_description:purchase_deposit_company_amount.field_account_move__is_deposit
+#: model:ir.model.fields,field_description:purchase_deposit_company_amount.field_account_payment__is_deposit
+msgid "Is a Deposit Bill"
+msgstr ""
+
+#. module: purchase_deposit_company_amount
+#: model:ir.model,name:purchase_deposit_company_amount.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: purchase_deposit_company_amount
+#: model:ir.model,name:purchase_deposit_company_amount.model_account_move_line
+msgid "Journal Item"
+msgstr ""
+
+#. module: purchase_deposit_company_amount
+#: model:ir.model,name:purchase_deposit_company_amount.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr ""
+
+#. module: purchase_deposit_company_amount
+#: model:ir.model.fields,help:purchase_deposit_company_amount.field_account_bank_statement_line__allow_company_amount
+#: model:ir.model.fields,help:purchase_deposit_company_amount.field_account_move__allow_company_amount
+#: model:ir.model.fields,help:purchase_deposit_company_amount.field_account_payment__allow_company_amount
+msgid ""
+"Technical field: the company-currency amount may be entered by hand on this "
+"bill's deposit line."
+msgstr ""
+
+#. module: purchase_deposit_company_amount
+#: model:ir.model.fields,help:purchase_deposit_company_amount.field_account_bank_statement_line__is_deposit
+#: model:ir.model.fields,help:purchase_deposit_company_amount.field_account_move__is_deposit
+#: model:ir.model.fields,help:purchase_deposit_company_amount.field_account_payment__is_deposit
+msgid ""
+"Technical field: this bill was raised by the Register Deposit wizard, i.e. "
+"it books a deposit rather than netting one off. It is the only kind of bill "
+"on which the company-currency amount can be entered by hand."
+msgstr ""
+
+#. module: purchase_deposit_company_amount
+#. odoo-python
+#: code:addons/purchase_deposit_company_amount/models/account_move.py:0
+#, python-format
+msgid ""
+"This bill carries the whole deposit of %(orders)s, so it must invoice the whole order too: otherwise the difference between the deposit as paid and the exchange rate is charged to the quantities on this bill alone, valuing them wrongly in stock. Clear '%(field)s' on the deposit bill to fall back to the standard exchange rate conversion.\n"
+"\n"
+"Missing from this bill: %(lines)s"
+msgstr ""
