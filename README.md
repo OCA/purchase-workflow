@@ -42,6 +42,7 @@ addon | version | maintainers | summary
 [purchase_default_terms_conditions](purchase_default_terms_conditions/) | 16.0.1.0.3 |  | This module allows purchase default terms & conditions
 [purchase_delivery_split_date](purchase_delivery_split_date/) | 16.0.1.0.6 |  | Allows Purchase Order you confirm to generate one Incoming Shipment for each expected date indicated in the Purchase Order Lines
 [purchase_deposit](purchase_deposit/) | 16.0.1.1.1 |  | Option to create deposit from purchase order
+[purchase_deposit_company_amount](purchase_deposit_company_amount/) | 16.0.1.0.0 | <a href='https://github.com/kanda999'><img src='https://github.com/kanda999.png' width='32' height='32' style='border-radius:50%;' alt='kanda999'/></a> <a href='https://github.com/Aungkokolin1997'><img src='https://github.com/Aungkokolin1997.png' width='32' height='32' style='border-radius:50%;' alt='Aungkokolin1997'/></a> | Book purchase deposits at the company-currency amount actually paid
 [purchase_discount](purchase_discount/) | 16.0.2.0.5 |  | Purchase order lines with discounts
 [purchase_exception](purchase_exception/) | 16.0.1.0.1 |  | Custom exceptions on purchase order
 [purchase_fop_shipping](purchase_fop_shipping/) | 16.0.1.0.1 |  | Purchase Free-Of-Payment shipping
