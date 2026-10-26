@@ -132,3 +132,119 @@ class TestPurchaseRequestProcurement(common.TransactionCase):
         move4 = self._procurement_group_run("Split", self.product_1, 10)
         self.assertEqual(move4.created_purchase_request_line_id.request_id, pr)
         self.assertEqual(pr.origin, "Test Origin, Test, Split")
+
+    def test_orderpoint_replenishment_notification(self):
+        """Check replenishment notification returns a client action linking to the purchase request."""
+        qty = 10
+        orderpoint = self.env["stock.warehouse.orderpoint"].create(
+            {
+                "name": "OP Notification Test",
+                "warehouse_id": self.env.ref("stock.warehouse0").id,
+                "location_id": self.location.id,
+                "product_id": self.product_1.id,
+                "product_min_qty": 1,
+                "product_max_qty": qty,
+            }
+        )
+        po_count_before = self.env["purchase.order"].search_count([])
+        notification = orderpoint.action_replenish()
+
+        # 1. Assert notification action and params
+        self.assertTrue(notification)
+        self.assertEqual(notification.get("type"), "ir.actions.client")
+        self.assertEqual(notification.get("tag"), "display_notification")
+        params = notification.get("params", {})
+        self.assertTrue(params.get("sticky"))
+
+        # 2. Assert purchase request line created and linked
+        pr_line = self.env["purchase.request.line"].search(
+            [("orderpoint_id", "=", orderpoint.id)], limit=1
+        )
+        self.assertTrue(pr_line)
+        pr = pr_line.request_id
+        expected_url = (
+            f"/odoo/action-purchase_request.purchase_request_form_action/{pr.id}"
+        )
+        links = params.get("links", [])
+        self.assertEqual(len(links), 1)
+        self.assertEqual(links[0].get("url"), expected_url)
+        self.assertEqual(links[0].get("label"), pr.display_name)
+
+        # 3. Assert NO purchase order was created
+        po_count_after = self.env["purchase.order"].search_count([])
+        self.assertEqual(po_count_before, po_count_after)
+
+        # 4. Assert notification when reusing draft purchase request
+        product_2 = self.env["product.product"].create(
+            {
+                "name": "Second PR product",
+                "is_storable": True,
+                "purchase_request": True,
+                "route_ids": [(4, self.route_buy.id)],
+                "seller_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "partner_id": self.supplier.id,
+                            "price": 50.0,
+                            "company_id": False,
+                        },
+                    )
+                ],
+            }
+        )
+        orderpoint_2 = self.env["stock.warehouse.orderpoint"].create(
+            {
+                "name": "OP Notification Test 2",
+                "warehouse_id": self.env.ref("stock.warehouse0").id,
+                "location_id": self.location.id,
+                "product_id": product_2.id,
+                "product_min_qty": 1,
+                "product_max_qty": qty,
+            }
+        )
+        notification_2 = orderpoint_2.action_replenish()
+        self.assertTrue(notification_2)
+        links_2 = notification_2.get("params", {}).get("links", [])
+        self.assertEqual(len(links_2), 1)
+        self.assertEqual(links_2[0].get("url"), expected_url)
+
+        # 5. Assert standard buy product preserves standard PO notification
+        product_std = self.env["product.product"].create(
+            {
+                "name": "Standard PO product",
+                "is_storable": True,
+                "purchase_request": False,
+                "route_ids": [(4, self.route_buy.id)],
+                "seller_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "partner_id": self.supplier.id,
+                            "price": 50.0,
+                            "company_id": False,
+                        },
+                    )
+                ],
+            }
+        )
+        orderpoint_std = self.env["stock.warehouse.orderpoint"].create(
+            {
+                "name": "OP Standard Test",
+                "warehouse_id": self.env.ref("stock.warehouse0").id,
+                "location_id": self.location.id,
+                "product_id": product_std.id,
+                "product_min_qty": 1,
+                "product_max_qty": qty,
+            }
+        )
+        notification_std = orderpoint_std.action_replenish()
+        self.assertTrue(notification_std)
+        links_std = notification_std.get("params", {}).get("links", [])
+        self.assertEqual(len(links_std), 1)
+        self.assertIn(
+            "/odoo/action-purchase.action_rfq_form/", links_std[0].get("url", "")
+        )
+        self.assertFalse(notification_std.get("params", {}).get("sticky"))

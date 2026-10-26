@@ -24,3 +24,21 @@ class Orderpoint(models.Model):
                 prline.product_qty, prline.orderpoint_id.product_uom, round=False
             )
         return res
+
+    def _get_replenishment_order_notification(self):
+        self.ensure_one()
+        domain = [("orderpoint_id", "=", self.id)]
+        if self.env.context.get("written_after"):
+            domain.append(("create_date", ">=", self.env.context["written_after"]))
+        request = self.env["purchase.request.line"].search(domain, order="id desc", limit=1).request_id
+        if not request:
+            return super()._get_replenishment_order_notification()
+        return {
+            "type": "ir.actions.client", "tag": "display_notification",
+            "params": {
+                "title": self.env._("Replenishment requested"),
+                "message": "%s",
+                "links": [{"label": request.display_name, "url": f"/odoo/action-purchase_request.purchase_request_form_action/{request.id}"}],
+                "sticky": True,
+            },
+        }
