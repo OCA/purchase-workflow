@@ -144,11 +144,7 @@ class TestPurchaseException(BaseCommon):
         self.exception_qtycheck.is_blocking = True
         self.po = self.PurchaseOrder.create(self.po_vals2.copy())
         po_except_confirm = self.purchase_exception_confirm.with_context(
-            **{
-                "active_id": self.po.id,
-                "active_ids": [self.po.id],
-                "active_model": self.po._name,
-            }
+            active_id=self.po.id, active_ids=[self.po.id], active_model=self.po._name
         ).create({"ignore": True})
         po_except_confirm.exception_ids = self.exception_qtycheck
         po_except_confirm.action_confirm()
