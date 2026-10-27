@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Purchase Order Internal Note",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "summary": """
         Adds new field Internal Note to the purchase order.
         It will not be included in the report.
