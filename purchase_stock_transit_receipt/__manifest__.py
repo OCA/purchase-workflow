@@ -12,6 +12,7 @@
     "website": "https://github.com/OCA/purchase-workflow",
     "depends": ["purchase_stock"],
     "data": [
+        "views/account_incoterms_views.xml",
         "views/stock_warehouse_views.xml",
     ],
     "post_init_hook": "post_init_hook",
