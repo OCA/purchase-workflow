@@ -7,7 +7,7 @@ from odoo import api, models
 
 
 class PurchaseOrder(models.Model):
-    _inherit = ["purchase.order", "base.exception"]
+    _inherit = ("purchase.order", "base.exception")
     _name = "purchase.order"
     _order = "main_exception_id asc, date_order desc, name desc"
 

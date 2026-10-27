@@ -44,7 +44,10 @@
                     />
                 </div>
             </sheet>
-            <xpath expr="//field[@name='date_order']/.." position="inside">
+            <xpath
+                expr="//field[@name='date_order']/ancestor::group[1]"
+                position="inside"
+            >
                 <field
                     name="ignore_exception"
                     invisible="state != 'purchase'"

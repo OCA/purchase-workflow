@@ -2,10 +2,7 @@
 # Copyright 2020 Camptocamp SA
 # Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
-from datetime import datetime
-
-from odoo import Command
-from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
+from odoo import Command, fields
 
 from odoo.addons.base.tests.common import BaseCommon
 from odoo.addons.base_exception.tests.common import (
@@ -15,10 +12,16 @@ from odoo.addons.base_exception.tests.common import (
 
 
 class TestPurchaseException(BaseCommon):
+    _test_user_groups = (
+        "purchase.group_purchase_user",
+        "base_exception.group_exception_rule_manager",
+    )
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, test_base_exception=True))
+        cls.partner.email = False
         # Useful models
         cls.PurchaseOrder = cls.env["purchase.order"]
         cls.PurchaseOrderLine = cls.env["purchase.order.line"]
@@ -31,7 +34,7 @@ class TestPurchaseException(BaseCommon):
         cls.product_id_3 = cls.env["product.product"].create(
             {"name": "Test Product 3", "type": "consu"}
         )
-        cls.date_planned = datetime.today().strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+        cls.date_planned = fields.Datetime.now()
         cls.purchase_exception_confirm = cls.env["purchase.exception.confirm"]
         cls.exception_noemail = cls.env.ref("purchase_exception.po_excep_no_email")
         cls.exception_qtycheck = cls.env.ref("purchase_exception.pol_excep_qty_check")
@@ -43,17 +46,17 @@ class TestPurchaseException(BaseCommon):
                         "name": cls.product_id_1.name,
                         "product_id": cls.product_id_1.id,
                         "product_qty": 5.0,
-                        "product_uom_id": cls.product_id_1.uom_id.id,
+                        "uom_id": cls.product_id_1.uom_id.id,
                         "price_unit": 500.0,
                         "date_planned": cls.date_planned,
                     },
                 ),
-                (
+                Command.create(
                     {
                         "name": cls.product_id_2.name,
                         "product_id": cls.product_id_2.id,
                         "product_qty": 5.0,
-                        "product_uom_id": cls.product_id_2.uom_id.id,
+                        "uom_id": cls.product_id_2.uom_id.id,
                         "price_unit": 250.0,
                         "date_planned": cls.date_planned,
                     },
@@ -68,7 +71,7 @@ class TestPurchaseException(BaseCommon):
                         "name": cls.product_id_3.name,
                         "product_id": cls.product_id_3.id,
                         "product_qty": -1.0,
-                        "product_uom_id": cls.product_id_3.uom_id.id,
+                        "uom_id": cls.product_id_3.uom_id.id,
                         "price_unit": 20.0,
                         "date_planned": cls.date_planned,
                     },
@@ -81,7 +84,6 @@ class TestPurchaseException(BaseCommon):
     def test_purchase_order_exception(self):
         self.exception_noemail.active = True
         self.exception_qtycheck.active = True
-        self.partner.email = False
         self.po = self.PurchaseOrder.create(self.po_vals.copy())
 
         # confirm quotation
@@ -111,7 +113,7 @@ class TestPurchaseException(BaseCommon):
                             "name": self.product_id_3.name,
                             "product_id": self.product_id_3.id,
                             "product_qty": 2,
-                            "product_uom_id": self.product_id_3.uom_id.id,
+                            "uom_id": self.product_id_3.uom_id.id,
                             "price_unit": 30,
                             "date_planned": self.date_planned,
                         },
