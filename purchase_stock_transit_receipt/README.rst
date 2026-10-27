@@ -70,6 +70,18 @@ reception is then ready in the warehouse.
 Other modules can extend ``purchase.order._requires_transit_receipt()``
 to send more purchases through the Incoming transit.
 
+The received quantity of the purchase changes only when the goods leave
+the Incoming transit into the warehouse: it stays at 0 while the goods
+are in transit, and returning the usual reception to the Incoming
+transit decreases it.
+
+Known issues / Roadmap
+======================
+
+Kits (phantom bills of materials, ``purchase_mrp``) keep their own
+received quantity computation: they are counted as received at the
+Transit receipt.
+
 Bug Tracker
 ===========
 
