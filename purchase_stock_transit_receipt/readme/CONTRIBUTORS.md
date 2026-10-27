@@ -1,0 +1,2 @@
+- [Akretion](https://www.akretion.com):
+  - Guillaume Masson
