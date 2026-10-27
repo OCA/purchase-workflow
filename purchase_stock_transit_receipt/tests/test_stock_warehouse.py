@@ -4,59 +4,20 @@
 
 from odoo import Command
 
-from odoo.addons.base.tests.common import BaseCommon
-
 from ..hooks import post_init_hook
+from .common import TransitReceiptCommon
 
 
-class TestStockWarehouse(BaseCommon):
+class TestStockWarehouse(TransitReceiptCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.warehouse = cls.env["stock.warehouse"].create(
-            {"name": "Transit Warehouse", "code": "TWH"}
-        )
-        cls.supplier = cls.env["res.partner"].create({"name": "Supplier"})
         cls.customer = cls.env["res.partner"].create({"name": "Customer"})
-        cls.product = cls.env["product.product"].create(
-            {
-                "name": "Product",
-                "is_storable": True,
-                "standard_price": 10.0,
-            }
-        )
 
     def _transit_rules(self, warehouse):
         return self.env["stock.rule"].search(
             [("location_src_id", "=", warehouse.incoming_transit_location_id.id)]
         )
-
-    def _create_purchase(self, quantity=5.0):
-        purchase = self.env["purchase.order"].create(
-            {
-                "partner_id": self.supplier.id,
-                "picking_type_id": self.warehouse.transit_in_type_id.id,
-                "order_line": [
-                    Command.create(
-                        {
-                            "product_id": self.product.id,
-                            "product_qty": quantity,
-                            "price_unit": 10.0,
-                        }
-                    )
-                ],
-            }
-        )
-        purchase.button_confirm()
-        return purchase
-
-    def _validate(self, picking):
-        picking.action_assign()
-        picking.move_ids.picked = True
-        picking._action_done()
-
-    def _next_picking(self, picking):
-        return picking.move_ids.move_dest_ids.picking_id
 
     def assertTransitReceiptChain(self, warehouse):
         rule = self._transit_rules(warehouse)

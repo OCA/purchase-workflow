@@ -2,7 +2,7 @@
 # @author Guillaume MASSON <guillaume.masson@akretion.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, fields, models
+from odoo import _, api, fields, models
 
 
 class StockWarehouse(models.Model):
@@ -20,6 +20,14 @@ class StockWarehouse(models.Model):
         check_company=True,
         copy=False,
     )
+
+    @api.model
+    def _get_incoming_transit_locations(self):
+        return (
+            self.with_context(active_test=False)
+            .search([("incoming_transit_location_id", "!=", False)])
+            .incoming_transit_location_id
+        )
 
     def _get_incoming_transit_location_name(self, code=False):
         return _("%(code)s: Incoming transit", code=code or self.code)
