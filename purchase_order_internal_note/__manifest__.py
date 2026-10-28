@@ -2,11 +2,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Purchase Order Internal Note",
-    "version": "18.0.1.0.0",
-    "summary": """
-        Adds new field Internal Note to the purchase order.
-        It will not be included in the report.
-    """,
+    "version": "20.0.1.0.0",
+    "summary": "Adds an internal note to purchase orders, not printed in reports",
     "author": "Solvos, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
     "license": "AGPL-3",
