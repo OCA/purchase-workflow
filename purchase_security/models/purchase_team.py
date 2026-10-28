@@ -21,7 +21,7 @@ class PurchaseTeam(models.Model):
     )
 
     def open_form_view(self):
-        """Allow to open the form view from the editable tree view.
+        """Allow to open the form view from the editable list view.
 
         The main reason to use the form view is to manage the team members
         of larger teams. The many2many_avatar_user widget in the tree view
