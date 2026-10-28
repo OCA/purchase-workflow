@@ -2,9 +2,12 @@
 # Copyright 2020 Camptocamp SA
 # Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+from contextlib import suppress
+
 from odoo import Command, fields
 
 from odoo.addons.base.tests.common import BaseCommon
+from odoo.addons.base_exception.exceptions import BaseExceptionError
 from odoo.addons.base_exception.tests.common import (
     patch_base_exception_method_env,
     swallow_base_exception_error,
@@ -139,6 +142,24 @@ class TestPurchaseException(BaseCommon):
             active_model=self.po._name,
         ).create({"ignore": True})
         po_except_confirm.action_confirm()
+
+    @patch_base_exception_method_env
+    def test_wizard_ignore_confirms(self):
+        self.exception_noemail.active = True
+        po = self.PurchaseOrder.create(self.po_vals.copy())
+        # Not assertRaises: its savepoint would roll back the exceptions, which
+        # are committed through a separate cursor outside tests
+        with suppress(BaseExceptionError):
+            po.button_confirm()
+        self.assertEqual(po.state, "draft")
+        self.assertEqual(po.exception_ids, self.exception_noemail)
+
+        po_except_confirm = self.purchase_exception_confirm.with_context(
+            active_id=po.id, active_ids=po.ids, active_model=po._name
+        ).create({"ignore": True})
+        po_except_confirm.action_confirm()
+        self.assertEqual(po.state, "purchase")
+        self.assertTrue(po.ignore_exception)
 
     def test_exception_qtycheck(self):
         # No allow ignoring exceptions if the "is_blocking" field is checked

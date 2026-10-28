@@ -17,8 +17,9 @@ class PurchaseExceptionConfirm(models.TransientModel):
         self.ensure_one()
         exceptions_blocking = self.exception_ids.filtered("is_blocking")
         if self.ignore and not exceptions_blocking:
-            self.related_model_id.button_draft()
-            self.related_model_id.ignore_exception = True
+            # Keep the detected exceptions: once cleared, confirming detects them
+            # as new and raises again
+            self.related_model_id.action_ignore_exceptions()
             self.related_model_id.button_confirm()
         else:
             self.related_model_id.ignore_exception = False
