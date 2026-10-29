@@ -7,28 +7,31 @@ from odoo.addons.base.tests.common import BaseCommon
 
 
 class TestPurchaseLot(BaseCommon):
+    _test_user_groups = (
+        "purchase.group_purchase_user",
+        "stock.group_stock_user",
+    )
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.customer_loc = cls.env.ref("stock.stock_location_customers")
         cls.warehouse = cls.env.ref("stock.warehouse0")
+        buy_route = cls.env.ref("purchase_stock.route_warehouse0_buy")
+        buy_route.product_selectable = True
+        mto_route = cls.env.ref("stock.route_warehouse0_mto")
+        mto_route.active = True
         cls.large_cabinet = cls.env["product.product"].create(
             {
                 "name": "Test Product Lot",
                 "type": "consu",
+                "is_storable": True,
+                "tracking": "lot",
+                "route_ids": [Command.link(buy_route.id), Command.link(mto_route.id)],
             }
         )
-        buy_route = cls.env.ref("purchase_stock.route_warehouse0_buy")
-        mto_route = cls.env.ref("stock.route_warehouse0_mto")
-        mto_route.write({"active": True})
         # ensure full make to order and not mts or mto
         mto_route.rule_ids.write({"procure_method": "make_to_order"})
-        cls.large_cabinet.write(
-            {
-                "route_ids": [(4, buy_route.id, 0), (4, mto_route.id, 0)],
-                "tracking": "lot",
-            }
-        )
         cls.env["product.supplierinfo"].create(
             {
                 "product_tmpl_id": cls.large_cabinet.product_tmpl_id.id,
@@ -60,7 +63,7 @@ class TestPurchaseLot(BaseCommon):
                 "location_id": self.warehouse.lot_stock_id.id,
                 "location_dest_id": self.customer_loc.id,
                 "product_uom_qty": 1,
-                "product_uom": self.large_cabinet.uom_id.id,
+                "uom_id": self.large_cabinet.uom_id.id,
                 "description_picking": "test",
                 "procure_method": "make_to_order",
                 "warehouse_id": self.warehouse.id,
@@ -73,7 +76,7 @@ class TestPurchaseLot(BaseCommon):
                 "location_id": self.warehouse.lot_stock_id.id,
                 "location_dest_id": self.customer_loc.id,
                 "product_uom_qty": 1,
-                "product_uom": self.large_cabinet.uom_id.id,
+                "uom_id": self.large_cabinet.uom_id.id,
                 "description_picking": "test",
                 "procure_method": "make_to_order",
                 "warehouse_id": self.warehouse.id,
