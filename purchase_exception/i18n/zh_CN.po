@@ -19,7 +19,7 @@ msgstr ""
 #. module: purchase_exception
 #: model_terms:ir.ui.view,arch_db:purchase_exception.view_order_form
 msgid "<strong>There are exceptions blocking this Purchase Order:</strong>"
-msgstr ""
+msgstr "<strong>本采购订单被以下例外拦下：</strong>"
 
 #. module: purchase_exception
 #: model:ir.model.fields,field_description:purchase_exception.field_exception_rule__model
@@ -35,7 +35,7 @@ msgstr "在草稿中阻止"
 #: model_terms:ir.ui.view,arch_db:purchase_exception.view_order_form
 msgid ""
 "Click here to be able to confirm this Agreement regardless of the exceptions."
-msgstr ""
+msgstr "点击后可忽略例外，照常确认本订单。"
 
 #. module: purchase_exception
 #: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__create_uid
@@ -65,7 +65,7 @@ msgstr "异常"
 #. module: purchase_exception
 #: model:ir.model.fields,field_description:purchase_exception.field_purchase_order__exceptions_summary
 msgid "Exceptions Summary"
-msgstr ""
+msgstr "例外摘要"
 
 #. module: purchase_exception
 #: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__exception_ids
@@ -98,7 +98,7 @@ msgstr "最后更新时间"
 #. module: purchase_exception
 #: model:ir.model.fields,field_description:purchase_exception.field_purchase_order__main_exception_id
 msgid "Main Exception"
-msgstr ""
+msgstr "主要例外"
 
 #. module: purchase_exception
 #: model:exception.rule,description:purchase_exception.po_excep_no_email
@@ -139,7 +139,7 @@ msgstr "采购订单行"
 #. module: purchase_exception
 #: model:ir.model,name:purchase_exception.model_purchase_exception_confirm
 msgid "Purchase exception wizard"
-msgstr ""
+msgstr "采购例外向导"
 
 #. module: purchase_exception
 #: model:exception.rule,description:purchase_exception.pol_excep_qty_check
@@ -169,7 +169,7 @@ msgstr "采购"
 #. module: purchase_exception
 #: model:exception.rule,name:purchase_exception.pol_excep_qty_check
 msgid "Quantity not positive"
-msgstr ""
+msgstr "数量不是正数"
 
 #~ msgid "Last Modified on"
 #~ msgstr "最后修改时间"
