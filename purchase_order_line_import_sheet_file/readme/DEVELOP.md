@@ -24,7 +24,7 @@ used in `_prepare_order_line_vals()`. It is then part of the downloaded
 template and recognized in the uploaded files, by its label or by its key:
 
 ```python
-from odoo import _, models
+from odoo import models
 
 
 class PurchaseOrderLineImport(models.TransientModel):
@@ -35,8 +35,8 @@ class PurchaseOrderLineImport(models.TransientModel):
         columns.append(
             {
                 "key": "discount",
-                "label": _("Discount"),
-                "help": _("Discount in %."),
+                "label": self.env._("Discount"),
+                "help": self.env._("Discount in %."),
                 "required": False,
             }
         )
@@ -45,7 +45,9 @@ class PurchaseOrderLineImport(models.TransientModel):
     def _prepare_order_line_vals(self, row):
         vals = super()._prepare_order_line_vals(row)
         if row.get("discount"):
-            vals["discount"] = self._parse_float(row["discount"], _("Discount"))
+            vals["discount"] = self._parse_float(
+                row["discount"], self.env._("Discount")
+            )
         return vals
 ```
 

@@ -5,7 +5,7 @@ import io
 
 import xlsxwriter
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 from odoo.addons.base_import.models.base_import import ImportValidationError
@@ -30,32 +30,36 @@ class PurchaseOrderLineImport(models.TransientModel):
         return [
             {
                 "key": "default_code",
-                "label": _("Internal Reference"),
-                "help": _("Internal reference of the product to purchase."),
+                "label": self.env._("Internal Reference"),
+                "help": self.env._("Internal reference of the product to purchase."),
                 "required": True,
             },
             {
                 "key": "product_qty",
-                "label": _("Quantity"),
-                "help": _("Quantity to purchase, in the purchase unit of measure."),
+                "label": self.env._("Quantity"),
+                "help": self.env._(
+                    "Quantity to purchase, in the purchase unit of measure."
+                ),
                 "required": True,
             },
             {
                 "key": "name",
-                "label": _("Description"),
-                "help": _("Line description. Leave empty to use the default one."),
+                "label": self.env._("Description"),
+                "help": self.env._(
+                    "Line description. Leave empty to use the default one."
+                ),
                 "required": False,
             },
             {
                 "key": "price_unit",
-                "label": _("Unit Price"),
-                "help": _("Unit price. Leave empty to use the vendor price."),
+                "label": self.env._("Unit Price"),
+                "help": self.env._("Unit price. Leave empty to use the vendor price."),
                 "required": False,
             },
             {
                 "key": "analytic_account",
-                "label": _("Analytic Account"),
-                "help": _(
+                "label": self.env._("Analytic Account"),
+                "help": self.env._(
                     "Code or name of the analytic account the whole line is "
                     "distributed to."
                 ),
@@ -83,14 +87,18 @@ class PurchaseOrderLineImport(models.TransientModel):
             normalized_header = self._normalize_header(header)
             key = key_by_header.get(normalized_header, False)
             if normalized_header and not key:
-                errors.append(_('Unknown column "%s".', header))
+                errors.append(self.env._('Unknown column "%s".', header))
             keys.append(key)
         for column in self._get_import_columns():
             count = keys.count(column["key"])
             if count > 1:
-                errors.append(_('Column "%s" appears more than once.', column["label"]))
+                errors.append(
+                    self.env._('Column "%s" appears more than once.', column["label"])
+                )
             elif not count and column["required"]:
-                errors.append(_('Required column "%s" is missing.', column["label"]))
+                errors.append(
+                    self.env._('Required column "%s" is missing.', column["label"])
+                )
         if errors:
             raise UserError("\n".join(errors))
         return keys
@@ -98,7 +106,7 @@ class PurchaseOrderLineImport(models.TransientModel):
     def _read_file_rows(self):
         self.ensure_one()
         if not self.file:
-            raise UserError(_("Please select a file to import."))
+            raise UserError(self.env._("Please select a file to import."))
         importer = self.env["base_import.import"].create(
             {
                 "res_model": "purchase.order.line",
@@ -110,7 +118,7 @@ class PurchaseOrderLineImport(models.TransientModel):
             __, rows = importer._read_file(
                 {"quoting": '"', "separator": "", "encoding": ""}
             )
-        except (ImportError, ImportValidationError, ValueError) as error:
+        except (ImportValidationError, ValueError) as error:
             raise UserError(str(error)) from error
         return rows
 
@@ -118,7 +126,7 @@ class PurchaseOrderLineImport(models.TransientModel):
         header_row, *data_rows = self._read_file_rows() or [[]]
         keys = self._get_header_keys(header_row)
         if not data_rows:
-            raise UserError(_("The file has no lines to import."))
+            raise UserError(self.env._("The file has no lines to import."))
         return [
             (
                 row_number,
@@ -145,7 +153,7 @@ class PurchaseOrderLineImport(models.TransientModel):
             return float(data[0][0])
         except (ImportValidationError, ValueError) as error:
             raise UserError(
-                _(
+                self.env._(
                     '%(label)s: "%(value)s" is not a valid number.',
                     label=label,
                     value=value,
@@ -161,20 +169,20 @@ class PurchaseOrderLineImport(models.TransientModel):
 
     def _get_product(self, row):
         if not row.get("default_code"):
-            raise UserError(_("The internal reference is required."))
+            raise UserError(self.env._("The internal reference is required."))
         products = self.env["product.product"].search(
             self._get_product_domain(row), limit=2
         )
         if not products:
             raise UserError(
-                _(
+                self.env._(
                     'No purchasable product found with internal reference "%s".',
                     row["default_code"],
                 )
             )
         if len(products) > 1:
             raise UserError(
-                _(
+                self.env._(
                     'Several products found with internal reference "%s".',
                     row["default_code"],
                 )
@@ -183,10 +191,10 @@ class PurchaseOrderLineImport(models.TransientModel):
 
     def _get_product_qty(self, row):
         if not row.get("product_qty"):
-            raise UserError(_("The quantity is required."))
-        product_qty = self._parse_float(row["product_qty"], _("Quantity"))
+            raise UserError(self.env._("The quantity is required."))
+        product_qty = self._parse_float(row["product_qty"], self.env._("Quantity"))
         if product_qty <= 0:
-            raise UserError(_("The quantity must be greater than zero."))
+            raise UserError(self.env._("The quantity must be greater than zero."))
         return product_qty
 
     def _get_analytic_account_domain(self, row):
@@ -203,11 +211,15 @@ class PurchaseOrderLineImport(models.TransientModel):
         )
         if not accounts:
             raise UserError(
-                _('No analytic account found for "%s".', row["analytic_account"])
+                self.env._(
+                    'No analytic account found for "%s".', row["analytic_account"]
+                )
             )
         if len(accounts) > 1:
             raise UserError(
-                _('Several analytic accounts found for "%s".', row["analytic_account"])
+                self.env._(
+                    'Several analytic accounts found for "%s".', row["analytic_account"]
+                )
             )
         return {str(accounts.id): 100.0}
 
@@ -220,7 +232,9 @@ class PurchaseOrderLineImport(models.TransientModel):
         if row.get("name"):
             vals["name"] = row["name"]
         if row.get("price_unit"):
-            vals["price_unit"] = self._parse_float(row["price_unit"], _("Unit Price"))
+            vals["price_unit"] = self._parse_float(
+                row["price_unit"], self.env._("Unit Price")
+            )
         if row.get("analytic_account"):
             vals["analytic_distribution"] = self._get_analytic_distribution(row)
         return vals
@@ -241,13 +255,17 @@ class PurchaseOrderLineImport(models.TransientModel):
                 vals_list.append(self._prepare_order_line_vals(row))
             except UserError as error:
                 errors.append(
-                    _("Row %(row)s: %(error)s", row=row_number, error=error.args[0])
+                    self.env._(
+                        "Row %(row)s: %(error)s", row=row_number, error=error.args[0]
+                    )
                 )
         if errors:
-            raise UserError("\n".join([_("No line has been imported."), *errors]))
+            raise UserError(
+                "\n".join([self.env._("No line has been imported."), *errors])
+            )
         lines = self._create_order_lines(vals_list)
         self.order_id.message_post(
-            body=_(
+            body=self.env._(
                 "Lines imported from %(file)s: %(count)s.",
                 count=len(lines),
                 file=self.file_name,
@@ -258,7 +276,7 @@ class PurchaseOrderLineImport(models.TransientModel):
     def _generate_template(self):
         output = io.BytesIO()
         workbook = xlsxwriter.Workbook(output, {"in_memory": True})
-        worksheet = workbook.add_worksheet(_("Lines"))
+        worksheet = workbook.add_worksheet(self.env._("Lines"))
         optional_format = workbook.add_format({"bold": True, "bg_color": "#D9D9D9"})
         required_format = workbook.add_format({"bold": True, "bg_color": "#F4B183"})
         for col, column in enumerate(self._get_import_columns()):

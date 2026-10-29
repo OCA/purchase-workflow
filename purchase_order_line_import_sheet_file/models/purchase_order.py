@@ -1,6 +1,6 @@
 # Copyright 2026 ForgeFlow S.L. (https://www.forgeflow.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import _, models
+from odoo import models
 from odoo.exceptions import UserError
 
 
@@ -10,7 +10,7 @@ class PurchaseOrder(models.Model):
     def _check_order_line_import_state(self):
         if self.filtered(lambda order: order.state not in ("draft", "sent")):
             raise UserError(
-                _("Lines can only be imported into a request for quotation.")
+                self.env._("Lines can only be imported into a request for quotation.")
             )
 
     def action_open_line_import(self):

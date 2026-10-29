@@ -3,7 +3,7 @@
 {
     "name": "Purchase Order Line Import",
     "summary": "Import purchase order lines from a spreadsheet",
-    "version": "17.0.1.0.0",
+    "version": "19.0.1.0.0",
     "category": "Purchase Management",
     "website": "https://github.com/OCA/purchase-workflow",
     "author": "ForgeFlow, Odoo Community Association (OCA)",

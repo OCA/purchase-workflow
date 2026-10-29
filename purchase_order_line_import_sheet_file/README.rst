@@ -119,7 +119,7 @@ or by its key:
 
 .. code:: python
 
-   from odoo import _, models
+   from odoo import models
 
 
    class PurchaseOrderLineImport(models.TransientModel):
@@ -130,8 +130,8 @@ or by its key:
            columns.append(
                {
                    "key": "discount",
-                   "label": _("Discount"),
-                   "help": _("Discount in %."),
+                   "label": self.env._("Discount"),
+                   "help": self.env._("Discount in %."),
                    "required": False,
                }
            )
@@ -140,7 +140,9 @@ or by its key:
        def _prepare_order_line_vals(self, row):
            vals = super()._prepare_order_line_vals(row)
            if row.get("discount"):
-               vals["discount"] = self._parse_float(row["discount"], _("Discount"))
+               vals["discount"] = self._parse_float(
+                   row["discount"], self.env._("Discount")
+               )
            return vals
 
 The search of an existing column is changed through its domain method,

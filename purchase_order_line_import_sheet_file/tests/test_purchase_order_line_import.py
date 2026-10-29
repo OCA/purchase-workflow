@@ -5,6 +5,7 @@ import io
 
 import xlsxwriter
 
+from odoo import Command
 from odoo.exceptions import UserError
 from odoo.tests.common import TransactionCase, tagged
 
@@ -53,7 +54,7 @@ class TestPurchaseOrderLineImport(TransactionCase):
     @classmethod
     def _create_product(cls, **kwargs):
         vals = {
-            "name": "Test Product %s" % kwargs.get("default_code", ""),
+            "name": f"Test Product {kwargs.get('default_code', '')}",
             "type": "consu",
             "purchase_ok": True,
             "standard_price": 3.0,
@@ -111,7 +112,7 @@ class TestPurchaseOrderLineImport(TransactionCase):
 
     def test_open_wizard_confirmed_order(self):
         self.order.order_line = [
-            (0, 0, {"product_id": self.product_1.id, "product_qty": 1.0})
+            Command.create({"product_id": self.product_1.id, "product_qty": 1.0})
         ]
         self.order.button_confirm()
         with self.assertRaisesRegex(UserError, "request for quotation"):
@@ -279,7 +280,7 @@ class TestPurchaseOrderLineImport(TransactionCase):
 
     def test_import_confirmed_order(self):
         self.order.order_line = [
-            (0, 0, {"product_id": self.product_1.id, "product_qty": 1.0})
+            Command.create({"product_id": self.product_1.id, "product_qty": 1.0})
         ]
         wizard = self._create_wizard([HEADER, ["TST-IMP-002", 1, "", "", ""]])
         self.order.button_confirm()
