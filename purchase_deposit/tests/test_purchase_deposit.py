@@ -4,10 +4,18 @@
 
 from odoo import Command, fields
 from odoo.exceptions import UserError
-from odoo.tests import Form, TransactionCase
+from odoo.tests import Form
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestPurchaseDeposit(TransactionCase):
+class TestPurchaseDeposit(BaseCommon):
+    _test_user_groups = (
+        "base.group_system",
+        "purchase.group_purchase_user",
+        "account.group_account_manager",
+    )
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -29,12 +37,6 @@ class TestPurchaseDeposit(TransactionCase):
                 "account_type": "asset_current",
             }
         )
-        # Create partner
-        cls.partner = cls.env["res.partner"].create(
-            {
-                "name": "Test Vendor",
-            }
-        )
         # Create products:
         p1 = cls.product1 = cls.product_model.create(
             {
@@ -49,17 +51,15 @@ class TestPurchaseDeposit(TransactionCase):
             {
                 "partner_id": cls.partner.id,
                 "order_line": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": p1.id,
-                            "product_uom_id": p1.uom_id.id,
+                            "uom_id": p1.uom_id.id,
                             "name": p1.name,
                             "price_unit": 100.0,
                             "date_planned": fields.Datetime.now(),
                             "product_qty": 42.0,
-                        },
+                        }
                     )
                 ],
             }
@@ -204,7 +204,7 @@ class TestPurchaseDeposit(TransactionCase):
         self.po.invoice_ids.invoice_line_ids.write(
             {
                 "price_unit": 500.0,
-                "tax_ids": [(6, 0, [self.tax.id])],
+                "tax_ids": [Command.set([self.tax.id])],
             }
         )
         self.po.invoice_ids.action_post()
