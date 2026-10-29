@@ -12,6 +12,9 @@ In this new *Approved* state:
 - The incoming shipments are not created. You can create them by
   clicking the *Convert to Purchase Order* button, also moving to state
   *Purchase Order*.
+- Its quantities are counted as incoming like RFQs in reordering
+  rules, the Replenishment report and the Forecasted report, so no
+  duplicate RFQs are created for them.
 
 The new state diagram is depicted below:
 
