@@ -72,7 +72,7 @@
                             name="action_view_purchase_request_line"
                             class="oe_stat_button"
                             invisible="line_count == 0"
-                            icon="fa-list"
+                            icon="format_list_bulleted"
                         >
                             <field name="line_count" widget="statinfo" string="Lines" />
                         </button>
@@ -81,7 +81,7 @@
                             name="action_view_purchase_order"
                             class="oe_stat_button"
                             invisible="purchase_count == 0"
-                            icon="fa-shopping-cart"
+                            icon="shopping_cart"
                             string="Purchase Order"
                         >
                             <field
@@ -96,7 +96,7 @@
                             class="oe_stat_button"
                             invisible="move_count == 0"
                             groups="stock.group_stock_manager"
-                            icon="fa-truck"
+                            icon="local_shipping"
                             string="Picking"
                         >
                             <field
@@ -193,7 +193,7 @@
                                     <button
                                         name="action_show_details"
                                         type="object"
-                                        icon="fa-list"
+                                        icon="format_list_bulleted"
                                         title="Show Details"
                                         width="0.1"
                                         options='{"warn": true}'
@@ -347,28 +347,28 @@
                     <filter
                         name="requested_by"
                         string="Requested by"
-                        icon="fa-user"
+                        icon="person"
                         domain="[]"
                         context="{'group_by':'requested_by'}"
                     />
                     <filter
                         name="assigned_to"
                         string="Assigned to"
-                        icon="fa-user"
+                        icon="person"
                         domain="[]"
                         context="{'group_by':'assigned_to'}"
                     />
                     <filter
                         name="source"
                         string="Source"
-                        icon="fa-caret-square-o-left"
+                        icon="login"
                         domain="[]"
                         context="{'group_by':'origin'}"
                     />
                     <filter
                         name="start_date"
                         string="Start Date"
-                        icon="fa-calendar"
+                        icon="calendar_today"
                         domain="[]"
                         context="{'group_by':'date_start'}"
                     />
