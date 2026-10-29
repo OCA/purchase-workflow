@@ -18,7 +18,11 @@ purchase-workflow
 
 [//]: # (addons)
 
-This part will be replaced when running the oca-gen-addons-table script from OCA/maintainer-tools.
+Available addons
+----------------
+addon | version | maintainers | summary
+--- | --- | --- | ---
+[purchase_all_shipments](purchase_all_shipments/) | 20.0.1.0.0 |  | Purchase All Shipments
 
 [//]: # (end addons)
 
