@@ -3,11 +3,10 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import time
-from datetime import datetime
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError
-from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT, float_compare, formatLang
+from odoo.tools import float_compare, formatLang
 
 
 class PurchaseAdvancePaymentInv(models.TransientModel):
@@ -148,10 +147,10 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
             "price_unit": amount,
             "product_qty": 0.0,
             "order_id": order.id,
-            "product_uom_id": product.uom_id.id,
+            "uom_id": product.uom_id.id,
             "product_id": product.id,
             "tax_ids": [(6, 0, tax_ids)],
-            "date_planned": datetime.today().strftime(DEFAULT_SERVER_DATETIME_FORMAT),
+            "date_planned": fields.Datetime.now(),
             "is_deposit": True,
         }
 
