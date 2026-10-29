@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2026 ForgeFlow S.L. (https://www.forgeflow.com)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_purchase_requisition_form" model="ir.ui.view">
+        <field
+            name="name"
+        >purchase.requisition.form - purchase_requisition_line_supplierinfo</field>
+        <field name="model">purchase.requisition</field>
+        <field
+            name="inherit_id"
+            ref="purchase_requisition.view_purchase_requisition_form"
+        />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='line_ids']/list/field[@name='price_unit']"
+                position="after"
+            >
+                <field
+                    name="delay"
+                    optional="show"
+                    column_invisible="parent.requisition_type != 'blanket_order'"
+                />
+                <field
+                    name="min_qty"
+                    optional="show"
+                    column_invisible="parent.requisition_type != 'blanket_order'"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
