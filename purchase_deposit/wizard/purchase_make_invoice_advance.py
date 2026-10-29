@@ -221,8 +221,9 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
                     )
                 )
             taxes = product.supplier_taxes_id.filtered(
-                lambda r, order=order: not order.company_id
-                or r.company_id == order.company_id
+                lambda r, order=order: (
+                    not order.company_id or r.company_id == order.company_id
+                )
             )
             if order.fiscal_position_id and taxes:
                 tax_ids = order.fiscal_position_id.map_tax(taxes).ids
