@@ -31,7 +31,7 @@ addon | version | maintainers | summary
 [purchase_advance_payment_line](purchase_advance_payment_line/) | 17.0.1.1.0 |  | Allow to add advance payment lines on purchase orders
 [purchase_all_shipments](purchase_all_shipments/) | 17.0.1.0.0 |  | Purchase All Shipments
 [purchase_allowed_product](purchase_allowed_product/) | 17.0.1.0.0 |  | This module allows to select only products that can be supplied by the vendor
-[purchase_billing_address](purchase_billing_address/) | 17.0.1.0.0 |  | Create a new partner type (purchase), to differentiate the purchase order and invoice addresses.
+[purchase_billing_address](purchase_billing_address/) | 17.0.1.0.1 |  | Create a new partner type (purchase), to differentiate the purchase order and invoice addresses.
 [purchase_blanket_order](purchase_blanket_order/) | 17.0.1.0.1 |  | Purchase Blanket Orders
 [purchase_cancel_reason](purchase_cancel_reason/) | 17.0.1.0.0 |  | Purchase Cancel Reason
 [purchase_commercial_partner](purchase_commercial_partner/) | 17.0.1.0.0 | <a href='https://github.com/alexis-via'><img src='https://github.com/alexis-via.png' width='32' height='32' style='border-radius:50%;' alt='alexis-via'/></a> | Add stored related field 'Commercial Supplier' on POs
@@ -84,10 +84,10 @@ addon | version | maintainers | summary
 [purchase_requisition_order_remaining_qty](purchase_requisition_order_remaining_qty/) | 17.0.1.0.0 | <a href='https://github.com/victoralmau'><img src='https://github.com/victoralmau.png' width='32' height='32' style='border-radius:50%;' alt='victoralmau'/></a> | Purchase Requisition Order Remaining Qty
 [purchase_requisition_tier_validation](purchase_requisition_tier_validation/) | 17.0.1.0.0 |  | Extends the functionality of Purchase Agreements to support a tier validation process.
 [purchase_sale_link_by_origin](purchase_sale_link_by_origin/) | 17.0.1.0.0 |  | Link PO/SO by the PO's Origin in addition to the default behavior that only links them by their lines
-[purchase_security](purchase_security/) | 17.0.1.0.3 | <a href='https://github.com/pilarvargas-tecnativa'><img src='https://github.com/pilarvargas-tecnativa.png' width='32' height='32' style='border-radius:50%;' alt='pilarvargas-tecnativa'/></a> | See only your purchase orders
+[purchase_security](purchase_security/) | 17.0.1.0.4 | <a href='https://github.com/pilarvargas-tecnativa'><img src='https://github.com/pilarvargas-tecnativa.png' width='32' height='32' style='border-radius:50%;' alt='pilarvargas-tecnativa'/></a> | See only your purchase orders
 [purchase_start_end_dates](purchase_start_end_dates/) | 17.0.1.0.0 |  | Adds start date and end date on purchase order lines
 [purchase_stock_manual_currency](purchase_stock_manual_currency/) | 17.0.1.0.0 |  | Extends manual currency from purchase to stock moves
-[purchase_stock_packaging](purchase_stock_packaging/) | 17.0.1.0.0 | <a href='https://github.com/rousseldenis'><img src='https://github.com/rousseldenis.png' width='32' height='32' style='border-radius:50%;' alt='rousseldenis'/></a> | Allows to transmit the product packaging from the procurement values to the generated purchase order line
+[purchase_stock_packaging](purchase_stock_packaging/) | 17.0.1.0.1 | <a href='https://github.com/rousseldenis'><img src='https://github.com/rousseldenis.png' width='32' height='32' style='border-radius:50%;' alt='rousseldenis'/></a> | Allows to transmit the product packaging from the procurement values to the generated purchase order line
 [purchase_stock_price_unit_sync](purchase_stock_price_unit_sync/) | 17.0.1.0.0 |  | Update cost price in stock moves already done
 [purchase_stock_reception_status](purchase_stock_reception_status/) | 17.0.1.0.0 |  | Glue module to integrate OCA reception status with purchase_stock
 [purchase_stock_secondary_unit](purchase_stock_secondary_unit/) | 17.0.1.0.0 |  | Get product quantities in a secondary unit

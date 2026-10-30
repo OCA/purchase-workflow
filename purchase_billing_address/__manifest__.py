@@ -5,7 +5,7 @@
     "name": "Purchase billing address",
     "summary": """Create a new partner type (purchase), to differentiate
                   the purchase order and invoice addresses.""",
-    "version": "17.0.1.0.0",
+    "version": "17.0.1.0.1",
     "license": "AGPL-3",
     "author": "Binhex,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
