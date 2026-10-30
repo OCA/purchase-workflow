@@ -8,7 +8,7 @@ registry.category("web_tour.tours").add("purchase_order_line_description_manual_
         {
             content: "Open the purchase order line editor",
             trigger:
-                '.o_field_product_label_section_and_note_cell:has(textarea:value("Purchase description for test product"))',
+                '.o_field_product_label_section_and_note_cell:has(textarea:value("Purchase description for test product")), .o_field_product_label_section_and_note_cell:has(div:contains("Purchase description for test product"))',
             run: "click",
         },
         {
