@@ -19,6 +19,6 @@ class StockRule(models.Model):
             days=company_id.days_to_purchase
         )
         delay = -1 * values["supplier"].delay
-        purchase_date = partner.supplier_plan_days(schedule_date, delay)
+        purchase_date = partner.supplier_plan_days(schedule_date, delay, company_id)
         res["date_order"] = purchase_date
         return res
