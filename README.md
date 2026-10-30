@@ -58,6 +58,7 @@ addon | version | maintainers | summary
 [purchase_order_date_approve_editable](purchase_order_date_approve_editable/) | 17.0.1.0.0 |  | Allows editing the Approval Date on Purchase Orders
 [purchase_order_general_discount](purchase_order_general_discount/) | 17.0.1.0.0 |  | General discount per purchase order
 [purchase_order_line_deep_sort](purchase_order_line_deep_sort/) | 17.0.1.0.0 |  | Purchase Order Line Sort
+[purchase_order_line_import_sheet_file](purchase_order_line_import_sheet_file/) | 17.0.1.0.0 |  | Import purchase order lines from a spreadsheet
 [purchase_order_line_menu](purchase_order_line_menu/) | 17.0.1.1.1 |  | Adds Purchase Order Lines Menu
 [purchase_order_line_sequence](purchase_order_line_sequence/) | 17.0.1.0.0 |  | Adds sequence to PO lines and propagates it toInvoice lines and Stock Moves
 [purchase_order_line_stock_available](purchase_order_line_stock_available/) | 17.0.1.0.0 |  | Purchase order line stock available
