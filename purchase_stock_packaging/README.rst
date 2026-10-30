@@ -73,7 +73,7 @@ Contributors
 
 - Lois Rilo Antelo <lois.rilo@forgeflow.com>
 - Denis Roussel <denis.roussel@acsone.eu>
-- `Binhex System Solutions <https://binhex.cloud/>`__:
+- `Binhex <https://binhex.cloud/>`__:
 
   - Deriman Alonso <d.alonso@binhex.cloud>
 
