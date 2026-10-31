@@ -15,7 +15,7 @@ class PurchaseOrder(models.Model):
         self.ensure_one()
 
         product_id = stock_move_id.product_id
-        qty = max(stock_move_id.quantity_done, 0)
+        qty = max(stock_move_id.quantity, 0)
         date = fields.Date.to_date(stock_move_id.date) or fields.Date.today()
         supplierinfo = self.env["product.supplierinfo"]
         price_unit = 0.0
@@ -51,7 +51,7 @@ class PurchaseOrder(models.Model):
         data = {
             "display_type": "product",
             # Normally the name is '{order_name}: {order_line_name}'.
-            "name": "%s: %s" % (stock_move_id.picking_id.name, stock_move_id.name),
+            "name": f"{stock_move_id.picking_id.name}: {stock_move_id.name}",
             "product_id": product_id.id,
             "product_uom_id": stock_move_id.product_uom.id,
             "quantity": qty,

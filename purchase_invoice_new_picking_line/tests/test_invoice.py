@@ -17,14 +17,17 @@ class TestAccountInvoice(tests.common.TransactionCase):
         cls.supplier_loc = cls.env.ref("stock.stock_location_suppliers")
         cls.stock_loc = cls.env.ref("stock.warehouse0").lot_stock_id
 
+        # The demo order has lot-tracked products, which are not the point here.
+        cls.purchase_order.order_line.product_id.tracking = "none"
         # Confirm order
         cls.purchase_order.button_confirm()
         cls.picking = cls.purchase_order.picking_ids
         cls.moves = cls.picking.move_ids
 
-        cls.moves[0].quantity_done = cls.moves[0].product_qty
-        cls.moves[1].quantity_done = cls.moves[1].product_qty
-        cls.moves[2].quantity_done = cls.moves[2].product_qty - 1
+        cls.moves[0].quantity = cls.moves[0].product_qty
+        cls.moves[1].quantity = cls.moves[1].product_qty
+        cls.moves[2].quantity = cls.moves[2].product_qty - 1
+        cls.moves.picked = True
 
     def _validate_picking(self):
         wizard = self.picking.button_validate()
@@ -44,7 +47,8 @@ class TestAccountInvoice(tests.common.TransactionCase):
                 "name": self.product.name,
                 "product_id": self.product.id,
                 "product_uom": self.product.uom_id.id,
-                "quantity_done": 20,
+                "quantity": 20,
+                "picked": True,
                 "location_id": self.supplier_loc.id,
                 "location_dest_id": self.stock_loc.id,
             }
@@ -54,23 +58,28 @@ class TestAccountInvoice(tests.common.TransactionCase):
         invoice = self._create_invoice()
 
         self.assertRecordValues(
-            invoice.invoice_line_ids,
+            invoice.invoice_line_ids[:3],
             [
                 {
                     "product_id": self.moves[0].product_id.id,
-                    "quantity": self.moves[0].quantity_done,
+                    "quantity": self.moves[0].quantity,
                 },
                 {
                     "product_id": self.moves[1].product_id.id,
-                    "quantity": self.moves[1].quantity_done,
+                    "quantity": self.moves[1].quantity,
                 },
                 {
                     "product_id": self.moves[2].product_id.id,
-                    "quantity": self.moves[2].quantity_done,
+                    "quantity": self.moves[2].quantity,
                 },
+            ],
+        )
+        self.assertRecordValues(
+            invoice.invoice_line_ids[3:],
+            [
                 {
                     "product_id": new_move.product_id.id,
-                    "quantity": new_move.quantity_done,
+                    "quantity": new_move.quantity,
                     "price_unit": self.product.lst_price,
                     "product_uom_id": new_move.product_uom.id,
                     "display_type": "product",
@@ -99,7 +108,8 @@ class TestAccountInvoice(tests.common.TransactionCase):
                 "name": self.product.name,
                 "product_id": self.product.id,
                 "product_uom": self.product.uom_id.id,
-                "quantity_done": 20,
+                "quantity": 20,
+                "picked": True,
                 "location_id": self.supplier_loc.id,
                 "location_dest_id": self.stock_loc.id,
             }
@@ -113,7 +123,7 @@ class TestAccountInvoice(tests.common.TransactionCase):
             [
                 {
                     "product_id": new_move.product_id.id,
-                    "quantity": new_move.quantity_done,
+                    "quantity": new_move.quantity,
                     "price_unit": 1,
                     "product_uom_id": new_move.product_uom.id,
                     "display_type": "product",
