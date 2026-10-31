@@ -11,3 +11,5 @@ deposit).
 As deposit is created, when user click button "Create Bill" again in
 purchase order, the Vendor Bill will be created with deposit amount
 deducted.
+
+Watch [this video](https://youtu.be/mYMmsgl5QGU?si=nP4508cd-4ZC0d31) for an example of usage.
