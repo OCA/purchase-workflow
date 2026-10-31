@@ -164,7 +164,6 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             "order_id": po.id,
             "product_id": product.id,
             "product_uom_id": product.uom_id.id,
-            "price_unit": 0.0,
             "product_qty": qty,
             "analytic_distribution": item.line_id.analytic_distribution,
             "purchase_request_lines": [(4, item.line_id.id)],
@@ -281,7 +280,11 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             date_required = item.line_id.date_required
             # we enforce to save the datetime value in the current tz of the user
             date_planned = self._get_date_with_user_tz(date_required)
-            po_line.write({"product_qty": new_qty, "date_planned": date_planned})
+            # Two writes on purpose: date_planned is computed by the same method
+            # as price_unit, so writing both at once would protect price_unit
+            # from being recomputed for the new quantity.
+            po_line.write({"product_qty": new_qty})
+            po_line.write({"date_planned": date_planned})
             # Now link the PR line to the PO line (if not already linked)
             if line.id not in po_line.purchase_request_lines.ids:
                 po_line.purchase_request_lines = [(4, line.id)]
