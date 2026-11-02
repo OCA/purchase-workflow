@@ -25,24 +25,24 @@
         <field name="inherit_id" ref="product.product_supplierinfo_form_view" />
         <field name="arch" type="xml">
             <xpath expr="//label[@for='price']" position="before">
-                <field name="package_qty" required="1" />
+                <field name="package_qty" />
                 <field name="indicative_package" />
-                <label for="base_price" />
+                <label for="base_price" string="Price" />
                 <div>
                     <field name="base_price" required="1" class="oe_inline" />
-                    <field name="price_policy" class="oe_inline" />
+                    <field name="price_policy" required="1" class="oe_inline" />
                 </div>
             </xpath>
             <xpath expr="//field[@name='price']" position="attributes">
                 <attribute name="string">Price per unit</attribute>
-                <attribute name="attrs">
-                    {'invisible':[('price_policy', '!=', 'package')]}
-                </attribute>
+                <attribute
+                    name="invisible"
+                >not context.get('tracking_disable') and price_policy != 'package'</attribute>
             </xpath>
             <xpath expr="//label[@for='price']" position="attributes">
-                <attribute name="attrs">
-                    {'invisible':[('price_policy', '!=', 'package')]}
-                </attribute>
+                <attribute
+                    name="invisible"
+                >not context.get('tracking_disable') and price_policy != 'package'</attribute>
             </xpath>
         </field>
     </record>
@@ -53,11 +53,14 @@
         <field name="inherit_id" ref="product.product_supplierinfo_tree_view" />
         <field name="arch" type="xml">
             <field name="min_qty" position="after">
+                <!-- on product template form -->
                 <field name="package_qty" />
                 <field name="indicative_package" />
             </field>
-            <xpath expr="//field[@name='price']" position="replace" />
-            <xpath expr="//tree" position="inside">
+            <xpath expr="//field[@name='price']" position="attributes">
+                <attribute name="column_invisible">1</attribute>
+            </xpath>
+            <xpath expr="//list" position="inside">
                 <field name="price" />
                 <field name="base_price" />
                 <field name="price_policy" />

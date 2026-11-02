@@ -23,9 +23,8 @@
 #
 ##############################################################################
 
-from odoo import _, api, fields, models
-
-from odoo.addons import decimal_precision as dp
+from odoo import api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class ProductSupplierinfo(models.Model):
@@ -33,41 +32,33 @@ class ProductSupplierinfo(models.Model):
 
     # Columns section
     package_qty = fields.Float(
-        "Package Qty",
-        digits=dp.get_precision("Product UoM"),
+        digits="Product Unit of Measure",
         help="""The quantity of products in the supplier package."""
         """ You will always have to buy a multiple of this quantity.""",
         default=1,
     )
     indicative_package = fields.Boolean(
-        "Indicative Package",
         help="""If checked, the system will not force you to purchase"""
         """ a strict multiple of package quantity""",
         default=False,
     )
     price_policy = fields.Selection(
         [("uom", "per UOM"), ("package", "per Package")],
-        "Price Policy",
         default="uom",
-        required=True,
     )
     base_price = fields.Float(
-        "Price",
-        required=False,
-        default=0.00,
-        digits=dp.get_precision("Product Price"),
+        string="Price",
+        digits="Product Price",
         help="The price to purchase a product",
     )
     price = fields.Float(
-        "Price per Unit",
+        string="Price per Unit",
         compute="_compute_price",
-        required=False,
         store=True,
-        readonly=True,
+        readonly=False,
     )
 
     @api.depends("base_price", "price_policy", "package_qty")
-    @api.multi
     def _compute_price(self):
         for psi in self:
             if psi.price_policy == "package":
@@ -77,32 +68,30 @@ class ProductSupplierinfo(models.Model):
             else:
                 psi.price = psi.base_price
 
-    @api.model
-    def create(self, vals):
-        if not vals.get("base_price", False):
-            if vals.get("price", False):
-                vals["base_price"] = vals["price"]
-                del vals["price"]
-            else:
-                vals["base_price"] = 0
-        res = super().create(vals)
-        return res
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if not vals.get("base_price"):
+                if vals.get("price"):
+                    vals["base_price"] = vals["price"]
+                    vals["price_policy"] = "uom"
+                else:
+                    vals["base_price"] = 0
+        return super().create(vals_list)
 
-    @api.multi
     def write(self, vals):
-        if not vals.get("base_price", False):
-            if vals.get("price", False):
+        if not vals.get("base_price"):
+            if vals.get("price"):
                 vals["base_price"] = vals["price"]
-                del vals["price"]
+                vals["price_policy"] = "uom"
         return super().write(vals)
 
     # Constraints section
-    @api.multi
     @api.constrains("package_qty")
     def _check_package_qty(self):
         for psi in self:
-            if psi.package_qty == 0:
-                raise ValueError(_("The package quantity cannot be 0."))
+            if psi.price_policy == "package" and psi.package_qty == 0:
+                raise ValidationError(self.env._("The package quantity cannot be 0."))
 
     # Init section
     @api.model
