@@ -1,3 +1,4 @@
+from odoo import Command
 from odoo.exceptions import UserError
 from odoo.tests import common
 
@@ -335,3 +336,27 @@ class TestPurchaseMerge(common.TransactionCase):
         self.assertEqual(
             len(dst_po.order_line), 2, "Destination PO should have 2 lines."
         )
+
+    def test_merge_as_purchase_user(self):
+        """A purchase user without Settings rights can merge and move followers."""
+        # GIVEN
+        purchase_user = common.new_test_user(
+            self.env,
+            login="purchase_merge_user",
+            groups="base.group_user,purchase.group_purchase_user",
+        )
+        src_po = self.purchase_order_1
+        dst_po = self.purchase_order_2
+        src_po.message_subscribe(partner_ids=self.partner_2.ids)
+        wizard = self.PurchaseMerge.with_user(purchase_user).create(
+            {
+                "purchase_ids": [Command.set([src_po.id, dst_po.id])],
+                "dst_purchase_id": dst_po.id,
+            }
+        )
+        # WHEN
+        wizard.action_merge()
+        # THEN
+        self.assertEqual(src_po.state, "cancel")
+        self.assertEqual(len(dst_po.order_line), 2)
+        self.assertIn(self.partner_2, dst_po.message_partner_ids)
