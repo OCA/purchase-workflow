@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="report_purchasequotation_document"
+        inherit_id="purchase.report_purchasequotation_document"
+    >
+        <xpath expr="//div[hasclass('page')]" position="before">
+            <t
+                t-if="o.company_invoice_address_id and o.company_invoice_address_id != o.company_partner_id"
+            >
+                <t t-set="information_block">
+                    <t t-out="information_block or ''" />
+                    <t
+                        t-call="purchase_company_invoice_address.report_company_invoice_address"
+                    />
+                </t>
+            </t>
+        </xpath>
+    </template>
+</odoo>
