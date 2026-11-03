@@ -5,14 +5,14 @@
 from odoo import Command, fields
 from odoo.tests import new_test_user, users
 
-from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT, BaseCommon
+from odoo.addons.base.tests.common import DISABLED_MAIL_CREATE_CONTEXT, BaseCommon
 
 
 class TestProductCostPriceAvcoSync(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
+        cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CREATE_CONTEXT))
         cls.partner = cls.env["res.partner"].create({"name": "Test Partner"})
         cls.product_category = cls.env["product.category"].create(
             {
@@ -54,7 +54,7 @@ class TestProductCostPriceAvcoSync(BaseCommon):
                             "name": "Test line",
                             "product_qty": 10.0,
                             "product_id": cls.product.id,
-                            "product_uom_id": cls.product.uom_id.id,
+                            "uom_id": cls.product.uom_id.id,
                             "date_planned": fields.Date.today(),
                             "price_unit": 8.0,
                         },
@@ -64,7 +64,7 @@ class TestProductCostPriceAvcoSync(BaseCommon):
                             "name": "Test line with kit product",
                             "product_qty": 5.0,
                             "product_id": cls.product_2.id,
-                            "product_uom_id": cls.product_2.uom_id.id,
+                            "uom_id": cls.product_2.uom_id.id,
                             "date_planned": fields.Date.today(),
                             "price_unit": 15.0,
                         },
