@@ -25,26 +25,6 @@ msgstr ""
 "X-Generator: Weblate 5.10.4\n"
 
 #. module: purchase_request
-#. odoo-python
-#: code:addons/purchase_request/models/purchase_order.py:0
-msgid ""
-"<li><b>%(prl_name)s</b>: Ordered quantity %(prl_qty)s %(prl_uom)s, Planned "
-"date %(prl_date_planned)s</li>"
-msgstr ""
-"<li><b>%(prl_name)s</b>: Naručena količina %(prl_qty)s %(prl_uom)s, Plairani "
-"datum %(prl_date_planned)s</li>"
-
-#. module: purchase_request
-#. odoo-python
-#: code:addons/purchase_request/models/purchase_request_allocation.py:0
-msgid ""
-"<li><b>%(product_name)s</b>: Received quantity %(product_qty)s %"
-"(product_uom)s</li>"
-msgstr ""
-"<li><b>%(product_name)s</b>: Zaprimljena količina %(product_qty)s %"
-"(product_uom)s</li>"
-
-#. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 msgid "<strong>Analytic Distribution</strong>"
 msgstr "<strong>Analitička distribucija</strong>"
@@ -702,6 +682,13 @@ msgid "Order confirmation %(po_name)s for your Request %(pr_name)s"
 msgstr "Potvrda narudžbe %(po_name)s za vaš zahtjev %(pr_name)s"
 
 #. module: purchase_request
+#. odoo-python
+#: code:addons/purchase_request/models/purchase_order.py:0
+msgid ""
+"Ordered quantity %(prl_qty)s %(prl_uom)s, Planned date %(prl_date_planned)s"
+msgstr ""
+
+#. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__orderpoint_id
 msgid "Orderpoint"
 msgstr "Točka narudžbe"
@@ -1056,6 +1043,12 @@ msgstr "Primka je riješena"
 #: code:addons/purchase_request/models/purchase_order.py:0
 msgid "Received quantity"
 msgstr "Zaprimljena količina"
+
+#. module: purchase_request
+#. odoo-python
+#: code:addons/purchase_request/models/purchase_request_allocation.py:0
+msgid "Received quantity %(product_qty)s %(product_uom)s"
+msgstr ""
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
@@ -1469,6 +1462,20 @@ msgstr "Morate odabrati retke iz iste vrste operacije."
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
 msgid "You have to select lines from the same company."
 msgstr "Morate odabrati linije iste tvrtke."
+
+#~ msgid ""
+#~ "<li><b>%(prl_name)s</b>: Ordered quantity %(prl_qty)s %(prl_uom)s, "
+#~ "Planned date %(prl_date_planned)s</li>"
+#~ msgstr ""
+#~ "<li><b>%(prl_name)s</b>: Naručena količina %(prl_qty)s %(prl_uom)s, "
+#~ "Plairani datum %(prl_date_planned)s</li>"
+
+#~ msgid ""
+#~ "<li><b>%(product_name)s</b>: Received quantity %(product_qty)s %"
+#~ "(product_uom)s</li>"
+#~ msgstr ""
+#~ "<li><b>%(product_name)s</b>: Zaprimljena količina %(product_qty)s %"
+#~ "(product_uom)s</li>"
 
 #~ msgid "Items"
 #~ msgstr "Stavke"
