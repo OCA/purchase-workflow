@@ -67,7 +67,6 @@ class TestPurchaseOrderLineDescription(SavepointCaseWithUserDemo):
         self.product.with_context(
             lang="es_ES"
         ).description_purchase = "descripción para compras"
-        with Form(self.order.sudo()) as order:
-            with order.order_line.new() as line:
-                line.product_id = self.product
-                self.assertEqual(line.name, "descripción para compras")
+        with Form(self.order.sudo()) as order, order.order_line.new() as line:
+            line.product_id = self.product
+            self.assertEqual(line.name, "descripción para compras")
