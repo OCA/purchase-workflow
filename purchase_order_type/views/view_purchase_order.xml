@@ -5,7 +5,11 @@
         <field name="inherit_id" ref="purchase.purchase_order_form" />
         <field name="arch" type="xml">
             <field name="partner_id" position="after">
-                <field name="order_type" required="True" />
+                <field name="order_type_required" invisible="1" />
+                <field
+                    name="order_type"
+                    attrs="{'required': [('order_type_required', '=', True)]}"
+                />
             </field>
         </field>
     </record>

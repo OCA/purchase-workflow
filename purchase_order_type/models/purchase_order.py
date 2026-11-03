@@ -17,6 +17,9 @@ class PurchaseOrder(models.Model):
         ondelete="restrict",
         domain="[('company_id', 'in', [False, company_id])]",
     )
+    order_type_required = fields.Boolean(
+        related="company_id.purchase_order_type_required",
+    )
 
     @api.onchange("partner_id")
     def onchange_partner_id(self):
