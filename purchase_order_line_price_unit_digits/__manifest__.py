@@ -3,7 +3,7 @@
 {
     "name": "Purchase order line price unit digits",
     "summary": "Legacy digits visualization for price unit",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "category": "Purchases",
     "website": "https://github.com/OCA/purchase-workflow",
     "author": "Moduon, Odoo Community Association (OCA)",
