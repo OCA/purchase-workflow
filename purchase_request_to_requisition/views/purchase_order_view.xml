@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<!-- Copyright 2021 Ecosoft Co., Ltd.
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0) -->
+<odoo>
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="name">purchase.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase_request.purchase_order_form" />
+        <field name="arch" type="xml">
+            <field name="purchase_request_lines" position="attributes">
+                <attribute name="force_save">1</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>
