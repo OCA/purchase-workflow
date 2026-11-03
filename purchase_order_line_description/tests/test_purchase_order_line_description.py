@@ -5,10 +5,14 @@
 from odoo import fields
 from odoo.tests import Form
 
-from odoo.addons.base.tests.common import SavepointCaseWithUserDemo
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestPurchaseOrderLineDescription(SavepointCaseWithUserDemo):
+class TestPurchaseOrderLineDescription(BaseCommon):
+    # Since 20.0, BaseCommon runs the tests with a new user that has only
+    # these groups. A purchase user is needed to create purchase orders.
+    _test_user_groups = ("base.group_user", "purchase.group_purchase_user")
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -44,7 +48,7 @@ class TestPurchaseOrderLineDescription(SavepointCaseWithUserDemo):
                             "name": cls.product.name,
                             "price_unit": 79.80,
                             "product_qty": 15.0,
-                            "product_uom_id": cls.env.ref("uom.product_uom_unit").id,
+                            "uom_id": cls.env.ref("uom.product_uom_unit").id,
                             "date_planned": fields.Date.today(),
                         },
                     )
@@ -62,9 +66,9 @@ class TestPurchaseOrderLineDescription(SavepointCaseWithUserDemo):
 
     def test_translated_description(self):
         """PO description rendered in supplier lang."""
-        self.env["res.lang"]._activate_lang("es_ES")
-        self.order.partner_id.lang = "es_ES"
-        self.product.with_context(
+        self.env["res.lang"].sudo()._activate_lang("es_ES")
+        self.order.partner_id.sudo().lang = "es_ES"
+        self.product.sudo().with_context(
             lang="es_ES"
         ).description_purchase = "descripción para compras"
         with Form(self.order.sudo()) as order, order.order_line.new() as line:
