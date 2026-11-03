@@ -1,2 +1,2 @@
-- If you rely in the off-screen price computation, this could lead to minor rounding
-  issues (although nothing didn't exist previosly to the upstream change).
+- If you rely on the off-screen price computation, this could lead to minor rounding
+  issues (although nothing didn't exist previously to the upstream change).
