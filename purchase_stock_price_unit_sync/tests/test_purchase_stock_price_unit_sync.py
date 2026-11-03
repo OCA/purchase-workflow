@@ -25,7 +25,6 @@ class TestProductCostPriceAvcoSync(BaseCommon):
                 "name": "Product for test",
                 "is_storable": True,
                 "type": "consu",
-                "tracking": "none",
                 "categ_id": cls.product_category.id,
                 "standard_price": 1,
             }
@@ -89,6 +88,7 @@ class TestProductCostPriceAvcoSync(BaseCommon):
         self.order.order_line[1].price_unit = 12.0
         self.assertAlmostEqual(move.price_unit, 6.0, 2)
 
+    @users("test-purchase-user")
     def test_sync_without_move_done(self):
         self.order = self.order.with_user(self.env.user)
         self.order.button_confirm()
