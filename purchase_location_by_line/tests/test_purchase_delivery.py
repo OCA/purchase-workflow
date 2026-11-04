@@ -157,6 +157,10 @@ class TestDeliverySingle(TransactionCase):
             1,
             "There must be 1 or more pickings for location Shelf 1",
         )
+        self.assertEqual(
+            self.po.order_line[0].move_ids.mapped("location_dest_id"),
+            self.l2,
+        )
         l1_picking = self.po.picking_ids.filtered(
             lambda p: p.location_dest_id == self.l1
         )
@@ -254,4 +258,20 @@ class TestDeliverySingle(TransactionCase):
         self.po.order_line[0].write({"product_qty": 43})
         self.assertEqual(
             self.po.order_line[0].move_ids.mapped("location_dest_id"), self.l1
+        )
+
+    def test_modify_confirmed_all_lines_new_destination(self):
+        self.po.button_confirm()
+
+        # Set a new destination for all lines and force move updates.
+        self.po.order_line.write({"location_dest_id": self.l2.id})
+        for line in self.po.order_line:
+            line.write({"product_qty": line.product_qty + 1})
+
+        self.assertEqual(self.po.picking_ids.location_dest_id, self.l2)
+        self.assertEqual(
+            self.po.order_line.move_ids.filtered(lambda m: m.state != "cancel").mapped(
+                "location_dest_id"
+            ),
+            self.l2,
         )
