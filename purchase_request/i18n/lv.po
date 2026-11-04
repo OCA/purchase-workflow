@@ -32,8 +32,8 @@ msgstr ""
 #. odoo-python
 #: code:addons/purchase_request/models/purchase_request_allocation.py:0
 msgid ""
-"<li><b>%(product_name)s</b>: Received quantity %(product_qty)s "
-"%(product_uom)s</li>"
+"<li><b>%(product_name)s</b>: Received quantity %(product_qty)s %"
+"(product_uom)s</li>"
 msgstr ""
 
 #. module: purchase_request
@@ -183,7 +183,6 @@ msgstr ""
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__analytic_distribution
-#: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Analytic Distribution"
 msgstr ""
 
