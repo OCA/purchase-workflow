@@ -45,6 +45,10 @@ This feature is useful in the following scenario:
   less quantity billed to what was delivered, and you don't want these
   old purchase orders to appear in your 'Waiting Bills' list.
 
+Force invoiced orders are also excluded from the vendor bill matching
+view ('Match Bills'), so their lines are no longer offered when matching
+or creating vendor bills.
+
 **Table of contents**
 
 .. contents::
@@ -90,6 +94,9 @@ Contributors
 - Bert Van Groenendael <bert.vangroenendael@dynapps.eu>
 - Stefan Rijnhart <stefan@opener.amsterdam>
 - Arantxa Gandia <arantxa@studio73.es>
+- `NuoBiT <https://www.nuobit.com>`__:
+
+  - Deniz Gallo dgallo@nuobit.com
 
 Maintainers
 -----------
