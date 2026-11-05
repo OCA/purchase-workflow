@@ -6,7 +6,7 @@
 {
     "name": "Purchase Stock Line Sequence",
     "summary": "Propagates the purchase order line sequence to stock moves",
-    "version": "19.0.1.0.0",
+    "version": "19.0.2.0.0",
     "category": "Purchase Management",
     "author": "Camptocamp, ForgeFlow, Serpent CS, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
