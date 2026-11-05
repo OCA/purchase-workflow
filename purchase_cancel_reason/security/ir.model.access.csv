@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_purchase_order_cancel_reason_user,access_purchase_order_cancel_reason user,model_purchase_order_cancel_reason,purchase.group_purchase_user,1,0,0,0
+access_purchase_order_cancel_reason_manager,access_purchase_order_cancel_reason manager,model_purchase_order_cancel_reason,purchase.group_purchase_manager,1,1,1,1
+access_purchase_order_cancel_user,access_purchase_order_cancel,model_purchase_order_cancel,purchase.group_purchase_user,1,1,1,1
