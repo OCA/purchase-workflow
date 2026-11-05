@@ -1,7 +1,7 @@
 # Copyright 2015-2017 - Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
-from odoo.tests import common
+from odoo.tests import Form, common
 
 
 class TestProcurementPurchaseNoGrouping(common.TransactionCase):
@@ -63,3 +63,15 @@ class TestProcurementPurchaseNoGrouping(common.TransactionCase):
             2,
             "Procured purchase orders lines are the same",
         )
+
+    def test_increase_quantity_after_purchase_confirmed(self):
+        """Only the added quantity is purchased when the sale line is increased"""
+        self.sale_order.action_confirm()
+        purchase = self.sale_order_line.purchase_line_ids.order_id
+        self.assertEqual(purchase.order_line.product_qty, 2)
+        purchase.button_confirm()
+        with Form(self.sale_order) as order_form:
+            with order_form.order_line.edit(0) as line_form:
+                line_form.product_uom_qty = 5
+        new_po_line = self.sale_order_line.purchase_line_ids - purchase.order_line
+        self.assertEqual(new_po_line.product_qty, 3)
