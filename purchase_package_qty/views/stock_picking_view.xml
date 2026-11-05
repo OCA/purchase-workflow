@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- ********************************************************************** -->
+<!--Purchase - Package Quantity Module for Odoo                             -->
+<!--Copyright (C) 2019-Today: La Louve (<https://cooplalouve.fr>)           -->
+<!--Copyright (C) 2019-Today: Druidoo (<https://www.druidoo.io>)            -->
+<!--Copyright (C) 2016-Today Akretion (https://www.akretion.com)            -->
+<!--License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).      -->
+<!--@author Julien Weste                                                    -->
+<!--@author Sylvain LE GAL (https://twitter.com/legalsylvain)               -->
+<!--This program is free software: you can redistribute it and/or modify    -->
+<!--it under the terms of the GNU Affero General Public License as          -->
+<!--published by the Free Software Foundation, either version 3 of the      -->
+<!--License, or (at your option) any later version.                         -->
+<!--This program is distributed in the hope that it will be useful,         -->
+<!--but WITHOUT ANY WARRANTY; without even the implied warranty of          -->
+<!--MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the           -->
+<!--GNU Affero General Public License for more details.                     -->
+<!--You should have received a copy of the GNU Affero General Public License-->
+<!--along with this program.  If not, see <http://www.gnu.org/licenses/>.   -->
+<!-- ********************************************************************** -->
+<odoo>
+    <record id="stock_picking_form_view_package" model="ir.ui.view">
+        <field name="name">stock.picking.form.view.package</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='move_ids_without_package']/list/field
+                [@name='product_uom_qty']"
+                position="before"
+            >
+                <field name="product_qty_package" optional="show" />
+                <field name="package_qty" optional="show" />
+            </xpath>
+            <xpath
+                expr="//field[@name='move_ids_without_package']/list/field
+                [@name='quantity']"
+                position="before"
+            >
+                <field
+                    name="qty_done_package"
+                    readonly="not is_quantity_done_editable"
+                    column_invisible="parent.state=='draft'"
+                    optional="show"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
