@@ -7,7 +7,7 @@
             <field name="partner_id" position="after">
                 <field
                     name="order_type"
-                    required="True"
+                    required="order_type_required"
                     options="{'no_quick_create': True}"
                     readonly="state in ['purchase', 'done', 'cancel']"
                 />
