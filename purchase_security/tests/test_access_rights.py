@@ -26,6 +26,8 @@ class TestPurchaseOrderSecurity(common.TransactionCase):
         cls.team1 = cls.env["purchase.team"].create({"name": "Team1"})
         cls.team2 = cls.env["purchase.team"].create({"name": "Team2"})
         # Users
+        users = cls.env["res.users"].with_context(no_reset_password=True)
+        purchase_restricted_group = "group_purchase_restricted_orders"
         # User in group_purchase_own_orders
         cls.user_group_purchase_own_orders = new_test_user(
             cls.env,
@@ -54,6 +56,25 @@ class TestPurchaseOrderSecurity(common.TransactionCase):
             cls.env,
             login="group_purchase_team_3_orders",
             groups="purchase_security.group_purchase_group_orders",
+        )
+        # User in group_purchase_restricted_orders
+        cls.user_group_purchase_restricted_orders = users.create(
+            {
+                "name": "group_purchase_restricted_orders",
+                "login": "group_purchase_restricted_orders",
+                "email": "group_purchase_restricted_orders@example.com",
+                "groups_id": [
+                    (
+                        6,
+                        0,
+                        [
+                            cls.env.ref(
+                                "purchase_security.%s" % purchase_restricted_group
+                            ).id
+                        ],
+                    )
+                ],
+            }
         )
         # Purchase order user
         cls.user_po_user = new_test_user(
@@ -92,6 +113,17 @@ class TestPurchaseOrderSecurity(common.TransactionCase):
                     "user_id": cls.user_group_purchase_own_orders.id,
                     "partner_id": cls.partner_po.id,
                     "team_id": cls.team2.id,
+                },
+                {
+                    "name": "po_security_5",
+                    "user_id": cls.user_group_purchase_own_orders.id,
+                    "partner_id": cls.partner_po.id,
+                    "is_restricted": True,
+                },
+                {
+                    "name": "po_security_6",
+                    "user_id": cls.user_group_purchase_restricted_orders.id,
+                    "partner_id": cls.partner_po.id,
                 },
             )
         )
@@ -153,7 +185,7 @@ class TestPurchaseOrderSecurity(common.TransactionCase):
                 .with_user(self.user_group_purchase_own_orders)
                 .search([])
             ),
-            2,
+            3,
         )
         self.assertFalse(
             self.orders.filtered(
@@ -161,6 +193,24 @@ class TestPurchaseOrderSecurity(common.TransactionCase):
             )
             .with_user(self.user_group_purchase_own_orders)[0]
             .is_user_id_editable
+        )
+
+    def test_access_user_group_purchase_restricted_orders(self):
+        # User in group should have access to it's own PO
+        # and unrestricted orders
+        self.assertEqual(
+            len(
+                self.env["purchase.order"]
+                .with_user(self.user_group_purchase_restricted_orders)
+                .search([("name", "like", "po_security")])
+                .ids
+            ),
+            5,
+        )
+        self.assertTrue(
+            self.orders.with_user(self.user_group_purchase_restricted_orders)[
+                0
+            ].is_user_id_editable
         )
 
     def test_access_user_po_user(self):
@@ -172,7 +222,7 @@ class TestPurchaseOrderSecurity(common.TransactionCase):
                 .with_user(self.user_po_user)
                 .search([("name", "like", "po_security")])
             ),
-            4,
+            6,
         )
         self.assertTrue(self.orders.with_user(self.user_po_user)[0].is_user_id_editable)
 
@@ -184,7 +234,7 @@ class TestPurchaseOrderSecurity(common.TransactionCase):
                 .with_user(self.user_po_manager)
                 .search([("name", "like", "po_security")])
             ),
-            4,
+            6,
         )
         self.assertTrue(
             self.orders.with_user(self.user_po_manager)[1].is_user_id_editable
@@ -207,7 +257,7 @@ class TestPurchaseOrderSecurity(common.TransactionCase):
                 .with_user(self.user_group_team_1)
                 .search([("name", "like", "po_security")])
             ),
-            4,
+            6,
         )
 
     def test_access_user_user_group_purchase_group_orders_2(self):
@@ -220,7 +270,7 @@ class TestPurchaseOrderSecurity(common.TransactionCase):
                 .with_user(self.user_group_team_2)
                 .search([("name", "like", "po_security")])
             ),
-            3,
+            5,
         )
 
     def test_access_user_user_group_purchase_group_orders_3(self):
