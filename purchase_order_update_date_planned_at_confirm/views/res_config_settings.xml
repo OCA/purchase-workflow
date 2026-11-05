@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 ACSONE SA/NV
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).-->
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form</field>
+        <field name="model">res.config.settings</field>
+        <field
+            name="inherit_id"
+            ref="purchase.res_config_settings_view_form_purchase"
+        />
+        <field name="arch" type="xml">
+            <setting id="automatic_lock_confirmed_orders" position="after">
+                <setting
+                    id="update_date_planned_at_confirm"
+                    help="Update Planned Date at Purchase Confirm"
+                >
+                    <field name="purchase_update_date_planned_at_confirm" />
+                </setting>
+            </setting>
+        </field>
+    </record>
+</odoo>

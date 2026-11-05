@@ -1,0 +1,5 @@
+- Configure your products to have supplier delays.
+- Create a Purchase Order with some of configured products
+- Let some days pass
+- Confirm the order
+- The Planned Date is updated
