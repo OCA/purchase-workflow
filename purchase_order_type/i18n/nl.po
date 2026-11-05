@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-13 05:48+0000\n"
-"PO-Revision-Date: 2016-03-08 10:17+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2026-11-05 20:46+0000\n"
+"Last-Translator: Bosd <c5e2fd43-d292-4c90-9d1f-74ff3436329a@anonaddy.me>\n"
 "Language-Team: Dutch (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/"
 "language/nl/)\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__active
@@ -26,28 +27,28 @@ msgstr "Actief"
 #. module: purchase_order_type
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_form
 msgid "Archived"
-msgstr ""
+msgstr "Gearchiveerd"
 
 #. module: purchase_order_type
 #: model_terms:ir.actions.act_window,help:purchase_order_type.action_purchase_order_type_view
 msgid "Click to set a new type for purchase order."
-msgstr ""
+msgstr "Klik om een nieuw type inkooporder in te stellen."
 
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Bedrijven"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__company_id
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
 msgid "Company"
-msgstr ""
+msgstr "Bedrijf"
 
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Relatie"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__create_uid
@@ -62,12 +63,12 @@ msgstr "Aangemaakt op"
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__is_default
 msgid "Default"
-msgstr ""
+msgstr "Standaard"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__description
 msgid "Description"
-msgstr ""
+msgstr "Omschrijving"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order__display_name
@@ -76,19 +77,20 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_order_type.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:purchase_order_type.field_res_partner__display_name
 msgid "Display Name"
-msgstr "Te tonen naam"
+msgstr "Schermnaam"
 
 #. module: purchase_order_type
 #. odoo-python
 #: code:addons/purchase_order_type/models/purchase_order.py:0
 msgid "Document's company and type's company mismatch"
 msgstr ""
+"Het bedrijf van het document en het bedrijf van het type komen niet overeen"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__sequence_id
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
 msgid "Entry Sequence"
-msgstr ""
+msgstr "Reeks"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order__id
@@ -107,12 +109,14 @@ msgid ""
 "If enabled, a purchase order can only be saved in the form once it has an "
 "order type."
 msgstr ""
+"Indien ingeschakeld kan een inkooporder pas op het formulier worden "
+"opgeslagen nadat er een ordertype aan is toegewezen."
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__incoterm_id
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
 msgid "Incoterm"
-msgstr ""
+msgstr "Incoterm"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__write_uid
@@ -133,22 +137,22 @@ msgstr "Naam"
 #. odoo-python
 #: code:addons/purchase_order_type/models/purchase_order_type.py:0
 msgid "Only one default order type is allowed per company."
-msgstr ""
+msgstr "Per bedrijf is slechts één standaard ordertype toegestaan."
 
 #. module: purchase_order_type
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
 msgid "Payment Term"
-msgstr ""
+msgstr "Betalingsconditie"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__payment_term_id
 msgid "Payment Terms"
-msgstr ""
+msgstr "Betalingscondities"
 
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_res_config_settings
 msgid "Procurement purchase grouping settings"
-msgstr ""
+msgstr "Instellingen voor inkoopgroepering bij bevoorrading"
 
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_purchase_order
@@ -160,31 +164,31 @@ msgstr "Inkooporder"
 #: model:ir.model.fields,field_description:purchase_order_type.field_res_users__purchase_type
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.res_partner_purchase_type_form_view
 msgid "Purchase Order Type"
-msgstr ""
+msgstr "Inkoopordertype"
 
 #. module: purchase_order_type
 #: model:ir.actions.act_window,name:purchase_order_type.action_purchase_order_type_view
 #: model:ir.ui.menu,name:purchase_order_type.menu_purchase_order_type
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
 msgid "Purchase Order Types"
-msgstr ""
+msgstr "Inkoopordertypes"
 
 #. module: purchase_order_type
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.res_config_settings_view_form_purchase
 msgid "Purchase orders can only be saved once they have an order type"
-msgstr ""
+msgstr "Inkooporders kunnen pas worden opgeslagen zodra ze een ordertype hebben"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order__order_type_required
 #: model:ir.model.fields,field_description:purchase_order_type.field_res_company__purchase_order_type_required
 #: model:ir.model.fields,field_description:purchase_order_type.field_res_config_settings__purchase_order_type_required
 msgid "Require Purchase Order Type"
-msgstr ""
+msgstr "Inkoopordertype vereisen"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Volgorde"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order__order_type
@@ -196,9 +200,8 @@ msgstr "Type"
 
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_purchase_order_type
-#, fuzzy
 msgid "Type of purchase order"
-msgstr "Inkooporder"
+msgstr "Type inkooporder"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,help:purchase_order_type.field_purchase_order_type__is_default
@@ -207,6 +210,9 @@ msgid ""
 "provide one, and to correct a purchase order whose type no longer suits its "
 "company after the company changes."
 msgstr ""
+"Wordt gebruikt als terugval-ordertype voor een inkooporder waarvan de "
+"leverancier er geen heeft, en om een inkooporder te corrigeren waarvan het "
+"type na een bedrijfswijziging niet meer bij het bedrijf past."
 
 #~ msgid "Last Modified on"
 #~ msgstr "Laatst bijgewerkt op"
