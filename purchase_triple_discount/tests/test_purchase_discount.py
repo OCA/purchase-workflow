@@ -224,3 +224,21 @@ class TestPurchaseOrder(common.TransactionCase):
         self.assertEqual(seller.discount1, 11.11)
         self.assertEqual(seller.discount2, 22.22)
         self.assertEqual(seller.discount3, 33.33)
+
+    def test_07_supplierinfo_partner_onchange(self):
+        """The vendor's purchase currency is kept along with its discounts"""
+        currency = self.env.ref("base.EUR")
+        if currency == self.env.company.currency_id:
+            currency = self.env.ref("base.USD")
+        currency.active = True
+        self.partner.write(
+            {
+                "property_purchase_currency_id": currency.id,
+                "default_supplierinfo_discount2": 5.0,
+            }
+        )
+        with Form(self.product1.product_tmpl_id) as template_form:
+            with template_form.seller_ids.new() as seller_form:
+                seller_form.partner_id = self.partner
+                self.assertEqual(seller_form.currency_id, currency)
+                self.assertEqual(seller_form.discount2, 5.0)
