@@ -383,8 +383,9 @@ class PurchaseRequestLineMakePurchaseOrderItem(models.TransientModel):
     @api.onchange("product_id")
     def onchange_product_id(self):
         if self.product_id:
-            if not self.keep_description:
-                name = self.product_id.name
+            # Always bind ``name`` to avoid UnboundLocalError when
+            # ``keep_description`` is set.
+            name = self.name if self.keep_description else self.product_id.name
             code = self.product_id.code
             sup_info_id = self.env["product.supplierinfo"].search(
                 [
