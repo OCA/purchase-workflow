@@ -17,7 +17,7 @@ _STATES = [
 class PurchaseRequestLine(models.Model):
     _name = "purchase.request.line"
     _description = "Purchase Request Line"
-    _inherit = ["mail.thread", "mail.activity.mixin", "analytic.mixin"]
+    _inherit = ["mail.thread", "mail.activity.mixin", "analytic.mixin"]  # noqa: RUF012
     _order = "id desc"
 
     name = fields.Char(string="Description", tracking=True)
@@ -291,8 +291,8 @@ class PurchaseRequestLine(models.Model):
         for rec in self:
             rec.purchased_qty = 0.0
             for line in rec.purchase_lines.filtered(lambda x: x.state != "cancel"):
-                if rec.product_uom_id and line.product_uom_id != rec.product_uom_id:
-                    rec.purchased_qty += line.product_uom_id._compute_quantity(
+                if rec.product_uom_id and line.uom_id != rec.product_uom_id:
+                    rec.purchased_qty += line.uom_id._compute_quantity(
                         line.product_qty, rec.product_uom_id
                     )
                 else:
@@ -356,7 +356,7 @@ class PurchaseRequestLine(models.Model):
     @api.model
     def _calc_new_qty(self, request_line, po_line=None, new_pr_line=False):
         # In Odoo 19, uom_po_id doesn't exist, use product.uom_id
-        purchase_uom = po_line.product_uom_id or request_line.product_id.uom_id
+        purchase_uom = po_line.uom_id or request_line.product_id.uom_id
         # TODO: Not implemented yet.
         #  Make sure we use the minimum quantity of the partner corresponding
         #  to the PO. This does not apply in case of dropshipping
@@ -396,16 +396,8 @@ class PurchaseRequestLine(models.Model):
     def action_show_details(self):
         self.ensure_one()
         view = self.env.ref("purchase_request.view_purchase_request_line_details")
-        return {
-            "name": self.env._("Detailed Line"),
-            "type": "ir.actions.act_window",
-            "view_mode": "form",
-            "res_model": "purchase.request.line",
-            "views": [(view.id, "form")],
-            "view_id": view.id,
-            "target": "new",
-            "res_id": self.id,
-            "context": dict(
-                self.env.context,
-            ),
-        }
+        return self._get_records_action(
+            name=self.env._("Detailed Line"),
+            views=[(view.id, "form")],
+            target="new",
+        )

@@ -18,7 +18,7 @@ class PurchaseRequest(models.Model):
     _name = "purchase.request"
     _description = "Purchase Request"
     _mail_post_access = "read"
-    _inherit = ["mail.thread", "mail.activity.mixin"]
+    _inherit = ["mail.thread", "mail.activity.mixin"]  # noqa: RUF012
     _order = "id desc"
 
     @api.model
@@ -203,10 +203,8 @@ class PurchaseRequest(models.Model):
             rec.line_count = len(rec.mapped("line_ids"))
 
     def action_view_purchase_request_line(self):
-        action = (
-            self.env.ref("purchase_request.purchase_request_line_form_action")
-            .sudo()
-            .read()[0]
+        action = self.env["ir.actions.actions"]._for_xml_id(
+            "purchase_request.purchase_request_line_form_action"
         )
         lines = self.mapped("line_ids")
         if len(lines) > 1:
@@ -299,12 +297,12 @@ class PurchaseRequest(models.Model):
                 pr.write({"state": "rejected"})
 
     def to_approve_allowed_check(self):
-        for rec in self:
-            if not rec.to_approve_allowed:
-                raise UserError(
-                    self.env._(
-                        "You can't request an approval for a purchase request "
-                        "which is empty. (%(name)s)",
-                        name=rec.name,
-                    )
+        blocked_requests = self.filtered(lambda rec: not rec.to_approve_allowed)
+        if blocked_requests:
+            raise UserError(
+                self.env._(
+                    "You can't request an approval for a purchase request "
+                    "which is empty. (%(name)s)",
+                    name=blocked_requests[0].name,
                 )
+            )

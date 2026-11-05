@@ -3,29 +3,40 @@
 
 from odoo import SUPERUSER_ID, exceptions
 from odoo.exceptions import UserError
-from odoo.tests import Form, TransactionCase
+from odoo.tests import Form
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestPurchaseRequest(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.purchase_request_obj = self.env["purchase.request"]
-        self.purchase_request_line_obj = self.env["purchase.request.line"]
-        self.purchase_order = self.env["purchase.order"]
-        self.wiz = self.env["purchase.request.line.make.purchase.order"]
-        self.picking_type_id = self.env.ref("stock.picking_type_in")
+class TestPurchaseRequest(BaseCommon):
+    _test_user_groups = (
+        "purchase_request.group_purchase_request_manager",
+        "purchase.group_purchase_manager",
+        "stock.group_stock_manager",
+        "product.group_product_manager",
+    )
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.purchase_request_obj = cls.env["purchase.request"]
+        cls.purchase_request_line_obj = cls.env["purchase.request.line"]
+        cls.purchase_order = cls.env["purchase.order"]
+        cls.wiz = cls.env["purchase.request.line.make.purchase.order"]
+        cls.picking_type_id = cls.env.ref("stock.picking_type_in")
+        cls.picking_type_2 = cls.picking_type_id.copy()
 
         # Create test product
-        self.product = self.env["product.product"].create(
+        cls.product = cls.env["product.product"].create(
             {
                 "name": "Test Product",
                 "type": "consu",
-                "uom_id": self.env.ref("uom.product_uom_unit").id,
+                "uom_id": cls.env.ref("uom.product_uom_unit").id,
             }
         )
 
         # Create test supplier
-        self.supplier = self.env["res.partner"].create(
+        cls.supplier = cls.env["res.partner"].create(
             {
                 "name": "Test Supplier",
                 "is_company": True,
@@ -34,18 +45,18 @@ class TestPurchaseRequest(TransactionCase):
         )
 
         vals = {
-            "picking_type_id": self.picking_type_id.id,
+            "picking_type_id": cls.picking_type_id.id,
             "requested_by": SUPERUSER_ID,
         }
-        self.purchase_request = self.purchase_request_obj.create(vals)
+        cls.purchase_request = cls.purchase_request_obj.create(vals)
         vals = {
             "name": "Test line",
-            "request_id": self.purchase_request.id,
-            "product_id": self.product.id,
-            "product_uom_id": self.env.ref("uom.product_uom_unit").id,
+            "request_id": cls.purchase_request.id,
+            "product_id": cls.product.id,
+            "product_uom_id": cls.env.ref("uom.product_uom_unit").id,
             "product_qty": 5.0,
         }
-        self.purchase_request_line_obj.create(vals)
+        cls.purchase_request_line_obj.create(vals)
 
     def test_purchase_request_line_action(self):
         action = self.purchase_request.line_ids.action_show_details()
@@ -103,8 +114,8 @@ class TestPurchaseRequest(TransactionCase):
         vals = {"supplier_id": self.supplier.id}
 
         # It is required to have a picking type
-        purchase_request.picking_type_id = False
         with self.assertRaisesRegex(UserError, "a Picking Type"):
+            purchase_request.picking_type_id = False
             self.wiz.with_context(
                 active_model="purchase.request",
                 active_ids=[purchase_request.id],
@@ -113,7 +124,7 @@ class TestPurchaseRequest(TransactionCase):
 
         # Picking type across all lines have to be the same
         purchase_request2 = purchase_request.copy(
-            {"picking_type_id": self.picking_type_id.copy().id}
+            {"picking_type_id": self.picking_type_2.id}
         )
         purchase_request2.button_approved()
         with self.assertRaisesRegex(UserError, "same Picking Type"):

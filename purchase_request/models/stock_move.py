@@ -1,9 +1,8 @@
 # Copyright 2018-2019 ForgeFlow, S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 
-from odoo import api, fields, models
+from odoo import Command, api, fields, models
 from odoo.exceptions import ValidationError
-from odoo.tools import float_compare
 
 
 class StockMove(models.Model):
@@ -69,7 +68,7 @@ class StockMove(models.Model):
     def _merge_moves_fields(self):
         res = super()._merge_moves_fields()
         res["purchase_request_allocation_ids"] = [
-            (4, m.id) for m in self.mapped("purchase_request_allocation_ids")
+            Command.link(m.id) for m in self.mapped("purchase_request_allocation_ids")
         ]
         return res
 
@@ -112,35 +111,25 @@ class StockMove(models.Model):
             ):
                 vals["purchase_request_allocation_ids"] = []
                 new_move_qty = default.get("product_uom_qty") or move.product_uom_qty
-                rounding = move.product_id.uom_id.rounding
+                uom = move.product_id.uom_id
                 for alloc in move.purchase_request_allocation_ids.filtered(
                     "open_product_qty"
                 ):
                     if (
-                        float_compare(
-                            new_move_qty,
-                            0,
-                            precision_rounding=move.product_id.uom_id.rounding,
-                        )
-                        <= 0
-                        or float_compare(
-                            alloc.open_product_qty, 0, precision_rounding=rounding
-                        )
-                        <= 0
+                        uom.compare(new_move_qty, 0) <= 0
+                        or uom.compare(alloc.open_product_qty, 0) <= 0
                     ):
                         break
                     open_qty = min(new_move_qty, alloc.open_product_qty)
                     new_move_qty -= open_qty
                     vals["purchase_request_allocation_ids"].append(
-                        (
-                            0,
-                            0,
+                        Command.create(
                             {
                                 "purchase_request_line_id": (
                                     alloc.purchase_request_line_id.id
                                 ),
                                 "requested_product_uom_qty": open_qty,
-                            },
+                            }
                         )
                     )
                     alloc.requested_product_uom_qty -= open_qty
