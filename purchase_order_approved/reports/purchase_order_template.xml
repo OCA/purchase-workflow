@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template
+        id="report_purchaseorder_document"
+        inherit_id="purchase.report_purchaseorder_document"
+        priority="200"
+    >
+        <xpath
+            expr="//t[@t-if=&quot;o.state in ['draft', 'sent', 'to approve']&quot;]"
+            position="attributes"
+        >
+            <attribute
+                name="t-if"
+            >o.state in ['draft', 'sent', 'to approve', 'approved']</attribute>
+        </xpath>
+    </template>
+</odoo>
