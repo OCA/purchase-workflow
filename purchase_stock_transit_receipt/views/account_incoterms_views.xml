@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2026 Akretion
+    @author Guillaume MASSON <guillaume.masson@akretion.com>
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="view_incoterms_tree" model="ir.ui.view">
+        <field name="model">account.incoterms</field>
+        <field name="inherit_id" ref="account.view_incoterms_tree" />
+        <field name="arch" type="xml">
+            <field name="code" position="after">
+                <field name="transit_receipt" />
+            </field>
+        </field>
+    </record>
+    <record id="account_incoterms_form" model="ir.ui.view">
+        <field name="model">account.incoterms</field>
+        <field name="inherit_id" ref="account.account_incoterms_form" />
+        <field name="arch" type="xml">
+            <field name="code" position="after">
+                <field name="transit_receipt" />
+            </field>
+        </field>
+    </record>
+</odoo>
