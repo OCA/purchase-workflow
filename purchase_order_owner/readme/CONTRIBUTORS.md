@@ -1,0 +1,5 @@
+- [Quartile](https://www.quartile.co):
+  - Yoshi Tashiro
+- [SolusiAglis](https://solusiaglis.co.id):
+  - Hudson Amadeus Leonardy
+- Sudhir Arya <sudhir@erpharbor.com>
