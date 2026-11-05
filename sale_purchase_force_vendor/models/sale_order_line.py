@@ -55,10 +55,24 @@ class SaleOrderLine(models.Model):
             product = self.product_id
             suppinfo = product.with_company(self.company_id.id)._select_seller(
                 partner_id=self.vendor_id,
-                quantity=self.product_uom_qty,
+                # `_select_seller` discards every seller whose `min_qty` is
+                # greater than the requested quantity, and every `min_qty` is
+                # >= 0, so a negative quantity matches no seller at all. A
+                # non-positive line is not a purchase, so degrade it to 0
+                # rather than making up a purchase quantity for it. A seller
+                # with a `min_qty` above 0 will not match either, which is
+                # harmless: such a line creates no purchase and never consumes
+                # `supplierinfo_id`.
+                quantity=max(self.product_uom_qty, 0),
                 uom_id=self.product_uom,
             )
-            if not suppinfo:
+            # Only a line that will actually trigger a purchase may register a
+            # new vendor. Otherwise every return line would autocreate a
+            # supplierinfo with no price, no product name and no product code.
+            # `res["supplierinfo_id"]` is still always set (an empty recordset
+            # when nothing matched) because `stock.move` reads that key with
+            # direct access.
+            if not suppinfo and self.product_uom_qty > 0:
                 # By default user with group_sale_salesman group can not creates
                 # supplierinfo records.
                 suppinfo = (
