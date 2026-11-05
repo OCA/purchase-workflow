@@ -1,0 +1,18 @@
+<odoo>
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='requisition_id']" position="before">
+                <button
+                    name="reorder_lines"
+                    string="/!\\ Click me to reorder"
+                    colspan="2"
+                    class="oe_highlight"
+                    invisible="not sequence_to_update"
+                    type="object"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
