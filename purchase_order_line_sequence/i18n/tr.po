@@ -23,6 +23,13 @@ msgid "<strong>Line Number</strong>"
 msgstr "<strong>Sıra Numarası</strong>"
 
 #. module: purchase_order_line_sequence
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_order_line_sequence
 #: model:ir.model.fields,help:purchase_order_line_sequence.field_purchase_order_line__visible_sequence
 msgid "Displays the sequence of the line in the purchase order."
 msgstr "Satınalma siparişindeki satırın sırasını görüntüler."
@@ -36,6 +43,13 @@ msgstr "Satınalma siparişini görüntülerken satırın sırasını verir."
 #: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order_line__sequence
 msgid "Hidden Sequence"
 msgstr "Gizli Sıra"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_account_move_line__id
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order__id
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order_line__id
+msgid "ID"
+msgstr ""
 
 #. module: purchase_order_line_sequence
 #: model:ir.model,name:purchase_order_line_sequence.model_account_move_line
@@ -54,16 +68,6 @@ msgid "Max sequence in lines"
 msgstr "Satırlardaki maksimum sıralama"
 
 #. module: purchase_order_line_sequence
-#. odoo-python
-#: code:addons/purchase_order_line_sequence/models/stock_move.py:0
-msgid ""
-"Not allowed to change the sequence of moves from the picking, you can do it "
-"from the PO."
-msgstr ""
-"Teslimat satırlarının sırasını değiştirme izniniz yoktur, bunu Satınalma "
-"Siparişinden yapabilirsiniz."
-
-#. module: purchase_order_line_sequence
 #: model:ir.model.fields,field_description:purchase_order_line_sequence.field_account_move_line__related_po_sequence
 msgid "PO Line Number"
 msgstr "Satınalma Siparişi Satır Numarası"
@@ -78,7 +82,12 @@ msgstr "Satınalma Siparişi"
 msgid "Purchase Order Line"
 msgstr "SatınAlma Sipariş Satırı"
 
-#. module: purchase_order_line_sequence
-#: model:ir.model,name:purchase_order_line_sequence.model_stock_move
-msgid "Stock Move"
-msgstr "Stok Hareketi"
+#~ msgid ""
+#~ "Not allowed to change the sequence of moves from the picking, you can do "
+#~ "it from the PO."
+#~ msgstr ""
+#~ "Teslimat satırlarının sırasını değiştirme izniniz yoktur, bunu Satınalma "
+#~ "Siparişinden yapabilirsiniz."
+
+#~ msgid "Stock Move"
+#~ msgstr "Stok Hareketi"
