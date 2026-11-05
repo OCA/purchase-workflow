@@ -1,0 +1,414 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_supplier_approved
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-31 10:50+0000\n"
+"PO-Revision-Date: 2025-10-31 10:50+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_supplier_approved
+#: model_terms:ir.ui.view,arch_db:purchase_supplier_approved.view_purchase_order_form_inherit
+msgid ""
+"<strong>Warning:</strong> This purchase order contains products from "
+"unapproved suppliers."
+msgstr "<strong>Attention:</strong> Cette commande d'achat contient des produits de fournisseurs non approuvés."
+
+#. module: purchase_supplier_approved
+#: model:ir.model.fields,field_description:purchase_supplier_approved.field_purchase_supplier_approved__active
+#: model_terms:ir.ui.view,arch_db:purchase_supplier_approved.view_purchase_supplier_approved_search
+msgid "Active"
+msgstr ""
+
+#. module: purchase_supplier_approved
+#: model:ir.model.fields,field_description:purchase_supplier_approved.field_res_partner__approved_product_ids
+#: model:ir.model.fields,field_description:purchase_supplier_approved.field_res_users__approved_product_ids
+#: model_terms:ir.ui.view,arch_db:purchase_supplier_approved.view_partner_form_inherit
+#: model_terms:ir.ui.view,arch_db:purchase_supplier_approved.view_partner_supplier_form_inherit
+msgid "Approved Products"
+msgstr "Produits approuvés"
+
+#. module: purchase_supplier_approved
+#: model:ir.model.fields,field_description:purchase_supplier_approved.field_res_partner__approved_product_count
+#: model:ir.model.fields,field_description:purchase_supplier_approved.field_res_users__approved_product_count
+msgid "Approved Products Count"
+msgstr "Nombre de produits approuvés"
+
+#. module: purchase_supplier_approved
+#: model_terms:ir.ui.view,arch_db:purchase_supplier_approved.view_purchase_supplier_approved_form
+msgid "Approved Supplier"
+msgstr "Fournisseur approuvé"
+
+#. module: purchase_supplier_approved
+#: model:ir.model.fields,field_description:purchase_supplier_approved.field_product_product__approved_supplier_requirement
+#: model:ir.model.fields,field_description:purchase_supplier_approved.field_product_template__approved_supplier_requirement
+msgid "Approved Supplier Requirement"
+msgstr "Exigence de fournisseur approuvé"
+
+#. module: purchase_supplier_approved
+#: model:ir.model,name:purchase_supplier_approved.model_purchase_supplier_approved
+msgid "Approved Supplier for Product"
+msgstr "Fournisseur approuvé pour le produit"
+
+#. module: purchase_supplier_approved
+#: model:ir.actions.act_window,name:purchase_supplier_approved.action_purchase_supplier_approved
+#: model:ir.model.fields,field_description:purchase_supplier_approved.field_product_product__approved_supplier_ids
+#: model:ir.model.fields,field_description:purchase_supplier_approved.field_product_template__approved_supplier_ids
+#: model:ir.ui.menu,name:purchase_supplier_approved.menu_purchase_supplier_approved
+#: model_terms:ir.ui.view,arch_db:purchase_supplier_approved.view_product_template_form_inherit
+msgid "Approved Suppliers"
+msgstr "Fournisseurs approuvés"
+
+#. module: purchase_supplier_approved
+#: model:ir.model.fields,field_description:purchase_supplier_approved.field_product_product__approved_supplier_count
+#: model:ir.model.fields,field_description:purchase_supplier_approved.field_product_template__approved_supplier_count
+msgid "Approved Suppliers Count"
+msgstr ""
+
+#. module: purchase_supplier_approved
+#: model:ir.model.fields,help:purchase_supplier_approved.field_purchase_supplier_approved__partner_id
+msgid "Approved supplier for the product"
+msgstr ""
+
+#. module: purchase_supplier_approved
+#: model_terms:ir.ui.view,arch_db:purchase_supplier_approved.view_purchase_supplier_approved_form
+msgid "Archived"
+msgstr ""
+
+#. module: purchase_supplier_approved
+#. odoo-python
+#: code:addons/purchase_supplier_approved/models/purchase_order.py:0
+#, python-format
+msgid ""
+"Cannot confirm purchase order. The following products are not approved for supplier %(supplier)s:\n"
+"\n"
+"%(products)s\n"
+"\n"
+"Please contact an administrator to approve these suppliers or use the override option if you have the required permissions."
+msgstr "Impossible de confirmer la commande d'achat. Les produits suivants ne sont pas approuvés pour le fournisseur %(supplier)s :\n\n%(products)s\n\nVeuillez contacter un administrateur pour approuver ces fournisseurs ou utiliser l'option de remplacement si vous avez les permissions nécessaires."
+
+#. module: purchase_supplier_approved
+#: model:ir.model.fields,help:purchase_supplier_approved.field_purchase_order__override_supplier_approval
+msgid "Check this to override supplier approval validation"
+msgstr "Cochez cette case pour remplacer la validation de l'approbation du fournisseur"
+
+#. module: purchase_supplier_approved
+#: model:ir.model,name:purchase_supplier_approved.model_res_partner
+msgid "Contact"
+msgstr "Contact"
+
+#. module: purchase_supplier_approved
+#: model_terms:ir.actions.act_window,help:purchase_supplier_approved.action_purchase_supplier_approved
+msgid "Create your first approved supplier!"
+msgstr "Créez votre premier fournisseur approuvé!"
+
+#. module: purchase_supplier_approved
+#: model:ir.model.fields,field_description:purchase_supplier_approved.field_purchase_supplier_approved__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: purchase_supplier_approved
+#: model:ir.model.fields,field_description:purchase_supplier_approved.field_purchase_supplier_approved__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: purchase_supplier_approved
+#: model:ir.model.fields,help:purchase_supplier_approved.field_purchase_supplier_approved__date_from
+msgid "Date from which the supplier approval is valid"
+msgstr "Date à partir de laquelle l'approbation du fournisseur est valide"
+
+#. module: purchase_supplier_approved
+#: model:ir.model.fields,help:purchase_supplier_approved.field_purchase_supplier_approved__date_to
+msgid ""
+"Date until which the supplier approval is valid. Leave empty for no "
+"expiration"
+msgstr "Date jusqu'à laquelle l'approbation du fournisseur est valide. Laissez vide pour aucune expiration"
+
+#. module: purchase_supplier_approved
+#: model_terms:ir.actions.act_window,help:purchase_supplier_approved.action_purchase_supplier_approved
+msgid ""
+"Define which suppliers are approved for each product to ensure compliance "
+"with your procurement policies."
+msgstr "Définissez les fournisseurs approuvés pour chaque produit pour garantir la conformité avec vos politiques d'approvisionnement."
+
+#. module: purchase_supplier_approved
+#: model:ir.model.fields,field_description:purchase_supplier_approved.field_purchase_supplier_approved__display_name
+msgid "Display Name"
+msgstr "Nom d'affichage"
+
+#. module: purchase_supplier_approved
+#: model:ir.model.fields,help:purchase_supplier_approved.field_product_product__is_approved_supplier_required
+#: model:ir.model.fields,help:purchase_supplier_approved.field_product_template__is_approved_supplier_required
+msgid ""
+"Effective requirement for approved suppliers based on category and exception"
+" settings."
+msgstr "Exigence effective pour les fournisseurs approuvés basée sur la catégorie et les paramètres d'exception."
+
+#. module: purchase_supplier_approved
+#: model_terms:ir.ui.view,arch_db:purchase_supplier_approved.view_purchase_supplier_approved_search
+msgid "Expired"
+msgstr "Expiré"
+
+#. module: purchase_supplier_approved
+#: model_terms:ir.ui.view,arch_db:purchase_supplier_approved.view_purchase_supplier_approved_search
+msgid "Group By"
+msgstr "Regrouper par"
+
+#. module: purchase_supplier_approved
+#: model:ir.model.fields,field_description:purchase_supplier_approved.field_purchase_order__has_unapproved_supplier
+#: model:ir.model.fields,field_description:purchase_supplier_approved.field_purchase_order_line__has_unapproved_supplier
+msgid "Has Unapproved Supplier"
+msgstr "Contient des fournisseurs non approuvés"
+
+#. module: purchase_supplier_approved
+#: model:ir.model.fields,field_description:purchase_supplier_approved.field_purchase_supplier_approved__id
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_supplier_approved
+#: model:ir.model.fields,help:purchase_supplier_approved.field_product_category__require_approved_supplier
+msgid ""
+"If checked, products in this category will require approved suppliers for "
+"purchase orders. This can be overridden at individual product level."
+msgstr "Si coché, les produits de cette catégorie nécessiteront des fournisseurs approuvés pour les commandes d'achat. Cela peut être remplacé au niveau individuel du produit."
+
+#. module: purchase_supplier_approved
+#: model_terms:ir.ui.view,arch_db:purchase_supplier_approved.view_purchase_supplier_approved_search
+msgid "Inactive"
+msgstr "Inactif"
+
+#. module: purchase_supplier_approved
+#: model:ir.model.fields,field_description:purchase_supplier_approved.field_purchase_supplier_approved__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: purchase_supplier_approved
+#: model:ir.model.fields,field_description:purchase_supplier_approved.field_purchase_supplier_approved__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: purchase_supplier_approved
+#: model:ir.model.fields,help:purchase_supplier_approved.field_product_product__approved_supplier_ids
+#: model:ir.model.fields,help:purchase_supplier_approved.field_product_template__approved_supplier_ids
+msgid "List of approved suppliers for this product"
+msgstr "Liste des fournisseurs approuvés pour ce produit" 
+
+#. module: purchase_supplier_approved
+#: model:ir.model.fields,help:purchase_supplier_approved.field_res_partner__approved_product_ids
+#: model:ir.model.fields,help:purchase_supplier_approved.field_res_users__approved_product_ids
+msgid "List of products for which this partner is an approved supplier"
+msgstr "Liste des produits pour lesquels ce partenaire est un fournisseur approuvé"
+
+#. module: purchase_supplier_approved
+#: model:res.groups,name:purchase_supplier_approved.group_manage_approved_suppliers
+msgid "Manage Approved Suppliers"
+msgstr "Gérer les fournisseurs approuvés"
+
+#. module: purchase_supplier_approved
+#: model:ir.model.fields,field_description:purchase_supplier_approved.field_purchase_supplier_approved__name
+msgid "Name"
+msgstr "Nom"
+
+#. module: purchase_supplier_approved
+#. odoo-python
+#: code:addons/purchase_supplier_approved/models/purchase_supplier_approved.py:0
+#, python-format
+msgid "New Approved Supplier"
+msgstr "Nouveau fournisseur approuvé"
+
+#. module: purchase_supplier_approved
+#: model:ir.model.fields.selection,name:purchase_supplier_approved.selection__product_template__approved_supplier_requirement__not_required
+msgid "Not Required"
+msgstr "Non requis"
+
+#. module: purchase_supplier_approved
+#: model:ir.model.fields,field_description:purchase_supplier_approved.field_purchase_order__override_reason
+msgid "Override Reason"
+msgstr "Motif de remplacement"
+
+#. module: purchase_supplier_approved
+#: model:ir.model.fields,field_description:purchase_supplier_approved.field_purchase_order__override_supplier_approval
+msgid "Override Supplier Approval"
+msgstr "Remplacer l'approbation du fournisseur"
+
+#. module: purchase_supplier_approved
+#. odoo-python
+#: code:addons/purchase_supplier_approved/models/purchase_order.py:0
+#, python-format
+msgid "Override reason is required when overriding supplier approval."
+msgstr "Le motif de remplacement est requis lors du remplacement de l'approbation du fournisseur."
+
+#. module: purchase_supplier_approved
+#: model:ir.model.fields,help:purchase_supplier_approved.field_product_product__approved_supplier_requirement
+#: model:ir.model.fields,help:purchase_supplier_approved.field_product_template__approved_supplier_requirement
+msgid ""
+"Override the category setting for approved supplier requirement. If not set,"
+" the category setting will be used."
+msgstr "Remplacez le paramètre de catégorie pour la exigence des fournisseurs approuvés. Si non défini, le paramètre de catégorie sera utilisé."
+
+#. module: purchase_supplier_approved
+#: model:ir.model,name:purchase_supplier_approved.model_product_template
+#: model_terms:ir.ui.view,arch_db:purchase_supplier_approved.view_purchase_supplier_approved_search
+msgid "Product"
+msgstr "Produit"
+
+#. module: purchase_supplier_approved
+#: model:ir.model,name:purchase_supplier_approved.model_product_category
+msgid "Product Category"
+msgstr "Catégorie de produits"
+
+#. module: purchase_supplier_approved
+#: model:ir.model.fields,field_description:purchase_supplier_approved.field_purchase_supplier_approved__product_tmpl_id
+msgid "Product Template"
+msgstr "Modèle de produit"
+
+#. module: purchase_supplier_approved
+#: model:ir.model,name:purchase_supplier_approved.model_product_product
+msgid "Product Variant"
+msgstr "Variante de produit"
+
+#. module: purchase_supplier_approved
+#: model:ir.model.fields,help:purchase_supplier_approved.field_purchase_supplier_approved__product_tmpl_id
+msgid "Product template for which the supplier is approved"
+msgstr "Modèle de produit pour lequel le fournisseur est approuvé"
+
+#. module: purchase_supplier_approved
+#: model:ir.model,name:purchase_supplier_approved.model_purchase_order
+msgid "Purchase Order"
+msgstr "Bon de commande fournisseur"
+
+#. module: purchase_supplier_approved
+#: model:ir.model,name:purchase_supplier_approved.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Ligne de bon de commande"
+
+#. module: purchase_supplier_approved
+#: model:ir.model.fields,help:purchase_supplier_approved.field_purchase_order__override_reason
+msgid "Reason for overriding supplier approval validation"
+msgstr "Motif de remplacement de la validation de l'approbation du fournisseur"
+
+#. module: purchase_supplier_approved
+#: model:ir.model.fields,field_description:purchase_supplier_approved.field_product_category__require_approved_supplier
+#: model:ir.model.fields,field_description:purchase_supplier_approved.field_product_product__is_approved_supplier_required
+#: model:ir.model.fields,field_description:purchase_supplier_approved.field_product_template__is_approved_supplier_required
+msgid "Require Approved Suppliers"
+msgstr "Exiger des fournisseurs approuvés"
+
+#. module: purchase_supplier_approved
+#: model:ir.model.fields.selection,name:purchase_supplier_approved.selection__product_template__approved_supplier_requirement__required
+msgid "Required"
+msgstr "Requis"
+
+#. module: purchase_supplier_approved
+#: model_terms:ir.ui.view,arch_db:purchase_supplier_approved.view_purchase_supplier_approved_search
+msgid "Search Approved Suppliers"
+msgstr "Rechercher des fournisseurs approuvés"
+
+#. module: purchase_supplier_approved
+#: model:ir.model.fields,field_description:purchase_supplier_approved.field_purchase_supplier_approved__partner_id
+#: model_terms:ir.ui.view,arch_db:purchase_supplier_approved.view_purchase_supplier_approved_search
+msgid "Supplier"
+msgstr "Fournisseur"
+
+#. module: purchase_supplier_approved
+#: model_terms:ir.ui.view,arch_db:purchase_supplier_approved.view_product_template_purchase_form_inherit
+msgid "Supplier Approval"
+msgstr "Approbation du fournisseur"
+
+#. module: purchase_supplier_approved
+#: model:ir.model.fields,help:purchase_supplier_approved.field_purchase_order__has_unapproved_supplier
+msgid "Technical field to track if PO has unapproved suppliers"
+msgstr "Champ technique pour suivre si le bon de commande contient des fournisseurs non approuvés"
+
+#. module: purchase_supplier_approved
+#: model:ir.model.fields,help:purchase_supplier_approved.field_purchase_order_line__has_unapproved_supplier
+msgid "Technical field to track if this line has an unapproved supplier"
+msgstr "Champ technique pour suivre si cette ligne contient un fournisseur non approuvé"
+
+#. module: purchase_supplier_approved
+#. odoo-python
+#: code:addons/purchase_supplier_approved/models/purchase_order.py:0
+#, python-format
+msgid "The supplier %(supplier)s is not approved for product %(product)s. "
+msgstr "Le fournisseur %(supplier)s n'est pas approuvé pour le produit %(product)s."
+
+#. module: purchase_supplier_approved
+#. odoo-python
+#: code:addons/purchase_supplier_approved/models/purchase_order.py:0
+#, python-format
+msgid ""
+"The supplier %(supplier)s is not approved for the following products:\n"
+"\n"
+"%(products)s\n"
+"\n"
+msgstr "Le fournisseur %(supplier)s n'est pas approuvé pour les produits suivants :\n\n%(products)s\n\n"
+
+#. module: purchase_supplier_approved
+#. odoo-python
+#: code:addons/purchase_supplier_approved/models/purchase_supplier_approved.py:0
+#, python-format
+msgid ""
+"There is already an active approval for supplier %(supplier)s and product "
+"%(product)s in the same date range."
+msgstr "Il y a déjà une approbation active pour le fournisseur %(supplier)s et le produit %(product)s dans la même plage de dates."
+
+#. module: purchase_supplier_approved
+#: model_terms:ir.ui.view,arch_db:purchase_supplier_approved.view_purchase_order_tree_inherit
+msgid "Unapproved"
+msgstr "Non approuvé"
+
+#. module: purchase_supplier_approved
+#. odoo-python
+#: code:addons/purchase_supplier_approved/models/purchase_order.py:0
+#: code:addons/purchase_supplier_approved/models/purchase_order.py:0
+#, python-format
+msgid "Unapproved Supplier Warning"
+msgstr "Avertissement fournisseur non approuvé"
+
+#. module: purchase_supplier_approved
+#: model:ir.model.fields,help:purchase_supplier_approved.field_purchase_supplier_approved__active
+msgid "Uncheck to deactivate the supplier approval"
+msgstr "Décochez pour désactiver l'approbation du fournisseur"
+
+#. module: purchase_supplier_approved
+#: model:ir.model.fields.selection,name:purchase_supplier_approved.selection__product_template__approved_supplier_requirement__
+msgid "Use Category Setting"
+msgstr "Utiliser le paramètre de catégorie"
+
+#. module: purchase_supplier_approved
+#: model:res.groups,comment:purchase_supplier_approved.group_manage_approved_suppliers
+msgid ""
+"Users in this group can manage approved suppliers and override purchase "
+"order validations."
+msgstr "Les utilisateurs de ce groupe peuvent gérer les fournisseurs approuvés et remplacer les validations des commandes fournisseurs."
+
+#. module: purchase_supplier_approved
+#: model:ir.model.fields,field_description:purchase_supplier_approved.field_purchase_supplier_approved__date_from
+#: model_terms:ir.ui.view,arch_db:purchase_supplier_approved.view_purchase_supplier_approved_search
+msgid "Valid From"
+msgstr "Valide du"
+
+#. module: purchase_supplier_approved
+#. odoo-python
+#: code:addons/purchase_supplier_approved/models/purchase_supplier_approved.py:0
+#, python-format
+msgid "Valid From date must be before Valid To date."
+msgstr "La date de début doit être avant la date de fin."
+
+#. module: purchase_supplier_approved
+#: model:ir.model.fields,field_description:purchase_supplier_approved.field_purchase_supplier_approved__date_to
+msgid "Valid To"
+msgstr "Valide jusqu'au"
+
+#. module: purchase_supplier_approved
+#: model_terms:ir.ui.view,arch_db:purchase_supplier_approved.view_purchase_supplier_approved_search
+msgid "Valid Today"
+msgstr "Valide aujourd'hui"
