@@ -12,17 +12,23 @@
             name="context"
         >{'active_test': False, 'default_model' : 'purchase.request'}</field>
     </record>
+
     <menuitem
         action="action_purchase_request_test_tree"
         id="menu_purchase_request_test"
         parent="purchase.menu_purchase_config"
     />
+
     <record id="view_purchase_request_form" model="ir.ui.view">
         <field name="name">purchase_request_exception.view_purchase_request_form</field>
         <field name="model">purchase.request</field>
         <field name="inherit_id" ref="purchase_request.view_purchase_request_form" />
         <field name="arch" type="xml">
-            <sheet position="before">
+            <xpath
+                expr="//sheet"
+                position="before"
+                groups="base_exception.group_exception_rule_manager"
+            >
                 <div
                     class="alert alert-danger"
                     role="alert"
@@ -43,27 +49,30 @@
                         groups="base_exception.group_exception_rule_manager"
                     />
                 </div>
-            </sheet>
+            </xpath>
+
             <xpath expr="//field[@name='origin']/.." position="inside">
                 <field
                     name="ignore_exception"
                     states="to_approve"
-                    groups='base_exception.group_exception_rule_manager'
+                    groups="base_exception.group_exception_rule_manager"
                 />
                 <field name="exception_ids" widget="many2many_tags" readonly="True" />
             </xpath>
         </field>
     </record>
+
     <record id="view_purchase_request_tree" model="ir.ui.view">
         <field name="name">purchase_request_exception.view_purchase_request_tree</field>
         <field name="model">purchase.request</field>
         <field name="inherit_id" ref="purchase_request.view_purchase_request_tree" />
         <field name="arch" type="xml">
-            <field name="state" position="after">
+            <xpath expr="//field[@name='state']" position="after">
                 <field name="main_exception_id" />
-            </field>
+            </xpath>
         </field>
     </record>
+
     <record id="view_purchase_request_search" model="ir.ui.view">
         <field
             name="name"
@@ -71,7 +80,7 @@
         <field name="model">purchase.request</field>
         <field name="inherit_id" ref="purchase_request.view_purchase_request_search" />
         <field name="arch" type="xml">
-            <field name="picking_type_id" position="after">
+            <xpath expr="//field[@name='picking_type_id']" position="after">
                 <separator orientation="vertical" />
                 <filter
                     icon="fa-exclamation-circle"
@@ -79,7 +88,7 @@
                     string="Blocked in Draft"
                     domain="[('main_exception_id','!=',False)]"
                 />
-            </field>
+            </xpath>
         </field>
     </record>
 </odoo>
