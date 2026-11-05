@@ -268,7 +268,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                 po_line.purchase_request_lines = [(4, line.id)]
                 po_line.move_dest_ids |= line.move_dest_ids
                 po_line_product_uom_qty = po_line.product_uom._compute_quantity(
-                    po_line.product_uom_qty, alloc_uom
+                    po_line.product_qty, alloc_uom
                 )
                 wizard_product_uom_qty = wizard_uom._compute_quantity(
                     item.product_qty, alloc_uom
