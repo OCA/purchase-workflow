@@ -23,6 +23,13 @@ msgid "<strong>Line Number</strong>"
 msgstr "<strong>Regel #</strong>"
 
 #. module: purchase_order_line_sequence
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_order_line_sequence
 #: model:ir.model.fields,help:purchase_order_line_sequence.field_purchase_order_line__visible_sequence
 msgid "Displays the sequence of the line in the purchase order."
 msgstr "Toont de volgorde van de regel in de inkooporder."
@@ -37,6 +44,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order_line__sequence
 msgid "Hidden Sequence"
 msgstr "Verborgen volgorde"
+
+#. module: purchase_order_line_sequence
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_account_move_line__id
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order__id
+#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order_line__id
+msgid "ID"
+msgstr ""
 
 #. module: purchase_order_line_sequence
 #: model:ir.model,name:purchase_order_line_sequence.model_account_move_line
@@ -55,16 +69,6 @@ msgid "Max sequence in lines"
 msgstr "Maximale volgorde in regels"
 
 #. module: purchase_order_line_sequence
-#. odoo-python
-#: code:addons/purchase_order_line_sequence/models/stock_move.py:0
-msgid ""
-"Not allowed to change the sequence of moves from the picking, you can do it "
-"from the PO."
-msgstr ""
-"Het is niet toegestaan om de volgorde van verplaatsingen vanuit de picking "
-"te wijzigen; u kunt dit doen vanuit de inkooporder."
-
-#. module: purchase_order_line_sequence
 #: model:ir.model.fields,field_description:purchase_order_line_sequence.field_account_move_line__related_po_sequence
 msgid "PO Line Number"
 msgstr "Inkooporder regelnummer"
@@ -79,7 +83,12 @@ msgstr "Inkooporder"
 msgid "Purchase Order Line"
 msgstr "Inkooporderregel"
 
-#. module: purchase_order_line_sequence
-#: model:ir.model,name:purchase_order_line_sequence.model_stock_move
-msgid "Stock Move"
-msgstr "Voorraadverplaatsing"
+#~ msgid ""
+#~ "Not allowed to change the sequence of moves from the picking, you can do "
+#~ "it from the PO."
+#~ msgstr ""
+#~ "Het is niet toegestaan om de volgorde van verplaatsingen vanuit de "
+#~ "picking te wijzigen; u kunt dit doen vanuit de inkooporder."
+
+#~ msgid "Stock Move"
+#~ msgstr "Voorraadverplaatsing"

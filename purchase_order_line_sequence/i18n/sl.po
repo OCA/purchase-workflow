@@ -27,7 +27,6 @@ msgstr "<strong>Št. postavke</strong>"
 #: model:ir.model.fields,field_description:purchase_order_line_sequence.field_account_move_line__display_name
 #: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order__display_name
 #: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order_line__display_name
-#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_stock_move__display_name
 msgid "Display Name"
 msgstr "Prikazani naziv"
 
@@ -50,7 +49,6 @@ msgstr "Skrito zaporedje"
 #: model:ir.model.fields,field_description:purchase_order_line_sequence.field_account_move_line__id
 #: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order__id
 #: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order_line__id
-#: model:ir.model.fields,field_description:purchase_order_line_sequence.field_stock_move__id
 msgid "ID"
 msgstr "ID"
 
@@ -71,16 +69,6 @@ msgid "Max sequence in lines"
 msgstr "Maks. zaporedje v vrsticah"
 
 #. module: purchase_order_line_sequence
-#. odoo-python
-#: code:addons/purchase_order_line_sequence/models/stock_move.py:0
-msgid ""
-"Not allowed to change the sequence of moves from the picking, you can do it "
-"from the PO."
-msgstr ""
-"Zaporedja premikov na dobavnici ni dovoljeno spreminjati, to lahko storite "
-"iz nabavnega naloga."
-
-#. module: purchase_order_line_sequence
 #: model:ir.model.fields,field_description:purchase_order_line_sequence.field_account_move_line__related_po_sequence
 msgid "PO Line Number"
 msgstr "Št. vrstice nab. naloga"
@@ -95,7 +83,12 @@ msgstr "Nabavni nalog"
 msgid "Purchase Order Line"
 msgstr "Nabavna postavka"
 
-#. module: purchase_order_line_sequence
-#: model:ir.model,name:purchase_order_line_sequence.model_stock_move
-msgid "Stock Move"
-msgstr "Premik zaloge"
+#~ msgid ""
+#~ "Not allowed to change the sequence of moves from the picking, you can do "
+#~ "it from the PO."
+#~ msgstr ""
+#~ "Zaporedja premikov na dobavnici ni dovoljeno spreminjati, to lahko "
+#~ "storite iz nabavnega naloga."
+
+#~ msgid "Stock Move"
+#~ msgstr "Premik zaloge"
