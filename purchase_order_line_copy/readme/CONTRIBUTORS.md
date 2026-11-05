@@ -1,0 +1,3 @@
+- [Solvos](https://www.solvos.es):
+  - Carlos García \<carlos.garcia@solvos.es\>
+  - Ángel Rivas \<angel.rivas@solvos.es\>
