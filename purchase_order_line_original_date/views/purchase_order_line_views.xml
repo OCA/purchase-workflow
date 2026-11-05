@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 ForgeFlow S.L. (http://www.forgeflow.com)
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
+<odoo>
+    <record id="purchase_order_line_tree" model="ir.ui.view">
+        <field
+            name="name"
+        >purchase.order.line.tree- purchase_order_line_original_date</field>
+        <field name="model">purchase.order.line</field>
+        <field name="inherit_id" ref="purchase.purchase_order_line_tree" />
+        <field name="arch" type="xml">
+            <field name="date_planned" position="after">
+                <field name="original_date_planned" optional="hide" />
+            </field>
+        </field>
+    </record>
+
+    <record id="purchase_order_line_form2" model="ir.ui.view">
+        <field name="name">stock.move.form - purchase_order_line_original_date</field>
+        <field name="model">purchase.order.line</field>
+        <field name="inherit_id" ref="purchase.purchase_order_line_form2" />
+        <field name="arch" type="xml">
+            <field name="date_planned" position="after">
+                <field name="original_date_planned" />
+            </field>
+        </field>
+    </record>
+</odoo>
