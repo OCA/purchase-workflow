@@ -1,0 +1,37 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* product_main_seller
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-09-06 15:06+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
+
+#. module: product_main_seller
+#: model:ir.model.fields,field_description:product_main_seller.field_product_product__main_seller_id
+#: model:ir.model.fields,field_description:product_main_seller.field_product_template__main_seller_id
+#: model_terms:ir.ui.view,arch_db:product_main_seller.view_product_template_search
+msgid "Main Vendor"
+msgstr "Fornitore principale"
+
+#. module: product_main_seller
+#: model:ir.model,name:product_main_seller.model_product_template
+msgid "Product"
+msgstr "Prodotto"
+
+#. module: product_main_seller
+#: model:ir.model.fields,help:product_main_seller.field_product_product__main_seller_id
+#: model:ir.model.fields,help:product_main_seller.field_product_template__main_seller_id
+msgid "Put your supplier info in first position to set as main vendor"
+msgstr ""
+"Inserire le informazioni fornitore nella prima posizione per impostarlo come "
+"fornitore principale"
