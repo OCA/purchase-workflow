@@ -152,17 +152,52 @@ class PurchaseRequest(models.Model):
     purchase_count = fields.Integer(
         string="Purchases count", compute="_compute_purchase_count", readonly=True
     )
-    currency_id = fields.Many2one(related="company_id.currency_id", readonly=True)
+    currency_id = fields.Many2one(
+        comodel_name="res.currency",
+        default=lambda self: self.env.user.company_id.currency_id,
+        required=True,
+    )
+    currency_rate = fields.Float(
+        compute="_compute_currency_rate",
+        digits=0,
+        store=True,
+        precompute=True,
+    )
+    company_currency_id = fields.Many2one(
+        related="company_id.currency_id", string="Company Currency"
+    )
     estimated_cost = fields.Monetary(
         compute="_compute_estimated_cost",
         string="Total Estimated Cost",
         store=True,
     )
+    estimated_cost_cc = fields.Monetary(
+        compute="_compute_estimated_cost_currency_company",
+        string="Company Total",
+        store=True,
+        currency_field="company_currency_id",
+    )
 
-    @api.depends("line_ids", "line_ids.estimated_cost")
+    @api.depends("currency_id", "date_start", "company_id")
+    def _compute_currency_rate(self):
+        currency_model = self.env["res.currency"]
+        for order in self:
+            order.currency_rate = currency_model._get_conversion_rate(
+                from_currency=order.company_id.currency_id,
+                to_currency=order.currency_id,
+                company=order.company_id,
+                date=order.date_start or fields.Date.today(),
+            )
+
+    @api.depends("line_ids", "line_ids.estimated_cost", "currency_rate")
     def _compute_estimated_cost(self):
         for rec in self:
             rec.estimated_cost = sum(rec.line_ids.mapped("estimated_cost"))
+
+    @api.depends("estimated_cost")
+    def _compute_estimated_cost_currency_company(self):
+        for rec in self:
+            rec.estimated_cost_cc = rec.estimated_cost / rec.currency_rate
 
     @api.depends("line_ids")
     def _compute_purchase_count(self):
