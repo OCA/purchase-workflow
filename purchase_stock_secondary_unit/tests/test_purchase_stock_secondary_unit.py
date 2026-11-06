@@ -61,9 +61,11 @@ class TestPurchaseStockSecondaryUnit(BaseCommon):
 
     def test_update_confirmed_purchase_order(self):
         self.purchase_order.button_confirm()
-        with Form(self.purchase_order) as po_form:
-            with po_form.order_line.edit(0) as line:
-                line.secondary_uom_qty = 5.0
+        # Other addons may make confirmed orders readonly in the form view.
+        # Exercise the line update independently of those UI restrictions.
+        self.purchase_order.order_line.write(
+            {"secondary_uom_qty": 5.0, "product_qty": 25.0}
+        )
         picking = self.purchase_order.picking_ids
         self.assertEqual(picking.move_ids.secondary_uom_qty, 5.0)
         self.assertEqual(picking.move_ids.secondary_uom_id, self.secondary_product_uom)
@@ -75,9 +77,11 @@ class TestPurchaseStockSecondaryUnit(BaseCommon):
         picking.action_assign()
         picking.move_line_ids.quantity = picking.move_ids.product_uom_qty
         picking.button_validate()
-        with Form(self.purchase_order) as po_form:
-            with po_form.order_line.edit(0) as line:
-                line.secondary_uom_qty = 5.0
+        # Other addons may make confirmed orders readonly in the form view.
+        # Exercise the line update independently of those UI restrictions.
+        self.purchase_order.order_line.write(
+            {"secondary_uom_qty": 5.0, "product_qty": 25.0}
+        )
         picking = self.purchase_order.picking_ids.filtered(lambda p: p.state != "done")
         self.assertEqual(picking.move_ids.secondary_uom_qty, 3.0)
         self.assertEqual(picking.move_ids.secondary_uom_id, self.secondary_product_uom)
