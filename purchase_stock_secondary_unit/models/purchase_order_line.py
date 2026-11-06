@@ -3,26 +3,11 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 from odoo import api, models
+from odoo.tools.float_utils import float_round
 
 
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
-
-    def _prepare_stock_moves(self, picking):
-        res = super()._prepare_stock_moves(picking)
-        # Ensure one method.
-        # Compute secondary unit values for stock moves.
-        # When a po line with stock moves has been updated the new moves only
-        # have the new quantity added so we always want compute the
-        # secondary unit.
-        if res:
-            res[0].update(
-                {
-                    "secondary_uom_id": self.secondary_uom_id.id,
-                    "secondary_uom_qty": self.secondary_uom_qty,
-                }
-            )
-        return res
 
     def write(self, vals):
         if "secondary_uom_qty" not in vals:
@@ -51,8 +36,19 @@ class PurchaseOrderLine(models.Model):
             picking, price_unit, product_uom_qty, product_uom
         )
         if self.secondary_uom_id:
-            vals["secondary_uom_qty"] = self.secondary_uom_qty
             vals["secondary_uom_id"] = self.secondary_uom_id.id
+            if self.secondary_uom_id.dependency_type == "independent":
+                vals["secondary_uom_qty"] = self.secondary_uom_qty
+            else:
+                # A line may generate several moves or only an additional receipt.
+                # Convert each move quantity, rather than copying the line total.
+                qty = product_uom._compute_quantity(
+                    product_uom_qty, self.product_id.uom_id, round=False
+                )
+                vals["secondary_uom_qty"] = float_round(
+                    qty / (self.secondary_uom_id.factor or 1.0),
+                    precision_rounding=self.secondary_uom_id.uom_id.rounding,
+                )
         return vals
 
     @api.model
