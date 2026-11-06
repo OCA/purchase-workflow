@@ -1,0 +1,84 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_request_substate
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_request_substate
+#: model:mail.template,body_html:purchase_request_substate.mail_template_data_purchase_request_substate_verified
+msgid ""
+"<div>\n"
+"    Dear ${object.requested_by.name or 'requester'},<br/>\n"
+"    This email is to inform that your purchase request ${object.name} was verified by procurement team.\n"
+"       <br/><br/>\n"
+"    Thank you,\n"
+"    <br/>\n"
+"</div>\n"
+"        "
+msgstr ""
+
+#. module: purchase_request_substate
+#: model:ir.model.fields,field_description:purchase_request_substate.field_base_substate_type__model
+msgid "Apply on"
+msgstr ""
+
+#. module: purchase_request_substate
+#: model:target.state.value,name:purchase_request_substate.target_state_value_approved
+msgid "Approved"
+msgstr ""
+
+#. module: purchase_request_substate
+#: model:ir.model,name:purchase_request_substate.model_base_substate_type
+msgid "Base Substate Type"
+msgstr ""
+
+#. module: purchase_request_substate
+#: model:base.substate,name:purchase_request_substate.base_substate_checked
+msgid "Checked"
+msgstr ""
+
+#. module: purchase_request_substate
+#: model:ir.model,name:purchase_request_substate.model_purchase_request
+#: model:ir.model.fields.selection,name:purchase_request_substate.selection__base_substate_type__model__purchase_request
+msgid "Purchase Request"
+msgstr ""
+
+#. module: purchase_request_substate
+#: model:base.substate.type,name:purchase_request_substate.base_substate_type_purchase_request
+msgid "Purchase Request Substate"
+msgstr ""
+
+#. module: purchase_request_substate
+#: model:ir.model.fields,field_description:purchase_request_substate.field_purchase_request__substate_id
+msgid "Sub State"
+msgstr ""
+
+#. module: purchase_request_substate
+#: model:base.substate,name:purchase_request_substate.base_substate_to_verify
+msgid "To Verify"
+msgstr ""
+
+#. module: purchase_request_substate
+#: model:target.state.value,name:purchase_request_substate.target_state_value_to_approve
+msgid "To be approved"
+msgstr ""
+
+#. module: purchase_request_substate
+#: model:base.substate,name:purchase_request_substate.base_substate_verified
+#: model:mail.template,name:purchase_request_substate.mail_template_data_purchase_request_substate_verified
+msgid "Verified"
+msgstr ""
+
+#. module: purchase_request_substate
+#: model:mail.template,subject:purchase_request_substate.mail_template_data_purchase_request_substate_verified
+msgid "Your purchase request ${object.name} is verified"
+msgstr ""
