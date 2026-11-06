@@ -100,3 +100,23 @@ class TestPurchasePartnerIncoterm(TransactionCase):
         self.assertEqual(po_vals.get("incoterm_id"), self.incoterm.id)
         self.assertEqual(po_vals.get("incoterm_address_id"), self.incoterm_address.id)
         self.assertEqual(po_vals.get("incoterm_location"), "Test Location")
+
+    def test_automated_po_creation(self):
+        auto_po = self.po_model.create({"partner_id": self.partner.id})
+        self.assertEqual(auto_po.incoterm_id, self.partner.purchase_incoterm_id)
+        self.assertEqual(
+            auto_po.incoterm_address_id, self.partner.purchase_incoterm_address_id
+        )
+        self.assertEqual(
+            auto_po.incoterm_location, self.partner.purchase_incoterm_location
+        )
+
+    def test_user_override_preserved(self):
+        custom_incoterm = self.env.ref("account.incoterm_FCA")
+        po_with_custom = self.po_model.create(
+            {
+                "partner_id": self.partner.id,
+                "incoterm_id": custom_incoterm.id,
+            }
+        )
+        self.assertEqual(po_with_custom.incoterm_id, custom_incoterm)
