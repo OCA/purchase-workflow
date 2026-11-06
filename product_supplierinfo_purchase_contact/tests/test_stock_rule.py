@@ -1,0 +1,117 @@
+# Copyright 2024 Tecnativa - Carolina Fernandez
+# Copyright 2025 Tecnativa - Víctor Martínez
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+from odoo import Command
+from odoo.tests import new_test_user
+from odoo.tools import mute_logger
+
+from odoo.addons.base.tests.common import BaseCommon
+
+
+class TestStockRule(BaseCommon):
+    _test_user_groups = (
+        "purchase.group_purchase_manager",
+        "stock.group_stock_manager",
+        "base.group_partner_manager",
+        "base.group_system",
+    )
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.supplierinfo_obj = cls.env["product.supplierinfo"]
+        cls.partner = cls.env["res.partner"].create({"name": "Mr. Odoo"})
+        cls.partner2 = cls.env["res.partner"].create({"name": "Mrs. Odoo 2"})
+        cls.product1 = cls.env["product.product"].create(
+            {
+                "name": "Test Product 1",
+                "seller_ids": [
+                    Command.create(
+                        {
+                            "partner_id": cls.partner2.id,
+                            "purchase_partner_id": cls.partner.id,
+                            "price": 100,
+                        }
+                    )
+                ],
+            }
+        )
+        cls.product2 = cls.env["product.product"].create(
+            {
+                "name": "Test Product 2",
+                "seller_ids": [
+                    Command.create(
+                        {
+                            "partner_id": cls.partner2.id,
+                            "price": 50,
+                        }
+                    )
+                ],
+            }
+        )
+
+    def _create_orderpoint(self, product):
+        return self.env["stock.warehouse.orderpoint"].create(
+            {
+                "name": product.name,
+                "product_id": product.id,
+                "product_min_qty": 1,
+                "product_max_qty": 10,
+                "trigger": "manual",
+            }
+        )
+
+    @mute_logger("odoo.models.unlink")
+    def test_replenishment_with_vendor_purchase(self):
+        op = self._create_orderpoint(self.product1)
+        op.action_replenish()
+        purchase = self.env["purchase.order"].search(
+            [("partner_id", "=", self.partner.id)], order="id desc", limit=1
+        )
+        self.assertEqual(purchase.partner_id, self.partner)
+        self.assertEqual(purchase.order_line.product_id, self.product1)
+        self.assertEqual(purchase.order_line.price_unit, 100)
+        self.assertEqual(purchase.order_line.product_qty, 10)
+
+    @mute_logger("odoo.models.unlink")
+    def test_replenishment_without_vendor_purchase(self):
+        op = self._create_orderpoint(self.product2)
+        op.action_replenish()
+        purchase = self.env["purchase.order"].search(
+            [("partner_id", "=", self.partner2.id)], order="id desc", limit=1
+        )
+        self.assertEqual(purchase.partner_id, self.partner2)
+        self.assertEqual(purchase.order_line.product_id, self.product2)
+        self.assertEqual(purchase.order_line.price_unit, 50)
+        self.assertEqual(purchase.order_line.product_qty, 10)
+
+    @mute_logger("odoo.models.unlink")
+    def test_replenishment_merge_vendor_buyer(self):
+        """The buyer of the RFQ comes from the vendor, not from the purchase
+        contact, so a second replenishment must find the same draft RFQ."""
+        buyer = new_test_user(
+            self.env, login="test-buyer", groups="purchase.group_purchase_user"
+        )
+        self.partner2.buyer_id = buyer
+        product3 = self.env["product.product"].create(
+            {
+                "name": "Test Product 3",
+                "seller_ids": [
+                    Command.create(
+                        {
+                            "partner_id": self.partner2.id,
+                            "purchase_partner_id": self.partner.id,
+                            "price": 30,
+                        }
+                    )
+                ],
+            }
+        )
+        self._create_orderpoint(self.product1).action_replenish()
+        self._create_orderpoint(product3).action_replenish()
+        purchase = self.env["purchase.order"].search(
+            [("partner_id", "=", self.partner.id)]
+        )
+        self.assertEqual(len(purchase), 1)
+        self.assertEqual(purchase.user_id, buyer)
+        self.assertEqual(purchase.order_line.product_id, self.product1 + product3)
