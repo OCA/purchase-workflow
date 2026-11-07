@@ -148,6 +148,45 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
             "Should have same state",
         )
 
+    def test_purchase_state_done_is_a_valid_selection_value(self):
+        """A fully received line gets a purchase status the field can display."""
+        purchase_request = self.purchase_request_obj.create(
+            {
+                "picking_type_id": self.env.ref("stock.picking_type_in").id,
+                "requested_by": SUPERUSER_ID,
+            }
+        )
+        purchase_request_line = self.purchase_request_line_obj.create(
+            {
+                "request_id": purchase_request.id,
+                "product_id": self.service_product.id,
+                "product_uom_id": self.env.ref("uom.product_uom_unit").id,
+                "product_qty": 2.0,
+            }
+        )
+        purchase_request.button_to_approve()
+        purchase_request.button_approved()
+        wiz_id = self.wiz.with_context(
+            active_model="purchase.request.line",
+            active_ids=[purchase_request_line.id],
+            active_id=purchase_request_line.id,
+        ).create({"supplier_id": self.supplier.id})
+        wiz_id.make_purchase_order()
+        po_line = purchase_request_line.purchase_lines
+        po_line.order_id.button_confirm()
+        po_line.write({"qty_received": 2.0})
+        purchase_request_line._compute_purchase_state()
+        self.assertEqual(purchase_request_line.purchase_state, "done")
+        selection = dict(
+            self.purchase_request_line_obj.fields_get(["purchase_state"])[
+                "purchase_state"
+            ]["selection"]
+        )
+        self.assertIn("done", selection)
+        # The purchase order states are still offered
+        for state, _label in self.purchase_order._fields["state"].selection:
+            self.assertIn(state, selection)
+
     def test_bug_is_editable_multiple_lines(self):
         # Check that reading multiple lines is still possible
         # https://github.com/OCA/purchase-workflow/pull/291
