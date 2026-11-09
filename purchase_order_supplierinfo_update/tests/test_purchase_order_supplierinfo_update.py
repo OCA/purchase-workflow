@@ -130,3 +130,26 @@ class TestPurchaseOrderSupplierinfoUpdate(BaseCommon):
         )
         self.assertEqual(self.supplierinfo_2.price, 20)
         self.assertEqual(self.supplierinfo_2.discount, 10)
+
+    def test_downpayment_line(self):
+        """A down payment line (no product) added to a confirmed order is
+        accepted and doesn't change the supplierinfo."""
+        purchase_order = self.env["purchase.order"].create(
+            {
+                "partner_id": self.supplier.id,
+                "order_line": [
+                    Command.create({"product_id": self.product.id, "price_unit": 100})
+                ],
+            }
+        )
+        purchase_order.button_confirm()
+        self.env["purchase.order.line"].create(
+            {
+                "order_id": purchase_order.id,
+                "name": "Down Payment",
+                "product_qty": 0.0,
+                "price_unit": 50.0,
+                "is_downpayment": True,
+            }
+        )
+        self.assertEqual(self.supplierinfo.price, 100)
