@@ -9,7 +9,9 @@ class Orderpoint(models.Model):
 
     def _quantity_in_progress(self):
         res = super()._quantity_in_progress()
-        for prline in self.env["purchase.request.line"].search(
+        # Inventory users may not have access to the requests
+        request_lines = self.env["purchase.request.line"].sudo()
+        for prline in request_lines.search(
             [
                 (
                     "request_id.state",
@@ -21,6 +23,6 @@ class Orderpoint(models.Model):
             ]
         ):
             res[prline.orderpoint_id.id] += prline.product_uom_id._compute_quantity(
-                prline.product_qty, prline.orderpoint_id.product_uom, round=False
+                prline.product_qty, prline.orderpoint_id.uom_id, round=False
             )
         return res

@@ -1,20 +1,32 @@
 # Copyright 2018-2019 ForgeFlow, S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 
-from odoo import SUPERUSER_ID
-from odoo.tests import Form, common
+from odoo import SUPERUSER_ID, Command
+from odoo.tests import Form
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestPurchaseRequestToRfq(common.TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.purchase_request = self.env["purchase.request"]
-        self.purchase_request_line = self.env["purchase.request.line"]
-        self.wiz = self.env["purchase.request.line.make.purchase.order"]
-        self.purchase_order = self.env["purchase.order"]
+class TestPurchaseRequestToRfq(BaseCommon):
+    _test_user_groups = (
+        "purchase_request.group_purchase_request_manager",
+        "purchase.group_purchase_manager",
+        "stock.group_stock_manager",
+        "product.group_product_manager",
+    )
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.second_company = cls.env["res.company"].create({"name": "Second Company"})
+        cls._test_user.company_ids |= cls.second_company
+        cls.purchase_request = cls.env["purchase.request"]
+        cls.purchase_request_line = cls.env["purchase.request.line"]
+        cls.wiz = cls.env["purchase.request.line.make.purchase.order"]
+        cls.purchase_order = cls.env["purchase.order"]
 
         # Create test supplier
-        self.supplier = self.env["res.partner"].create(
+        cls.supplier = cls.env["res.partner"].create(
             {
                 "name": "Test Supplier",
                 "is_company": True,
@@ -22,11 +34,11 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
             }
         )
 
-        vendor = self.env["res.partner"].create({"name": "Partner #2"})
-        self.service_product = self.env["product.product"].create(
+        vendor = cls.env["res.partner"].create({"name": "Partner #2"})
+        cls.service_product = cls.env["product.product"].create(
             {"name": "Product Service Test", "type": "service"}
         )
-        self.product_product = self.env["product.product"].create(
+        cls.product_product = cls.env["product.product"].create(
             {
                 "name": "Product Product Test",
                 "type": "consu",
@@ -34,16 +46,16 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
                 "description_purchase": "Test Description",
             }
         )
-        self.env["product.supplierinfo"].create(
+        cls.env["product.supplierinfo"].create(
             {
                 "partner_id": vendor.id,
-                "product_tmpl_id": self.service_product.product_tmpl_id.id,
+                "product_tmpl_id": cls.service_product.product_tmpl_id.id,
             }
         )
-        self.env["product.supplierinfo"].create(
+        cls.env["product.supplierinfo"].create(
             {
                 "partner_id": vendor.id,
-                "product_tmpl_id": self.product_product.product_tmpl_id.id,
+                "product_tmpl_id": cls.product_product.product_tmpl_id.id,
             }
         )
 
@@ -173,6 +185,50 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
                 "Should have pending",
             )
         # If no assigned pickings to cancel, that's fine - all were processed
+
+    def test_purchase_request_notification_html(self):
+        """The notifications posted on the request render their HTML markup
+        and escape the values coming from the user."""
+        product = self.env["product.product"].create(
+            {"name": "Service <A&B>", "type": "service"}
+        )
+        purchase_request = self.purchase_request.create(
+            {
+                "picking_type_id": self.env.ref("stock.picking_type_in").id,
+                "requested_by": SUPERUSER_ID,
+                "line_ids": [
+                    Command.create(
+                        {
+                            "name": "Line <x>",
+                            "product_id": product.id,
+                            "product_uom_id": self.env.ref("uom.product_uom_unit").id,
+                            "product_qty": 2.0,
+                        }
+                    )
+                ],
+            }
+        )
+        purchase_request.button_approved()
+        self.wiz.with_context(
+            active_model="purchase.request.line",
+            active_ids=purchase_request.line_ids.ids,
+        ).create({"supplier_id": self.supplier.id}).make_purchase_order()
+        po_line = purchase_request.line_ids.purchase_lines
+        po_line.order_id.button_confirm()
+        po_line.write({"qty_received": 1.0})
+        messages = purchase_request.message_ids
+        confirmation = messages.filtered(
+            lambda message: "confirmed in Purchase Order" in message.body
+        )
+        self.assertIn("<li><b>Line &lt;x&gt;</b>: Ordered quantity", confirmation.body)
+        self.assertNotIn("&lt;li&gt;", confirmation.body)
+        allocation = messages.filtered(
+            lambda message: "allocated to this purchase request" in message.body
+        )
+        self.assertIn(
+            "<li><b>Service &lt;A&amp;B&gt;</b>: Received quantity", allocation.body
+        )
+        self.assertNotIn("&lt;li&gt;", allocation.body)
 
     def test_purchase_request_allocation_services(self):
         vals = {
@@ -311,7 +367,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         # All lines should use base UoM (Units) since uom_po_id doesn't exist
         for po_line in all_po_lines:
             self.assertEqual(
-                po_line.product_uom_id,
+                po_line.uom_id,
                 self.env.ref("uom.product_uom_unit"),
                 "The purchase UoM should be Unit(s)",
             )
@@ -449,13 +505,11 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         )
         # A supplier from another company is not assigned
         vendor3 = self.env["res.partner"].create({"name": "Partner #3"})
-        # Create a second company for testing
-        second_company = self.env["res.company"].create({"name": "Second Company"})
         supinfo = self.env["product.supplierinfo"].create(
             {
                 "partner_id": vendor3.id,
                 "product_tmpl_id": product.product_tmpl_id.id,
-                "company_id": second_company.id,
+                "company_id": self.second_company.id,
             }
         )
         self.assertFalse(purchase_request_line.supplier_id)

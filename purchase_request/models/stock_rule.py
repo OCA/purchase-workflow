@@ -1,7 +1,7 @@
 # Copyright 2018-2020 ForgeFlow, S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 
-from odoo import api, fields, models
+from odoo import Command, api, fields, models
 
 
 class StockRule(models.Model):
@@ -10,7 +10,7 @@ class StockRule(models.Model):
     @api.model
     def _prepare_purchase_request_line(self, request_id, procurement):
         # Note: uom_po_id doesn't exist in Odoo 19, use product.uom_id
-        procurement_uom_po_qty = procurement.product_uom._compute_quantity(
+        procurement_uom_po_qty = procurement.uom_id._compute_quantity(
             procurement.product_qty, procurement.product_id.uom_id
         )
         return {
@@ -23,7 +23,8 @@ class StockRule(models.Model):
             "product_qty": procurement_uom_po_qty,
             "request_id": request_id.id,
             "move_dest_ids": [
-                (4, x.id) for x in (procurement.values.get("move_dest_ids") or [])
+                Command.link(x.id)
+                for x in (procurement.values.get("move_dest_ids") or [])
             ],
             "orderpoint_id": procurement.values.get("orderpoint_id", False)
             and procurement.values.get("orderpoint_id").id,
@@ -85,15 +86,16 @@ class StockRule(models.Model):
         """
         procurement = procurement_group[0]
         rule = procurement_group[1]
-        purchase_request_model = self.env["purchase.request"]
-        purchase_request_line_model = self.env["purchase.request.line"]
+        # The user running the procurement may not have access to the requests
+        purchase_request_model = self.env["purchase.request"].sudo()
+        purchase_request_line_model = self.env["purchase.request.line"].sudo()
         cache = {}
-        pr = self.env["purchase.request"]
+        pr = purchase_request_model
         domain = rule._make_pr_get_domain(procurement.values)
         if domain in cache:
             pr = cache[domain]
         elif domain:
-            pr = self.env["purchase.request"].search([dom for dom in domain])
+            pr = purchase_request_model.search([dom for dom in domain])
             pr = pr[0] if pr else False
             cache[domain] = pr
         if not pr:
