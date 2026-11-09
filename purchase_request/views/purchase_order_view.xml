@@ -1,4 +1,4 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2018-2019 ForgeFlow, S.L.
      License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0) -->
 <odoo>
@@ -14,7 +14,7 @@
                     name="action_open_request_line_tree_view"
                     title="Request Lines"
                     type="object"
-                    icon="fa-folder-open-o"
+                    icon="folder_open"
                 />
             </xpath>
         </field>
@@ -42,7 +42,7 @@
                     name="action_open_request_line_tree_view"
                     title="Request Lines"
                     type="object"
-                    icon="fa-folder-open-o"
+                    icon="folder_open"
                 />
             </xpath>
         </field>

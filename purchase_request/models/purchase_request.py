@@ -203,20 +203,9 @@ class PurchaseRequest(models.Model):
             rec.line_count = len(rec.mapped("line_ids"))
 
     def action_view_purchase_request_line(self):
-        action = (
-            self.env.ref("purchase_request.purchase_request_line_form_action")
-            .sudo()
-            .read()[0]
+        return self.line_ids._get_records_action(
+            name=self.env._("Purchase Request Lines")
         )
-        lines = self.mapped("line_ids")
-        if len(lines) > 1:
-            action["domain"] = [("id", "in", lines.ids)]
-        elif lines:
-            action["views"] = [
-                (self.env.ref("purchase_request.purchase_request_line_form").id, "form")
-            ]
-            action["res_id"] = lines.ids[0]
-        return action
 
     @api.depends("state", "line_ids.product_qty", "line_ids.cancelled")
     def _compute_to_approve_allowed(self):
@@ -299,12 +288,12 @@ class PurchaseRequest(models.Model):
                 pr.write({"state": "rejected"})
 
     def to_approve_allowed_check(self):
-        for rec in self:
-            if not rec.to_approve_allowed:
-                raise UserError(
-                    self.env._(
-                        "You can't request an approval for a purchase request "
-                        "which is empty. (%(name)s)",
-                        name=rec.name,
-                    )
+        blocked_requests = self.filtered(lambda rec: not rec.to_approve_allowed)
+        if blocked_requests:
+            raise UserError(
+                self.env._(
+                    "You can't request an approval for a purchase request "
+                    "which is empty. (%(name)s)",
+                    name=blocked_requests[0].name,
                 )
+            )

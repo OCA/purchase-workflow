@@ -3,7 +3,7 @@
 
 from markupsafe import Markup
 
-from odoo import api, exceptions, fields, models
+from odoo import Command, api, exceptions, fields, models
 from odoo.tools import html_escape
 
 
@@ -55,14 +55,14 @@ class PurchaseOrder(models.Model):
                     data = {
                         "name": request_line.name,
                         "product_qty": line.product_qty,
-                        "product_uom": line.product_uom_id.name,
+                        "product_uom": line.uom_id.name,
                         "date_planned": date_planned,
                     }
                     requests_dict[request_id][request_line.id] = data
-            for request_id in requests_dict:
+            for request_id, request_data in requests_dict.items():
                 request = request_obj.sudo().browse(request_id)
                 message = po._purchase_request_confirm_message_content(
-                    request, requests_dict[request_id]
+                    request, request_data
                 )
                 request.message_post(
                     body=message,
@@ -73,16 +73,16 @@ class PurchaseOrder(models.Model):
         return True
 
     def _purchase_request_line_check(self):
-        for po in self:
-            for line in po.order_line:
-                for request_line in line.purchase_request_lines:
-                    if request_line.sudo().purchase_state == "done":
-                        raise exceptions.UserError(
-                            self.env._(
-                                "Purchase Request %(name)s has already been completed",
-                                name=request_line.request_id.name,
-                            )
-                        )
+        done_lines = self.order_line.purchase_request_lines.sudo().filtered(
+            lambda line: line.purchase_state == "done"
+        )
+        if done_lines:
+            raise exceptions.UserError(
+                self.env._(
+                    "Purchase Request %(name)s has already been completed",
+                    name=done_lines[0].request_id.name,
+                )
+            )
         return True
 
     def button_confirm(self):
@@ -129,31 +129,20 @@ class PurchaseOrderLine(models.Model):
         """
         :return dict: dictionary value for created view
         """
-        request_line_ids = []
-        for line in self:
-            request_line_ids += line.purchase_request_lines.ids
+        return self.purchase_request_lines._get_records_action(
+            name=self.env._("Purchase Request Lines")
+        )
 
-        domain = [("id", "in", request_line_ids)]
-
-        return {
-            "name": self.env._("Purchase Request Lines"),
-            "type": "ir.actions.act_window",
-            "res_model": "purchase.request.line",
-            "view_mode": "list,form",
-            "domain": domain,
-        }
-
-    def _prepare_stock_moves(self, picking):
+    def _prepare_stock_moves(self, picking=False):
         self.ensure_one()
         val = super()._prepare_stock_moves(picking)
-        all_list = []
         for v in val:
-            all_ids = self.env["purchase.request.allocation"].search(
+            allocations = self.env["purchase.request.allocation"].search(
                 [("purchase_line_id", "=", v["purchase_line_id"])]
             )
-            for all_id in all_ids:
-                all_list.append((4, all_id.id))
-            v["purchase_request_allocation_ids"] = all_list
+            v["purchase_request_allocation_ids"] = [
+                Command.link(allocation.id) for allocation in allocations
+            ]
         return val
 
     def update_service_allocations(self, prev_qty_received):

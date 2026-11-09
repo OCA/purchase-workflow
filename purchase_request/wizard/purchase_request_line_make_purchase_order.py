@@ -1,10 +1,8 @@
 # Copyright 2018-2019 ForgeFlow, S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0).
-from datetime import datetime
+from datetime import UTC, datetime
 
-import pytz
-
-from odoo import api, fields, models
+from odoo import Command, api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import get_lang
 
@@ -141,10 +139,9 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         return self.env["purchase.request.allocation"].create(vals)
 
     def _get_date_with_user_tz(self, date):
-        user_tz = pytz.timezone(self.env.user.tz or "UTC")
         return (
-            user_tz.localize(datetime(date.year, date.month, date.day))
-            .astimezone(pytz.utc)
+            datetime(date.year, date.month, date.day, tzinfo=self.env.tz)
+            .astimezone(UTC)
             .replace(tzinfo=None)
         )
 
@@ -164,13 +161,15 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         return {
             "order_id": po.id,
             "product_id": product.id,
-            "product_uom_id": product.uom_id.id,
+            "uom_id": product.uom_id.id,
             "price_unit": 0.0,
             "product_qty": qty,
             "analytic_distribution": item.line_id.analytic_distribution,
-            "purchase_request_lines": [(4, item.line_id.id)],
+            "purchase_request_lines": [Command.link(item.line_id.id)],
             "date_planned": self._get_date_with_user_tz(date_required),
-            "move_dest_ids": [(4, x.id) for x in item.line_id.move_dest_ids],
+            "move_dest_ids": [
+                Command.link(move_dest.id) for move_dest in item.line_id.move_dest_ids
+            ],
         }
 
     @api.model
@@ -181,10 +180,12 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             partner_id=self.supplier_id.id,
             company_id=order.company_id.id,
         )
-        name = product_lang.display_name
-        if product_lang.description_purchase:
-            name += "\n" + product_lang.description_purchase
-        return name
+        # Same description as the one computed on the purchase order line
+        return (
+            self.env["purchase.order.line"]
+            .new({"product_id": line.product_id.id})
+            ._get_product_purchase_description(product_lang)
+        )
 
     @api.model
     def _get_order_line_search_domain(self, order, item):
@@ -194,7 +195,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             ("order_id", "=", order.id),
             ("name", "=", name),
             ("product_id", "=", item.product_id.id),
-            ("product_uom_id", "=", vals["product_uom_id"]),
+            ("uom_id", "=", vals["uom_id"]),
         ]
 
         if item.line_id.analytic_distribution:
@@ -255,7 +256,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                 new_pr_line = False
                 po_line = available_po_lines[0]
                 po_line.move_dest_ids |= line.move_dest_ids
-                po_line_product_uom_qty = po_line.product_uom_id._compute_quantity(
+                po_line_product_uom_qty = po_line.uom_id._compute_quantity(
                     po_line.product_uom_qty, alloc_uom
                 )
                 wizard_product_uom_qty = wizard_uom._compute_quantity(
@@ -268,7 +269,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                 if item.keep_description:
                     po_line_data["name"] = item.name
                 po_line = po_line_obj.create(po_line_data)
-                po_line_product_uom_qty = po_line.product_uom_id._compute_quantity(
+                po_line_product_uom_qty = po_line.uom_id._compute_quantity(
                     po_line.product_uom_qty, alloc_uom
                 )
                 wizard_product_uom_qty = wizard_uom._compute_quantity(
@@ -291,7 +292,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                 po_line.price_unit = item.estimated_cost / item.product_qty
             # Now link the PR line to the PO line (if not already linked)
             if line.id not in po_line.purchase_request_lines.ids:
-                po_line.purchase_request_lines = [(4, line.id)]
+                po_line.purchase_request_lines = [Command.link(line.id)]
             res.append(purchase.id)
 
         purchase_requests = self.item_ids.mapped("request_id")

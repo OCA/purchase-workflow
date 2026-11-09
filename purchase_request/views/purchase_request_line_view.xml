@@ -1,4 +1,4 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2018-2019 ForgeFlow, S.L.
      License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0) -->
 <odoo>
@@ -337,7 +337,7 @@
         <field name="binding_model_id" ref="product.model_product_product" />
         <field
             name="group_ids"
-            eval="[(4, ref('purchase_request.group_purchase_request_user')),(4, ref('purchase_request.group_purchase_request_manager'))]"
+            eval="[Command.link(ref('purchase_request.group_purchase_request_user')), Command.link(ref('purchase_request.group_purchase_request_manager'))]"
         />
     </record>
     <record id="purchase_request_line_form_action" model="ir.actions.act_window">
@@ -397,7 +397,7 @@
                                     class="oe_inline"
                                 />
                                 <field
-                                    name="product_uom_id"
+                                    name="uom_id"
                                     readonly="1"
                                     groups="uom.group_uom"
                                     class="oe_inline"
@@ -450,7 +450,7 @@
                 <field name="product_id" />
                 <field name="price_unit" />
                 <field name="product_qty" />
-                <field name="product_uom_id" groups="uom.group_uom" />
+                <field name="uom_id" groups="uom.group_uom" />
                 <field name="price_subtotal" widget="monetary" />
                 <field name="date_planned" widget="date" />
                 <field name="purchase_request_lines" column_invisible="1" />
@@ -494,7 +494,7 @@
     <record id="view_purchase_request_line_details" model="ir.ui.view">
         <field name="name">purchase.request.line.details.form</field>
         <field name="model">purchase.request.line</field>
-        <field name="priority">1000</field>
+        <field name="priority" eval="1000" />
         <field name="arch" type="xml">
             <form>
                 <sheet>
@@ -570,8 +570,8 @@
         </field>
     </record>
     <menuitem
-        action="purchase_request_line_form_action"
         id="menu_purchase_request_line"
+        action="purchase_request_line_form_action"
         parent="purchase.menu_procurement_management"
     />
     <menuitem

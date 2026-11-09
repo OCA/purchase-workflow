@@ -1,51 +1,59 @@
 # Copyright 2018-2019 ForgeFlow, S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 
-from odoo import fields
-from odoo.tests import common
+from odoo import Command, fields
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestPurchaseRequestProcurement(common.TransactionCase):
-    def setUp(self):
-        super().setUp()
+class TestPurchaseRequestProcurement(BaseCommon):
+    _test_user_groups = (
+        "purchase_request.group_purchase_request_manager",
+        "purchase.group_purchase_manager",
+        "stock.group_stock_manager",
+        "product.group_product_manager",
+    )
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
 
         # Get required Model
-        self.pr_model = self.env["purchase.request"]
-        self.prl_model = self.env["purchase.request.line"]
-        self.product_uom_model = self.env["uom.uom"]
-        self.location = self.env.ref("stock.stock_location_stock")
-        self.customer_location = self.env.ref("stock.stock_location_customers")
+        cls.pr_model = cls.env["purchase.request"]
+        cls.prl_model = cls.env["purchase.request.line"]
+        cls.product_uom_model = cls.env["uom.uom"]
+        cls.location = cls.env.ref("stock.stock_location_stock")
+        cls.customer_location = cls.env.ref("stock.stock_location_customers")
 
         # Get required Model data
-        self.route_buy = self.env.ref("purchase_stock.route_warehouse0_buy")
-        self.product_1 = self.env["product.product"].create(
+        cls.route_buy = cls.env.ref("purchase_stock.route_warehouse0_buy")
+        cls.route_buy.product_selectable = True
+        cls.product_1 = cls.env["product.product"].create(
             {
                 "name": "Test Product",
                 "type": "consu",
                 "purchase_request": True,
-                "route_ids": [(4, self.route_buy.id)],
+                "route_ids": [Command.link(cls.route_buy.id)],
             }
         )
-        self.rule_buy = self.route_buy.rule_ids.filtered(
-            lambda rule: rule.location_dest_id == self.location
+        cls.rule_buy = cls.route_buy.rule_ids.filtered(
+            lambda rule: rule.location_dest_id == cls.location
         )
         # Create Supplier
-        self.supplier = self.env["res.partner"].create(
+        cls.supplier = cls.env["res.partner"].create(
             {"name": "Supplier", "is_company": True, "company_id": False}
         )
 
         # Add supplier to product_1
-        self.product_1.write(
+        cls.product_1.write(
             {
                 "seller_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
-                            "partner_id": self.supplier.id,
+                            "partner_id": cls.supplier.id,
                             "price": 100.0,
                             "company_id": False,
-                        },
+                        }
                     )
                 ]
             }
@@ -61,9 +69,9 @@ class TestPurchaseRequestProcurement(common.TransactionCase):
                 "origin": origin,
                 "procure_method": "make_to_order",
                 "product_id": product.id,
-                "product_uom": product.uom_id.id,
+                "uom_id": product.uom_id.id,
                 "product_uom_qty": qty,
-                "route_ids": [(4, self.route_buy.id)],
+                "route_ids": [Command.link(self.route_buy.id)],
             }
         )
         move._action_confirm()

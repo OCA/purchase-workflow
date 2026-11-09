@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2018-2019 ForgeFlow, S.L.
      License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
 <odoo>
@@ -53,7 +53,7 @@
                         </div>
                         <t t-if="o.line_ids">
                             <h3>Products</h3>
-                            <table class="table table-condensed">
+                            <table class="table table-sm">
                                 <thead>
                                     <tr>
                                         <th>
@@ -62,7 +62,7 @@
                                         <th groups="analytic.group_analytic_accounting">
                                             <strong>Analytic Distribution</strong>
                                         </th>
-                                        <th class="text-right">
+                                        <th class="text-end">
                                             <strong>Qty</strong>
                                         </th>
                                         <th class="text-center" groups="uom.group_uom">
@@ -71,7 +71,7 @@
                                         <th>
                                             <strong>Estimated Cost</strong>
                                         </th>
-                                        <th class="text-right">
+                                        <th class="text-end">
                                             <strong>Requested Date</strong>
                                         </th>
                                         <th>
@@ -89,7 +89,7 @@
                                                 t-field="line_id.analytic_distribution"
                                             />
                                         </td>
-                                        <td class="text-right">
+                                        <td class="text-end">
                                             <span t-field="line_id.product_qty" />
                                         </td>
                                         <t>
@@ -101,7 +101,7 @@
                                         <td>
                                             <span t-field="line_id.estimated_cost" />
                                         </td>
-                                        <td class="text-right">
+                                        <td class="text-end">
                                             <span t-field="line_id.date_required" />
                                         </td>
                                         <td>
