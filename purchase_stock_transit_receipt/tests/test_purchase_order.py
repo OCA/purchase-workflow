@@ -70,10 +70,13 @@ class TestPurchaseOrder(BaseCommon):
     def test_incoterm_change(self):
         purchase = self._create_purchase(self.incoterm)
         self.assertEqual(purchase.picking_type_id, self.warehouse.in_type_id)
+        self.assertFalse(purchase._is_transit_purchase())
         purchase.incoterm_id = self.transit_incoterm
         self.assertEqual(purchase.picking_type_id, self.warehouse.transit_in_type_id)
+        self.assertTrue(purchase._is_transit_purchase())
         purchase.incoterm_id = self.incoterm
         self.assertEqual(purchase.picking_type_id, self.warehouse.in_type_id)
+        self.assertFalse(purchase._is_transit_purchase())
 
     def test_manual_choice_kept(self):
         purchase = self._create_purchase(self.transit_incoterm)
