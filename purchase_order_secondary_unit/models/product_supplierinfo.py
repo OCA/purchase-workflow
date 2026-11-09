@@ -15,7 +15,7 @@ class ProductSupplierinfo(models.Model):
     )
     secondary_uom_price = fields.Float(
         string="Secondary Price",
-        digits="Product Price",
+        min_display_digits="Product Price",
         compute="_compute_secondary_uom_price",
         inverse="_inverse_secondary_uom_price",
         store=True,
