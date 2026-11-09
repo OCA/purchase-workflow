@@ -32,8 +32,11 @@ class PurchaseOrderLine(models.Model):
         return res
 
     def update_supplierinfo_price(self):
+        # Lines without product (e.g. down payments) have no supplierinfo
         for line in self.filtered(
-            lambda r: not r.display_type and r.order_id.state in ["purchase", "done"]
+            lambda r: not r.display_type
+            and r.product_id
+            and r.order_id.state in ["purchase", "done"]
         ):
             domain = [
                 ("partner_id", "=", line.partner_id.id),
