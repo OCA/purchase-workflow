@@ -6,7 +6,7 @@ from odoo import api, models
 
 
 class AccountMove(models.Model):
-    _inherit = ["account.move", "supplied.product.mixin"]
+    _inherit = ["account.move", "supplied.product.mixin"]  # noqa: RUF012
     _name = "account.move"
 
     @api.onchange("invoice_vendor_bill_id")

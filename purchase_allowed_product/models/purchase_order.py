@@ -6,7 +6,7 @@ from odoo import models
 
 
 class PurchaseOrder(models.Model):
-    _inherit = ["purchase.order", "supplied.product.mixin"]
+    _inherit = ["purchase.order", "supplied.product.mixin"]  # noqa: RUF012
     _name = "purchase.order"
 
     def _prepare_invoice(self):
