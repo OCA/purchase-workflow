@@ -32,3 +32,9 @@ class PurchaseOrder(models.Model):
     def _requires_transit_receipt(self):
         self.ensure_one()
         return self.incoterm_id.transit_receipt
+
+    def _is_transit_purchase(self):
+        self.ensure_one()
+        return (
+            self.picking_type_id == self.picking_type_id.warehouse_id.transit_in_type_id
+        )
