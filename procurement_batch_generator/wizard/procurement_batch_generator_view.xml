@@ -21,7 +21,7 @@
                         colspan="2"
                         options="{'no_create': True}"
                     >
-                        <tree editable="bottom">
+                        <list editable="bottom">
                             <field name="product_tmpl_id" invisible="1" />
                             <field name="product_has_variants" invisible="1" />
                             <!--    <field name="product_id" attrs="{'readonly': [('product_has_variants', '=', False)]}" options="{'no_create_edit': 1}"/> doesn't work because this field cannot be readonly -->
@@ -39,7 +39,7 @@
                                 groups="stock.group_adv_location"
                             />
                             <field name="company_id" invisible="1" />
-                        </tree>
+                        </list>
                     </field>
                 </group>
                 <footer>
@@ -49,7 +49,7 @@
                         string="Validate"
                         class="btn-primary"
                     />
-                    <button special="cancel" string="Cancel" class="btn-default" />
+                    <button special="cancel" string="Cancel" class="btn-secondary" />
                 </footer>
             </form>
         </field>

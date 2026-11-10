@@ -19,7 +19,7 @@ class TestProcurementBatchGenerator(TransactionCase):
                 "active_model": "product.product",
             }
         )
-        wiz = pbgo.with_context(ctx).create({})
+        wiz = pbgo.with_context(**ctx).create({})
         self.assertEqual(len(wiz.line_ids), 2)
         wiz.line_ids.write({"procurement_qty": 42})
         wiz.validate()
@@ -36,7 +36,7 @@ class TestProcurementBatchGenerator(TransactionCase):
                 "active_model": "product.template",
             }
         )
-        wiz = pbgo.with_context(ctx).create({})
+        wiz = pbgo.with_context(**ctx).create({})
         self.assertEqual(len(wiz.line_ids), 2)
         wiz.line_ids.write({"procurement_qty": 12})
         wiz.validate()

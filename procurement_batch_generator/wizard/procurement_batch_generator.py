@@ -54,7 +54,7 @@ class ProcurementBatchGenerator(models.TransientModel):
                 if len(product_tmpl.product_variant_ids) > 1:
                     has_variants = True
                 partner_id = (
-                    product.seller_ids and product.seller_ids[0].name.id or False
+                    product.seller_ids and product.seller_ids[0].partner_id.id or False
                 )
                 res["line_ids"].append(
                     (
@@ -105,7 +105,7 @@ class ProcurementBatchGenerator(models.TransientModel):
                 )
             )  # values
 
-        pgo.with_context(clean_context(self.env.context)).run(proc_list)
+        pgo.with_context(**clean_context(self.env.context)).run(proc_list)
 
     def _prepare_procurement_group(self):
         self.ensure_one()
@@ -132,9 +132,7 @@ class ProcurementBatchGeneratorLine(models.TransientModel):
         domain="[('product_tmpl_id', '=', product_tmpl_id)]",
     )
     partner_id = fields.Many2one("res.partner", string="Supplier")
-    qty_available = fields.Float(
-        string="Qty Available", digits="Product Unit of Measure"
-    )
+    qty_available = fields.Float(digits="Product Unit of Measure")
     outgoing_qty = fields.Float(digits="Product Unit of Measure")
     incoming_qty = fields.Float(digits="Product Unit of Measure")
     procurement_qty = fields.Float(
@@ -143,7 +141,7 @@ class ProcurementBatchGeneratorLine(models.TransientModel):
     uom_id = fields.Many2one("uom.uom", string="Unit of Measure", readonly=True)
     date_planned = fields.Date(string="Scheduled Date", required=True)
     route_ids = fields.Many2many(
-        "stock.location.route",
+        "stock.route",
         string="Preferred Routes",
         domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
     )
