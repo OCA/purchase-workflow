@@ -17,19 +17,30 @@ msgstr ""
 "X-Generator: Weblate 5.10.4\n"
 
 #. module: purchase_force_invoiced
+#: model:ir.model.fields,field_description:purchase_force_invoiced.field_purchase_bill_line_match__display_name
+#: model:ir.model.fields,field_description:purchase_force_invoiced.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:purchase_force_invoiced.field_purchase_order_line__display_name
+#: model:ir.model.fields,field_description:purchase_force_invoiced.field_purchase_report__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_force_invoiced
 #: model:ir.model.fields,field_description:purchase_force_invoiced.field_purchase_order__force_invoiced
 msgid "Force Invoiced"
 msgstr "Forza a fatturato"
 
 #. module: purchase_force_invoiced
-#: model:ir.model.fields,help:purchase_force_invoiced.field_purchase_order__force_invoiced
-msgid ""
-"If true, the order is marked forced only when all lines are fully invoiced "
-"and at least one line was manually forced."
+#: model:ir.model.fields,field_description:purchase_force_invoiced.field_purchase_bill_line_match__id
+#: model:ir.model.fields,field_description:purchase_force_invoiced.field_purchase_order__id
+#: model:ir.model.fields,field_description:purchase_force_invoiced.field_purchase_order_line__id
+#: model:ir.model.fields,field_description:purchase_force_invoiced.field_purchase_report__id
+msgid "ID"
 msgstr ""
-"Se è vero, l'ordine viene contrassegnato come forzato solo quando tutte le "
-"righe sono state completamente fatturate e almeno una riga è stata forzata "
-"manualmente."
+
+#. module: purchase_force_invoiced
+#: model:ir.model,name:purchase_force_invoiced.model_purchase_bill_line_match
+msgid "Purchase Line and Vendor Bill line matching view"
+msgstr ""
 
 #. module: purchase_force_invoiced
 #: model:ir.model,name:purchase_force_invoiced.model_purchase_order
@@ -51,12 +62,22 @@ msgstr "Resoconto di acquisto"
 msgid "Set purchase orders to 'Force Invoiced'"
 msgstr "Imposta gli ordii di vendita a ' Forza a fatturato'"
 
+#. module: purchase_force_invoiced
+#: model:ir.model.fields,help:purchase_force_invoiced.field_purchase_order__force_invoiced
+msgid ""
+"When you set this field, the purchase order will be considered as fully "
+"billed, even when there may be ordered or delivered quantities pending to "
+"bill. To use this field, the order must be in 'Locked' state"
+msgstr ""
+"Quando si imposta questo campo, l'ordine di acquisto verrà considerato come "
+"completamente pagato, anche se ci sono quantità ordinate o consegnate in "
+"attesa di pagamento. Per usare questo campo, l'ordine deve essere in stato "
+"'Bloccato'"
+
 #~ msgid ""
-#~ "When you set this field, the purchase order will be considered as fully "
-#~ "billed, even when there may be ordered or delivered quantities pending to "
-#~ "bill. To use this field, the order must be in 'Locked' state"
+#~ "If true, the order is marked forced only when all lines are fully "
+#~ "invoiced and at least one line was manually forced."
 #~ msgstr ""
-#~ "Quando si imposta questo campo, l'ordine di acquisto verrà considerato "
-#~ "come completamente pagato, anche se ci sono quantità ordinate o "
-#~ "consegnate in attesa di pagamento. Per usare questo campo, l'ordine deve "
-#~ "essere in stato 'Bloccato'"
+#~ "Se è vero, l'ordine viene contrassegnato come forzato solo quando tutte "
+#~ "le righe sono state completamente fatturate e almeno una riga è stata "
+#~ "forzata manualmente."
