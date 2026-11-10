@@ -44,6 +44,9 @@ class PurchaseOrder(models.Model):
 
     def action_view_ongoing_payment_lines(self):
         self.ensure_one()
+        # The order can also have uploaded or cancelled payment lines: only the
+        # ongoing ones are shown, the same lines the smart button counts.
+        ongoing_lines = self.ongoing_account_payment_line_ids
         act = {
             "type": "ir.actions.act_window",
             "res_model": "account.payment.line",
@@ -52,12 +55,12 @@ class PurchaseOrder(models.Model):
                 default_purchase_id=self.id,
             ),
         }
-        if self.ongoing_account_payment_line_count == 1:
+        if len(ongoing_lines) == 1:
             act.update(
                 {
                     "name": _("Payment Line"),
                     "view_mode": "form",
-                    "res_id": self.account_payment_line_ids.id,
+                    "res_id": ongoing_lines.id,
                 }
             )
         else:
@@ -66,7 +69,10 @@ class PurchaseOrder(models.Model):
                     "name": _("Payment Lines"),
                     "view_mode": "list",
                     # Use inverse field in domain to filter records
-                    "domain": [("purchase_id", "=", self.id)],
+                    "domain": [
+                        ("purchase_id", "=", self.id),
+                        ("state", "not in", ["uploaded", "cancel"]),
+                    ],
                 }
             )
         return act
