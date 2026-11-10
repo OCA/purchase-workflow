@@ -5,3 +5,4 @@
   - Ernesto Tejeda
   - Víctor Martínez
   - Juan Carlos Oñate
+  - Andrii Kompaniiets

@@ -5,14 +5,23 @@
 
 from odoo import fields
 from odoo.tests import Form
+from odoo.tools import mute_logger
 
 from odoo.addons.base.tests.common import BaseCommon
 
 
 class TestPurchaseOrderUninvoiceAmount(BaseCommon):
+    _test_user_groups = None
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        # A chart of accounts is required: taxes, journals and outstanding
+        # accounts cannot be created on a company without one.
+        if not cls.env.company.chart_template:
+            cls.env["account.chart.template"].try_loading(
+                "generic_coa", company=cls.env.company, install_demo=False
+            )
         # Environmet
         cls.purchase_order_model = cls.env["purchase.order"]
         cls.purchase_order_line_model = cls.env["purchase.order.line"]
@@ -22,20 +31,25 @@ class TestPurchaseOrderUninvoiceAmount(BaseCommon):
         cls.product_category_model = cls.env["product.category"]
         # Company
         cls.company = cls.env.ref("base.main_company")
+        cls.purchase_journal = cls.env["account.journal"].create(
+            {
+                "name": "Purchase journal",
+                "code": "PJ",
+                "type": "purchase",
+                "company_id": cls.company.id,
+            }
+        )
         # Partner
         cls.partner = cls.res_partner_model.create(
             {"name": "Partner 1", "supplier_rank": 1, "is_company": True}
         )
         # Category
         cls.product_categ = cls.product_category_model.create({"name": "Test category"})
-        cls.uom_categ = cls.env["uom.category"].create({"name": "Category 1"})
         cls.uom1 = cls.env["uom.uom"].create(
             {
                 "name": "UOM 1",
-                "category_id": cls.uom_categ.id,
                 "factor": 1,
                 "active": True,
-                "uom_type": "reference",
             }
         )
         # Products
@@ -63,7 +77,7 @@ class TestPurchaseOrderUninvoiceAmount(BaseCommon):
                 "name": self.product_1.name,
                 "product_id": self.product_1.id,
                 "product_qty": product_qty,
-                "product_uom": self.product_1.uom_po_id.id,
+                "uom_id": self.product_1.uom_id.id,
                 "price_unit": 100.0,
                 "date_planned": fields.Date.today(),
                 "order_id": purchase.id,
@@ -74,6 +88,7 @@ class TestPurchaseOrderUninvoiceAmount(BaseCommon):
         purchase_line_1.qty_received = product_received
         return purchase
 
+    @mute_logger("odoo.tests.form.onchange")
     def _create_invoice_from_purchase(self, purchase):
         invoice_form = Form(
             self.account_move_model.with_context(
@@ -107,9 +122,11 @@ class TestPurchaseOrderUninvoiceAmount(BaseCommon):
         purchase = self._create_purchase(10, 5)
         self.assertEqual(purchase.amount_uninvoiced, 500)
         invoice = self._create_invoice_from_purchase(purchase)
-        with Form(invoice) as invoice_form:
-            with invoice_form.invoice_line_ids.edit(0) as line_form:
-                line_form.quantity = 3
+        with (
+            Form(invoice) as invoice_form,
+            invoice_form.invoice_line_ids.edit(0) as line_form,
+        ):
+            line_form.quantity = 3
         self.assertEqual(purchase.amount_uninvoiced, 200)
 
     def test_create_purchase_create_and_invoiced_with_all_units(self):
@@ -128,9 +145,11 @@ class TestPurchaseOrderUninvoiceAmount(BaseCommon):
         purchase = self._create_purchase(10, 0)
         self.assertEqual(purchase.amount_uninvoiced, 1000)
         invoice = self._create_invoice_from_purchase(purchase)
-        with Form(invoice) as invoice_form:
-            with invoice_form.invoice_line_ids.edit(0) as line_form:
-                line_form.quantity = 6
+        with (
+            Form(invoice) as invoice_form,
+            invoice_form.invoice_line_ids.edit(0) as line_form,
+        ):
+            line_form.quantity = 6
         self.assertEqual(purchase.amount_uninvoiced, 400)
         self._create_invoice_from_purchase(purchase)
         self.assertEqual(purchase.amount_uninvoiced, 0)
@@ -139,7 +158,9 @@ class TestPurchaseOrderUninvoiceAmount(BaseCommon):
         purchase = self._create_purchase(10, 10)
         self.assertEqual(purchase.amount_uninvoiced, 1000)
         invoice = self._create_invoice_from_purchase(purchase)
-        with Form(invoice) as invoice_form:
-            with invoice_form.invoice_line_ids.edit(0) as line_form:
-                line_form.quantity = 20
+        with (
+            Form(invoice) as invoice_form,
+            invoice_form.invoice_line_ids.edit(0) as line_form,
+        ):
+            line_form.quantity = 20
         self.assertEqual(purchase.amount_uninvoiced, -1000)

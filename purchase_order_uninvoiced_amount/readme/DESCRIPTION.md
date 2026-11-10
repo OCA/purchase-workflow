@@ -1,1 +1,1 @@
-Show uninvoiced amount on purchase order tree.
+Show uninvoiced amount on purchase order list.
