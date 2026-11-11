@@ -3,9 +3,8 @@
 
 {
     "name": "Product Supplier Code in Purchase",
-    "summary": """This module adds to the purchase order line the supplier
-                code defined in the product.""",
-    "version": "19.0.1.0.0",
+    "summary": "Add the supplier code defined in the product to purchase order lines",
+    "version": "20.0.1.0.0",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
     "category": "Purchase Management",
