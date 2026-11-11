@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Moduon Team S.L.
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0.html). -->
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="model">res.config.settings</field>
+        <field
+            name="inherit_id"
+            ref="purchase.res_config_settings_view_form_purchase"
+        />
+        <field name="arch" type="xml">
+            <block name="invoicing_settings_container" position="inside">
+                <setting
+                    id="accrual_use_accounting_date"
+                    company_dependent="1"
+                    help="Accrued expense entries count as billed the bills by their accounting date, instead of their bill date"
+                >
+                    <field name="accrual_use_accounting_date" />
+                </setting>
+            </block>
+        </field>
+    </record>
+</odoo>
