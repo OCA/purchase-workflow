@@ -10,6 +10,11 @@ from odoo import api, fields, models
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
+    max_line_sequence = fields.Integer(
+        string="Max sequence in lines",
+        compute="_compute_max_line_sequence",
+    )
+
     @api.depends("order_line")
     def _compute_max_line_sequence(self):
         """Allow to know the highest sequence entered in purchase order lines.
@@ -21,10 +26,6 @@ class PurchaseOrder(models.Model):
             purchase.max_line_sequence = (
                 max(purchase.mapped("order_line.sequence") or [0]) + 1
             )
-
-    max_line_sequence = fields.Integer(
-        string="Max sequence in lines", compute="_compute_max_line_sequence"
-    )
 
     @api.model
     def get_view(self, view_id=None, view_type="form", **options):

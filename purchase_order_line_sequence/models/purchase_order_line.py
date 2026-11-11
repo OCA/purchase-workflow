@@ -11,13 +11,12 @@ class PurchaseOrderLine(models.Model):
     _order = "sequence, id"
 
     sequence = fields.Integer(
-        "Hidden Sequence",
+        string="Hidden Sequence",
         help="Gives the sequence of the line when displaying the purchase order.",
         default=9999,
     )
-
     visible_sequence = fields.Integer(
-        "Line Number",
+        string="Line Number",
         help="Displays the sequence of the line in the purchase order.",
         compute="_compute_visible_sequence",
         store=True,

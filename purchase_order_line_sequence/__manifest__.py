@@ -6,7 +6,7 @@
 {
     "name": "Purchase Order Line Sequence",
     "summary": "Adds sequence to PO lines and propagates it to Invoice lines",
-    "version": "19.0.2.0.0",
+    "version": "20.0.1.0.0",
     "category": "Purchase Management",
     "author": "Camptocamp, ForgeFlow, Serpent CS, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
@@ -14,9 +14,9 @@
         "purchase",
     ],
     "data": [
-        "views/purchase_view.xml",
-        "views/report_purchaseorder.xml",
-        "views/report_purchasequotation.xml",
+        "views/purchase_order_view.xml",
+        "views/report_purchase_order.xml",
+        "views/report_purchase_quotation.xml",
         "views/account_move_view.xml",
         "views/report_invoice.xml",
     ],

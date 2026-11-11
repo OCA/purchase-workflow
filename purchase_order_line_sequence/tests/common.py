@@ -3,12 +3,15 @@
 # Copyright 2017 Serpent Consulting Services Pvt. Ltd.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from datetime import datetime
+
+from odoo import Command, fields
 
 from odoo.addons.base.tests.common import BaseCommon
 
 
 class PurchaseOrderLineSequenceCase(BaseCommon):
+    _test_user_groups = ("purchase.group_purchase_user",)
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -52,7 +55,6 @@ class PurchaseOrderLineSequenceCase(BaseCommon):
             {
                 "name": "Test category",
                 "property_valuation": "real_time",
-                "property_cost_method": "fifo",
             }
         )
 
@@ -87,29 +89,25 @@ class PurchaseOrderLineSequenceCase(BaseCommon):
         po_vals = {
             "partner_id": cls.partner_id.id,
             "order_line": [
-                (
-                    0,
-                    0,
+                Command.create(
                     {
                         "name": cls.product_id_1.name,
                         "product_id": cls.product_id_1.id,
                         "product_qty": 5.0,
-                        "product_uom_id": cls.product_id_1.uom_id.id,
+                        "uom_id": cls.product_id_1.uom_id.id,
                         "price_unit": 500.0,
-                        "date_planned": datetime.today(),
-                    },
+                        "date_planned": fields.Date.today(),
+                    }
                 ),
-                (
-                    0,
-                    0,
+                Command.create(
                     {
                         "name": cls.product_id_2.name,
                         "product_id": cls.product_id_2.id,
                         "product_qty": 5.0,
-                        "product_uom_id": cls.product_id_2.uom_id.id,
+                        "uom_id": cls.product_id_2.uom_id.id,
                         "price_unit": 250.0,
-                        "date_planned": datetime.today(),
-                    },
+                        "date_planned": fields.Date.today(),
+                    }
                 ),
             ],
         }
