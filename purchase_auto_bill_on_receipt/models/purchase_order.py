@@ -135,8 +135,10 @@ class PurchaseOrder(models.Model):
         if refund:
             moves = moves.filtered("to_refund")
         eligible_lines = moves.purchase_line_id.filtered(
-            lambda line: line.product_id.purchase_method == "receive"
-            and (line.qty_to_invoice < 0 if refund else line.qty_to_invoice > 0)
+            lambda line: (
+                line.product_id.purchase_method == "receive"
+                and (line.qty_to_invoice < 0 if refund else line.qty_to_invoice > 0)
+            )
         )
         if not eligible_lines:
             return self.env["account.move"]

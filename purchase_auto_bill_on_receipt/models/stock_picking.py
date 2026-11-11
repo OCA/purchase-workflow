@@ -37,12 +37,14 @@ class StockPicking(models.Model):
     def button_validate(self):
         res = super().button_validate()
         to_process = self.filtered(
-            lambda p: p.state == "done"
-            and p.purchase_id
-            and p.purchase_id._auto_bill_enabled()
-            and (
-                p.picking_type_code == "incoming"
-                or any(m.to_refund for m in p.move_ids if m.purchase_line_id)
+            lambda p: (
+                p.state == "done"
+                and p.purchase_id
+                and p.purchase_id._auto_bill_enabled()
+                and (
+                    p.picking_type_code == "incoming"
+                    or any(m.to_refund for m in p.move_ids if m.purchase_line_id)
+                )
             )
         )
         if to_process:
