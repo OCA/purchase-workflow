@@ -34,7 +34,6 @@ class TestProductSupplierinfoSecondaryUnit(TestPurchaseSecondaryUnitCommon):
         secondary_unit = self.env["product.secondary.unit"].create(
             {
                 "name": "unit-900",
-                "uom_id": self.product_uom_unit.id,
                 "factor": 0.9,
                 "product_tmpl_id": self.product.product_tmpl_id.id,
             }
@@ -79,7 +78,6 @@ class TestProductSupplierinfoSecondaryUnit(TestPurchaseSecondaryUnitCommon):
         secondary_unit_2 = self.env["product.secondary.unit"].create(
             {
                 "name": "Pallet",
-                "uom_id": self.product_uom_unit.id,
                 "factor": 48.0,
                 "product_tmpl_id": self.product.product_tmpl_id.id,
             }

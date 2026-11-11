@@ -1,5 +1,7 @@
 # Copyright 2018 Tecnativa - Sergio Teruel
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+from unittest.mock import patch
+
 from odoo import Command, fields
 from odoo.tests import Form, tagged
 
@@ -21,7 +23,7 @@ class TestPurchaseOrderSecondaryUnit(TestPurchaseSecondaryUnitCommon):
                         "name": cls.product.name,
                         "product_id": cls.product.id,
                         "product_qty": 1,
-                        "product_uom_id": cls.product.uom_id.id,
+                        "uom_id": cls.product.uom_id.id,
                         "price_unit": 1000.00,
                         "date_planned": fields.Datetime.now(),
                     },
@@ -42,7 +44,7 @@ class TestPurchaseOrderSecondaryUnit(TestPurchaseSecondaryUnitCommon):
             # Test onchange product uom
             line.secondary_uom_qty = 3500.0
             self.assertEqual(line.product_qty, 2450.0)
-            line.product_uom_id = self.product_uom_gram
+            line.uom_id = self.product_uom_gram
             self.assertEqual(line.product_qty, 2450000.0)
             self.assertEqual(line.secondary_uom_qty, 3500.0)
 
@@ -69,7 +71,6 @@ class TestPurchaseOrderSecondaryUnit(TestPurchaseSecondaryUnitCommon):
         secondary_unit = self.env["product.secondary.unit"].create(
             {
                 "name": "unit-900",
-                "uom_id": self.product_uom_unit.id,
                 "factor": 0.9,
                 "product_tmpl_id": self.product.product_tmpl_id.id,
             }
@@ -80,6 +81,7 @@ class TestPurchaseOrderSecondaryUnit(TestPurchaseSecondaryUnitCommon):
                 "partner_id": self.partner.id,
                 "product_tmpl_id": self.product.product_tmpl_id.id,
                 "price": 19.95,
+                "min_qty": 0.0,
             }
         )
         purchase_order = Form(self.purchase_order_obj)
@@ -91,41 +93,13 @@ class TestPurchaseOrderSecondaryUnit(TestPurchaseSecondaryUnitCommon):
             self.assertAlmostEqual(line.secondary_uom_price, 17.96)
             self.assertAlmostEqual(line.price_unit, 19.95)
 
-    def test_purchase_order_confirm_creates_supplierinfo_with_secondary_uom(self):
-        new_product = self.env["product.product"].create(
-            {
-                "name": "New Product",
-                "uom_id": self.product_uom_kg.id,
-            }
-        )
-        secondary_unit = self.env["product.secondary.unit"].create(
-            {
-                "name": "Case",
-                "uom_id": self.product_uom_unit.id,
-                "factor": 5.0,
-                "product_tmpl_id": new_product.product_tmpl_id.id,
-            }
-        )
-        po = self.purchase_order_obj.create(
-            {
-                "partner_id": self.partner.id,
-                "order_line": [
-                    Command.create(
-                        {
-                            "product_id": new_product.id,
-                            "product_qty": 10,
-                            "product_uom_id": new_product.uom_id.id,
-                            "price_unit": 50.0,
-                            "secondary_uom_id": secondary_unit.id,
-                            "secondary_uom_qty": 2.0,
-                        }
-                    )
-                ],
-            }
-        )
-        po.button_confirm()
-        # Check that supplierinfo was created with secondary_uom_id
-        supplierinfo = new_product.seller_ids
-        self.assertTrue(supplierinfo)
-        self.assertEqual(supplierinfo.partner_id, self.partner)
-        self.assertEqual(supplierinfo.secondary_uom_id, secondary_unit)
+    def test_prepare_account_move_line_secondary_uom(self):
+        line = self.order.order_line
+        line.secondary_uom_id = self.secondary_unit
+        self.assertNotIn("secondary_uom_id", line._prepare_account_move_line())
+        # Simulate account_move_secondary_unit being installed
+        aml = self.env["account.move.line"]
+        fields_with_secondary = {**aml._fields, "secondary_uom_id": None}
+        with patch.object(type(aml), "_fields", fields_with_secondary):
+            res = line._prepare_account_move_line()
+        self.assertEqual(res["secondary_uom_id"], self.secondary_unit.id)
