@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-19 07:43+0000\n"
-"PO-Revision-Date: 2026-11-11 11:46+0000\n"
+"PO-Revision-Date: 2026-11-11 14:46+0000\n"
 "Last-Translator: leszekszczepkowski <leszekszczepkowski@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/oca/OCA-purchase-workflow-8-"
 "0/language/pl/)\n"
@@ -39,7 +39,7 @@ msgstr ""
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Firmy"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__company_id
@@ -50,7 +50,7 @@ msgstr ""
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Kontakt"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__create_uid
@@ -156,7 +156,7 @@ msgstr ""
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Zamówienie zakupu"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_res_partner__purchase_type
