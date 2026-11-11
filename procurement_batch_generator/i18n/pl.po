@@ -1,0 +1,192 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * procurement_batch_generator
+#
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: purchase-workflow (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-16 12:06+0000\n"
+"PO-Revision-Date: 2016-11-25 14:55+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Polish (http://www.transifex.com/oca/OCA-purchase-"
+"workflow-8-0/language/pl/)\n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
+
+#. module: procurement_batch_generator
+#: model_terms:ir.ui.view,arch_db:procurement_batch_generator.procurement_batch_generator_form
+msgid "Cancel"
+msgstr "Anuluj"
+
+#. module: procurement_batch_generator
+#: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator__company_id
+#: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator_line__company_id
+msgid "Company"
+msgstr ""
+
+#. module: procurement_batch_generator
+#: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator__create_uid
+#: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator_line__create_uid
+msgid "Created by"
+msgstr "Utworzone przez"
+
+#. module: procurement_batch_generator
+#: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator__create_date
+#: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator_line__create_date
+msgid "Created on"
+msgstr "Utworzono"
+
+#. module: procurement_batch_generator
+#: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator__display_name
+#: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator_line__display_name
+msgid "Display Name"
+msgstr "Wyświetlana nazwa "
+
+#. module: procurement_batch_generator
+#: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator_line__product_has_variants
+msgid "Has variants"
+msgstr ""
+
+#. module: procurement_batch_generator
+#: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator__id
+#: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: procurement_batch_generator
+#: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator_line__incoming_qty
+msgid "Incoming Qty"
+msgstr ""
+
+#. module: procurement_batch_generator
+#: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator____last_update
+#: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator_line____last_update
+msgid "Last Modified on"
+msgstr "Ostatnio modyfikowano"
+
+#. module: procurement_batch_generator
+#: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator__write_uid
+#: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator_line__write_uid
+msgid "Last Updated by"
+msgstr "Ostatnio modyfikowane przez"
+
+#. module: procurement_batch_generator
+#: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator__write_date
+#: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator_line__write_date
+msgid "Last Updated on"
+msgstr "Ostatnia zmiana"
+
+#. module: procurement_batch_generator
+#: model:ir.model,name:procurement_batch_generator.model_procurement_batch_generator_line
+msgid "Lines of the wizard to request procurements"
+msgstr ""
+
+#. module: procurement_batch_generator
+#: code:addons/procurement_batch_generator/wizard/procurement_batch_generator.py:0
+#, python-format
+msgid "Manual Replenishment"
+msgstr ""
+
+#. module: procurement_batch_generator
+#: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator_line__outgoing_qty
+msgid "Outgoing Qty"
+msgstr ""
+
+#. module: procurement_batch_generator
+#: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator_line__parent_id
+msgid "Parent"
+msgstr ""
+
+#. module: procurement_batch_generator
+#: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator_line__route_ids
+msgid "Preferred Routes"
+msgstr ""
+
+#. module: procurement_batch_generator
+#: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator__line_ids
+msgid "Procurement Request Lines"
+msgstr ""
+
+#. module: procurement_batch_generator
+#: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator_line__product_id
+msgid "Product"
+msgstr ""
+
+#. module: procurement_batch_generator
+#: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator_line__product_tmpl_id
+msgid "Product Template"
+msgstr ""
+
+#. module: procurement_batch_generator
+#: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator_line__qty_available
+msgid "Qty Available"
+msgstr ""
+
+#. module: procurement_batch_generator
+#: model_terms:ir.ui.view,arch_db:procurement_batch_generator.procurement_batch_generator_form
+msgid "Replanish"
+msgstr ""
+
+#. module: procurement_batch_generator
+#: model:ir.actions.act_window,name:procurement_batch_generator.procurement_batch_generator_product_product_tree_action
+#: model:ir.actions.act_window,name:procurement_batch_generator.procurement_batch_generator_product_template_tree_action
+msgid "Replenish"
+msgstr ""
+
+#. module: procurement_batch_generator
+#: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator_line__procurement_qty
+msgid "Requested Qty"
+msgstr ""
+
+#. module: procurement_batch_generator
+#: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator_line__date_planned
+msgid "Scheduled Date"
+msgstr ""
+
+#. module: procurement_batch_generator
+#: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator_line__partner_id
+msgid "Supplier"
+msgstr ""
+
+#. module: procurement_batch_generator
+#: code:addons/procurement_batch_generator/wizard/procurement_batch_generator.py:0
+#, python-format
+msgid "The requested quantity cannot be negative for product '%s'."
+msgstr ""
+
+#. module: procurement_batch_generator
+#: code:addons/procurement_batch_generator/wizard/procurement_batch_generator.py:0
+#, python-format
+msgid "There are no lines!"
+msgstr ""
+
+#. module: procurement_batch_generator
+#: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator_line__uom_id
+msgid "Unit of Measure"
+msgstr ""
+
+#. module: procurement_batch_generator
+#: model_terms:ir.ui.view,arch_db:procurement_batch_generator.procurement_batch_generator_form
+msgid "UoM"
+msgstr ""
+
+#. module: procurement_batch_generator
+#: model_terms:ir.ui.view,arch_db:procurement_batch_generator.procurement_batch_generator_form
+msgid "Validate"
+msgstr ""
+
+#. module: procurement_batch_generator
+#: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator__warehouse_id
+msgid "Warehouse"
+msgstr ""
+
+#. module: procurement_batch_generator
+#: model:ir.model,name:procurement_batch_generator.model_procurement_batch_generator
+msgid "Wizard to create procurements from product tree"
+msgstr ""
