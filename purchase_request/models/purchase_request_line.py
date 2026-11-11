@@ -94,6 +94,7 @@ class PurchaseRequestLine(models.Model):
         string="RFQ/PO Qty",
         digits="Product Unit of Measure",
         compute="_compute_purchased_qty",
+        store=True,
     )
     purchase_lines = fields.Many2many(
         comodel_name="purchase.order.line",
@@ -298,6 +299,12 @@ class PurchaseRequestLine(models.Model):
             requests.check_auto_reject()
         return res
 
+    @api.depends(
+        "purchase_lines",
+        "purchase_lines.order_id.state",
+        "purchase_lines.product_uom",
+        "purchase_lines.product_qty",
+    )
     def _compute_purchased_qty(self):
         for rec in self:
             rec.purchased_qty = 0.0
