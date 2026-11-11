@@ -402,6 +402,91 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         picking.move_line_ids[0].write({"quantity": 5.0})
         picking.button_validate()
 
+    def _create_approved_request_line(self, product, qty):
+        purchase_request = self.purchase_request_obj.create(
+            {
+                "picking_type_id": self.env.ref("stock.picking_type_in").id,
+                "requested_by": SUPERUSER_ID,
+            }
+        )
+        request_line = self.purchase_request_line_obj.create(
+            {
+                "request_id": purchase_request.id,
+                "product_id": product.id,
+                "product_uom_id": self.env.ref("uom.product_uom_unit").id,
+                "product_qty": qty,
+            }
+        )
+        purchase_request.button_approved()
+        return request_line
+
+    def _make_rfq_line(self, request_line):
+        wiz_id = self.wiz.with_context(
+            active_model="purchase.request.line",
+            active_ids=request_line.ids,
+            active_id=request_line.id,
+        ).create({"supplier_id": self.supplier.id})
+        wiz_id.make_purchase_order()
+        return request_line.purchase_lines
+
+    def test_purchase_request_to_rfq_vendor_price(self):
+        """The RFQ line created by the wizard takes the vendor price."""
+        product = self.env["product.product"].create(
+            {
+                "name": "Product with vendor price",
+                "type": "consu",
+                "seller_ids": [(0, 0, {"partner_id": self.supplier.id, "price": 52.0})],
+            }
+        )
+        request_line = self._create_approved_request_line(product, 24.0)
+        po_line = self._make_rfq_line(request_line)
+        self.assertEqual(po_line.product_qty, 24.0)
+        self.assertEqual(po_line.selected_seller_id.price, 52.0)
+        self.assertEqual(po_line.price_unit, 52.0, "The vendor price should be used")
+
+    def test_purchase_request_to_rfq_vendor_price_break(self):
+        """The vendor price of the purchased quantity is used, while the
+        scheduled date is still the one of the purchase request."""
+        product = self.env["product.product"].create(
+            {
+                "name": "Product with vendor price breaks",
+                "type": "consu",
+                "seller_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "partner_id": self.supplier.id,
+                            "min_qty": 1.0,
+                            "price": 100.0,
+                            "delay": 10,
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "partner_id": self.supplier.id,
+                            "min_qty": 10.0,
+                            "price": 80.0,
+                            "delay": 10,
+                        },
+                    ),
+                ],
+            }
+        )
+        request_line = self._create_approved_request_line(product, 12.0)
+        po_line = self._make_rfq_line(request_line)
+        self.assertEqual(po_line.product_qty, 12.0)
+        self.assertEqual(
+            po_line.price_unit, 80.0, "The price for 10 units or more should be used"
+        )
+        self.assertEqual(
+            po_line.date_planned,
+            self.wiz._get_date_with_user_tz(request_line.date_required),
+            "The scheduled date should come from the request, not the vendor delay",
+        )
+
     def _setup_analytic_distribution(self):
         analytic_plan = self.env["account.analytic.plan"].create({"name": "Plan Test"})
         analytic_account = self.env["account.analytic.account"].create(
