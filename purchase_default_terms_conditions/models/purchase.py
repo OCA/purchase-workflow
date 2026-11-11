@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, models
-from odoo.tools import is_html_empty, str2bool
+from odoo.tools import is_html_empty
 
 
 class PurchaseOrder(models.Model):
@@ -11,10 +11,10 @@ class PurchaseOrder(models.Model):
     @api.onchange("partner_id", "company_id")
     def onchange_partner_id(self):
         res = super().onchange_partner_id()
-        use_purchase_note = str2bool(
+        use_purchase_note = (
             self.env["ir.config_parameter"]
             .sudo()
-            .get_param("purchase.use_purchase_note")
+            .get_bool("purchase.use_purchase_note")
         )
         if self.partner_id and not is_html_empty(self.partner_id.purchase_note):
             self.note = self.partner_id.purchase_note

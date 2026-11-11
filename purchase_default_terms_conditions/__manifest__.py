@@ -4,9 +4,8 @@
 
 {
     "name": "Purchase Default Terms Conditions",
-    "summary": """
-        This module allows purchase default terms & conditions""",
-    "version": "19.0.1.0.0",
+    "summary": "Add default terms and conditions to purchase orders",
+    "version": "20.0.1.0.0",
     "license": "AGPL-3",
     "author": "Escodoo,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",

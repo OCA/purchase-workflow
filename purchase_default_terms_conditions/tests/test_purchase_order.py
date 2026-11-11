@@ -5,9 +5,13 @@ from odoo.tests import Form, tagged
 
 from odoo.addons.base.tests.common import BaseCommon
 
+from .. import __manifest__
+
 
 @tagged("post_install", "-at_install")
 class TestPurchase(BaseCommon):
+    _test_user_groups = None
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -39,22 +43,17 @@ class TestPurchase(BaseCommon):
             }
         )
 
+    def test_manifest_version(self):
+        self.assertTrue(__manifest__.__file__.endswith("__manifest__.py"))
+
     def test_partner_note_with_form(self):
         company_note = "Company Default Terms and Conditions"
         self.company_id.purchase_note = company_note
-
-        has_order_type = "order_type" in self.env["purchase.order"]._fields
 
         # First case: Test with partner's purchase note
         with Form(self.env["purchase.order"]) as purchase_form:
             purchase_form.partner_id = self.partner_a
             purchase_form.company_id = self.company_id
-
-            if has_order_type:
-                order_type = self.env.ref("purchase_order_type.po_type_regular")
-                if order_type.company_id and order_type.company_id != self.company_id:
-                    order_type.company_id = self.company_id
-                purchase_form.order_type = order_type
 
             self.assertEqual(
                 purchase_form.note.strip(),
@@ -64,8 +63,8 @@ class TestPurchase(BaseCommon):
 
         # Second case: Clear the partner's purchase note and test company purchase note
         self.partner_a.purchase_note = False
-        self.env["ir.config_parameter"].sudo().set_param(
-            "purchase.use_purchase_note", "true"
+        self.env["ir.config_parameter"].sudo().set_bool(
+            "purchase.use_purchase_note", True
         )
 
         purchase_order = self.env["purchase.order"].create(
@@ -77,13 +76,6 @@ class TestPurchase(BaseCommon):
         purchase_order.onchange_partner_id()
 
         with Form(purchase_order) as purchase_form:
-            if has_order_type:
-                order_type = self.env.ref("purchase_order_type.po_type_regular")
-
-                if order_type.company_id and order_type.company_id != self.company_id:
-                    order_type.company_id = self.company_id
-                purchase_form.order_type = order_type
-
             self.assertIn(
                 company_note,
                 purchase_form.note,
@@ -92,8 +84,8 @@ class TestPurchase(BaseCommon):
 
     def test_onchange_no_partner_note_and_setting_disabled(self):
         """Test note is cleared when partner has no note and setting is off."""
-        self.env["ir.config_parameter"].sudo().set_param(
-            "purchase.use_purchase_note", "false"
+        self.env["ir.config_parameter"].sudo().set_bool(
+            "purchase.use_purchase_note", False
         )
         partner_b = self.env["res.partner"].create({"name": "Partner B"})
 
