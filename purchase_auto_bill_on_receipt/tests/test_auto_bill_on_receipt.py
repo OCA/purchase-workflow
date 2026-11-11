@@ -10,9 +10,16 @@ from odoo.tools import mute_logger
 
 from odoo.addons.base.tests.common import BaseCommon
 
+from .. import __manifest__
+
 
 @tagged("post_install", "-at_install")
 class TestAutoBillOnReceipt(BaseCommon):
+    _test_user_groups = None
+
+    def test_manifest_version(self):
+        self.assertTrue(__manifest__.__file__.endswith("__manifest__.py"))
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -55,7 +62,7 @@ class TestAutoBillOnReceipt(BaseCommon):
             {
                 "product_id": product.id,
                 "product_qty": qty,
-                "product_uom_id": product.uom_id.id,
+                "uom_id": product.uom_id.id,
                 "price_unit": price,
                 "tax_ids": [Command.clear()],
             }
@@ -66,12 +73,11 @@ class TestAutoBillOnReceipt(BaseCommon):
             {"display_type": "line_section", "name": name, "product_qty": 0.0}
         )
 
-    def _create_po(self, lines, partner=None, confirm=True):
+    def _create_po(self, lines, partner=None):
         po = self.env["purchase.order"].create(
             {"partner_id": (partner or self.vendor).id, "order_line": lines}
         )
-        if confirm:
-            po.button_confirm()
+        po.button_confirm()
         return po
 
     def _run_auto_bill_cron(self):
@@ -79,10 +85,8 @@ class TestAutoBillOnReceipt(BaseCommon):
         # bills are created within the test transaction.
         self.env["stock.picking"]._cron_auto_bill()
 
-    def _receive(self, po, quantity=None, run_cron=True):
+    def _receive(self, po, run_cron=True):
         pickings = po.picking_ids.filtered(lambda p: p.state != "done")
-        if quantity is not None:
-            pickings.move_ids.quantity = quantity
         pickings.with_context(skip_backorder=True).button_validate()
         if run_cron:
             self._run_auto_bill_cron()
@@ -93,21 +97,13 @@ class TestAutoBillOnReceipt(BaseCommon):
         picking.with_context(skip_backorder=True).button_validate()
         self._run_auto_bill_cron()
 
-    def _return(self, picking, quantity=None, to_refund=True, run_cron=True):
+    def _return(self, picking, quantity, to_refund=True, run_cron=True):
         """Create and validate a return for the given picking."""
-        return_wizard = (
-            self.env["stock.return.picking"]
-            .with_context(active_id=picking.id, active_model="stock.picking")
-            .create({})
-        )
-        for move_line in return_wizard.product_return_moves:
-            move_line.to_refund = to_refund
-            if quantity is not None:
-                move_line.quantity = quantity
-        action = return_wizard.action_create_returns()
-        return_picking = self.env["stock.picking"].browse(action["res_id"])
-        if quantity is not None:
-            return_picking.move_ids.quantity = quantity
+        return_picking = picking._create_return()
+        for move in return_picking.move_ids:
+            move.to_refund = to_refund
+            move.product_uom_qty = quantity
+            move.quantity = quantity
         return_picking.with_context(skip_backorder=True).button_validate()
         if run_cron:
             self._run_auto_bill_cron()
@@ -153,7 +149,8 @@ class TestAutoBillOnReceipt(BaseCommon):
         self.company.auto_bill_on_receipt = True
         po = self._create_po([self._line(self.product, 4.0)])
         po.block_auto_bill = True
-        self._receive(po)
+        picking = self._receive(po)
+        picking._auto_create_vendor_bill()
         self.assertFalse(self._bills_of(po))
 
     def test_billed_on_ordered_qty_not_auto_billed(self):
@@ -203,7 +200,7 @@ class TestAutoBillOnReceipt(BaseCommon):
                         {
                             "product_id": self.product.id,
                             "product_uom_qty": 1.0,
-                            "product_uom": self.product.uom_id.id,
+                            "uom_id": self.product.uom_id.id,
                             "location_id": self.supplier_location.id,
                             "location_dest_id": self.stock_location.id,
                         }
@@ -215,6 +212,7 @@ class TestAutoBillOnReceipt(BaseCommon):
         picking.move_ids.quantity = 1.0
         picking.move_ids.picked = True
         picking.button_validate()
+        picking._auto_create_vendor_bill()
         self.assertFalse(
             self.env["account.move"].search(
                 [
@@ -391,3 +389,31 @@ class TestAutoBillOnReceipt(BaseCommon):
             self._run_auto_bill_cron()
         self.assertFalse(po.invoice_ids.filtered(lambda m: m.move_type == "in_refund"))
         self.assertIn("Auto credit note creation failed", po.message_ids[0].body)
+
+    def test_auto_bill_create_skips_zero_picking_qty(self):
+        self.company.auto_bill_on_receipt = True
+        po = self._create_po([self._line(self.product, 5.0)])
+        picking = self._receive(po, run_cron=False)
+        with patch.object(type(po), "_get_picking_line_qty", return_value=0.0):
+            bill = po._auto_bill_create(picking, po.order_line)
+        self.assertFalse(bill.invoice_line_ids)
+
+    @mute_logger(
+        "odoo.addons.purchase_auto_bill_on_receipt.models.stock_picking",
+    )
+    def test_cron_handles_picking_failure(self):
+        picking = self.env["stock.picking"].create(
+            {
+                "picking_type_id": self.picking_type_in.id,
+                "location_id": self.supplier_location.id,
+                "location_dest_id": self.stock_location.id,
+                "auto_bill_pending": True,
+            }
+        )
+        with patch.object(
+            type(picking),
+            "_auto_create_vendor_bill",
+            side_effect=Exception("test cron error"),
+        ):
+            self.env["stock.picking"]._cron_auto_bill()
+        self.assertTrue(picking.auto_bill_pending)

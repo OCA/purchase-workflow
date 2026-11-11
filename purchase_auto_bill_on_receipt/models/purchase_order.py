@@ -73,9 +73,7 @@ class PurchaseOrder(models.Model):
         if refund:
             moves = moves.filtered("to_refund")
         for move in moves:
-            qty += move.product_uom._compute_quantity(
-                move.quantity, line.product_uom_id
-            )
+            qty += move.uom_id._compute_quantity(move.quantity, line.uom_id)
         return qty
 
     def _auto_bill_create(self, picking, eligible_lines, refund=False):

@@ -4,7 +4,7 @@
 {
     "name": "Purchase Auto Bill on Receipt",
     "summary": "Automatically create and post Vendor Bills when receipts are validated",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "author": "Quartile, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
     "license": "AGPL-3",
