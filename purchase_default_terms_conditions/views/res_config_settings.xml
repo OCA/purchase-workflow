@@ -1,7 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2020 - TODAY, Marcel Savegnago - Escodoo
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
-    <record model="ir.ui.view" id="res_config_settings_view_form_purchase">
+    <record id="res_config_settings_view_form_purchase" model="ir.ui.view">
         <field
             name="name"
         >res.config.settings.form (in purchase_default_terms_conditions)
