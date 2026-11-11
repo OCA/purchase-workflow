@@ -3,7 +3,7 @@
 {
     "name": "Purchase UoM Discrete",
     "summary": "Round discrete purchase quantities up to whole numbers",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "category": "Purchases",
     "website": "https://github.com/OCA/purchase-workflow",
     "author": "Camptocamp SA, Odoo Community Association (OCA)",

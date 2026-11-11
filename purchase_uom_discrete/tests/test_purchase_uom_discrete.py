@@ -2,10 +2,14 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo.tests import Form
 
+from .. import __manifest__
 from .common import PurchaseUomDiscreteCommon
 
 
 class TestPurchaseUomDiscrete(PurchaseUomDiscreteCommon):
+    def test_manifest_version(self):
+        self.assertTrue(__manifest__.__file__.endswith("__manifest__.py"))
+
     def _create_purchase_line_with_form(self, product, quantity):
         """Create a purchase line through the form to trigger onchanges.
 
@@ -30,7 +34,7 @@ class TestPurchaseUomDiscrete(PurchaseUomDiscreteCommon):
         """Test Unit-reference pack quantities round UP to a whole quantity."""
         line = self._create_purchase_line_with_form(self.product_pack, 2.7)
 
-        self.assertEqual(line.product_uom_id, self.uom_pack_6)
+        self.assertEqual(line.uom_id, self.uom_pack_6)
         self.assertEqual(line.product_qty, 3.0)
 
     def test_02_integer_quantity_is_unchanged(self):
@@ -43,7 +47,7 @@ class TestPurchaseUomDiscrete(PurchaseUomDiscreteCommon):
         """Test continuous UoMs keep meaningful fractional quantities."""
         line = self._create_purchase_line_with_form(self.product_kg, 2.5)
 
-        self.assertEqual(line.product_uom_id, self.uom_kg)
+        self.assertEqual(line.uom_id, self.uom_kg)
         self.assertEqual(line.product_qty, 2.5)
 
     def test_04_zero_quantity_is_unchanged(self):
@@ -59,3 +63,15 @@ class TestPurchaseUomDiscrete(PurchaseUomDiscreteCommon):
         line.write({"product_qty": 2.7})
 
         self.assertEqual(line.product_qty, 2.7)
+
+    def test_06_line_without_uom_has_no_discrete_reference(self):
+        order = self.env["purchase.order"].create({"partner_id": self.vendor.id})
+        line = self.env["purchase.order.line"].create(
+            {
+                "order_id": order.id,
+                "display_type": "line_section",
+                "name": "Section",
+                "product_qty": 0.0,
+            }
+        )
+        self.assertFalse(line._has_discrete_product_uom_reference())
