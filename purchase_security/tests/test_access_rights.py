@@ -9,8 +9,12 @@ from odoo.tests.common import users
 
 from odoo.addons.base.tests.common import BaseCommon
 
+from .. import __manifest__
+
 
 class TestPurchaseOrderSecurity(BaseCommon):
+    _test_user_groups = None
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -115,6 +119,34 @@ class TestPurchaseOrderSecurity(BaseCommon):
                 },
             )
         )
+
+    def test_manifest_version(self):
+        self.assertTrue(__manifest__.__file__.endswith("__manifest__.py"))
+
+    def test_purchase_team_open_form_view(self):
+        action = self.team1.open_form_view()
+        self.assertEqual(action["res_id"], self.team1.id)
+        self.assertEqual(action["view_mode"], "form")
+
+    def test_onchange_partner_id_with_default_team(self):
+        user = new_test_user(
+            self.env,
+            login="default_team_user",
+            groups="purchase.group_purchase_user",
+        )
+        self.team2.write({"user_ids": [Command.link(user.id)]})
+        partner = self.env["res.partner"].create(
+            {"name": "Partner with default team", "purchase_user_id": user.id}
+        )
+        order = self.env["purchase.order"].create(
+            {
+                "partner_id": partner.id,
+                "user_id": user.id,
+                "team_id": self.team2.id,
+            }
+        )
+        order.with_context(default_team_id=self.team2.id).onchange_partner_id()
+        self.assertEqual(order.team_id, self.team2)
 
     @users("group_purchase_team_1_orders")
     def test_new_purchase_order(self):
