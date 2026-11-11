@@ -1,9 +1,7 @@
 # Copyright 2021 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
-from datetime import date
-
-from odoo import Command
+from odoo import Command, fields
 
 from odoo.addons.base.tests.common import BaseCommon
 
@@ -26,10 +24,10 @@ class TestPurchase(BaseCommon):
                     Command.create(
                         {
                             "product_id": cls.product.id,
-                            "product_uom_id": cls.product.uom_id.id,
+                            "uom_id": cls.product.uom_id.id,
                             "name": cls.product.name,
                             "price_unit": cls.product.standard_price,
-                            "date_planned": date.today(),
+                            "date_planned": fields.Date.today(),
                             "product_qty": 1,
                         },
                     )
@@ -46,7 +44,7 @@ class TestPurchase(BaseCommon):
                 "location_id": cls.location_suppliers.id,
                 "location_dest_id": cls.location_stock.id,
                 "product_id": cls.product.id,
-                "product_uom": cls.product.uom_id.id,
+                "uom_id": cls.product.uom_id.id,
                 "product_uom_qty": qty,
             }
         )
