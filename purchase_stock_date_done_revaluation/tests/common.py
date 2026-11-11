@@ -12,6 +12,8 @@ DATE_2 = "2026-03-10"  # rate 2.0  ->  500 (company) for 1000 (foreign)
 
 
 class PurchaseStockDateDoneRevaluationCommon(BaseCommon):
+    _test_user_groups = None
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -42,9 +44,11 @@ class PurchaseStockDateDoneRevaluationCommon(BaseCommon):
 
     @classmethod
     def _setup_foreign_currency(cls):
-        currency = cls.env.ref("base.EUR")
-        if currency == cls.company.currency_id:
-            currency = cls.env.ref("base.USD")
+        currency = (
+            cls.env["res.currency"]
+            .with_context(active_test=False)
+            .search([("id", "!=", cls.company.currency_id.id)], limit=1)
+        )
         currency.active = True
         cls.env["res.currency.rate"].search(
             [
@@ -82,7 +86,7 @@ class PurchaseStockDateDoneRevaluationCommon(BaseCommon):
                             "product_qty": 10.0,
                             "price_unit": 100.0,
                             "name": self.product.name,
-                            "product_uom_id": self.product.uom_id.id,
+                            "uom_id": self.product.uom_id.id,
                         }
                     )
                 ],

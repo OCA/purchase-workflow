@@ -4,7 +4,7 @@
     "name": "Purchase Stock Date Done Revaluation",
     "summary": "Revalue not-yet-billed foreign-currency purchase receipts when "
     "their effective date changes",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "author": "Quartile, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
     "category": "Inventory",

@@ -1,31 +1,38 @@
 # Copyright 2026 Quartile (https://www.quartile.co)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from datetime import datetime
-
 from freezegun import freeze_time
 
-from odoo import Command
+from odoo import Command, fields
+from odoo.modules.module import get_manifest
 
+from .. import __manifest__
 from .common import PurchaseStockDateDoneRevaluationCommon
 
 
 class TestPurchaseStockDateDoneRevaluation(PurchaseStockDateDoneRevaluationCommon):
+    def test_manifest_version(self):
+        self.assertTrue(__manifest__.__file__.endswith("__manifest__.py"))
+        self.assertEqual(
+            get_manifest("purchase_stock_date_done_revaluation")["version"],
+            "20.0.1.0.0",
+        )
+
     @freeze_time("2026-03-15")
     def test_revaluation_on_date_done_change_pre_bill(self):
         _, receipt, move = self._receive_po()
         # Back-date to DATE_1 (rate 1.0): 1000 EUR -> 1000 company.
-        receipt.date_done = datetime(2026, 3, 1, 8, 0, 0)
-        self.assertEqual(move.date, datetime(2026, 3, 1, 8, 0, 0))
+        receipt.date_done = fields.Datetime.to_datetime("2026-03-01 08:00:00")
+        self.assertEqual(move.date, fields.Datetime.to_datetime("2026-03-01 08:00:00"))
         self.assertAlmostEqual(move.value, 1000.0, places=2)
         # Move to DATE_2 (rate 2.0): 1000 EUR -> 500 company.
-        receipt.date_done = datetime(2026, 3, 10, 8, 0, 0)
+        receipt.date_done = fields.Datetime.to_datetime("2026-03-11 08:00:00")
         self.assertAlmostEqual(move.value, 500.0, places=2)
 
     @freeze_time("2026-03-15")
     def test_bill_governs_and_skip_if_billed(self):
         po, receipt, move = self._receive_po()
-        receipt.date_done = datetime(2026, 3, 1, 8, 0, 0)
+        receipt.date_done = fields.Datetime.to_datetime("2026-03-01 08:00:00")
         self.assertAlmostEqual(move.value, 1000.0, places=2)
 
         # Post a vendor bill dated DATE_1 (rate 1.0) -> bill value 1000.
@@ -38,8 +45,8 @@ class TestPurchaseStockDateDoneRevaluation(PurchaseStockDateDoneRevaluationCommo
 
         # Once billed, changing the effective date must NOT revalue: the bill
         # governs the value. Our hook skips.
-        receipt.date_done = datetime(2026, 3, 10, 8, 0, 0)
-        self.assertEqual(move.date, datetime(2026, 3, 10, 8, 0, 0))
+        receipt.date_done = fields.Datetime.to_datetime("2026-03-11 08:00:00")
+        self.assertEqual(move.date, fields.Datetime.to_datetime("2026-03-11 08:00:00"))
         self.assertAlmostEqual(
             move.value, 1000.0, places=2, msg="Billed move must not revalue from date"
         )
@@ -77,7 +84,8 @@ class TestPurchaseStockDateDoneRevaluation(PurchaseStockDateDoneRevaluationCommo
         receipt.move_ids.picked = True
         receipt.button_validate()
         move = receipt.move_ids
+        self.assertFalse(move._is_purchase_billed())
         self.assertFalse(move._is_date_done_revaluation_candidate())
         value_before = move.value
-        receipt.date_done = datetime(2026, 3, 1, 8, 0, 0)
+        receipt.date_done = fields.Datetime.to_datetime("2026-03-01 08:00:00")
         self.assertEqual(move.value, value_before)
