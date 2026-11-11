@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo noupdate="1">
-    <record model="purchase.request.type" id="pr_type_regular">
+    <record id="pr_type_regular" model="purchase.request.type">
         <field name="name">Regular</field>
-        <field name="sequence">5</field>
+        <field name="sequence" eval="5" />
         <field name="company_id" />
     </record>
-    <record model="purchase.request.type" id="pr_type_contract">
+    <record id="pr_type_contract" model="purchase.request.type">
         <field name="name">Contract</field>
         <field name="company_id" />
     </record>
-    <record model="purchase.request.type" id="pr_type_reduce_step">
+    <record id="pr_type_reduce_step" model="purchase.request.type">
         <field name="name">Reduce Step</field>
         <field name="reduce_step">1</field>
         <field name="company_id" />

@@ -62,9 +62,11 @@ class PurchaseRequest(models.Model):
     @api.constrains("company_id")
     def _check_pr_type_company(self):
         if self.filtered(
-            lambda r: r.request_type.company_id
-            and r.company_id
-            and r.request_type.company_id != r.company_id
+            lambda r: (
+                r.request_type.company_id
+                and r.company_id
+                and r.request_type.company_id != r.company_id
+            )
         ):
             raise ValidationError(
                 self.env._("Document's company and type's company mismatch")

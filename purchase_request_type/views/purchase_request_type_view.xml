@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="view_purchase_request_type_tree" model="ir.ui.view">
         <field name="model">purchase.request.type</field>
@@ -91,7 +91,7 @@
             </search>
         </field>
     </record>
-    <record model="ir.actions.act_window" id="action_purchase_request_type_view">
+    <record id="action_purchase_request_type_view" model="ir.actions.act_window">
         <field name="name">Purchase Request Types</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">purchase.request.type</field>
