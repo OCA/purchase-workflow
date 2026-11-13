@@ -70,7 +70,7 @@ class PurchaseStockDateDoneRevaluationCommon(BaseCommon):
         )
         return currency
 
-    def _receive_po(self):
+    def _receive_po(self, user=None):
         po = self.env["purchase.order"].create(
             {
                 "partner_id": self.partner.id,
@@ -90,6 +90,10 @@ class PurchaseStockDateDoneRevaluationCommon(BaseCommon):
         )
         po.button_confirm()
         receipt = po.picking_ids[0]
+        if user:
+            # Drop records cached as superuser so the user's access rights apply.
+            self.env.invalidate_all()
+            receipt = receipt.with_user(user)
         receipt.move_ids.quantity = 10.0
         receipt.move_ids.picked = True
         receipt.button_validate()

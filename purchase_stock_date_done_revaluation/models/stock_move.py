@@ -14,7 +14,7 @@ class StockMove(models.Model):
         return any(
             aml.move_id.state == "posted"
             and aml.move_id.move_type in ("in_invoice", "in_refund")
-            for aml in self.purchase_line_id.invoice_lines
+            for aml in self.purchase_line_id.sudo().invoice_lines
         )
 
     def _is_date_done_revaluation_candidate(self):
