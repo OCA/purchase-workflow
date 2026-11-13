@@ -81,3 +81,17 @@ class TestPurchaseStockDateDoneRevaluation(PurchaseStockDateDoneRevaluationCommo
         value_before = move.value
         receipt.date_done = datetime(2026, 3, 1, 8, 0, 0)
         self.assertEqual(move.value, value_before)
+
+    @freeze_time("2026-03-15")
+    def test_stock_user_without_bill_access(self):
+        # Catches reading purchase bill lines without access to account.move.line.
+        stock_user = self.env["res.users"].create(
+            {
+                "name": "Stock User",
+                "login": "stock_user_date_done_revaluation",
+                "group_ids": [Command.set([self.env.ref("stock.group_stock_user").id])],
+            }
+        )
+        _, receipt, move = self._receive_po(user=stock_user)
+        receipt.date_done = datetime(2026, 3, 1, 8, 0, 0)
+        self.assertAlmostEqual(move.value, 1000.0, places=2)
