@@ -20,9 +20,12 @@
             </div>
         </div>
     </template>
+    <!-- Applied after the other extensions (e.g. purchase_stock), which locate
+         the planned date div by its original t-if -->
     <template
         id="report_purchaseorder_document"
         inherit_id="purchase.report_purchaseorder_document"
+        priority="99"
     >
         <xpath expr="//div[@t-if='o.date_planned']" position="attributes">
             <attribute name="t-if">o.display_expected_arrival()</attribute>
