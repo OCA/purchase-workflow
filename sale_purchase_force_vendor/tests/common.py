@@ -1,4 +1,5 @@
 # Copyright 2022-2024 Tecnativa - Víctor Martínez
+# Copyright 2026 Quartile (https://www.quartile.co)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import Command
@@ -31,6 +32,21 @@ class TestSalePurchaseForceVendorBase(BaseCommon):
             {
                 "name": "Test product B",
                 "route_ids": [(6, 0, [cls.mto.id, cls.buy.id])],
+            }
+        )
+        cls.service = cls.env["product.product"].create(
+            {
+                "name": "Test service",
+                "type": "service",
+                "service_to_purchase": True,
+                "seller_ids": [
+                    Command.create(
+                        {"partner_id": cls.vendor_a.id, "min_qty": 1, "price": 10}
+                    ),
+                    Command.create(
+                        {"partner_id": cls.vendor_b.id, "min_qty": 1, "price": 20}
+                    ),
+                ],
             }
         )
         cls.sale_order = cls._create_sale_order(cls)

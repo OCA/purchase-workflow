@@ -33,7 +33,7 @@ Sale Purchase Force Vendor
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module allows you to select a vendor at the sale order line level
-when a route is defined.
+when a route is defined, or when the product is a subcontracted service.
 
 **Table of contents**
 
@@ -74,6 +74,17 @@ Usage
    allowed vendors in sale orders" field in *Purchase > Configuration >
    Products*.
 
+For subcontracted services:
+
+1. Go to *Sales -> Products -> Products* and open a service product with
+   "Subcontract Service" checked and several vendors in the *Purchase*
+   tab.
+2. Go to *Sale -> Orders -> Quotations*, create a new Quotation with
+   this product and select a vendor in the \`Vendor\` column of the
+   line.
+3. Confirm sale order.
+4. A new purchase order will have been created to the selected vendor.
+
 Bug Tracker
 ===========
 
@@ -99,6 +110,10 @@ Contributors
 
   - Víctor Martínez
   - Pedro M. Baeza
+
+- `Quartile <https://www.quartile.co>`__:
+
+  - Shinnosuke Morita
 
 Maintainers
 -----------
