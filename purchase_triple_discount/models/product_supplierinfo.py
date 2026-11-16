@@ -10,12 +10,14 @@ class ProductSupplierInfo(models.Model):
 
     @api.onchange("partner_id")
     def _onchange_partner_id(self):
+        res = super()._onchange_partner_id()
         self.update(
             {
                 field: self.partner_id[f"default_supplierinfo_{field}"]
                 for field in self._get_multiple_discount_field_names()
             }
         )
+        return res
 
     def default_get(self, fields_list):
         res = super().default_get(fields_list)
