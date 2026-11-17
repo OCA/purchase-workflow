@@ -3,7 +3,7 @@
 {
     "name": "Purchase Order ETD/ETA",
     "summary": "Add Estimated Time of Departure/Arrival fields to Purchase Orders",
-    "version": "18.0.1.0.0",
+    "version": "18.0.1.0.1",
     "category": "Purchases",
     "website": "https://github.com/OCA/purchase-workflow",
     "author": "Quartile, Odoo Community Association (OCA)",
