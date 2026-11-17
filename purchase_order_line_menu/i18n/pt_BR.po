@@ -33,13 +33,28 @@ msgid ""
 "Depicts the date within which the Quotation should be confirmed and "
 "converted into a purchase order."
 msgstr ""
-"Representa a data dentro da qual a cota????o deve ser confirmada e convertida "
-"em um pedido de compra."
+"Representa a data dentro da qual a cota????o deve ser confirmada e "
+"convertida em um pedido de compra."
+
+#. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_tree
+msgid "Disc.%"
+msgstr ""
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,field_description:purchase_order_line_menu.field_purchase_order_line__display_name
+msgid "Display Name"
+msgstr ""
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
 msgid "Fully Billed"
 msgstr "Totalmente Faturado"
+
+#. module: purchase_order_line_menu
+#: model:ir.model.fields,field_description:purchase_order_line_menu.field_purchase_order_line__id
+msgid "ID"
+msgstr ""
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
