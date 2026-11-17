@@ -148,6 +148,49 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
             "Should have same state",
         )
 
+    def test_purchase_request_to_purchase_rfq_vendor_price(self):
+        # The RFQ line must get the vendor price even when the quantity
+        # written after creating the line is the same as the initial one.
+        product = self.env["product.product"].create(
+            {
+                "name": "Product With Vendor Price",
+                "type": "consu",
+                "seller_ids": [
+                    (
+                        0,
+                        0,
+                        {"partner_id": self.supplier.id, "min_qty": 1, "price": 25.0},
+                    )
+                ],
+            }
+        )
+        purchase_request = self.purchase_request_obj.create(
+            {
+                "picking_type_id": self.env.ref("stock.picking_type_in").id,
+                "requested_by": SUPERUSER_ID,
+            }
+        )
+        purchase_request_line = self.purchase_request_line_obj.create(
+            {
+                "request_id": purchase_request.id,
+                "product_id": product.id,
+                "product_uom_id": self.env.ref("uom.product_uom_unit").id,
+                "product_qty": 5.0,
+            }
+        )
+        purchase_request.button_approved()
+        wiz_id = self.wiz.with_context(
+            active_model="purchase.request.line",
+            active_ids=[purchase_request_line.id],
+            active_id=purchase_request_line.id,
+        ).create({"supplier_id": self.supplier.id})
+        wiz_id.make_purchase_order()
+        po_line = purchase_request_line.purchase_lines
+        self.assertEqual(po_line.product_qty, 5.0)
+        self.assertEqual(
+            po_line.price_unit, 25.0, "The RFQ line should get the vendor price"
+        )
+
     def test_bug_is_editable_multiple_lines(self):
         # Check that reading multiple lines is still possible
         # https://github.com/OCA/purchase-workflow/pull/291
