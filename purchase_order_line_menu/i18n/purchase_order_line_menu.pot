@@ -32,6 +32,11 @@ msgid ""
 msgstr ""
 
 #. module: purchase_order_line_menu
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_tree
+msgid "Disc.%"
+msgstr ""
+
+#. module: purchase_order_line_menu
 #: model:ir.model.fields,field_description:purchase_order_line_menu.field_purchase_order_line__display_name
 msgid "Display Name"
 msgstr ""
