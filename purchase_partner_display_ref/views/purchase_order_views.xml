@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 ForgeFlow S.L.
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="purchase_order_form_inherit_supplier_ref" model="ir.ui.view">
+        <field name="name">purchase.order.form.inherit.supplier.display.ref</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute
+                    name="context"
+                >{'res_partner_search_mode': 'supplier', 'show_vat': True, 'partner_display_ref_field': 'supplier_ref'}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_purchase_order_filter_inherit_supplier_ref" model="ir.ui.view">
+        <field
+            name="name"
+        >purchase.view.purchase.order.filter.inherit.supplier.display.ref</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute
+                    name="context"
+                >{'partner_display_ref_field': 'supplier_ref'}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="purchase_order_kpis_tree_inherit_supplier_ref" model="ir.ui.view">
+        <field name="name">purchase.order.kpis.tree.inherit.supplier.display.ref</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_kpis_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute
+                    name="context"
+                >{'partner_display_ref_field': 'supplier_ref'}</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
