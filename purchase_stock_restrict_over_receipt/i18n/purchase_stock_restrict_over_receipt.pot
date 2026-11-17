@@ -1,0 +1,63 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_stock_restrict_over_receipt
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-12 05:51+0000\n"
+"PO-Revision-Date: 2026-11-12 05:51+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_stock_restrict_over_receipt
+#. odoo-python
+#: code:addons/purchase_stock_restrict_over_receipt/models/stock_move.py:0
+msgid ""
+"- %(order)s, %(product)s: %(received)s %(uom)s received in total, "
+"%(ordered)s %(uom)s ordered"
+msgstr ""
+
+#. module: purchase_stock_restrict_over_receipt
+#. odoo-python
+#: code:addons/purchase_stock_restrict_over_receipt/models/stock_move.py:0
+msgid "- %(order)s: %(product)s"
+msgstr ""
+
+#. module: purchase_stock_restrict_over_receipt
+#: model:ir.model.fields,field_description:purchase_stock_restrict_over_receipt.field_stock_move__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_stock_restrict_over_receipt
+#: model:ir.model.fields,field_description:purchase_stock_restrict_over_receipt.field_stock_move__id
+msgid "ID"
+msgstr ""
+
+#. module: purchase_stock_restrict_over_receipt
+#: model:ir.model,name:purchase_stock_restrict_over_receipt.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: purchase_stock_restrict_over_receipt
+#. odoo-python
+#: code:addons/purchase_stock_restrict_over_receipt/models/stock_move.py:0
+msgid ""
+"You cannot receive a product that is not on the purchase order.\n"
+"%(details)s\n"
+"Update the purchase order first."
+msgstr ""
+
+#. module: purchase_stock_restrict_over_receipt
+#. odoo-python
+#: code:addons/purchase_stock_restrict_over_receipt/models/stock_move.py:0
+msgid ""
+"You cannot receive more than the quantity ordered.\n"
+"%(details)s\n"
+"Update the purchase order first."
+msgstr ""
