@@ -1,0 +1,60 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* supplier_calendar
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2026-05-23 16:01+0000\n"
+"Last-Translator: Pablo Castelo <pablocv@gmx.es>\n"
+"Language-Team: none\n"
+"Language: gl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
+
+#. module: supplier_calendar
+#: model:ir.model,name:supplier_calendar.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: supplier_calendar
+#: model:ir.model.fields,field_description:supplier_calendar.field_product_supplierinfo__delay_calendar_type
+#: model:ir.model.fields,field_description:supplier_calendar.field_res_partner__delay_calendar_type
+#: model:ir.model.fields,field_description:supplier_calendar.field_res_users__delay_calendar_type
+msgid "Delay Calendar Type"
+msgstr "Tipo de Calendario de Atraso"
+
+#. module: supplier_calendar
+#: model:ir.model.fields,field_description:supplier_calendar.field_res_partner__factory_calendar_id
+#: model:ir.model.fields,field_description:supplier_calendar.field_res_users__factory_calendar_id
+msgid "Factory Calendar"
+msgstr "Calendario de Fábrica"
+
+#. module: supplier_calendar
+#: model:ir.model.fields.selection,name:supplier_calendar.selection__res_partner__delay_calendar_type__natural
+msgid "Natural days"
+msgstr "Días naturais"
+
+#. module: supplier_calendar
+#: model:ir.model,name:supplier_calendar.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Liña de Orde de Compra"
+
+#. module: supplier_calendar
+#: model:ir.model,name:supplier_calendar.model_stock_rule
+msgid "Stock Rule"
+msgstr "Regra de Existencias"
+
+#. module: supplier_calendar
+#: model:ir.model.fields.selection,name:supplier_calendar.selection__res_partner__delay_calendar_type__supplier_calendar
+msgid "Supplier Calendar"
+msgstr "Calendario de Provedores"
+
+#. module: supplier_calendar
+#: model:ir.model,name:supplier_calendar.model_product_supplierinfo
+msgid "Supplier Pricelist"
+msgstr "Lista de Prezos de Provedor"

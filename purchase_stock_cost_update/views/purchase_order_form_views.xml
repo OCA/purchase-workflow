@@ -1,0 +1,44 @@
+<odoo>
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <sheet position="before">
+                <field name="valuation_differs" invisible="1" />
+                <div
+                    class="alert alert-warning"
+                    attrs="{'invisible': [('valuation_differs', '=', False)]}"
+                    role="alert"
+                >
+                    <i class="fa fa-warning" /> There are lines (marked in yellow) which
+                    prices have changed since they where received in stock.
+                    <button
+                        name="action_apply_price_difference"
+                        type="object"
+                        groups="purchase.group_purchase_manager"
+                        attrs="{'invisible': [('valuation_differs', '=', False)]}"
+                        class="btn btn-warning rounded-3 me-2"
+                        string="Fix valuation"
+                        confirm="This will make unreversible changes to the valuation layers related to the affected products"
+                    />
+                    <button
+                        class="btn btn-info rounded-3"
+                        data-bs-toggle="collapse"
+                        href="#collapse_price_diff_details"
+                    ><i class="fa fa-info-circle" role="img" /> Details</button>
+                    <div class="collapse mt-2" id="collapse_price_diff_details">
+                        <div class="alert alert-warning pt-0 pb-0" role="status">
+                            <field name="valuation_difference_report" />
+                        </div>
+                    </div>
+                </div>
+            </sheet>
+            <xpath expr="//field[@name='order_line']//tree" position="inside">
+                <field name="valuation_differs" invisible="1" />
+            </xpath>
+            <xpath expr="//field[@name='order_line']//tree" position="attributes">
+                <attribute name="decoration-warning">valuation_differs</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

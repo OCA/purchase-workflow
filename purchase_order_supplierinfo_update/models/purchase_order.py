@@ -26,7 +26,8 @@ class PurchaseOrderLine(models.Model):
 
     def write(self, vals):
         res = super().write(vals)
-        if vals.get("price_unit"):
+        to_synch = self._get_synch_fields_line_to_supplierinfo()
+        if vals.get("price_unit") or any(key in to_synch for key in vals.keys()):
             self.update_supplierinfo_price()
         return res
 
@@ -70,3 +71,14 @@ class PurchaseOrderLine(models.Model):
         # Set price
         if new_seller_price != seller.price:
             seller.sudo().price = new_seller_price
+
+        # Set other fields like `discount` (see `purchase_discount`)
+        for field in self._get_synch_fields_line_to_supplierinfo():
+            if field in seller and field in self:
+                seller.sudo()[field] = self[field]
+
+    def _get_synch_fields_line_to_supplierinfo(self):
+        triple_discount = "triple.discount.mixin" in self.env
+        return (
+            ["discount1", "discount2", "discount3"] if triple_discount else ["discount"]
+        )

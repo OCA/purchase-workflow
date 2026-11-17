@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright (C) 2013-Today GRAP (http://www.grap.coop)
+@author: Julien WESTE
+@author: Sylvain LE GAL
+@author: Quentin DUPONT
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+
+    <record id="view_product_product_tree_hide" model="ir.ui.view">
+        <field name="model">product.product</field>
+        <field
+            name="inherit_id"
+            ref="purchase_quick_discount.view_product_product_tree"
+        />
+        <field name="priority">150</field>
+        <field name="arch" type="xml">
+            <field name="mass_addition_purchase_discount" position="attributes">
+                <attribute name="optional">hide</attribute>
+                <attribute name="string">Total discount</attribute>
+                <attribute name="force_save">1</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_product_product_tree_add" model="ir.ui.view">
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="purchase_quick.product_tree_view4purchase" />
+        <field name="priority">150</field>
+        <field name="arch" type="xml">
+            <field name="mass_addition_purchase_discount" position="after">
+                <field
+                    name="mass_addition_purchase_discount1"
+                    optional="show"
+                    string="Disc.1%"
+                />
+                <field
+                    name="mass_addition_purchase_discount2"
+                    optional="show"
+                    string="Disc.2%"
+                />
+                <field
+                    name="mass_addition_purchase_discount3"
+                    optional="show"
+                    string="Disc.3%"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>

@@ -116,6 +116,5 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:purchase_triple_discount.product_supplierinfo_form_view
 #: model_terms:ir.ui.view,arch_db:purchase_triple_discount.product_supplierinfo_tree_view
 #: model_terms:ir.ui.view,arch_db:purchase_triple_discount.purchase_order_triple_discount_form_view
-#: model_terms:ir.ui.view,arch_db:purchase_triple_discount.res_partner_form_view
 msgid "Total discount"
 msgstr ""

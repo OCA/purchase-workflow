@@ -117,3 +117,45 @@ class TestPurchaseOrder(TransactionCase):
         self.supplier.purchase_requires_second_approval = "always"
         self.purchase_order.button_approve()
         self.assertEqual(self.purchase_order.state, "approved")
+
+    def test_06(self):
+        """
+        Data:
+            * one draft PO (amount_total = 1000)
+            * supplier configured with purchase request second approval
+            set to 'always'
+            * company configured with two-step validation and a low threshold
+            * a purchase user (not a manager) and a purchase manager
+        Test Case:
+            * purchase user confirms the PO (goes to 'to approve')
+            * manager approves the PO (goes to 'approved')
+            * purchase user releases the PO via button_release
+        Expected result:
+            * PO is in state 'purchase' because _approval_allowed returns
+              True for 'approved' state
+        """
+        purchase_user = self.env["res.users"].create(
+            {
+                "name": "Purchase User",
+                "login": "purchase_user_test",
+                "groups_id": [
+                    (
+                        6,
+                        0,
+                        [self.env.ref("purchase.group_purchase_user").id],
+                    )
+                ],
+            }
+        )
+        self.purchase_order.company_id.po_double_validation = "two_step"
+        self.purchase_order.company_id.po_double_validation_amount = 0.0
+        self.supplier.purchase_requires_second_approval = "always"
+        # Purchase user confirms → PO goes to 'to approve'
+        self.purchase_order.with_user(purchase_user).button_confirm()
+        self.assertEqual(self.purchase_order.state, "to approve")
+        # Manager approves → PO goes to 'approved' (two-step from module)
+        self.purchase_order.button_approve()
+        self.assertEqual(self.purchase_order.state, "approved")
+        # Purchase user releases → PO goes to 'purchase'
+        self.purchase_order.with_user(purchase_user).button_release()
+        self.assertEqual(self.purchase_order.state, "purchase")

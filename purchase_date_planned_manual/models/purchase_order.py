@@ -24,14 +24,17 @@ class PurchaseOrderLine(models.Model):
         """Colour the lines in red if the products are predicted to arrive
         late."""
         for line in self:
-            if line.product_id:
+            # order_id.date_order can be temporarily False while computing
+            # onchange values on a new/virtual order, even though the order
+            # already has a date. Fall back to the origin record in that case.
+            order_date = line.order_id.date_order or line.order_id._origin.date_order
+            if line.product_id and order_date:
                 seller = line.product_id._select_seller(
                     partner_id=line.partner_id,
                     quantity=line.product_qty,
-                    date=line.order_id.date_order.date(),
+                    date=order_date.date(),
                     uom_id=line.product_uom,
                 )
-                order_date = line.order_id.date_order
                 po_lead = line.order_id.company_id.po_lead
                 delta = po_lead + seller.delay if seller else po_lead
                 date_expected = order_date + relativedelta(days=delta)

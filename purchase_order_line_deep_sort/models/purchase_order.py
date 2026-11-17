@@ -39,42 +39,46 @@ class PurchaseOrder(models.Model):
                     res = getattr(res, subfield)
             return res
 
-        if not self.line_order and not self.line_direction:
-            return
-        reverse = self.line_direction == "desc"
-        sequence = 0
-        sorted_lines = self.order_line.sorted(
-            key=lambda p: resolve_subfields(p, self.line_order),
-            reverse=reverse,
-        )
-        for line in sorted_lines:
-            sequence += 10
-            if line.sequence == sequence:
+        for purchase in self:
+            if not purchase.line_order and not purchase.line_direction:
                 continue
-            line.sequence = sequence
+            reverse = purchase.line_direction == "desc"
+            sequence = 0
+            sorted_lines = purchase.order_line.sorted(
+                key=lambda p, purchase=purchase: resolve_subfields(
+                    p, purchase.line_order
+                ),
+                reverse=reverse,
+            )
+            for line in sorted_lines:
+                sequence += 10
+                if line.sequence == sequence:
+                    continue
+                line.sequence = sequence
+
+    @api.model
+    def _line_sort_trigger_fields(self):
+        """Return the fields whose change in write() sorts the lines again"""
+        return {"order_line", "line_order", "line_direction"}
 
     def write(self, values):
         res = super().write(values)
-        if (
-            "order_line" in values
-            or "line_order" in values
-            or "line_direction" in values
-        ):
+        if self._line_sort_trigger_fields().intersection(values):
             self._sort_purchase_line()
         return res
 
-    @api.model
-    def create(self, values):
-        purchase = super().create(values)
-        purchase._sort_purchase_line()
-        return purchase
+    @api.model_create_multi
+    def create(self, vals_list):
+        purchases = super().create(vals_list)
+        purchases._sort_purchase_line()
+        return purchases
 
 
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
-    @api.model
-    def create(self, vals):
-        line = super().create(vals)
-        line.order_id._sort_purchase_line()
-        return line
+    @api.model_create_multi
+    def create(self, vals_list):
+        lines = super().create(vals_list)
+        lines.order_id._sort_purchase_line()
+        return lines

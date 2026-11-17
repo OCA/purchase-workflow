@@ -9,17 +9,16 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-23 17:50+0000\n"
-"PO-Revision-Date: 2024-05-29 18:36+0000\n"
-"Last-Translator: Rodrigo Macedo <sottomaiormacedotec@users.noreply."
-"translation.odoo-community.org>\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
-"teams/23907/pt_BR/)\n"
+"PO-Revision-Date: 2026-01-21 16:50+0000\n"
+"Last-Translator: \"Rodrigo A. Madureira\" <rodrigomadu85@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
+"23907/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: purchase_discount
 #: model_terms:ir.ui.view,arch_db:purchase_discount.report_purchaseorder_document
@@ -76,7 +75,7 @@ msgstr "Lista de preços do fornecedor"
 #. module: purchase_discount
 #: model:ir.model.constraint,message:purchase_discount.constraint_product_supplierinfo_discount_limit
 msgid "Supplier discount must be lower than 100%."
-msgstr ""
+msgstr "O desconto do Fornecedor precisa ser menor que 100%."
 
 #. module: purchase_discount
 #: model:ir.model.fields,help:purchase_discount.field_res_partner__default_supplierinfo_discount
@@ -91,7 +90,7 @@ msgstr ""
 #. module: purchase_discount
 #: model:ir.model.fields,field_description:purchase_discount.field_purchase_report__discount
 msgid "Total discount"
-msgstr ""
+msgstr "Total desconto"
 
 #. module: purchase_discount
 #: model_terms:ir.ui.view,arch_db:purchase_discount.res_partner_form_view

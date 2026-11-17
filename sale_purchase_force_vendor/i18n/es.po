@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-16 06:57+0000\n"
-"PO-Revision-Date: 2023-07-18 08:10+0000\n"
-"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"PO-Revision-Date: 2026-02-20 18:09+0000\n"
+"Last-Translator: Víctor Martínez <victor.martinez@tecnativa.com>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_purchase_force_vendor
 #: model:ir.model,name:sale_purchase_force_vendor.model_res_company
@@ -35,6 +35,11 @@ msgid "Restrict allowed vendors in sale orders"
 msgstr "Restringir proveedores permitidos en pedidos de venta"
 
 #. module: sale_purchase_force_vendor
+#: model:ir.model,name:sale_purchase_force_vendor.model_sale_report
+msgid "Sales Analysis Report"
+msgstr "Informe de análisis de ventas"
+
+#. module: sale_purchase_force_vendor
 #: model:ir.model,name:sale_purchase_force_vendor.model_sale_order
 msgid "Sales Order"
 msgstr "Pedidos de Ventas"
@@ -51,7 +56,10 @@ msgstr "Movimiento de existencias"
 
 #. module: sale_purchase_force_vendor
 #: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_sale_order_line__vendor_id
+#: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_sale_report__vendor_id
 #: model_terms:ir.ui.view,arch_db:sale_purchase_force_vendor.view_order_form
+#: model_terms:ir.ui.view,arch_db:sale_purchase_force_vendor.view_order_product_search
+#: model_terms:ir.ui.view,arch_db:sale_purchase_force_vendor.view_sales_order_filter
 msgid "Vendor"
 msgstr "Proveedor"
 

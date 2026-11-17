@@ -1,4 +1,7 @@
 
+[![Support the OCA](https://odoo-community.org/readme-banner-image)](https://odoo-community.org/get-involved?utm_source=repo-readme)
+
+# purchase-workflow
 [![Runboat](https://img.shields.io/badge/runboat-Try%20me-875A7B.png)](https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&target_branch=16.0)
 [![Pre-commit Status](https://github.com/OCA/purchase-workflow/actions/workflows/pre-commit.yml/badge.svg?branch=16.0)](https://github.com/OCA/purchase-workflow/actions/workflows/pre-commit.yml?query=branch%3A16.0)
 [![Build Status](https://github.com/OCA/purchase-workflow/actions/workflows/test.yml/badge.svg?branch=16.0)](https://github.com/OCA/purchase-workflow/actions/workflows/test.yml?query=branch%3A16.0)
@@ -6,8 +9,6 @@
 [![Translation Status](https://translation.odoo-community.org/widgets/purchase-workflow-16-0/-/svg-badge.svg)](https://translation.odoo-community.org/engage/purchase-workflow-16-0/?utm_source=widget)
 
 <!-- /!\ do not modify above this line -->
-
-# purchase-workflow
 
 TODO: add repo description.
 
@@ -23,7 +24,7 @@ addon | version | maintainers | summary
 --- | --- | --- | ---
 [partner_supplierinfo_smartbutton](partner_supplierinfo_smartbutton/) | 16.0.1.0.0 | <a href='https://github.com/victoralmau'><img src='https://github.com/victoralmau.png' width='32' height='32' style='border-radius:50%;' alt='victoralmau'/></a> | Access supplied products from the vendor
 [procurement_purchase_no_grouping](procurement_purchase_no_grouping/) | 16.0.1.0.0 |  | Procurement Purchase No Grouping
-[product_main_seller](product_main_seller/) | 16.0.1.0.1 | <a href='https://github.com/legalsylvain'><img src='https://github.com/legalsylvain.png' width='32' height='32' style='border-radius:50%;' alt='legalsylvain'/></a> <a href='https://github.com/quentinDupont'><img src='https://github.com/quentinDupont.png' width='32' height='32' style='border-radius:50%;' alt='quentinDupont'/></a> | Main Vendor for a product
+[product_main_seller](product_main_seller/) | 16.0.1.0.2 | <a href='https://github.com/legalsylvain'><img src='https://github.com/legalsylvain.png' width='32' height='32' style='border-radius:50%;' alt='legalsylvain'/></a> <a href='https://github.com/quentinDupont'><img src='https://github.com/quentinDupont.png' width='32' height='32' style='border-radius:50%;' alt='quentinDupont'/></a> | Main Vendor for a product
 [product_supplier_code_purchase](product_supplier_code_purchase/) | 16.0.1.0.0 |  | This module adds to the purchase order line the supplier code defined in the product.
 [product_supplierinfo_disable_autocreation](product_supplierinfo_disable_autocreation/) | 16.0.1.0.0 |  | Add option to disable automatic creation of pricelists for suppliers
 [product_supplierinfo_purchase_contact](product_supplierinfo_purchase_contact/) | 16.0.1.0.0 |  | Add Purchase Contact in product supplier info
@@ -33,14 +34,17 @@ addon | version | maintainers | summary
 [purchase_advance_payment](purchase_advance_payment/) | 16.0.1.2.1 | <a href='https://github.com/LoisRForgeFlow'><img src='https://github.com/LoisRForgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='LoisRForgeFlow'/></a> | Allow to add advance payments on purchase orders
 [purchase_all_shipments](purchase_all_shipments/) | 16.0.1.0.1 |  | Purchase All Shipments
 [purchase_allowed_product](purchase_allowed_product/) | 16.0.2.1.1 |  | This module allows to select only products that can be supplied by the vendor
-[purchase_blanket_order](purchase_blanket_order/) | 16.0.2.1.1 |  | Purchase Blanket Orders
+[purchase_analytic_global](purchase_analytic_global/) | 16.0.1.0.0 |  | This module allows to a Global analytic plan in purchases
+[purchase_blanket_order](purchase_blanket_order/) | 16.0.2.1.3 |  | Purchase Blanket Orders
 [purchase_cancel_reason](purchase_cancel_reason/) | 16.0.1.0.1 |  | Purchase Cancel Reason
 [purchase_commercial_partner](purchase_commercial_partner/) | 16.0.1.0.0 | <a href='https://github.com/alexis-via'><img src='https://github.com/alexis-via.png' width='32' height='32' style='border-radius:50%;' alt='alexis-via'/></a> | Add stored related field 'Commercial Supplier' on POs
-[purchase_date_planned_manual](purchase_date_planned_manual/) | 16.0.1.0.1 | <a href='https://github.com/LoisRForgeFlow'><img src='https://github.com/LoisRForgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='LoisRForgeFlow'/></a> | This module makes the system to always respect the planned (or scheduled) date in PO lines.
+[purchase_company_invoice_address](purchase_company_invoice_address/) | 16.0.1.0.0 | <a href='https://github.com/nobuQuartile'><img src='https://github.com/nobuQuartile.png' width='32' height='32' style='border-radius:50%;' alt='nobuQuartile'/></a> | Select the buying company's invoice address on purchase orders
+[purchase_date_planned_manual](purchase_date_planned_manual/) | 16.0.1.0.2 | <a href='https://github.com/LoisRForgeFlow'><img src='https://github.com/LoisRForgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='LoisRForgeFlow'/></a> | This module makes the system to always respect the planned (or scheduled) date in PO lines.
 [purchase_default_terms_conditions](purchase_default_terms_conditions/) | 16.0.1.0.3 |  | This module allows purchase default terms & conditions
-[purchase_delivery_split_date](purchase_delivery_split_date/) | 16.0.1.0.5 |  | Allows Purchase Order you confirm to generate one Incoming Shipment for each expected date indicated in the Purchase Order Lines
+[purchase_delivery_split_date](purchase_delivery_split_date/) | 16.0.1.0.6 |  | Allows Purchase Order you confirm to generate one Incoming Shipment for each expected date indicated in the Purchase Order Lines
 [purchase_deposit](purchase_deposit/) | 16.0.1.1.1 |  | Option to create deposit from purchase order
-[purchase_discount](purchase_discount/) | 16.0.2.0.4 |  | Purchase order lines with discounts
+[purchase_deposit_company_amount](purchase_deposit_company_amount/) | 16.0.1.0.0 | <a href='https://github.com/kanda999'><img src='https://github.com/kanda999.png' width='32' height='32' style='border-radius:50%;' alt='kanda999'/></a> <a href='https://github.com/Aungkokolin1997'><img src='https://github.com/Aungkokolin1997.png' width='32' height='32' style='border-radius:50%;' alt='Aungkokolin1997'/></a> | Book purchase deposits at the company-currency amount actually paid
+[purchase_discount](purchase_discount/) | 16.0.2.0.5 |  | Purchase order lines with discounts
 [purchase_exception](purchase_exception/) | 16.0.1.0.1 |  | Custom exceptions on purchase order
 [purchase_fop_shipping](purchase_fop_shipping/) | 16.0.1.0.1 |  | Purchase Free-Of-Payment shipping
 [purchase_force_invoiced](purchase_force_invoiced/) | 16.0.1.0.2 |  | Allows to force the billing status of the purchase order to "Invoiced"
@@ -49,6 +53,7 @@ addon | version | maintainers | summary
 [purchase_fully_received](purchase_fully_received/) | 16.0.1.0.0 |  | Useful filters in Purchases to know the actual status of shipments.and invoices
 [purchase_invoice_method](purchase_invoice_method/) | 16.0.1.0.0 |  | Allow to force the invoice method of a purchase
 [purchase_invoice_new_picking_line](purchase_invoice_new_picking_line/) | 16.0.1.0.0 |  | When creating an invoice from a purchase order, this module also adds invoice lines for products that were in the order's pickings but not in the order itself.
+[purchase_invoice_partial_status](purchase_invoice_partial_status/) | 16.0.1.0.0 |  | Adds a 'Partially Invoiced' status to purchase orders for better invoice tracking.
 [purchase_invoice_plan](purchase_invoice_plan/) | 16.0.1.0.0 | <a href='https://github.com/kittiu'><img src='https://github.com/kittiu.png' width='32' height='32' style='border-radius:50%;' alt='kittiu'/></a> | Add to purchases order, ability to manage future invoice plan
 [purchase_invoice_status_line](purchase_invoice_status_line/) | 16.0.1.0.0 | <a href='https://github.com/JoanSForgeFlow'><img src='https://github.com/JoanSForgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='JoanSForgeFlow'/></a> | Add invoice status on purchase order lines
 [purchase_landed_cost](purchase_landed_cost/) | 16.0.1.0.2 |  | Purchase cost distribution
@@ -64,13 +69,13 @@ addon | version | maintainers | summary
 [purchase_only_by_packaging](purchase_only_by_packaging/) | 16.0.1.0.2 |  | Manage purchase of packaging
 [purchase_open_qty](purchase_open_qty/) | 16.0.3.0.1 |  | Allows to identify the purchase orders that have quantities pending to invoice or to receive.
 [purchase_order_approval_block](purchase_order_approval_block/) | 16.0.1.0.0 |  | Purchase Order Approval Block
-[purchase_order_approved](purchase_order_approved/) | 16.0.1.0.0 |  | Add a new state 'Approved' in purchase orders.
+[purchase_order_approved](purchase_order_approved/) | 16.0.1.0.2 |  | Add a new state 'Approved' in purchase orders.
 [purchase_order_archive](purchase_order_archive/) | 16.0.1.0.0 |  | Archive Purchase Orders
 [purchase_order_downpayment](purchase_order_downpayment/) | 16.0.1.0.0 |  | Allow to add payments from Purchase order view
 [purchase_order_duplicate_check](purchase_order_duplicate_check/) | 16.0.1.0.0 |  | Prevents overordering in the Purchase app with a Confirmation Wizard, 'Pending Orders' field, and activity tracking for repeated orders.
 [purchase_order_general_discount](purchase_order_general_discount/) | 16.0.1.0.0 |  | General discount per purchase order
 [purchase_order_hide_receipt_status](purchase_order_hide_receipt_status/) | 16.0.1.0.1 |  | Purchase Order Hide Receipt Status
-[purchase_order_line_deep_sort](purchase_order_line_deep_sort/) | 16.0.1.0.0 |  | Purchase Order Line Sort
+[purchase_order_line_deep_sort](purchase_order_line_deep_sort/) | 16.0.1.0.2 |  | Purchase Order Line Sort
 [purchase_order_line_menu](purchase_order_line_menu/) | 16.0.2.1.2 |  | Adds Purchase Order Lines Menu
 [purchase_order_line_receipt_status](purchase_order_line_receipt_status/) | 16.0.1.0.0 |  | Manage customizations on purchase order line
 [purchase_order_line_sequence](purchase_order_line_sequence/) | 16.0.1.0.0 |  | Adds sequence to PO lines and propagates it toInvoice lines and Stock Moves
@@ -85,8 +90,8 @@ addon | version | maintainers | summary
 [purchase_order_revision](purchase_order_revision/) | 16.0.1.0.0 |  | Keep track of revised quotations
 [purchase_order_secondary_unit](purchase_order_secondary_unit/) | 16.0.1.0.0 |  | Purchase product in a secondary unit
 [purchase_order_supplier_return](purchase_order_supplier_return/) | 16.0.1.0.0 |  | Return product to supplier and update quantiy received
-[purchase_order_supplierinfo_update](purchase_order_supplierinfo_update/) | 16.0.1.0.1 | <a href='https://github.com/ernestotejeda'><img src='https://github.com/ernestotejeda.png' width='32' height='32' style='border-radius:50%;' alt='ernestotejeda'/></a> | Update product supplierinfo with the last purchase price
-[purchase_order_type](purchase_order_type/) | 16.0.1.0.3 |  | Purchase Order Type
+[purchase_order_supplierinfo_update](purchase_order_supplierinfo_update/) | 16.0.2.0.0 | <a href='https://github.com/ernestotejeda'><img src='https://github.com/ernestotejeda.png' width='32' height='32' style='border-radius:50%;' alt='ernestotejeda'/></a> | Update product supplierinfo with the last purchase price
+[purchase_order_type](purchase_order_type/) | 16.0.2.0.0 |  | Purchase Order Type
 [purchase_order_type_dashboard](purchase_order_type_dashboard/) | 16.0.1.0.0 | <a href='https://github.com/dalonsod'><img src='https://github.com/dalonsod.png' width='32' height='32' style='border-radius:50%;' alt='dalonsod'/></a> | Purchase Order Type Dashboard
 [purchase_order_uninvoiced_amount](purchase_order_uninvoiced_amount/) | 16.0.1.0.2 |  | Purchase Order Univoiced Amount
 [purchase_order_uninvoiced_amount_line](purchase_order_uninvoiced_amount_line/) | 16.0.1.0.0 |  | Purchase Order Line Uninvoiced Amount
@@ -95,36 +100,41 @@ addon | version | maintainers | summary
 [purchase_packaging_level_qty](purchase_packaging_level_qty/) | 16.0.2.0.0 |  | Display purchase order packaging level quantity
 [purchase_partner_incoterm](purchase_partner_incoterm/) | 16.0.1.0.0 | <a href='https://github.com/TDu'><img src='https://github.com/TDu.png' width='32' height='32' style='border-radius:50%;' alt='TDu'/></a> <a href='https://github.com/bealdav'><img src='https://github.com/bealdav.png' width='32' height='32' style='border-radius:50%;' alt='bealdav'/></a> | Add a an incoterm field for supplier and use it on purchase order
 [purchase_partner_selectable_option](purchase_partner_selectable_option/) | 16.0.1.0.3 | <a href='https://github.com/victoralmau'><img src='https://github.com/victoralmau.png' width='32' height='32' style='border-radius:50%;' alt='victoralmau'/></a> | Purchase Partner Selectable Option
+[purchase_planned_date_container_deposit](purchase_planned_date_container_deposit/) | 16.0.1.0.0 |  | Glue module between purchase_date_planned_manual and purchase_product_packaging_container_deposit
 [purchase_product_packaging_container_deposit](purchase_product_packaging_container_deposit/) | 16.0.1.1.0 |  | Purchase Product Packaging Container Deposit
-[purchase_quick](purchase_quick/) | 16.0.1.0.0 | <a href='https://github.com/legalsylvain'><img src='https://github.com/legalsylvain.png' width='32' height='32' style='border-radius:50%;' alt='legalsylvain'/></a> | Quick Purchase order
+[purchase_quick](purchase_quick/) | 16.0.1.0.1 | <a href='https://github.com/legalsylvain'><img src='https://github.com/legalsylvain.png' width='32' height='32' style='border-radius:50%;' alt='legalsylvain'/></a> | Quick Purchase order
+[purchase_quick_discount](purchase_quick_discount/) | 16.0.1.0.0 | <a href='https://github.com/legalsylvain'><img src='https://github.com/legalsylvain.png' width='32' height='32' style='border-radius:50%;' alt='legalsylvain'/></a> <a href='https://github.com/quentinDupont'><img src='https://github.com/quentinDupont.png' width='32' height='32' style='border-radius:50%;' alt='quentinDupont'/></a> | Glue module to add discount field for quick purchase
+[purchase_quick_triple_discount](purchase_quick_triple_discount/) | 16.0.1.0.0 | <a href='https://github.com/legalsylvain'><img src='https://github.com/legalsylvain.png' width='32' height='32' style='border-radius:50%;' alt='legalsylvain'/></a> <a href='https://github.com/quentinDupont'><img src='https://github.com/quentinDupont.png' width='32' height='32' style='border-radius:50%;' alt='quentinDupont'/></a> | Glue module to add discount fields for quick purchase
 [purchase_reception_status](purchase_reception_status/) | 16.0.1.0.1 | <a href='https://github.com/alexis-via'><img src='https://github.com/alexis-via.png' width='32' height='32' style='border-radius:50%;' alt='alexis-via'/></a> | Add reception status on purchase orders
 [purchase_reorder_control](purchase_reorder_control/) | 16.0.1.0.0 |  | Restrict reordering unpurchaseable product
-[purchase_request](purchase_request/) | 16.0.2.4.2 |  | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
+[purchase_request](purchase_request/) | 16.0.2.4.5 |  | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
 [purchase_request_department](purchase_request_department/) | 16.0.1.1.0 |  | Purchase Request Department
 [purchase_request_exception](purchase_request_exception/) | 16.0.1.0.0 |  | Custom exceptions on purchase request
 [purchase_request_tier_validation](purchase_request_tier_validation/) | 16.0.1.1.1 |  | Extends the functionality of Purchase Requests to support a tier validation process.
 [purchase_request_type](purchase_request_type/) | 16.0.1.2.1 |  | Purchase Request Type
 [purchase_requisition_tier_validation](purchase_requisition_tier_validation/) | 16.0.1.0.2 |  | Extends the functionality of Purchase Agreements to support a tier validation process.
-[purchase_return](purchase_return/) | 16.0.1.0.3 | <a href='https://github.com/JordiBForgeFlow'><img src='https://github.com/JordiBForgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='JordiBForgeFlow'/></a> | Manage return orders.
+[purchase_return](purchase_return/) | 16.0.1.0.4 | <a href='https://github.com/JordiBForgeFlow'><img src='https://github.com/JordiBForgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='JordiBForgeFlow'/></a> | Manage return orders.
 [purchase_sale_link_by_origin](purchase_sale_link_by_origin/) | 16.0.1.0.0 |  | Link PO/SO by the PO's Origin in addition to the default behavior that only links them by their lines
 [purchase_security](purchase_security/) | 16.0.2.0.2 | <a href='https://github.com/pilarvargas-tecnativa'><img src='https://github.com/pilarvargas-tecnativa.png' width='32' height='32' style='border-radius:50%;' alt='pilarvargas-tecnativa'/></a> | See only your purchase orders
 [purchase_sign](purchase_sign/) | 16.0.1.0.0 |  | Purchase Sign
 [purchase_split_by_route](purchase_split_by_route/) | 16.0.1.0.0 | <a href='https://github.com/mathieudelva'><img src='https://github.com/mathieudelva.png' width='32' height='32' style='border-radius:50%;' alt='mathieudelva'/></a> | Purchase Split Route
+[purchase_stock_cost_update](purchase_stock_cost_update/) | 16.0.1.0.1 | <a href='https://github.com/chienandalu'><img src='https://github.com/chienandalu.png' width='32' height='32' style='border-radius:50%;' alt='chienandalu'/></a> <a href='https://github.com/rafaelbn'><img src='https://github.com/rafaelbn.png' width='32' height='32' style='border-radius:50%;' alt='rafaelbn'/></a> | Allows to update valuation layers once the purchase is received
 [purchase_stock_packaging](purchase_stock_packaging/) | 16.0.1.0.0 | <a href='https://github.com/rousseldenis'><img src='https://github.com/rousseldenis.png' width='32' height='32' style='border-radius:50%;' alt='rousseldenis'/></a> | Allows to transmit the product packaging from the procurement values to the generated purchase order line
 [purchase_stock_picking_actual_date_show_currency_rate](purchase_stock_picking_actual_date_show_currency_rate/) | 16.0.1.0.0 |  | Purchase Stock Picking Actual Date Show Currency Rate
 [purchase_stock_picking_show_currency_rate](purchase_stock_picking_show_currency_rate/) | 16.0.1.0.0 | <a href='https://github.com/victoralmau'><img src='https://github.com/victoralmau.png' width='32' height='32' style='border-radius:50%;' alt='victoralmau'/></a> | Show currency rate in purchase stock picking.
 [purchase_stock_price_unit_sync](purchase_stock_price_unit_sync/) | 16.0.1.0.1 |  | Update cost price in stock moves already done
+[purchase_stock_tier_validation](purchase_stock_tier_validation/) | 16.0.1.0.0 | <a href='https://github.com/bosd'><img src='https://github.com/bosd.png' width='32' height='32' style='border-radius:50%;' alt='bosd'/></a> | Exclude RFQs pending to validate when procuring
 [purchase_supplierinfo_editable_tree](purchase_supplierinfo_editable_tree/) | 16.0.1.0.1 |  | Set the supplierinfo tree view as editablee
 [purchase_tag](purchase_tag/) | 16.0.1.1.0 |  | Allows to add multiple tags to purchase orders
 [purchase_tier_validation](purchase_tier_validation/) | 16.0.1.1.1 |  | Extends the functionality of Purchase Orders to support a tier validation process.
 [purchase_transport_mode](purchase_transport_mode/) | 16.0.1.1.0 |  | Purchase expection based on constraints
-[purchase_triple_discount](purchase_triple_discount/) | 16.0.3.0.3 |  | Manage triple discount on purchase order lines
+[purchase_triple_discount](purchase_triple_discount/) | 16.0.3.0.4 |  | Manage triple discount on purchase order lines
 [purchase_uninvoiced_amount_force_invoiced_line](purchase_uninvoiced_amount_force_invoiced_line/) | 16.0.1.0.0 | <a href='https://github.com/JoanSForgeFlow'><img src='https://github.com/JoanSForgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='JoanSForgeFlow'/></a> | Glue module between uninvoiced amount line and force invoiced line
-[purchase_vendor_promotion](purchase_vendor_promotion/) | 16.0.1.0.1 |  | Purchase Vendor Promotion
+[purchase_vendor_promotion](purchase_vendor_promotion/) | 16.0.2.0.0 |  | Purchase Vendor Promotion
 [purchase_warn_message](purchase_warn_message/) | 16.0.1.0.0 |  | Add a popup warning on purchase to ensure warning is populated
 [purchase_work_acceptance](purchase_work_acceptance/) | 16.0.1.0.0 | <a href='https://github.com/ps-tubtim'><img src='https://github.com/ps-tubtim.png' width='32' height='32' style='border-radius:50%;' alt='ps-tubtim'/></a> | Purchase Work Acceptance
 [purchase_work_acceptance_evaluation](purchase_work_acceptance_evaluation/) | 16.0.1.0.0 | <a href='https://github.com/kittiu'><img src='https://github.com/kittiu.png' width='32' height='32' style='border-radius:50%;' alt='kittiu'/></a> | Purchase Work Acceptance Evaluation
-[sale_purchase_force_vendor](sale_purchase_force_vendor/) | 16.0.1.0.1 | <a href='https://github.com/victoralmau'><img src='https://github.com/victoralmau.png' width='32' height='32' style='border-radius:50%;' alt='victoralmau'/></a> | Sale Purchase Force Vendor
+[sale_purchase_force_vendor](sale_purchase_force_vendor/) | 16.0.1.0.3 | <a href='https://github.com/victoralmau'><img src='https://github.com/victoralmau.png' width='32' height='32' style='border-radius:50%;' alt='victoralmau'/></a> | Sale Purchase Force Vendor
 [supplier_calendar](supplier_calendar/) | 16.0.1.0.1 | <a href='https://github.com/LoisRForgeFlow'><img src='https://github.com/LoisRForgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='LoisRForgeFlow'/></a> | Supplier Calendar
 
 [//]: # (end addons)

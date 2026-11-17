@@ -21,19 +21,19 @@
                     <span t-field="doc.name" />
                 </h2>
                 <div class="row mt32 mb32" id="informations">
-                    <div class="col-xs-3">
+                    <div class="col-3">
                         <strong>Validity Date:</strong>
                         <p t-field="doc.validity_date" />
                     </div>
-                    <div t-if="doc.payment_term_id" class="col-xs-3">
+                    <div t-if="doc.payment_term_id" class="col-3">
                         <strong>Payment Terms:</strong>
                         <p t-field="doc.payment_term_id" />
                     </div>
-                    <div t-if="doc.user_id.name" class="col-xs-3">
+                    <div t-if="doc.user_id.name" class="col-3">
                         <strong>Purchase person:</strong>
                         <p t-field="doc.user_id" />
                     </div>
-                    <div t-if="doc.currency_id" class="col-xs-3">
+                    <div t-if="doc.currency_id" class="col-3">
                         <strong>Currency:</strong>
                         <p t-field="doc.currency_id" />
                     </div>

@@ -5,7 +5,7 @@
          <field name="inherit_id" ref="purchase_discount.res_partner_form_view" />
          <field name="arch" type="xml">
              <field name="default_supplierinfo_discount" position="attributes">
-                 <attribute name="string">Total discount</attribute>
+                 <attribute name="invisible">1</attribute>
              </field>
             <field name="default_supplierinfo_discount" position="after">
                 <field

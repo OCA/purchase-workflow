@@ -4,11 +4,13 @@ from datetime import date
 
 from odoo import Command
 from odoo.exceptions import ValidationError
-from odoo.tests import TransactionCase, tagged
+from odoo.tests import tagged
+
+from odoo.addons.purchase_stock.tests.common import PurchaseTestCommon
 
 
 @tagged("post_install", "-at_install")
-class TestVendorPromotion(TransactionCase):
+class TestVendorPromotion(PurchaseTestCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -59,6 +61,20 @@ class TestVendorPromotion(TransactionCase):
                 },
             ]
         )
+        cls.buy_route = cls.env.ref(
+            "purchase_stock.route_warehouse0_buy", raise_if_not_found=False
+        )
+        cls.test_orderpoint = (
+            cls.env["stock.warehouse.orderpoint"]
+            .with_company(cls.company_a)
+            .create(
+                {
+                    "product_id": cls.product.id,
+                    "product_min_qty": 1,
+                    "route_id": cls.buy_route.id,
+                }
+            )
+        )
 
     def test_promotion_dates_validation(self):
         with self.assertRaises(ValidationError):
@@ -93,6 +109,7 @@ class TestVendorPromotion(TransactionCase):
         self.assertTrue(purchase_order.order_line.is_promotion)
 
     def test_orderpoint_promotion(self):
+        self.env["stock.warehouse.orderpoint"].search([]).unlink()
         orderpoint = (
             self.env["stock.warehouse.orderpoint"]
             .with_company(self.company_a)
@@ -112,3 +129,27 @@ class TestVendorPromotion(TransactionCase):
             " - "
             f"{date(self.current_year, 12, 31).strftime('%Y-%m-%d')}",
         )
+
+    def test_default_supplier_01(self):
+        """Assign promotion supplier, even if his price is not the best"""
+        default_vendor = self.product.seller_ids.filtered(
+            lambda x: x.partner_id == self.vendor2
+        )
+        self.assertEqual(self.test_orderpoint.supplier_id, default_vendor)
+
+        # If promotion is in the future, consider it as active too
+        default_vendor.date_end = (
+            f"{date(self.current_year + 1, 12, 31).strftime('%Y-%m-%d')}"
+        )
+        default_vendor.date_start = (
+            f"{date(self.current_year + 1, 1, 1).strftime('%Y-%m-%d')}"
+        )
+        self.assertEqual(self.test_orderpoint.supplier_id, default_vendor)
+
+    def test_default_supplier_02(self):
+        """If no promotion supplier in the product, assign first vendor as default supplier"""
+        promotion_vendor = self.product.seller_ids.filtered(
+            lambda x: x.partner_id == self.vendor2
+        )
+        promotion_vendor.write({"is_promotion": False})
+        self.assertTrue(self.test_orderpoint.supplier_id)

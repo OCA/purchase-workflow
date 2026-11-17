@@ -16,9 +16,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
-"%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
-"%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && "
+"(n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && "
+"n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__active
@@ -55,6 +55,11 @@ msgstr "Utworzone przez"
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__create_date
 msgid "Created on"
 msgstr "Utworzono"
+
+#. module: purchase_order_type
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__is_default
+msgid "Default"
+msgstr ""
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__description
@@ -116,6 +121,13 @@ msgid "Name"
 msgstr "Nazwa"
 
 #. module: purchase_order_type
+#. odoo-python
+#: code:addons/purchase_order_type/models/purchase_order_type.py:0
+#, python-format
+msgid "Only one default order type is allowed per company."
+msgstr ""
+
+#. module: purchase_order_type
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
 msgid "Payment Term"
 msgstr ""
@@ -159,6 +171,14 @@ msgstr "Typ"
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_purchase_order_type
 msgid "Type of purchase order"
+msgstr ""
+
+#. module: purchase_order_type
+#: model:ir.model.fields,help:purchase_order_type.field_purchase_order_type__is_default
+msgid ""
+"Used as the fallback order type for a purchase order whose vendor does not "
+"provide one, and to correct a purchase order whose type no longer suits its "
+"company after the company changes."
 msgstr ""
 
 #~ msgid "Partner"

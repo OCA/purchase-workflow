@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-04-15 10:24+0000\n"
+"PO-Revision-Date: 2026-02-26 13:41+0000\n"
 "Last-Translator: Betül Öğmen <betulo@eska.biz>\n"
 "Language-Team: none\n"
 "Language: tr\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: purchase_discount
 #: model_terms:ir.ui.view,arch_db:purchase_discount.report_purchaseorder_document
@@ -71,7 +71,7 @@ msgstr "Tedarikçi Fiyat Listesi"
 #. module: purchase_discount
 #: model:ir.model.constraint,message:purchase_discount.constraint_product_supplierinfo_discount_limit
 msgid "Supplier discount must be lower than 100%."
-msgstr ""
+msgstr "Tedarikçi indirimi %100'den düşük olmalıdır."
 
 #. module: purchase_discount
 #: model:ir.model.fields,help:purchase_discount.field_res_partner__default_supplierinfo_discount

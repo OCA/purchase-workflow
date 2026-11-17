@@ -23,3 +23,13 @@ def post_init_hook(cr, registry):
             WHERE discount != 0
         """
     )
+    _logger.info(
+        "Initializing column default_supplierinfo_discount1 on table res_partner"
+    )
+    cr.execute(
+        """
+            UPDATE res_partner
+            SET default_supplierinfo_discount1 = default_supplierinfo_discount
+            WHERE default_supplierinfo_discount != 0
+        """
+    )

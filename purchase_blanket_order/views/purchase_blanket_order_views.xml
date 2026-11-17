@@ -326,12 +326,10 @@
                     </h1>
                     <group>
                         <group>
-                            <group>
-                                <field name="product_id" readonly="1" />
-                                <field name="price_unit" readonly="1" />
-                                <field name="partner_id" readonly="1" />
-                                <field name="date_schedule" readonly="1" />
-                            </group>
+                            <field name="product_id" readonly="1" />
+                            <field name="price_unit" readonly="1" />
+                            <field name="partner_id" readonly="1" />
+                            <field name="date_schedule" readonly="1" />
                         </group>
                         <group>
                             <label for="original_uom_qty" />

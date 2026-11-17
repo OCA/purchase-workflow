@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Purchase Order Triple Discount",
-    "version": "16.0.3.0.3",
+    "version": "16.0.3.0.4",
     "category": "Purchase Management",
     "author": "Tecnativa," "GRAP," "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",

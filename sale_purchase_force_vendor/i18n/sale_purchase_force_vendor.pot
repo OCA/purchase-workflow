@@ -31,6 +31,11 @@ msgid "Restrict allowed vendors in sale orders"
 msgstr ""
 
 #. module: sale_purchase_force_vendor
+#: model:ir.model,name:sale_purchase_force_vendor.model_sale_report
+msgid "Sales Analysis Report"
+msgstr ""
+
+#. module: sale_purchase_force_vendor
 #: model:ir.model,name:sale_purchase_force_vendor.model_sale_order
 msgid "Sales Order"
 msgstr ""
@@ -47,7 +52,10 @@ msgstr ""
 
 #. module: sale_purchase_force_vendor
 #: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_sale_order_line__vendor_id
+#: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_sale_report__vendor_id
 #: model_terms:ir.ui.view,arch_db:sale_purchase_force_vendor.view_order_form
+#: model_terms:ir.ui.view,arch_db:sale_purchase_force_vendor.view_order_product_search
+#: model_terms:ir.ui.view,arch_db:sale_purchase_force_vendor.view_sales_order_filter
 msgid "Vendor"
 msgstr ""
 

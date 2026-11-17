@@ -3,7 +3,7 @@
 
 {
     "name": "Purchase Order Type",
-    "version": "16.0.1.0.3",
+    "version": "16.0.2.0.0",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": "Purchase Management",
@@ -16,6 +16,9 @@
         "views/view_purchase_order.xml",
         "views/res_partner_view.xml",
         "data/purchase_order_type.xml",
+    ],
+    "demo": [
+        "demo/purchase_order_type_demo.xml",
     ],
     "installable": True,
     "auto_install": False,

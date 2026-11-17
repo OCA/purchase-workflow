@@ -3,7 +3,7 @@
 
 {
     "name": "Purchase Vendor Promotion",
-    "version": "16.0.1.0.1",
+    "version": "16.0.2.0.0",
     "development_status": "Beta",
     "category": "Purchase Management",
     "summary": "Purchase Vendor Promotion",
@@ -12,9 +12,11 @@
     "license": "AGPL-3",
     "depends": ["purchase_stock"],
     "data": [
+        "data/stock_route.xml",
         "views/product_views.xml",
         "views/stock_orderpoint_views.xml",
         "views/purchase_order_views.xml",
+        "views/stock_route.xml",
     ],
     "installable": True,
     "auto_install": False,

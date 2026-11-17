@@ -3,7 +3,7 @@
 {
     "name": "Purchase Order Approved",
     "summary": "Add a new state 'Approved' in purchase orders.",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.0.2",
     "category": "Purchases",
     "website": "https://github.com/OCA/purchase-workflow",
     "author": "ForgeFlow, ACSONE SA/NV, Odoo Community Association (OCA)",
@@ -15,5 +15,6 @@
         "views/res_partner.xml",
         "views/purchase_order_view.xml",
         "views/res_config_view.xml",
+        "reports/purchase_order_template.xml",
     ],
 }

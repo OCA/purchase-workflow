@@ -1,0 +1,442 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_invoice_plan
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2026-05-23 16:01+0000\n"
+"Last-Translator: Pablo Castelo <pablocv@gmx.es>\n"
+"Language-Team: none\n"
+"Language: gl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__amount
+#: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_tree
+#: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_tree_readonly
+msgid "Amount"
+msgstr "Importe"
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__amount_invoiced
+msgid "Amount Invoiced"
+msgstr "Importe Facturado"
+
+#. module: purchase_invoice_plan
+#: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.purchase_order_form
+msgid "Are you sure to remove this invoice plan?"
+msgstr "Estás seguro de eliminar este plan de facturas?"
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields,help:purchase_invoice_plan.field_purchase_order__ip_invoice_plan
+msgid "At least one invoice plan line pending to create invoice"
+msgstr "Polo menos unha liña do plan de factura pendente para crear a factura"
+
+#. module: purchase_invoice_plan
+#: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_make_planned_invoice
+msgid "Bill Purchase Order"
+msgstr "Factura Orde de compra"
+
+#. module: purchase_invoice_plan
+#: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_filter
+msgid "Bills Received"
+msgstr "Facturas Recibidas"
+
+#. module: purchase_invoice_plan
+#: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_make_planned_invoice
+msgid ""
+"Bills will be created in draft for this installment\n"
+"                        so that you can review them before validation."
+msgstr ""
+"As facturas crearanse en borrador para este prazo\n"
+"                        para que poida revisalas antes da validación."
+
+#. module: purchase_invoice_plan
+#: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_create_invoice_plan
+#: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_make_planned_invoice
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: purchase_invoice_plan
+#: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_make_planned_invoice
+msgid "Create All Remaining Bills"
+msgstr "Crear todas as facturas restantes"
+
+#. module: purchase_invoice_plan
+#: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.purchase_order_form
+msgid "Create Bill by Plan"
+msgstr "Crear factura por plan"
+
+#. module: purchase_invoice_plan
+#: model:ir.actions.act_window,name:purchase_invoice_plan.action_purchase_create_invoice_plan
+#: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_create_invoice_plan
+msgid "Create Invoice Plan"
+msgstr "Crear plan de facturas"
+
+#. module: purchase_invoice_plan
+#: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_make_planned_invoice
+msgid "Create Next Bill"
+msgstr "Crear factura seguinte"
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_create_invoice_plan__create_uid
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__create_uid
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_make_planned_invoice__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_create_invoice_plan__create_date
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__create_date
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_make_planned_invoice__create_date
+msgid "Created on"
+msgstr "Creado o"
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields.selection,name:purchase_invoice_plan.selection__purchase_create_invoice_plan__interval_type__day
+msgid "Day"
+msgstr "Día"
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_create_invoice_plan__display_name
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__display_name
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_make_planned_invoice__display_name
+msgid "Display Name"
+msgstr "Mostrar Nome"
+
+#. module: purchase_invoice_plan
+#: model:ir.model,name:purchase_invoice_plan.model_purchase_create_invoice_plan
+msgid "Fillig invoice planning criteria"
+msgstr "Cumprimento de criterios de planificación de facturas"
+
+#. module: purchase_invoice_plan
+#: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_filter
+msgid "Group By"
+msgstr "Agrupar Por"
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_create_invoice_plan__id
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__id
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_make_planned_invoice__id
+msgid "ID"
+msgstr "ID (identificación)"
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields,help:purchase_invoice_plan.field_purchase_invoice_plan__invoiced
+msgid "If this line already invoiced"
+msgstr "Se esta liña xa se facturou"
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields,help:purchase_invoice_plan.field_purchase_invoice_plan__to_invoice
+msgid "If this line is ready to create new invoice"
+msgstr "Se esta liña está lista para crear unha nova factura"
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__installment
+#: model:ir.model.fields.selection,name:purchase_invoice_plan.selection__purchase_invoice_plan__invoice_type__installment
+#: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_filter
+msgid "Installment"
+msgstr "Cota"
+
+#. module: purchase_invoice_plan
+#. odoo-python
+#: code:addons/purchase_invoice_plan/models/purchase.py:0
+#, python-format
+msgid ""
+"Installment %s: already used and not allowed to delete.\n"
+"Please discard changes."
+msgstr ""
+"Prazo %s: xa utilizado e non se permite borrar.\n"
+"Por favor, descarte os cambios."
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_create_invoice_plan__installment_date
+msgid "Installment Date"
+msgstr "Data da cota"
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_create_invoice_plan__interval
+msgid "Interval"
+msgstr "Intervalo"
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_create_invoice_plan__interval_type
+msgid "Interval Type"
+msgstr "Tipo de Intervalo"
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__invoiced
+msgid "Invoice Created"
+msgstr "Factura Creada"
+
+#. module: purchase_invoice_plan
+#: model:ir.actions.act_window,name:purchase_invoice_plan.action_view_purchase_make_planned_invoice
+msgid "Invoice Order"
+msgstr "Orde de factura"
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_order__invoice_plan_ids
+#: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.purchase_order_form
+msgid "Invoice Plan"
+msgstr "Plan de factura"
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_order__ip_invoice_plan
+msgid "Invoice Plan In Process"
+msgstr "Plan de Factura en Proceso"
+
+#. module: purchase_invoice_plan
+#: model:ir.model,name:purchase_invoice_plan.model_purchase_invoice_plan
+msgid "Invoice Planning Detail"
+msgstr "Detalle de Planificación de Facturas"
+
+#. module: purchase_invoice_plan
+#. odoo-python
+#: code:addons/purchase_invoice_plan/models/purchase.py:0
+#, python-format
+msgid "Invoice plan total percentage must not exceed 100%"
+msgstr "A porcentaxe total do plan de facturación non debe superar o 100%"
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__invoice_ids
+msgid "Invoices"
+msgstr "Facturas"
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__last
+msgid "Last Installment"
+msgstr "Última cota"
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_create_invoice_plan____last_update
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan____last_update
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_make_planned_invoice____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación o"
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_create_invoice_plan__write_uid
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__write_uid
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_make_planned_invoice__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_create_invoice_plan__write_date
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__write_date
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_make_planned_invoice__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización o"
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields,help:purchase_invoice_plan.field_purchase_invoice_plan__last
+msgid "Last installment will create invoice use remaining amount"
+msgstr "A última cota creará o importe restante do uso da factura"
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields.selection,name:purchase_invoice_plan.selection__purchase_create_invoice_plan__interval_type__month
+msgid "Month"
+msgstr "Mes"
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__to_invoice
+msgid "Next Invoice"
+msgstr "Próxima Factura"
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__no_edit
+msgid "No Edit"
+msgstr "Non Editar"
+
+#. module: purchase_invoice_plan
+#. odoo-python
+#: code:addons/purchase_invoice_plan/wizard/purchase_create_invoice_plan.py:0
+#, python-format
+msgid "Number Installment must greater than 1"
+msgstr "O número de cotas debe ser maior que 1"
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_create_invoice_plan__num_installment
+msgid "Number of Installment"
+msgstr "Número de cotas"
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__percent
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_order__ip_total_percent
+#: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_tree_readonly
+msgid "Percent"
+msgstr "Porcentaxe"
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__plan_date
+msgid "Plan Date"
+msgstr "Data do Plan"
+
+#. module: purchase_invoice_plan
+#. odoo-python
+#: code:addons/purchase_invoice_plan/models/purchase.py:0
+#, python-format
+msgid ""
+"Plan quantity: %(plan)s, exceed invoiceable quantity: %(qty)s\n"
+"Product should be delivered before invoice"
+msgstr ""
+"Cantidade planificada: %(plan)s, supera a cantidade facturable: %(qty)s\n"
+"O produto debe entregarse antes da factura"
+
+#. module: purchase_invoice_plan
+#. odoo-python
+#: code:addons/purchase_invoice_plan/models/purchase.py:0
+#, python-format
+msgid "Please fill percentage for all invoice plan lines"
+msgstr "Complete a porcentaxe para todas as liñas do plan de factura"
+
+#. module: purchase_invoice_plan
+#: model:ir.actions.act_window,name:purchase_invoice_plan.action_purchase_invoice_plan
+#: model:ir.ui.menu,name:purchase_invoice_plan.menu_purchase_invoice_plan
+msgid "Purchase Invoice Plan"
+msgstr "Plan de Facturación de Compra"
+
+#. module: purchase_invoice_plan
+#: model:ir.model,name:purchase_invoice_plan.model_purchase_order
+#: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_filter
+msgid "Purchase Order"
+msgstr "Orde de Compra"
+
+#. module: purchase_invoice_plan
+#: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_filter
+msgid "Purchase Orders"
+msgstr "Ordes de Compra"
+
+#. module: purchase_invoice_plan
+#: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_filter
+msgid "Purchase orders that have been invoiced."
+msgstr "Ordes de compra que foron facturadas."
+
+#. module: purchase_invoice_plan
+#: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_filter
+msgid "Purchase orders that include lines not invoiced."
+msgstr "Pedidos que inclúen liñas non facturadas."
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__purchase_id
+msgid "Purchases Order"
+msgstr "Ordes de compra"
+
+#. module: purchase_invoice_plan
+#: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_filter
+msgid "Quotations"
+msgstr "Orzamentos"
+
+#. module: purchase_invoice_plan
+#: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_form
+msgid "Related Bills"
+msgstr "Facturas relacionadas"
+
+#. module: purchase_invoice_plan
+#: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_filter
+msgid "Search Purchase Invoice Plan Lines"
+msgstr "Buscar liñas do plan de facturas de compra"
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__state
+#: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_filter
+msgid "Status"
+msgstr "Estados"
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__partner_id
+#: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_filter
+msgid "Supplier"
+msgstr "Provedor"
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields,help:purchase_invoice_plan.field_purchase_invoice_plan__amount
+msgid "This amount will be used to calculate the percent"
+msgstr "Este importe utilizarase para calcular a porcentaxe"
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields,help:purchase_invoice_plan.field_purchase_invoice_plan__percent
+msgid "This percent will be used to calculate new quantity"
+msgstr "Esta porcentaxe utilizarase para calcular a nova cantidade"
+
+#. module: purchase_invoice_plan
+#: model_terms:ir.actions.act_window,help:purchase_invoice_plan.action_purchase_invoice_plan
+msgid "This view show all available invoice plan line for reporting purposes"
+msgstr ""
+"Esta vista mostra todas as liñas do plan de facturas dispoñibles para fins "
+"de informes"
+
+#. module: purchase_invoice_plan
+#: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_create_invoice_plan
+msgid "This wizard help you quickly create invoice plan."
+msgstr "Este asistente axúdalle a crear rapidamente un plan de facturación."
+
+#. module: purchase_invoice_plan
+#: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_filter
+msgid "To Approve"
+msgstr "A Aprobar"
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_order__ip_total_amount
+msgid "Total Amount"
+msgstr "Importe Total"
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__invoice_type
+msgid "Type"
+msgstr "Tipo"
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_order__use_invoice_plan
+msgid "Use Invoice Plan"
+msgstr "Usar Plan de Facturas"
+
+#. module: purchase_invoice_plan
+#. odoo-python
+#: code:addons/purchase_invoice_plan/models/purchase.py:0
+#, python-format
+msgid "Use Invoice Plan selected, but no plan created"
+msgstr "Usar plan de factura seleccionado, pero non creado ningún plan"
+
+#. module: purchase_invoice_plan
+#: model_terms:ir.actions.act_window,help:purchase_invoice_plan.action_purchase_invoice_plan
+msgid "View purchase invoice plan lines"
+msgstr "Ver liñas do plan de facturas de compra"
+
+#. module: purchase_invoice_plan
+#: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_filter
+msgid "Waiting Bills"
+msgstr "Facturas en espera"
+
+#. module: purchase_invoice_plan
+#: model:ir.model,name:purchase_invoice_plan.model_purchase_make_planned_invoice
+msgid "Wizard when create invoice by plan"
+msgstr "Asistente ao crear factura por plan"
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields.selection,name:purchase_invoice_plan.selection__purchase_create_invoice_plan__interval_type__year
+msgid "Year"
+msgstr "Ano"
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields,help:purchase_invoice_plan.field_purchase_invoice_plan__partner_id
+msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
+msgstr ""
+"Pode atopar un vendedor polo seu nome, NIF, correo electrónico ou referencia "
+"interna."
+
+#. module: purchase_invoice_plan
+#: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.purchase_order_form
+msgid "⇒ Create Invoice Plan"
+msgstr "⇒ Crear plan de facturas"
+
+#. module: purchase_invoice_plan
+#: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.purchase_order_form
+msgid "⇒ Remove Invoice Plan"
+msgstr "⇒ Eliminar plan de factura"

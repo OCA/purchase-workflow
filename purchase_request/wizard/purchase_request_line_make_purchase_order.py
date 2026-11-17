@@ -164,7 +164,9 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         min_qty = item.line_id._get_supplier_min_qty(product, po.partner_id)
         qty = max(qty, min_qty)
         date_required = item.line_id.date_required
+        name = self._get_purchase_line_name(po, item)
         return {
+            "name": name,
             "order_id": po.id,
             "product_id": product.id,
             "product_uom": product.uom_po_id.id or product.uom_id.id,
@@ -194,10 +196,9 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
     @api.model
     def _get_order_line_search_domain(self, order, item):
         vals = self._prepare_purchase_order_line(order, item)
-        name = self._get_purchase_line_name(order, item)
         order_line_data = [
             ("order_id", "=", order.id),
-            ("name", "=", name),
+            ("name", "=", vals["name"]),
             ("product_id", "=", item.product_id.id),
             ("product_uom", "=", vals["product_uom"]),
             ("analytic_distribution", "=?", item.line_id.analytic_distribution),
@@ -325,7 +326,7 @@ class PurchaseRequestLineMakePurchaseOrderItem(models.TransientModel):
         string="Wizard",
         required=True,
         ondelete="cascade",
-        readonly=True,
+        readonly=False,
     )
     line_id = fields.Many2one(
         comodel_name="purchase.request.line", string="Purchase Request Line"
