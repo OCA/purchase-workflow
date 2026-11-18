@@ -2,14 +2,17 @@
 # @author Guillaume MASSON <guillaume.masson@akretion.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from datetime import timedelta
+from datetime import datetime, timedelta
 from unittest.mock import patch
 
-from odoo import Command, fields
+from freezegun import freeze_time
+
+from odoo import Command
 
 from .common import TransitReceiptCommon
 
 
+@freeze_time("2026-11-18 10:00:00")
 class TestProcurement(TransitReceiptCommon):
     @classmethod
     def setUpClass(cls):
@@ -49,7 +52,7 @@ class TestProcurement(TransitReceiptCommon):
                     {
                         "warehouse_id": self.warehouse,
                         "group_id": group,
-                        "date_deadline": fields.Datetime.now() + timedelta(days=10),
+                        "date_deadline": datetime(2026, 11, 28, 10, 0),
                     },
                 )
             ]
@@ -102,6 +105,21 @@ class TestProcurement(TransitReceiptCommon):
         self._procure()
         self.assertEqual(self._purchase(), purchase)
         self.assertEqual(purchase.order_line.product_qty, 5)
+
+    def test_two_steps_transit_purchase(self):
+        self.warehouse.reception_steps = "two_steps"
+        purchase, delivery = self._confirmed_transit_purchase()
+        transit_receipt = purchase.picking_ids
+        self._validate(transit_receipt)
+        physical_receipt = self._next_picking(transit_receipt)
+        self.assertEqual(physical_receipt.picking_type_id, self.warehouse.in_type_id)
+        self._validate(physical_receipt)
+        self.assertEqual(purchase.order_line.qty_received, 5)
+        storage = self._next_picking(physical_receipt)
+        self.assertEqual(storage.move_ids.move_dest_ids, delivery.move_ids)
+        self.assertEqual(delivery.state, "waiting")
+        self._validate(storage)
+        self.assertEqual(delivery.state, "assigned")
 
     def test_partial_transit_receipt(self):
         with self._require_transit_receipt():
