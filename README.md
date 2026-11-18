@@ -25,6 +25,7 @@ addon | version | maintainers | summary
 [purchase_all_shipments](purchase_all_shipments/) | 20.0.1.0.0 |  | Purchase All Shipments
 [purchase_lot](purchase_lot/) | 20.0.1.0.0 | <a href='https://github.com/florian-dacosta'><img src='https://github.com/florian-dacosta.png' width='32' height='32' style='border-radius:50%;' alt='florian-dacosta'/></a> | Purchase Lot
 [purchase_order_internal_note](purchase_order_internal_note/) | 20.0.1.0.0 |  | Adds an internal note to purchase orders, not printed in reports
+[purchase_order_line_menu](purchase_order_line_menu/) | 20.0.1.0.1 |  | Adds Purchase Order Lines Menu
 [purchase_order_line_price_unit_digits](purchase_order_line_price_unit_digits/) | 20.0.1.0.1 | <a href='https://github.com/chienandalu'><img src='https://github.com/chienandalu.png' width='32' height='32' style='border-radius:50%;' alt='chienandalu'/></a> <a href='https://github.com/rafaelbn'><img src='https://github.com/rafaelbn.png' width='32' height='32' style='border-radius:50%;' alt='rafaelbn'/></a> | Legacy digits visualization for price unit
 
 [//]: # (end addons)
