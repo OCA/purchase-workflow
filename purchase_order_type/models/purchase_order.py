@@ -56,6 +56,44 @@ class PurchaseOrder(models.Model):
                     )
         return super().create(vals_list)
 
+    def write(self, vals):
+        """A new type of a request for quotation can have another sequence:
+        the reference follows it while the order is not confirmed."""
+        new_type = self.env["purchase.order.type"].browse(vals.get("order_type"))
+        if not new_type.sequence_id or "name" in vals:
+            return super().write(vals)
+        to_rename = self.filtered(lambda order: order._must_follow_type(new_type))
+        for order in to_rename:
+            super(PurchaseOrder, order).write(
+                dict(
+                    vals,
+                    name=new_type.sequence_id.next_by_id(
+                        sequence_date=vals.get("date_order") or order.date_order
+                    ),
+                )
+            )
+        return super(PurchaseOrder, self - to_rename).write(vals)
+
+    def _must_follow_type(self, new_type):
+        """Whether the reference must change to the sequence of ``new_type``."""
+        self.ensure_one()
+        if self.state not in ("draft", "sent"):
+            return False
+        old_sequence = self.order_type.sequence_id
+        if old_sequence == new_type.sequence_id:
+            return False
+        # An order whose type has no sequence got the default one: keep its
+        # reference when the new type uses that same sequence
+        default_sequence = self.env["ir.sequence"].search(
+            [
+                ("code", "=", "purchase.order"),
+                ("company_id", "in", [self.company_id.id, False]),
+            ],
+            order="company_id",
+            limit=1,
+        )
+        return bool(old_sequence) or new_type.sequence_id != default_sequence
+
     def _set_order_type_defaults(self, vals_list):
         """Resolve a missing order type, then carry its payment term/incoterm.
 
