@@ -19,15 +19,18 @@ class PurchaseOrder(models.Model):
     @api.depends("partner_id", "incoterm_id")
     def _compute_picking_type_id(self):
         for order in self:
-            picking_type = order.picking_type_id or order._get_picking_type(
-                order.company_id.id
+            order.picking_type_id = order._get_receipt_picking_type(
+                order.picking_type_id or order._get_picking_type(order.company_id.id)
             )
-            warehouse = picking_type.warehouse_id
-            if order._requires_transit_receipt():
-                picking_type = warehouse.transit_in_type_id or picking_type
-            elif picking_type == warehouse.transit_in_type_id:
-                picking_type = warehouse.in_type_id
-            order.picking_type_id = picking_type
+
+    def _get_receipt_picking_type(self, picking_type):
+        self.ensure_one()
+        warehouse = picking_type.warehouse_id
+        if self._requires_transit_receipt():
+            return warehouse.transit_in_type_id or picking_type
+        if picking_type == warehouse.transit_in_type_id:
+            return warehouse.in_type_id
+        return picking_type
 
     def _requires_transit_receipt(self):
         self.ensure_one()
