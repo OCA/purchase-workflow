@@ -1,0 +1,50 @@
+<odoo>
+    <!-- Inherited by purchase and purchase_stock primary list views -->
+    <record id="product_supplierinfo_tree_view" model="ir.ui.view">
+        <field name="model">product.supplierinfo</field>
+        <field name="inherit_id" ref="product.product_supplierinfo_tree_view" />
+        <field name="arch" type="xml">
+            <field name="price" position="before">
+                <field name="hide_price" column_invisible="1" />
+            </field>
+            <field name="price" position="attributes">
+                <attribute name="invisible">hide_price</attribute>
+            </field>
+            <field name="discount" position="attributes">
+                <attribute name="invisible">hide_price</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="product_supplierinfo_form_view" model="ir.ui.view">
+        <field name="model">product.supplierinfo</field>
+        <field name="inherit_id" ref="product.product_supplierinfo_form_view" />
+        <field name="arch" type="xml">
+            <field name="price" position="before">
+                <field name="hide_price" invisible="1" />
+            </field>
+            <xpath expr="//label[@for='price']" position="attributes">
+                <attribute name="invisible">hide_price</attribute>
+            </xpath>
+            <xpath expr="//field[@name='price']/.." position="attributes">
+                <attribute name="invisible">hide_price</attribute>
+            </xpath>
+            <field name="discount" position="attributes">
+                <attribute name="invisible">hide_price</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="product_supplierinfo_view_kanban" model="ir.ui.view">
+        <field name="model">product.supplierinfo</field>
+        <field name="inherit_id" ref="product.product_supplierinfo_view_kanban" />
+        <field name="arch" type="xml">
+            <field name="currency_id" position="after">
+                <field name="hide_price" />
+            </field>
+            <field name="price" position="attributes">
+                <attribute name="invisible">hide_price</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>
