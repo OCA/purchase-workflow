@@ -12,13 +12,13 @@
                     name="auto_rfq_from_suppliers"
                     type="object"
                     string="Generate RFQs for suppliers"
-                    attrs="{'invisible': ['|', ('line_ids', '=', []), ('state', '!=', 'in_progress')]}"
+                    invisible="not line_ids or state != 'confirmed' or requisition_type != 'purchase_template'"
                 />
             </xpath>
-            <xpath expr="//field[@name='line_ids']/tree" position="inside">
-                <field name="prod_has_supplier" invisible="1" />
+            <xpath expr="//field[@name='line_ids']/list" position="inside">
+                <field name="prod_has_supplier" column_invisible="True" />
             </xpath>
-            <xpath expr="//field[@name='line_ids']/tree" position="attributes">
+            <xpath expr="//field[@name='line_ids']/list" position="attributes">
                 <attribute name="decoration-danger">not prod_has_supplier</attribute>
             </xpath>
         </field>

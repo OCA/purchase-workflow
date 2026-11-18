@@ -6,8 +6,8 @@
         <field
             name="seller_ids"
             eval="[
-(0, False, {'name': ref('base.res_partner_2')}),
-(0, False, {'name': ref('base.res_partner_3')}),
+(0, False, {'partner_id': ref('base.res_partner_2')}),
+(0, False, {'partner_id': ref('base.res_partner_3')}),
 ]"
         />
     </record>
@@ -18,8 +18,8 @@
         <field
             name="seller_ids"
             eval="[
-(0, False, {'name': ref('base.res_partner_3')}),
-(0, False, {'name': ref('base.res_partner_4')}),
+(0, False, {'partner_id': ref('base.res_partner_3')}),
+(0, False, {'partner_id': ref('base.res_partner_4')}),
 ]"
         />
     </record>

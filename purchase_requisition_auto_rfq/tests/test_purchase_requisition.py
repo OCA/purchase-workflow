@@ -1,115 +1,155 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo.tests.common import SavepointCase
+from odoo import Command
+from odoo.tests import TransactionCase, new_test_user
 
 
-class TestPurchaseRequisition(SavepointCase):
-    def setUp(self):
-        super().setUp()
-        self._init_products()
-        self._init_requisitions()
-
-    def _init_products(self):
-        self._kitchenset = self.env.ref("purchase_requisition_auto_rfq.kitchenset")
-        self._blankets = self.env.ref("purchase_requisition_auto_rfq.blankets")
-        self._tarpaulin = self.env.ref("purchase_requisition_auto_rfq.tarpaulin")
-
-    def _init_requisitions(self):
-        uom = self._kitchenset.uom_po_id
-        self._requisition1 = self.env["purchase.requisition"].create(
-            {
-                "name": "PR01",
-                "line_ids": [
-                    (
-                        0,
-                        False,
-                        {
-                            "product_id": self._kitchenset.id,
-                            "product_qty": 10,
-                            "product_uom_id": uom.id,
-                        },
-                    ),
-                    (
-                        0,
-                        False,
-                        {
-                            "product_id": self._blankets.id,
-                            "product_qty": 100,
-                            "product_uom_id": uom.id,
-                        },
-                    ),
-                ],
-            }
+class TestPurchaseRequisition(TransactionCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
+        cls.purchase_user = new_test_user(
+            cls.env, login="rfq_purchase_user", groups="purchase.group_purchase_user"
+        )
+        cls.vendor_a, cls.vendor_b, cls.vendor_c = cls.env["res.partner"].create(
+            [{"name": name} for name in ("Vendor A", "Vendor B", "Vendor C")]
+        )
+        cls.kitchenset, cls.blankets, cls.tarpaulin = cls.env["product.product"].create(
+            [
+                {
+                    "name": "Kitchen Set",
+                    "seller_ids": [
+                        Command.create({"partner_id": supplier.id})
+                        for supplier in (cls.vendor_a, cls.vendor_b)
+                    ],
+                },
+                {
+                    "name": "Blankets",
+                    "seller_ids": [
+                        Command.create({"partner_id": supplier.id})
+                        for supplier in (cls.vendor_b, cls.vendor_c)
+                    ],
+                },
+                {"name": "Tarpaulin <samples>"},
+            ]
         )
 
-        self._requisition2 = self.env["purchase.requisition"].create(
-            {
-                "name": "PR02",
-                "line_ids": [
-                    (
-                        0,
-                        False,
-                        {
-                            "product_id": self._tarpaulin.id,
-                            "product_qty": 10,
-                            "product_uom_id": uom.id,
-                        },
-                    ),
-                    (
-                        0,
-                        False,
-                        {
-                            "product_id": self._blankets.id,
-                            "product_qty": 100,
-                            "product_uom_id": uom.id,
-                        },
-                    ),
-                ],
-            }
+    def _create_template(self, *products, buyer=None):
+        agreement = (
+            self.env["purchase.requisition"]
+            .with_user(self.purchase_user)
+            .create(
+                {
+                    "requisition_type": "purchase_template",
+                    "user_id": buyer and buyer.id,
+                    "description": "<p>Quotation terms</p>",
+                    "line_ids": [
+                        Command.create(
+                            {
+                                "product_id": product.id,
+                                "product_qty": quantity,
+                                "price_unit": price,
+                            }
+                        )
+                        for product, quantity, price in products
+                    ],
+                }
+            )
         )
+        agreement.action_confirm()
+        return agreement
 
     def test_auto_rfq_from_suppliers(self):
-        rfqs = self._requisition1.auto_rfq_from_suppliers()
+        buyer = new_test_user(
+            self.env, login="rfq_agreement_buyer", groups="purchase.group_purchase_user"
+        )
+        agreement = self._create_template(
+            (self.kitchenset, 10, 12), (self.blankets, 100, 3), buyer=buyer
+        )
 
-        msg = "Expected 3 distinct RFQs, got %r" % rfqs
-        self.assertEqual(3, len(rfqs), msg=msg)
+        rfqs = agreement.auto_rfq_from_suppliers()
 
-        actual = self._get_supplier_products(rfqs)
-        expected = {
-            self.env.ref("base.res_partner_3"): [self._kitchenset, self._blankets],
-            self.env.ref("base.res_partner_2"): [self._kitchenset],
-            self.env.ref("base.res_partner_4"): [self._blankets],
-        }
-
-        self.assertDictEqual(expected, dict(actual))
-
-        msg = "Expected 1 messages, got: %d" % len(self._requisition1.message_ids)
-        self.assertEqual(1, len(self._requisition1.message_ids), msg=msg)
-
-    def _get_supplier_products(self, rfqs):
-        return {
-            rfq.partner_id: [line.product_id for line in rfq.order_line] for rfq in rfqs
-        }
+        self.assertEqual(len(rfqs), 3)
+        self.assertEqual(agreement.purchase_ids, rfqs)
+        self.assertEqual(rfqs.user_id, buyer)
+        self.assertEqual(rfqs.company_id, agreement.company_id)
+        self.assertEqual(rfqs.currency_id, agreement.currency_id)
+        self.assertEqual(rfqs.mapped("state"), ["draft"] * 3)
+        self.assertEqual(set(rfqs.mapped("origin")), {agreement.name})
+        self.assertEqual(set(rfqs.mapped("notes")), {agreement.description})
+        self.assertEqual(
+            {
+                rfq.partner_id: [
+                    (line.product_id, line.product_qty, line.price_unit)
+                    for line in rfq.order_line
+                ]
+                for rfq in rfqs
+            },
+            {
+                self.vendor_a: [(self.kitchenset, 10, 12)],
+                self.vendor_b: [(self.kitchenset, 10, 12), (self.blankets, 100, 3)],
+                self.vendor_c: [(self.blankets, 100, 3)],
+            },
+        )
+        self.assertFalse(agreement.message_ids.filtered_domain(self._message_domain()))
 
     def test_auto_rfq_from_suppliers_no_supplier(self):
-        rfqs = self._requisition2.auto_rfq_from_suppliers()
+        agreement = self._create_template(
+            (self.tarpaulin, 10, 12), (self.blankets, 100, 3)
+        )
 
-        msg = "Expected 2 distinct RFQs, got %r" % rfqs
-        self.assertEqual(2, len(rfqs), msg=msg)
+        rfqs = agreement.auto_rfq_from_suppliers()
 
-        actual = self._get_supplier_products(rfqs)
-        expected = {
-            self.env.ref("base.res_partner_3"): [self._blankets],
-            self.env.ref("base.res_partner_4"): [self._blankets],
-        }
+        self.assertEqual(len(rfqs), 2)
+        self.assertEqual(rfqs.partner_id, self.vendor_b | self.vendor_c)
+        self.assertEqual(rfqs.order_line.product_id, self.blankets)
+        self.assertEqual(rfqs.user_id, self.purchase_user)
+        self.assertEqual(agreement.line_ids.mapped("prod_has_supplier"), [False, True])
+        message = agreement.message_ids.filtered_domain(self._message_domain())
+        self.assertEqual(len(message), 1)
+        self.assertIn("<li>Tarpaulin &lt;samples&gt;</li>", message.body)
 
-        self.assertDictEqual(expected, dict(actual))
-        self.assertEqual(2, len(self._requisition2.message_ids))
+    def test_suppliers_for_other_variants_and_companies_are_ignored(self):
+        other_company = self.env["res.company"].create({"name": "Another company"})
+        attribute = self.env["product.attribute"].create({"name": "Colour"})
+        values = self.env["product.attribute.value"].create(
+            [
+                {"name": name, "attribute_id": attribute.id}
+                for name in ("White", "Black")
+            ]
+        )
+        template = self.env["product.template"].create(
+            {
+                "name": "Variant product",
+                "attribute_line_ids": [
+                    Command.create(
+                        {
+                            "attribute_id": attribute.id,
+                            "value_ids": [Command.set(values.ids)],
+                        }
+                    )
+                ],
+            }
+        )
+        product, other_variant = template.product_variant_ids
+        template.seller_ids = [
+            Command.create({"partner_id": self.vendor_a.id, "product_id": product.id}),
+            Command.create(
+                {"partner_id": self.vendor_b.id, "product_id": other_variant.id}
+            ),
+            Command.create(
+                {"partner_id": self.vendor_c.id, "company_id": other_company.id}
+            ),
+        ]
+        agreement = self._create_template((product, 5, 10))
 
-        found = False
-        for msg in self._requisition2.message_ids:
-            if msg.body and "RFQ generation" in msg.body:
-                self.assertIn("Tarpaulin", msg.body)
-                found = True
+        self.assertEqual(agreement.auto_rfq_from_suppliers().partner_id, self.vendor_a)
 
-        self.assertTrue(found, msg="No message about missing supplier found")
+        template.seller_ids.filtered(lambda s: s.partner_id == self.vendor_a).unlink()
+        self.assertFalse(agreement.line_ids.prod_has_supplier)
+        self.assertFalse(agreement.auto_rfq_from_suppliers())
+
+    @staticmethod
+    def _message_domain():
+        return [("subject", "=", "RFQ Generation")]
