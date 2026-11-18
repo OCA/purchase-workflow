@@ -373,6 +373,57 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
             ].requested_product_uom_qty,
         )
 
+    def test_purchase_request_stock_allocation_locked_po(self):
+        """A locked purchase order must not close the allocation.
+
+        With ``po_lock = 'lock'`` the order is locked as soon as it is
+        approved. That is a modification lock, not a completion: receipts
+        still happen afterwards. The allocation has to stay open so the
+        incoming quantity is allocated and the requester is notified.
+        """
+        self.env.company.po_lock = "lock"
+        purchase_request = self.purchase_request.create(
+            {
+                "picking_type_id": self.env.ref("stock.picking_type_in").id,
+                "requested_by": SUPERUSER_ID,
+            }
+        )
+        purchase_request_line = self.purchase_request_line.create(
+            {
+                "request_id": purchase_request.id,
+                "product_id": self.product_product.id,
+                "product_uom_id": self.env.ref("uom.product_uom_unit").id,
+                "product_qty": 10.0,
+            }
+        )
+        purchase_request.button_approved()
+        wiz_id = self.wiz.with_context(
+            active_model="purchase.request.line",
+            active_ids=[purchase_request_line.id],
+        ).create({"supplier_id": self.supplier.id})
+        wiz_id.make_purchase_order()
+        purchase = purchase_request_line.purchase_lines[0].order_id
+        purchase.button_confirm()
+        self.assertEqual(purchase.state, "purchase")
+        self.assertTrue(purchase.locked)
+
+        allocation = purchase_request_line.purchase_request_allocation_ids[0]
+        self.assertEqual(allocation.open_product_qty, 10.0)
+
+        picking = purchase.picking_ids[0]
+        picking.move_line_ids[0].write({"quantity": 10.0})
+        picking.button_validate()
+
+        self.assertEqual(allocation.allocated_product_qty, 10.0)
+        self.assertEqual(purchase_request_line.qty_done, 10.0)
+        self.assertTrue(
+            purchase_request.message_ids.filtered(
+                lambda m: m.subtype_id
+                == self.env.ref("purchase_request.mt_request_picking_done")
+            ),
+            "The requester was not notified of the receipt.",
+        )
+
     def test_purchase_request_stock_allocation_unlink(self):
         product = self.product_product
 
