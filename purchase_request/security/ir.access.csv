@@ -1,0 +1,22 @@
+id,name,model_id,group_id/id,operation,domain
+purchase_request_comp_rule,Purchase Request multi-company,purchase.request,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"
+purchase_request_rule,Purchase Request User,purchase.request,group_purchase_request_user,crud,"[('requested_by', '=', user.id)]"
+purchase_request_followers_rule,Follow Purchase Request,purchase.request,group_purchase_request_user,r,"['|', ('requested_by', '=', user.id), ('message_partner_ids', 'in', [user.partner_id.id])]"
+access_purchase_request_manager,purchase.request,purchase.request,group_purchase_request_manager,crud,
+access_purchase_request_stock_user,purchase.request.stock,purchase.request,stock.group_stock_user,r,
+access_purchase_request_purchase_user,purchase.request,purchase.request,purchase.group_purchase_user,r,
+purchase_request_line_comp_rule,Purchase Request Line multi-company,purchase.request.line,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"
+purchase_request_line_rule,Purchase Request Line User,purchase.request.line,group_purchase_request_user,crud,"[('request_id.requested_by', '=', user.id)]"
+purchase_request_line_followers_rule,Follow Purchase Request Line,purchase.request.line,group_purchase_request_user,r,"['|', ('request_id.requested_by', '=', user.id), ('request_id.message_partner_ids', 'in', [user.partner_id.id])]"
+access_purchase_request_line_manager,purchase.request.line,purchase.request.line,group_purchase_request_manager,crud,
+access_purchase_request_line_stock_user,purchase.request.line.stock,purchase.request.line,stock.group_stock_user,cru,
+access_purchase_request_line_purchase_user,purchase.request.line,purchase.request.line,purchase.group_purchase_user,r,
+access_stock_move_purchase_request_user,stock.move,stock.move,group_purchase_request_user,r,
+access_purchase_order_user,access.purchase.order.user,purchase.order,group_purchase_request_user,r,
+access_purchase_order_line_user,access.purchase.order.line.user,purchase.order.line,group_purchase_request_user,r,
+access_purchase_order_manager,access.purchase.order.manager,purchase.order,group_purchase_request_manager,r,
+access_purchase_order_line_manager,access.purchase.order.line.manager,purchase.order.line,group_purchase_request_manager,r,
+access_purchase_request_allocation_manager,purchase.request.allocation,purchase.request.allocation,group_purchase_request_manager,crud,
+access_purchase_request_allocation_user,purchase.request.allocation,purchase.request.allocation,base.group_user,cru,
+access_purchase_request_line_make_purchase_order,purchase.request.line.make.purchase.order,purchase.request.line.make.purchase.order,purchase.group_purchase_user,cru,
+access_purchase_request_line_make_purchase_order_item,access_purchase_request_line_make_purchase_order_item,purchase.request.line.make.purchase.order.item,purchase.group_purchase_user,crud,
