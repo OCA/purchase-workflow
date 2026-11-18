@@ -178,3 +178,29 @@ class TestPurchaseAdvancePaymentLine(common.TransactionCase):
         pline = self._create_payment_line(100.0)
         vals = pline._prepare_account_payment_vals()
         self.assertEqual(vals.get("purchase_id"), self.purchase_order.id)
+
+    def test_12_action_view_ongoing_payment_lines_form_skips_cancelled_line(self):
+        """Test the form opens the ongoing line when another line is cancelled.
+
+        The first payment order is cancelled before the next line is created,
+        so that line goes to a new draft payment order and stays ongoing.
+        """
+        cancelled_line = self._create_payment_line(100.0)
+        cancelled_line.order_id.action_cancel()
+        ongoing_line = self._create_payment_line(200.0)
+        action = self.purchase_order.action_view_ongoing_payment_lines()
+        self.assertEqual(action["view_mode"], "form")
+        self.assertEqual(action["res_id"], ongoing_line.id)
+
+    def test_13_action_view_ongoing_payment_lines_list_skips_cancelled_line(self):
+        """Test the list shows only the ongoing lines when another line is cancelled."""
+        cancelled_line = self._create_payment_line(100.0)
+        cancelled_line.order_id.action_cancel()
+        ongoing_lines = self._create_payment_line(200.0) | self._create_payment_line(
+            300.0
+        )
+        action = self.purchase_order.action_view_ongoing_payment_lines()
+        self.assertEqual(action["view_mode"], "list")
+        self.assertEqual(
+            self.env["account.payment.line"].search(action["domain"]), ongoing_lines
+        )
