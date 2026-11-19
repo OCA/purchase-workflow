@@ -35,6 +35,27 @@ class PurchaseOrderLine(models.Model):
     def onchange_product_uom_for_secondary(self):
         self._onchange_helper_product_uom_for_secondary()
 
+    @api.onchange("secondary_uom_qty")
+    def onchange_secondary_uom_qty(self):
+        """Select the first available secondary unit when a quantity is set."""
+        for line in self:
+            if (
+                line.secondary_uom_id
+                or not line.secondary_uom_qty
+                or not line.product_id
+            ):
+                continue
+            domain = [
+                "|",
+                ("product_id", "=", line.product_id.id),
+                "&",
+                ("product_tmpl_id.product_variant_ids", "in", [line.product_id.id]),
+                ("product_id", "=", False),
+            ]
+            line.secondary_uom_id = self.env["product.secondary.unit"].search(
+                domain, limit=1
+            )
+
     @api.onchange("product_id")
     def onchange_product_id(self):
         """If default purchases secondary unit set on product, put on secondary

@@ -76,3 +76,12 @@ class TestPurchaseOrderSecondaryUnit(TransactionCase):
             self.assertAlmostEqual(line_new.product_qty, 0.7, places=2)
             line_new.product_qty = 1
             self.assertEqual(line_new.secondary_uom_qty, 1.43)
+
+    def test_purchase_order_secondary_uom_autoselect(self):
+        purchase_order = Form(self.order)
+        with purchase_order.order_line.new() as line_new:
+            line_new.product_id = self.product
+            line_new.secondary_uom_id = self.env["product.secondary.unit"]
+            line_new.secondary_uom_qty = 5.0
+            self.assertEqual(line_new.secondary_uom_id, self.secondary_unit)
+            self.assertAlmostEqual(line_new.product_qty, 3.5, places=2)
