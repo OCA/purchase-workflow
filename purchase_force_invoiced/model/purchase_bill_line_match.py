@@ -8,17 +8,17 @@ class PurchaseBillLineMatch(models.Model):
     _inherit = "purchase.bill.line.match"
 
     @property
-    def _table_query(self):
+    def _table_sql(self):
         return SQL(
             """
-            SELECT * FROM (%s) AS matched
+            (SELECT * FROM %s AS matched
             WHERE matched.pol_id IS NULL
             OR matched.pol_id NOT IN (
                 SELECT pol.id
                 FROM purchase_order_line pol
                     JOIN purchase_order po ON pol.order_id = po.id
                 WHERE po.force_invoiced
-            )
+            ))
             """,
-            super()._table_query,
+            super()._table_sql,
         )
