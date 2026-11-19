@@ -2,10 +2,14 @@
 # Copyright 2019 Aleph Objects, Inc.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
+from unittest.mock import patch
+
 from odoo import fields
 from odoo.tests import tagged
+from odoo.tools import SQL
 
 from odoo.addons.base.tests.common import BaseCommon
+from odoo.addons.purchase.report.purchase_report import PurchaseReport
 
 
 @tagged("post_install", "-at_install")
@@ -158,3 +162,21 @@ class TestPurchaseForceInvoiced(BaseCommon):
         po.force_invoiced = True
         self.env.flush_all()
         self.assertFalse(self.match_model.search([("pol_id", "=", pol.id)]))
+
+    def test_report_substitution_failure_is_logged(self):
+        """An error is logged when the core query no longer matches"""
+        report = self.env["purchase.report"]
+        table = self.env["purchase.order.line"]._search([]).table
+        with (
+            patch.object(
+                PurchaseReport,
+                "_select_list",
+                lambda self, table: [SQL("1.0 AS qty_to_be_billed")],
+            ),
+            self.assertLogs(
+                "odoo.addons.purchase_force_invoiced.reports.purchase_report",
+                level="ERROR",
+            ) as logs,
+        ):
+            report._select_list(table)
+        self.assertIn("Query substitution failed", logs.output[0])
