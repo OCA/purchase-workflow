@@ -309,3 +309,16 @@ class TestPurchaseRequest(TransactionCase):
         pr.button_draft()
         self.assertEqual(pr.state, "draft", "Should be in state draft")
         pr_lines.unlink()
+
+    def test_purchase_state_selection_includes_done(self):
+        """`done` is written by `_compute_purchase_state` but was not selectable.
+
+        `purchase.order.state` lost `done` in 19.0, so the selection taken from
+        it had no option for the stored value and the form view crashed.
+        """
+        selection = dict(
+            self.env["purchase.request.line"]
+            ._fields["purchase_state"]
+            ._description_selection(self.env)
+        )
+        self.assertIn("done", selection)
