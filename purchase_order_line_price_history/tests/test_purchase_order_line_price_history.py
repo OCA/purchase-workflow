@@ -2,16 +2,15 @@
 # Copyright 2022 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.tests import Form, TransactionCase
+from odoo.tests import Form
 
-from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestPurchaseOrderLinePriceHistoryBase(TransactionCase):
+class TestPurchaseOrderLinePriceHistoryBase(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
         cls.partner_1 = cls.env["res.partner"].create({"name": "Partner 1"})
         cls.partner_2 = cls.env["res.partner"].create({"name": "Partner 2"})
         cls.product = cls.env["product.product"].create({"name": "Product 1"})

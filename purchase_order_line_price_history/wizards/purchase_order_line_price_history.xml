@@ -40,7 +40,7 @@
                                 <button special="cancel" string="Close" />
                             </footer>
                         </form>
-                        <tree>
+                        <list>
                             <field name="order_id" />
                             <field
                                 name="partner_id"
@@ -49,7 +49,7 @@
                             <field name="purchase_order_date_order" />
                             <field name="product_qty" />
                             <field name="price_unit" />
-                        </tree>
+                        </list>
                     </field>
                 </group>
                 <field name="purchase_order_line_id" invisible="1" />
