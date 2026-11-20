@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright (C) 2026 Akretion (<http://www.akretion.com>).
+     @author Kévin Roche <kevin.roche@akretion.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="email_template_blanket_order" model="mail.template">
+        <field name="name">Purchase Blanket Order: Send by Email</field>
+        <field
+            name="model_id"
+            ref="purchase_blanket_order.model_purchase_blanket_order"
+        />
+        <field
+            name="subject"
+        >{{ object.company_id.name }} Blanket Order (Ref {{ object.name or '' }})</field>
+        <field name="partner_to">{{ object.partner_id.id }}</field>
+        <field name="body_html" type="html">
+            <div style="margin:0px;padding:0px;">
+                <table style="width:100%;border-collapse:collapse;">
+                    <tbody>
+                        <tr>
+                            <td style="padding:15px 20px 10px 20px;">
+                                <p>Dear <strong><t
+                                            t-out="object.partner_id.name"
+                                        /></strong>,</p>
+                                <p>Please find attached the blanket order <strong><t
+                                            t-out="object.name"
+                                        /></strong>.</p>
+                                <p>Best regards,<br /><t
+                                        t-out="object.user_id.name or object.company_id.name"
+                                    /></p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </field>
+        <field
+            name="report_template"
+            ref="purchase_blanket_order.report_blanket_order"
+        />
+        <field name="report_name">Blanket_Order_{{ object.name }}</field>
+        <field name="lang">{{ object.partner_id.lang }}</field>
+        <field name="auto_delete" eval="True" />
+    </record>
+</odoo>

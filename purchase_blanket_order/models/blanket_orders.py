@@ -373,6 +373,30 @@ class BlanketOrder(models.Model):
         res.append(("id", "in", order_ids.ids))
         return res
 
+    def action_send_email(self):
+        self.ensure_one()
+        template = self.env.ref(
+            "purchase_blanket_order.email_template_blanket_order",
+            raise_if_not_found=False,
+        )
+        ctx = {
+            "default_model": "purchase.blanket.order",
+            "default_res_id": self.id,
+            "default_use_template": bool(template),
+            "default_template_id": template and template.id or False,
+            "default_composition_mode": "comment",
+            "force_email": True,
+        }
+        return {
+            "type": "ir.actions.act_window",
+            "view_mode": "form",
+            "res_model": "mail.compose.message",
+            "views": [(False, "form")],
+            "view_id": False,
+            "target": "new",
+            "context": ctx,
+        }
+
 
 class BlanketOrderLine(models.Model):
     _name = "purchase.blanket.order.line"

@@ -55,6 +55,14 @@
                         class="btn-primary o_purchase_confirm"
                         type="object"
                     />
+                    <button
+                        name="action_send_email"
+                        string="Send Email"
+                        type="object"
+                        class="btn-secondary"
+                        attrs="{'invisible': [('state', 'in', ['draft', 'expired'])]}"
+                        icon="fa-envelope"
+                    />
                     <field
                         name="state"
                         widget="statusbar"
@@ -144,6 +152,7 @@
                                         name="product_id"
                                         context="{'partner_id':parent.partner_id, 'quantity':original_uom_qty, 'company_id': parent.company_id}"
                                     />
+                                    <field name="name" />
                                     <field
                                         name="original_uom_qty"
                                         string="Original Qty"
