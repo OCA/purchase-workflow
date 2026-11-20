@@ -1,0 +1,26 @@
+<odoo>
+    <record model="ir.ui.view" id="purchase_requisition_form_inherit">
+        <field name="name">purchase.requisition.form</field>
+        <field name="model">purchase.requisition</field>
+        <field
+            name="inherit_id"
+            ref="purchase_requisition.view_purchase_requisition_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_cancel']" position="before">
+                <button
+                    name="auto_rfq_from_suppliers"
+                    type="object"
+                    string="Generate RFQs for suppliers"
+                    invisible="not line_ids or state != 'confirmed' or requisition_type != 'purchase_template'"
+                />
+            </xpath>
+            <xpath expr="//field[@name='line_ids']/list" position="inside">
+                <field name="prod_has_supplier" column_invisible="True" />
+            </xpath>
+            <xpath expr="//field[@name='line_ids']/list" position="attributes">
+                <attribute name="decoration-danger">not prod_has_supplier</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
