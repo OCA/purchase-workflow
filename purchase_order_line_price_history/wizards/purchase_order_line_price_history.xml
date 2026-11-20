@@ -12,7 +12,7 @@
                     <field name="product_id" />
                     <field
                         name="include_commercial_partner"
-                        attrs="{'invisible': [('partner_id', '=', False)]}"
+                        invisible="not partner_id"
                     />
                     <field name="include_rfq" />
                 </group>
@@ -44,7 +44,7 @@
                             <field name="order_id" />
                             <field
                                 name="partner_id"
-                                attrs="{'column_invisible': [('parent.partner_id', '!=', False)]}"
+                                column_invisible="parent.partner_id"
                             />
                             <field name="purchase_order_date_order" />
                             <field name="product_qty" />
