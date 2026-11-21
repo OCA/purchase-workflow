@@ -14,6 +14,8 @@ class PurchaseOrderLine(models.Model):
     def _onchange_product_qty_multiplier_qty(self):
         if not self.product_id:
             return
+        if self.order_id and self.order_id.bypass_supplierinfo_qty_multiplier:
+            return
         seller = self.product_id._select_seller(
             partner_id=self.partner_id,
             quantity=self.product_qty,
@@ -31,7 +33,10 @@ class PurchaseOrderLine(models.Model):
                     "The selected supplier only sells this product"
                     " by %(multiplier_qty)s %(uom_name)s.\n"
                     "The quantity has been automatically changed"
-                    " to %(new_product_qty)s %(uom_name)s."
+                    " to %(new_product_qty)s %(uom_name)s.\n"
+                    "If you want to avoid this change, enable "
+                    "'Bypass vendor pricelist Qty. Multiplier' on the"
+                    " purchase order."
                 )
                 % (
                     {
