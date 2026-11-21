@@ -1,7 +1,7 @@
 # Copyright 2018-2020 ForgeFlow, S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 
-from odoo import api, fields, models
+from odoo import Command, api, fields, models
 
 
 class StockRule(models.Model):
@@ -129,3 +129,10 @@ class StockRule(models.Model):
         # Create Line
         request_line_data = rule._prepare_purchase_request_line(pr, procurement)
         purchase_request_line_model.create(request_line_data)
+
+    def _push_prepare_move_copy_values(self, move_to_copy, new_date):
+        values = super()._push_prepare_move_copy_values(move_to_copy, new_date)
+        # A non-empty value stops stock.move.copy_data() from moving the open
+        # allocation to a move that does not bring goods from the vendor.
+        values["purchase_request_allocation_ids"] = [Command.clear()]
+        return values

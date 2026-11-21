@@ -137,6 +137,56 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         self.assertEqual(sum(request_lines.mapped("qty_cancelled")), 1.0)
         self.assertEqual(sum(request_lines.mapped("pending_qty_to_receive")), 1.0)
 
+    def test_purchase_request_allocation_not_pushed_to_chained_move(self):
+        """Push rules must not copy the allocation to the next step's move.
+
+        The chained move (Input -> Quality Control) does not bring goods from
+        the vendor, so it must not carry an allocation, or the open quantity
+        of the request line is counted as received.
+        """
+        warehouse = self.env["stock.warehouse"].search(
+            [("company_id", "=", self.env.company.id)], limit=1
+        )
+        warehouse.reception_steps = "three_steps"
+        purchase_request = self.purchase_request.create(
+            {
+                "picking_type_id": warehouse.in_type_id.id,
+                "requested_by": SUPERUSER_ID,
+            }
+        )
+        purchase_request_line = self.purchase_request_line.create(
+            {
+                "request_id": purchase_request.id,
+                "product_id": self.product_product.id,
+                "product_uom_id": self.env.ref("uom.product_uom_unit").id,
+                "product_qty": 10.0,
+            }
+        )
+        purchase_request.button_approved()
+        wiz_id = self.wiz.with_context(
+            active_model="purchase.request.line",
+            active_ids=[purchase_request_line.id],
+        ).create({"supplier_id": self.env.ref("base.res_partner_1").id})
+        wiz_id.make_purchase_order()
+        purchase = purchase_request_line.purchase_lines[0].order_id
+        purchase.order_line.product_qty = 6.0
+        purchase.button_confirm()
+
+        receipt = purchase.picking_ids[0]
+        receipt.move_line_ids[0].write({"quantity": 6.0})
+        receipt.button_validate()
+        self.assertEqual(receipt.state, "done")
+        self.assertEqual(purchase_request_line.qty_done, 6.0)
+
+        chained_moves = receipt.move_ids.move_dest_ids
+        self.assertTrue(chained_moves)
+        self.assertFalse(chained_moves.purchase_request_allocation_ids)
+        self.assertEqual(len(purchase_request_line.purchase_request_allocation_ids), 1)
+        chained_moves.picking_id.move_line_ids.write({"quantity": 6.0})
+        chained_moves.picking_id.button_validate()
+        self.assertEqual(purchase_request_line.qty_done, 6.0)
+        self.assertEqual(purchase_request_line.pending_qty_to_receive, 4.0)
+
     def test_purchase_request_allocation_services(self):
         vals = {
             "picking_type_id": self.env.ref("stock.picking_type_in").id,
