@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_purchase_container,purchase.container,model_purchase_container,purchase.group_purchase_user,1,1,1,1
+access_container_type,container.type,model_container_type,purchase.group_purchase_user,1,1,1,1
+access_purchase_container_manager,purchase.container,model_purchase_container,purchase.group_purchase_manager,1,1,1,1
+access_purchase_container_readonly,purchase.container,model_purchase_container,account.group_account_readonly,1,0,0,0
+access_purchase_container_invoice,purchase.container,model_purchase_container,account.group_account_invoice,1,1,0,0
