@@ -1,0 +1,1 @@
+This module adds a configuration option to control the automatic creation of supplier rates in Odoo, allowing users to enable or disable the generation of supplier rate lines when validating purchase orders using a checkbox in the purchasing configuration.
