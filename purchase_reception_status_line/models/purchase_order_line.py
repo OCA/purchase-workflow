@@ -34,7 +34,7 @@ class PurchaseOrderLine(models.Model):
         "product_qty",
     )
     def _compute_receipt_status(self):
-        prec = self.env["decimal.precision"].precision_get("Product Unit of Measure")
+        prec = self.env["decimal.precision"].precision_get("Product Unit")
         for line in self:
             status = "pending"
             if line.order_id.state in ("purchase", "done"):
