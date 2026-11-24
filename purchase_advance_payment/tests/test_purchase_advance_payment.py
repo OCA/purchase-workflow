@@ -9,6 +9,11 @@ from odoo.addons.base.tests.common import BaseCommon
 
 
 class TestPurchaseAdvancePayment(BaseCommon):
+    _test_user_groups = (
+        "purchase.group_purchase_user",
+        "account.group_account_invoice",
+    )
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -62,7 +67,7 @@ class TestPurchaseAdvancePayment(BaseCommon):
             {
                 "order_id": cls.purchase_order_2.id,
                 "product_id": cls.product_1.id,
-                "product_uom_id": cls.product_1.uom_id.id,
+                "uom_id": cls.product_1.uom_id.id,
                 "product_qty": 10.0,
                 "price_unit": 100.0,
                 "tax_ids": cls.tax,
@@ -73,7 +78,7 @@ class TestPurchaseAdvancePayment(BaseCommon):
             {
                 "order_id": cls.purchase_order_1.id,
                 "product_id": cls.product_1.id,
-                "product_uom_id": cls.product_1.uom_id.id,
+                "uom_id": cls.product_1.uom_id.id,
                 "product_qty": 10.0,
                 "price_unit": 100.0,
                 "tax_ids": cls.tax,
@@ -83,7 +88,7 @@ class TestPurchaseAdvancePayment(BaseCommon):
             {
                 "order_id": cls.purchase_order_1.id,
                 "product_id": cls.product_2.id,
-                "product_uom_id": cls.product_2.uom_id.id,
+                "uom_id": cls.product_2.uom_id.id,
                 "product_qty": 25.0,
                 "price_unit": 40.0,
                 "tax_ids": cls.tax,
@@ -93,7 +98,7 @@ class TestPurchaseAdvancePayment(BaseCommon):
             {
                 "order_id": cls.purchase_order_1.id,
                 "product_id": cls.product_3.id,
-                "product_uom_id": cls.product_3.uom_id.id,
+                "uom_id": cls.product_3.uom_id.id,
                 "product_qty": 20.0,
                 "price_unit": 50.0,
                 "tax_ids": cls.tax,
@@ -152,9 +157,19 @@ class TestPurchaseAdvancePayment(BaseCommon):
                 "currency_id": cls.currency_usd.id,
             }
         )
-        cls.env["ir.config_parameter"].sudo().set_param(
+        cls.env["ir.config_parameter"].sudo().set_bool(
             "purchase_advance_payment.auto_reconcile_advance_payments", False
         )
+        cls.env["ir.config_parameter"].sudo().set_bool(
+            "purchase_advance_payment.auto_post_advance_payments", True
+        )
+        # A currency other than the company one, with its bank journal.
+        if cls.env.company.currency_id == cls.currency_euro:
+            cls.currency_foreign = cls.currency_usd
+            cls.journal_foreign_bank = cls.journal_usd_bank
+        else:
+            cls.currency_foreign = cls.currency_euro
+            cls.journal_foreign_bank = cls.journal_eur_bank
 
     def test_00_with_context_payment(self):
         context_payment_2 = {
@@ -191,7 +206,7 @@ class TestPurchaseAdvancePayment(BaseCommon):
             bool(
                 self.env["ir.config_parameter"]
                 .sudo()
-                .get_param("purchase_advance_payment.auto_reconcile_advance_payments")
+                .get_bool("purchase_advance_payment.auto_reconcile_advance_payments")
             )
         )
         self.assertEqual(
@@ -274,7 +289,7 @@ class TestPurchaseAdvancePayment(BaseCommon):
             bool(
                 self.env["ir.config_parameter"]
                 .sudo()
-                .get_param("purchase_advance_payment.auto_reconcile_advance_payments")
+                .get_bool("purchase_advance_payment.auto_reconcile_advance_payments")
             )
         )
         self.assertEqual(
@@ -329,9 +344,9 @@ class TestPurchaseAdvancePayment(BaseCommon):
 
         # Reconciling the pre-payment should not affect amount_residual in PO.
         (
-            liquidity_lines,
+            _liquidity_lines,
             counterpart_lines,
-            writeoff_lines,
+            _writeoff_lines,
         ) = pre_payment._seek_for_lines()
         (
             counterpart_lines
@@ -347,7 +362,7 @@ class TestPurchaseAdvancePayment(BaseCommon):
             bool(
                 self.env["ir.config_parameter"]
                 .sudo()
-                .get_param("purchase_advance_payment.auto_reconcile_advance_payments")
+                .get_bool("purchase_advance_payment.auto_reconcile_advance_payments")
             )
         )
         self.assertEqual(
@@ -384,13 +399,13 @@ class TestPurchaseAdvancePayment(BaseCommon):
         self.assertEqual(self.purchase_order_1.invoice_status, "to invoice")
         # Adjust billing method to then do a partial bill with a total amount
         # smaller than the pre-payment.
-        self.product_1.purchase_method = "receive"
+        self.product_1.sudo().purchase_method = "receive"
         self.order_line_1.qty_received = 10.0
         self.assertEqual(self.order_line_1.qty_to_invoice, 10.0)
-        self.product_2.purchase_method = "receive"
+        self.product_2.sudo().purchase_method = "receive"
         self.order_line_2.qty_received = 0.0
         self.assertEqual(self.order_line_2.qty_to_invoice, 0.0)
-        self.product_3.purchase_method = "receive"
+        self.product_3.sudo().purchase_method = "receive"
         self.order_line_3.qty_received = 0.0
         self.assertEqual(self.order_line_3.qty_to_invoice, 0.0)
         self.purchase_order_1.action_create_invoice()
@@ -415,9 +430,9 @@ class TestPurchaseAdvancePayment(BaseCommon):
 
         # Partially reconciling the pre-payment should not affect amount_residual in PO.
         (
-            liquidity_lines,
+            _liquidity_lines,
             counterpart_lines,
-            writeoff_lines,
+            _writeoff_lines,
         ) = pre_payment._seek_for_lines()
         (
             counterpart_lines
@@ -433,7 +448,7 @@ class TestPurchaseAdvancePayment(BaseCommon):
             bool(
                 self.env["ir.config_parameter"]
                 .sudo()
-                .get_param("purchase_advance_payment.auto_reconcile_advance_payments")
+                .get_bool("purchase_advance_payment.auto_reconcile_advance_payments")
             )
         )
         self.assertEqual(
@@ -465,7 +480,7 @@ class TestPurchaseAdvancePayment(BaseCommon):
             bool(
                 self.env["ir.config_parameter"]
                 .sudo()
-                .get_param("purchase_advance_payment.auto_reconcile_advance_payments")
+                .get_bool("purchase_advance_payment.auto_reconcile_advance_payments")
             )
         )
         self.assertEqual(
@@ -515,7 +530,7 @@ class TestPurchaseAdvancePayment(BaseCommon):
             bool(
                 self.env["ir.config_parameter"]
                 .sudo()
-                .get_param("purchase_advance_payment.auto_reconcile_advance_payments")
+                .get_bool("purchase_advance_payment.auto_reconcile_advance_payments")
             )
         )
         self.assertEqual(
@@ -541,10 +556,10 @@ class TestPurchaseAdvancePayment(BaseCommon):
         advance_payment_1.make_advance_payment()
         payment_1 = self.purchase_order_1.account_payment_ids
         self.assertTrue(payment_1)
-        self.assertIn(payment_1.state, ["draft", "in_process"])
+        self.assertIn(payment_1.state, ["draft", "paid"])
 
         # Change setting and create a second payment:
-        self.env["ir.config_parameter"].sudo().set_param(
+        self.env["ir.config_parameter"].sudo().set_bool(
             "purchase_advance_payment.auto_post_advance_payments", False
         )
         advance_payment_2 = (
@@ -561,7 +576,7 @@ class TestPurchaseAdvancePayment(BaseCommon):
         advance_payment_2.make_advance_payment()
         payment_2 = self.purchase_order_1.account_payment_ids - payment_1
         self.assertEqual(len(payment_2), 1)
-        self.assertIn(payment_2.state, ["draft", "in_process"])
+        self.assertIn(payment_2.state, ["draft", "paid"])
 
     def test_07_auto_reconcile_advance_payment_enabled(self):
         # Set the config parameter to True
@@ -569,18 +584,18 @@ class TestPurchaseAdvancePayment(BaseCommon):
             bool(
                 self.env["ir.config_parameter"]
                 .sudo()
-                .get_param("purchase_advance_payment.auto_reconcile_advance_payments")
+                .get_bool("purchase_advance_payment.auto_reconcile_advance_payments")
             )
         )
         # Set the config parameter to True
-        self.env["ir.config_parameter"].sudo().set_param(
+        self.env["ir.config_parameter"].sudo().set_bool(
             "purchase_advance_payment.auto_reconcile_advance_payments", True
         )
         self.assertTrue(
             bool(
                 self.env["ir.config_parameter"]
                 .sudo()
-                .get_param("purchase_advance_payment.auto_reconcile_advance_payments")
+                .get_bool("purchase_advance_payment.auto_reconcile_advance_payments")
             )
         )
         self.assertEqual(
@@ -636,7 +651,7 @@ class TestPurchaseAdvancePayment(BaseCommon):
             bool(
                 self.env["ir.config_parameter"]
                 .sudo()
-                .get_param("purchase_advance_payment.auto_reconcile_advance_payments")
+                .get_bool("purchase_advance_payment.auto_reconcile_advance_payments")
             )
         )
 
@@ -692,7 +707,7 @@ class TestPurchaseAdvancePayment(BaseCommon):
 
     def test_09_no_reconcile_when_no_matching_payment(self):
         # Set the config parameter to True
-        self.env["ir.config_parameter"].sudo().set_param(
+        self.env["ir.config_parameter"].sudo().set_bool(
             "purchase_advance_payment.auto_reconcile_advance_payments", True
         )
         self.assertEqual(
@@ -779,7 +794,7 @@ class TestPurchaseAdvancePayment(BaseCommon):
     def test_11_advance_payments_without_account_moves(self):
         """Test full flow with advance payments without outstanding
         account."""
-        self.env["ir.config_parameter"].sudo().set_param(
+        self.env["ir.config_parameter"].sudo().set_bool(
             "purchase_advance_payment.auto_post_advance_payments", False
         )
         self.purchase_order_2.button_confirm()
@@ -815,7 +830,7 @@ class TestPurchaseAdvancePayment(BaseCommon):
             payment_1.outstanding_account_id = False
         payment_1.action_post()
         self.assertFalse(payment_1.move_id)
-        self.assertEqual(payment_1.state, "in_process")
+        self.assertEqual(payment_1.state, "paid")
 
         self.assertEqual(self.purchase_order_2.amount_residual, 900)
 
@@ -839,7 +854,7 @@ class TestPurchaseAdvancePayment(BaseCommon):
         payment_2 = self.purchase_order_2.account_payment_ids - payment_1
         self.assertEqual(len(payment_2), 1)
         payment_2.action_post()
-        self.assertEqual(payment_2.state, "in_process")
+        self.assertEqual(payment_2.state, "paid")
         self.assertTrue(payment_2.move_id)
 
         self.assertEqual(self.purchase_order_2.amount_residual, 700)
@@ -863,3 +878,56 @@ class TestPurchaseAdvancePayment(BaseCommon):
             1000,
             "Only payment 2 should be considered at this point.",
         )
+
+    def test_12_wizard_payment_method_lines(self):
+        Wizard = self.env["account.voucher.wizard.purchase"]
+        wizard = Wizard.new(
+            {
+                "journal_id": self.journal_usd_bank.id,
+                "order_id": self.purchase_order_1.id,
+                "amount_advance": 10,
+            }
+        )
+        self.assertTrue(wizard.payment_method_line_id)
+        self.assertIn(
+            wizard.payment_method_line_id.id,
+            wizard.available_payment_method_line_ids._origin.ids,
+        )
+        wizard = Wizard.new({"order_id": self.purchase_order_1.id})
+        self.assertFalse(wizard.payment_method_line_id)
+        self.assertFalse(wizard.available_payment_method_line_ids)
+
+    def test_13_default_journal_in_order_currency(self):
+        self.purchase_order_1.currency_id = self.currency_foreign
+        Wizard = self.env["account.voucher.wizard.purchase"].with_context(
+            active_ids=self.purchase_order_1.ids
+        )
+        Journal = self.env["account.journal"]
+        journal = Journal.browse(Wizard.default_get(["journal_id"])["journal_id"])
+        self.assertEqual(journal.currency_id, self.currency_foreign)
+
+    def test_14_payment_without_entry_in_other_currency(self):
+        self.env["ir.config_parameter"].sudo().set_bool(
+            "purchase_advance_payment.auto_post_advance_payments", False
+        )
+        order = self.purchase_order_2
+        order.button_confirm()
+        self.env["account.voucher.wizard.purchase"].with_context(
+            active_ids=order.ids, active_id=order.id
+        ).create(
+            {
+                "journal_id": self.journal_foreign_bank.id,
+                "amount_advance": 100,
+                "order_id": order.id,
+            }
+        ).make_advance_payment()
+        payment = order.account_payment_ids
+        if payment.outstanding_account_id:
+            # Simulate a payment without journal entry, as in test_11.
+            payment.outstanding_account_id = False
+        payment.action_post()
+        self.assertFalse(payment.move_id)
+        amount = self.currency_foreign._convert(
+            100, order.currency_id, order.company_id, payment.date
+        )
+        self.assertAlmostEqual(order.amount_residual, order.amount_total - amount)

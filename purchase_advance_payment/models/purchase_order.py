@@ -84,7 +84,7 @@ class PurchaseOrder(models.Model):
             # Compute amount by payments without an account.move related.
             adv_pays = order.account_payment_ids.filtered(
                 lambda x: (
-                    x.state in ["in_process", "paid"]
+                    x.state in ["paid", "reconciled"]
                     and not x.outstanding_account_id
                     and not x.move_id
                 )

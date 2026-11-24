@@ -21,7 +21,7 @@ class AccountMove(models.Model):
         if bool(
             self.env["ir.config_parameter"]
             .sudo()
-            .get_param("purchase_advance_payment.auto_reconcile_advance_payments")
+            .get_bool("purchase_advance_payment.auto_reconcile_advance_payments")
         ):
             for move in self:
                 purchase_order = move.line_ids.purchase_order_id
