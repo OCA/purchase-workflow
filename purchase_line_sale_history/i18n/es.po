@@ -1,0 +1,115 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_line_sale_history
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-15 00:32+0000\n"
+"PO-Revision-Date: 2026-07-15 00:32+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_line_sale_history
+#. odoo-javascript
+#: code:addons/purchase_line_sale_history/static/src/xml/purchase_order_sales_history_field.xml:0
+msgid ""
+"Check the Sales History box on a line to see its product's sales history."
+msgstr ""
+"Marca la casilla Histórico de ventas en una línea para ver el histórico de "
+"ventas de su producto."
+
+#. module: purchase_line_sale_history
+#: model:ir.model,name:purchase_line_sale_history.model_res_config_settings
+msgid "Config Settings"
+msgstr "Ajustes de configuración"
+
+#. module: purchase_line_sale_history
+#: model:ir.model.fields,field_description:purchase_line_sale_history.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:purchase_line_sale_history.field_purchase_order_line__display_name
+#: model:ir.model.fields,field_description:purchase_line_sale_history.field_res_config_settings__display_name
+msgid "Display Name"
+msgstr "Nombre para mostrar"
+
+#. module: purchase_line_sale_history
+#: model:ir.model.fields,field_description:purchase_line_sale_history.field_purchase_order__id
+#: model:ir.model.fields,field_description:purchase_line_sale_history.field_purchase_order_line__id
+#: model:ir.model.fields,field_description:purchase_line_sale_history.field_res_config_settings__id
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_line_sale_history
+#: model_terms:ir.ui.view,arch_db:purchase_line_sale_history.res_config_settings_view_form
+msgid ""
+"Number of past years, in addition to the current one, shown in the sales "
+"history of a purchase order line"
+msgstr ""
+"Número de años anteriores, además del actual, mostrados en el histórico de "
+"ventas de una línea de pedido de compra"
+
+#. module: purchase_line_sale_history
+#: model:ir.model.fields,help:purchase_line_sale_history.field_res_config_settings__purchase_sales_history_years
+msgid ""
+"Number of past years, in addition to the current one, shown in the sales "
+"history of a purchase order line."
+msgstr ""
+"Número de años anteriores, además del actual, mostrados en el histórico de "
+"ventas de una línea de pedido de compra."
+
+#. module: purchase_line_sale_history
+#: model:ir.model.fields,help:purchase_line_sale_history.field_purchase_order__sales_history_line_id
+msgid "Order line whose product sales history is displayed."
+msgstr "Línea del pedido cuyo histórico de ventas del producto se muestra."
+
+#. module: purchase_line_sale_history
+#: model:ir.model,name:purchase_line_sale_history.model_purchase_order
+msgid "Purchase Order"
+msgstr "Pedido de compra"
+
+#. module: purchase_line_sale_history
+#: model:ir.model,name:purchase_line_sale_history.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Línea de pedido de compra"
+
+#. module: purchase_line_sale_history
+#. odoo-javascript
+#: code:addons/purchase_line_sale_history/static/src/xml/purchase_order_sales_history_field.xml:0
+#: model:ir.model.fields,field_description:purchase_line_sale_history.field_purchase_order_line__show_sales_history
+msgid "Sales History"
+msgstr "Histórico de ventas"
+
+#. module: purchase_line_sale_history
+#: model:ir.model.fields,field_description:purchase_line_sale_history.field_purchase_order__sales_history_line_id
+msgid "Sales History Line"
+msgstr "Línea del histórico de ventas"
+
+#. module: purchase_line_sale_history
+#: model:ir.model.fields,field_description:purchase_line_sale_history.field_res_config_settings__purchase_sales_history_years
+msgid "Sales History Years"
+msgstr "Años del histórico de ventas"
+
+#. module: purchase_line_sale_history
+#: model:ir.model.fields,help:purchase_line_sale_history.field_purchase_order_line__show_sales_history
+msgid ""
+"Show the sales history of this line's product below the order lines. Only "
+"one line per order can be active at a time."
+msgstr ""
+"Muestra el histórico de ventas del producto de esta línea debajo de las "
+"líneas del pedido. Solo una línea por pedido puede estar activa a la vez."
+
+#. module: purchase_line_sale_history
+#. odoo-javascript
+#: code:addons/purchase_line_sale_history/static/src/xml/purchase_order_sales_history_field.xml:0
+msgid "Total"
+msgstr "Total"
+
+#. module: purchase_line_sale_history
+#. odoo-javascript
+#: code:addons/purchase_line_sale_history/static/src/xml/purchase_order_sales_history_field.xml:0
+msgid "Year"
+msgstr "Año"
