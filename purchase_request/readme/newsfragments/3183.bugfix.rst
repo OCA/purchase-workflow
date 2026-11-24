@@ -1,0 +1,1 @@
+Add `done` to `purchase.request.line.purchase_state`: `purchase.order.state` lost it in 19.0, so the stored value had no matching option and the form view crashed.

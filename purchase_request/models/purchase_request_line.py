@@ -99,12 +99,25 @@ class PurchaseRequestLine(models.Model):
         readonly=True,
         copy=False,
     )
+
+    @api.model
+    def _selection_purchase_state(self):
+        """`purchase.order.state` lost `done` in 19.0 (it is the `locked` flag
+        now), but `_compute_purchase_state` still writes it. Without adding it
+        back, the stored value has no matching option and the form view crashes
+        with `TypeError: Cannot read properties of undefined`.
+        """
+        selection = dict(
+            self.env["purchase.order"]._fields["state"]._description_selection(self.env)
+        )
+        # `setdefault` keeps 18.0 (where `done` still exists) free of duplicates.
+        selection.setdefault("done", self.env._("Done"))
+        return list(selection.items())
+
     purchase_state = fields.Selection(
         compute="_compute_purchase_state",
         string="Purchase Status",
-        selection=lambda self: self.env["purchase.order"]
-        ._fields["state"]
-        ._description_selection(self.env),
+        selection="_selection_purchase_state",
         store=True,
     )
     move_dest_ids = fields.One2many(
