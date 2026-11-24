@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="purchase_order_view_form_inherit" model="ir.ui.view">
+        <field name="name">purchase.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//header/button[@name='action_rfq_send']" position="after">
+                <field name="pending_to_receive" invisible="1" />
+                <button
+                    name="%(action_create_manual_stock_picking)d"
+                    string="Create Incoming Shipment"
+                    type="action"
+                    class="btn-primary"
+                    invisible="state != 'purchase' or not pending_to_receive or not manual_delivery"
+                />
+            </xpath>
+            <field name="qty_received" position="before">
+                <field name="pending_to_receive" column_invisible="1" />
+                <field
+                    name="qty_in_receipt"
+                    optional="hide"
+                    column_invisible="parent.state not in ('purchase', 'done')"
+                />
+            </field>
+            <xpath expr="//field[@name='order_line']/list" position="attributes">
+                <attribute
+                    name="decoration-info"
+                >state == 'purchase' and pending_to_receive</attribute>
+            </xpath>
+            <group name="other_info" position="inside">
+                <field
+                    name="manual_delivery"
+                    readonly="state not in ('draft', 'sent')"
+                />
+            </group>
+        </field>
+    </record>
+</odoo>
