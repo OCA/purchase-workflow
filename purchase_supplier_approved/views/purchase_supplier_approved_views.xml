@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2025 Open Source Integrators -->
+<!-- License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo>
+
+    <!-- Tree View -->
+    <record id="view_purchase_supplier_approved_tree" model="ir.ui.view">
+        <field name="name">purchase.supplier.approved.tree</field>
+        <field name="model">purchase.supplier.approved</field>
+        <field name="arch" type="xml">
+            <tree decoration-muted="not active">
+                <field name="partner_id" />
+                <field name="product_tmpl_id" />
+                <field name="date_from" />
+                <field name="date_to" />
+                <field name="active" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_purchase_supplier_approved_form" model="ir.ui.view">
+        <field name="name">purchase.supplier.approved.form</field>
+        <field name="model">purchase.supplier.approved</field>
+        <field name="arch" type="xml">
+            <form string="Approved Supplier">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <field name="active" invisible="True" />
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="text-bg-danger"
+                        invisible="active"
+                    />
+                    <group>
+                        <group>
+                            <field name="partner_id" options="{'no_create': True}" />
+                            <field
+                                name="product_tmpl_id"
+                                options="{'no_create': True}"
+                            />
+                        </group>
+                        <group>
+                            <field name="date_from" />
+                            <field name="date_to" />
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_purchase_supplier_approved_search" model="ir.ui.view">
+        <field name="name">purchase.supplier.approved.search</field>
+        <field name="model">purchase.supplier.approved</field>
+        <field name="arch" type="xml">
+            <search string="Search Approved Suppliers">
+                <field name="partner_id" />
+                <field name="product_tmpl_id" />
+                <field name="date_from" />
+                <field name="date_to" />
+                <separator />
+                <filter
+                    string="Active"
+                    name="active"
+                    domain="[('active', '=', True)]"
+                />
+                <filter
+                    string="Inactive"
+                    name="inactive"
+                    domain="[('active', '=', False)]"
+                />
+                <separator />
+                <filter
+                    string="Valid Today"
+                    name="valid_today"
+                    domain="[('date_from', '&lt;=', context_today().strftime('%Y-%m-%d')), '|', ('date_to', '=', False), ('date_to', '&gt;=', context_today().strftime('%Y-%m-%d'))]"
+                />
+                <filter
+                    string="Expired"
+                    name="expired"
+                    domain="[('date_to', '&lt;', context_today().strftime('%Y-%m-%d'))]"
+                />
+                <separator />
+                <group expand="0" string="Group By">
+                    <filter
+                        string="Supplier"
+                        name="group_partner"
+                        context="{'group_by': 'partner_id'}"
+                    />
+                    <filter
+                        string="Product"
+                        name="group_product"
+                        context="{'group_by': 'product_tmpl_id'}"
+                    />
+                    <filter
+                        string="Valid From"
+                        name="group_date_from"
+                        context="{'group_by': 'date_from'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_purchase_supplier_approved" model="ir.actions.act_window">
+        <field name="name">Approved Suppliers</field>
+        <field name="res_model">purchase.supplier.approved</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_purchase_supplier_approved_search" />
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first approved supplier!
+            </p>
+            <p>
+                Define which suppliers are approved for each product to ensure compliance with your procurement policies.
+            </p>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2025 Open Source Integrators -->
+<!-- License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo>
+
+    <!-- Menu Item -->
+    <menuitem
+        id="menu_purchase_supplier_approved"
+        name="Approved Suppliers"
+        parent="purchase.menu_purchase_products"
+        action="action_purchase_supplier_approved"
+        sequence="50"
+    />
+
+</odoo>
