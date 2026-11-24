@@ -391,16 +391,43 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
             active_model="purchase.request.line", active_ids=[purchase_request_line2.id]
         ).create(vals)
         wiz_id.make_purchase_order()
-        # Check Purchase qty
+        # Check Purchase qty should be 6
         po_line = purchase_request_line2.purchase_lines[0]
         # Add unit price in PO Line
         po_line.write({"price_unit": 10})
-        self.assertEqual(po_line.product_qty, 5.0, "Quantity should be 5")
+        self.assertEqual(po_line.product_qty, 6.0, "Quantity should be 6")
         # auto change state to done
         po_line.order_id.button_confirm()
         picking = po_line.order_id.picking_ids[0]
-        picking.move_line_ids[0].write({"quantity": 5.0})
+        picking.move_line_ids[0].write({"quantity": 6.0})
         picking.button_validate()
+
+    def test_purchase_request_to_rfq_merged_lines_qty(self):
+        lines = self.purchase_request_line_obj
+        for _request in range(3):
+            purchase_request = self.purchase_request_obj.create(
+                {
+                    "picking_type_id": self.env.ref("stock.picking_type_in").id,
+                    "requested_by": SUPERUSER_ID,
+                }
+            )
+            lines |= self.purchase_request_line_obj.create(
+                {
+                    "request_id": purchase_request.id,
+                    "product_id": self.product.id,
+                    "product_uom_id": self.env.ref("uom.product_uom_unit").id,
+                    "product_qty": 5.0,
+                }
+            )
+            purchase_request.button_approved()
+        wiz_id = self.wiz.with_context(
+            active_model="purchase.request.line", active_ids=lines.ids
+        ).create({"supplier_id": self.supplier.id})
+        wiz_id.make_purchase_order()
+        # The three request lines are merged into a single PO line
+        po_line = lines.purchase_lines
+        self.assertEqual(len(po_line), 1, "Should have a single purchase line")
+        self.assertEqual(po_line.product_qty, 15.0, "Quantity should be 15")
 
     def _setup_analytic_distribution(self):
         analytic_plan = self.env["account.analytic.plan"].create({"name": "Plan Test"})
