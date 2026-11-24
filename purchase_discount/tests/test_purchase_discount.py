@@ -139,6 +139,50 @@ class TestPurchaseOrder(common.SavepointCase):
         self.assertAlmostEqual(self.po_line_1.price_unit, 10.0)
         self.assertAlmostEqual(self.po_line_1.discount, 50.0)
 
+    def test_move_price_unit_rounding(self):
+        """The stock valuation is correct when discount needs more precision."""
+        purchase_order = self.purchase_order
+        product = self.product_1
+        self.assertEqual(product.cost_method, "average")
+
+        # Create PO
+        purchase_order.order_line = False
+        with common.Form(purchase_order) as po_form:
+            with po_form.order_line.new() as line:
+                line.product_id = product
+                line.product_qty = 150
+                line.price_unit = 4.9
+                line.discount = 25
+        purchase_order.button_confirm()
+        picking = self.purchase_order.picking_ids
+
+        # Receive the picking
+        picking.action_assign()
+        transfer_wizard_action = picking.button_validate()
+        self.assertEqual(
+            transfer_wizard_action.get("res_model"), "stock.immediate.transfer"
+        )
+        transfer_wizard = common.Form(
+            self.env[transfer_wizard_action["res_model"]].with_context(
+                transfer_wizard_action["context"]
+            )
+        ).save()
+        transfer_wizard.process()
+
+        # If the product price is rounded:
+        # 4.9 * (1 - 0.25) = 3.675 ~= 3.68
+        # => 3.68 * 150 = 552
+        # But the correct value is: 150 * 4.9 * (1 - 0.25) = 551.25
+        self.assertRecordValues(
+            product,
+            [
+                {
+                    "value_svl": 551.25,
+                    "standard_price": 3.68,
+                }
+            ],
+        )
+
     def test_report_price_unit(self):
         rec = self.env["purchase.report"].search(
             [("product_id", "=", self.product_1.id)]
