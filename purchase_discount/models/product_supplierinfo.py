@@ -25,7 +25,7 @@ class ProductSupplierInfo(models.Model):
     _sql_constraints = [
         (
             "discount_limit",
-            "CHECK (discount <= 100.0)",
+            "CHECK ((discount <= 100.0))",
             "Supplier discount must be lower than 100%.",
         )
     ]
