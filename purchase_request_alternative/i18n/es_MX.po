@@ -1,0 +1,32 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_request_alternative
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-14 16:57+0000\n"
+"PO-Revision-Date: 2026-10-14 17:00+0000\n"
+"Last-Translator: Alan Ramos <alan.ramos@jarsa.com>\n"
+"Language-Team: Spanish (Mexico)\n"
+"Language: es_MX\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: purchase_request_alternative
+#: model:ir.model.fields,field_description:purchase_request_alternative.field_purchase_requisition_create_alternative__display_name
+msgid "Display Name"
+msgstr "Nombre para mostrar"
+
+#. module: purchase_request_alternative
+#: model:ir.model.fields,field_description:purchase_request_alternative.field_purchase_requisition_create_alternative__id
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_request_alternative
+#: model:ir.model,name:purchase_request_alternative.model_purchase_requisition_create_alternative
+msgid "Wizard to preset values for alternative PO"
+msgstr "Asistente para predefinir valores de la orden de compra alternativa"
