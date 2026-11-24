@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="report_blanket_order" model="ir.actions.report">
+        <field name="name">Purchase Blanket Order</field>
+        <field name="model">purchase.blanket.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">purchase_blanket_order.report_blanketorder</field>
+        <field name="report_file">purchase_blanket_order.report_blanketorder</field>
+        <field name="binding_model_id" ref="model_purchase_blanket_order" />
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
