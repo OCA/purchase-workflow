@@ -1,6 +1,8 @@
 # Copyright 2014-2016 Numérigraphe SARL
 # Copyright 2017 ForgeFlow, S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+from unittest.mock import patch
+
 from freezegun import freeze_time
 
 from odoo import Command
@@ -487,3 +489,30 @@ class TestDeliverySingle(BaseCommon):
 
         for move in moves_after - new_move:
             self.assertEqual(move.date, Datetime.to_datetime(self.date_sooner))
+
+    def test_16_move_replaced_on_confirm(self):
+        """A move that its confirmation replaces, as mrp does with a kit, is
+        not returned in place of its replacement."""
+        StockMove = self.env.registry["stock.move"]
+        action_confirm = StockMove._action_confirm
+
+        def explode_p2(moves, merge=True, merge_into=False):
+            kit_moves = moves.filtered(lambda move: move.product_id == self.p2)
+            components = self.env["stock.move"]
+            if kit_moves:
+                components = kit_moves.copy({"product_id": self.p3.id})
+                kit_moves.unlink()
+            return action_confirm(
+                (moves - kit_moves) | components, merge=merge, merge_into=merge_into
+            )
+
+        self.po.order_line[1].date_planned = self.date_later
+        with patch.object(
+            StockMove, "_action_confirm", autospec=True, side_effect=explode_p2
+        ):
+            self.po.button_confirm()
+        self.assertEqual(self.po.state, "purchase")
+        later_picking = self.po.picking_ids.filtered(
+            lambda picking: str(picking.scheduled_date)[:10] == self.date_later
+        )
+        self.assertEqual(later_picking.move_ids.product_id, self.p3)
