@@ -1,0 +1,50 @@
+<odoo>
+    <record id="container_type_view_form" model="ir.ui.view">
+        <field name="model">container.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group name="left">
+                            <field name="name" placeholder="40HC" />
+                        </group>
+                        <group name="right">
+                            <field name="description" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="container_type_view_list" model="ir.ui.view">
+        <field name="model">container.type</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+                <field name="description" />
+            </list>
+        </field>
+    </record>
+
+    <record id="container_type_view_search" model="ir.ui.view">
+        <field name="model">container.type</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+            </search>
+        </field>
+    </record>
+
+    <record id="container_type_action" model="ir.actions.act_window">
+        <field name="name">Container Types</field>
+        <field name="res_model">container.type</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem
+        id="menu_container_type"
+        parent="purchase.menu_purchase_config"
+        action="container_type_action"
+    />
+</odoo>
