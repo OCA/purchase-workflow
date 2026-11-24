@@ -16,7 +16,17 @@
                 <strong>Description</strong>
             </th>
         </xpath>
-        <xpath expr="//t[@t-if='o.line_ids']/table//td[1]" position="after">
+        <xpath expr="//td[@name='td_section_name']" position="attributes">
+            <attribute
+                name="t-att-colspan"
+            >4 + (1 if has_ordered_quantity else 0) + (1 if has_uom_group else 0)</attribute>
+        </xpath>
+        <xpath expr="//td[@name='td_subsection_name']" position="attributes">
+            <attribute
+                name="t-att-colspan"
+            >4 + (1 if has_ordered_quantity else 0) + (1 if has_uom_group else 0)</attribute>
+        </xpath>
+        <xpath expr="//tr[@name='tr_product']/td[1]" position="after">
             <td>
                 <span t-field="line_id.name" />
             </td>

@@ -5,7 +5,7 @@
     "name": "Purchase Requisition Line Description",
     "summary": "Extends the functionality of Purchase Agreements to "
     "show line description.",
-    "version": "18.0.1.0.0",
+    "version": "20.0.1.0.0",
     "category": "Purchases",
     "website": "https://github.com/OCA/purchase-workflow",
     "author": "Camptocamp, Odoo Community Association (OCA)",
@@ -16,7 +16,7 @@
         "purchase_requisition",
     ],
     "data": [
-        "views/purchase_requisition.xml",
         "report/purchase_requisition_report.xml",
     ],
+    "post_init_hook": "post_init_hook",
 }
