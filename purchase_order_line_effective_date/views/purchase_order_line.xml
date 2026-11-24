@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright (C) 2026  Renato Lima - Akretion
+     License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html -->
+<odoo>
+    <record id="purchase_order_line_tree" model="ir.ui.view">
+        <field name="name">purchase.order.line.tree</field>
+        <field name="model">purchase.order.line</field>
+        <field name="inherit_id" ref="purchase.purchase_order_line_tree" />
+        <field name="arch" type="xml">
+            <field name="date_planned" position="after">
+                <field name="effective_date" optional="hide" />
+                <field name="last_effective_date" optional="hide" />
+            </field>
+        </field>
+    </record>
+    <record id="purchase_order_line_tree_history" model="ir.ui.view">
+        <field name="name">purchase.order.line.tree.history</field>
+        <field name="model">purchase.order.line</field>
+        <field name="inherit_id" ref="purchase.purchase_history_tree" />
+        <field name="arch" type="xml">
+            <field name="date_approve" position="after">
+                <field name="effective_date" />
+                <field name="last_effective_date" />
+            </field>
+        </field>
+    </record>
+</odoo>
