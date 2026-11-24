@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-09-29 08:11+0000\n"
+"PO-Revision-Date: 2026-11-24 13:18+0000\n"
 "Last-Translator: vladimiruvid <vladimir@uvid.hr>\n"
 "Language-Team: none\n"
 "Language: hr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 2026.11.2\n"
 
 #. module: purchase_order_secondary_unit
 #: model_terms:ir.ui.view,arch_db:purchase_order_secondary_unit.report_purchaseorder_document
@@ -35,8 +35,8 @@ msgid ""
 "In order to set a value, please first add at least one record in 'Secondary "
 "Unit of Measure'"
 msgstr ""
-"Da biste postavili vrijednost, prvo dodajte barem jedan zapis u "
-"'Alternativnu mjernu jedinicu'"
+"Da biste postavili vrijednost, prvo dodajte barem jedan zapis u polje „Alt. "
+"jedinica”."
 
 #. module: purchase_order_secondary_unit
 #: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_purchase_order_line__product_packaging_id
@@ -46,7 +46,7 @@ msgstr "Pakiranje"
 #. module: purchase_order_secondary_unit
 #: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_purchase_order_line__product_packaging_qty
 msgid "Packaging Quantity"
-msgstr "Količina pakiranja"
+msgstr "Količina u pakiranju"
 
 #. module: purchase_order_secondary_unit
 #: model:ir.model,name:purchase_order_secondary_unit.model_product_template
@@ -61,7 +61,7 @@ msgstr "Varijatna proizvoda"
 #. module: purchase_order_secondary_unit
 #: model:ir.model,name:purchase_order_secondary_unit.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Nalog za nabavu"
 
 #. module: purchase_order_secondary_unit
 #: model:ir.model,name:purchase_order_secondary_unit.model_purchase_order_line
@@ -82,7 +82,7 @@ msgstr "Alt. jedinica"
 #: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_product_supplierinfo__secondary_uom_price
 #: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_purchase_order_line__secondary_uom_price
 msgid "Secondary Price"
-msgstr ""
+msgstr "Cijena po alt. jedinici"
 
 #. module: purchase_order_secondary_unit
 #: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_purchase_order_line__secondary_uom_qty
@@ -92,9 +92,9 @@ msgstr "Alt. količina"
 #. module: purchase_order_secondary_unit
 #: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_product_supplierinfo__secondary_uom_id
 msgid "Secondary Unit"
-msgstr ""
+msgstr "Alt. jedinica"
 
 #. module: purchase_order_secondary_unit
 #: model:ir.model,name:purchase_order_secondary_unit.model_product_supplierinfo
 msgid "Supplier Pricelist"
-msgstr ""
+msgstr "Cjenik dobavljača"
