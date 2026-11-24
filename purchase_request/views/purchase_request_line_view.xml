@@ -10,14 +10,14 @@
                 name="Purchase Request Lines"
                 create="false"
                 decoration-muted="cancelled == True"
-                decoration-info="request_state in ('draft', 'to_approve')"
+                decoration-info="request_state in ('draft', 'to_review', 'to_approve')"
             >
                 <field name="request_id" />
                 <field
                     name="request_state"
                     widget="badge"
                     decoration-success="request_state in ('done', 'approved', 'in_progress')"
-                    decoration-info="request_state in ('draft', 'to_approve')"
+                    decoration-info="request_state in ('draft', 'to_review', 'to_approve')"
                     decoration-danger="request_state == 'rejected'"
                 />
                 <field name="requested_by" widget="many2one_avatar_user" />
@@ -30,7 +30,7 @@
                     name="purchase_state"
                     widget="badge"
                     decoration-success="purchase_state == 'done'"
-                    decoration-muted="purchase_state == 'draft'"
+                    decoration-muted="purchase_state in ('draft', 'to_review')"
                     decoration-info="purchase_state in ('sent', 'purchase')"
                     decoration-warning="purchase_state == 'to_approve'"
                     decoration-danger="purchase_state == 'cancelled'"
@@ -70,7 +70,7 @@
                     <field
                         name="request_state"
                         widget="statusbar"
-                        statusbar_visible="draft,to_approve,approved,done,in_progress"
+                        statusbar_visible="draft,to_review,to_approve,approved,done,in_progress"
                     />
                 </header>
                 <sheet>
@@ -252,6 +252,12 @@
                     string="Draft"
                     domain="[('request_state','=','draft')]"
                     help="Request is to be approved"
+                />
+                <filter
+                    name="request_state_to_review"
+                    string="To Review"
+                    domain="[('request_state','=','to_review')]"
+                    help="Request is to be reviewed"
                 />
                 <filter
                     name="request_state_to_approve"

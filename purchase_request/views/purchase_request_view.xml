@@ -10,14 +10,21 @@
                 <header>
                     <button
                         name="button_draft"
-                        states="to_approve,approved,rejected,in_progress,done"
+                        states="to_review,to_approve,approved,rejected,in_progress,done"
                         string="Reset"
                         type="object"
                         groups="purchase_request.group_purchase_request_manager"
                     />
                     <button
-                        name="button_to_approve"
+                        name="button_to_review"
                         states="draft"
+                        string="Request review"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    <button
+                        name="button_to_approve"
+                        states="to_review"
                         string="Request approval"
                         type="object"
                         class="oe_highlight"
@@ -61,7 +68,7 @@
                     <field
                         name="state"
                         widget="statusbar"
-                        statusbar_visible="draft,to_approve,approved,done,in_progress"
+                        statusbar_visible="draft,to_review,to_approve,approved,done,in_progress"
                         statusbar_colors='{"approved":"blue"}'
                     />
                 </header>
@@ -167,7 +174,8 @@
                         <page string="Products">
                             <field
                                 name="line_ids"
-                                attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                mode="tree,kanban"
+                                attrs="{'readonly': [('state', 'not in', ['draft','to_review'])]}"
                             >
                                 <tree
                                     decoration-muted="cancelled == True"
@@ -206,7 +214,7 @@
                                         name="purchase_state"
                                         widget="badge"
                                         decoration-success="purchase_state == ('done')"
-                                        decoration-muted="purchase_state == ('draft')"
+                                        decoration-muted="purchase_state in ('draft', 'to_review')"
                                         decoration-info="purchase_state in ('sent', 'purchase')"
                                         decoration-warning="purchase_state == ('to_approve')"
                                         decoration-danger="purchase_state == 'cancelled'"
@@ -220,6 +228,68 @@
                                         options='{"warn": true}'
                                     />
                                 </tree>
+                                <kanban class="o_kanban_mobile">
+                                    <field name="name" />
+                                    <field name="product_id" />
+                                    <field name="product_qty" />
+                                    <field
+                                        name="product_uom_category_id"
+                                        invisible="1"
+                                    />
+                                    <field
+                                        name="product_uom_id"
+                                        invisible="1"
+                                        groups="!uom.group_uom"
+                                    />
+                                    <field
+                                        name="product_uom_id"
+                                        groups="uom.group_uom"
+                                    />
+                                    <templates>
+                                        <t t-name="kanban-box">
+                                            <div class="oe_kanban_global_click">
+                                                <div class="oe_kanban_details">
+                                                    <strong>
+                                                        <field name="product_id" />
+                                                    </strong>
+                                                    <div>
+                                                        <field name="product_qty" />
+                                                        <field name="product_uom_id" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </templates>
+                                </kanban>
+                                <form>
+                                    <group>
+                                        <field name="product_id" />
+                                        <field name="name" />
+                                        <field name="product_qty" />
+                                        <field name="product_uom_id" />
+                                        <field
+                                            name="product_uom_category_id"
+                                            invisible="1"
+                                        />
+                                        <field name="date_required" />
+                                        <field
+                                            name="estimated_cost"
+                                            widget="monetary"
+                                        />
+                                        <field name="currency_id" invisible="1" />
+                                        <field
+                                            name="company_id"
+                                            groups="base.group_multi_company"
+                                            widget="selection"
+                                        />
+                                        <field name="cancelled" invisible="1" />
+                                        <field name="is_editable" invisible="1" />
+                                    </group>
+                                    <group>
+                                        <field name="purchased_qty" />
+                                        <field name="purchase_state" />
+                                    </group>
+                                </form>
                             </field>
                             <group class="oe_subtotal_footer oe_right">
                                 <field name="currency_id" invisible="1" />
@@ -252,7 +322,7 @@
         <field name="arch" type="xml">
             <tree
                 decoration-bf="message_needaction==True"
-                decoration-info="state in ('draft','to_approve')"
+                decoration-info="state in ('draft','to_review','to_approve')"
                 decoration-muted="state in ('rejected')"
                 name="Purchase Request"
             >
@@ -273,7 +343,7 @@
                     name="state"
                     widget="badge"
                     decoration-success="state in ('done', 'approved', 'in_progress')"
-                    decoration-muted="state == 'draft'"
+                    decoration-muted="state in ('draft', 'to_review')"
                     decoration-warning="state == 'to_approve'"
                     decoration-danger="state == 'rejected'"
                 />
@@ -301,6 +371,12 @@
                     string="Draft"
                     domain="[('state','=','draft')]"
                     help="Request is to be approved"
+                />
+                <filter
+                    name="state_to_review"
+                    string="To Review"
+                    domain="[('state','=','to_review')]"
+                    help="Request is to be reviewed"
                 />
                 <filter
                     name="state_to_approve"
