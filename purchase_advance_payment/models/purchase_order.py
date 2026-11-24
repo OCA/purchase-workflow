@@ -56,8 +56,10 @@ class PurchaseOrder(models.Model):
     def _compute_purchase_advance_payment(self):
         for order in self:
             mls = order.account_payment_ids.mapped("move_id.line_ids").filtered(
-                lambda x: x.account_id.account_type == "liability_payable"
-                and x.parent_state == "posted"
+                lambda x: (
+                    x.account_id.account_type == "liability_payable"
+                    and x.parent_state == "posted"
+                )
             )
             advance_amount = 0.0
             for line in mls:
@@ -81,9 +83,11 @@ class PurchaseOrder(models.Model):
                     advance_amount += line_amount
             # Compute amount by payments without an account.move related.
             adv_pays = order.account_payment_ids.filtered(
-                lambda x: x.state in ["in_process", "paid"]
-                and not x.outstanding_account_id
-                and not x.move_id
+                lambda x: (
+                    x.state in ["in_process", "paid"]
+                    and not x.outstanding_account_id
+                    and not x.move_id
+                )
             )
             for ap in adv_pays:
                 if ap.invoice_ids:
