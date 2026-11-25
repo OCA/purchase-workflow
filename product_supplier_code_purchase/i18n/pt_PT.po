@@ -1,0 +1,36 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * product_supplier_code_purchase
+#
+# Translators:
+# Pedro Castro Silva <pedrocs@sossia.pt>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-08-29 03:23+0000\n"
+"PO-Revision-Date: 2017-08-29 03:23+0000\n"
+"Last-Translator: Pedro Castro Silva <pedrocs@sossia.pt>, 2017\n"
+"Language-Team: Portuguese (Portugal) (https://www.transifex.com/oca/"
+"teams/23907/pt_PT/)\n"
+"Language: pt_PT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: product_supplier_code_purchase
+#: model:ir.model.fields,field_description:product_supplier_code_purchase.field_purchase_order_line__product_supplier_code
+msgid "Product Supplier Code"
+msgstr ""
+
+#. module: product_supplier_code_purchase
+#: model:ir.model,name:product_supplier_code_purchase.model_purchase_order
+#, fuzzy
+msgid "Purchase Order"
+msgstr "Linha de Encomenda de Compra"
+
+#. module: product_supplier_code_purchase
+#: model:ir.model,name:product_supplier_code_purchase.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Linha de Encomenda de Compra"
