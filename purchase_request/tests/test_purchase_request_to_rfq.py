@@ -1,0 +1,541 @@
+# Copyright 2018-2019 ForgeFlow, S.L.
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
+
+from odoo import SUPERUSER_ID, Command
+
+from odoo.addons.base.tests.common import BaseCommon
+
+
+class TestPurchaseRequestToRfq(BaseCommon):
+    _test_user_groups = (
+        "purchase_request.group_purchase_request_manager",
+        "purchase.group_purchase_manager",
+        "stock.group_stock_manager",
+        "product.group_product_manager",
+    )
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        analytic_plan = cls.env["account.analytic.plan"].create({"name": "Plan Test"})
+        cls.analytic_account = cls.env["account.analytic.account"].create(
+            {"name": "default", "plan_id": analytic_plan.id}
+        )
+        cls.purchase_request_obj = cls.env["purchase.request"]
+        cls.purchase_request_line_obj = cls.env["purchase.request.line"]
+        cls.wiz = cls.env["purchase.request.line.make.purchase.order"]
+        cls.purchase_order = cls.env["purchase.order"]
+
+        # Create test supplier
+        cls.supplier = cls.env["res.partner"].create(
+            {
+                "name": "Test Supplier",
+                "is_company": True,
+                "supplier_rank": 1,
+            }
+        )
+
+        vendor = cls.env["res.partner"].create({"name": "Partner #2"})
+        cls.service_product = cls.env["product.product"].create(
+            {"name": "Product Service Test", "type": "service"}
+        )
+
+        # Create test product for common use in tests
+        cls.product = cls.env["product.product"].create(
+            {
+                "name": "Test Product",
+                "type": "consu",
+            }
+        )
+
+        # Add supplier info with minimum order quantity for cls.product
+        cls.env["product.supplierinfo"].create(
+            {
+                "partner_id": cls.supplier.id,
+                "product_tmpl_id": cls.product.product_tmpl_id.id,
+                "min_qty": 1,
+            }
+        )
+
+        cls.env["product.supplierinfo"].create(
+            {
+                "partner_id": vendor.id,
+                "product_tmpl_id": cls.service_product.product_tmpl_id.id,
+            }
+        )
+        cls.product_product = cls.env["product.product"].create(
+            {
+                "name": "Product Product Test",
+                "type": "consu",
+                "is_storable": True,
+                "description_purchase": "Test Description",
+            }
+        )
+
+    def test_wizard_default_get(self):
+        # Check that correct create items by purchase.request
+        vals = {
+            "picking_type_id": self.env.ref("stock.picking_type_in").id,
+            "requested_by": SUPERUSER_ID,
+            "line_ids": [
+                Command.create(
+                    {
+                        "product_id": self.product.id,
+                        "product_uom_id": self.env.ref("uom.product_uom_unit").id,
+                        "product_qty": 2.0,
+                    }
+                )
+            ],
+        }
+        purchase_request1 = self.purchase_request_obj.create(vals)
+        purchase_request1.button_approved()
+        vals = {
+            "picking_type_id": self.env.ref("stock.picking_type_in").id,
+            "requested_by": SUPERUSER_ID,
+            "line_ids": [
+                Command.create(
+                    {
+                        "product_id": self.product.id,
+                        "product_uom_id": self.env.ref("uom.product_uom_unit").id,
+                        "product_qty": 2.0,
+                    }
+                )
+            ],
+        }
+        purchase_request2 = self.purchase_request_obj.create(vals)
+        purchase_request2.button_approved()
+        vals = {"supplier_id": self.supplier.id}
+        wiz_id = self.wiz.with_context(
+            active_model="purchase.request.line",
+            active_ids=[
+                purchase_request1.mapped("line_ids").id,
+                purchase_request2.mapped("line_ids").id,
+            ],
+        ).create(vals)
+        self.assertEqual(
+            (purchase_request1 | purchase_request2).mapped("line_ids"),
+            wiz_id.item_ids.mapped("line_id"),
+            "Should have same purchase request lines",
+        )
+
+    def test_purchase_request_to_purchase_rfq(self):
+        vals = {
+            "picking_type_id": self.env.ref("stock.picking_type_in").id,
+            "requested_by": SUPERUSER_ID,
+        }
+        purchase_request = self.purchase_request_obj.create(vals)
+        vals = {
+            "request_id": purchase_request.id,
+            "product_id": self.product.id,
+            "product_uom_id": self.env.ref("uom.product_uom_unit").id,
+            "product_qty": 5.0,
+            "estimated_cost": 50.0,
+        }
+        purchase_request_line = self.purchase_request_line_obj.create(vals)
+        purchase_request.button_to_approve()
+        purchase_request.button_approved()
+
+        vals = {"supplier_id": self.supplier.id}
+        wiz_id = self.wiz.with_context(
+            active_model="purchase.request.line",
+            active_ids=[purchase_request_line.id],
+            active_id=purchase_request_line.id,
+        ).create(vals)
+        for item in wiz_id.item_ids:
+            if item.line_id.id == purchase_request_line.id:
+                item.keep_estimated_cost = True
+        wiz_id.make_purchase_order()
+        purchase_order = purchase_request_line.purchase_lines.order_id
+        self.assertTrue(
+            len(purchase_request_line.purchase_lines), "Should have a purchase line"
+        )
+        self.assertEqual(
+            purchase_request_line.purchase_lines.product_id.id,
+            purchase_request_line.product_id.id,
+            "Should have same product",
+        )
+        self.assertEqual(
+            purchase_request_line.purchase_lines.state,
+            purchase_request_line.purchase_state,
+            "Should have same state",
+        )
+        self.assertEqual(
+            purchase_order.order_line.price_subtotal,
+            purchase_request_line.estimated_cost,
+            "Should have same price",
+        )
+
+    def test_bug_is_editable_multiple_lines(self):
+        # Check that reading multiple lines is still possible
+        # https://github.com/OCA/purchase-workflow/pull/291
+        vals = {
+            "picking_type_id": self.env.ref("stock.picking_type_in").id,
+            "requested_by": SUPERUSER_ID,
+        }
+        purchase_request = self.purchase_request_obj.create(vals)
+        vals = {
+            "request_id": purchase_request.id,
+            "product_id": self.product.id,
+            "product_uom_id": self.env.ref("uom.product_uom_unit").id,
+            "product_qty": 5.0,
+        }
+        purchase_request_line = self.purchase_request_line_obj.create(vals)
+        request_lines = purchase_request_line + purchase_request_line.copy()
+        request_lines.mapped("is_editable")
+
+        # Test also for onchanges on non created lines
+        self.assertTrue(self.purchase_request_line_obj.new({}).is_editable)
+
+    def test_purchase_request_to_purchase_rfq_minimum_order_qty(self):
+        vals = {
+            "picking_type_id": self.env.ref("stock.picking_type_in").id,
+            "requested_by": SUPERUSER_ID,
+        }
+        purchase_request = self.purchase_request_obj.create(vals)
+        vals = {
+            "request_id": purchase_request.id,
+            "product_id": self.product.id,
+            "product_uom_id": self.env.ref("uom.product_uom_unit").id,
+            "product_qty": 1.0,
+        }
+        purchase_request_line = self.purchase_request_line_obj.create(vals)
+        vals = {"supplier_id": self.supplier.id}
+        purchase_request.button_approved()
+        wiz_id = self.wiz.with_context(
+            active_model="purchase.request.line",
+            active_ids=[purchase_request_line.id],
+            active_id=purchase_request_line.id,
+        ).create(vals)
+        wiz_id.make_purchase_order()
+        self.assertTrue(
+            len(purchase_request_line.purchase_lines), "Should have a purchase line"
+        )
+        self.assertEqual(
+            purchase_request_line.purchase_lines.product_id.id,
+            purchase_request_line.product_id.id,
+            "Should have same product",
+        )
+        self.assertEqual(
+            purchase_request_line.purchase_lines.state,
+            purchase_request_line.purchase_state,
+            "Should have same state",
+        )
+        self.assertEqual(
+            purchase_request_line.purchase_lines.product_qty,
+            1,
+            "The PO line should have the minimum order quantity.",
+        )
+        self.assertEqual(
+            purchase_request_line,
+            purchase_request_line.purchase_lines.purchase_request_lines,
+            "The PO should cross-reference to the purchase request.",
+        )
+
+    def test_purchase_request_to_purchase_rfq_multiple_po(self):
+        vals = {
+            "picking_type_id": self.env.ref("stock.picking_type_in").id,
+            "requested_by": SUPERUSER_ID,
+        }
+        purchase_request1 = self.purchase_request_obj.create(vals)
+        vals = {
+            "picking_type_id": self.env.ref("stock.picking_type_in").id,
+            "requested_by": SUPERUSER_ID,
+        }
+        purchase_request2 = self.purchase_request_obj.create(vals)
+        vals = {
+            "request_id": purchase_request1.id,
+            "product_id": self.product.id,
+            "product_uom_id": self.env.ref("uom.product_uom_dozen").id,
+            "product_qty": 1.0,
+        }
+        purchase_request_line1 = self.purchase_request_line_obj.create(vals)
+        vals = {
+            "request_id": purchase_request2.id,
+            "product_id": self.product.id,
+            "product_uom_id": self.env.ref("uom.product_uom_unit").id,
+            "product_qty": 1.0,
+        }
+        purchase_request_line2 = self.purchase_request_line_obj.create(vals)
+        vals = {
+            "request_id": purchase_request2.id,
+            "product_id": self.product_product.id,
+            "product_uom_id": self.env.ref("uom.product_uom_unit").id,
+            "product_qty": 1.0,
+        }
+        purchase_request_line3 = self.purchase_request_line_obj.create(vals)
+        vals = {"supplier_id": self.supplier.id}
+        purchase_request1.button_approved()
+        purchase_request2.button_approved()
+        wiz_id = self.wiz.with_context(
+            active_model="purchase.request.line",
+            active_ids=[
+                purchase_request_line1.id,
+                purchase_request_line2.id,
+                purchase_request_line3.id,
+            ],
+        ).create(vals)
+        for item in wiz_id.item_ids:
+            if item.line_id.id == purchase_request_line2.id:
+                item.keep_description = True
+            if item.line_id.id == purchase_request_line3.id:
+                item.onchange_product_id()
+        wiz_id.make_purchase_order()
+        self.assertEqual(
+            purchase_request_line1.purchased_qty, 1.0, "Should be a quantity of 1"
+        )
+        self.assertEqual(
+            purchase_request_line2.purchased_qty, 1.0, "Should be 1 unit (min_qty)"
+        )
+
+    def test_purchase_request_to_purchase_rfq_multiple_PO_purchaseUoM(self):
+        product = self.product_product
+        vals = {
+            "picking_type_id": self.env.ref("stock.picking_type_in").id,
+            "requested_by": SUPERUSER_ID,
+        }
+        purchase_request1 = self.purchase_request_obj.create(vals)
+        vals = {
+            "picking_type_id": self.env.ref("stock.picking_type_in").id,
+            "requested_by": SUPERUSER_ID,
+        }
+        purchase_request2 = self.purchase_request_obj.create(vals)
+        vals = {
+            "request_id": purchase_request1.id,
+            "product_id": product.id,
+            "product_uom_id": self.env.ref("uom.product_uom_unit").id,
+            "product_qty": 12.0,
+        }
+        purchase_request_line1 = self.purchase_request_line_obj.create(vals)
+        vals = {
+            "request_id": purchase_request2.id,
+            "product_id": product.id,
+            "product_uom_id": self.env.ref("uom.product_uom_unit").id,
+            "product_qty": 12.0,
+        }
+        purchase_request_line2 = self.purchase_request_line_obj.create(vals)
+        vals = {
+            "request_id": purchase_request2.id,
+            "product_id": product.id,
+            "product_uom_id": self.env.ref("uom.product_uom_unit").id,
+            "product_qty": 1.0,
+        }
+        purchase_request_line3 = self.purchase_request_line_obj.create(vals)
+        vals = {"supplier_id": self.supplier.id}
+        purchase_request1.button_approved()
+        purchase_request2.button_approved()
+        wiz_id = self.wiz.with_context(
+            active_model="purchase.request.line",
+            active_ids=[
+                purchase_request_line1.id,
+                purchase_request_line2.id,
+                purchase_request_line3.id,
+            ],
+        ).create(vals)
+        for item in wiz_id.item_ids:
+            if item.line_id.id == purchase_request_line2.id:
+                # PRL will be splitted into another POL to keep description
+                item.keep_description = True
+        wiz_id.make_purchase_order()
+        po_line = purchase_request_line1.purchase_lines[0]
+        # PO uses product's base UoM (Units)
+        self.assertEqual(po_line.product_qty, 12, "Quantity should be 12 units")
+        self.assertEqual(
+            po_line.uom_id,
+            self.env.ref("uom.product_uom_unit"),
+            "The purchase UoM should be Unit(s)",
+        )
+
+    def test_purchase_request_to_rfq_minimum_order_qty_existing_po(self):
+        # Define Supplier
+        supplier = self.supplier
+        # Create Product Widget min_qty = 5
+        product = self.env["product.product"].create(
+            {
+                "name": "Widget",
+                "type": "consu",
+                "is_storable": True,
+                "seller_ids": [
+                    Command.create(
+                        {"partner_id": supplier.id, "delay": 10, "min_qty": 5}
+                    )
+                ],
+            }
+        )
+        # Create Purchase Order with qty = 3 through Purchase Request
+        vals = {
+            "picking_type_id": self.env.ref("stock.picking_type_in").id,
+            "requested_by": SUPERUSER_ID,
+        }
+        purchase_request1 = self.purchase_request_obj.create(vals)
+        vals = {
+            "request_id": purchase_request1.id,
+            "product_id": product.id,
+            "product_uom_id": self.env.ref("uom.product_uom_unit").id,
+            "product_qty": 3.0,
+        }
+        purchase_request_line1 = self.purchase_request_line_obj.create(vals)
+        purchase_request1.button_approved()
+        vals = {"supplier_id": supplier.id}
+        wiz_id = self.wiz.with_context(
+            active_model="purchase.request.line", active_ids=[purchase_request_line1.id]
+        ).create(vals)
+        wiz_id.make_purchase_order()
+        # The planned date is taken from the request, not from the supplier
+        self.assertEqual(
+            purchase_request_line1.date_required.day,
+            purchase_request_line1.purchase_lines.date_planned.astimezone(
+                self.env.tz
+            ).day,
+        )
+        po = purchase_request_line1.purchase_lines[0].order_id
+        # Create Purchase Request
+        vals = {
+            "picking_type_id": self.env.ref("stock.picking_type_in").id,
+            "requested_by": SUPERUSER_ID,
+        }
+        purchase_request2 = self.purchase_request_obj.create(vals)
+        # Create Purchase Request Line qty = 3
+
+        vals = {
+            "request_id": purchase_request2.id,
+            "product_id": product.id,
+            "product_uom_id": self.env.ref("uom.product_uom_unit").id,
+            "product_qty": 3.0,
+        }
+        purchase_request_line2 = self.purchase_request_line_obj.create(vals)
+        # Validate
+        purchase_request2.button_approved()
+        # Create RFQ to Previous PO
+        vals = {"supplier_id": supplier.id, "purchase_order_id": po.id}
+        wiz_id = self.wiz.with_context(
+            active_model="purchase.request.line", active_ids=[purchase_request_line2.id]
+        ).create(vals)
+        wiz_id.make_purchase_order()
+        # Check Purchase qty
+        po_line = purchase_request_line2.purchase_lines[0]
+        # Add unit price in PO Line
+        po_line.write({"price_unit": 10})
+        self.assertEqual(po_line.product_qty, 5.0, "Quantity should be 5")
+        # auto change state to done
+        po_line.order_id.button_confirm()
+        picking = po_line.order_id.picking_ids[0]
+        picking.move_line_ids[0].write({"quantity": 5.0})
+        picking.button_validate()
+
+    def test_purchase_request_to_rfq_merge_existing_po_line(self):
+        """Request lines added to an existing RFQ go to the matching purchase
+        order line instead of a new one, with and without a purchase
+        description on the product."""
+        for product in self.product + self.product_product:
+            request_lines = self.purchase_request_line_obj
+            for _i in range(2):
+                purchase_request = self.purchase_request_obj.create(
+                    {
+                        "picking_type_id": self.env.ref("stock.picking_type_in").id,
+                        "requested_by": SUPERUSER_ID,
+                        "line_ids": [
+                            Command.create(
+                                {
+                                    "product_id": product.id,
+                                    "product_uom_id": self.env.ref(
+                                        "uom.product_uom_unit"
+                                    ).id,
+                                    "product_qty": 6.0,
+                                }
+                            )
+                        ],
+                    }
+                )
+                purchase_request.button_approved()
+                request_lines |= purchase_request.line_ids
+            wiz_vals = {"supplier_id": self.supplier.id}
+            self.wiz.with_context(
+                active_model="purchase.request.line", active_ids=request_lines[0].ids
+            ).create(wiz_vals).make_purchase_order()
+            purchase = request_lines[0].purchase_lines.order_id
+            wiz_vals["purchase_order_id"] = purchase.id
+            self.wiz.with_context(
+                active_model="purchase.request.line", active_ids=request_lines[1].ids
+            ).create(wiz_vals).make_purchase_order()
+            self.assertEqual(len(purchase.order_line), 1, product.name)
+            self.assertEqual(
+                purchase.order_line.purchase_request_lines, request_lines, product.name
+            )
+
+    def test_purchase_request_to_rfq_keep_estimated_cost(self):
+        """Only the lines with "Copy estimative cost to new PO" take their
+        price from the estimated cost, on a purchase order line of their own."""
+        product = self.env["product.product"].create(
+            {
+                "name": "Product with estimated cost",
+                "type": "consu",
+                "seller_ids": [
+                    Command.create({"partner_id": self.supplier.id, "price": 52.0})
+                ],
+            }
+        )
+        purchase_request = self.purchase_request_obj.create(
+            {
+                "picking_type_id": self.env.ref("stock.picking_type_in").id,
+                "requested_by": SUPERUSER_ID,
+                "line_ids": [
+                    Command.create(
+                        {
+                            "product_id": product.id,
+                            "product_uom_id": self.env.ref("uom.product_uom_unit").id,
+                            "product_qty": 5.0,
+                            "estimated_cost": estimated_cost,
+                        }
+                    )
+                    for estimated_cost in (50.0, 70.0)
+                ],
+            }
+        )
+        purchase_request.button_approved()
+        vendor_price_line, estimated_line = purchase_request.line_ids.sorted("id")
+        wiz = self.wiz.with_context(
+            active_model="purchase.request.line",
+            active_ids=purchase_request.line_ids.ids,
+        ).create({"supplier_id": self.supplier.id})
+        wiz.item_ids.filtered(
+            lambda item: item.line_id == estimated_line
+        ).keep_estimated_cost = True
+        wiz.make_purchase_order()
+        self.assertEqual(len(vendor_price_line.purchase_lines.order_id.order_line), 2)
+        self.assertEqual(estimated_line.purchase_lines.price_unit, 14.0)
+        self.assertEqual(estimated_line.purchase_lines.price_subtotal, 70.0)
+
+    def _setup_analytic_distribution(self):
+        return {str(self.analytic_account.id): 100}
+
+    def test_purchase_request_to_purchase_order_analytic_data_propagation(self):
+        analytic_distribution = self._setup_analytic_distribution()
+        vals = {
+            "picking_type_id": self.env.ref("stock.picking_type_in").id,
+            "requested_by": SUPERUSER_ID,
+            "line_ids": [
+                Command.create(
+                    {
+                        "product_id": self.product.id,
+                        "product_uom_id": self.env.ref("uom.product_uom_unit").id,
+                        "product_qty": 5.0,
+                        "analytic_distribution": analytic_distribution,
+                    }
+                )
+            ],
+        }
+        purchase_request = self.purchase_request_obj.create(vals)
+        purchase_request.button_to_approve()
+        purchase_request.button_approved()
+        supplier = self.supplier
+        vals = {
+            "supplier_id": supplier.id,
+        }
+        wiz_id = self.wiz.with_context(
+            active_model="purchase.request.line",
+            active_ids=[purchase_request["line_ids"][0].id],
+            active_id=purchase_request["line_ids"][0].id,
+        ).create(vals)
+        wiz_id.make_purchase_order()
+        po_line = purchase_request["line_ids"][0].purchase_lines[0]
+        self.assertEqual(po_line.analytic_distribution, analytic_distribution)
