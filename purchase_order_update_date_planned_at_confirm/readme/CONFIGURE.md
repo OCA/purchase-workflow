@@ -1,0 +1,2 @@
+- Go to Purchase > Configuration > Settings
+- Check the 'Update Planned Date at Confirmation'
