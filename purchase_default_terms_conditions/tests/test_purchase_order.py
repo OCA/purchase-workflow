@@ -91,3 +91,18 @@ class TestPurchase(BaseCommon):
                 purchase_form.notes,
                 "Notes should contain company purchase note when partner note is empty",
             )
+
+    def test_partner_note_on_direct_create(self):
+        """Orders created programmatically (e.g. by procurement/MTO rules)
+        never trigger the partner_id onchange, so notes must be backfilled
+        in create() as well."""
+        purchase_order = self.env["purchase.order"].create(
+            {"partner_id": self.partner_a.id}
+        )
+        self.assertEqual(
+            purchase_order.notes.strip(),
+            self.partner_a.purchase_note,
+            "Notes should be set from partner's purchase note even when "
+            "the order is created directly, without going through the "
+            "partner_id onchange",
+        )
