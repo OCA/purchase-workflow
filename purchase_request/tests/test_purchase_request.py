@@ -33,6 +33,27 @@ class TestPurchaseRequest(TransactionCase):
         action = self.purchase_request.line_ids.action_show_details()
         self.assertEqual(action["res_id"], self.purchase_request.line_ids.id)
 
+    def test_purchase_request_line_order(self):
+        product = self.env.ref("product.product_product_13")
+        lines = self.purchase_request_line_obj.create(
+            [
+                {
+                    "name": f"Line {i}",
+                    "request_id": self.purchase_request.id,
+                    "product_id": product.id,
+                    "product_qty": 1.0,
+                }
+                for i in range(1, 4)
+            ]
+        )
+        first_line = self.purchase_request.line_ids[0]
+        self.assertEqual(self.purchase_request.line_ids[1:], lines)
+        lines[-1].sequence = 1
+        self.purchase_request.invalidate_recordset(["line_ids"])
+        self.assertEqual(
+            self.purchase_request.line_ids, lines[-1] | first_line | lines[:-1]
+        )
+
     def test_purchase_request_status(self):
         """Tests Purchase Request status workflow."""
         purchase_request = self.purchase_request
