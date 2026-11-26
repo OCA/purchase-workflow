@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2026 Akretion
+    @author Guillaume MASSON <guillaume.masson@akretion.com>
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="view_warehouse" model="ir.ui.view">
+        <field name="model">stock.warehouse</field>
+        <field name="inherit_id" ref="stock.view_warehouse" />
+        <field name="arch" type="xml">
+            <field name="wh_input_stock_loc_id" position="before">
+                <field name="incoming_transit_location_id" readonly="1" />
+            </field>
+            <field name="in_type_id" position="before">
+                <field name="transit_in_type_id" readonly="1" />
+            </field>
+        </field>
+    </record>
+</odoo>
