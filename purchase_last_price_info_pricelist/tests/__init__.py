@@ -1,0 +1,1 @@
+from . import test_pricelist_last_purchase_price
