@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_purchase_advance_payment_inv" model="ir.ui.view">
+        <field name="name">Invoice Orders</field>
+        <field name="model">purchase.advance.payment.inv</field>
+        <field
+            name="inherit_id"
+            ref="purchase_deposit.view_purchase_advance_payment_inv"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//group" position="after">
+                <group name="analytic_distribution">
+                    <group>
+                        <field
+                            name="analytic_distribution"
+                            widget="analytic_distribution"
+                            groups="analytic.group_analytic_accounting"
+                        />
+                    </group>
+                    <group />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
