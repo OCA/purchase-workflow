@@ -26,3 +26,5 @@ repo_website: https://github.com/OCA/purchase-workflow
 use_pyproject_toml: true
 use_ruff: true
 
+
+#copier updated
