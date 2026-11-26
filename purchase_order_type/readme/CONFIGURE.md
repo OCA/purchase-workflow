@@ -12,6 +12,7 @@ To make an order type mandatory on purchase orders:
 - Enable **Require Purchase Order Type**. The setting applies per company.
 
 A purchase order then cannot be saved in the form without an order type.
-New installations do not require an order type. Upgraded installations
-keep requiring it for every existing company; companies created later do
-not require it until the setting is enabled.
+New installations leave this setting disabled. When upgrading from the
+1.x series of this module, the migration enables it for existing
+companies and preserves the legacy defaults. Upgrades from 19.0.2.0.0
+retain the configured defaults and company settings.

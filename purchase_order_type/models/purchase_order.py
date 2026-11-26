@@ -3,6 +3,9 @@
 
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
+from odoo.tools.translate import LazyTranslate
+
+_purchase = LazyTranslate("odoo.addons.purchase")
 
 
 class PurchaseOrder(models.Model):
@@ -48,10 +51,9 @@ class PurchaseOrder(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         self._set_order_type_defaults(vals_list)
+        new_name = self.env._(_purchase("New"))
         for values in vals_list:
-            if values.get("name", "/") in ("/", self.env._("New")) and values.get(
-                "order_type"
-            ):
+            if values.get("name", "/") in ("/", new_name) and values.get("order_type"):
                 purchase_type = self.env["purchase.order.type"].browse(
                     values["order_type"]
                 )

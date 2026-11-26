@@ -125,14 +125,17 @@ class TestPurchaseOrderType(common.TransactionCase):
         self.assertEqual(order.order_type, self.type2)
 
     def test_order_type_sequence_with_new_name_and_datetime(self):
+        self.env["res.lang"]._activate_lang("es_ES")
+        purchase_order = self.po_obj.with_context(lang="es_ES")
+        self.assertEqual(purchase_order.default_get(["name"])["name"], "Nuevo")
         date_order = "2026-01-15 09:30:00"
         sequence = self.type1.sequence_id
         with patch.object(
             type(sequence), "next_by_id", return_value="PO/TYPE/0001"
         ) as next_by_id:
-            order = self.po_obj.create(
+            order = purchase_order.create(
                 {
-                    "name": self.env._("New"),
+                    "name": "Nuevo",
                     "partner_id": self.partner1.id,
                     "order_type": self.type1.id,
                     "date_order": date_order,
