@@ -2,6 +2,8 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 from datetime import datetime
 
+from freezegun import freeze_time
+
 from odoo import Command, fields
 from odoo.tests import tagged
 
@@ -219,3 +221,76 @@ class TestStockWarehouseCalendar(BaseCommon):
         settings.action_set_vendors_default_supplier_calendar()
         self.assertEqual(shared_vendor.delay_calendar_type, "company_calendar")
         self.assertEqual(vendor_b.delay_calendar_type, "natural")
+
+    @freeze_time("2097-01-10 09:00:00")  # Thursday
+    def test_09_orderpoint_lead_days_in_working_days(self):
+        orderpoint = self.env["stock.warehouse.orderpoint"].create(
+            {
+                "product_id": self.product.id,
+                "location_id": self.stock_location.id,
+                "route_id": self.route_buy,
+                "product_min_qty": 10,
+                "product_max_qty": 10,
+            }
+        )
+        orderpoint._procure_orderpoint_confirm(company_id=self.company)
+        purchase_order = self.PurchaseOrder.search(
+            [("partner_id", "=", self.company_partner.id)]
+        )
+        self.assertEqual(
+            purchase_order.date_order.date(), fields.Date.to_date("2097-01-10")
+        )
+        self.assertEqual(
+            purchase_order.date_planned.date(), fields.Date.to_date("2097-01-15")
+        )
+        # 3 working days from Thursday is next Tuesday
+        self.assertEqual(orderpoint.lead_days, 5)
+        _delays, description = orderpoint.rule_ids._get_lead_days(
+            self.product, **orderpoint._get_lead_days_values()
+        )
+        self.assertIn(5, [value for _name, value in description])
+        # Natural days stay natural days
+        self.company_partner.write(
+            {"delay_calendar_type": "natural", "factory_calendar_id": False}
+        )
+        orderpoint.invalidate_recordset()
+        self.assertEqual(orderpoint.lead_days, 3)
+
+    def test_10_purchase_order_date_from_several_procurements(self):
+        seller_02 = self.seller_01.copy({"delay": 10})
+        rule = self.env["stock.rule"].search(
+            [("route_id", "=", self.route_buy), ("action", "=", "buy")], limit=1
+        )
+        values = rule._prepare_purchase_order(
+            self.company,
+            [],
+            [
+                {"supplier": self.seller_01, "date_planned": "2097-01-30 12:00:00"},
+                {"supplier": seller_02, "date_planned": "2097-01-28 12:00:00"},
+            ],
+        )
+        # 10 working days before Monday 2097-01-28
+        self.assertEqual(values["date_order"].date(), fields.Date.to_date("2097-01-14"))
+
+    @freeze_time("2097-01-10 09:00:00")  # Thursday
+    def test_11_replenish_wizard_date_in_working_days(self):
+        wizard = (
+            self.env["product.replenish"]
+            .with_context(default_product_id=self.product.id)
+            .create(
+                {
+                    "quantity": 1,
+                    "route_id": self.route_buy,
+                    "supplier_id": self.seller_01.id,
+                }
+            )
+        )
+        # 3 working days from Thursday is next Tuesday
+        self.assertEqual(wizard.date_planned.date(), fields.Date.to_date("2097-01-15"))
+        wizard.launch_replenishment()
+        purchase_order = self.PurchaseOrder.search(
+            [("partner_id", "=", self.company_partner.id)]
+        )
+        self.assertEqual(
+            purchase_order.date_order.date(), fields.Date.to_date("2097-01-10")
+        )
