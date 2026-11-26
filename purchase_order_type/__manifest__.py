@@ -1,0 +1,25 @@
+# Copyright 2015 Camptocamp SA
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+
+{
+    "name": "Purchase Order Type",
+    "version": "20.0.2.0.0",
+    "author": "Camptocamp, Odoo Community Association (OCA)",
+    "license": "AGPL-3",
+    "category": "Purchase Management",
+    "depends": ["purchase"],
+    "website": "https://github.com/OCA/purchase-workflow",
+    "data": [
+        "security/ir.access.csv",
+        "views/view_purchase_order_type.xml",
+        "views/view_purchase_order.xml",
+        "views/res_partner_view.xml",
+        "views/res_config_settings_views.xml",
+        "data/purchase_order_type.xml",
+    ],
+    "demo": [
+        "demo/purchase_order_type_demo.xml",
+    ],
+    "installable": True,
+    "auto_install": False,
+}

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="po_type_regular" model="purchase.order.type">
+        <field name="is_default" eval="True" />
+    </record>
+</odoo>
