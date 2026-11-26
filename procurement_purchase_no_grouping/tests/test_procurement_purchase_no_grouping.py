@@ -8,6 +8,13 @@ from odoo.addons.base.tests.common import BaseCommon
 
 
 class TestProcurementPurchaseNoGrouping(BaseCommon):
+    _test_user_groups = (
+        "base.group_system",
+        "product.group_product_manager",
+        "stock.group_stock_user",
+        "purchase.group_purchase_user",
+    )
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

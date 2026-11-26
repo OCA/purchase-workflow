@@ -29,11 +29,13 @@ class PurchaseOrderLine(models.Model):
         modules, and on standard operation mode, references are not reused between sales
         orders.
         """
+        lines = self
         if values.get("grouping") == "line":
-            self = self.filtered(
+            lines = self.filtered(
                 lambda x: x.order_id.reference_ids == values.get("reference_ids")
             )
-        return super()._find_candidate(
+
+        return super(PurchaseOrderLine, lines)._find_candidate(
             product_id,
             product_qty,
             product_uom,

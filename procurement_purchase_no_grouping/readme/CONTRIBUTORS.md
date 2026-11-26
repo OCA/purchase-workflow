@@ -12,3 +12,4 @@
   - Jonathan Oscategui Taza \<<info@pesol.es>\>
 - `Heliconia Solutions Pvt. Ltd. <https://www.heliconia.io>`_
 - Arantxa Gandia \<<arantxa@studio73.es>\>
+- Sudhir Arya \<<sudhir@erpharbor.com>\>

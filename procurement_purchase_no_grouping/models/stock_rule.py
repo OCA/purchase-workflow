@@ -32,11 +32,12 @@ class StockRule(models.Model):
         domain = super()._make_po_get_domain(company_id, values, partner)
         if values.get("grouping") == "product_category":
             if values.get("supplier"):
-                suppinfo = values["supplier"]
-                product = suppinfo.product_id or suppinfo.product_tmpl_id
-                domain += (
-                    ("order_line.product_id.categ_id", "=", product.categ_id.id),
-                )
+                suppinfo = values["supplier"].get("supplierinfo")
+                if suppinfo:
+                    product = suppinfo.product_id or suppinfo.product_tmpl_id
+                    domain += (
+                        ("order_line.product_id.categ_id", "=", product.categ_id.id),
+                    )
         elif values.get("grouping") == "order":
             if values.get("move_dest_ids"):
                 domain += (("id", "=", -values["move_dest_ids"][:1].id),)
