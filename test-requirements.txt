@@ -1,0 +1,1 @@
+odoo-addon-purchase_request @ git+https://github.com/OCA/purchase-workflow.git@refs/pull/3212/head#subdirectory=purchase_request
