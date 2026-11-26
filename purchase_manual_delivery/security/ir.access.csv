@@ -1,0 +1,3 @@
+id,name,model_id,group_id/id,operation,domain
+create_stock_picking_wizard_all,create_stock_picking_wizard_all,create.stock.picking.wizard,stock.group_stock_user,crud,
+create_stock_picking_wizard_line_all,create_stock_picking_wizard_line_all,create.stock.picking.wizard.line,stock.group_stock_user,crud,

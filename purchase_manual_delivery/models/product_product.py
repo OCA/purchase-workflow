@@ -1,0 +1,66 @@
+from odoo import models
+from odoo.fields import Domain
+
+
+class ProductProduct(models.Model):
+    _inherit = "product.product"
+
+    def _get_pending_lines_domain(self, location_ids=False, warehouse_ids=False):
+        """Reuse the base purchase lines domain but target confirmed lines that
+        are still pending to receive instead of the draft RFQ lines."""
+        domain = self._get_lines_domain(location_ids, warehouse_ids)
+
+        def _replace_state(condition):
+            if condition.field_expr == "state":
+                return Domain("state", "=", "purchase") & Domain(
+                    "pending_to_receive", "=", True
+                )
+            return condition
+
+        return domain.map_conditions(_replace_state)
+
+    def _get_quantity_in_progress(self, location_ids=False, warehouse_ids=False):
+        qty_by_product_location, qty_by_product_wh = super()._get_quantity_in_progress(
+            location_ids, warehouse_ids
+        )
+        domain = self._get_pending_lines_domain(location_ids, warehouse_ids)
+        groups = (
+            self.env["purchase.order.line"]
+            .sudo()
+            ._read_group(
+                domain,
+                [
+                    "product_id",
+                    "order_id",
+                    "uom_id",
+                    "orderpoint_id",
+                    "forecasted_location_id",
+                ],
+                ["product_qty:sum", "qty_in_receipt:sum", "qty_received:sum"],
+            )
+        )
+        for (
+            product,
+            order,
+            uom,
+            orderpoint,
+            forecasted_location,
+            product_qty,
+            qty_in_receipt,
+            qty_received,
+        ) in groups:
+            if orderpoint:
+                location = orderpoint.location_id
+            elif forecasted_location:
+                location = forecasted_location
+            else:
+                location = order.picking_type_id.default_location_dest_id
+            # qty_in_receipt and qty_received are in the line unit too
+            remaining_qty = uom._compute_quantity(
+                product_qty - (qty_in_receipt + qty_received),
+                product.uom_id,
+                round=False,
+            )
+            qty_by_product_location[(product.id, location.id)] += remaining_qty
+            qty_by_product_wh[(product.id, location.warehouse_id.id)] += remaining_qty
+        return qty_by_product_location, qty_by_product_wh
