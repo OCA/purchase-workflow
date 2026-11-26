@@ -1,0 +1,29 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_order_no_zero_price
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-01-11 17:35+0000\n"
+"Last-Translator: kikopeiro <francisco.peiro@factorlibre.com>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: purchase_order_no_zero_price
+#. odoo-python
+#: code:addons/purchase_order_no_zero_price/models/purchase_order_line.py:0
+#, python-format
+msgid "Missing unit price for Products: %s"
+msgstr "Precio unitario sin establecer en los siguientes productos: %s"
+
+#. module: purchase_order_no_zero_price
+#: model:ir.model,name:purchase_order_no_zero_price.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Linea de pedido de compra"
