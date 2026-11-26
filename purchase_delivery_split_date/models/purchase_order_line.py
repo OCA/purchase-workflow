@@ -74,8 +74,9 @@ class PurchaseOrderLine(models.Model):
                 moves_to_assign.with_context(
                     purchase_delivery_split_date=True
                 )._assign_picking()
-                moves_to_assign._action_confirm()
-                moves += moves_to_assign
+                # Confirming can replace moves, e.g. mrp explodes a kit into
+                # its components and deletes the kit move
+                moves += moves_to_assign._action_confirm()
         return moves
 
     def _compute_price_unit_and_date_planned_and_name(self):
