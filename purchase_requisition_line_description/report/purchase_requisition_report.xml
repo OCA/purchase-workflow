@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template
+        id="purchase_requisition"
+        name="Purchase Requisition"
+        inherit_id="purchase_requisition.report_purchaserequisition_document"
+    >
+        <xpath expr="//t[@t-if='o.line_ids']/table//th[1]" position="attributes">
+            <attribute name="t-if">False</attribute>
+        </xpath>
+        <xpath expr="//t[@t-if='o.line_ids']/table//th[1]" position="after">
+            <th>
+                <strong>Product</strong>
+            </th>
+            <th>
+                <strong>Description</strong>
+            </th>
+        </xpath>
+        <xpath expr="//td[@name='td_section_name']" position="attributes">
+            <attribute
+                name="t-att-colspan"
+            >4 + (1 if has_ordered_quantity else 0) + (1 if has_uom_group else 0)</attribute>
+        </xpath>
+        <xpath expr="//td[@name='td_subsection_name']" position="attributes">
+            <attribute
+                name="t-att-colspan"
+            >4 + (1 if has_ordered_quantity else 0) + (1 if has_uom_group else 0)</attribute>
+        </xpath>
+        <xpath expr="//tr[@name='tr_product']/td[1]" position="after">
+            <td>
+                <span t-field="line_id.name" />
+            </td>
+        </xpath>
+    </template>
+</odoo>

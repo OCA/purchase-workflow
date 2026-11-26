@@ -1,0 +1,2 @@
+- Anna Janiszewska \<anna.janiszewska@camptocamp.com\>
+- Ayush Patel \<patelayush2021@gmail.com\>
