@@ -1,0 +1,9 @@
+- [Tecnativa](https://www.tecnativa.com):
+  - João Marques
+  - Pilar Vargas
+  - Stefan Ungureanu
+  - Pedro M. Baeza
+- [Solvos](https://www.solvos.es):
+  - David Alonso \<<david.alonso@solvos.es>\>
+- [Binhex](https://binhex.cloud/):
+  - Deriman Alonso \<<d.alonso@binhex.cloud>\>
