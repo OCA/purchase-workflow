@@ -1,0 +1,47 @@
+# Copyright 2015 AvanzOsc (http://www.avanzosc.es)
+# Copyright 2018 Tecnativa - Carlos Dauden
+# Copyright 2015-2021 Tecnativa - Pedro M. Baeza
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
+
+from odoo import models
+
+
+class PurchaseOrderLine(models.Model):
+    _inherit = "purchase.order.line"
+
+    def _find_candidate(
+        self,
+        product_id,
+        product_qty,
+        product_uom,
+        location_id,
+        name,
+        origin,
+        company_id,
+        values,
+    ):
+        """If not grouping by line, we should make an exception when you update an
+        existing sales order line, so we filter a bit more by references.
+
+        NOTE: This makes that if you manually assign the same references to
+        several different sales orders, the grouping will be done no matter the grouping
+        criteria, but this is the only way to do it without having to put a lot of glue
+        modules, and on standard operation mode, references are not reused between sales
+        orders.
+        """
+        lines = self
+        if values.get("grouping") == "line":
+            lines = self.filtered(
+                lambda x: x.order_id.reference_ids == values.get("reference_ids")
+            )
+
+        return super(PurchaseOrderLine, lines)._find_candidate(
+            product_id,
+            product_qty,
+            product_uom,
+            location_id,
+            name,
+            origin,
+            company_id,
+            values,
+        )
