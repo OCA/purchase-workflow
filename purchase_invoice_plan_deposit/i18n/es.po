@@ -1,0 +1,125 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_invoice_plan_deposit
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-03-30 22:33+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: purchase_invoice_plan_deposit
+#: model:ir.model.fields.selection,name:purchase_invoice_plan_deposit.selection__purchase_invoice_plan__invoice_type__advance
+msgid "Deposit"
+msgstr "Depósito"
+
+#. module: purchase_invoice_plan_deposit
+#: model:ir.model.fields,field_description:purchase_invoice_plan_deposit.field_purchase_create_invoice_plan__advance
+msgid "Deposit on 1st Invoice"
+msgstr "Depósito en la 1ª Factura"
+
+#. module: purchase_invoice_plan_deposit
+#: model:ir.model.fields,field_description:purchase_invoice_plan_deposit.field_purchase_advance_payment_inv__display_name
+#: model:ir.model.fields,field_description:purchase_invoice_plan_deposit.field_purchase_create_invoice_plan__display_name
+#: model:ir.model.fields,field_description:purchase_invoice_plan_deposit.field_purchase_invoice_plan__display_name
+#: model:ir.model.fields,field_description:purchase_invoice_plan_deposit.field_purchase_make_planned_invoice__display_name
+#: model:ir.model.fields,field_description:purchase_invoice_plan_deposit.field_purchase_order__display_name
+msgid "Display Name"
+msgstr "Mostrar Nombre"
+
+#. module: purchase_invoice_plan_deposit
+#: model:ir.model,name:purchase_invoice_plan_deposit.model_purchase_create_invoice_plan
+msgid "Fillig invoice planning criteria"
+msgstr "Cumplimiento de criterios de planificación de facturas"
+
+#. module: purchase_invoice_plan_deposit
+#: model:ir.model.fields,field_description:purchase_invoice_plan_deposit.field_purchase_advance_payment_inv__id
+#: model:ir.model.fields,field_description:purchase_invoice_plan_deposit.field_purchase_create_invoice_plan__id
+#: model:ir.model.fields,field_description:purchase_invoice_plan_deposit.field_purchase_invoice_plan__id
+#: model:ir.model.fields,field_description:purchase_invoice_plan_deposit.field_purchase_make_planned_invoice__id
+#: model:ir.model.fields,field_description:purchase_invoice_plan_deposit.field_purchase_order__id
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_invoice_plan_deposit
+#: model:ir.actions.act_window,name:purchase_invoice_plan_deposit.action_view_purchase_advance_payment_inv_highlight
+msgid "Invoice Order"
+msgstr "Orden de Factura"
+
+#. module: purchase_invoice_plan_deposit
+#: model:ir.model,name:purchase_invoice_plan_deposit.model_purchase_invoice_plan
+msgid "Invoice Planning Detail"
+msgstr "Detalle de Planificación de Facturas"
+
+#. module: purchase_invoice_plan_deposit
+#: code:addons/purchase_invoice_plan_deposit/models/purchase.py:0
+#, python-format
+msgid "Invoice plan requires deposit, please register deposit first."
+msgstr ""
+"El plan de facturación requiere depósito, por favor registre el depósito "
+"primero."
+
+#. module: purchase_invoice_plan_deposit
+#: model:ir.model.fields,field_description:purchase_invoice_plan_deposit.field_purchase_advance_payment_inv____last_update
+#: model:ir.model.fields,field_description:purchase_invoice_plan_deposit.field_purchase_create_invoice_plan____last_update
+#: model:ir.model.fields,field_description:purchase_invoice_plan_deposit.field_purchase_invoice_plan____last_update
+#: model:ir.model.fields,field_description:purchase_invoice_plan_deposit.field_purchase_make_planned_invoice____last_update
+#: model:ir.model.fields,field_description:purchase_invoice_plan_deposit.field_purchase_order____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: purchase_invoice_plan_deposit
+#: model:ir.model.fields,field_description:purchase_invoice_plan_deposit.field_purchase_order__need_advance
+msgid "Need Advance"
+msgstr "Necesita Anticipo"
+
+#. module: purchase_invoice_plan_deposit
+#: code:addons/purchase_invoice_plan_deposit/models/purchase.py:0
+#, python-format
+msgid "Only installment 0 can be of type 'Deposit'"
+msgstr "Sólo el plazo 0 puede ser de tipo \"Depósito\""
+
+#. module: purchase_invoice_plan_deposit
+#: model:ir.model.fields,field_description:purchase_invoice_plan_deposit.field_purchase_create_invoice_plan__advance_percent
+msgid "Percent Deposit"
+msgstr "Porcentaje Depósito"
+
+#. module: purchase_invoice_plan_deposit
+#: model:ir.model,name:purchase_invoice_plan_deposit.model_purchase_advance_payment_inv
+msgid "Purchase Advance Payment Invoice"
+msgstr "Factura de Pago Anticipado de Compra"
+
+#. module: purchase_invoice_plan_deposit
+#: model:ir.model,name:purchase_invoice_plan_deposit.model_purchase_order
+msgid "Purchase Order"
+msgstr "Orden de Compra"
+
+#. module: purchase_invoice_plan_deposit
+#: model_terms:ir.ui.view,arch_db:purchase_invoice_plan_deposit.view_purchase_order_form_inherit
+msgid "Register Deposit"
+msgstr "Registrar Depósito"
+
+#. module: purchase_invoice_plan_deposit
+#: model:ir.model.fields,help:purchase_invoice_plan_deposit.field_purchase_order__need_advance
+msgid "True if use 1st deposit invoice plan, but no deposit yet"
+msgstr ""
+"Verdadero si utiliza el plan de factura de primer depósito, pero aún no ha "
+"realizado ningún depósito"
+
+#. module: purchase_invoice_plan_deposit
+#: model:ir.model.fields,field_description:purchase_invoice_plan_deposit.field_purchase_invoice_plan__invoice_type
+msgid "Type"
+msgstr "Tipo"
+
+#. module: purchase_invoice_plan_deposit
+#: model:ir.model,name:purchase_invoice_plan_deposit.model_purchase_make_planned_invoice
+msgid "Wizard when create invoice by plan"
+msgstr "Asistente al crear factura por plan"
