@@ -1,0 +1,1 @@
+This module extends the computed purchase order functionality by adding constraints on the minimum and maximum number of packages that can be ordered for each product based on supplier information. It ensures that purchase orders adhere to these package limits, preventing orders that exceed the defined maximum or fall below the minimum required for optimal pricing.
