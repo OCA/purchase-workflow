@@ -1,0 +1,6 @@
+<odoo>
+    <record id="purchase_hide_price_grp" model="res.groups">
+        <field name="name">Purchase hide prices</field>
+        <field name="category_id" ref="base.module_category_inventory_purchase" />
+    </record>
+</odoo>
