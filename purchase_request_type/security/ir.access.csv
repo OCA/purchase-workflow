@@ -1,0 +1,4 @@
+id,name,model_id,group_id/id,operation,domain
+access_purchase_request_type,purchase.request.type,purchase.request.type,purchase_request.group_purchase_request_user,r,
+access_purchase_request_type_manager,purchase.request.type manager,purchase.request.type,purchase_request.group_purchase_request_manager,crud,
+purchase_request_type_multi_company_rule,Purchase Request Type multi-company,purchase.request.type,,crud,"[('company_id', 'in', company_ids + [False])]"
