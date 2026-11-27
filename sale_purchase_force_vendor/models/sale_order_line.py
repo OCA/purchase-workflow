@@ -1,4 +1,5 @@
 # Copyright 2022-2024 Tecnativa - Víctor Martínez
+# Copyright 2026 Quartile (https://www.quartile.co)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
@@ -45,25 +46,32 @@ class SaleOrderLine(models.Model):
             "company_id": self.company_id.id,
         }
 
+    def _get_force_vendor_supplierinfo(self):
+        suppinfo = self.product_id.with_company(self.company_id.id)._select_seller(
+            partner_id=self.vendor_id,
+            quantity=self.product_uom_qty,
+            uom_id=self.product_uom_id,
+        )
+        if not suppinfo:
+            # By default user with group_sale_salesman group can not creates
+            # supplierinfo records.
+            suppinfo = (
+                self.env["product.supplierinfo"]
+                .sudo()
+                .create(self._prepare_force_vendor_product_supplierinfo_vals())
+            )
+        return suppinfo
+
     def _prepare_procurement_values(self):
         """Inject in the procurement values the preferred vendor if any, and create
         supplierinfo record for it if it doesn't exist.
         """
         res = super()._prepare_procurement_values()
         if self.vendor_id:
-            product = self.product_id
-            suppinfo = product.with_company(self.company_id.id)._select_seller(
-                partner_id=self.vendor_id,
-                quantity=self.product_uom_qty,
-                uom_id=self.product_uom_id,
-            )
-            if not suppinfo:
-                # By default user with group_sale_salesman group can not creates
-                # supplierinfo records.
-                suppinfo = (
-                    self.env["product.supplierinfo"]
-                    .sudo()
-                    .create(self._prepare_force_vendor_product_supplierinfo_vals())
-                )
-            res["supplierinfo_id"] = suppinfo
+            res["supplierinfo_id"] = self._get_force_vendor_supplierinfo()
         return res
+
+    def _purchase_service_match_supplier(self, warning=True):
+        if self.vendor_id:
+            return self._get_force_vendor_supplierinfo()
+        return super()._purchase_service_match_supplier(warning=warning)
