@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Docutils: https://docutils.sourceforge.io/" />
-<title>README.rst</title>
+<title>Supplier Calendar</title>
 <style type="text/css">
 
 /*
@@ -380,8 +380,9 @@ then used as the basis of the proper computation of start/end dates
 based on the delivery lead time of the supplier in this and other
 modules.</p>
 <p>In this module, the calendar is considered in the computation of the
-schedules date of a stock picking and in the order date of a purchase
-order.</p>
+schedules date of a stock picking, in the order date of a purchase
+order, in the lead days of the reordering rules and in the date of the
+Replenish button.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -403,8 +404,14 @@ order.</p>
 <li>Go to <em>Settings &gt; Technical &gt; Resource &gt; Working Schedules</em> and define
 your resource calendar.</li>
 <li>Go to <em>Contacts &gt; Sales&amp;Purchases &gt; Purchase &gt; Delay Calendar Type</em>
-and assign Supplier Calendar and in <em>Factory Calendar</em> assign the
-Resource Calendar desired.</li>
+and assign Specific Supplier Calendar and in <em>Factory Calendar</em> assign
+the Resource Calendar desired.</li>
+<li>To use the same calendar for several vendors, go to <em>Purchase &gt;
+Configuration &gt; Settings</em> and set it in <em>Default Supplier Calendar</em>.
+Then set <em>Default Supplier Calendar</em> as <em>Delay Calendar Type</em> on those
+vendors. New contacts get it by default. The settings warn when
+vendors still have <em>Natural days</em>, with a button to set them all to
+<em>Default Supplier Calendar</em>.</li>
 </ul>
 </div>
 <div class="section" id="usage">
@@ -417,6 +424,8 @@ lead time in natural days. THis module adds the possibility of
 expressing the lead time of a vendor in his own calendar. This way, the
 order dates of purchase orders and the scheduled dates of receipts will
 only take into account the supplier working days.</p>
+<p>A default calendar can also be set on the company, and is used by the
+vendors with <em>Default Supplier Calendar</em> as <em>Delay Calendar Type</em>.</p>
 </div>
 <div class="section" id="bug-tracker">
 <h2><a class="toc-backref" href="#toc-entry-3">Bug Tracker</a></h2>
@@ -444,6 +453,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <li>Bhavesh Heliconia</li>
 </ul>
 </li>
+<li>Laura Valls &lt;<a class="reference external" href="mailto:laura.valls&#64;forgeflow.com">laura.valls&#64;forgeflow.com</a>&gt;</li>
 </ul>
 </div>
 <div class="section" id="maintainers">

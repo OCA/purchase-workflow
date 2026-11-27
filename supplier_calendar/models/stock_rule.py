@@ -11,14 +11,28 @@ class StockRule(models.Model):
 
     def _prepare_purchase_order(self, company_id, origins, values):
         res = super()._prepare_purchase_order(company_id, origins, values)
-        dates = [fields.Datetime.from_string(value["date_planned"]) for value in values]
-        values = values[0]
-        partner = values["supplier"].partner_id
-        procurement_date_planned = min(dates)
-        schedule_date = procurement_date_planned - relativedelta(
-            days=company_id.days_to_purchase
+        res["date_order"] = min(
+            value["supplier"].partner_id.supplier_plan_days(
+                fields.Datetime.from_string(value["date_planned"])
+                - relativedelta(days=company_id.days_to_purchase),
+                -1 * value["supplier"].delay,
+                company_id,
+            )
+            for value in values
         )
-        delay = -1 * values["supplier"].delay
-        purchase_date = partner.supplier_plan_days(schedule_date, delay)
-        res["date_order"] = purchase_date
         return res
+
+    def _get_lead_days(self, product, **values):
+        """Give the vendor lead time counted in working days as natural days
+        from today, so that the replenishment dates match the order date."""
+        buy_rule = self.filtered(lambda r: r.action == "buy")[:1]
+        if buy_rule and not self.env.context.get("ignore_vendor_lead_time"):
+            seller = (
+                values.get("supplierinfo")
+                or product.with_company(buy_rule.company_id)._select_seller(
+                    quantity=None
+                )
+            )[:1]
+            if seller:
+                values["supplierinfo"] = seller._with_natural_delay(buy_rule.company_id)
+        return super()._get_lead_days(product, **values)
