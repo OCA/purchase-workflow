@@ -78,6 +78,23 @@ class TestPurchaseOrderType(common.TransactionCase):
         )
         return purchase
 
+    def test_reference_follows_type_until_confirmed(self):
+        sequences = self.env["ir.sequence"].create(
+            [
+                {"name": "POType Local", "prefix": "LOC-", "padding": 3},
+                {"name": "POType Import", "prefix": "IMP-", "padding": 3},
+            ]
+        )
+        self.type1.sequence_id = sequences[0]
+        self.type2.sequence_id = sequences[1]
+        purchase = self._create_purchase([(self.product1, 1)])
+        self.assertTrue(purchase.name.startswith("LOC-"))
+        purchase.order_type = self.type2
+        self.assertTrue(purchase.name.startswith("IMP-"))
+        purchase.button_confirm()
+        purchase.order_type = self.type1
+        self.assertTrue(purchase.name.startswith("IMP-"))
+
     def test_purchase_order_change_company(self):
         order = self.po_obj.new({"partner_id": self.partner1.id})
         order.onchange_partner_id()
