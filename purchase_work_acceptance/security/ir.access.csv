@@ -1,0 +1,5 @@
+id,name,model_id,group_id/id,operation,domain
+access_work_acceptance,access_work_acceptance,work.acceptance,purchase.group_purchase_user,crud,
+access_work_acceptance_line,access_work_acceptance_line,work.acceptance.line,purchase.group_purchase_user,crud,
+access_select_work_acceptance_wizard,access_select_work_acceptance_wizard,select.work.acceptance.wizard,purchase.group_purchase_user,crud,
+access_work_accepted_date_wizard,access_work_accepted_date_wizard,work.accepted.date.wizard,base.group_user,crud,

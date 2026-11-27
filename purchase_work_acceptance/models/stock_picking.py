@@ -66,7 +66,7 @@ class Picking(models.Model):
                     )
             move_line = {}
             for move in picking.move_ids:
-                qty = move.product_uom._compute_quantity(
+                qty = move.uom_id._compute_quantity(
                     move.quantity, move.product_id.uom_id
                 )
                 if qty > 0.0:

@@ -3,7 +3,6 @@
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError
-from odoo.tools import float_is_zero
 
 
 class WorkAcceptance(models.Model):
@@ -126,9 +125,7 @@ class WorkAcceptance(models.Model):
 
     def _unlink_zero_quantity(self):
         wa_line_zero_quantity = self.wa_line_ids.filtered(
-            lambda wa_line: float_is_zero(
-                wa_line.product_qty, precision_rounding=wa_line.currency_id.rounding
-            )
+            lambda wa_line: wa_line.product_uom.is_zero(wa_line.product_qty)
         )
         wa_line_zero_quantity.unlink()
 

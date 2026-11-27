@@ -11,6 +11,15 @@ from odoo.addons.base.tests.common import BaseCommon
 
 
 class TestPurchaseWorkAcceptance(BaseCommon):
+    _test_user_groups = (
+        "base.group_user",
+        "purchase.group_purchase_manager",
+        "stock.group_stock_manager",
+        "account.group_account_manager",
+        # some tests change the settings
+        "base.group_system",
+    )
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -69,7 +78,7 @@ class TestPurchaseWorkAcceptance(BaseCommon):
                     Command.create(
                         {
                             "product_id": product.id,
-                            "product_uom_id": product.uom_id.id,
+                            "uom_id": product.uom_id.id,
                             "name": product.name,
                             "price_unit": product.standard_price,
                             "date_planned": self.date_now,
@@ -89,7 +98,7 @@ class TestPurchaseWorkAcceptance(BaseCommon):
                     Command.create(
                         {
                             "product_id": self.product_product.id,
-                            "product_uom_id": self.product_product.uom_id.id,
+                            "uom_id": self.product_product.uom_id.id,
                             "name": self.product_product.name,
                             "price_unit": self.product_product.standard_price,
                             "date_planned": self.date_now,
@@ -125,7 +134,7 @@ class TestPurchaseWorkAcceptance(BaseCommon):
                             and po.order_line[0].price_unit
                             or self.service_product.standard_price,
                             "product_uom": po
-                            and po.order_line[0].product_uom_id.id
+                            and po.order_line[0].uom_id.id
                             or self.service_product.uom_id.id,
                             "product_qty": qty,
                         }
@@ -151,9 +160,7 @@ class TestPurchaseWorkAcceptance(BaseCommon):
                             "product_id": purchase_order.order_line[x].product_id.id,
                             "name": purchase_order.order_line[x].name,
                             "price_unit": purchase_order.order_line[x].price_unit,
-                            "product_uom": purchase_order.order_line[
-                                x
-                            ].product_uom_id.id,
+                            "product_uom": purchase_order.order_line[x].uom_id.id,
                             "product_qty": qty,
                         }
                     )
@@ -241,9 +248,11 @@ class TestPurchaseWorkAcceptance(BaseCommon):
         # Create Vendor Bill
         f = Form(self.move_model.with_context(default_move_type="in_invoice"))
         f.partner_id = purchase_order.partner_id
-        f.purchase_vendor_bill_id = self.env["purchase.bill.union"].browse(
-            -purchase_order.id
-        )
+        # the onchange tells the PO lines added to the bill as a warning
+        with self.assertLogs("odoo.tests.form.onchange", level="WARNING"):
+            f.purchase_vendor_bill_id = self.env["purchase.bill.union"].browse(
+                -purchase_order.id
+            )
         invoice = f.save()
         invoice.wa_id = work_acceptance
         invoice_line = invoice.invoice_line_ids[0]
@@ -272,9 +281,10 @@ class TestPurchaseWorkAcceptance(BaseCommon):
         # Create Vendor Bill
         f = Form(self.move_model.with_context(default_move_type="in_invoice"))
         f.partner_id = purchase_order.partner_id
-        f.purchase_vendor_bill_id = self.env["purchase.bill.union"].browse(
-            -purchase_order.id
-        )
+        with self.assertLogs("odoo.tests.form.onchange", level="WARNING"):
+            f.purchase_vendor_bill_id = self.env["purchase.bill.union"].browse(
+                -purchase_order.id
+            )
         invoice = f.save()
         invoice.wa_id = work_acceptance
         self.assertEqual(invoice.state, "draft")
@@ -326,7 +336,7 @@ class TestPurchaseWorkAcceptance(BaseCommon):
         purchase_order = self._create_multi_purchase_order(qty, multi=2)
         purchase_order.button_confirm()
         # Create Work Acceptance
-        work_acceptance = work_acceptance = self._create_multi_work_acceptance(
+        work_acceptance = self._create_multi_work_acceptance(
             qty, purchase_order, multi=2
         )
         work_acceptance.button_accept()

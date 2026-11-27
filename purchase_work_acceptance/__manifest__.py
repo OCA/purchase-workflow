@@ -3,7 +3,7 @@
 
 {
     "name": "Purchase Work Acceptance",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "category": "Purchase Management",
     "author": "Ecosoft, Odoo Community Association (OCA)",
     "license": "AGPL-3",
@@ -11,7 +11,7 @@
     "depends": ["purchase_stock"],
     "data": [
         "data/work_acceptance_sequence.xml",
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
         "security/security.xml",
         "views/account_move_views.xml",
         "views/purchase_views.xml",
