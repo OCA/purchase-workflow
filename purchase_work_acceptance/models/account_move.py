@@ -38,7 +38,7 @@ class AccountMove(models.Model):
                         line.product_qty, line.product_id.uom_id
                     )
                     if qty > 0.0:
-                        if line.product_id.id in wa_line.keys():
+                        if line.product_id.id in wa_line:
                             qty_old = wa_line[line.product_id.id]
                             wa_line[line.product_id.id] = qty_old + qty
                         else:
@@ -49,7 +49,7 @@ class AccountMove(models.Model):
                         line.quantity, line.product_id.uom_id
                     )
                     if qty > 0.0:
-                        if line.product_id.id in invoice_line.keys():
+                        if line.product_id.id in invoice_line:
                             qty_old = invoice_line[line.product_id.id]
                             invoice_line[line.product_id.id] = qty_old + qty
                         else:

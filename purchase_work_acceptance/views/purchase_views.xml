@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <!-- Search RFQ -->
     <record id="view_purchase_order_filter" model="ir.ui.view">

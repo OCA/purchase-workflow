@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="group_enable_wa_on_po" model="res.groups">
         <field name="name">Enable WA on Purchase Order</field>
