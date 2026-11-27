@@ -38,10 +38,11 @@ class TestReceptionChainCycle(TransactionCase):
     def test_return_of_return_does_not_recurse(self):
         """Returning a return must not break the order's reception chain.
 
-        With a two-step reception the pushed reception chain can become
-        cyclic: the return wizard links the forward and backward moves to
-        each other, so computing ``all_picking_ids`` used to recurse forever
-        and the purchase order could no longer be opened.
+        With a two-step reception, returning the pushed internal transfer and
+        then returning that return makes the pushed moves point to each other
+        through ``move_dest_ids``, so the reception chain becomes cyclic.
+        Computing ``all_picking_ids`` used to recurse forever and the purchase
+        order could no longer be opened.
         """
         order = self.env["purchase.order"].create(
             {
@@ -72,7 +73,7 @@ class TestReceptionChainCycle(TransactionCase):
             ]
         )
         self._validate(internal)
-        return_picking = self._return(receipt)
+        return_picking = self._return(internal)
         return_of_return = self._return(return_picking)
 
         # Must not raise RecursionError and must list every related picking.
