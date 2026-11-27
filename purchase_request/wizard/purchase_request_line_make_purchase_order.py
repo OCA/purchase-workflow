@@ -164,7 +164,10 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             "order_id": po.id,
             "product_id": product.id,
             "product_uom_id": product.uom_id.id,
-            "price_unit": 0.0,
+            # Do not force price_unit: let the compute fill in the vendor
+            # price. Forcing 0.0 here relied on the later write of
+            # product_qty to recompute it, which does not happen when the
+            # final quantity equals the initial one.
             "product_qty": qty,
             "analytic_distribution": item.line_id.analytic_distribution,
             "purchase_request_lines": [(4, item.line_id.id)],
