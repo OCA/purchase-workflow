@@ -11,11 +11,13 @@ class SaleOrderLine(models.Model):
         no_grouped_lines = self.filtered(
             lambda sol: (sol.product_id.categ_id.procured_purchase_grouping == "order")
         )
-        res = super(SaleOrderLine, self - no_grouped_lines)._purchase_service_create()
+        res = super(SaleOrderLine, self - no_grouped_lines)._purchase_service_create(
+            quantity=quantity
+        )
         res.update(
             super(
                 SaleOrderLine,
                 no_grouped_lines.with_context(search_purchase_no_grouping=True),
-            )._purchase_service_create()
+            )._purchase_service_create(quantity=quantity)
         )
         return res
