@@ -1,0 +1,35 @@
+\*\* Show Button Create WA on Purchase Order \*\*
+
+1.  Go to *Purchase \> Configuration \> Settings*
+2.  Check 'Enable WA on Purchase Order'
+
+\*\* Show WA Reference fields on Receipt \*\*
+
+1.  Go to *Purchase \> Configuration \> Settings*
+2.  Check 'Enable WA on Goods Receipt'
+
+\*\* Control Receipt by Work Acceptance\*\*
+
+1.  Go to *Purchase \> Configuration \> Settings*
+2.  Check 'Enforce WA on Goods Receipt'
+
+\*\* Show WA Reference fields on Vendor Bill \*\*
+
+1.  Go to *Purchase \> Configuration \> Settings*
+2.  Check 'Enable WA on Vendor Bill'
+
+\*\* Control Vendor Bill by Work Acceptance\*\*
+
+1.  Go to *Purchase \> Configuration \> Settings*
+2.  Check 'Enforce WA on Vendor Bill'
+
+Note:
+
+- You can check 'Enable WA on Goods Receipt' and 'Enable WA on Vendor
+  Bill' after checked 'Enable WA on Purchase Order'
+- You can check 'Enforce WA on Goods Receipt' after checked 'Enable WA
+  on Goods Receipt'
+  - But you can bypass WA on some Picking Operation by setting 'WA not
+    required' on Operation Type
+- You can check 'Enforce WA on Vendor Bill' after checked 'Enable WA on
+  Vendor Bill'
