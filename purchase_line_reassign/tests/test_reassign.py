@@ -16,6 +16,7 @@ class TestReassign(TransactionCase):
         product = self.env["product.product"].create(
             {
                 "name": "Product Test",
+                "seller_ids": [Command.create({"partner_id": vendor.id, "price": 0})],
             }
         )
         purchase_from = self.env["purchase.order"].create(
@@ -28,6 +29,7 @@ class TestReassign(TransactionCase):
                             "product_id": product.id,
                             "product_qty": 2,
                             "price_unit": 150.00,
+                            "discount": 10.0,
                             "date_planned": datetime.now(),
                             "product_uom": self.env.ref("uom.product_uom_unit").id,
                         },
@@ -52,3 +54,6 @@ class TestReassign(TransactionCase):
         pl_reassign.action_apply()
         self.assertFalse(len(purchase_from.order_line))
         self.assertTrue(len(purchase_to.order_line))
+        self.assertEqual(purchase_to.order_line.price_unit, 150.00)
+        self.assertEqual(purchase_to.order_line.discount, 10.0)
+        self.assertEqual(purchase_to.order_line.name, "Test Product")

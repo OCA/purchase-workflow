@@ -36,5 +36,10 @@ class PurchaseOrderLineReassignWiz(models.TransientModel):
     def action_apply(self):
         active_ids = self.env.context.get("active_ids")
         lines = self.env["purchase.order.line"].browse(active_ids)
-        lines.write({"order_id": self.purchase_order_id.id})
+        # Changing the order triggers the recomputation of the price, discount,
+        # description and planned date from the vendor pricelist, which would
+        # overwrite the values agreed on the lines being moved.
+        price_field = lines._fields["price_unit"]
+        with self.env.protecting(self.env.registry.field_computed[price_field], lines):
+            lines.write({"order_id": self.purchase_order_id.id})
         return lines
