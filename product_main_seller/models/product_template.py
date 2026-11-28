@@ -16,13 +16,26 @@ class ProductTemplate(models.Model):
         store=True,
     )
 
-    @api.depends("variant_seller_ids.sequence", "variant_seller_ids.partner_id.active")
+    @api.depends(
+        "variant_seller_ids.sequence",
+        "variant_seller_ids.partner_id.active",
+        "variant_seller_ids.date_start",
+        "variant_seller_ids.date_end",
+    )
     def _compute_main_seller_id(self):
         for template in self:
             if template.variant_seller_ids:
                 template.main_seller_id = fields.first(
                     template.variant_seller_ids.filtered(
                         lambda seller: seller.partner_id.active
+                        and (
+                            not seller.date_start
+                            or seller.date_start <= fields.Date.today()
+                        )
+                        and (
+                            not seller.date_end
+                            or seller.date_end >= fields.Date.today()
+                        )
                     )
                 ).partner_id
             else:

@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<odoo noupdate="1">
+    <record id="ir_cron_recompute_main_seller_id" model="ir.cron">
+        <field name="name">Recompute Main Vendor</field>
+        <field name="model_id" ref="product.model_product_supplierinfo" />
+        <field name="state">code</field>
+        <field name="code">model._cron_recompute_main_seller_id()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="active">True</field>
+    </record>
+</odoo>
